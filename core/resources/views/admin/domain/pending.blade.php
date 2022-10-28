@@ -34,7 +34,7 @@
                                     </td>
                                     <td data-label="@lang('Domain Tracker')">{{$pending->tracker}}</td>
                                     <td data-label="@lang('Check Domain')">
-                                        <a href="{{'http://'.$pending->domain_name.'/'.strtolower(str_replace(' ', '_', $general->sitename)).'.txt'}}"
+                                        <a href="{{'https://'.$pending->domain_name.'/'.strtolower(str_replace(' ', '_', $general->sitename)).'.txt'}}"
                                            target="_blank" class="icon-btn btn--success" data-toggle="tooltip"
                                            data-original-title="{{trans('Check Domain')}}">
                                             <i class="las la-check-double text--shadow"></i>@lang('Check Domain')

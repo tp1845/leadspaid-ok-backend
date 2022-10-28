@@ -178,7 +178,7 @@ class PublisherController extends Controller
             return back()->withNotify($notify);
         }
         $fileName = strtolower(str_replace(' ', '_', $general->sitename)) . '.txt';
-        $fileURL = 'http://' . $domain->domain_name . '/' . strtolower(str_replace(' ', '_', $general->sitename)) . '.txt';
+        $fileURL = 'https://' . $domain->domain_name . '/' . strtolower(str_replace(' ', '_', $general->sitename)) . '.txt';
         return view($this->activeTemplate . 'publisher.domain.verifyPage', compact('page_title', 'domain', 'fileURL', 'fileName'));
     }
 
@@ -202,7 +202,7 @@ class PublisherController extends Controller
         $general = GeneralSetting::first();
         $domain = DomainVerifcation::whereTracker($tracker)->first();
 
-        $fileURL = 'http://' . $domain->domain_name . '/' . strtolower(str_replace(' ', '_', $general->sitename)) . '.txt';
+        $fileURL = 'https://' . $domain->domain_name . '/' . strtolower(str_replace(' ', '_', $general->sitename)) . '.txt';
 
         if (Auth::guard('publisher')->user()->id == $domain->publisher_id) {
             $verification = file_get_contents($fileURL);

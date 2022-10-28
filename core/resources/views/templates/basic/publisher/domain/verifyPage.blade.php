@@ -32,7 +32,7 @@
                        @lang('After upload the file to your domain/Server , The file should be browsable with below URL'): 
                    </p>         
 
-                <a href="{{$fileURL}}" target="_blank" class="lead">{{str_replace('http://','',$fileURL)}}</a>
+                <a href="{{$fileURL}}" target="_blank" class="lead">{{str_replace('https://','',$fileURL)}}</a>
 
                 <br><br>
                    @if ($domain->status==0) 

@@ -36,7 +36,7 @@
                                     <td data-label="@lang('Domain Tracker')">{{$result->tracker}}</td>
                                     @if ($result->status == 2)
                                         <td data-label="@lang('Check Domain')">
-                                            <a href="{{'http://'.@$result->domain_name.'/'.strtolower(str_replace(' ', '_', $general->sitename)).'.txt'}}"
+                                            <a href="{{'https://'.@$result->domain_name.'/'.strtolower(str_replace(' ', '_', $general->sitename)).'.txt'}}"
                                                target="_blank" class="icon-btn btn--success" data-toggle="tooltip"
                                                title="" data-original-title="@lang('Check Domain')">
                                                 <i class="las la-check-double text--shadow">@lang('Check Domain')</i>
