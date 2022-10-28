@@ -1,0 +1,286 @@
+{ 
+    "banner": {
+        "builder": true,
+        "name": "Banner Section",
+        "no_selection":true,
+        "content":{
+           
+            "images":{
+                "background_image":{
+                    "size": "1920x1080"
+                    
+                }
+            },
+
+            "heading":"text",
+            "short_details":"textarea"
+            
+        }
+    
+    },
+
+    "features": {
+        "builder": true,
+        "name": "Feature Section",
+        "content":{
+            "heading":"text",
+            "short_details":"textarea"
+        },
+       
+        "element": {
+           
+            "images":{
+                "image":{
+                    "size": "512x512"
+                    
+                }
+            },
+
+            "feature_name":"text",
+            "modal": true
+        }
+    },
+
+    "format": {
+        "builder": true,
+        "name": "Advertise Format",
+        "content":{
+            "images":{
+                "background_image":{
+                    "size": "1920x1080"
+                    
+                }
+            },
+
+            "heading":"text"
+        },
+       
+        "element": {
+            "images":{
+                "image":{
+                    "size": "731x401"
+                    
+                }
+            },
+            
+            "heading":"text",
+            "short_details":"textarea",
+            "modal": true
+        }
+    
+    },
+    "benefits": {
+        "builder": true,
+        "name": "Benefits Section",
+        "content":{
+            
+            "images":{
+                "image":{
+                    "size": "768x1208"
+                    
+                }
+            },
+
+            "heading":"text",
+            "short_details":"textarea",
+            "advertiser_benefits":"textarea-nic",
+            "publisher_benefits":"textarea-nic",
+            "button_text_1":"text",
+            "button_text_1_link":"text",
+            "button_text_2":"text",
+            "button_text_2_link":"text"
+        }
+    
+    },
+
+    "overview": {
+        "builder": true,
+        "name": "Overview Section",
+        "content":{
+            "images":{
+                "background_image":{
+                    "size": "1920x1080"
+                    
+                }
+            },
+
+
+            "heading":"text",
+            "button_text":"text",
+            "button_link":"text",
+
+            "total_advertiser":"text",
+            "total_publisher":"text",
+            "total_advertise":"text",
+            "total_click":"text",
+            "total_impression":"text"
+        }
+       
+    },
+
+    "whychooseUs": {
+        "builder": true,
+        "name": "Why Choose Us",
+        "content":{
+            "heading":"text",
+            "short_details":"textarea"
+        },
+       
+        "element": {
+           
+            "images":{
+                "image":{
+                    "size": "128x128"
+                    
+                }
+            },
+
+            "title":"text",
+            "short_details":"textarea",
+            "modal": true
+        }
+    
+    },
+    "testimonial": {
+        "builder": true,
+        "name": "Testimonial Section",
+        "content":{
+          
+            "images":{
+                "background_image":{
+                    "size": "1920x1302"
+                    
+                }
+            },
+
+            "heading":"text",
+            "video_title":"text",
+            "video_link":"text"
+        },
+       
+        "element": {
+            "images":{
+                "image":{
+                    "size": "257x303"
+                    
+                }
+            },
+
+            "client_name":"text",
+            "designation":"text",
+            "quote":"textarea",
+            "modal": true
+        }
+    
+    },
+    "brands": {
+        "builder": true,
+        "name": "Brands Section",
+        "content":{
+            "heading":"text"
+        },
+        "element": {
+           
+            "images":{
+                "image":{
+                    "size": "177x55"
+                    
+                }
+            },
+            "modal": true
+        }
+    
+    },
+
+    "login":{
+        "builder":true,
+        "name":"Login & Reg. Image",
+        "no_selection":true,
+        "content":{
+            
+            "images":{
+                "background_image":{
+                    "size":"1920x1360"
+                    
+                }
+            }
+
+        }
+       
+    },
+    "footer":{
+        "builder":true,
+        "no_selection":true,
+        "name":"Footer Section",
+        "content":{
+            "heading":"text",
+            "copyright":"text",
+            "button_text":"text",
+            "button_link":"text"
+        }
+       
+    },
+    "contact":{
+        "builder":true,
+        "no_selection":true,
+        "name":"Contact Page",
+        "content":{
+           
+           
+
+            "address":"text",
+            "phone_number":"text",
+            "email":"text"
+            
+        }
+       
+    },
+    "breadcrumb":{
+        "builder":true,
+        "no_selection":true,
+        "name":"Breadcrumb",
+        "content":{
+            "images":{
+                "background_image":{
+                    "size":"1920x420"
+                    
+                }
+            }
+        }
+       
+    },
+    "blog":{
+        "builder":true,
+        "no_selection":true,
+        "name":"Manage Blog",
+        "element":{
+           
+            "images":{
+                "image":{
+                    "size":"640x426",
+                   "thumb":"368x245"
+                    
+                }
+            },
+            "title":"text",
+            "content":"textarea-nic",
+            "modal": false
+        }
+       
+    },
+  
+    "policy":{
+        "builder":true,
+        "no_selection":true,
+        "name":"Policy & Terms",
+        "element":{
+            "heading":"text",
+            "content":"textarea-nic",
+            "modal":false
+        }
+       
+    }
+
+   
+    
+}
