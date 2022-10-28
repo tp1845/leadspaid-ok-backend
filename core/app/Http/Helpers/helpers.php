@@ -27,8 +27,8 @@ function sidebarVariation()
 
 function systemDetails()
 {
-    $system['name'] = 'adsrock';
-    $system['version'] = '1.2';
+    $system['name'] = 'leadspaid';
+    $system['version'] = '1.0';
     return $system;
 }
 
