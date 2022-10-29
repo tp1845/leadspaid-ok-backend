@@ -3,7 +3,7 @@
 @section('panel')
 <div class="container-fluid position-relative px-0">
 
-    <form method="POST" action="{{ route('advertiser.ad.store') }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('advertiser.payments.update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser">
 
@@ -20,7 +20,7 @@
                 <span class="form-text">Amount used before this day</span>
             </div>
             <div class="m-1">
-                <input type="text" value="{{ Auth::guard('advertiser')->user()->amount_used }}" class=" bg-white form-control text--black" placeholder="Amount used yesterday" value="">
+                <input type="text" value="{{ Auth::guard('advertiser')->user()->amount_used }}" name="amount_used" class=" bg-white form-control text--black" placeholder="Amount used yesterday" value="">
 
             </div>
         </div>

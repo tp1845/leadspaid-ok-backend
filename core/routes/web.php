@@ -395,6 +395,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
          
          //Payments
          Route::get('payments', 'AdvertiserController@showPayments')->name('payments');
+         Route::post('/payments/update', 'AdvertiserController@PaymentsUpdate')->name('payments.update');
 
     });
 });

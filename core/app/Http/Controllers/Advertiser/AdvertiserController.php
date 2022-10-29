@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Advertiser;
 
 use App\Deposit;
 use App\CreateAd;
+use App\Advertiser;
 use Carbon\Carbon;
 use App\PublisherAd;
 use App\Transaction;
@@ -207,6 +208,18 @@ class AdvertiserController extends Controller
         $user = auth()->guard('advertiser')->user();
         $page_title = 'Payments';
         return view($this->activeTemplate.'advertiser.payments', compact('page_title'));
+    }
+    public function PaymentsUpdate(Request $request)
+    {
+        $total_budget = $request->total_budget;
+        $amount_used = $request->amount_used;
+        
+        $advertiser = Advertiser::findOrFail(Auth::guard('advertiser')->user()->id);
+        $advertiser->total_budget = $total_budget;
+        $advertiser->amount_used = $amount_used;
+        $advertiser->update();
+        $notify[] = ['success', 'Saved Changes'];
+        return redirect(route('advertiser.payments'))->withNotify($notify);
     }
     public function create2fa(Request $request)
     {
