@@ -114,6 +114,13 @@
                             <span class="menu-title">@lang('2FA Security')</span>
                         </a>
                     </li>
+                    <li class="sidebar-menu-item {{menuActive('advertiser.payments')}}">
+                    <a href="{{route('advertiser.payments')}}" class="nav-link">
+                        <i class="menu-icon las la-credit-card"></i>
+                            <span class="menu-title">@lang('Payements')</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-menu-item {{menuActive('advertiser.logout')}}">
                     <a href="{{route('advertiser.logout')}}" class="nav-link">
                         <i class="menu-icon las la-sign-out-alt"></i>

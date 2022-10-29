@@ -202,7 +202,12 @@ class AdvertiserController extends Controller
         $page_title = 'Two Factor';
         return view($this->activeTemplate.'advertiser.twofactor', compact('page_title', 'secret', 'qrCodeUrl', 'prevcode', 'prevqr'));
     }
-
+    public function showPayments()
+    {
+        $user = auth()->guard('advertiser')->user();
+        $page_title = 'Payments';
+        return view($this->activeTemplate.'advertiser.payments', compact('page_title'));
+    }
     public function create2fa(Request $request)
     {
         $user = auth()->guard('advertiser')->user();

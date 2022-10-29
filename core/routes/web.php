@@ -392,6 +392,10 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
          Route::post('twofactor/enable', 'AdvertiserController@create2fa')->name('twofactor.enable');
          Route::post('twofactor/disable', 'AdvertiserController@disable2fa')->name('twofactor.disable');
 
+         
+         //Payments
+         Route::get('payments', 'AdvertiserController@showPayments')->name('payments');
+
     });
 });
 
