@@ -26,7 +26,7 @@
                                             href="{{route('admin.publisher.details',$pending->publisher->id)}}"
                                             target="_blank">{{$pending->publisher->username}}</a></td>
                                     <td data-label="@lang('Domain Name')" class="font-weight-bold"><a
-                                            href="http://{{$pending->domain_name}}"
+                                            href="https://{{$pending->domain_name}}"
                                             target="_blank">{{$pending->domain_name}}</a></td>
                                     <td data-label="@lang('Site Keywords')">
                                         <button type="button" class="icon-btn btn--primary btn-sm view"

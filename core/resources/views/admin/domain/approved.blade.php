@@ -25,7 +25,7 @@
                                             href="{{route('admin.publisher.details',$approved->publisher->id)}}"
                                             target="_blank">{{$approved->publisher->username}}</a></td>
                                     <td data-label="@lang('Domain Name')" class="font-weight-bold"><a
-                                            href="http://{{$approved->domain_name}}"
+                                            href="https://{{$approved->domain_name}}"
                                             target="_blank">{{$approved->domain_name}}</a></td>
                                     <td data-label="@lang('Site Keywords')">
                                         <button type="button" class="icon-btn btn--primary btn-sm view"
