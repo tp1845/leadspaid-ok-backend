@@ -35,6 +35,7 @@ Route::namespace('Gateway')->prefix('ipn')->name('ipn.')->group(function () {
     Route::post('coinbase_commerce', 'coinbase_commerce\ProcessController@ipn')->name('coinbase_commerce');
     Route::get('mollie', 'mollie\ProcessController@ipn')->name('mollie');
     Route::post('cashmaal', 'cashmaal\ProcessController@ipn')->name('cashmaal');
+    Route::post('advertiser/charge', 'stripe_v3\ProcessController@charge')->name('advertiser_charge');
 });
 
 // User Support Ticket
@@ -396,6 +397,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
          //Payments
          Route::get('payments', 'AdvertiserController@showPayments')->name('payments');
          Route::post('/payments/update', 'AdvertiserController@PaymentsUpdate')->name('payments.update');
+         Route::get('/payments/createsession', 'AdvertiserController@PaymentsCreateSession')->name('payments.createsession');
+         Route::get('/payments/success', 'AdvertiserController@PaymentsSuccessSession')->name('payments.success');
 
     });
 });

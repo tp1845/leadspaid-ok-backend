@@ -117,7 +117,7 @@
                     <li class="sidebar-menu-item {{menuActive('advertiser.payments')}}">
                     <a href="{{route('advertiser.payments')}}" class="nav-link">
                         <i class="menu-icon las la-credit-card"></i>
-                            <span class="menu-title">@lang('Payements')</span>
+                            <span class="menu-title">@lang('Payments')</span>
                         </a>
                     </li>
 
