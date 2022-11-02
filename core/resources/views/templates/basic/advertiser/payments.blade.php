@@ -70,6 +70,7 @@
 </div>
 
 
+
 {{-- SETUP PAYMENT MODAL --}}
 <div id="SetupPaymentModal" style="max-width: 100vw;" class="modal fade right modal-lg" tabindex="-1" role="dialog">
     <div class="float-right h-100 m-0 modal-dialog w-100" style="max-width: 25rem;" role="document">
