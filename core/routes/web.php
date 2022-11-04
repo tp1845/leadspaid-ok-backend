@@ -76,16 +76,16 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('password', 'AdminController@passwordUpdate')->name('password.update');
 
 
-        
+
         // Users Manager
         Route::get('user/email/{id}/{flag}', 'ManageUsersController@showEmailSingleForm')->name('users.email.single');
         Route::post('user/send-email/{id}/{role}', 'ManageUsersController@sendEmailSingle')->name('users.send.email.single');
-       
+
         Route::get('advertiser/transactions/{id}', 'ManageUsersController@transactions')->name('users.transactions');
         Route::get('publisher/transactions/{id}', 'ManageUsersController@publisherTransactions')->name('publisher.transactions');
         Route::get('advertiser/deposits/{id}', 'ManageUsersController@deposits')->name('users.deposits');
         Route::get('publisher/withdrawals/{id}', 'ManageUsersController@withdrawals')->name('users.withdrawals');
-       
+
         // Login History
         Route::get('users/login/ipHistory/{ip}', 'ReportController@loginIpHistory')->name('users.login.ipHistory');
         Route::get('report/login/history', 'ReportController@loginHistory')->name('report.login.history');
@@ -115,13 +115,13 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
          Route::get('/advertise/blocked/ip-log', 'AdvertiseController@blockedIpLog')->name('advertise.blockedip');
          Route::post('/advertise/ip/block/{id}', 'AdvertiseController@blockIp')->name('advertise.ip.block');
          Route::post('/advertise/ip/unblock/{id}', 'AdvertiseController@unBlockIp')->name('advertise.ip.unblock');
- 
+
          // keywords
          Route::get('keywords', 'AdvertiseController@keywords')->name('keywords');
          Route::post('add/keywords', 'AdvertiseController@addKeyword')->name('add.keywords');
          Route::post('update/keyword/{id}', 'AdvertiseController@upateKeyword')->name('update.keywords');
          Route::post('remove/keyword/{id}', 'AdvertiseController@removeKeyword')->name('remove.keyword');
- 
+
          //Manage Advertiser
          Route::get('/advertiser/all','AdvertiserController@allAdvertiser')->name('advertiser.all');
          Route::get('/advertiser/active/all','AdvertiserController@allActiveAdvertiser')->name('advertiser.active.all');
@@ -134,15 +134,15 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
          Route::get('/advertiser/active/{id}','AdvertiserController@advertiserActive')->name('advertiser.active');
          Route::get('/advertiser/email-unverified','AdvertiserController@emailUnverified')->name('advertiser.email.unverified');
          Route::get('/advertiser/sms-unverified','AdvertiserController@smsUnverified')->name('advertiser.sms.unverified');
- 
+
          Route::get('advertiser/login/history/{id}', 'AdvertiserController@loginHistory')->name('advertiser.login.history.single');
          Route::get('advertiser/ads/{id}', 'AdvertiserController@advertiserAds')->name('advertiser.ads');
-        
+
          Route::get('advertiser/send-email', 'AdvertiserController@showEmailAllForm')->name('advertiser.email.all');
          Route::post('advertiser/send-email', 'AdvertiserController@sendEmailAll')->name('advertiser.email.send');
          Route::get('advertiser/search', 'AdvertiserController@search')->name('advertiser.search');
- 
-         
+
+
          //Manage publisher
          Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
          Route::get('/publisher/active/all','PublisherController@allActivePublisher')->name('publisher.active.all');
@@ -153,22 +153,22 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
          Route::get('/publisher/active/{id}','PublisherController@publisherActive')->name('publisher.active');
          Route::get('/publisher/email-unverified','PublisherController@emailUnverified')->name('publisher.email.unverified');
          Route::get('/publisher/sms-unverified','PublisherController@smsUnverified')->name('publisher.sms.unverified');
- 
+
          Route::post('/publisher/ads/{slug}/{id}','PublisherController@publisherAds')->name('publisher.ads');
          Route::post('/publisher/ads/details/{id}','PublisherController@publisherAdsDetails')->name('publisher.ads.details');
          Route::post('publisher/add-sub-balance/{id}', 'PublisherController@addSubBalance')->name('publisher.addSubBalance');
          Route::get('publisher/login/history/{id}', 'PublisherController@loginHistory')->name('publisher.login.history.single');
- 
+
          Route::get('publisher/send-email', 'PublisherController@showEmailAllForm')->name('publisher.email.all');
          Route::post('publisher/send-email', 'PublisherController@sendEmailAll')->name('publisher.email.send');
          Route::get('publisher/search', 'PublisherController@search')->name('publisher.search');
- 
+
          //domain manage
          Route::get('/domain/pending','DomainController@pending')->name('domain.pending');
          Route::get('/domain/approved/','DomainController@approved')->name('domain.approved');
          Route::get('/domain/approve/{id}','DomainController@approve')->name('domain.approve');
          Route::get('/domain/unapprove/{id}','DomainController@unapprove')->name('domain.unapprove');
-       
+
          Route::post('/domain/remove/{id}','DomainController@remove')->name('domain.remove');
          Route::get('/domain/search/','DomainController@search')->name('domain.search');
 
@@ -239,7 +239,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::post('method/deactivate', 'WithdrawMethodController@deactivate')->name('method.deactivate');
         });
 
-   
+
 
         // Admin Support ticket
         Route::get('tickets', 'SupportTicketController@tickets')->name('ticket');
@@ -355,26 +355,26 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
 
     });
-    
+
     Route::middleware(['advertiser','checkStatus:advertiser'])->group(function () {
         Route::get('dashboard', 'AdvertiserController@dashboard')->name('dashboard');
-      
+
         Route::get('profile', 'AdvertiserController@profile')->name('profile');
         Route::post('profile', 'AdvertiserController@profileUpdate')->name('profile.update');
         Route::get('password', 'AdvertiserController@password')->name('password');
         Route::post('password', 'AdvertiserController@passwordUpdate')->name('password.update');
-     
+
         Route::get('day-to-day/spent/logs', 'AdvertiserController@perDay')->name('day.logs');
         Route::get('day-to-day/spent/logs/search', 'AdvertiserController@perDaySearch')->name('day.search');
         Route::get('date-to-date/spent/logs/search', 'AdvertiserController@perDateSearch')->name('date.search');
 
         Route::get('transaction/logs', 'AdvertiserController@trxLogs')->name('trx.logs');
         Route::get('transaction/search', 'AdvertiserController@trxSearch')->name('trx.search');
-        
-        //advertise 
+
+        //advertise
         Route::get('/ad/all', 'AdController@index')->name('ad.all');
         Route::get('/ad/create', 'AdController@create')->name('ad.create');
-       
+
         Route::post('/ad/store', 'AdController@store')->name('ad.store');
         Route::post('/ad/update/{id}', 'AdController@update')->name('ad.update');
         Route::get('/ad/details/{id}', 'AdController@adDetails')->name('ad.details');
@@ -382,6 +382,12 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/ad/report/', 'AdController@report')->name('ad.report');
         Route::get('/ad/report/search', 'AdController@reportSearch')->name('report.search');
         Route::get('/ad/search', 'AdController@adSearch')->name('ad.search');
+
+        //Campaigns
+        Route::get('/campaigns', 'CampaignsController@index')->name('campaigns.index');
+        //Campaigns
+        Route::get('/forms', 'FormsController@index')->name('forms.index');
+
 
         //price plans
         Route::get('/ad/price-plans', 'AdController@pricePlans')->name('price.plan');
@@ -393,7 +399,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
          Route::post('twofactor/enable', 'AdvertiserController@create2fa')->name('twofactor.enable');
          Route::post('twofactor/disable', 'AdvertiserController@disable2fa')->name('twofactor.disable');
 
-         
+
          //Payments
          Route::get('payments', 'AdvertiserController@showPayments')->name('payments');
          Route::post('/payments/update', 'AdvertiserController@PaymentsUpdate')->name('payments.update');
@@ -449,15 +455,15 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::get('report/day-to-day', 'PublisherController@perDay')->name('report.perDay');
         Route::get('ad/report/', 'PublisherController@adReport')->name('report.ad');
         Route::get('ad/report/search', 'PublisherController@adReportSearch')->name('report.date.search');
-  
+
         Route::get('report/date/search', 'PublisherController@dateSearch')->name('date.search');
-       
+
         Route::get('advertisements', 'AdvertiseController@advertises')->name('advertises');
-       
-        Route::get('/published/ads', 'AdvertiseController@publishedAd')->name('published.ad');  
+
+        Route::get('/published/ads', 'AdvertiseController@publishedAd')->name('published.ad');
         Route::get('/published/ads/details/{id}', 'AdvertiseController@details')->name('published.ad.details');
         Route::get('transaction/search', 'PublisherController@trxSearch')->name('trx.search');
-       
+
         Route::get('/domain', 'PublisherController@domainVerification')->name('domain.verify');
         Route::post('/domain/remove/{tracker}', 'PublisherController@domainRemove')->name('domain.remove');
         Route::post('/domain/update/{id}','PublisherController@updateDomainKeyword')->name('domain.update');
@@ -481,7 +487,7 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
     //Publisher Widthdraw
     Route::name('user.')->prefix('publisher')->group(function () {
         Route::middleware(['checkStatus:publisher','publisher'])->group(function () {
-        
+
             // Withdraw
             Route::get('/withdraw', 'Publisher\PublisherController@withdrawMoney')->name('withdraw.methods');
             Route::post('/withdraw', 'Publisher\PublisherController@withdrawStore')->name('withdraw.money');
@@ -514,8 +520,8 @@ Route::get('/register','SiteController@showRegisterForm')->name('register');
 Route::get('/blog', 'SiteController@blogs')->name('blog');
 Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details');
 
-Route::get('/ads/{publisher}/{type}/{current}', 'VisitorController@getAdvertise')->name('adsUrl'); 
-Route::get('/ad-clicked/{publisher}/{track_id}', 'VisitorController@adClicked')->name('adClicked'); 
+Route::get('/ads/{publisher}/{type}/{current}', 'VisitorController@getAdvertise')->name('adsUrl');
+Route::get('/ad-clicked/{publisher}/{track_id}', 'VisitorController@adClicked')->name('adClicked');
 Route::get('company/plicy/{id}/{slug}', 'SiteController@policy')->name('policy');
 
 

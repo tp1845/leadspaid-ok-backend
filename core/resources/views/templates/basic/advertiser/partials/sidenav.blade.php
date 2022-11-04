@@ -31,7 +31,7 @@
                                     <span class="menu-title">@lang('All Ads')</span>
                                 </a>
                             </li>
-                            
+
                             <li class="sidebar-menu-item {{menuActive(['advertiser.ad.create','advertiser.ad.store'])}}">
                                 <a href="{{route('advertiser.ad.create')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
@@ -44,11 +44,25 @@
                                     <span class="menu-title">@lang('Ad Reports')</span>
                                 </a>
                             </li>
-                            
+
                         </ul>
                     </div>
                 </li>
-              
+
+                <li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.index')}}">
+                    <a href="{{route('advertiser.campaigns.index')}}" class="nav-link" >
+                        <i class="menu-icon las la-money-bill"></i>
+                        <span class="menu-title">@lang('Campaigns') </span>
+                    </a>
+                </li>
+
+                <li class="sidebar-menu-item  {{menuActive('advertiser.forms.index')}}">
+                    <a href="{{route('advertiser.forms.index')}}" class="nav-link" >
+                        <i class="menu-icon las la-money-bill"></i>
+                        <span class="menu-title">@lang('Forms') </span>
+                    </a>
+                </li>
+
                 <li class="sidebar-menu-item  {{menuActive('advertiser.price.plan')}}">
                     <a href="{{route('advertiser.price.plan')}}" class="nav-link"
                       >
@@ -56,7 +70,6 @@
                         <span class="menu-title">@lang('Price Plans') </span>
                     </a>
                 </li>
-
 
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('user.deposit*',3)}}">
@@ -82,7 +95,7 @@
                         </ul>
                     </div>
                 </li>
-                
+
                 <li class="sidebar-menu-item {{menuActive('advertiser.trx.logs')}}">
                     <a href="{{route('advertiser.trx.logs')}}" class="nav-link">
                         <i class="menu-icon fas fa-exchange-alt"></i>
@@ -95,7 +108,7 @@
                             <span class="menu-title">@lang('Per Day Logs')</span>
                         </a>
                     </li>
-              
+
                     <li class="sidebar-menu-item {{menuActive(['ticket','ticket.open','ticket.view'])}}">
                     <a href="{{route('ticket')}}" class="nav-link">
                         <i class="menu-icon las la-ticket-alt"></i>
