@@ -99,7 +99,6 @@ class ProcessController extends Controller
         $users = Advertiser::get();
 
         foreach ($users as $user) {
-            $user = auth()->guard('advertiser')->user();
             $previous_deposit = $user->wallet_deposit;
             $new_deposit =  $previous_deposit - $user->amount_used;
             $amount =  $user->total_budget - $new_deposit;
@@ -156,7 +155,7 @@ class ProcessController extends Controller
             $transaction->init_blance = getAmount($previous_deposit);
             $transaction->total_budget = getAmount($user->total_budget);
             $transaction->spent_previous_day = getAmount($user->amount_used);
-            $deduct_amount = $deducting_amount == 0 ?$deducting_amount. '(' .$amount . '+GST)': 0;
+            $deduct_amount = $deducting_amount <1 ?$deducting_amount. '(' .$amount . '+GST)': 0;
             $transaction->deduct = $deduct_amount;
             $transaction->final_wallet =  $user->wallet_deposit;
             $transaction->save();

@@ -57,18 +57,6 @@
 
 </div>
 
-<div class="container-fluid position-relative px-0">
-
-    <form method="POST" action="{{ route('ipn.advertiser_charge') }}">
-        @csrf
-        <div>
-            <button type="submit" class="btn btn--primary">@lang('Charge from Current wallet')</button>
-        </div>
-    </form>
-
-
-</div>
-
 
 <div class="row">
     <div class="col-lg-12">
