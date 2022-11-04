@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 02, 2022 at 07:18 AM
+-- Generation Time: Nov 04, 2022 at 05:44 AM
 -- Server version: 5.7.40
 -- PHP Version: 7.4.30
 
@@ -102,7 +102,7 @@ CREATE TABLE `advertisers` (
 --
 
 INSERT INTO `advertisers` (`id`, `name`, `email`, `username`, `image`, `country`, `city`, `mobile`, `password`, `balance`, `status`, `ev`, `sv`, `ts`, `tv`, `tsc`, `ver_code`, `ver_code_send_at`, `click_credit`, `impression_credit`, `total_budget`, `amount_used`, `wallet_deposit`, `card_session`, `created_at`, `updated_at`) VALUES
-(1, 'advertiser1', 'advertiser1@gmail.com', 'advertiser1', NULL, 'Bangladesh', 'advertiser1', '88023434534543', '$2y$10$MrXAnXG8cWH0BnQcwYOIxOx3sC6oMg8H.Mk8dRQzCqDWcp8lUPlvC', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 1000, 100, 1000, 'seti_1LzXBKLvd118Nt673LnJK4JM', '2022-10-29 15:56:14', '2022-11-02 03:00:08');
+(1, 'advertiser1', 'advertiser1@gmail.com', 'advertiser1', NULL, 'Bangladesh', 'advertiser1', '88023434534543', '$2y$10$MrXAnXG8cWH0BnQcwYOIxOx3sC6oMg8H.Mk8dRQzCqDWcp8lUPlvC', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 540, 350, 540, 'seti_1Lzsx7Lvd118Nt671KT8oUuE', '2022-10-29 15:56:14', '2022-11-04 05:31:49');
 
 -- --------------------------------------------------------
 
@@ -1082,6 +1082,51 @@ CREATE TABLE `transactions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transactions_advertiser`
+--
+
+CREATE TABLE `transactions_advertiser` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `trx_date` timestamp NULL DEFAULT NULL,
+  `init_blance` decimal(18,8) NOT NULL DEFAULT '0.00000000',
+  `total_budget` decimal(18,8) NOT NULL DEFAULT '0.00000000',
+  `spent_previous_day` decimal(18,8) NOT NULL DEFAULT '0.00000000',
+  `deduct` varchar(255) DEFAULT NULL,
+  `final_wallet` decimal(18,8) NOT NULL DEFAULT '0.00000000',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `transactions_advertiser`
+--
+
+INSERT INTO `transactions_advertiser` (`id`, `user_id`, `trx_date`, `init_blance`, `total_budget`, `spent_previous_day`, `deduct`, `final_wallet`, `created_at`, `updated_at`) VALUES
+(2, 1, '2022-11-03 02:19:11', '1000.00000000', '1000.00000000', '0.00000000', '103(100+GST)', '1000.00000000', '2022-11-03 02:19:11', '2022-11-03 02:19:11'),
+(3, 1, '2022-11-03 03:47:25', '1000.00000000', '1000.00000000', '100.00000000', '103(100+GST)', '1000.00000000', '2022-11-03 03:47:25', '2022-11-03 03:47:25'),
+(4, 1, '2022-11-03 03:47:38', '1000.00000000', '300.00000000', '100.00000000', '0', '900.00000000', '2022-11-03 03:47:38', '2022-11-03 03:47:38'),
+(5, 1, '2022-11-03 03:47:44', '900.00000000', '300.00000000', '100.00000000', '0', '800.00000000', '2022-11-03 03:47:44', '2022-11-03 03:47:44'),
+(6, 1, '2022-11-03 03:48:11', '800.00000000', '300.00000000', '100.00000000', '0', '700.00000000', '2022-11-03 03:48:11', '2022-11-03 03:48:11'),
+(7, 1, '2022-11-03 03:48:39', '700.00000000', '300.00000000', '100.00000000', '0', '600.00000000', '2022-11-03 03:48:39', '2022-11-03 03:48:39'),
+(8, 1, '2022-11-03 03:49:15', '600.00000000', '300.00000000', '250.00000000', '0', '350.00000000', '2022-11-03 03:49:15', '2022-11-03 03:49:15'),
+(9, 1, '2022-11-03 10:02:31', '350.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-03 10:02:31', '2022-11-03 10:02:31'),
+(10, 1, '2022-11-04 05:11:08', '300.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-04 05:11:08', '2022-11-04 05:11:08'),
+(11, 1, '2022-11-04 05:13:45', '300.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-04 05:13:45', '2022-11-04 05:13:45'),
+(12, 1, '2022-11-04 05:14:02', '300.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-04 05:14:02', '2022-11-04 05:14:02'),
+(13, 1, '2022-11-04 05:14:12', '300.00000000', '0.00000000', '250.00000000', '0(-50+GST)', '50.00000000', '2022-11-04 05:14:12', '2022-11-04 05:14:12'),
+(14, 1, '2022-11-04 05:17:02', '50.00000000', '400.00000000', '250.00000000', '0', '400.00000000', '2022-11-04 05:17:02', '2022-11-04 05:17:02'),
+(15, 1, '2022-11-04 05:18:33', '400.00000000', '400.00000000', '250.00000000', '0', '400.00000000', '2022-11-04 05:18:33', '2022-11-04 05:18:33'),
+(16, 1, '2022-11-04 05:22:10', '400.00000000', '400.00000000', '250.00000000', '0', '400.00000000', '2022-11-04 05:22:10', '2022-11-04 05:22:10'),
+(17, 1, '2022-11-04 05:23:20', '400.00000000', '400.00000000', '350.00000000', '0', '400.00000000', '2022-11-04 05:23:20', '2022-11-04 05:23:20'),
+(18, 1, '2022-11-04 05:23:55', '400.00000000', '0.00000000', '350.00000000', '0(-50+GST)', '50.00000000', '2022-11-04 05:23:55', '2022-11-04 05:23:55'),
+(19, 1, '2022-11-04 05:25:01', '50.00000000', '0.00000000', '350.00000000', '0', '0.00000000', '2022-11-04 05:25:01', '2022-11-04 05:25:01'),
+(20, 1, '2022-11-04 05:31:26', '0.00000000', '500.00000000', '350.00000000', '0', '500.00000000', '2022-11-04 05:31:26', '2022-11-04 05:31:26'),
+(21, 1, '2022-11-04 05:31:51', '500.00000000', '540.00000000', '350.00000000', '0', '540.00000000', '2022-11-04 05:31:51', '2022-11-04 05:31:51');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_logins`
 --
 
@@ -1121,7 +1166,13 @@ INSERT INTO `user_logins` (`id`, `publisher_id`, `advertiser_id`, `user_ip`, `lo
 (13, NULL, 1, '162.158.235.35', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-01 12:38:51', '2022-11-01 12:38:51'),
 (14, NULL, 1, '172.71.202.78', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-02 01:31:42', '2022-11-02 01:31:42'),
 (15, NULL, 1, '172.70.189.107', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8884', '1.3479', 'Singapore', 'SG', '2022-11-02 02:10:50', '2022-11-02 02:10:50'),
-(16, NULL, 1, '172.70.147.12', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-02 05:46:09', '2022-11-02 05:46:09');
+(16, NULL, 1, '172.70.147.12', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-02 05:46:09', '2022-11-02 05:46:09'),
+(17, NULL, 1, '172.70.188.198', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-02 09:43:46', '2022-11-02 09:43:46'),
+(18, NULL, 1, '172.70.250.164', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-03 01:36:12', '2022-11-03 01:36:12'),
+(19, NULL, 1, '172.70.189.179', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-03 03:47:13', '2022-11-03 03:47:13'),
+(20, NULL, 1, '172.70.189.107', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8884', '1.3479', 'Singapore', 'SG', '2022-11-03 10:02:10', '2022-11-03 10:02:10'),
+(21, NULL, 1, '162.158.91.48', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-04 05:05:42', '2022-11-04 05:05:42'),
+(22, NULL, 1, '172.71.202.150', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-04 05:37:34', '2022-11-04 05:37:34');
 
 -- --------------------------------------------------------
 
@@ -1372,6 +1423,12 @@ ALTER TABLE `transactions`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transactions_advertiser`
+--
+ALTER TABLE `transactions_advertiser`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `user_logins`
 --
 ALTER TABLE `user_logins`
@@ -1581,10 +1638,16 @@ ALTER TABLE `transactions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `transactions_advertiser`
+--
+ALTER TABLE `transactions_advertiser`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
 -- AUTO_INCREMENT for table `user_logins`
 --
 ALTER TABLE `user_logins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`
