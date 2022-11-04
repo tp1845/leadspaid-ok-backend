@@ -70,6 +70,48 @@
 </div>
 
 
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="table-responsive--lg">
+                <table class="table style--two">
+                    <thead>
+                        <tr>
+                            <th scope="col">@lang('Transaction Date')</th>
+                            <th scope="col">@lang('Inital Wallet Balance')</th>
+                            <th scope="col">@lang('Total Campaign Budget')</th>
+                            <th scope="col">@lang('Amount Spent Yesterday')</th>
+                            <th scope="col">@lang('Amount Deducted From Card')</th>
+                            <th scope="col">@lang('Final Balance')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($trxs as $trx)
+                        <tr>
+                            <td data-label="@lang('Transaction Date')">{{ showDateTime($trx->trx_date) }}</td>
+                            <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->init_blance)  }}</td>
+                            <td data-label="@lang('Total Campaign Budget')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->total_budget) }} </td>
+                            <td data-label="@lang('Amount Spent Yesterday')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->spent_previous_day) }} </td>
+                            <td data-label="@lang('Amount Deducted From Card')" class="budget"> {{ ($trx->deduct) }}</td>
+                            <td data-label="@lang('Final Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->final_wallet) }}</td>
+                        </tr>
+                        @empty
+                        <tr>
+                            <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
+                        </tr>
+                        @endforelse
+
+                    </tbody>
+                </table><!-- table end -->
+            </div>
+        </div>
+        <div class="my-3">
+            {{paginateLinks($trxs)}}
+        </div>
+    </div>
+</div>
+
+
 
 {{-- SETUP PAYMENT MODAL --}}
 <div id="SetupPaymentModal" style="max-width: 100vw;" class="modal fade right modal-lg" tabindex="-1" role="dialog">
@@ -122,24 +164,25 @@
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
-    const {error} = await stripe.confirmSetup({
-      //`Elements` instance that was used to create the Payment Element
-      elements,
-      confirmParams: {
-        return_url: '{{ route("advertiser.payments.success") }}',
-      }
+        const {
+            error
+        } = await stripe.confirmSetup({
+            //`Elements` instance that was used to create the Payment Element
+            elements,
+            confirmParams: {
+                return_url: '{{ route("advertiser.payments.success") }}',
+            }
+        });
+
+        if (error) {
+            const messageContainer = document.querySelector('#error-message');
+            messageContainer.textContent = error.message;
+        } else {
+            // Your customer will be redirected to your `return_url`. For some payment
+            // methods like iDEAL, your customer will be redirected to an intermediate
+            // site first to authorize the payment, then redirected to the `return_url`.
+        }
     });
-
-    if (error) {
-      const messageContainer = document.querySelector('#error-message');
-      messageContainer.textContent = error.message;
-    } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
-    }
-});
-
 </script>
 @endpush
 @push('style')

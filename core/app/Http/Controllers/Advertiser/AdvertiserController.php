@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use App\Lib\GoogleAuthenticator;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\TransactionAdvertiser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Stripe\PaymentMethod;
@@ -223,7 +224,9 @@ class AdvertiserController extends Controller
         );
 
         $page_title = 'Payments';
-        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'intent', 'publishable_key'));
+        $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->paginate(15);
+        $empty_message = 'No Transactions';
+        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key'));
     }
     public function PaymentsCreateSession(Request $request)
     {
