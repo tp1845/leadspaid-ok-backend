@@ -1,6 +1,13 @@
 @extends($activeTemplate.'layouts.advertiser.frontend')
 
 <head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.1/daterangepicker.css" integrity="sha512-vB+6aywqvdBc0/r7xwj5JnbDphFWuv/gSmD74Po2lPSEHWgKPnFp3V3KiX1cTs2b5+ADL7MUlsCUsKOYACCzTQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.1/daterangepicker.js" integrity="sha512-579zfXNAZQ+cP+glXfRntf5TLH444tC8wQ7CsFE8vELKtaKhx8sdWGPYvEXhSxuFXBgWBp942j7yB6JcJ+HxfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 @section('panel')
@@ -71,6 +78,14 @@
 </div>
 
 <div class="row">
+    <div class="col-lg-12 d d-flex justify-content-end">
+
+        <input type="text" id="daterange" name="daterange" value="Today">
+
+    </div>
+</div>
+
+<div class="row">
     <div class="col-lg-12">
         <div class="card">
             <div class="table-responsive--lg">
@@ -137,6 +152,34 @@
 
 
 @push('script')
+<script type="text/javascript">
+    "use strict";
+    $(function() {
+        $(document).ready(function() {
+            //Date Range
+
+            $('#daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment()],
+                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                "alwaysShowCalendars": true,
+                "startDate": "10/31/2022",
+                "endDate": "11/06/2022",
+                "opens": "left",
+                "drops": "auto"
+            }, function(start, end, label) {
+                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+            });
+        });
+
+    });
+</script>
+
 <script>
     "use strict";
 
@@ -185,6 +228,8 @@
     });
 </script>
 @endpush
+
+
 @push('style')
 <style>
     .modal.fade:not(.in).right .modal-dialog {

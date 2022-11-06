@@ -8,6 +8,8 @@
   @include('partials.seo')
   <title>{{ $general->sitename($page_title ?? '') }}</title>
   <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
+  <!-- jQuery library -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <!-- bootstrap 4  -->
   <link rel="stylesheet" href="{{asset('assets/templates/basic/css/vendor/bootstrap.min.css')}}">
   <!-- fontawesome 5  -->
@@ -104,10 +106,9 @@
      @include($activeTemplate.'partials.footer')
           <!-- footer section end -->
         </div> <!-- page-wrapper end -->
-          <!-- jQuery library -->
-
+        
         @include('admin.partials.notify')
-        <script src="{{asset('assets/templates/basic/js/vendor/jquery-3.5.1.min.js')}}"></script>
+   
         <!-- bootstrap js -->
         <script src="{{asset('assets/templates/basic/js/vendor/bootstrap.bundle.min.js')}}"></script>
         <!-- gallery video popup plugin js -->
