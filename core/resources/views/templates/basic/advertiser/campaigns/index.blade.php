@@ -372,7 +372,7 @@ $('.toggle-status').change(function() {
         $.ajax({
             type: "GET",
             dataType: "json",
-            url:  "{{route('advertiser.campaigns.status')}}" ,
+            url:  "/advertiser/campaigns/status" ,
             data: {'status': status, 'campaign_id': campaign_id},
             success: function(data){
                if(data.success){
