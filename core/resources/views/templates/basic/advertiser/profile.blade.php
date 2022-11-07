@@ -44,7 +44,7 @@
                                 
                                 <div class="form-group">
                                     <label class="form-control-label  font-weight-bold">@lang('Country')</label>
-                                    <input class="form-control" type="text"  value="{{ auth()->guard('advertiser')->user()->country }}" disabled >
+                                    <input class="form-control" type="text"  value="{{ auth()->guard('advertiser')->user()->country }}"  >
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-label  font-weight-bold">@lang('City')</label>

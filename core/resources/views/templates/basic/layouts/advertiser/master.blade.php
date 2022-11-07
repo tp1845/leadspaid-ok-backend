@@ -7,6 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   @include('partials.seo')
   <title>{{ $general->sitename($page_title ?? '') }}</title>
+  <!-- jQuery library -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <!-- site favicon -->
   <link rel="shortcut icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
@@ -43,6 +45,16 @@
 
   <link rel="stylesheet" href="{{asset('assets/additional/bootstrap-fileinput.css')}}">
   <link rel="stylesheet" href="{{asset('assets/additional/intlTelInput.css')}}">
+
+  <!-- Date Range -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.1/daterangepicker.css" integrity="sha512-vB+6aywqvdBc0/r7xwj5JnbDphFWuv/gSmD74Po2lPSEHWgKPnFp3V3KiX1cTs2b5+ADL7MUlsCUsKOYACCzTQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.1/daterangepicker.js" integrity="sha512-579zfXNAZQ+cP+glXfRntf5TLH444tC8wQ7CsFE8vELKtaKhx8sdWGPYvEXhSxuFXBgWBp942j7yB6JcJ+HxfQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+  <!-- Stripe -->
+  <script src="https://js.stripe.com/v3/"></script>
 
   @stack('style')
   @stack('style-lib')

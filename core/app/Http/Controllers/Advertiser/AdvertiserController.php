@@ -207,8 +207,9 @@ class AdvertiserController extends Controller
         $page_title = 'Two Factor';
         return view($this->activeTemplate . 'advertiser.twofactor', compact('page_title', 'secret', 'qrCodeUrl', 'prevcode', 'prevqr'));
     }
-    public function showPayments()
+    public function showPayments(Request $request)
     {
+     
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
         $gateway_parameter = json_decode($method->parameters);
         \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
@@ -225,6 +226,10 @@ class AdvertiserController extends Controller
 
         $page_title = 'Payments';
         $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->paginate(15);
+        if (isset($request->startDate)){
+            $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)
+                    ->whereBetween('trx_date', array($request->startDate, $request->endDate))->paginate(15);
+        }
         $empty_message = 'No Transactions';
         return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key'));
     }

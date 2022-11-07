@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 04, 2022 at 05:44 AM
+-- Generation Time: Nov 07, 2022 at 01:41 PM
 -- Server version: 5.7.40
 -- PHP Version: 7.4.30
 
@@ -102,7 +102,8 @@ CREATE TABLE `advertisers` (
 --
 
 INSERT INTO `advertisers` (`id`, `name`, `email`, `username`, `image`, `country`, `city`, `mobile`, `password`, `balance`, `status`, `ev`, `sv`, `ts`, `tv`, `tsc`, `ver_code`, `ver_code_send_at`, `click_credit`, `impression_credit`, `total_budget`, `amount_used`, `wallet_deposit`, `card_session`, `created_at`, `updated_at`) VALUES
-(1, 'advertiser1', 'advertiser1@gmail.com', 'advertiser1', NULL, 'Bangladesh', 'advertiser1', '88023434534543', '$2y$10$MrXAnXG8cWH0BnQcwYOIxOx3sC6oMg8H.Mk8dRQzCqDWcp8lUPlvC', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 540, 350, 540, 'seti_1Lzsx7Lvd118Nt671KT8oUuE', '2022-10-29 15:56:14', '2022-11-04 05:31:49');
+(1, 'advertiser1', 'advertiser1@gmail.com', 'advertiser1', NULL, 'Pitcairn', 'advertiser1', '88023434534543', '$2y$10$MrXAnXG8cWH0BnQcwYOIxOx3sC6oMg8H.Mk8dRQzCqDWcp8lUPlvC', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 200, 350, 200, 'seti_1Lzsx7Lvd118Nt671KT8oUuE', '2022-10-29 15:56:14', '2022-11-04 09:30:01'),
+(2, 'advertiser2', 'advertiser2@gmail.com', 'advertiser2', NULL, 'Pitcairn', 'Acrra', '88023434534543', '$2y$10$jl7nwa/vRdxsGMceMyFAl.Arc86fx7FSJT97l6as06Oah88m3pi.u', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 300, 0, 300, 'seti_1M0ImVLvd118Nt67PsvSwWcI', '2022-11-04 05:49:23', '2022-11-04 06:00:04');
 
 -- --------------------------------------------------------
 
@@ -176,6 +177,45 @@ CREATE TABLE `analytics` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `campaigns`
+--
+
+CREATE TABLE `campaigns` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `advertiser_id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date DEFAULT NULL,
+  `daily_budget` decimal(11,2) NOT NULL,
+  `target_country` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target_city` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target_type` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target_placements` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `service_sell_buy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `form_id` int(11) NOT NULL,
+  `website_url` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `social_media_page` int(11) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '0' COMMENT '0: off, 1: active',
+  `delivery` tinyint(1) DEFAULT '0' COMMENT '0: off, 1: active',
+  `apporve` tinyint(1) DEFAULT '0' COMMENT 'admin approval default 0 { 0: No, 1: Yes }',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `campaigns`
+--
+
+INSERT INTO `campaigns` (`id`, `advertiser_id`, `name`, `start_date`, `end_date`, `daily_budget`, `target_country`, `target_city`, `target_type`, `target_placements`, `service_sell_buy`, `keywords`, `form_id`, `website_url`, `social_media_page`, `status`, `delivery`, `apporve`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Campaign Testing', '2022-11-01', '2022-11-30', '21.00', 'India', 'Patiala', 'broad', NULL, 'Sell or Buy in', NULL, 1, 'Website URLWebsite URLWebsite URLWebsite URL', 0, 1, 0, 0, '2022-11-07 04:40:38', '2022-11-07 05:24:34'),
+(2, 1, 'Tejinder Singh', '2022-11-01', '2022-11-07', '21.00', 'India', 'Patiala', 'broad', NULL, NULL, NULL, 1, NULL, NULL, 0, 0, 0, '2022-11-07 05:25:01', '2022-11-07 06:50:43'),
+(3, 1, 'Tejinder Singh', '2022-11-01', '2022-11-07', '21.00', 'India', 'Patiala', 'broad', NULL, NULL, NULL, 1, NULL, NULL, 0, 0, 0, '2022-11-07 05:25:33', '2022-11-07 05:25:33'),
+(4, 1, 'Campaign A', '2022-11-07', NULL, '500.00', 'Singapore', NULL, 'narrow', 'facebook.com', NULL, 'apply pr', 1, NULL, NULL, 0, 0, 0, '2022-11-07 06:51:55', '2022-11-07 06:51:55');
 
 -- --------------------------------------------------------
 
@@ -887,6 +927,25 @@ INSERT INTO `languages` (`id`, `name`, `code`, `icon`, `text_align`, `is_default
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2022_11_06_063131_create_campaigns_table', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pages`
 --
 
@@ -1103,26 +1162,8 @@ CREATE TABLE `transactions_advertiser` (
 --
 
 INSERT INTO `transactions_advertiser` (`id`, `user_id`, `trx_date`, `init_blance`, `total_budget`, `spent_previous_day`, `deduct`, `final_wallet`, `created_at`, `updated_at`) VALUES
-(2, 1, '2022-11-03 02:19:11', '1000.00000000', '1000.00000000', '0.00000000', '103(100+GST)', '1000.00000000', '2022-11-03 02:19:11', '2022-11-03 02:19:11'),
-(3, 1, '2022-11-03 03:47:25', '1000.00000000', '1000.00000000', '100.00000000', '103(100+GST)', '1000.00000000', '2022-11-03 03:47:25', '2022-11-03 03:47:25'),
-(4, 1, '2022-11-03 03:47:38', '1000.00000000', '300.00000000', '100.00000000', '0', '900.00000000', '2022-11-03 03:47:38', '2022-11-03 03:47:38'),
-(5, 1, '2022-11-03 03:47:44', '900.00000000', '300.00000000', '100.00000000', '0', '800.00000000', '2022-11-03 03:47:44', '2022-11-03 03:47:44'),
-(6, 1, '2022-11-03 03:48:11', '800.00000000', '300.00000000', '100.00000000', '0', '700.00000000', '2022-11-03 03:48:11', '2022-11-03 03:48:11'),
-(7, 1, '2022-11-03 03:48:39', '700.00000000', '300.00000000', '100.00000000', '0', '600.00000000', '2022-11-03 03:48:39', '2022-11-03 03:48:39'),
-(8, 1, '2022-11-03 03:49:15', '600.00000000', '300.00000000', '250.00000000', '0', '350.00000000', '2022-11-03 03:49:15', '2022-11-03 03:49:15'),
-(9, 1, '2022-11-03 10:02:31', '350.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-03 10:02:31', '2022-11-03 10:02:31'),
-(10, 1, '2022-11-04 05:11:08', '300.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-04 05:11:08', '2022-11-04 05:11:08'),
-(11, 1, '2022-11-04 05:13:45', '300.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-04 05:13:45', '2022-11-04 05:13:45'),
-(12, 1, '2022-11-04 05:14:02', '300.00000000', '300.00000000', '250.00000000', '0', '300.00000000', '2022-11-04 05:14:02', '2022-11-04 05:14:02'),
-(13, 1, '2022-11-04 05:14:12', '300.00000000', '0.00000000', '250.00000000', '0(-50+GST)', '50.00000000', '2022-11-04 05:14:12', '2022-11-04 05:14:12'),
-(14, 1, '2022-11-04 05:17:02', '50.00000000', '400.00000000', '250.00000000', '0', '400.00000000', '2022-11-04 05:17:02', '2022-11-04 05:17:02'),
-(15, 1, '2022-11-04 05:18:33', '400.00000000', '400.00000000', '250.00000000', '0', '400.00000000', '2022-11-04 05:18:33', '2022-11-04 05:18:33'),
-(16, 1, '2022-11-04 05:22:10', '400.00000000', '400.00000000', '250.00000000', '0', '400.00000000', '2022-11-04 05:22:10', '2022-11-04 05:22:10'),
-(17, 1, '2022-11-04 05:23:20', '400.00000000', '400.00000000', '350.00000000', '0', '400.00000000', '2022-11-04 05:23:20', '2022-11-04 05:23:20'),
-(18, 1, '2022-11-04 05:23:55', '400.00000000', '0.00000000', '350.00000000', '0(-50+GST)', '50.00000000', '2022-11-04 05:23:55', '2022-11-04 05:23:55'),
-(19, 1, '2022-11-04 05:25:01', '50.00000000', '0.00000000', '350.00000000', '0', '0.00000000', '2022-11-04 05:25:01', '2022-11-04 05:25:01'),
-(20, 1, '2022-11-04 05:31:26', '0.00000000', '500.00000000', '350.00000000', '0', '500.00000000', '2022-11-04 05:31:26', '2022-11-04 05:31:26'),
-(21, 1, '2022-11-04 05:31:51', '500.00000000', '540.00000000', '350.00000000', '0', '540.00000000', '2022-11-04 05:31:51', '2022-11-04 05:31:51');
+(28, 1, '2022-11-06 09:38:33', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-06 03:38:35', '2022-11-06 03:38:35'),
+(29, 2, '2022-11-06 09:38:35', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-06 03:38:35', '2022-11-06 03:38:35');
 
 -- --------------------------------------------------------
 
@@ -1172,7 +1213,25 @@ INSERT INTO `user_logins` (`id`, `publisher_id`, `advertiser_id`, `user_ip`, `lo
 (19, NULL, 1, '172.70.189.179', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-03 03:47:13', '2022-11-03 03:47:13'),
 (20, NULL, 1, '172.70.189.107', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8884', '1.3479', 'Singapore', 'SG', '2022-11-03 10:02:10', '2022-11-03 10:02:10'),
 (21, NULL, 1, '162.158.91.48', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-04 05:05:42', '2022-11-04 05:05:42'),
-(22, NULL, 1, '172.71.202.150', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-04 05:37:34', '2022-11-04 05:37:34');
+(22, NULL, 1, '172.71.202.150', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-04 05:37:34', '2022-11-04 05:37:34'),
+(23, NULL, 1, '172.71.202.78', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-04 05:47:57', '2022-11-04 05:47:57'),
+(24, NULL, 1, '162.158.235.11', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-04 05:48:58', '2022-11-04 05:48:58'),
+(25, NULL, 2, '172.71.202.79', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-04 05:49:23', '2022-11-04 05:49:23'),
+(26, NULL, 1, '162.158.162.145', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-04 06:35:04', '2022-11-04 06:35:04'),
+(27, NULL, 2, '162.158.48.123', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-04 09:13:48', '2022-11-04 09:13:48'),
+(28, NULL, 2, '172.70.246.246', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-04 11:42:08', '2022-11-04 11:42:08'),
+(29, NULL, 1, '172.70.147.26', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-05 04:00:07', '2022-11-05 04:00:07'),
+(30, NULL, 1, '172.70.142.160', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-06 01:33:39', '2022-11-06 01:33:39'),
+(31, NULL, 2, '162.158.227.164', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-06 02:32:36', '2022-11-06 02:32:36'),
+(32, NULL, 2, '172.71.202.101', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-06 03:11:30', '2022-11-06 03:11:30'),
+(33, NULL, 1, '172.70.219.24', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-06 05:35:32', '2022-11-06 05:35:32'),
+(34, NULL, 1, '172.70.188.86', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-06 08:59:25', '2022-11-06 08:59:25'),
+(35, NULL, 2, '172.70.246.176', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-07 02:46:37', '2022-11-07 02:46:37'),
+(36, NULL, 1, '172.70.218.233', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-07 04:36:02', '2022-11-07 04:36:02'),
+(37, NULL, 1, '172.70.189.179', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-07 06:47:29', '2022-11-07 06:47:29'),
+(38, NULL, 1, '172.70.219.24', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-07 08:40:37', '2022-11-07 08:40:37'),
+(39, NULL, 2, '172.70.219.54', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-07 09:50:27', '2022-11-07 09:50:27'),
+(40, NULL, 1, '172.70.188.92', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-07 10:35:49', '2022-11-07 10:35:49');
 
 -- --------------------------------------------------------
 
@@ -1271,6 +1330,12 @@ ALTER TABLE `analytics`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `campaigns`
+--
+ALTER TABLE `campaigns`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
@@ -1360,6 +1425,12 @@ ALTER TABLE `keywords`
 -- Indexes for table `languages`
 --
 ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1467,7 +1538,7 @@ ALTER TABLE `admin_password_resets`
 -- AUTO_INCREMENT for table `advertisers`
 --
 ALTER TABLE `advertisers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `advertiser_password_resets`
@@ -1492,6 +1563,12 @@ ALTER TABLE `ad_types`
 --
 ALTER TABLE `analytics`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `campaigns`
+--
+ALTER TABLE `campaigns`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -1584,6 +1661,12 @@ ALTER TABLE `languages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
@@ -1641,13 +1724,13 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `transactions_advertiser`
 --
 ALTER TABLE `transactions_advertiser`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `user_logins`
 --
 ALTER TABLE `user_logins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`
