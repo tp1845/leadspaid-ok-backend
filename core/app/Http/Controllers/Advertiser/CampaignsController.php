@@ -35,8 +35,7 @@ class CampaignsController extends Controller
         $campaign->advertiser_id = $user;
         $campaign->name = $request->name;
         $campaign->start_date =  Carbon::parse($request->start_date);
-        $campaign->end_date = Carbon::parse($request->end_date);
-
+        $campaign->end_date = $campaign->end_date?Carbon::parse($request->end_date):NULL;
         $campaign->daily_budget = $request->daily_budget;
         $campaign->target_country = $request->target_country;
         $campaign->target_city = $request->target_city;
