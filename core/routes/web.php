@@ -385,6 +385,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         //Campaigns
         Route::get('/campaigns', 'CampaignsController@index')->name('campaigns.index');
+        Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
+        Route::get('/campaigns/status/', 'CampaignsController@changeStatus')->name('campaigns.status');
         //Campaigns
         Route::get('/forms', 'FormsController@index')->name('forms.index');
 

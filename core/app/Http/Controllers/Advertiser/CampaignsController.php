@@ -2,16 +2,87 @@
 
 namespace App\Http\Controllers\Advertiser;
 
+use App\campaigns;
+use App\Country;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CampaignsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $campaigns = array();
-       $page_title = 'All Campaigns';
+
+        $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
+        $countries = Country::all();
+        $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
-         return view(activeTemplate() . 'advertiser.campaigns.index', compact('campaigns', 'page_title', 'empty_message'));
+        return view(activeTemplate() . 'advertiser.campaigns.index', compact('campaigns', 'countries', 'page_title', 'empty_message'));
     }
+
+    public function store(Request $request)
+    {
+        $user = Auth::guard('advertiser')->user()->id;
+        $request->validate([
+            'name' => 'required',
+            'start_date' => 'required',
+            'form_id' => 'required',
+            'daily_budget' => 'required'
+        ]);
+        $campaign = new campaigns();
+        //$campaign->advertiser_id = $request->advertiser_id;
+        $campaign->advertiser_id = $user;
+        $campaign->name = $request->name;
+        $campaign->start_date =  Carbon::parse($request->start_date);
+        $campaign->end_date = Carbon::parse($request->end_date);
+
+        $campaign->daily_budget = $request->daily_budget;
+        $campaign->target_country = $request->target_country;
+        $campaign->target_city = $request->target_city;
+        $campaign->target_type = $request->target_type;
+        $campaign->target_placements = $request->target_placements;
+        $campaign->service_sell_buy = $request->service_sell_buy;
+        $campaign->keywords = $request->keywords;
+        $campaign->form_id = $request->form_id;
+        $campaign->website_url = $request->website_url;
+        $campaign->social_media_page = $request->social_media_page;
+        $campaign->delivery = $request->delivery;
+        $campaign->apporve =  0;
+        $campaign->delivery = 0;
+        $campaign->status = 0;
+        $campaign->save();
+        $notify[] = ['success', 'Campaign created successfully'];
+        return back()->withNotify($notify);
+    }
+
+    public function changeStatus(Request $request )
+    {
+        $user = Auth::guard('advertiser')->user()->id;
+        $campaign = campaigns::findOrFail( $request->campaign_id);
+        $campaign->status = $request->status;
+        $campaign->update();
+        if( $request->status  == 1){
+            return response()->json(['success'=>true]);
+        }else{
+            return response()->json(['success'=>false]);
+        }
+        //return back()->withNotify($notify);
+    }
+
+    public function update(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'start_date' => 'required',
+            'form_id' => 'required',
+            'daily_budget' => 'required'
+        ]);
+        $campaign = campaigns::findOrFail( $request->campaign_id);
+        $campaign->status = 0;
+        $campaign->update();
+        $notify[] = ['success', 'Ad updated successfully'];
+        return back()->withNotify($notify);
+    }
+
 }
