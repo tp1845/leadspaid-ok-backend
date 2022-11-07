@@ -148,7 +148,7 @@
 
                                 <div class="form-group row">
                                     <label class="col-sm-12 col-form-label" for="TargetingTypeInput">Targeting Type</label>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <select class="custom-select mr-sm-2" id="TargetingTypeInput" name="target_type"  >
                                             <option value="broad" selected >Broad</option>
                                             <option value="narrow" >Narrow</option>
@@ -158,18 +158,19 @@
                                 <div class="Hide-on-Broad" style="display: none">
                                 <div class="form-group row">
                                     <label class="col-sm-12 col-form-label" for="TargetingTypeInputSelect2">Targeting Placements </label>
-                                    <div class="col-sm-12">
-                                        <select multiple class="form-control" id="TargetingTypeInputSelect2" name="target_placements">
+                                    <div class="col-sm-6">
+                                        <select multiple class="form-control" id=" " name="target_placements">
                                             <option>google.com</option>
                                             <option>facebook.com</option>
+
                                           </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-12 col-form-label" for="KeywordsInput">Keywords or tags of those products / services</label>
-                                    <div class="col-sm-12">
-                                        <input type="text" class="form-control" id="KeywordsInput" name="keywords" placeholder="Keywords or tags of those products / services">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control tags_input w-100" id="KeywordsInput" name="keywords" placeholder=" ">
                                     </div>
                                 </div>
                             </div>
@@ -290,6 +291,27 @@
                             </div>
                         </div>
                         <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="image_1_Input">Upload an image 1</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="image_1_Input" placeholder="Upload an image 1">
+                                <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="image_2_Input">Upload an image 2</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="image_2_Input" placeholder="Upload an image 2">
+                                <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label" for="image_3_Input">Upload an image 3</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="image_3_Input" placeholder="Upload an image 3">
+                                <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label class="col-sm-2 col-form-label" for="Field1Input">Field1</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="Field1Input" placeholder="Field 1">
@@ -356,70 +378,75 @@
 
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
+<script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
+
 <script>
     'use strict';
+    $('.tags_input').tagsinput({
+    tagClass: 'badge badge-primary'
+    });
+    $('#TargetingTypeInputSelect2').select2({
+        theme: "classic",
+    placeholder: 'Placements',
+    allowClear: true
+    });
 
-$('#TargetingTypeInputSelect2').select2({
-    theme: "classic",
-  placeholder: 'Placements',
-  allowClear: true
-});
+    $('.toggle-status').change(function() {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            var campaign_id = $(this).data('id');
 
-$('.toggle-status').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0;
-        var campaign_id = $(this).data('id');
-
-        $.ajax({
-            type: "GET",
-            dataType: "json",
-            url:  "/advertiser/campaigns/status" ,
-            data: {'status': status, 'campaign_id': campaign_id},
-            success: function(data){
-               if(data.success){
-                    iziToast.success({
-                       // title: 'Hey',
-                        message: 'Campaign successfully active',
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+            // url:  "{{route('advertiser.campaigns.status')}}" ,
+                url:  "/advertiser/campaigns/status" ,
+                data: {'status': status, 'campaign_id': campaign_id},
+                success: function(data){
+                if(data.success){
+                        iziToast.success({
+                        // title: 'Hey',
+                            message: 'Campaign successfully active',
+                            position: 'topRight',
+                        });
+                }else{
+                    iziToast.error({
+                        // title: 'Hey',
+                        message: 'Campaign successfully inactive',
                         position: 'topRight',
                     });
-               }else{
-                iziToast.error({
-                    // title: 'Hey',
-                    message: 'Campaign successfully inactive',
-                    position: 'topRight',
-                });
-               }
-            }
+                }
+                }
+            });
+        })
+
+        $('.create-campaign-btn').on('click', function() {
+            var modal = $('#campaign_create_modal');
+            modal.modal('show');
         });
-    })
 
-    $('.create-campaign-btn').on('click', function() {
-        var modal = $('#campaign_create_modal');
-        modal.modal('show');
+
+        //$(".Hide-on-Broad"){}
+        $("#TargetingTypeInput").on('change', function(){
+            if(this.value == "broad"){ $(".Hide-on-Broad").hide();  }else{  $(".Hide-on-Broad").show(); }
+        })
+
+
+        $(document).ready(function () {
+            $('.datepicker-here').datepicker();
+            var MyDatatable =  $('#campaign_list').DataTable({
+        columnDefs: [
+                { targets: 0, searchable: false,  visible: true, orderable: false},
+                { targets: 2, searchable: false,   orderable: false},
+                { targets: 11, searchable: false,  visible: true, orderable: false},
+                { targets: [7, 8, 9, 10], className: "td-small", width:"10px"},
+                { targets: '_all', visible: true }
+            ]
+        });
+    // MyDatatable.columns.adjust().draw();
+
     });
-
-
-    //$(".Hide-on-Broad"){}
-    $("#TargetingTypeInput").on('change', function(){
-        if(this.value == "broad"){ $(".Hide-on-Broad").hide();  }else{  $(".Hide-on-Broad").show(); }
-    })
-
-
-
-
-    $(document).ready(function () {
-        $('.datepicker-here').datepicker();
-        var MyDatatable =  $('#campaign_list').DataTable({
-     columnDefs: [
-            { targets: 0, searchable: false,  visible: true, orderable: false},
-            { targets: 2, searchable: false,   orderable: false},
-            { targets: 11, searchable: false,  visible: true, orderable: false},
-            { targets: [7, 8, 9, 10], className: "td-small", width:"10px"},
-            { targets: '_all', visible: true }
-        ]
-    });
-   // MyDatatable.columns.adjust().draw();
-
-});
 
 
 // Edit campaign
@@ -428,6 +455,7 @@ $('.toggle-status').change(function() {
 @endpush
 @push('style')
 <style>
+    .card-header{ color: #000!important; font-weight: bold; }
     .table th { padding: 12px 10px; max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
@@ -439,26 +467,28 @@ $('.toggle-status').change(function() {
     .toggle.btn.off .toggle-handle{ left: 9px; }
     .modal.fade:not(.in).right .modal-dialog {  -webkit-transform: translate3d(0%, 0, 0);  transform: translate3d(0%, 0, 0);  max-width: 66rem!important;  }
     #CreateFormModal{   background-color: #00000080;  }
-    label{ color: #333!important}
-
+    label{ color: #000!important}
 
     .select2-container--classic .select2-selection--multiple{
         min-height: 40px!important;
         padding: 10px 20px 10px 20px;
-
-
-
         padding: 1px 10px 6px 10px!important;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #495057;
-    vertical-align: middle;
-    background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        vertical-align: middle;
+        background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right 0.75rem center/8px 10px;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
     }
     .select2-container .select2-search--inline .select2-search__field { margin-top: 9px!important;}
+    .bootstrap-tagsinput {
+        width: 100%!important;
+        padding: 8px 6px!important;
+        box-shadow: none!important;
+        border: 1px solid #ced4da!important;
+    }
 
     /* .select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable[aria-selected="true"] {
     background-color: #3875d7;
