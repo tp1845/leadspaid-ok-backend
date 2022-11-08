@@ -21,6 +21,16 @@ class CampaignsController extends Controller
         return view(activeTemplate() . 'advertiser.campaigns.index', compact('campaigns', 'countries', 'page_title', 'empty_message'));
     }
 
+    public function edit(Request $request, $id)
+    {
+
+        $campaign = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->where('id', $id)->first();
+
+        $campaign->target_placements = unserialize($campaign->target_placements);
+        return response()->json($campaign );
+    }
+
+
     public function store(Request $request)
     {
         $user = Auth::guard('advertiser')->user()->id;
@@ -30,17 +40,27 @@ class CampaignsController extends Controller
             'form_id' => 'required',
             'daily_budget' => 'required'
         ]);
-        $campaign = new campaigns();
+        if($request->campaign_id){
+            $campaign = campaigns::findOrFail( $request->campaign_id);
+        }else{
+            $campaign = new campaigns();
+        }
+
         //$campaign->advertiser_id = $request->advertiser_id;
         $campaign->advertiser_id = $user;
         $campaign->name = $request->name;
         $campaign->start_date =  Carbon::parse($request->start_date);
-        $campaign->end_date = $campaign->end_date?Carbon::parse($request->end_date):NULL;
+        if($request->end_date_select ==="NoEndDate"){
+            $campaign->end_date =  NULL;
+        }else{
+            $campaign->end_date = $campaign->end_date?Carbon::parse($request->end_date):NULL;
+        }
+
         $campaign->daily_budget = $request->daily_budget;
         $campaign->target_country = $request->target_country;
         $campaign->target_city = $request->target_city;
         $campaign->target_type = $request->target_type;
-        $campaign->target_placements = $request->target_placements;
+        $campaign->target_placements = serialize($request->target_placements);
         $campaign->service_sell_buy = $request->service_sell_buy;
         $campaign->keywords = $request->keywords;
         $campaign->form_id = $request->form_id;
@@ -50,8 +70,14 @@ class CampaignsController extends Controller
         $campaign->apporve =  0;
         $campaign->delivery = 0;
         $campaign->status = 0;
-        $campaign->save();
-        $notify[] = ['success', 'Campaign created successfully'];
+        if($request->campaign_id){
+            $campaign->update();
+            $notify[] = ['success', 'Campaign Updated successfully'];
+        }else{
+            $campaign->save();
+            $notify[] = ['success', 'Campaign created successfully'];
+        }
+
         return back()->withNotify($notify);
     }
 

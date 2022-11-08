@@ -30,7 +30,7 @@
                             @forelse($campaigns as $campaign)
                                 <tr>
                                     <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                                    <td>{{ $campaign->name }} <br><a href="#"  href="{{route('advertiser.logout')}}"  class=" create-campaign-btn">Edit</a></td>
+                                    <td>{{ $campaign->name }} <br><a href="#" data-id="{{ $campaign->id }}"  class="editcampaign create-campaign-btn">Edit</a></td>
                                     <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
                                     <td>{{ $campaign->start_date }}</td>
                                     <td>{{ $campaign->end_date }}</td>
@@ -80,37 +80,51 @@
                     <div id="error-message"> </div>
                     <form method="POST" action="{{ route('advertiser.campaigns.store') }}"  >
                         @csrf
+                        <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
                         <div class="card border shadow-sm mb-4">
                             <div class="card-header bg-light text-secondary">  Campaign Settings </div>
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label" for="CampaignNameInput">Campaign Name</label>
+                                    <label class="col-sm-2 col-form-label" for="CampaignNameInput">Campaign Name<i>*</i></label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="CampaignNameInput"  name="name" placeholder="Campaign Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
+
+                                    <label class="col-sm-2 col-form-label" for="start_dateInput">Start Date<i>*</i></label>
+                                    <div class="col-sm-4">
+                                    <input type="text" name="start_date" data-range="false" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control" data-position='bottom left' placeholder="@lang('Start date')" required>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group row">
+
                                     <div class="col">
-                                        <div class="row">
-                                            <label class="col-sm-4 col-form-label" for="start_dateInput">Start Date</label>
+                                        <div class=" row ">
+                                            <label class="col-sm-4 col-form-label " for="SelectEndDateSelect">End Date </label>
                                             <div class="col-sm-8">
-                                            <input type="text" name="start_date" data-range="false" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control" data-position='bottom left' placeholder="@lang('Start date')" required>
-                                            </div>
+                                                <select class="custom-select mr-sm-2" name="end_date_select" id="SelectEndDateSelect" >
+                                                    <option value="NoEndDate" selected >No end Date</option>
+                                                    <option value="SetEndDate" >Set end Date</option>
+                                                </select>
+                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class=" row ">
-                                            <label class="col-sm-3 col-form-label text-sm-right" for="end_dateInput">End Date</label>
-                                            <div class="col-sm-9">
-                                            <input type="text" name="end_date" data-range="false" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control" data-position='bottom left' placeholder="@lang('End date')">
+                                            <div class="col-sm-6">
+                                                <input style="display: none" id="EndDate_input" type="text" name="end_date" data-range="false" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control" data-position='bottom left' placeholder="@lang('End date')">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
+
                                 <div class="form-group row">
-                                    <label  class="col-sm-2 col-form-label" for="DailyBudgetInput">Daily Budget</label>
+                                    <label  class="col-sm-2 col-form-label" for="DailyBudgetInput">Daily Budget<i>*</i></label>
                                     <div class="col-sm-4">
                                     <input type="text" class="form-control" id="DailyBudgetInput"  name="daily_budget" placeholder="Daily Budget" required>
                                     </div>
@@ -124,13 +138,13 @@
                                 <div class="form-group row">
                                     <div class="col">
                                         <div class="row">
-                                            <label class="col-sm-4 col-form-label" for="TargetCountryInput">Target Country</label>
+                                            <label class="col-sm-4 col-form-label" for="TargetCountryInput">Target Country<i>*</i></label>
                                             <div class="col-sm-8">
 
-                                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" name="target_country">
+                                                <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
                                                     <option value="0" label="Select a country ... " selected="selected">Select a country ... </option>
                                                     @foreach ($countries as $country)
-                                                        <option @if($user->country === $country->country_name) selected="selected" @endif   value=" {{ $country->country_name }} " label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
+                                                        <option @if($user->country === $country->country_name) selected="selected" @endif   value="{{ $country->country_name }}" label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -147,9 +161,9 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-form-label" for="TargetingTypeInput">Targeting Type</label>
-                                    <div class="col-sm-6">
-                                        <select class="custom-select mr-sm-2" id="TargetingTypeInput" name="target_type"  >
+                                    <label class="col-sm-2 col-form-label" for="TargetingTypeInput">Targeting Type<i>*</i></label>
+                                    <div class="col-sm-4">
+                                        <select class="custom-select mr-sm-2" id="TargetingTypeInput" name="target_type" required  >
                                             <option value="broad" selected >Broad</option>
                                             <option value="narrow" >Narrow</option>
                                         </select>
@@ -159,9 +173,9 @@
                                 <div class="form-group row">
                                     <label class="col-sm-12 col-form-label" for="TargetingTypeInputSelect2">Targeting Placements </label>
                                     <div class="col-sm-6">
-                                        <select multiple class="form-control" id=" " name="target_placements">
-                                            <option>google.com</option>
-                                            <option>facebook.com</option>
+                                        <select multiple class="form-control" id="target_placements_Input" name="target_placements[]">
+                                            <option value="google.com">google.com</option>
+                                            <option value="facebook.com">facebook.com</option>
 
                                           </select>
                                     </div>
@@ -244,119 +258,129 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="CompanyBrandNameInput">Company / Brand Name</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="CompanyBrandNameInput" placeholder="Company / Brand Name">
+                    <form id="CreateForm" method="POST" action="{{ route('advertiser.forms.store') }}"  >
+                        @csrf
+                        <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
+                        {{-- Form Settings --}}
+                        <div class="card border shadow-sm mb-4">
+                            <div class="card-header bg-light text-secondary">Form Settings</div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="FormNameInput">Form Name</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="FormNameInput" name="form_name" placeholder="Form Name">
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="CompanyBrandNameInput">Company / Brand Name</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="CompanyBrandNameInput" name="company_name" placeholder="Company / Brand Name">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="CompanyLogoInput">Company Logo</label>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file pl-0" name="company_logo" id="CompanyLogoInput">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="FormTitleInput">Form Title</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="FormTitleInput" name="form_title" placeholder="Form Title">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="OfferDescriptionInput">Offer Description</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="OfferDescriptionInput" name="offer_desc" placeholder="Offer Description">
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="CompanyLogoInput">Company Logo</label>
-                            <div class="col-sm-10">
-                                <input type="file" class="form-control-file" id="CompanyLogoInput">
+                         {{-- creative --}}
+                         <div class="card border shadow-sm mb-4">
+                            <div class="card-header bg-light text-secondary">Creative</div>
+                            <div class="card-body">
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Youtube video URL1 (Optional)</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube video URL1">
+                                        {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Youtube video URL2 (Optional)</label>
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="Youtube_URL_2_Input"  name="youtube_2" placeholder="Youtube video URL2">
+                                    {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Youtube video URL3 (Optional)</label>
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control" id="Youtube_URL_3_Input"  name="youtube_3" placeholder="Youtube video URL3">
+                                    {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="image_1_Input">Upload an image 1 (Optional)</label>
+                                    <div class="col-sm-6">
+
+                                        <input type="file" class="form-control-file pl-0" id="image_1_Input"  name="image_1" placeholder="Upload an image 1">
+                                        <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="image_2_Input">Upload an image 2 (Optional)</label>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file pl-0" id="image_2_Input" name="image_2" placeholder="Upload an image 2">
+                                        <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="image_3_Input">Upload an image 3 (Optional)</label>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file pl-0" id="image_3_Input" name="image_3" placeholder="Upload an image 3">
+                                        <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="FormTitleInput">Form Title</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="FormTitleInput" placeholder="Form Title">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="OfferDescriptionInput">Offer Description</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="OfferDescriptionInput" placeholder="Offer Description">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Youtube_URL_1_Input">Youtube video URL1 (Optional)</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Youtube_URL_1_Input" placeholder="Youtube video URL1">
-                                {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Youtube_URL_2_Input">Youtube video URL2 (Optional)</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Youtube_URL_2_Input" placeholder="Youtube video URL2">
-                            {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Youtube_URL_3_Input">Youtube video URL3 (Optional)</label>
-                            <div class="col-sm-10">
-                            <input type="text" class="form-control" id="Youtube_URL_3_Input" placeholder="Youtube video URL3">
-                            {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="image_1_Input">Upload an image 1</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="image_1_Input" placeholder="Upload an image 1">
-                                <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="image_2_Input">Upload an image 2</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="image_2_Input" placeholder="Upload an image 2">
-                                <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="image_3_Input">Upload an image 3</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="image_3_Input" placeholder="Upload an image 3">
-                                <small class="form-text text-muted">Upload an image of  (minimum width = 300px / minimum height = 180px)</small>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Field1Input">Field1</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Field1Input" placeholder="Field 1">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Field2Input">Field2</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Field2Input" placeholder="Field 2">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Field3Input">Field3</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Field3Input" placeholder="Field 3">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Field4Input">Field4</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Field4Input" placeholder="Field 4">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Field5Input">Field5</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Field5Input" placeholder="Field 5">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="Field6Input">Field6</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Field6Input" placeholder="Field 6">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="LeadsInput">Leads</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="LeadsInput" placeholder="Leads">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label" for="DownloadLeadsInput">Download Leads</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="DownloadLeadsInput" placeholder="Download Leads">
+                         {{-- lead fields settings  --}}
+                         <div class="card border shadow-sm mb-4">
+                            <div class="card-header bg-light text-secondary">Lead Fields Settings </div>
+                            <div class="card-body">
+                                <table class="table table-bordered ">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col" width="10px">#</th>
+                                        <th scope="col">Field Type</th>
+                                        <th scope="col">Question</th>
+                                        <th scope="col"> </th>
+                                        <th scope="col"> </th>
+                                        <th scope="col"> </th>
+                                        <th scope="col"> </th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="sortable" >
+
+                                        @for ($i = 0; $i < 5; $i++)
+                                        <tr class="sortable-group">
+                                            <td class="handle"> <i class="fa fa-solid fa-grip-vertical"></i>
+                                                <input type="hidden" class="sort" name="fields[]['sort']" width="30px"></td>
+                                            <th scope="row">
+                                                <select class="custom-select mr-sm-2 InputQuestionType" id="InputQuestionType_{{ $i }}" data-id="{{ $i }}" name="fields[]['question_type']"  >  <option value="ShortAnswer" selected="">Short Answer</option> <option value="MultipleChoice">Multiple Choice</option> </select></td>
+                                            <td> <input type="text" class="form-control" placeholder="Enter Your Question" name="fields[]['question_text']" ></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 1" name="fields[]['option_1']"  ></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 2" name="fields[]['option_2']"></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 3" name="fields[]['option_3']"></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 4" name="fields[]['option_3']"></td>
+                                       </tr>
+                                        @endfor
+                                    </tbody>
+                                  </table>
                             </div>
                         </div>
                         <button id="submit" class="btn btn--primary">Submit</button>
@@ -382,79 +406,162 @@
 <link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
 <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script>
-    'use strict';
-    $('.tags_input').tagsinput({
-    tagClass: 'badge badge-primary'
+   'use strict';
+    var keywords_Input = $('.tags_input');
+    keywords_Input.tagsinput({
+        tagClass: 'badge badge-primary'
     });
     $('#TargetingTypeInputSelect2').select2({
         theme: "classic",
-    placeholder: 'Placements',
-    allowClear: true
+        placeholder: 'Placements',
+        allowClear: true
     });
 
     $('.toggle-status').change(function() {
-            var status = $(this).prop('checked') == true ? 1 : 0;
-            var campaign_id = $(this).data('id');
-
-            $.ajax({
-                type: "GET",
-                dataType: "json",
+        var status = $(this).prop('checked') == true ? 1 : 0;
+        var campaign_id = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
             // url:  "{{route('advertiser.campaigns.status')}}" ,
-                url:  "/advertiser/campaigns/status" ,
-                data: {'status': status, 'campaign_id': campaign_id},
-                success: function(data){
-                if(data.success){
-                        iziToast.success({
+            url: "/advertiser/campaigns/status",
+            data: {
+                'status': status,
+                'campaign_id': campaign_id
+            },
+            success: function(data) {
+                if (data.success) {
+                    iziToast.success({
                         // title: 'Hey',
-                            message: 'Campaign successfully active',
-                            position: 'topRight',
-                        });
-                }else{
+                        message: 'Campaign successfully active',
+                        position: 'topRight',
+                    });
+                } else {
                     iziToast.error({
                         // title: 'Hey',
                         message: 'Campaign successfully inactive',
                         position: 'topRight',
                     });
                 }
-                }
+            }
+        });
+    })
+    var campaign_create_modal = $('#campaign_create_modal');
+    campaign_create_modal.on('hidden.bs.modal', function(event) {
+        reset_campaign_create_form();
+    })
+
+    $('.create-campaign-btn').on('click', function() {
+        campaign_create_modal.modal('show');
+    });
+    $('body').on('click', '.editcampaign', function() {
+        reset_campaign_create_form();
+        $('#campaign_createModalLabel').html('Edit Campaign');
+        campaign_create_modal.modal('show');
+        var campaign_id = $(this).attr('data-id');
+
+        var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
+        url = url.replace(':campaign_id', campaign_id);
+        // url =  "/advertiser/campaigns/edit/"+ campaign_id;
+        $.get(url, function(data) {
+            console.log(data);
+            $('#input_campaign_id').val(campaign_id);
+            $("input[name='name']").val(data.name);
+            $("input[name='start_date']").val(data.start_date);
+            $("input[name='end_date']").val(data.end_date);
+            if (data.end_date !== null) {
+                $('#SelectEndDateSelect').val("SetEndDate").change();
+            } else {
+                $('#SelectEndDateSelect').val("NoEndDate").change();
+            }
+            $("input[name='daily_budget']").val(data.daily_budget);
+            $("#TargetCountryInput").val(data.target_country).change();
+            $("input[name='target_city']").val(data.target_city);
+            $("#TargetingTypeInput").val(data.target_type).change();
+            keywords_Input.tagsinput('add', data.keywords);
+            $("input[name='service_sell_buy']").val(data.service_sell_buy);
+            $("input[name='website_url']").val(data.website_url);
+            $("input[name='social_media_page']").val(data.social_media_page);
+            $("input[name=form_id][value=" + data.form_id + "]").prop('checked', true);
+            /// target_placements_Input
+            $.each(data.target_placements, function(idx, val) {
+                $("select#target_placements_Input option[value='" + val + "']").prop("selected", true);
             });
         })
-
-        $('.create-campaign-btn').on('click', function() {
-            var modal = $('#campaign_create_modal');
-            modal.modal('show');
-        });
-
-
-        //$(".Hide-on-Broad"){}
-        $("#TargetingTypeInput").on('change', function(){
-            if(this.value == "broad"){ $(".Hide-on-Broad").hide();  }else{  $(".Hide-on-Broad").show(); }
-        })
-
-
-        $(document).ready(function () {
-            $('.datepicker-here').datepicker();
-            var MyDatatable =  $('#campaign_list').DataTable({
-        columnDefs: [
-                { targets: 0, searchable: false,  visible: true, orderable: false},
-                { targets: 2, searchable: false,   orderable: false},
-                { targets: 11, searchable: false,  visible: true, orderable: false},
-                { targets: [7, 8, 9, 10], className: "td-small", width:"10px"},
-                { targets: '_all', visible: true }
-            ]
-        });
-    // MyDatatable.columns.adjust().draw();
-
     });
 
+    function reset_campaign_create_form() {
+        $('#campaign_createModalLabel').html('Create Campaign');
+        $('#SelectEndDateSelect').val("NoEndDate").change();
+        $('#TargetingTypeInput').val("broad").change();
+        $('#campaign_create_modal form').trigger("reset");
+        $('#input_campaign_id').val(0);
+        keywords_Input.tagsinput('removeAll');
+    }
 
-// Edit campaign
+    //$(".Hide-on-Broad"){}
+    $("#TargetingTypeInput").on('change', function() {
+        if (this.value == "broad") {
+            $(".Hide-on-Broad").hide();
+        } else {
+            $(".Hide-on-Broad").show();
+        }
+    })
+    $("#SelectEndDateSelect").on('change', function() {
+        if (this.value == "NoEndDate") {
+            $("#EndDate_input").hide().prop("required", false);
+        } else {
+            $("#EndDate_input").show().prop("required", true);
+            // setTimeout(function(){   $("#EndDate_input").focus() }, 100);
+        }
+    })
+
+    $(document).ready(function() {
+        $('.datepicker-here').datepicker();
+        var MyDatatable = $('#campaign_list').DataTable({
+            columnDefs: [{
+                    targets: 0,
+                    searchable: false,
+                    visible: true,
+                    orderable: false
+                },
+                {
+                    targets: 2,
+                    searchable: false,
+                    orderable: false
+                },
+                {
+                    targets: 11,
+                    searchable: false,
+                    visible: true,
+                    orderable: false
+                },
+                {
+                    targets: [7, 8, 9, 10],
+                    className: "td-small",
+                    width: "10px"
+                },
+                {
+                    targets: '_all',
+                    visible: true
+                }
+            ]
+        });
+        // MyDatatable.columns.adjust().draw();
+
+    });
+    // Edit campaign
+
+
 
 </script>
 @endpush
 @push('style')
 <style>
+    .handle{ cursor: move;}
     .card-header{ color: #000!important; font-weight: bold; }
     .table th { padding: 12px 10px; max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
@@ -468,7 +575,7 @@
     .modal.fade:not(.in).right .modal-dialog {  -webkit-transform: translate3d(0%, 0, 0);  transform: translate3d(0%, 0, 0);  max-width: 66rem!important;  }
     #CreateFormModal{   background-color: #00000080;  }
     label{ color: #000!important}
-
+    label i{ color: red!important; font-style: normal; font-weight: bold; }
     .select2-container--classic .select2-selection--multiple{
         min-height: 40px!important;
         padding: 10px 20px 10px 20px;
@@ -489,10 +596,5 @@
         box-shadow: none!important;
         border: 1px solid #ced4da!important;
     }
-
-    /* .select2-container--classic .select2-results__option--highlighted.select2-results__option--selectable[aria-selected="true"] {
-    background-color: #3875d7;
-    color: #fff;
-} */
 </style>
 @endpush

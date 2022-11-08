@@ -142,6 +142,12 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
          Route::post('advertiser/send-email', 'AdvertiserController@sendEmailAll')->name('advertiser.email.send');
          Route::get('advertiser/search', 'AdvertiserController@search')->name('advertiser.search');
 
+        //Manage Campaigns
+        Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
+        Route::get('/campaigns/leads/export','CampaignsFormsController@export')->name('leads.export');
+        Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
+        Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
+
 
          //Manage publisher
          Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
@@ -385,10 +391,12 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         //Campaigns
         Route::get('/campaigns', 'CampaignsController@index')->name('campaigns.index');
+        Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');
         Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
         Route::get('/campaigns/status/', 'CampaignsController@changeStatus')->name('campaigns.status');
-        //Campaigns
+        //Campaigns Forms
         Route::get('/forms', 'FormsController@index')->name('forms.index');
+        Route::post('/forms/create', 'FormsController@store')->name('forms.store');
 
 
         //price plans
