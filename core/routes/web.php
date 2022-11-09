@@ -398,7 +398,6 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/forms', 'FormsController@index')->name('forms.index');
         Route::post('/forms/create', 'FormsController@store')->name('forms.store');
 
-
         //price plans
         Route::get('/ad/price-plans', 'AdController@pricePlans')->name('price.plan');
         Route::get('/purchase/price-plans/{id}', 'AdController@purchasePlans')->name('purchase.plan');

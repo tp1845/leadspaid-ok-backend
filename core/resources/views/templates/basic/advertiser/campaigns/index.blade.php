@@ -28,6 +28,8 @@
                         <tbody>
 
                             @forelse($campaigns as $campaign)
+
+
                                 <tr>
                                     <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                     <td>{{ $campaign->name }} <br><a href="#" data-id="{{ $campaign->id }}"  class="editcampaign create-campaign-btn">Edit</a></td>
@@ -35,8 +37,10 @@
                                     <td>{{ $campaign->start_date }}</td>
                                     <td>{{ $campaign->end_date }}</td>
                                     <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
-                                    <td>CZ Form</td>
-                                    <td>${{  $campaign->daily_budget }}</td>
+                                    <td> @if (isset($campaign->campaign_forms))
+                                        {{$campaign->campaign_forms->form_name }}
+                                        @endif</td>
+                                    <td>${{ $campaign->daily_budget }}</td>
                                     <td>0</td>
                                     <td>0</td>
                                     <td>0</td>
@@ -195,24 +199,16 @@
                             <div class="card-header bg-light text-secondary">Lead Form Used</div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="FormUsedInput">  <a  href="#" data-toggle="modal" data-target="#CreateFormModal"> + Create Form  </a></label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="form_id" id="exampleRadios1" value="1" checked>
-                                        <label class="form-check-label" for="exampleRadios1">
-                                            Form 1
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="form_id" id="exampleRadios2" value="2">
-                                        <label class="form-check-label" for="exampleRadios2">
-                                            Form 2
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="form_id" id="exampleRadios3" value="3"  >
-                                        <label class="form-check-label" for="exampleRadios3">
-                                            Form 3
-                                        </label>
+                                    <label for="FormUsedInput">  <a href="#" data-toggle="modal" data-target="#CreateFormModal"> + Create Form  </a></label>
+                                    <div id="formOptions">
+                                        @foreach ($forms as $form)
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required >
+                                            <label class="form-check-label" for="form_{{ $form->id }}">
+                                                {{ $form->form_name }}
+                                            </label>
+                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -258,7 +254,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="CreateForm" method="POST" action="{{ route('advertiser.forms.store') }}"  >
+                    <form id="CreateForm" method="POST" action="{{ route('advertiser.forms.store') }}" enctype="multipart/form-data"  >
                         @csrf
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
                         {{-- Form Settings --}}
@@ -268,7 +264,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="FormNameInput">Form Name</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="FormNameInput" name="form_name" placeholder="Form Name">
+                                        <input type="text" class="form-control" id="FormNameInput" name="form_name" placeholder="Form Name" required>
                                     </div>
                                 </div>
 
@@ -287,7 +283,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="FormTitleInput">Form Title</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="FormTitleInput" name="form_title" placeholder="Form Title">
+                                        <input type="text" class="form-control" id="FormTitleInput" name="form_title" placeholder="Form Title" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -366,17 +362,17 @@
                                     </thead>
                                     <tbody id="sortable" >
 
-                                        @for ($i = 0; $i < 5; $i++)
+                                        @for ($i = 1; $i < 6; $i++)
                                         <tr class="sortable-group">
                                             <td class="handle"> <i class="fa fa-solid fa-grip-vertical"></i>
-                                                <input type="hidden" class="sort" name="fields[]['sort']" width="30px"></td>
+                                                <input type="hidden" class="sort" name='field_{{ $i }}[sort]' value="{{ $i }}"  ></td>
                                             <th scope="row">
-                                                <select class="custom-select mr-sm-2 InputQuestionType" id="InputQuestionType_{{ $i }}" data-id="{{ $i }}" name="fields[]['question_type']"  >  <option value="ShortAnswer" selected="">Short Answer</option> <option value="MultipleChoice">Multiple Choice</option> </select></td>
-                                            <td> <input type="text" class="form-control" placeholder="Enter Your Question" name="fields[]['question_text']" ></td>
-                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 1" name="fields[]['option_1']"  ></td>
-                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 2" name="fields[]['option_2']"></td>
-                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 3" name="fields[]['option_3']"></td>
-                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }}" placeholder="Option 4" name="fields[]['option_3']"></td>
+                                                <select class="custom-select mr-sm-2 InputQuestionType" id="InputQuestionType_{{ $i }}" data-id="{{ $i }}" name='field_{{ $i }}[question_type]'  >  <option value="ShortAnswer" selected="">Short Answer</option> <option value="MultipleChoice">Multiple Choice</option> </select></td>
+                                            <td> <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name='field_{{ $i }}[question_text]' ></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_1" placeholder="Option 1" style="display: none" name='field_{{ $i }}[option_1]'  ></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_2" placeholder="Option 2" style="display: none" name='field_{{ $i }}[option_2]'></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_3" placeholder="Option 3" style="display: none" name='field_{{ $i }}[option_3]'></td>
+                                            <td> <input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_4" placeholder="Option 4" style="display: none" name='field_{{ $i }}[option_4]'></td>
                                        </tr>
                                         @endfor
                                     </tbody>
@@ -434,17 +430,9 @@
             },
             success: function(data) {
                 if (data.success) {
-                    iziToast.success({
-                        // title: 'Hey',
-                        message: 'Campaign successfully active',
-                        position: 'topRight',
-                    });
+                    Toast('green', 'Campaign successfully active');
                 } else {
-                    iziToast.error({
-                        // title: 'Hey',
-                        message: 'Campaign successfully inactive',
-                        position: 'topRight',
-                    });
+                    Toast('red', 'Campaign successfully inactive');
                 }
             }
         });
@@ -551,12 +539,77 @@
             ]
         });
         // MyDatatable.columns.adjust().draw();
-
+        $("#sortable").sortable({
+            handle: ".handle",
+            stop: function(event, ui) {
+                var i = 1;
+                $('.sortable-group').each(function(k, el) {
+                    $(el).find("input.sort").val(i).attr('name', 'field_'+i+'[sort]');
+                    $(el).find(".InputQuestionType").attr('name', 'field_'+i+'[question_type]');
+                    $(el).find(".InputQuestion_text").attr('name', 'field_'+i+'[question_text]');
+                    $(el).find(".InputQuestion_Option_1").attr('name', 'field_'+i+'[option_1]');
+                    $(el).find(".InputQuestion_Option_2").attr('name', 'field_'+i+'[option_2]');
+                    $(el).find(".InputQuestion_Option_3").attr('name', 'field_'+i+'[option_3]');
+                    $(el).find(".InputQuestion_Option_4").attr('name', 'field_'+i+'[option_4]');
+                    i++;
+                });
+            }
+        });
+        //InputQuestionType
+        $('.InputQuestionType').change(function() {
+            var id = $(this).data('id');
+            var QuestionOption = ".QuestionOption_" + id;
+            if (this.value == "ShortAnswer") {
+                $(QuestionOption).hide();
+            } else {
+                $(QuestionOption).show();
+            }
+        })
     });
     // Edit campaign
 
 
+    // Save Form
+    $("#CreateForm").submit(function(e) {
+    e.preventDefault();
+    var form = $(this);
+    var actionUrl = form.attr('action');
+    var formData = new FormData(this);;
 
+    $.ajax({
+        type: "POST",
+        url: actionUrl,
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data)
+        {
+            if (data.success) {
+                Toast('green', 'Form successfully Created');
+                $('#CreateFormModal').modal('hide');
+                var option = '<div class="form-check">';
+                    option += '<input class="form-check-input" type="radio" name="form_id" id="form_'+ data.form_id +'" value="'+ data.form_id +'" required >';
+                    option += '<label class="form-check-label" for="form_'+ data.form_id +'">'+ data.form_name+'</label>';
+                    option += '</div>';
+                $('#formOptions').append( option );
+            }else{
+                console.log(data);
+                Toast('red', data.form_name);
+            }
+        }
+    });
+
+    });
+    // End Form Saving
+   function Toast( color = 'green', message ){
+    iziToast.show({
+       // icon: 'fa fa-solid fa-check',
+        color: color, // blue, red, green, yellow
+        message: message,
+        position: 'topRight'
+    });
+   }
 </script>
 @endpush
 @push('style')

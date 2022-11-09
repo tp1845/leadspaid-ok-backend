@@ -11,4 +11,8 @@ class campaigns extends Model
     {
         return $this->belongsTo(Advertiser::class,'advertiser_id');
     }
+    public function campaign_forms()
+    {
+        return $this->belongsTo(campaign_forms::class, 'form_id');
+    }
 }

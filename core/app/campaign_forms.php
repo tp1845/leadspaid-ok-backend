@@ -6,5 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class campaign_forms extends Model
 {
-    //
+    protected $guarded = [];
+    protected $casts = [ 'field_1' => 'array','field_2' => 'array','field_3' => 'array', 'field_4' => 'array','field_5' => 'array', ];
+    public function advertiser()
+    {
+        return $this->belongsTo(Advertiser::class,'advertiser_id');
+    }
+
 }

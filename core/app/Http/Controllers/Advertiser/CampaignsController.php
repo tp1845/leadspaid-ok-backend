@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Advertiser;
 
+use App\campaign_forms;
 use App\campaigns;
 use App\Country;
 use App\Http\Controllers\Controller;
@@ -13,12 +14,13 @@ class CampaignsController extends Controller
 {
     public function index(Request $request)
     {
+        $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
+        $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->get();
 
-        $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
         $countries = Country::all();
         $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
-        return view(activeTemplate() . 'advertiser.campaigns.index', compact('campaigns', 'countries', 'page_title', 'empty_message'));
+        return view(activeTemplate() . 'advertiser.campaigns.index', compact('campaigns','forms', 'countries', 'page_title', 'empty_message'));
     }
 
     public function edit(Request $request, $id)
@@ -44,6 +46,9 @@ class CampaignsController extends Controller
             $campaign = campaigns::findOrFail( $request->campaign_id);
         }else{
             $campaign = new campaigns();
+            $campaign->status = 0;
+            $campaign->apporve =  0;
+            $campaign->delivery = 0;
         }
 
         //$campaign->advertiser_id = $request->advertiser_id;
@@ -67,9 +72,8 @@ class CampaignsController extends Controller
         $campaign->website_url = $request->website_url;
         $campaign->social_media_page = $request->social_media_page;
         $campaign->delivery = $request->delivery;
-        $campaign->apporve =  0;
-        $campaign->delivery = 0;
-        $campaign->status = 0;
+
+
         if($request->campaign_id){
             $campaign->update();
             $notify[] = ['success', 'Campaign Updated successfully'];
