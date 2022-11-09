@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Advertiser;
 use App\Deposit;
 use App\CreateAd;
 use App\Advertiser;
+use App\Country;
 use App\Gateway;
 use Carbon\Carbon;
 use App\PublisherAd;
@@ -73,8 +74,9 @@ class AdvertiserController extends Controller
     public function profile()
     {
         $page_title = 'Profile';
+        $countries = Country::all();
         $advertiser = Auth::guard('advertiser')->user();
-        return view(activeTemplate() . 'advertiser.profile', compact('page_title', 'advertiser'));
+        return view(activeTemplate() . 'advertiser.profile', compact('page_title', 'advertiser','countries'));
     }
 
     public function profileUpdate(Request $request)
@@ -82,6 +84,7 @@ class AdvertiserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'city' => 'required',
+            'country' => 'required',
             'image' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
@@ -99,6 +102,7 @@ class AdvertiserController extends Controller
 
         $user->name = $request->name;
         $user->city = $request->city;
+        $user->country = $request->country;
         $user->update();
         $notify[] = ['success', 'Your profile has been updated.'];
         return redirect()->route('advertiser.profile')->withNotify($notify);

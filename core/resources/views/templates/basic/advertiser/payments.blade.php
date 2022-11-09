@@ -154,23 +154,23 @@
     $(function() {
         $(document).ready(function() {
             //Date Range
-
+            var isSearched = new URLSearchParams(window.location.search).get('startDate') == null ? false: true;
             var datee =  new Date ((new URLSearchParams(window.location.search)).get('startDate'));
             var startDate =  ( Number(datee.getMonth())+1 )+   "/" + datee.getDate() +"/" + datee.getFullYear()
             var datee =  new Date ((new URLSearchParams(window.location.search)).get('endDate'));
             var endDate =  ( Number(datee.getMonth())+1 )+   "/" + datee.getDate() +"/" + datee.getFullYear()
             $('#daterange').daterangepicker({
                 ranges: {
-                    'Today': [moment(), moment()],
-                    'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                    'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                    'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                    'Today': [moment(), moment().add(1, 'days')],
+                    'Yesterday': [moment().subtract(1, 'days'), moment()],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment().add(1, 'days')],
+                    'Last 30 Days': [moment().subtract(30, 'days'), moment().add(1, 'days')],
                     'This Month': [moment().startOf('month'), moment().endOf('month')],
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 },
                 "alwaysShowCalendars": true,                
-                "startDate":  startDate,
-                "endDate": endDate,
+                "startDate": isSearched? startDate:moment().subtract(6, 'days'),
+                "endDate": isSearched?endDate:moment().add(1, 'days'),
                 "opens": "left",
                 "drops": "auto"
             }, function(start, end, label) {
