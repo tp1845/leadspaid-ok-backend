@@ -18,8 +18,9 @@
                                     <th>Field 3</th>
                                     <th>Field 4</th>
                                     <th>Field 5</th>
-                                    <th>Cam ID</th>
-                                    <th>Pub Id</th>
+                                    <th>Campaign ID</th>
+                                    <th>publisher  Id</th>
+                                    <th>Form Id</th>
 
                                 </tr>
                             </thead>
@@ -35,6 +36,7 @@
                                 <td>{{ $lead->field_5 }}</td>
                                 <td>{{ $lead->campaign_id }}</td>
                                 <td>{{ $lead->publisher_id }}</td>
+                                <td>{{ $lead->form_id }}</td>
                             </tr>
                             @empty
                                 <tr>

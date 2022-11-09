@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class campaign_forms_leads extends Model
 {
     protected $fillable = [
+        'form_id',
         'advertiser_id',
         'campaign_id',
         'publisher_id',

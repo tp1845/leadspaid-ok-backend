@@ -14,6 +14,7 @@ class LeadsExport implements FromCollection,WithHeadings
     public function headings():array{
         return[
             'id',
+            'form_id',
             'advertiser_id',
             'campaign_id',
             'publisher_id',

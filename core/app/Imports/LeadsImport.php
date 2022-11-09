@@ -29,8 +29,9 @@ class LeadsImport implements ToModel,WithHeadingRow
 
         return new campaign_forms_leads([
            //'id' => $row[0],
-            'advertiser_id' => $row['advertiser_id'],
-            'campaign_id' => $row['campaign_id'],
+           'form_id' => $row['form_id'],
+           'advertiser_id' => $row['advertiser_id'],
+           'campaign_id' => $row['campaign_id'],
             'publisher_id' => $row['publisher_id'],
             'field_1' => $row['field_1'],
             'field_2' => $row['field_2'],
