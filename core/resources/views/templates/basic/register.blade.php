@@ -83,8 +83,8 @@ $bg = getContent('login.content',true)->data_values;
                                         <div class="bg-light card-header font-weight-bolder text-body"> Basic Details </div>
                                         <div class="card-body">
                                             <div class="form-group ">
-                                                <label>@lang('Company Name')</label>
-                                                <input type="text" class="form-control" name="group_name" placeholder="Company Name">
+                                                <label>@lang('Company Name2')</label>
+                                                <input type="text" class="form-control" name="group_name" value="{{old('group_name')}}" placeholder="Company Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
