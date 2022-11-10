@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Page;
 use App\Keyword;
 use App\Frontend;
+use App\Country;
 use App\Language;
 use Carbon\Carbon;
 use App\SupportTicket;
@@ -163,7 +164,8 @@ class SiteController extends Controller
         $page_title = "Sign Up";
         $info = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
-        return view($this->activeTemplate. 'register', compact('page_title','country_code'));
+        $countries = Country::all();
+        return view($this->activeTemplate. 'register', compact('page_title','country_code', 'countries'));
     }
 
     public function keywords()
