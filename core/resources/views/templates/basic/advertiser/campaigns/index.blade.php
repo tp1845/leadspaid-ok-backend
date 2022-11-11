@@ -455,7 +455,7 @@
        // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
        // url = url.replace(':campaign_id', campaign_id);
         // url =  "/advertiser/campaigns/edit/"+ campaign_id;
-        url = $(this).attr('href');
+       var  url = $(this).attr('href');
         $.get(url, function(data) {
             console.log(data);
             $('#input_campaign_id').val(campaign_id);
