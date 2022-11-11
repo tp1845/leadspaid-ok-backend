@@ -32,7 +32,7 @@
 
                                 <tr>
                                     <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                                    <td>{{ $campaign->name }} <br><a href="#" data-id="{{ $campaign->id }}"  class="editcampaign create-campaign-btn">Edit</a></td>
+                                    <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"  class="editcampaign create-campaign-btn">Edit</a></td>
                                     <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
                                     <td>{{ $campaign->start_date }}</td>
                                     <td>{{ $campaign->end_date }}</td>
@@ -451,9 +451,10 @@
         campaign_create_modal.modal('show');
         var campaign_id = $(this).attr('data-id');
 
-        var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
-        url = url.replace(':campaign_id', campaign_id);
+       // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
+       // url = url.replace(':campaign_id', campaign_id);
         // url =  "/advertiser/campaigns/edit/"+ campaign_id;
+        url = $(this).attr('href');
         $.get(url, function(data) {
             console.log(data);
             $('#input_campaign_id').val(campaign_id);
