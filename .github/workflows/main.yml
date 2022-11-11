@@ -17,4 +17,4 @@ jobs:
         server: ftp.leadspaid.com
         username: ${{ secrets.ftp_username }}
         password: ${{ secrets.ftp_password }}
-        server-dir: /leadspaid.com/
+        server-dir: /
