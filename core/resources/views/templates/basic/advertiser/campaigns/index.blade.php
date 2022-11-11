@@ -445,7 +445,8 @@
     $('.create-campaign-btn').on('click', function() {
         campaign_create_modal.modal('show');
     });
-    $('body').on('click', '.editcampaign', function() {
+    $('body').on('click', '.editcampaign', function(e) {
+        e.preventDefault();
         reset_campaign_create_form();
         $('#campaign_createModalLabel').html('Edit Campaign');
         campaign_create_modal.modal('show');
