@@ -84,7 +84,7 @@ $bg = getContent('login.content',true)->data_values;
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Company Name2')</label>
-                                                <input type="text" class="form-control" name="group_name" value="{{old('group_name')}}" placeholder="Company Name">
+                                                <input type="text" class="form-control" name="company_name" value="{{old('company_name')}}" placeholder="Company Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
@@ -111,7 +111,7 @@ $bg = getContent('login.content',true)->data_values;
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                                <input type="text" class="form-control" name="group_full_name" placeholder="Company Full Name">
+                                                <input type="text" class="form-control" name="company_full_name" placeholder="Company Full Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
