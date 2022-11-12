@@ -43,7 +43,7 @@ $user = auth()->guard('advertiser')->user();
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                                <input type="text" class="form-control" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" placeholder="Company Full Name">
+                                                <input type="text" class="form-control" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" placeholder="Company Name/ Full Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>

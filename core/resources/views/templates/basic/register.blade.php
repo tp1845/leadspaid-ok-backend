@@ -111,7 +111,7 @@ $bg = getContent('login.content',true)->data_values;
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                                <input type="text" class="form-control" name="billed_to" placeholder="Company Full Name">
+                                                <input type="text" class="form-control" name="billed_to" placeholder="Company Name/ Full Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
