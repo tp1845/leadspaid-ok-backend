@@ -82,10 +82,10 @@ class AdvertiserController extends Controller
     public function profileUpdate(Request $request)
     {
         $this->validate($request, [
-            'company_name' => 'nullable|string|max:60|min:3|regex:/^[a-z A-Z]+$/u',
+            'company_name' => 'nullable|string|max:60|min:3',
             'name' => 'sometimes|required|string|max:60|min:3|regex:/^[a-z A-Z]+$/u',
             'mobile' => 'required|string|min:6',
-            'billed_to' => 'sometimes|required|string|max:60|regex:/^[a-z A-Z]+$/u',
+            'billed_to' => 'sometimes|required|string|max:60',
             'email' => 'required|string|email|max:160',
             'city' => 'required|string|max:160|min:2',
             'country' => 'required|string|max:160',
