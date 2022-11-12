@@ -18,4 +18,12 @@ class campaign_forms_leads extends Model
         'field_5'
     ];
 
+    public function campaigns(){
+        return $this->hasOne(campaigns::class, 'id', 'campaign_id');
+    }
+
+    public function campaign_forms(){
+        return $this->hasOne(campaign_forms::class, 'id', 'form_id');
+    }
 }
+

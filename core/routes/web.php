@@ -95,88 +95,89 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('report/transaction/advertisers', 'ReportController@advertiserTransaction')->name('transaction.advertiser');
 
 
-         //Advertises
-         Route::get('/advertise/all', 'AdvertiseController@allAdvertise')->name('advertise.all');
-         Route::get('/advertise/details/{id}', 'AdvertiseController@advertiseDetails')->name('advertise.details');
-         Route::get('/advertise/cpc&cpm/', 'AdvertiseController@perCost')->name('advertise.perCost');
-         Route::post('/advertise/cpc&cpm/update', 'AdvertiseController@perCostUpdate')->name('advertise.perCost.update');
-          #price-plan
-         Route::get('/advertise/price-plan', 'AdvertiseController@pricePlan')->name('advertise.price-plan');
-         Route::post('/advertise/add/price-plan', 'AdvertiseController@addPricePlan')->name('advertise.add.price-plan');
-         Route::post('/advertise/update/price-plan/{id}', 'AdvertiseController@updatePricePlan')->name('advertise.update.price-plan');
-         Route::post('/advertise/price-plan/remove/{id}', 'AdvertiseController@removePricePlan')->name('advertise.priceplan.remove');
-          #type
-         Route::get('/advertise/type', 'AdvertiseController@type')->name('advertise.type');
-         Route::post('/advertise/add/type', 'AdvertiseController@addType')->name('advertise.add.type');
-         Route::post('/advertise/update/type/{id}', 'AdvertiseController@updateType')->name('advertise.update.type');
-         Route::post('/advertise/update/{id}', 'AdvertiseController@updateAd')->name('advertise.update');
+        //Advertises
+        Route::get('/advertise/all', 'AdvertiseController@allAdvertise')->name('advertise.all');
+        Route::get('/advertise/details/{id}', 'AdvertiseController@advertiseDetails')->name('advertise.details');
+        Route::get('/advertise/cpc&cpm/', 'AdvertiseController@perCost')->name('advertise.perCost');
+        Route::post('/advertise/cpc&cpm/update', 'AdvertiseController@perCostUpdate')->name('advertise.perCost.update');
+        #price-plan
+        Route::get('/advertise/price-plan', 'AdvertiseController@pricePlan')->name('advertise.price-plan');
+        Route::post('/advertise/add/price-plan', 'AdvertiseController@addPricePlan')->name('advertise.add.price-plan');
+        Route::post('/advertise/update/price-plan/{id}', 'AdvertiseController@updatePricePlan')->name('advertise.update.price-plan');
+        Route::post('/advertise/price-plan/remove/{id}', 'AdvertiseController@removePricePlan')->name('advertise.priceplan.remove');
+        #type
+        Route::get('/advertise/type', 'AdvertiseController@type')->name('advertise.type');
+        Route::post('/advertise/add/type', 'AdvertiseController@addType')->name('advertise.add.type');
+        Route::post('/advertise/update/type/{id}', 'AdvertiseController@updateType')->name('advertise.update.type');
+        Route::post('/advertise/update/{id}', 'AdvertiseController@updateAd')->name('advertise.update');
 
-         Route::get('/advertise/ip-log', 'AdvertiseController@ipLog')->name('advertise.iplog');
-         Route::get('/advertise/blocked/ip-log', 'AdvertiseController@blockedIpLog')->name('advertise.blockedip');
-         Route::post('/advertise/ip/block/{id}', 'AdvertiseController@blockIp')->name('advertise.ip.block');
-         Route::post('/advertise/ip/unblock/{id}', 'AdvertiseController@unBlockIp')->name('advertise.ip.unblock');
+        Route::get('/advertise/ip-log', 'AdvertiseController@ipLog')->name('advertise.iplog');
+        Route::get('/advertise/blocked/ip-log', 'AdvertiseController@blockedIpLog')->name('advertise.blockedip');
+        Route::post('/advertise/ip/block/{id}', 'AdvertiseController@blockIp')->name('advertise.ip.block');
+        Route::post('/advertise/ip/unblock/{id}', 'AdvertiseController@unBlockIp')->name('advertise.ip.unblock');
 
-         // keywords
-         Route::get('keywords', 'AdvertiseController@keywords')->name('keywords');
-         Route::post('add/keywords', 'AdvertiseController@addKeyword')->name('add.keywords');
-         Route::post('update/keyword/{id}', 'AdvertiseController@upateKeyword')->name('update.keywords');
-         Route::post('remove/keyword/{id}', 'AdvertiseController@removeKeyword')->name('remove.keyword');
+        // keywords
+        Route::get('keywords', 'AdvertiseController@keywords')->name('keywords');
+        Route::post('add/keywords', 'AdvertiseController@addKeyword')->name('add.keywords');
+        Route::post('update/keyword/{id}', 'AdvertiseController@upateKeyword')->name('update.keywords');
+        Route::post('remove/keyword/{id}', 'AdvertiseController@removeKeyword')->name('remove.keyword');
 
-         //Manage Advertiser
-         Route::get('/advertiser/all','AdvertiserController@allAdvertiser')->name('advertiser.all');
-         Route::get('/advertiser/active/all','AdvertiserController@allActiveAdvertiser')->name('advertiser.active.all');
-         Route::get('/advertiser/details/{id}','AdvertiserController@advertiserDetails')->name('advertiser.details');
-         Route::post('/advertiser/update/{id}','AdvertiserController@advertiserUpdate')->name('advertiser.update');
-         Route::post('/advertiser/ads/details/{id}','AdvertiserController@advertiserAdsDetails')->name('advertiser.ads.details');
-         Route::post('advertiser/add-sub-balance/{id}', 'AdvertiserController@addSubBalance')->name('advertiser.addSubBalance');
-         Route::get('/advertiser/banned/all','AdvertiserController@allBannedAdvertiser')->name('advertiser.banned.all');
-         Route::get('/advertiser/banned/{id}','AdvertiserController@advertiserBanned')->name('advertiser.banned');
-         Route::get('/advertiser/active/{id}','AdvertiserController@advertiserActive')->name('advertiser.active');
-         Route::get('/advertiser/email-unverified','AdvertiserController@emailUnverified')->name('advertiser.email.unverified');
-         Route::get('/advertiser/sms-unverified','AdvertiserController@smsUnverified')->name('advertiser.sms.unverified');
+        //Manage Advertiser
+        Route::get('/advertiser/all','AdvertiserController@allAdvertiser')->name('advertiser.all');
+        Route::get('/advertiser/active/all','AdvertiserController@allActiveAdvertiser')->name('advertiser.active.all');
+        Route::get('/advertiser/details/{id}','AdvertiserController@advertiserDetails')->name('advertiser.details');
+        Route::post('/advertiser/update/{id}','AdvertiserController@advertiserUpdate')->name('advertiser.update');
+        Route::post('/advertiser/ads/details/{id}','AdvertiserController@advertiserAdsDetails')->name('advertiser.ads.details');
+        Route::post('advertiser/add-sub-balance/{id}', 'AdvertiserController@addSubBalance')->name('advertiser.addSubBalance');
+        Route::get('/advertiser/banned/all','AdvertiserController@allBannedAdvertiser')->name('advertiser.banned.all');
+        Route::get('/advertiser/banned/{id}','AdvertiserController@advertiserBanned')->name('advertiser.banned');
+        Route::get('/advertiser/active/{id}','AdvertiserController@advertiserActive')->name('advertiser.active');
+        Route::get('/advertiser/email-unverified','AdvertiserController@emailUnverified')->name('advertiser.email.unverified');
+        Route::get('/advertiser/sms-unverified','AdvertiserController@smsUnverified')->name('advertiser.sms.unverified');
 
-         Route::get('advertiser/login/history/{id}', 'AdvertiserController@loginHistory')->name('advertiser.login.history.single');
-         Route::get('advertiser/ads/{id}', 'AdvertiserController@advertiserAds')->name('advertiser.ads');
+        Route::get('advertiser/login/history/{id}', 'AdvertiserController@loginHistory')->name('advertiser.login.history.single');
+        Route::get('advertiser/ads/{id}', 'AdvertiserController@advertiserAds')->name('advertiser.ads');
 
-         Route::get('advertiser/send-email', 'AdvertiserController@showEmailAllForm')->name('advertiser.email.all');
-         Route::post('advertiser/send-email', 'AdvertiserController@sendEmailAll')->name('advertiser.email.send');
-         Route::get('advertiser/search', 'AdvertiserController@search')->name('advertiser.search');
+        Route::get('advertiser/send-email', 'AdvertiserController@showEmailAllForm')->name('advertiser.email.all');
+        Route::post('advertiser/send-email', 'AdvertiserController@sendEmailAll')->name('advertiser.email.send');
+        Route::get('advertiser/search', 'AdvertiserController@search')->name('advertiser.search');
 
         //Manage Campaigns
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
+        Route::get('/campaigns/formleads/export/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
         Route::get('/campaigns/leads/export','CampaignsFormsController@export')->name('leads.export');
         Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
         Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
 
 
-         //Manage publisher
-         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
-         Route::get('/publisher/active/all','PublisherController@allActivePublisher')->name('publisher.active.all');
-         Route::get('/publisher/details/{id}','PublisherController@publisherDetails')->name('publisher.details');
-         Route::post('/publisher/update/{id}','PublisherController@publisherUpdate')->name('publisher.update');
-         Route::get('/publisher/banned/all','PublisherController@allBannedPublisher')->name('publisher.banned.all');
-         Route::get('/publisher/banned/{id}','PublisherController@publisherBanned')->name('publisher.banned');
-         Route::get('/publisher/active/{id}','PublisherController@publisherActive')->name('publisher.active');
-         Route::get('/publisher/email-unverified','PublisherController@emailUnverified')->name('publisher.email.unverified');
-         Route::get('/publisher/sms-unverified','PublisherController@smsUnverified')->name('publisher.sms.unverified');
+        //Manage publisher
+        Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
+        Route::get('/publisher/active/all','PublisherController@allActivePublisher')->name('publisher.active.all');
+        Route::get('/publisher/details/{id}','PublisherController@publisherDetails')->name('publisher.details');
+        Route::post('/publisher/update/{id}','PublisherController@publisherUpdate')->name('publisher.update');
+        Route::get('/publisher/banned/all','PublisherController@allBannedPublisher')->name('publisher.banned.all');
+        Route::get('/publisher/banned/{id}','PublisherController@publisherBanned')->name('publisher.banned');
+        Route::get('/publisher/active/{id}','PublisherController@publisherActive')->name('publisher.active');
+        Route::get('/publisher/email-unverified','PublisherController@emailUnverified')->name('publisher.email.unverified');
+        Route::get('/publisher/sms-unverified','PublisherController@smsUnverified')->name('publisher.sms.unverified');
 
-         Route::post('/publisher/ads/{slug}/{id}','PublisherController@publisherAds')->name('publisher.ads');
-         Route::post('/publisher/ads/details/{id}','PublisherController@publisherAdsDetails')->name('publisher.ads.details');
-         Route::post('publisher/add-sub-balance/{id}', 'PublisherController@addSubBalance')->name('publisher.addSubBalance');
-         Route::get('publisher/login/history/{id}', 'PublisherController@loginHistory')->name('publisher.login.history.single');
+        Route::post('/publisher/ads/{slug}/{id}','PublisherController@publisherAds')->name('publisher.ads');
+        Route::post('/publisher/ads/details/{id}','PublisherController@publisherAdsDetails')->name('publisher.ads.details');
+        Route::post('publisher/add-sub-balance/{id}', 'PublisherController@addSubBalance')->name('publisher.addSubBalance');
+        Route::get('publisher/login/history/{id}', 'PublisherController@loginHistory')->name('publisher.login.history.single');
 
-         Route::get('publisher/send-email', 'PublisherController@showEmailAllForm')->name('publisher.email.all');
-         Route::post('publisher/send-email', 'PublisherController@sendEmailAll')->name('publisher.email.send');
-         Route::get('publisher/search', 'PublisherController@search')->name('publisher.search');
+        Route::get('publisher/send-email', 'PublisherController@showEmailAllForm')->name('publisher.email.all');
+        Route::post('publisher/send-email', 'PublisherController@sendEmailAll')->name('publisher.email.send');
+        Route::get('publisher/search', 'PublisherController@search')->name('publisher.search');
 
-         //domain manage
-         Route::get('/domain/pending','DomainController@pending')->name('domain.pending');
-         Route::get('/domain/approved/','DomainController@approved')->name('domain.approved');
-         Route::get('/domain/approve/{id}','DomainController@approve')->name('domain.approve');
-         Route::get('/domain/unapprove/{id}','DomainController@unapprove')->name('domain.unapprove');
+        //domain manage
+        Route::get('/domain/pending','DomainController@pending')->name('domain.pending');
+        Route::get('/domain/approved/','DomainController@approved')->name('domain.approved');
+        Route::get('/domain/approve/{id}','DomainController@approve')->name('domain.approve');
+        Route::get('/domain/unapprove/{id}','DomainController@unapprove')->name('domain.unapprove');
 
-         Route::post('/domain/remove/{id}','DomainController@remove')->name('domain.remove');
-         Route::get('/domain/search/','DomainController@search')->name('domain.search');
+        Route::post('/domain/remove/{id}','DomainController@remove')->name('domain.remove');
+        Route::get('/domain/search/','DomainController@search')->name('domain.search');
 
 
 
@@ -403,17 +404,17 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/purchase/price-plans/{id}', 'AdController@purchasePlans')->name('purchase.plan');
         Route::post('/purchase/price-plans/', 'AdController@purchasePlansConfirm')->name('purchase.plan.confirm');
 
-         //2FA
-         Route::get('twofactor', 'AdvertiserController@show2faForm')->name('twofactor');
-         Route::post('twofactor/enable', 'AdvertiserController@create2fa')->name('twofactor.enable');
-         Route::post('twofactor/disable', 'AdvertiserController@disable2fa')->name('twofactor.disable');
+        //2FA
+        Route::get('twofactor', 'AdvertiserController@show2faForm')->name('twofactor');
+        Route::post('twofactor/enable', 'AdvertiserController@create2fa')->name('twofactor.enable');
+        Route::post('twofactor/disable', 'AdvertiserController@disable2fa')->name('twofactor.disable');
 
 
-         //Payments
-         Route::get('payments', 'AdvertiserController@showPayments')->name('payments');
-         Route::post('/payments/update', 'AdvertiserController@PaymentsUpdate')->name('payments.update');
-         Route::get('/payments/createsession', 'AdvertiserController@PaymentsCreateSession')->name('payments.createsession');
-         Route::get('/payments/success', 'AdvertiserController@PaymentsSuccessSession')->name('payments.success');
+        //Payments
+        Route::get('payments', 'AdvertiserController@showPayments')->name('payments');
+        Route::post('/payments/update', 'AdvertiserController@PaymentsUpdate')->name('payments.update');
+        Route::get('/payments/createsession', 'AdvertiserController@PaymentsCreateSession')->name('payments.createsession');
+        Route::get('/payments/success', 'AdvertiserController@PaymentsSuccessSession')->name('payments.success');
 
     });
 });
@@ -490,22 +491,22 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::post('twofactor/enable', 'PublisherController@create2fa')->name('twofactor.enable');
         Route::post('twofactor/disable', 'PublisherController@disable2fa')->name('twofactor.disable');
     });
- });
+});
 
 
-    //Publisher Widthdraw
-    Route::name('user.')->prefix('publisher')->group(function () {
-        Route::middleware(['checkStatus:publisher','publisher'])->group(function () {
+//Publisher Widthdraw
+Route::name('user.')->prefix('publisher')->group(function () {
+    Route::middleware(['checkStatus:publisher','publisher'])->group(function () {
 
-            // Withdraw
-            Route::get('/withdraw', 'Publisher\PublisherController@withdrawMoney')->name('withdraw.methods');
-            Route::post('/withdraw', 'Publisher\PublisherController@withdrawStore')->name('withdraw.money');
-            Route::get('/withdraw/preview', 'Publisher\PublisherController@withdrawPreview')->name('withdraw.preview');
-            Route::post('/withdraw/preview', 'Publisher\PublisherController@withdrawSubmit')->name('withdraw.submit');
-            Route::get('/withdraw/history', 'Publisher\PublisherController@withdrawLog')->name('withdraw.history');
+        // Withdraw
+        Route::get('/withdraw', 'Publisher\PublisherController@withdrawMoney')->name('withdraw.methods');
+        Route::post('/withdraw', 'Publisher\PublisherController@withdrawStore')->name('withdraw.money');
+        Route::get('/withdraw/preview', 'Publisher\PublisherController@withdrawPreview')->name('withdraw.preview');
+        Route::post('/withdraw/preview', 'Publisher\PublisherController@withdrawSubmit')->name('withdraw.submit');
+        Route::get('/withdraw/history', 'Publisher\PublisherController@withdrawLog')->name('withdraw.history');
 
-        });
     });
+});
 
 
 Route::get('user/authorization/{guard}', 'AuthorizationController@authorizeForm')->name('authorization');
