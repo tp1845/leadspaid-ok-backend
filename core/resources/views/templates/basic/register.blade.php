@@ -79,7 +79,7 @@ $bg = getContent('login.content',true)->data_values;
                             <div class="tab-pane fade show" id="advertiser" role="tabpanel" aria-labelledby="advertiser-tab">
                                 <form class="account-form" method="POST" action="{{route('advertiser.register')}}">
                                     @csrf
-                                    <div class="card border shadow-sm mb-4">
+                                    <div class="card border shadow-sm mb-4" style="overflow: inherit;">
                                         <div class="bg-light card-header font-weight-bolder text-body"> Basic Details </div>
                                         <div class="card-body">
                                             <div class="form-group ">
@@ -111,7 +111,7 @@ $bg = getContent('login.content',true)->data_values;
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                                <input type="text" class="form-control" name="company_full_name" placeholder="Company Full Name">
+                                                <input type="text" class="form-control" name="billed_to" placeholder="Company Full Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>

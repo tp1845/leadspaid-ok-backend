@@ -78,11 +78,12 @@ class RegisterController extends Controller
             'company_name' => 'sometimes|string|max:60',
             'name' => 'sometimes|required|string|max:60',
             'mobile' => 'required|string|unique:advertisers',
-            'company_full_name' => 'sometimes|required|string|max:60',
+            'billed_to' => 'sometimes|required|string|max:60',
             'email' => 'required|string|email|max:160|unique:advertisers',
             'city' => 'required|string|max:160',
-            'username' => 'required|alpha_num|unique:advertisers|min:6',
             'country' => 'required|string|max:160',
+            'postal_code' => 'required|string|max:160',
+            'username' => 'required|alpha_num|unique:advertisers|min:6',
             'password' => 'required|string|min:6|confirmed',
             'captcha' => 'sometimes|required'
         ]);
@@ -126,6 +127,9 @@ class RegisterController extends Controller
         $adv->username = $data['username'];
         $adv->country = $data['country'];
         $adv->city = $data['city'];
+        $adv->company_name = $data['company_name'];
+        $adv->billed_to = $data['billed_to'];
+        $adv->postal_code = $data['postal_code'];
         $adv->mobile = $data['country_code'].$data['mobile'];
         $adv->password = Hash::make($data['password']);
 
