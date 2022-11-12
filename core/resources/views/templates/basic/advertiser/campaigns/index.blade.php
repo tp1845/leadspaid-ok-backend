@@ -44,7 +44,7 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                                <td><a href="{{ route('admin.campaignsformleads.export',$campaign->id) }}">Download</a></td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">Download</a></td>
                             </tr>
                         @empty
 

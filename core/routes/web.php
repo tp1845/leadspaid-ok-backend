@@ -144,7 +144,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         //Manage Campaigns
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
-        Route::get('/campaigns/formleads/export/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
+
         Route::get('/campaigns/leads/export','CampaignsFormsController@export')->name('leads.export');
         Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
         Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
@@ -335,6 +335,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
             Route::post('manage-section/{id}', 'PageBuilderController@manageSectionUpdate')->name('manage.section.update');
         });
     });
+
 });
 
 /*
@@ -360,7 +361,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::post('password/verify-code', 'ForgotPasswordController@verifyCode')->name('password.verify-code');
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.change-link');
         Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
-
+        Route::get('/campaigns/formleads/export/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
     });
 
     Route::middleware(['advertiser','checkStatus:advertiser'])->group(function () {
