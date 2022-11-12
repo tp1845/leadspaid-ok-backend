@@ -117,6 +117,7 @@ class ProcessController extends Controller
         foreach ($users as $user) {
             $currentDateTime = $this->TimezoneFromName($user->country);
             $newDateTime = date('h A', strtotime($currentDateTime));
+            $expectedDateTime = \Carbon\Carbon::parse($this->TimezoneFromName($user->country));
             $notify[] = ['success', 'Successfully charged '.  $currentDateTime];
             if ($newDateTime === "06 AM"){
                 $previous_deposit = $user->wallet_deposit;
@@ -165,9 +166,22 @@ class ProcessController extends Controller
                     }
                 }
     
+                $expectedDateTime->hour(6);
+                $expectedDateTime->minute(0);
+                $expectedDateTime->second(0);
+                $totalMinutes = \Carbon\Carbon::parse($currentDateTime)->diffInMinutes($expectedDateTime);
+                if ($totalMinutes < 15){
+                    $expectedDateTime->hour(6);
+                    $expectedDateTime->minute(0);
+                    $expectedDateTime->second(0);
+                }else{
+                    $expectedDateTime = \Carbon\Carbon::parse($currentDateTime);
+                }
+                
+
                 $transaction = new TransactionAdvertiser();
                 $transaction->user_id =  $user->id;
-                $transaction->trx_date = $currentDateTime;
+                $transaction->trx_date = $expectedDateTime->Format("Y-m-d h:i:s");
                 $transaction->init_blance = getAmount($previous_deposit);
                 $transaction->total_budget = getAmount($user->total_budget);
                 $transaction->spent_previous_day = getAmount($user->amount_used);
@@ -233,6 +247,8 @@ class ProcessController extends Controller
                 return redirect()->route('advertiser.payments')->withNotify($notify);
             }
         }
+       
+      
 
         $transaction = new TransactionAdvertiser();
         $transaction->user_id =  $user->id;
