@@ -118,8 +118,8 @@ class ProcessController extends Controller
             $currentDateTime = $this->TimezoneFromName($user->country);
             $newDateTime = date('h A', strtotime($currentDateTime));
             $expectedDateTime = \Carbon\Carbon::parse($this->TimezoneFromName($user->country));
-            $notify[] = ['success', 'Successfully charged '.  $currentDateTime];
-            if ($newDateTime === "06 AM"){
+            $notify[] = ['success', 'Successfully charged ' .  $currentDateTime];
+            if ($newDateTime === "06 AM") {
                 $previous_deposit = $user->wallet_deposit;
                 $new_deposit =  $previous_deposit - $user->amount_used;
                 $amount =  $user->total_budget - $new_deposit;
@@ -131,12 +131,12 @@ class ProcessController extends Controller
                     $user->wallet_deposit = $new_deposit;
                 }
                 $user->save();
-    
+
                 $method = Gateway::where('alias', 'stripe')->firstOrFail();
                 $gateway_parameter = json_decode($method->parameters);
                 $stripe = new   \Stripe\StripeClient($gateway_parameter->secret_key->value);
-    
-    
+
+
                 $setup_intent = $stripe->setupIntents->retrieve($user->card_session, []);
                 $payment_method_id = $setup_intent->payment_method;
                 $payment_method =  $stripe->paymentMethods->retrieve(
@@ -144,7 +144,7 @@ class ProcessController extends Controller
                     []
                 );
                 $customer_id = $payment_method->customer;
-    
+
                 if ($deducting_amount >= 1) {
                     try {
                         \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
@@ -165,19 +165,19 @@ class ProcessController extends Controller
                         return redirect()->route('advertiser.payments')->withNotify($notify);
                     }
                 }
-    
+
                 $expectedDateTime->hour(6);
                 $expectedDateTime->minute(0);
                 $expectedDateTime->second(0);
                 $totalMinutes = \Carbon\Carbon::parse($currentDateTime)->diffInMinutes($expectedDateTime);
-                if ($totalMinutes < 15){
+                if ($totalMinutes < 15) {
                     $expectedDateTime->hour(6);
                     $expectedDateTime->minute(0);
                     $expectedDateTime->second(0);
-                }else{
+                } else {
                     $expectedDateTime = \Carbon\Carbon::parse($currentDateTime);
                 }
-                
+
 
                 $transaction = new TransactionAdvertiser();
                 $transaction->user_id =  $user->id;
@@ -185,20 +185,20 @@ class ProcessController extends Controller
                 $transaction->init_blance = getAmount($previous_deposit);
                 $transaction->total_budget = getAmount($user->total_budget);
                 $transaction->spent_previous_day = getAmount($user->amount_used);
-                $deduct_amount = $deducting_amount <= 0 ? 0: $deducting_amount . '(' . $amount . '+3% service charge)'  ;
+                $deduct_amount = $deducting_amount <= 0 ? 0 : $deducting_amount . '(' . $amount . '+3% service charge)';
                 $transaction->deduct = $deduct_amount;
                 $transaction->final_wallet =  $user->wallet_deposit;
                 $transaction->save();
-            }          
+            }
         }
 
 
         return redirect()->route('advertiser.payments')->withNotify($notify);
     }
 
-      public function charge_current(Request $request)
+    public function charge_current(Request $request)
     {
-       
+
         $user = Auth::guard('advertiser')->user();
         $currentDateTime = $this->TimezoneFromName($user->country);
         $previous_deposit = $user->wallet_deposit;
@@ -217,15 +217,21 @@ class ProcessController extends Controller
         $gateway_parameter = json_decode($method->parameters);
         $stripe = new   \Stripe\StripeClient($gateway_parameter->secret_key->value);
 
+        try {
+            $setup_intent = $stripe->setupIntents->retrieve($user->card_session, []);
+        } catch (\Stripe\Exception\InvalidArgumentException $e) {
+            $notify[] = ['error', 'Please add your card'];
+            return redirect()->route('advertiser.payments')->withNotify($notify);
+        }
 
-        $setup_intent = $stripe->setupIntents->retrieve($user->card_session, []);
+
         $payment_method_id = $setup_intent->payment_method;
         $payment_method =  $stripe->paymentMethods->retrieve(
             $payment_method_id,
             []
         );
         $customer_id = $payment_method->customer;
-        $notify[] = ['success', 'Successfully charged '. $deducting_amount];
+        $notify[] = ['success', 'Successfully charged ' . $deducting_amount];
         if ($deducting_amount >= 1) {
             try {
                 \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
@@ -237,7 +243,6 @@ class ProcessController extends Controller
                     'off_session' => true,
                     'confirm' => true,
                 ]);
-
             } catch (\Stripe\Exception\CardException $e) {
                 // Error code will be authentication_required if authentication is needed
                 echo 'Error code is:' . $e->getError()->code;
@@ -247,8 +252,8 @@ class ProcessController extends Controller
                 return redirect()->route('advertiser.payments')->withNotify($notify);
             }
         }
-       
-      
+
+
 
         $transaction = new TransactionAdvertiser();
         $transaction->user_id =  $user->id;
@@ -256,7 +261,7 @@ class ProcessController extends Controller
         $transaction->init_blance = getAmount($previous_deposit);
         $transaction->total_budget = getAmount($user->total_budget);
         $transaction->spent_previous_day = getAmount($user->amount_used);
-        $deduct_amount = $deducting_amount <= 0 ? 0: $deducting_amount . '(' . $amount . '+3% service charge)'  ;
+        $deduct_amount = $deducting_amount <= 0 ? 0 : $deducting_amount . '(' . $amount . '+3% service charge)';
         $transaction->deduct = $deduct_amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
