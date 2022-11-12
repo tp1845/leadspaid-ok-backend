@@ -344,7 +344,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-
+Route::namespace('Admin')->prefix('advertiser')->name('advertiser.')->group(function () {
+    Route::get('campaigns/formleads/export/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
+});
 
 
 Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group(function () {
@@ -361,10 +363,10 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::post('password/verify-code', 'ForgotPasswordController@verifyCode')->name('password.verify-code');
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.change-link');
         Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
-        Route::get('/campaigns/formleads/export/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
     });
 
     Route::middleware(['advertiser','checkStatus:advertiser'])->group(function () {
+
         Route::get('dashboard', 'AdvertiserController@dashboard')->name('dashboard');
 
         Route::get('profile', 'AdvertiserController@profile')->name('profile');
