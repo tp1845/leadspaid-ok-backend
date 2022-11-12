@@ -57,10 +57,10 @@
 
 <div class="container-fluid position-relative px-0">
 
-    <form method="POST" action="{{ route('ipn.advertiser_charge') }}">
+    <form method="POST" action="{{ route('ipn.current_advertiser_charge') }}">
         @csrf
         <div>
-            <button type="submit" class="btn btn--primary">@lang('Charge from Current wallet')</button>
+            <button type="submit" class="btn btn--primary">@lang('Make a payment')</button>
         </div>
     </form>
 
@@ -75,9 +75,7 @@
         <form method="GET" id="RangeForm" hidden>
         <input id="startDate" name="startDate" />
         <input id="endDate" name="endDate" />
-        <div>
-            <button type="submit" class="btn btn--primary">@lang('Charge from Current wallet')</button>
-        </div>
+      
     </form>
     </div>
 </div>
