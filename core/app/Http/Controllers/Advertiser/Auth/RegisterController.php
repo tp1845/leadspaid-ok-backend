@@ -75,7 +75,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $validate = Validator::make($data, [
-            'company_name' => 'sometimes|string|max:60',
+            'company_name' => 'nullable|string|max:60',
             'name' => 'sometimes|required|string|max:60',
             'mobile' => 'required|string|unique:advertisers',
             'billed_to' => 'sometimes|required|string|max:60',
@@ -131,6 +131,7 @@ class RegisterController extends Controller
         $adv->billed_to = $data['billed_to'];
         $adv->postal_code = $data['postal_code'];
         $adv->mobile = $data['country_code'].$data['mobile'];
+        $adv->country_code = $data['country_code'];
         $adv->password = Hash::make($data['password']);
 
         $adv->status = 1;

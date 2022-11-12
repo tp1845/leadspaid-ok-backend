@@ -82,9 +82,14 @@ class AdvertiserController extends Controller
     public function profileUpdate(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'city' => 'required',
-            'country' => 'required',
+            'company_name' => 'nullable|string|max:60',
+            'name' => 'sometimes|required|string|max:60',
+            'mobile' => 'required|string',
+            'billed_to' => 'sometimes|required|string|max:60',
+            'email' => 'required|string|email|max:160',
+            'city' => 'required|string|max:160',
+            'country' => 'required|string|max:160',
+            'postal_code' => 'required|string|max:160',
             'image' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
@@ -100,9 +105,14 @@ class AdvertiserController extends Controller
             }
         }
 
+        $user->company_name = $request->company_name;
         $user->name = $request->name;
+        $user->mobile = $request->mobile;
+        $user->billed_to = $request->billed_to;
+        $user->email = $request->email;
         $user->city = $request->city;
         $user->country = $request->country;
+        $user->postal_code = $request->postal_code;
         $user->update();
         $notify[] = ['success', 'Your profile has been updated.'];
         return redirect()->route('advertiser.profile')->withNotify($notify);

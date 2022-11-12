@@ -3,76 +3,102 @@
 $user = auth()->guard('advertiser')->user();
 @endphp
 @section('panel')
-<form action="{{ route('advertiser.profile.update') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-    <div class="row justify-content-center mb-none-30">
+
+<section class="pt-100 pb-100">
+    <div class="container">
+        <div class="account-area">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8">
+                    <div class="account-wrapper">                       
+                        <div class="tab-content mt-5" id="myTabContent">
+                        <form method="POST" action="{{route('advertiser.profile.update')}}">
+                                    @csrf
 
 
-        <div class="col-lg-8 col-md-9 mb-30">
-            <div class="card profile-update-card">
-                <div class="card-body px-5 py-2">
-                    <div class="form-group">
-                        <div class="image-upload">
-                            <div class="thumb">
-                                <div class="avatar-preview">
-                                    <div class="profilePicPreview" style="background-image: url({{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }})">
-                                        <button type="button" class="remove-image"><i class="fa fa-times"></i></button>
+                                    <div class="card border shadow-sm mb-4" style="overflow: inherit;">
+                                        <div class="bg-light card-header font-weight-bolder text-body"> Basic Details
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group ">
+                                                <label>@lang('Company Name')</label>
+                                                <input type="text" class="form-control" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
+                                                <input type="text" name="name" placeholder="Full Name" class="form-control" value="{{auth()->guard('advertiser')->user()->name}}" required>
+                                            </div>
+                                            <div class="form-group country-code">
+                                                    <label>@lang('Mobile') <sup class="text-danger">*</sup></label>
+                                                    <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control" placeholder="@lang('Your Phone Number')">
+                                                
+                                            </div>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <div class="avatar-edit">
-                                    <input type="file" class="profilePicUpload" name="image" id="profilePicUpload1" accept=".png, .jpg, .jpeg">
-                                    <label for="profilePicUpload1" class="bg--success"><i class="las la-edit"></i></label>
-                                    <small class="mt-2 text-facebook">@lang('Supported files'): <b>jpeg, jpg</b>. @lang('Image will be resized into 400x400px') </small>
-                                </div>
-                            </div>
+
+                                    <div class="card border shadow-sm mb-4">
+                                        <div class="bg-light card-header font-weight-bolder text-body"> Billing Details
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group ">
+                                                <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
+                                                <input type="text" class="form-control" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" placeholder="Company Full Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
+                                                <input type="email" name="email" placeholder="Billing Email address" class="form-control" value="{{auth()->guard('advertiser')->user()->email}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" placeholder="City" name="city" class="form-control" value="{{auth()->guard('advertiser')->user()->city}}" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <select class="custom-select mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" required name="country">
+                                                    @foreach ($countries as $country)
+                                                    <option @if($user->country === $country->country_name)
+                                                        selected="selected" @endif
+                                                        value=" {{ $country->country_name }} " label=" {{
+                                                        $country->country_name }} ">
+                                                        {{ $country->country_name }}
+                                                    </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" placeholder="Postal Code" name="postal_code" class="form-control" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="card border shadow-sm mb-4">
+                                        <div class="bg-light card-header font-weight-bolder text-body"> User Details
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label>@lang('Username') <sup class="text-danger">*</sup></label>
+                                                <input type="text" name="username" placeholder="User Name" class="form-control" readonly value="{{auth()->guard('advertiser')->user()->username}}" required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    @include($activeTemplate.'partials.custom-captcha')
+                                    <div class="form-group row">
+                                        <div class="col-md-12 ">
+                                            @php echo recaptcha() @endphp
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="box--shadow1 btn btn--primary btn-lg text--small w-100">@lang('Save Changes')</button>
+
+                                </form>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group ">
-                                <label class="form-control-label font-weight-bold">@lang('Username')</label>
-                                <input class="form-control" type="text" disabled value="{{ auth()->guard('advertiser')->user()->username }}">
-                            </div>
-                            <div class="form-group ">
-                                <label class="form-control-label font-weight-bold">@lang('Name')</label>
-                                <input class="form-control" type="text" name="name" value="{{ auth()->guard('advertiser')->user()->name }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-control-label  font-weight-bold">@lang('Email')</label>
-                                <input class="form-control" type="email" value="{{ auth()->guard('advertiser')->user()->email }}" disabled>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-control-label  font-weight-bold">@lang('Country')</label>
-                                <select class="custom-select mr-sm-2" name="country">
-                                    @foreach ($countries as $country)
-                                    <option @if($user->country === $country->country_name) selected="selected" @endif value=" {{ $country->country_name }} " label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label  font-weight-bold">@lang('City')</label>
-                                <input class="form-control" type="text" name="city" value="{{ auth()->guard('advertiser')->user()->city }}">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-control-label  font-weight-bold">@lang('Phone')</label>
-                                <input class="form-control" type="text" value="{{ auth()->guard('advertiser')->user()->mobile }}" disabled>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="form-group mt-3">
-                        <button type="submit" class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
-</form>
+</section>
 @endsection
 
 @push('breadcrumb-plugins')
@@ -112,4 +138,220 @@ $user = auth()->guard('advertiser')->user();
     });
 </script>
 
+@endpush
+
+
+@push('style')
+<style type="text/css">
+    .country-code .input-group-prepend .input-group-text {
+        background: #fff !important;
+    }
+
+    .country-code select {
+        border: none;
+    }
+
+    .country-code select:focus {
+        border: none;
+        outline: none;
+    }
+
+    .nice-select {
+        -webkit-tap-highlight-color: transparent;
+        background-color: #fff;
+        border-radius: 5px;
+        border: solid 1px #e8e8e8;
+        box-sizing: border-box;
+        clear: both;
+        cursor: pointer;
+        display: block;
+        float: left;
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: normal;
+        height: 42px;
+        line-height: 40px;
+        outline: none;
+        padding-left: 18px;
+        padding-right: 30px;
+        position: relative;
+        text-align: left !important;
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        white-space: nowrap;
+        width: auto;
+    }
+
+    .nice-select:hover {
+        border-color: #dbdbdb;
+    }
+
+    .nice-select:active,
+    .nice-select.open,
+    .nice-select:focus {
+        border-color: #999;
+    }
+
+    .nice-select:after {
+        border-bottom: 2px solid #999;
+        border-right: 2px solid #999;
+        content: '';
+        display: block;
+        height: 5px;
+        margin-top: -4px;
+        pointer-events: none;
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        -webkit-transform-origin: 66% 66%;
+        -ms-transform-origin: 66% 66%;
+        transform-origin: 66% 66%;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        -webkit-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out;
+        width: 5px;
+    }
+
+    .nice-select.open:after {
+        -webkit-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+
+    .nice-select.open .list {
+        opacity: 1;
+        pointer-events: auto;
+        -webkit-transform: scale(1) translateY(0);
+        -ms-transform: scale(1) translateY(0);
+        transform: scale(1) translateY(0);
+    }
+
+    .nice-select.disabled {
+        border-color: #ededed;
+        color: #999;
+        pointer-events: none;
+    }
+
+    .nice-select.disabled:after {
+        border-color: #cccccc;
+    }
+
+    .nice-select.wide {
+        width: 100%;
+    }
+
+    .nice-select.wide .list {
+        left: 0 !important;
+        right: 0 !important;
+    }
+
+    .nice-select.right {
+        float: right;
+    }
+
+    .nice-select.right .list {
+        left: auto;
+        right: 0;
+    }
+
+    .nice-select.small {
+        font-size: 12px;
+        height: 36px;
+        line-height: 34px;
+    }
+
+    .nice-select.small:after {
+        height: 4px;
+        width: 4px;
+    }
+
+    .nice-select.small .option {
+        line-height: 34px;
+        min-height: 34px;
+    }
+
+    .nice-select .list {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 0 1px rgba(68, 68, 68, 0.11);
+        box-sizing: border-box;
+        margin-top: 4px;
+        opacity: 0;
+        overflow: hidden;
+        padding: 0;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        left: -11;
+        -webkit-transform-origin: 50% 0;
+        -ms-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+        -webkit-transform: scale(0.75) translateY(-21px);
+        -ms-transform: scale(0.75) translateY(-21px);
+        transform: scale(0.75) translateY(-21px);
+        -webkit-transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+        transition: all 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+        z-index: 9;
+    }
+
+    .nice-select .list:hover .option:not(:hover) {
+        background-color: transparent !important;
+    }
+
+    .nice-select .option {
+        cursor: pointer;
+        font-weight: 400;
+        line-height: 40px;
+        list-style: none;
+        min-height: 40px;
+        outline: none;
+        padding-left: 18px;
+        padding-right: 29px;
+        text-align: left;
+        -webkit-transition: all 0.2s;
+        transition: all 0.2s;
+    }
+
+    .nice-select .option:hover,
+    .nice-select .option.focus,
+    .nice-select .option.selected.focus {
+        background-color: #f6f6f6;
+    }
+
+    .nice-select .option.selected {
+        font-weight: bold;
+    }
+
+    .nice-select .option.disabled {
+        background-color: transparent;
+        color: #999;
+        cursor: default;
+    }
+
+    .no-csspointerevents .nice-select .list {
+        display: none;
+    }
+
+    .no-csspointerevents .nice-select.open .list {
+        display: block;
+    }
+
+
+    .nice-select {
+        height: 24px;
+        line-height: 23px;
+        border: none;
+    }
+
+    .nice-select .list {
+        max-height: 200px;
+        overflow-y: auto;
+    }
+</style>
 @endpush
