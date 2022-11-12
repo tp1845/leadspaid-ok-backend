@@ -82,14 +82,14 @@ class AdvertiserController extends Controller
     public function profileUpdate(Request $request)
     {
         $this->validate($request, [
-            'company_name' => 'nullable|string|max:60',
-            'name' => 'sometimes|required|string|max:60',
-            'mobile' => 'required|string',
-            'billed_to' => 'sometimes|required|string|max:60',
+            'company_name' => 'nullable|string|max:60|min:3|regex:/^[a-z A-Z]+$/u',
+            'name' => 'sometimes|required|string|max:60|min:3|regex:/^[a-z A-Z]+$/u',
+            'mobile' => 'required|string|min:6',
+            'billed_to' => 'sometimes|required|string|max:60|regex:/^[a-z A-Z]+$/u',
             'email' => 'required|string|email|max:160',
-            'city' => 'required|string|max:160',
+            'city' => 'required|string|max:160|min:2',
             'country' => 'required|string|max:160',
-            'postal_code' => 'required|string|max:160',
+            'postal_code' => 'required|string|max:160',      
             'image' => 'nullable|image|mimes:jpg,jpeg,png'
         ]);
 
@@ -107,7 +107,8 @@ class AdvertiserController extends Controller
 
         $user->company_name = $request->company_name;
         $user->name = $request->name;
-        $user->mobile = $request->mobile;
+        $mobile = preg_replace('/\D/', '', $request->mobile);
+        $user->mobile = $mobile;
         $user->billed_to = $request->billed_to;
         $user->email = $request->email;
         $user->city = $request->city;

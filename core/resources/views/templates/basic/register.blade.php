@@ -99,7 +99,7 @@ $bg = getContent('login.content',true)->data_values;
                                                             </select>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="mobile" class="form-control" placeholder="@lang('Your Phone Number')">
+                                                    <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" placeholder="@lang('Your Phone Number')">
                                                 </div>
                                             </div>
                                         </div>
@@ -111,7 +111,7 @@ $bg = getContent('login.content',true)->data_values;
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                                <input type="text" class="form-control" name="billed_to" placeholder="Company Name/ Full Name">
+                                                <input type="text" class="form-control" value="{{ old('billed_to') }}" name="billed_to" placeholder="Company Name/ Full Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
