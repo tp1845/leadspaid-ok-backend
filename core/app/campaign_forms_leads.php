@@ -15,7 +15,8 @@ class campaign_forms_leads extends Model
         'field_2',
         'field_3',
         'field_4',
-        'field_5'
+        'field_5',
+        'price'
     ];
 
     public function campaigns(){

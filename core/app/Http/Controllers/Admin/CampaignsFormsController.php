@@ -24,10 +24,6 @@ class CampaignsFormsController extends Controller
         return view('admin.campaigns.leads', compact('page_title', 'empty_message', 'leads'));
     }
 
-    public function export()
-    {
-        return Excel::download(new LeadsExport, 'leads.xlsx');
-    }
 
     public function campaignsformleads($id)
     {
