@@ -76,8 +76,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('password', 'AdminController@password')->name('password');
         Route::post('password', 'AdminController@passwordUpdate')->name('password.update');
 
-
-
         // Users Manager
         Route::get('user/email/{id}/{flag}', 'ManageUsersController@showEmailSingleForm')->name('users.email.single');
         Route::post('user/send-email/{id}/{role}', 'ManageUsersController@sendEmailSingle')->name('users.send.email.single');
@@ -145,11 +143,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         //Manage Campaigns
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
-
-        Route::get('/campaigns/leads/export','CampaignsFormsController@export')->name('leads.export');
-        Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
-        Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
-
+        Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
+        Route::post('/campaigns/leads/importpreview/{cid}/{aid}/{fid}','CampaignsController@importpreview')->name('leads.importpreview');
+        Route::post('/campaigns/leads/import/{cid}/{aid}/{fid}','CampaignsController@import')->name('leads.import');
+        Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('campaigns.leads.all');
 
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
