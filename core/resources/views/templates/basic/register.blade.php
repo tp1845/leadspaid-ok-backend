@@ -80,7 +80,7 @@ $bg = getContent('login.content',true)->data_values;
                                 <form class="account-form" method="POST" action="{{route('advertiser.register')}}">
                                     @csrf
                                     <div class="card border shadow-sm mb-4" style="overflow: inherit;">
-                                        <div class="bg-light card-header font-weight-bolder text-body"> Basic Details </div>
+                                        <div class="bg-light card-header font-weight-bolder text-body"> Basic Information </div>
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Company Name')</label>
@@ -99,7 +99,7 @@ $bg = getContent('login.content',true)->data_values;
                                                             </select>
                                                         </span>
                                                     </div>
-                                                    <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" placeholder="@lang('Your Phone Number')">
+                                                    <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" required placeholder="@lang('Your Phone Number')">
                                                 </div>
                                             </div>
                                         </div>
@@ -107,11 +107,11 @@ $bg = getContent('login.content',true)->data_values;
                                     </div>
 
                                     <div class="card border shadow-sm mb-4">
-                                        <div class="bg-light card-header font-weight-bolder text-body"> Billing Details </div>
+                                        <div class="bg-light card-header font-weight-bolder text-body"> Billing Information </div>
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                                <input type="text" class="form-control" value="{{ old('billed_to') }}" name="billed_to" placeholder="Company Name/ Full Name">
+                                                <input type="text" class="form-control" value="{{ old('billed_to') }}" name="billed_to" required placeholder="Company Name/ Full Name">
                                             </div>
                                             <div class="form-group">
                                                 <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
@@ -135,7 +135,7 @@ $bg = getContent('login.content',true)->data_values;
 
                                     </div>
                                     <div class="card border shadow-sm mb-4">
-                                        <div class="bg-light card-header font-weight-bolder text-body"> User Details </div>
+                                        <div class="bg-light card-header font-weight-bolder text-body"> User Information </div>
                                         <div class="card-body">
                                             <div class="form-group">
                                                 <label>@lang('Username') <sup class="text-danger">*</sup></label>
