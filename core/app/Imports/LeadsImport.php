@@ -88,6 +88,7 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
                 $form_lead->price =   $row['price'];
                 if(!$this->preview ){
                 $form_lead->save();
+                $this->leadsdata[] = $row;
                 }else{
                 $this->leadsdata[] = $row;
                 }

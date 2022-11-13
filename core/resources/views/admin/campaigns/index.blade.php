@@ -154,6 +154,7 @@
                     success: function(data)
                     {
                         if (data.success) {
+                            alert('Leads Saved');
                             reset_upload_preview(form);
                         }else{
                             alert('Try Again');
