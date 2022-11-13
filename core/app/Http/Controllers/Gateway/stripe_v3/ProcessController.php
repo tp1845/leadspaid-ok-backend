@@ -29,8 +29,8 @@ class ProcessController extends Controller
         $country_user = Country::where('country_name', $country_name)->latest()->first();
         $timezone = \DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, $country_user->country_code);
         $d = new \DateTime("now", new \DateTimeZone($timezone[0]));
-        $currentDateTime =  $d->format($d->format("Y-m-d h:i:s"));
-        return $currentDateTime; // 2022-11-06 09:44:50
+        $currentDateTime =  $d->format($d->format("Y-m-d H:i:s"));
+        return $currentDateTime; // 2022-11-06 20:40:37
     }
 
     /*
@@ -252,8 +252,6 @@ class ProcessController extends Controller
                 return redirect()->route('advertiser.payments')->withNotify($notify);
             }
         }
-
-
 
         $transaction = new TransactionAdvertiser();
         $transaction->user_id =  $user->id;

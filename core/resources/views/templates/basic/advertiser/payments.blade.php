@@ -98,7 +98,7 @@
                     <tbody>
                         @forelse($trxs as $trx)
                         <tr>
-                            <td data-label="@lang('Transaction Date')">{{  \Carbon\Carbon::parse($trx->trx_date)->isoFormat("d-MMM 'YY | hh:mm A")  }}</td>
+                            <td data-label="@lang('Transaction Date')">{{  \Carbon\Carbon::parse($trx->trx_date)->isoFormat("DD-MMM 'YY | hh:mm A")  }}</td>
                             <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->init_blance)  }}</td>
                             <td data-label="@lang('Total Campaign Budget')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->total_budget) }} </td>
                             <td data-label="@lang('Amount Spent Yesterday')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->spent_previous_day) }} </td>
