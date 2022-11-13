@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Advertiser\Auth;
 
 use App\UserLogin;
 use App\Advertiser;
+use App\Country;
 use App\GeneralSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -62,7 +63,8 @@ class RegisterController extends Controller
         $page_title = "Advertiser Sign Up";
         $info = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
-        return view($this->activeTemplate . 'advertiser.auth.register', compact('page_title','country_code'));
+        $countries = Country::all();
+        return view($this->activeTemplate. 'register', compact('page_title','country_code', 'countries'));
     }
 
 
