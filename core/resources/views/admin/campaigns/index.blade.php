@@ -103,6 +103,7 @@
     .upload-btn-wrapper { position: relative; overflow: hidden; display: inline; }
     .btn { cursor: pointer; }
     .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; width: 100%; height: 100%; left: 0; top: 0; opacity: 0; cursor: pointer; }
+    .up-down-btn{ font-size: 28px; background: transparent; border: 0; padding: 0 }
 </style>
 @endpush
 @push('script')
