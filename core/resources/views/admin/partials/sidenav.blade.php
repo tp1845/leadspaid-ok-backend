@@ -148,8 +148,8 @@
                                     <span class="menu-title">@lang('All Campaigns')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.leads.all')}}">
-                                <a href="{{route('admin.leads.all')}}" class="nav-link">
+                            <li class="sidebar-menu-item {{menuActive('admin.campaigns.leads.all')}}">
+                                <a href="{{route('admin.campaigns.leads.all')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('All Leads')</span>
                                 </a>

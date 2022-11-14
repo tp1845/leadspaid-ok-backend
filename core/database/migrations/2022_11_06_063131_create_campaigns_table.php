@@ -31,7 +31,7 @@ class CreateCampaignsTable extends Migration
             $table->integer('social_media_page')->nullable();
             $table->boolean('status')->default(0)->nullable()->comment('0: off, 1: active');
             $table->boolean('delivery')->default(0)->nullable()->comment('0: off, 1: active');
-            $table->boolean('apporve')->default(0)->nullable()->comment('admin approval default 0 { 0: No, 1: Yes }');
+            $table->boolean('approve')->default(0)->nullable()->comment('admin approval default 0 { 0: No, 1: Yes }');
 
             $table->timestamps();
         });

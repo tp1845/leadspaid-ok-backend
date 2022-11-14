@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Advertiser\Auth;
 
 use App\UserLogin;
 use App\Advertiser;
+use App\Country;
 use App\GeneralSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -62,37 +63,31 @@ class RegisterController extends Controller
         $page_title = "Advertiser Sign Up";
         $info = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
-        return view($this->activeTemplate . 'advertiser.auth.register', compact('page_title','country_code'));
+        $countries = Country::all();
+        return view($this->activeTemplate. 'register', compact('page_title','country_code', 'countries'));
     }
 
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        $validate = Validator::make($data, [
-            'company_name' => 'sometimes|string|max:60',
-            'name' => 'sometimes|required|string|max:60',
-            'mobile' => 'required|string|unique:advertisers',
-            'company_full_name' => 'sometimes|required|string|max:60',
-            'email' => 'required|string|email|max:160|unique:advertisers',
-            'city' => 'required|string|max:160',
-            'username' => 'required|alpha_num|unique:advertisers|min:6',
-            'country' => 'required|string|max:160',
-            'password' => 'required|string|min:6|confirmed',
-            'captcha' => 'sometimes|required'
-        ]);
-
-        return $validate;
-    }
 
     public function register(Request $request)
     {
-        $this->validator($request->all());
+        $customMessages = [
+            'name.required' => 'Fill your full name',
+            'company_name.min' => 'Fill your Company name in full. Otherwise leave it blank if you want to use your individual name',
+            'city.min' => 'Fill city',
+        ];
+        $request->validate([
+            'company_name' => 'nullable|string|max:60|min:3',
+            'name' => 'sometimes|required|string|max:60|min:3|regex:/^[a-z A-Z]+$/u',
+            'mobile' => 'required|string|unique:advertisers|min:6',
+            'billed_to' => 'sometimes|required|string|max:60',
+            'email' => 'required|string|email|max:160|unique:advertisers',
+            'city' => 'required|string|max:160|min:2',
+            'country' => 'required|string|max:160',
+            'postal_code' => 'required|string|max:160',
+            'username' => 'required|alpha_num|unique:advertisers|min:6',
+            'password' => 'required|string|min:6|confirmed',
+            'captcha' => 'sometimes|required'
+        ], $customMessages);
         if (isset($request->captcha)) {
             if (!captchaVerify($request->captcha, $request->captcha_secret)) {
                 $notify[] = ['error', "Invalid Captcha"];
@@ -122,11 +117,17 @@ class RegisterController extends Controller
 
         $adv = new Advertiser ();
         $adv->name = $data['name'];
+        
         $adv->email = $data['email'];
         $adv->username = $data['username'];
         $adv->country = $data['country'];
         $adv->city = $data['city'];
-        $adv->mobile = $data['country_code'].$data['mobile'];
+        $adv->company_name = $data['company_name'];
+        $adv->billed_to = $data['billed_to'];
+        $adv->postal_code = $data['postal_code'];
+        $mobile = preg_replace('/\D/', '', $data['country_code'].$data['mobile']);
+        $adv->mobile = $mobile;
+        $adv->country_code = $data['country_code'];
         $adv->password = Hash::make($data['password']);
 
         $adv->status = 1;

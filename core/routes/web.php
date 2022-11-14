@@ -36,6 +36,7 @@ Route::namespace('Gateway')->prefix('ipn')->name('ipn.')->group(function () {
     Route::get('mollie', 'mollie\ProcessController@ipn')->name('mollie');
     Route::post('cashmaal', 'cashmaal\ProcessController@ipn')->name('cashmaal');
     Route::post('advertiser/charge', 'stripe_v3\ProcessController@charge')->name('advertiser_charge');
+    Route::post('advertiser/current/charge', 'stripe_v3\ProcessController@charge_current')->name('current_advertiser_charge');
 });
 
 // User Support Ticket
@@ -74,8 +75,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('profile', 'AdminController@profileUpdate')->name('profile.update');
         Route::get('password', 'AdminController@password')->name('password');
         Route::post('password', 'AdminController@passwordUpdate')->name('password.update');
-
-
 
         // Users Manager
         Route::get('user/email/{id}/{flag}', 'ManageUsersController@showEmailSingleForm')->name('users.email.single');
@@ -144,11 +143,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         //Manage Campaigns
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
-
-        Route::get('/campaigns/leads/export','CampaignsFormsController@export')->name('leads.export');
-        Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
-        Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
-
+        Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
+        Route::post('/campaigns/leads/importpreview/{cid}/{aid}/{fid}','CampaignsController@importpreview')->name('leads.importpreview');
+        Route::post('/campaigns/leads/import/{cid}/{aid}/{fid}','CampaignsController@import')->name('leads.import');
+        Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('campaigns.leads.all');
+        Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
 
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');

@@ -57,10 +57,10 @@
 
 <div class="container-fluid position-relative px-0">
 
-    <form method="POST" action="{{ route('ipn.advertiser_charge') }}">
+    <form method="POST" action="{{ route('ipn.current_advertiser_charge') }}">
         @csrf
         <div>
-            <button type="submit" class="btn btn--primary">@lang('Charge from Current wallet')</button>
+            <button type="submit" class="btn btn--primary">@lang('Make a payment')</button>
         </div>
     </form>
 
@@ -75,9 +75,7 @@
         <form method="GET" id="RangeForm" hidden>
         <input id="startDate" name="startDate" />
         <input id="endDate" name="endDate" />
-        <div>
-            <button type="submit" class="btn btn--primary">@lang('Charge from Current wallet')</button>
-        </div>
+      
     </form>
     </div>
 </div>
@@ -94,18 +92,18 @@
                             <th scope="col">@lang('Total Campaign Budget')</th>
                             <th scope="col">@lang('Amount Spent Yesterday')</th>
                             <th scope="col">@lang('Amount Deducted From Card')</th>
-                            <th scope="col">@lang('Final Balance')</th>
+                            <th scope="col">@lang('Final Wallet Balance')</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($trxs as $trx)
                         <tr>
-                            <td data-label="@lang('Transaction Date')">{{ showDateTime($trx->trx_date) }}</td>
+                            <td data-label="@lang('Transaction Date')">{{  \Carbon\Carbon::parse($trx->trx_date)->isoFormat("DD-MMM 'YY | hh:mm A")  }}</td>
                             <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->init_blance)  }}</td>
                             <td data-label="@lang('Total Campaign Budget')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->total_budget) }} </td>
                             <td data-label="@lang('Amount Spent Yesterday')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->spent_previous_day) }} </td>
                             <td data-label="@lang('Amount Deducted From Card')" class="budget"> {{ ($trx->deduct) }}</td>
-                            <td data-label="@lang('Final Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->final_wallet) }}</td>
+                            <td data-label="@lang('Final Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->final_wallet) }}</td>
                         </tr>
                         @empty
                         <tr>

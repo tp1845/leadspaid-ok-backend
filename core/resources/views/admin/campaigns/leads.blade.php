@@ -12,7 +12,7 @@
                             <thead>
                                 <tr>
                                     <th>Lead Id</th>
-                                    <th>Date</th>
+                                    <th>Price</th>
                                     <th>Field 1</th>
                                     <th>Field 2</th>
                                     <th>Field 3</th>
@@ -20,15 +20,16 @@
                                     <th>Field 5</th>
                                     <th>Campaign ID</th>
                                     <th>publisher  Id</th>
-                                    <th>Form Id</th>
 
+                                    <th>Form Id</th>
+                                    <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @forelse($leads as $lead)
                             <tr>
                                 <td>{{ $lead->id }} </td>
-                                <td>{{ $lead->created_at  }}</td>
+                                <td>{{ $lead->price?$lead->price:0  }}</td>
                                 <td>{{ $lead->field_1 }}</td>
                                 <td>{{ $lead->field_2 }}</td>
                                 <td>{{ $lead->field_3 }}</td>
@@ -37,6 +38,7 @@
                                 <td>{{ $lead->campaign_id }}</td>
                                 <td>{{ $lead->publisher_id }}</td>
                                 <td>{{ $lead->form_id }}</td>
+                                <td>{{ $lead->created_at  }}</td>
                             </tr>
                             @empty
                                 <tr>
@@ -62,13 +64,7 @@
 
 @push('breadcrumb-plugins')
 
-<form action="{{ route('admin.leads.import') }}"  method="POST"  enctype="multipart/form-data">
-  @csrf
 
-    <input id="selectimportfile" type="file" name="file" class="form-control " required >
-    <button class="btn btn-success"> Import </button>
-    <a href="{{ route('admin.leads.export') }}" class="btn btn-primary"> Export Data </a>
-</form>
 @endpush
 @push('script')
     <script>
