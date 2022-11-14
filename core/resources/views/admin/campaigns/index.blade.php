@@ -8,8 +8,10 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>Off/On</th>
+                                    <th>status</th>
+                                    <th>Id</th>
                                     <th>Campaign Name</th>
+                                    <th>Advertiser Name</th>
                                     <th>Delivery</th>
                                     <th>Start</th>
                                     <th>End</th>
@@ -18,7 +20,7 @@
                                     <th>Daily Budget</th>
                                     <th>Cost</th>
                                     <th>Leads</th>
-                                    <th>Cost per Leads</th>
+                                    <th>Cost per <br>Leads</th>
                                     <th>Approve</th>
                                     <th>Action</th>
                                 </tr>
@@ -27,12 +29,14 @@
                                 @forelse($campaigns as $campaign)
                                     <tr>
                                         <td><input disabled type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                                        <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
+                                        <td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
                                         <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
-                                        <td>{{ $campaign->form_id }}</td>
+                                        <td>{{ $campaign->campaign_forms->form_name}}  </td>
                                         <td>${{  $campaign->daily_budget }}</td>
                                         <td>0</td>
                                         <td>0</td>
@@ -41,13 +45,14 @@
                                         <td>
                                             <form id="upload_form_{{$campaign->id}}"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
                                                 @csrf
+                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
                                                 <div class="upload-btn-wrapper">
-                                                    <button class="btn btn-danger"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
                                                     <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
                                                 </div>
                                                 {{-- <input id="selectimportfile" type="file" name="file" class="form-file " required > --}}
                                                 {{-- <button class="btn btn-success"> <i class="fa fas fa-arrow-alt-circle-up"></i> Import </button> --}}
-                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="btn btn-primary"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+
                                             </form>
                                         </td>
                                     </tr>
@@ -112,7 +117,7 @@
                     type: "GET",
                     dataType: "json",
                        // url:  "{{route('admin.campaigns.approval')}}" ,
-                     url: "https://leadspaid.com/admin/campaigns/approval/",
+                     url: "/admin/campaigns/approval",
                     data: { 'approval': approval, 'campaign_id': campaign_id },
                     success: function(data) {
                         if (data.success) {

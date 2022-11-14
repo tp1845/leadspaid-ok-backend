@@ -16,7 +16,7 @@ class CampaignsController extends Controller
     {
         $page_title = 'All Campaigns';
         $empty_message = 'No Campaigns';
-        $campaigns = campaigns::all();
+        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->get();
         return view('admin.campaigns.index',compact('page_title','empty_message','campaigns'));
     }
 
