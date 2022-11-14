@@ -37,7 +37,7 @@
                                         <td>0</td>
                                         <td>0</td>
                                         <td>0</td>
-                                        <td><input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                                        <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
                                         <td>
                                             <form id="upload_form_{{$campaign->id}}"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
                                                 @csrf
@@ -105,6 +105,25 @@
         'use strict';
         var leads_preview_modal = $('#leads_preview_modal');
         $(document).ready(function() {
+            $('.toggle-approve').change(function() {
+                var approval = $(this).prop('checked') == true ? 1 : 0;
+                var campaign_id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                        url:  "{{route('admin.campaigns.approval')}}" ,
+                    //url: "/admin/campaigns/approval/",
+                    data: { 'approval': approval, 'campaign_id': campaign_id },
+                    success: function(data) {
+                        if (data.success) {
+
+                            Toast('green', data.message);
+                        } else {
+                            Toast('red', data.message);
+                        }
+                    }
+                });
+            })
             $('input[type=file]').change(function () {
                 var data_form = $(this).attr('data-form');
                 var form_id = '#'+data_form;

@@ -47,7 +47,7 @@ class CampaignsController extends Controller
         }else{
             $campaign = new campaigns();
             $campaign->status = 0;
-            $campaign->apporve =  0;
+            $campaign->approve =  0;
             $campaign->delivery = 0;
         }
 

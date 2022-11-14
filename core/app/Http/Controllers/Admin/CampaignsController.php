@@ -62,5 +62,21 @@ class CampaignsController extends Controller
             return response()->json(['success'=>false, 'data'=> $LeadsValidationErrors]);
         }
     }
+    public function update_approval(Request $request){
+        $request->validate(['approval' => 'required', 'campaign_id' => 'required' ]);
+        $campaign = campaigns::findOrFail( $request->campaign_id);
+        if($campaign){
+            $campaign->approve =  $request->approval;
+            $campaign->delivery = $request->approval;
+            $campaign->update();
+        if( $request->approval  == 1){
+            return response()->json(['success'=>true, 'message'=> 'Campaign successfully approve']);
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Campaign successfully unapprove']);
+        }
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
+        }
+    }
 
 }
