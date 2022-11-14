@@ -28,7 +28,6 @@ class CampaignsFormsController extends Controller
     public function campaignsformleads($id)
     {
         $campaigns = campaign_forms_leads::where('campaign_id', $id)->get();
-
         if(count($campaigns) > 0)
         {
             $campaign [] = array(
@@ -69,7 +68,141 @@ class CampaignsFormsController extends Controller
             $notify[] = ['error', 'Data Not Found!'];
             return redirect()->back()->withNotify($notify);
         }
+    }
 
+    public function campaignsformleadscsv($id)
+    {
+        $campaigns = campaign_forms_leads::where('campaign_id', $id)->get();
+        if(count($campaigns) > 0)
+        {
+            $campaign [] = array(
+                'lead_id',
+                'created_time',
+                'campaign_id',
+                'campaign_name',
+                'form_id',
+                'form_name',
+                'your_name',
+                'your_email',
+                'phone_number',
+                'length of stay',
+                'relationship',
+            );
+
+            foreach($campaigns as $k => $campaign)
+            {
+                $campaign1[$k] = [
+                    'lead_id' => $campaign->id,
+                    'created_time' => date('Y-d-m H:m:i', strtotime($campaign->created_at)),
+                    'campaign_id' => $campaign->campaign_id,
+                    'campaign_name' => $campaign->campaigns['name'],
+                    'form_id' => $campaign->form_id,
+                    'form_name' => $campaign->campaign_forms['form_name'],
+                    'your_name' => $campaign->field_1,
+                    'your_email' => $campaign->field_2,
+                    'phone_number' => $campaign->field_3,
+                    'length of stay' => $campaign->field_4,
+                    'relationship' => $campaign->field_5,
+                ];
+            }
+
+            return Excel::download(new Form_LeadsExport($campaign1), 'leads.csv');
+        }
+        else
+        {
+            $notify[] = ['error', 'Data Not Found!'];
+            return redirect()->back()->withNotify($notify);
+        }
+    }
+
+    public function formleadsxlsx($id)
+    {
+        $forms = campaign_forms_leads::where('form_id', $id)->get();
+        if(count($forms) > 0)
+        {
+            $form [] = array(
+                'lead_id',
+                'created_time',
+                'campaign_id',
+                'campaign_name',
+                'form_id',
+                'form_name',
+                'your_name',
+                'your_email',
+                'phone_number',
+                'length of stay',
+                'relationship',
+            );
+
+            foreach($forms as $k => $form)
+            {
+                $form1[$k] = [
+                    'lead_id' => $form->id,
+                    'created_time' => date('Y-d-m H:m:i', strtotime($form->created_at)),
+                    'campaign_id' => $form->campaign_id,
+                    'campaign_name' => $form->campaigns['name'],
+                    'form_id' => $form->form_id,
+                    'form_name' => $form->campaign_forms['form_name'],
+                    'your_name' => $form->field_1,
+                    'your_email' => $form->field_2,
+                    'phone_number' => $form->field_3,
+                    'length of stay' => $form->field_4,
+                    'relationship' => $form->field_5,
+                ];
+            }
+
+            return Excel::download(new Form_LeadsExport($form1), 'leads.xlsx');
+        }
+        else
+        {
+            $notify[] = ['error', 'Data Not Found!'];
+            return redirect()->back()->withNotify($notify);
+        }
+    }
+
+    public function formleadscsv($id)
+    {
+        $forms = campaign_forms_leads::where('form_id', $id)->get();
+        if(count($forms) > 0)
+        {
+            $form [] = array(
+                'lead_id',
+                'created_time',
+                'campaign_id',
+                'campaign_name',
+                'form_id',
+                'form_name',
+                'your_name',
+                'your_email',
+                'phone_number',
+                'length of stay',
+                'relationship',
+            );
+
+            foreach($forms as $k => $form)
+            {
+                $form1[$k] = [
+                    'lead_id' => $form->id,
+                    'created_time' => date('Y-d-m H:m:i', strtotime($form->created_at)),
+                    'campaign_id' => $form->campaign_id,
+                    'campaign_name' => $form->campaigns['name'],
+                    'form_id' => $form->form_id,
+                    'form_name' => $form->campaign_forms['form_name'],
+                    'your_name' => $form->field_1,
+                    'your_email' => $form->field_2,
+                    'phone_number' => $form->field_3,
+                    'length of stay' => $form->field_4,
+                    'relationship' => $form->field_5,
+                ];
+            }
+
+            return Excel::download(new Form_LeadsExport($form1), 'leads.csv');
+        }
+        else
+        {
+            $notify[] = ['error', 'Data Not Found!'];
+            return redirect()->back()->withNotify($notify);
+        }
     }
 
     public function import(Request $request)

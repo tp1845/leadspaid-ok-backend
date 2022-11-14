@@ -22,14 +22,13 @@
                             <th>Cost</th>
                             <th>Leads</th>
                             <th>Cost per Leads</th>
-                            <th>Download Leads</th>
+                            <th>XLSX Download Leads</th>
+                            <th>CSV Download Leads</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         @forelse($campaigns as $campaign)
-
-
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="editcampaign create-campaign-btn">Edit</a></td>
@@ -38,13 +37,14 @@
                                 <td>{{ $campaign->end_date }}</td>
                                 <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
                                 <td> @if (isset($campaign->campaign_forms))
-                                        {{$campaign->campaign_forms->form_name }}
+                                        {{$campaign->campaign_forms->form_name}}
                                     @endif</td>
                                 <td>${{ $campaign->daily_budget }}</td>
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">Download</a></td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX Download</a></td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV Download</a></td>
                             </tr>
                         @empty
 
