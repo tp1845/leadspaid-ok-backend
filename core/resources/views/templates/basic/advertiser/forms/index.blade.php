@@ -18,8 +18,7 @@
                                 <th>Field 5</th>
 
                                 <th>Leads</th>
-                                <th>XLSX Download Leads</th>
-                                <th>CSV Download Leads</th>
+                                <th>Download Leads</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -32,8 +31,8 @@
                                 <td> Order : {{$form->field_4['sort'] }} <br> {{$form->field_4['question_text'] }}</td>
                                 <td> Order : {{$form->field_5['sort'] }} <br> {{$form->field_5['question_text'] }}</td>
                                 <td>10</td>
-                                <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">XLSX Download</a></td>
-                                <td><a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">CSV Download</a></td>
+                                <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">XLSX Download</a> |
+                                <a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">CSV Download</a></td>
                             </tr>
                             @endforeach
                         </tbody>

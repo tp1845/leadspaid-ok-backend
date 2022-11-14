@@ -22,8 +22,7 @@
                             <th>Cost</th>
                             <th>Leads</th>
                             <th>Cost per Leads</th>
-                            <th>XLSX Download Leads</th>
-                            <th>CSV Download Leads</th>
+                            <th>Download Leads</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -43,8 +42,8 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX Download</a></td>
-                                <td><a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV Download</a></td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX Download</a> |
+                                <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV Download</a></td>
                             </tr>
                         @empty
 
