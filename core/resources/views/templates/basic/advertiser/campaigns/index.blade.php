@@ -42,8 +42,10 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX Download</a> |
-                                <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV Download</a></td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">Xlsx</a> |
+                                <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">Csv</a> |
+                                    <a href="#">Google Sheet</a>
+                                </td>
                             </tr>
                         @empty
 
