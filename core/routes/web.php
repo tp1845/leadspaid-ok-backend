@@ -344,7 +344,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 */
 
 Route::namespace('Admin')->prefix('advertiser')->name('advertiser.')->group(function () {
-    Route::get('campaigns/formleads/export/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
+    Route::get('campaigns/formleads/exportxlsx/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
 	Route::get('campaigns/formleads/exportcsv/{id}','CampaignsFormsController@campaignsformleadscsv')->name('campaignsformleads.exportcsv');
     Route::get('form/exportxlsx/{id}','CampaignsFormsController@formleadsxlsx')->name('formleads.exportxlsx');
     Route::get('form/exportcsv/{id}','CampaignsFormsController@formleadscsv')->name('formleads.exportcsv');
