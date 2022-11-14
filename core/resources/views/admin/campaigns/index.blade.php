@@ -112,7 +112,7 @@
                     type: "GET",
                     dataType: "json",
                        // url:  "{{route('admin.campaigns.approval')}}" ,
-                     url: "/admin/campaigns/approval/",
+                     url: "https://leadspaid.com/admin/campaigns/approval/",
                     data: { 'approval': approval, 'campaign_id': campaign_id },
                     success: function(data) {
                         if (data.success) {
