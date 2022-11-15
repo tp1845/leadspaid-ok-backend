@@ -18,7 +18,7 @@
                         <span class="menu-title">@lang('Dashboard')</span>
                     </a>
                 </li>
-                <li class="sidebar-menu-item sidebar-dropdown">
+                {{-- <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.advertise.*',3)}}">
                         <i class="menu-icon las la-ad"></i>
                         <span class="menu-title">@lang('Advertises') </span>
@@ -66,14 +66,14 @@
 
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
-                <li class="sidebar-menu-item {{menuActive('admin.keywords')}}">
+                {{-- <li class="sidebar-menu-item {{menuActive('admin.keywords')}}">
                     <a href="{{route('admin.keywords')}}" class="nav-link">
                         <i class="menu-icon lab la-kickstarter-k"></i>
                         <span class="menu-title">@lang('Manage Keywords')</span>
                     </a>
-                </li>
+                </li> --}}
 
 
                 <li class="sidebar-menu-item sidebar-dropdown">
@@ -148,8 +148,20 @@
                                     <span class="menu-title">@lang('All Campaigns')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.campaigns.leads.all')}}">
-                                <a href="{{route('admin.campaigns.leads.all')}}" class="nav-link">
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.leads*',3)}}">
+                        <i class="menu-icon lab la-autoprefixer"></i>
+                        <span class="menu-title">@lang('Manage Leads')</span>
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.leads*',2)}} ">
+                        <ul>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.leads.all')}}">
+                                <a href="{{route('admin.leads.all')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('All Leads')</span>
                                 </a>
@@ -157,6 +169,7 @@
                         </ul>
                     </div>
                 </li>
+
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.publisher*',3)}}">
                         <i class="menu-icon lab la-chromecast"></i>
