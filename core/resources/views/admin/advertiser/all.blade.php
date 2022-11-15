@@ -87,8 +87,8 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                    url:  "{{route('admin.advertiser.update_status')}}" ,
-                  //  url: "/admin/advertiser/update_status",
+                    //url:  "{{route('admin.advertiser.update_status')}}" ,
+                    url: "/admin/advertiser/update_status",
                 data: { 'status': status, 'id': id },
                 success: function(data) {
                     if (data.success) {
