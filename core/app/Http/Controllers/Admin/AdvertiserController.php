@@ -78,7 +78,7 @@ class AdvertiserController extends Controller
             'sv' => $request->sv ? 1 : 0,
             'ts' => $request->ts ? 1 : 0,
             'tv' => $request->tv ? 1 : 0,
-            
+
         ]);
 
         $notify[] = ['success', 'Advertiser detail has been updated'];
@@ -125,7 +125,7 @@ class AdvertiserController extends Controller
             $advr->balance = bcsub($advr->balance, $amount);
             $advr->save();
 
-         
+
 
             $transaction = new Transaction();
             $transaction->user_id = $advr->id;
@@ -169,21 +169,38 @@ class AdvertiserController extends Controller
     public function advertiserBanned($id)
     {
         $Adv = Advertiser::findOrFail($id);
-        $Adv->status = 2; 
+        $Adv->status = 2;
         $Adv->update();
         $notify[] = ['success', 'Advertiser has been banned'];
         return redirect()->back()->withNotify($notify);
     }
-    
+
+    public function update_status(Request $request){
+        $request->validate(['status' => 'required', 'id' => 'required' ]);
+        $id = $request->id;
+        $Adv = Advertiser::findOrFail($id);
+        if($Adv){
+            $Adv->status = $request->status;
+            $Adv->update();
+        if( $request->status == 1){
+            return response()->json(['success'=>true, 'message'=> 'Advertiser has been activated']);
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Advertiser has been deactivated']);
+        }
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
+        }
+    }
+
     public function advertiserActive($id)
     {
         $Adv = Advertiser::findOrFail($id);
-        $Adv->status = 1; 
+        $Adv->status = 1;
         $Adv->update();
         $notify[] = ['success', 'Advertiser has been activated'];
         return redirect()->back()->withNotify($notify);
     }
-    
+
     public function allBannedAdvertiser()
     {
         $page_title = 'All banned Advertisers';
@@ -198,7 +215,7 @@ class AdvertiserController extends Controller
         return view('admin.advertiser.email_all', compact('page_title'));
     }
 
-   
+
     public function sendEmailAll(Request $request)
     {
         $request->validate([
@@ -223,12 +240,12 @@ class AdvertiserController extends Controller
                 ->orWhere('email', 'like', "%$search%")
                 ->orWhere('name', 'like', "%$search%");
         });
-        
+
         $advertisers = $users->paginate(getPaginate());
         $page_title = 'User Search - ' . $search;
         $empty_message = 'No search result found';
         return view('admin.advertiser.all', compact('page_title', 'search', 'empty_message', 'advertisers'));
     }
-    
+
 }
 

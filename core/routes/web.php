@@ -133,6 +133,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/advertiser/active/{id}','AdvertiserController@advertiserActive')->name('advertiser.active');
         Route::get('/advertiser/email-unverified','AdvertiserController@emailUnverified')->name('advertiser.email.unverified');
         Route::get('/advertiser/sms-unverified','AdvertiserController@smsUnverified')->name('advertiser.sms.unverified');
+        Route::get('/advertiser/update_status','AdvertiserController@update_status')->name('advertiser.update_status');
 
         Route::get('advertiser/login/history/{id}', 'AdvertiserController@loginHistory')->name('advertiser.login.history.single');
         Route::get('advertiser/ads/{id}', 'AdvertiserController@advertiserAds')->name('advertiser.ads');
