@@ -23,6 +23,12 @@
                                     <th>Cost per <br>Leads</th>
                                     <th>Approve</th>
                                     <th>Action</th>
+
+                                    <th>Targeting Placements</th>
+                                    <th>Keywords </th>
+                                    <th>Service </th>
+                                    <th>Website URL</th>
+                                    <th>Social Media</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -58,6 +64,11 @@
 
                                             </form>
                                         </td>
+                                        <td>{{ $campaign->target_placements }}</td>
+                                        <td>{{ $campaign->keywords }}</td>
+                                        <td>{{ $campaign->service_sell_buy }}</td>
+                                        <td>{{ $campaign->website_url }}</td>
+                                        <td>{{ $campaign->social_media_page }}</td>
                                     </tr>
                                 @empty
                                     <tr>
