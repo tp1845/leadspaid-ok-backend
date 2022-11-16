@@ -12,6 +12,8 @@
   <!-- site favicon -->
   <link rel="shortcut icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
+  <!-- From Validatation CSS -->
+  <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css" />
   <!-- bootstrap 4  -->
   <link rel="stylesheet" href="{{asset('assets/userpanel/css/vendor/bootstrap.min.css')}}">
   <!-- bootstrap toggle css -->
@@ -40,7 +42,7 @@
   <link rel="stylesheet" href="{{asset('assets/userpanel/css/vendor/bootstrap-pincode-input.css')}}">
 
   <link rel="stylesheet" href="{{asset('assets/userpanel/css/lightcase.css')}}">
-  
+
   <!-- dashdoard main css -->
   <link rel="stylesheet" href="{{asset('assets/userpanel/css/app.css')}}">
   <link rel="stylesheet" href="{{asset('assets/additional/bootstrap-fileinput.css')}}">
@@ -92,6 +94,10 @@
 
     <!-- main js -->
     <script src="{{asset('assets/userpanel/')}}/js/app.js"></script>
+    <!-- Form Validatation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
 
     @include('templates.basic.advertiser.partials.notify')
     @stack('script-lib')

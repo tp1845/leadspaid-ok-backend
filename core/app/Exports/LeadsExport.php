@@ -8,6 +8,8 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromArray;
+
+
 class LeadsExport implements FromArray, WithHeadings
 {
     /**
@@ -18,11 +20,14 @@ class LeadsExport implements FromArray, WithHeadings
     protected $campaign_id;
     protected $advertiser_id;
     protected $campaign_name;
+    protected $campaign_form;
 
-    function __construct($campaign_id, $advertiser_id, $campaign_name) {
+
+    function __construct($campaign_id, $advertiser_id, $campaign_name, $campaign_form) {
         $this->campaign_id = $campaign_id;
         $this->advertiser_id = $advertiser_id;
         $this->campaign_name = $campaign_name;
+        $this->campaign_form = $campaign_form;
     }
 
     public function headings():array{
@@ -41,7 +46,16 @@ class LeadsExport implements FromArray, WithHeadings
     public function array(): array
     {
         return [
-            [$this->campaign_id, $this->advertiser_id, $this->campaign_name]
+            [$this->campaign_id,
+            $this->advertiser_id,
+            $this->campaign_name,
+            '',
+            $this->campaign_form['field_1']['question_text'],
+            $this->campaign_form['field_2']['question_text'],
+            $this->campaign_form['field_3']['question_text'],
+            $this->campaign_form['field_4']['question_text'],
+            $this->campaign_form['field_5']['question_text']]
         ];
     }
+
 }

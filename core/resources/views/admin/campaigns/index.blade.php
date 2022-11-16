@@ -8,10 +8,10 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>status</th>
-                                    <th>Id</th>
+                                    <th>Status</th>
+                                    <th>Advertiser</th>
+                                    <th>C.Id</th>
                                     <th>Campaign Name</th>
-                                    <th>Advertiser Name</th>
                                     <th>Delivery</th>
                                     <th>Start</th>
                                     <th>End</th>
@@ -23,20 +23,29 @@
                                     <th>Cost per <br>Leads</th>
                                     <th>Approve</th>
                                     <th>Action</th>
+
+                                    <th>Targeting Placements</th>
+                                    <th>Keywords </th>
+                                    <th>Service </th>
+                                    <th>Website URL</th>
+                                    <th>Social Media</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($campaigns as $campaign)
                                     <tr>
-                                        <td><input disabled type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                                        <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
+                                        <td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+
                                         <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
                                         <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
-                                        <td>{{ $campaign->campaign_forms->form_name}}  </td>
+                                        <td>
+                                            @if (isset($campaign->campaign_forms))  {{$campaign->campaign_forms->form_name}}  @endif
+                                        </td>
                                         <td>${{  $campaign->daily_budget }}</td>
                                         <td>0</td>
                                         <td>0</td>
@@ -55,6 +64,11 @@
 
                                             </form>
                                         </td>
+                                        <td>{{ $campaign->target_placements }}</td>
+                                        <td>{{ $campaign->keywords }}</td>
+                                        <td>{{ $campaign->service_sell_buy }}</td>
+                                        <td>{{ $campaign->website_url }}</td>
+                                        <td>{{ $campaign->social_media_page }}</td>
                                     </tr>
                                 @empty
                                     <tr>

@@ -10,88 +10,86 @@ $user = auth()->guard('advertiser')->user();
             <div class="row justify-content-center">
 
                 <div class="col-lg-8">
-                    <div class="account-wrapper">                       
+                    <div class="account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
-                        <form method="POST" action="{{route('advertiser.profile.update')}}">
-                                    @csrf
-
-
-                                    <div class="card border shadow-sm mb-4" style="overflow: inherit;">
-                                        <div class="bg-light card-header font-weight-bolder text-body"> Basic Information
+                            <form method="POST" id="advertiser_form" action="{{route('advertiser.profile.update')}}">
+                                @csrf
+                                <div class="card border shadow-sm mb-4" style="overflow: inherit;">
+                                    <div class="bg-light card-header font-weight-bolder text-body"> Basic Information
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group ">
+                                            <label>@lang('Company Name')</label>
+                                            <input type="text" class="form-control" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name">
                                         </div>
-                                        <div class="card-body">
-                                            <div class="form-group ">
-                                                <label>@lang('Company Name')</label>
-                                                <input type="text" class="form-control" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
-                                                <input type="text" name="name" placeholder="Full Name" class="form-control" value="{{auth()->guard('advertiser')->user()->name}}" required>
-                                            </div>
-                                            <div class="form-group country-code">
-                                                    <label>@lang('Mobile') <sup class="text-danger">*</sup></label>
-                                                    <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control" required placeholder="@lang('Your Phone Number')">
-                                                
-                                            </div>
+                                        <div class="form-group">
+                                            <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
+                                            <input type="text" name="name" placeholder="Full Name" class="form-control" value="{{auth()->guard('advertiser')->user()->name}}" required>
                                         </div>
+                                        <div class="form-group country-code">
+                                            <label>@lang('Mobile') <sup class="text-danger">*</sup></label>
+                                            <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control" required placeholder="@lang('Your Phone Number')">
 
+                                        </div>
                                     </div>
 
-                                    <div class="card border shadow-sm mb-4">
-                                        <div class="bg-light card-header font-weight-bolder text-body"> Billing Information
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="form-group ">
-                                                <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                                <input type="text" class="form-control" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Company Name/ Full Name">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
-                                                <input type="email" name="email" placeholder="Billing Email address" class="form-control" value="{{auth()->guard('advertiser')->user()->email}}" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" placeholder="City" name="city" class="form-control" value="{{auth()->guard('advertiser')->user()->city}}" required>
-                                            </div>
+                                </div>
 
-                                            <div class="form-group">
-                                                <select class="custom-select mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" required name="country">
-                                                    @foreach ($countries as $country)
-                                                    <option @if($user->country === $country->country_name)
-                                                        selected="selected" @endif
-                                                        value=" {{ $country->country_name }} " label=" {{
+                                <div class="card border shadow-sm mb-4">
+                                    <div class="bg-light card-header font-weight-bolder text-body"> Billing Information
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group ">
+                                            <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
+                                            <input type="text" class="form-control" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Company Name/ Full Name">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
+                                            <input type="email" name="email" placeholder="Billing Email address" class="form-control" value="{{auth()->guard('advertiser')->user()->email}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" placeholder="City" name="city" class="form-control" value="{{auth()->guard('advertiser')->user()->city}}" required>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <select class="custom-select mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" required name="country">
+                                                @foreach ($countries as $country)
+                                                <option @if($user->country === $country->country_name)
+                                                    selected="selected" @endif
+                                                    value=" {{ $country->country_name }} " label=" {{
                                                         $country->country_name }} ">
-                                                        {{ $country->country_name }}
-                                                    </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="text" placeholder="Postal Code" name="postal_code" class="form-control" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
-                                            </div>
+                                                    {{ $country->country_name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
                                         </div>
-
-                                    </div>
-                                    <div class="card border shadow-sm mb-4">
-                                        <div class="bg-light card-header font-weight-bolder text-body"> User Information
-                                        </div>
-                                        <div class="card-body">
-                                            <div class="form-group">
-                                                <label>@lang('Username') <sup class="text-danger">*</sup></label>
-                                                <input type="text" name="username" placeholder="User Name" class="form-control" readonly value="{{auth()->guard('advertiser')->user()->username}}" required>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    @include($activeTemplate.'partials.custom-captcha')
-                                    <div class="form-group row">
-                                        <div class="col-md-12 ">
-                                            @php echo recaptcha() @endphp
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Postal Code" name="postal_code" class="form-control" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
                                         </div>
                                     </div>
-                                    <button type="submit" class="box--shadow1 btn btn--primary btn-lg text--small w-100">@lang('Save Changes')</button>
 
-                                </form>
+                                </div>
+                                <div class="card border shadow-sm mb-4">
+                                    <div class="bg-light card-header font-weight-bolder text-body"> User Information
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>@lang('Username') <sup class="text-danger">*</sup></label>
+                                            <input type="text" name="username" placeholder="User Name" class="form-control" readonly value="{{auth()->guard('advertiser')->user()->username}}" required>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                @include($activeTemplate.'partials.custom-captcha')
+                                <div class="form-group row">
+                                    <div class="col-md-12 ">
+                                        @php echo recaptcha() @endphp
+                                    </div>
+                                </div>
+                                <button type="submit" class="box--shadow1 btn btn--primary btn-lg text--small w-100">@lang('Save Changes')</button>
+
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -135,6 +133,134 @@ $user = auth()->guard('advertiser')->user();
 
     $("form").on("change", ".file-upload-field", function() {
         $(this).parent(".file-upload-wrapper").attr("data-text", $(this).val().replace(/.*(\/|\\)/, ''));
+    });
+
+    document.addEventListener('DOMContentLoaded', function(e) {
+        FormValidation.formValidation(document.querySelector('#advertiser_form'), {
+            fields: {
+                company_name: {
+                    validators: {
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Company Name',
+                        }
+                    },
+                },
+
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Full Name',
+                        },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Full Name',
+                        },
+                        regexp: {
+                            regexp: /^[a-z A-Z]+$/,
+                            message: 'Please fill Full Name',
+                        },
+                    },
+                },
+                mobile: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Phone Number',
+                        },
+                        stringLength: {
+                            min: 6,
+                            message: 'Please fill Phone Number',
+                        },
+                    },
+                },
+                billed_to: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Billed to',
+                        },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Billed to',
+                        },
+                    },
+                },
+                email: {
+                    validators: {
+                        notEmpty: {},
+                        emailAddress: {},
+                    },
+                },
+                city: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill city',
+                        },
+                        stringLength: {
+                            min: 2,
+                            message: 'Please fill city',
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'Please fill city',
+                        },
+                    },
+                },
+                country: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Select Country',
+                        }
+                    },
+                },
+                username: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Username',
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: 'Please fill Username',
+                        },
+                    },
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Password',
+                        },
+                    },
+                },
+                password_confirmation: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Confirm Password',
+                        },
+                        checkConfirmation: {
+                            message: 'Passowrd Mismatch',
+                            callback: function(input) {
+                                return document.querySelector("#advertiser_form").querySelector('[name="password"]').value === input.value;
+                            },
+                        },
+                    },
+                }
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap: new FormValidation.plugins.Bootstrap(),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                icon: new FormValidation.plugins.Icon({
+                    valid: 'fa fa-check',
+                    invalid: 'fa fa-times',
+                    validating: 'fa fa-refresh',
+                }),
+                alias: new FormValidation.plugins.Alias({
+                    checkConfirmation: 'callback'
+                }),
+            },
+        }).on('core.form.valid', function() {
+            document.querySelector('#advertiser_form').submit();
+
+        });
     });
 </script>
 

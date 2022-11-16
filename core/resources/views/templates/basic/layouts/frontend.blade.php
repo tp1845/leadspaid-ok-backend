@@ -9,7 +9,9 @@
   <title>{{ $general->sitename($page_title ?? '') }}</title>
   <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
   <!-- jQuery library -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script> 
+  <!-- From Validatation CSS -->
+  <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css" />
   <!-- bootstrap 4  -->
   <link rel="stylesheet" href="{{asset('assets/templates/basic/css/vendor/bootstrap.min.css')}}">
   <!-- fontawesome 5  -->
@@ -120,7 +122,12 @@
         <!-- main js -->
         <script src="{{asset('assets/templates/basic/js/app.js')}}"></script>
         <script src="{{asset('assets/templates/basic/js/jquery.nice-select.min.js')}}"></script>
-  
+        <!-- Form Validatation -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+        <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+        <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
+        
+
         @include('partials.plugins')
         @stack('script-lib')
         @stack('script')

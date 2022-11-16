@@ -50,7 +50,7 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
         $rows = array_map("unserialize", array_unique(array_map("serialize", $rows)));
         if($rows[0]['total_price']){
             $total_price = $rows[0]['total_price'];
-            $total_leads = count($rows);
+            $total_leads = count($rows) -1;
             $price = $total_price / $total_leads;
         }else{
             $price = 0;
@@ -71,7 +71,7 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
                     }
                 }
             }
-            if(!$this->errors){
+            if(!$this->errors &&  $key != 0  ){
                 $row['campaign_id'] = $this->campaign_id;
                 $row['advertiser_id'] = $this->advertiser_id;
                 $row['publisher_id'] = 0;

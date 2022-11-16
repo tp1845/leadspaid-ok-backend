@@ -23,10 +23,11 @@ class CampaignsController extends Controller
     public function export($cid, $aid, $fid)  {
         $campaign_id = $cid;
         $advertiser_id = $aid;
-        $campaign = campaigns::where('id', $campaign_id )->select('name')->first();
+        $campaign = campaigns::where('id', $campaign_id )->with('campaign_forms')->first();
         if($campaign){
         $campaign_name =  $campaign['name'] ;
-        return Excel::download(new LeadsExport($campaign_id, $advertiser_id, $campaign_name), 'leads.xlsx');
+        $campaign_form = $campaign['campaign_forms'];
+        return Excel::download(new LeadsExport($campaign_id, $advertiser_id, $campaign_name, $campaign_form), 'leads.xlsx');
         }
     }
 
