@@ -244,7 +244,7 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script>
-    var website = document.referrer?document.referrer:'facebook.com';
+    var website = document.referrer?document.referrer:false;
     var publisher_id = {{$publisher_id}};
     var actionUrl =  '/campaign_form/find/'+website+'/'+publisher_id;
     var formData = { 'website': website , 'publisher_id': publisher_id  };
