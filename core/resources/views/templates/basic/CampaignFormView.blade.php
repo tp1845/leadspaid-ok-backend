@@ -268,7 +268,7 @@
          console.log(data);
             t='';
             // t +=' <input type="text" name="c_id" value="'+data.id+'" >';
-            if(data.youtube_1){ t +='<div class="video">  <iframe width="100%" height="175" src="'+data.youtube_1+' " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>'; }
+            //if(data.youtube_1){ t +='<div class="video">  <iframe width="100%" height="175" src="'+data.youtube_1+' " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>'; }
             if(data.form_title){ t +='<h2 class="form-title">'+data.form_title+'</h2>'; }
             if(data.offer_desc){ t +='<p class="form-subtitle">'+data.offer_desc+'</p>'; }
             for ($i = 1; $i < 6; $i++){
