@@ -237,7 +237,7 @@
             @endif
         </div>
           <div class="form-row">
-            <button type="submit" class="form-btn">Submit</button>
+            <button type="submit" id="saveData" class="form-btn">Submit</button>
             <p class="policy">I agree to your privacy policy by submitting the form</p>
             <p class="logo"><img src="logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
           </div>
@@ -297,6 +297,27 @@
             $('.loading').hide();
             $(form).show();
         }
+
+        $("#LeadForm").submit(function(e){
+            e.previewData();
+            var form = $(this);
+            var actionUrl = form.attr('action');
+            formData = form.serialize();
+            $.ajax({
+                    type: "POST",
+                    url: actionUrl,
+                    data: formData,
+                    success: function(data)
+                    {
+                        if (data.success) {
+                            alert('Leads Saved');
+                        }else{
+                            alert('Try Again');
+                        }
+                    }
+                });
+        });
+
         </script>
 </body>
 </html>
