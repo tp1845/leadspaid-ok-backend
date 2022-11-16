@@ -8,7 +8,9 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>Off/On</th>
+                                    <th>Status</th>
+                                    <th>Advertiser</th>
+                                    <th>C.Id</th>
                                     <th>Campaign Name</th>
                                     <th>Delivery</th>
                                     <th>Start</th>
@@ -18,38 +20,55 @@
                                     <th>Daily Budget</th>
                                     <th>Cost</th>
                                     <th>Leads</th>
-                                    <th>Cost per Leads</th>
+                                    <th>Cost per <br>Leads</th>
                                     <th>Approve</th>
                                     <th>Action</th>
+
+                                    <th>Targeting Placements</th>
+                                    <th>Keywords </th>
+                                    <th>Service </th>
+                                    <th>Website URL</th>
+                                    <th>Social Media</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($campaigns as $campaign)
                                     <tr>
-                                        <td><input disabled type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                                        <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
+                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
+
                                         <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
                                         <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
-                                        <td>{{ $campaign->form_id }}</td>
+                                        <td>
+                                            @if (isset($campaign->campaign_forms))  {{$campaign->campaign_forms->form_name}}  @endif
+                                        </td>
                                         <td>${{  $campaign->daily_budget }}</td>
                                         <td>0</td>
                                         <td>0</td>
                                         <td>0</td>
-                                        <td><input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                                        <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
                                         <td>
                                             <form id="upload_form_{{$campaign->id}}"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
                                                 @csrf
+                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
                                                 <div class="upload-btn-wrapper">
-                                                    <button class="btn btn-danger"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
                                                     <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
                                                 </div>
                                                 {{-- <input id="selectimportfile" type="file" name="file" class="form-file " required > --}}
                                                 {{-- <button class="btn btn-success"> <i class="fa fas fa-arrow-alt-circle-up"></i> Import </button> --}}
-                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="btn btn-primary"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+
                                             </form>
                                         </td>
+                                        <td>{{ $campaign->target_placements }}</td>
+                                        <td>{{ $campaign->keywords }}</td>
+                                        <td>{{ $campaign->service_sell_buy }}</td>
+                                        <td>{{ $campaign->website_url }}</td>
+                                        <td>{{ $campaign->social_media_page }}</td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -98,6 +117,7 @@
     .upload-btn-wrapper { position: relative; overflow: hidden; display: inline; }
     .btn { cursor: pointer; }
     .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; width: 100%; height: 100%; left: 0; top: 0; opacity: 0; cursor: pointer; }
+    .up-down-btn{ font-size: 28px; background: transparent; border: 0; padding: 0 }
 </style>
 @endpush
 @push('script')
@@ -105,6 +125,25 @@
         'use strict';
         var leads_preview_modal = $('#leads_preview_modal');
         $(document).ready(function() {
+            $('.toggle-approve').change(function() {
+                var approval = $(this).prop('checked') == true ? 1 : 0;
+                var campaign_id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                       // url:  "{{route('admin.campaigns.approval')}}" ,
+                     url: "/admin/campaigns/approval",
+                    data: { 'approval': approval, 'campaign_id': campaign_id },
+                    success: function(data) {
+                        if (data.success) {
+
+                            Toast('green', data.message);
+                        } else {
+                            Toast('red', data.message);
+                        }
+                    }
+                });
+            })
             $('input[type=file]').change(function () {
                 var data_form = $(this).attr('data-form');
                 var form_id = '#'+data_form;

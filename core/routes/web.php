@@ -133,6 +133,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/advertiser/active/{id}','AdvertiserController@advertiserActive')->name('advertiser.active');
         Route::get('/advertiser/email-unverified','AdvertiserController@emailUnverified')->name('advertiser.email.unverified');
         Route::get('/advertiser/sms-unverified','AdvertiserController@smsUnverified')->name('advertiser.sms.unverified');
+        Route::get('/advertiser/update_status','AdvertiserController@update_status')->name('advertiser.update_status');
 
         Route::get('advertiser/login/history/{id}', 'AdvertiserController@loginHistory')->name('advertiser.login.history.single');
         Route::get('advertiser/ads/{id}', 'AdvertiserController@advertiserAds')->name('advertiser.ads');
@@ -146,7 +147,8 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
         Route::post('/campaigns/leads/importpreview/{cid}/{aid}/{fid}','CampaignsController@importpreview')->name('leads.importpreview');
         Route::post('/campaigns/leads/import/{cid}/{aid}/{fid}','CampaignsController@import')->name('leads.import');
-        Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('campaigns.leads.all');
+        Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
+        Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
 
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
@@ -343,7 +345,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 */
 
 Route::namespace('Admin')->prefix('advertiser')->name('advertiser.')->group(function () {
-    Route::get('campaigns/formleads/export/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
+    Route::get('campaigns/formleads/exportxlsx/{id}','CampaignsFormsController@campaignsformleads')->name('campaignsformleads.export');
+	Route::get('campaigns/formleads/exportcsv/{id}','CampaignsFormsController@campaignsformleadscsv')->name('campaignsformleads.exportcsv');
+    Route::get('form/exportxlsx/{id}','CampaignsFormsController@formleadsxlsx')->name('formleads.exportxlsx');
+    Route::get('form/exportcsv/{id}','CampaignsFormsController@formleadscsv')->name('formleads.exportcsv');
 });
 
 
@@ -540,3 +545,6 @@ Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name(
 
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
 Route::get('/', 'SiteController@index')->name('home');
+
+Route::get('/campaign_form/{campaign_id}/{publisher_id}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
+Route::post('/campaign_form','CampaignFormController@campaign_form_save')->name('front_campaign_form.save');

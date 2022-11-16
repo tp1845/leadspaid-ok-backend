@@ -3,26 +3,19 @@
 namespace App\Imports;
 
 use App\campaign_forms_leads;
-use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
-
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\Importable;
-
 use Maatwebsite\Excel\Concerns\ToCollection;
-use Maatwebsite\Excel\Validators\Failure;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithHeadingRow
 {
     use Importable, SkipsFailures;
-
     protected $preview;
     protected $campaign_id;
     protected $advertiser_id;
@@ -43,26 +36,33 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
 
         if($rows[0]['campaign_id']){   $sheet_campaign_id = $rows[0]['campaign_id'];  }
         if($rows[0]['advertiser_id']){ $sheet_advertiser_id = $rows[0]['advertiser_id']; }
+        DB::beginTransaction();
 
+        foreach ($rows as $key=>$row) {
+            if($key != 0){
+                $rows[$key]['campaign_id'] = $rows[0]['campaign_id'];
+                $rows[$key]['advertiser_id'] = $rows[0]['advertiser_id'];
+                $rows[$key]['campaign_name'] = $rows[0]['campaign_name'];
+                $rows[$key]['total_price'] = $rows[0]['total_price'];
+            }
+        }
+
+        $rows = array_map("unserialize", array_unique(array_map("serialize", $rows)));
         if($rows[0]['total_price']){
             $total_price = $rows[0]['total_price'];
-            $total_leads = count($rows);
+            $total_leads = count($rows) -1;
             $price = $total_price / $total_leads;
         }else{
             $price = 0;
         }
 
-        DB::beginTransaction();
-        // iterating each row and validating it:
         foreach ($rows as $key=>$row) {
             $validator = Validator::make($row, $this->rules(), $this->customValidationMessages());
-
             if($sheet_campaign_id !=  $this->campaign_id ){
                 $this->errors['campaign_id'] = 'Campaign id not match, Please check campaign id in sheet or select correct row ';
             } if($sheet_advertiser_id !=  $this->advertiser_id){
                 $this->errors['advertiser_id'] =  'Advertiser id not match, Please check advertiser id in sheet or select correct row ';
             }
-
             if ($validator->fails()) {
                 foreach ($validator->errors()->messages() as $messages) {
                     foreach ($messages as $error) {
@@ -70,7 +70,8 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
                         $this->errors[] = $error;
                     }
                 }
-            }   if(!$this->errors){
+            }
+            if(!$this->errors &&  $key != 0  ){
                 $row['campaign_id'] = $this->campaign_id;
                 $row['advertiser_id'] = $this->advertiser_id;
                 $row['publisher_id'] = 0;

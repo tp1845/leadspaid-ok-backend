@@ -31,7 +31,11 @@
                                 <td> Order : {{$form->field_4['sort'] }} <br> {{$form->field_4['question_text'] }}</td>
                                 <td> Order : {{$form->field_5['sort'] }} <br> {{$form->field_5['question_text'] }}</td>
                                 <td>10</td>
-                                <td><a href="#">Download</a></td>
+                                <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">Xlsx</a> |
+                                <a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">Csv</a> |
+                                    <a href="#">Google Sheet</a>
+                                </td>
+
                             </tr>
                             @endforeach
                         </tbody>

@@ -16,17 +16,18 @@ class CampaignsController extends Controller
     {
         $page_title = 'All Campaigns';
         $empty_message = 'No Campaigns';
-        $campaigns = campaigns::all();
+        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->get();
         return view('admin.campaigns.index',compact('page_title','empty_message','campaigns'));
     }
 
     public function export($cid, $aid, $fid)  {
         $campaign_id = $cid;
         $advertiser_id = $aid;
-        $campaign = campaigns::where('id', $campaign_id )->select('name')->first();
+        $campaign = campaigns::where('id', $campaign_id )->with('campaign_forms')->first();
         if($campaign){
         $campaign_name =  $campaign['name'] ;
-        return Excel::download(new LeadsExport($campaign_id, $advertiser_id, $campaign_name), 'leads.xlsx');
+        $campaign_form = $campaign['campaign_forms'];
+        return Excel::download(new LeadsExport($campaign_id, $advertiser_id, $campaign_name, $campaign_form), 'leads.xlsx');
         }
     }
 
@@ -60,6 +61,22 @@ class CampaignsController extends Controller
             return response()->json(['success'=>true, 'data'=> $LeadsData]);
         }else{
             return response()->json(['success'=>false, 'data'=> $LeadsValidationErrors]);
+        }
+    }
+    public function update_approval(Request $request){
+        $request->validate(['approval' => 'required', 'campaign_id' => 'required' ]);
+        $campaign = campaigns::findOrFail( $request->campaign_id);
+        if($campaign){
+            $campaign->approve =  $request->approval;
+            $campaign->delivery = $request->approval;
+            $campaign->update();
+        if( $request->approval  == 1){
+            return response()->json(['success'=>true, 'message'=> 'Campaign successfully approve']);
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Campaign successfully unapprove']);
+        }
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
         }
     }
 
