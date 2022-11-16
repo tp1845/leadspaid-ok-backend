@@ -9,10 +9,9 @@ use App\campaigns;
 
 class CampaignFormController extends Controller
 {
-    public function campaign_form_view ($campaign_id, $publisher_id){
-        $campaign = campaigns::where('id', $campaign_id )->with('campaign_forms')->first();
+    public function campaign_form_view ($publisher_id){
         $page_title ='';
-        return view(activeTemplate() . 'CampaignFormView', compact('campaign',  'page_title' ));
+        return view(activeTemplate() . 'CampaignFormView', compact('publisher_id',  'page_title' ));
     }
     public function campaign_form_save(Request $request){
         $request->validate([
@@ -31,7 +30,6 @@ class CampaignFormController extends Controller
             'field_5.required' => 'All fields are required.'
         ]);
         $ids =  explode(",",$request->capf_id) ;
-
         $campaign_id = isset($ids[0])?$ids[0]:false;
         $advertiser_id = isset($ids[1])?$ids[1]:false;
         $publisher_id = isset($ids[2])?$ids[2]:false;
@@ -53,5 +51,17 @@ class CampaignFormController extends Controller
             $notify[] = ['error', 'Try After Sometime!'];
         }
         return back()->withNotify($notify);
+    }
+    public function campaign_form_find ($website, $publisher_id){
+        $campaign = false;
+       if($website){
+        $campaign = campaigns::where('target_placements', 'like', '%'.$website.'%' )->with('campaign_forms')->inRandomOrder()->first();
+       }
+        if($campaign){
+            $campaign->campaign_forms->campaign_id = $campaign->id;
+            return response()->json(['success'=>true, 'form'=>$campaign->campaign_forms   ]);;
+        }else{
+            return response()->json(['success'=>false, 'form'=>'Something went wrong. please contact the administrator' ]);;
+        }
     }
 }

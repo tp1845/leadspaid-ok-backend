@@ -204,77 +204,97 @@
         background-color: #f8d7da;
         border-color: #f5c2c7;
     }
-
   </style>
 </head>
-
 <body>
     @php
-
-@endphp
+    $url = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:false;
+    $domain = $url?parse_url($url, PHP_URL_HOST):false;
+    @endphp
   <div class="container">
-    @if($campaign && isset($campaign->campaign_forms) )
-    <form id="submitForm" method="POST" action="{{ route('front_campaign_form.save') }}"   >
+    <div class="loading" style="text-align: center; padding:15px">Loading...</div>
+    <form id="LeadForm" method="POST" action="{{ route('front_campaign_form.save') }}" style="display: none;" >
         @csrf
-        @if(isset($campaign->campaign_forms['youtube_1']))
-            <div class="video">
-                <iframe width="100%" height="175" src="{{$campaign->campaign_forms['youtube_1']}}" title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen></iframe>
-            </div>
-        @endif
-      <h2 class="form-title">{{$campaign->campaign_forms['form_title']}}</h2>
-      <p class="form-subtitle">{{$campaign->campaign_forms['offer_desc']}}</p>
-      <input type="hidden" name="capf_id" value="{{$campaign->id}},{{$campaign->advertiser_id}},-1,{{$campaign->form_id}}" >
-      @for ($i = 0; $i < 6; $i++)
-        @php
-            $field = $campaign->campaign_forms['field_'.$i];
-        @endphp
-      @if(isset($field))
-            <div class="form-row">
-                <label for="Input_field_{{$i}}" class="form-label">{{$field['question_text']}}*</label>
-                @if($field)
-                    @if($field['question_type']== "ShortAnswer")
-                        <input type="text" class="form-control" id="Input_field_{{$i}}" name="field_{{$i}}" placeholder="{{$field['question_text']}}*"  required >
-                    @else
-                        <select class="form-select" id="Input_field_{{$i}}"  name="field_{{$i}}" required>
-                            <option selected value="" class="holder"> {{$field['question_text']}}* </option>
-                            <option value="{{$field['option_1']}}">{{$field['option_1']}}</option>
-                            <option value="{{$field['option_2']}}">{{$field['option_2']}}</option>
-                            <option value="{{$field['option_3']}}">{{$field['option_3']}}</option>
-                            <option value="{{$field['option_4']}}">{{$campaign->campaign_forms['field_'.$i]['option_4']}}</option>
-                        </select>
-                    @endif
-                @endif
-            </div>
-        @endif
-    @endfor
-    <div class="message">
-        @if(session()->has('notify'))
-            @foreach(session('notify') as $msg)
-                <div class="alert {{$msg[0]}}">{{$msg[1]}}</div>
-            @endforeach
-        @endif
-        @if ($errors->any())
-        @php
-            $collection = collect($errors->all());
-            $errors = $collection->unique();
-        @endphp
-            @foreach ($errors as $error)
-                <div class="alert error">{{$error }}</div>
-            @endforeach
-        @endif
-    </div>
-      <div class="form-row">
-        <button type="submit" class="form-btn">Submit</button>
-        <p class="policy">I agree to your privacy policy by submitting the form</p>
-        <p class="logo"><img src="logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
-      </div>
+        <input type="text" name="domain" value="{{$domain}}" />
+
+        <input type="text" name="capf_id" id="capf_id" value="0" >
+        <div id="loadData"></div>
+        <div class="message">
+            @if(session()->has('notify'))
+                @foreach(session('notify') as $msg)
+                    <div class="alert {{$msg[0]}}">{{$msg[1]}}</div>
+                @endforeach
+            @endif
+            @if ($errors->any())
+            @php
+                $collection = collect($errors->all());
+                $errors = $collection->unique();
+            @endphp
+                @foreach ($errors as $error)
+                    <div class="alert error">{{$error }}</div>
+                @endforeach
+            @endif
+        </div>
+          <div class="form-row">
+            <button type="submit" class="form-btn">Submit</button>
+            <p class="policy">I agree to your privacy policy by submitting the form</p>
+            <p class="logo"><img src="logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
+          </div>
     </form>
-    @else
-        <p>Unable to load form please contact us</p>
-    @endif
   </div>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script>
+    var website = document.referrer?document.referrer:false;
+    var publisher_id = {{$publisher_id}};
+    var actionUrl =  '/api/campaign_form/find/'+website+'/'+publisher_id;
+    var formData = { 'website': website , 'publisher_id': publisher_id  };
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        url: actionUrl,
+        data: formData ,
+        success: function(data) {
+            if (data.success) {
+                previewData(data.form, publisher_id)
+            } else {
+                $('.loading').html(data.form);
+            }
+        }
+    });
+    function previewData(data, publisher_id){
+        $('#capf_id').attr('value', data.campaign_id +','+data.advertiser_id +','+publisher_id +','+data.id  );
+        form = $('#LeadForm');
+         console.log(data);
+            t='';
+            // t +=' <input type="text" name="c_id" value="'+data.id+'" >';
+            if(data.youtube_1){ t +='<div class="video">  <iframe width="100%" height="175" src="'+data.youtube_1+' " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>'; }
+            if(data.form_title){ t +='<h2 class="form-title">'+data.form_title+'</h2>'; }
+            if(data.offer_desc){ t +='<p class="form-subtitle">'+data.offer_desc+'</p>'; }
+            for ($i = 1; $i < 6; $i++){
+                var $field = data['field_'+$i];
+                if($field){
+                    t +='<div class="form-row">';
+                    t +='<label for="Input_field_'+$i+'" class="form-label">'+$field['question_text']+'*</label>';
+                    if($field){
+                        if($field['question_type']== "ShortAnswer"){
+                            t +='<input type="text" class="form-control" id="Input_field_'+$i+'" name="field_'+$i+'" placeholder="'+$field['question_text']+'*"  required >';
+                        }else{
+                            t +='<select class="form-select" id="Input_field_'+$i+'"  name="field_'+$i+'" required>';
+                            t +='<option selected value="" class="holder"> '+$field['question_text']+'* </option>';
+                            t +='<option value="'+ $field['option_1']+'">'+ $field['option_1']+'</option>';
+                            t +='<option value="'+ $field['option_2']+'">'+ $field['option_2']+'</option>';
+                            t +='<option value="'+ $field['option_3']+'">'+ $field['option_3']+'</option>';
+                            t +='<option value="'+ $field['option_4']+'">'+ $field['option_4']+'</option>';
+                            t +='</select>';
+                        }
+                    }
+                    t +='</div>';
+                }
+            }
+            $('#loadData', form).append(t);
+            $('.loading').hide();
+            $(form).show();
+        }
+        </script>
 </body>
 </html>
