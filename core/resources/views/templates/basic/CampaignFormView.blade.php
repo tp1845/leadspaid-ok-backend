@@ -310,7 +310,7 @@
                     success: function(data)
                     {
                         if (data.success) {
-                            $(form).reset();
+                            form[0].reset();
                             $('#message').html('<div class="alert success">'+data.form+'</div>');
                         }else{
                             $('#message').html('<div class="alert error">'+data.form+'</div>');
