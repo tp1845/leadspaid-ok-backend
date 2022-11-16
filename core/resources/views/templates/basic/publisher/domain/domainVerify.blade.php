@@ -16,12 +16,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($domainVerifications as $dv)
+                        @php
+                            $in = 0;
+                        @endphp
+                        @forelse($domainVerifications as $key=>$dv)
                             @php
-                                $keywords = json_encode($dv->keywords);
+                                $in++;
+                                 $keywords = json_encode($dv->keywords);
                             @endphp
                             <tr>
-                                <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$dv->id}}</span></td>
+                                <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$in}}</span></td>
 
                                 <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$dv->domain_name}}</span></td>
 
@@ -347,6 +351,7 @@
                 .fv-plugins-bootstrap:not(.form-inline) label ~ .fv-plugins-icon {
                     top: 29px;
                 }
+
                 div.dataTables_wrapper div.dataTables_paginate {
                     padding: 0 20px 20px;
                 }
