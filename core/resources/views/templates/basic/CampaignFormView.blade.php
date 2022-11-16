@@ -246,7 +246,7 @@
   <script>
     var website = document.referrer?document.referrer:false;
     var publisher_id = {{$publisher_id}};
-    var actionUrl =  '/campaign_form/find/'+website+'/'+publisher_id;
+    var actionUrl =  '/api/campaign_form/find/'+website+'/'+publisher_id;
     var formData = { 'website': website , 'publisher_id': publisher_id  };
     $.ajax({
         type: "GET",
