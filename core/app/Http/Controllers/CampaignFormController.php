@@ -46,11 +46,13 @@ class CampaignFormController extends Controller
             $lead->field_4 = $request->field_4;
             $lead->field_5 = $request->field_5;
             $lead->save();
-            $notify[] = ['success', 'Form Submit Successfully'];
+            return response()->json(['success'=>true, 'form'=>'Form Submit Successfully'   ]);;
+            //$notify[] = ['success', 'Form Submit Successfully'];
         }else{
-            $notify[] = ['error', 'Try After Sometime!'];
+           // $notify[] = ['error', 'Try After Sometime!'];
+           return response()->json(['success'=>false, 'form'=>'Something went wrong. please contact the administrator' ]);;
         }
-        return back()->withNotify($notify);
+        //return back()->withNotify($notify);
     }
     public function campaign_form_find ($website, $publisher_id){
         $campaign = false;
