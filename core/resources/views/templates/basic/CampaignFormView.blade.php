@@ -208,8 +208,8 @@
 </head>
 <body>
     @php
-    $url = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'https://google.com';
-    $domain = parse_url($url, PHP_URL_HOST);
+    $url = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:false;
+    $domain = $url?parse_url($url, PHP_URL_HOST):false;
     @endphp
   <div class="container">
     <div class="loading" style="text-align: center; padding:15px">Loading...</div>
