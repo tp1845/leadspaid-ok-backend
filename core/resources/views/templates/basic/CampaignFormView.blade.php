@@ -220,7 +220,7 @@
 
         <input type="text" name="capf_id" id="capf_id" value="0" >
         <div id="loadData"></div>
-        <div class="message">
+        <div class="message" id="message">
             @if(session()->has('notify'))
                 @foreach(session('notify') as $msg)
                     <div class="alert {{$msg[0]}}">{{$msg[1]}}</div>
@@ -310,9 +310,9 @@
                     success: function(data)
                     {
                         if (data.success) {
-                            alert('Leads Saved');
+                            $('#message').html('<div class="alert error">'+data.form+'</div>');
                         }else{
-                            alert('Try Again');
+                            $('#message').html('<div class="alert error">'+data.form+'</div>');
                         }
                     }
                 });
