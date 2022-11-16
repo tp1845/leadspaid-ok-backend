@@ -299,7 +299,7 @@
         }
 
         $("#LeadForm").submit(function(e){
-            e.previewData();
+            e.preventDefault();
             var form = $(this);
             var actionUrl = form.attr('action');
             formData = form.serialize();
