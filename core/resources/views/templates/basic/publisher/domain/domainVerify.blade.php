@@ -1,16 +1,16 @@
 @extends($activeTemplate.'layouts.publisher.frontend')
-
 @section('panel')
-
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
                 <div class="table-responsive--lg">
-                    <table class="table style--two custom-data-table">
+                    <table class="table style--two custom-data-table" id="example">
                         <thead>
                         <tr>
+                            <th scope="col">@lang('SR No')</th>
                             <th scope="col">@lang('Domain Name')</th>
                             <th scope="col">@lang('Site Keywords')</th>
+                            <th scope="col">@lang('Category')</th>
                             <th scope="col">@lang('Status')</th>
                             <th scope="col">@lang('Action')</th>
                         </tr>
@@ -18,13 +18,18 @@
                         <tbody>
                         @forelse($domainVerifications as $dv)
                             @php
-                                $keywords = json_encode($dv->keywords)
+                                $keywords = json_encode($dv->keywords);
                             @endphp
                             <tr>
+                                <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$dv->id}}</span></td>
+
                                 <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$dv->domain_name}}</span></td>
+
                                 <td data-label="@lang('Site Keywords')">
                                     <button type="button" class="btn btn--primary btn-sm view" data-keyword="{{$keywords}}" data-toggle="modal" data-target="#modal">@lang('View')</button>
                                 </td>
+
+                                <td data-label="@lang('Category')"><span class="font-weight-bold">{{$dv->category}}</span></td>
 
                                 @if ($dv->status == 0)
                                     <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal badge--danger ">@lang('Unverified')</span></td>
@@ -55,12 +60,14 @@
                         @endforelse
 
                         </tbody>
-                    </table><!-- table end -->
+                    </table>
+                    <!-- table end -->
                 </div>
 
             </div>
             <div class="my-3">
-                {{$domainVerifications->links('admin.partials.paginate')}}
+                {{--                    {{ $domainVerifications->links('templates.basic.publisher.partials.paginate') }}--}}
+                {{$domainVerifications->links('templates.basic.publisher.partials.paginate')}}
             </div>
         </div>
         <!-- Button trigger modal -->
@@ -75,17 +82,29 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form action="{{route('publisher.domain.verify.update')}}" method="POST">
+                        <form action="{{route('publisher.domain.verify.update')}}" method="POST" id="kt_docs_formvalidation_text" class="form" autocomplete="off">
                             @csrf
                             <div class="form-group">
                                 <label for="exampleInputEmail1">@lang('Domain Name')</label>
-                                <input type="text" class="form-control" name="domain_name" placeholder="Enter Domain Name e.g.(site.com)">
+                                <input type="text" class="form-control domain_name" name="domain_name" placeholder="Enter Domain Name e.g.(site.com)">
                             </div>
 
                             <div class="form-group">
                                 <label class="font-weight-bold">@lang('Keywords')<span class="text-danger">*</span></label>
                                 (<small class="ml-2 mt-2 text-facebook">@lang('Please use the suggested keywords only')</small> )
-                                <select name="keywords[]" class="form-control select2-multi-select" id="keyword" multiple="multiple">
+                                <select name="keywords[]" class="form-control select2-multi-select" id="keyword" multiple="multiple" required>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">@lang('Categories')</label>
+                                <select name="category[]" class="form-control select2-multi-select" id="category" multiple="multiple" required>
+                                    <option disabled>--select category--</option>
+                                    <option>test 1</option>
+                                    <option>test 2</option>
+                                    <option>test 3</option>
+                                    <option>test 4</option>
+                                    <option>test 5</option>
                                 </select>
                             </div>
 
@@ -94,6 +113,7 @@
                                 <button type="submit" class="btn btn--primary">@lang('Save changes')</button>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>
@@ -190,6 +210,9 @@
         @endpush
 
         @push('script')
+            <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+            <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
+
 
             <script>
                 'use strict'
@@ -265,13 +288,76 @@
 
             </script>
 
+            <script>
+                document.addEventListener('DOMContentLoaded', function (e) {
+                    FormValidation.formValidation(document.querySelector('#kt_docs_formvalidation_text'), {
+                        fields: {
+                            domain_name: {
+                                validators: {
+                                    stringLength: {
+                                        message: 'Please Enter a valid Url',
+                                    },
+                                    regexp: {
+                                        regexp: /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/,
+                                        message: 'Please Enter a valid Url',
+                                    },
+                                },
+                            },
+                            keywords: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'The Keywords field is required',
+                                    }
+                                },
+                            },
+                            category: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Please selected category',
+                                    }
+                                },
+                            },
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap(),
+                            submitButton: new FormValidation.plugins.SubmitButton(),
+                            icon: new FormValidation.plugins.Icon({
+                                valid: 'fa fa-check',
+                                invalid: 'fa fa-times',
+                                validating: 'fa fa-refresh',
+                            }),
+                            alias: new FormValidation.plugins.Alias({
+                                checkConfirmation: 'callback'
+                            }),
+                        },
+                    }).on('core.form.valid', function () {
+                        document.querySelector('#kt_docs_formvalidation_text').submit();
 
-
+                    });
+                });
+            </script>
 
         @endpush
+
         @push('style')
+            <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css"/>
 
             <style>
+                .fv-plugins-bootstrap:not(.form-inline) label ~ .fv-plugins-icon {
+                    top: 29px;
+                }
+                div.dataTables_wrapper div.dataTables_paginate {
+                    padding: 0 20px 20px;
+                }
+
+                .modal-body select {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    text-indent: 1px;
+                    text-overflow: '';
+                }
+
                 .ss {
                     border-bottom: none;
                 }

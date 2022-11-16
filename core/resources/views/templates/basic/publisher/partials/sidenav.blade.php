@@ -19,7 +19,7 @@
                 <li class="sidebar-menu-item {{menuActive(['publisher.domain.verify','publisher.domain.verify.action'])}}">
                     <a href="{{route('publisher.domain.verify')}}" class="nav-link ">
                         <i class="menu-icon las la-check-circle"></i>
-                        <span class="menu-title">@lang('Manage Domain')</span>
+                        <span class="menu-title">@lang('Manage Domains')</span>
                     </a>
                 </li>
                 <li class="sidebar-menu-item {{menuActive('publisher.advertises')}}">
@@ -28,7 +28,7 @@
                         <span class="menu-title">@lang('Advertisements')</span>
                     </a>
                 </li>
-               
+
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('user.withdraw*',3)}}">
                         <i class="menu-icon las la-credit-card"></i>
@@ -52,7 +52,7 @@
                     </div>
                 </li>
 
-             
+
 
                 <li class="sidebar-menu-item {{menuActive(['publisher.report.ad'])}}">
                     <a href="{{route('publisher.report.ad')}}" class="nav-link">
@@ -67,7 +67,7 @@
                         <span class="menu-title">@lang('Per Day Earning Logs')</span>
                     </a>
                 </li>
-               
+
 
                 <li class="sidebar-menu-item {{menuActive(['ticket','ticket.open','ticket.view'])}}">
                     <a href="{{route('ticket')}}" class="nav-link">
@@ -76,25 +76,25 @@
                     </a>
                 </li>
 
-                   <li class="sidebar-menu-item {{menuActive('publisher.profile')}}">
+                <li class="sidebar-menu-item {{menuActive('publisher.profile')}}">
                     <a href="{{route('publisher.profile')}}" class="nav-link">
                         <i class="menu-icon las la-user-cog"></i>
-                            <span class="menu-title">@lang('Profile Setting')</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-menu-item {{menuActive('publisher.twofactor')}}">
+                        <span class="menu-title">@lang('Profile Setting')</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{menuActive('publisher.twofactor')}}">
                     <a href="{{route('publisher.twofactor')}}" class="nav-link">
                         <i class="menu-icon las la-key"></i>
-                            <span class="menu-title">@lang('2FA Security')</span>
-                        </a>
-                    </li>
+                        <span class="menu-title">@lang('2FA Security')</span>
+                    </a>
+                </li>
 
-                    <li class="sidebar-menu-item {{menuActive('publisher.logout')}}">
-                        <a href="{{route('publisher.logout')}}" class="nav-link">
-                            <i class="menu-icon las la-sign-out-alt"></i>
-                                <span class="menu-title">@lang('logout')</span>
-                            </a>
-                    </li>
+                <li class="sidebar-menu-item {{menuActive('publisher.logout')}}">
+                    <a href="{{route('publisher.logout')}}" class="nav-link">
+                        <i class="menu-icon las la-sign-out-alt"></i>
+                        <span class="menu-title">@lang('logout')</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -146,14 +146,17 @@ class PublisherController extends Controller
             [
                 'domain_name' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'],
                 'keywords' => 'required',
-                'keywords.*' => 'required'
+                'keywords.*' => 'required',
+                'category' => 'required',
+                'category.*' => 'required',
+
             ],
             [
                 'keywords.*.required' => 'The Keywords field is required',
-                'domain_name.url' => 'Please Enter a valid Url'
+                'domain_name.url' => 'Please Enter a valid Url',
+                'category.*.required' => 'Please selected category',
             ]
         );
-
 
         $domainVerify = new DomainVerifcation();
         $domainVerify->tracker = getTrx(8) . rand(0, 100);
@@ -161,6 +164,7 @@ class PublisherController extends Controller
         $domainVerify->publisher_id = Auth::guard('publisher')->user()->id;
         $domainVerify->verify_code = getTrx(32);
         $domainVerify->keywords = $request->keywords;
+        $domainVerify->category = implode(',',$request->category);
         $domainVerify->status = 0;
         $domainVerify->save();
         $notify[] = ['success', 'Domain submitted'];
