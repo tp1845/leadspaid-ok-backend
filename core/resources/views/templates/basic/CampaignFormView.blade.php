@@ -257,6 +257,7 @@
         data: formData ,
         success: function(data) {
             if (data.success) {
+                $('#LeadForm').append("<p>"+ data.type+"</p>");
                 previewData(data.form, publisher_id)
             } else {
                 $('.loading').html(data.form);
@@ -266,7 +267,6 @@
     function previewData(data, publisher_id){
         $('#capf_id').attr('value', data.campaign_id +','+data.advertiser_id +','+publisher_id +','+data.id  );
         form = $('#LeadForm');
-         console.log(data);
             t='';
             // t +=' <input type="text" name="c_id" value="'+data.id+'" >';
             //if(data.youtube_1){ t +='<div class="video">  <iframe width="100%" height="175" src="'+data.youtube_1+' " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>'; }
