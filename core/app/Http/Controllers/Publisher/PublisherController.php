@@ -36,17 +36,17 @@ class PublisherController extends Controller
         $wdata['amount'] = collect([]);
 
         $transaction = EarningLogs::whereYear('created_at', '>=', Carbon::now()->subYear())
-            ->selectRaw("SUM(CASE WHEN publisher_id = $user THEN amount END) as amount")
-            ->selectRaw("DATE_FORMAT(created_at,'%M') as months")
-            ->orderBy('created_at')
-            ->groupBy(DB::Raw("MONTH(created_at)"))->get();
+                                  ->selectRaw("SUM(CASE WHEN publisher_id = $user THEN amount END) as amount")
+                                  ->selectRaw("DATE_FORMAT(created_at,'%M') as months")
+                                  ->orderBy('created_at')
+                                  ->groupBy(DB::Raw("MONTH(created_at)"))->get();
 
         $w = Withdrawal::whereYear('created_at', '>=', Carbon::now()->subYear())->where('status', 1)->where('user_id', $user)
-            ->orderBy('created_at')
-            ->selectRaw("SUM(CASE WHEN user_id = $user THEN amount END) as amount")
-            ->selectRaw("DATE_FORMAT(created_at,'%M') as months")
-            ->groupBy(DB::Raw("MONTH(created_at)"))
-            ->get();
+                       ->orderBy('created_at')
+                       ->selectRaw("SUM(CASE WHEN user_id = $user THEN amount END) as amount")
+                       ->selectRaw("DATE_FORMAT(created_at,'%M') as months")
+                       ->groupBy(DB::Raw("MONTH(created_at)"))
+                       ->get();
 
         $w->map(function ($item) use ($wdata) {
             $wdata['date']->push($item->months);
@@ -125,8 +125,8 @@ class PublisherController extends Controller
             return back()->withErrors(['Invalid old password.']);
         }
         $user->update([
-            'password' => bcrypt($request->password)
-        ]);
+                          'password' => bcrypt($request->password)
+                      ]);
         $notify[] = ['success', 'Password Changed Successfully.'];
         return redirect()->route('publisher.password')->withNotify($notify);
     }
@@ -136,44 +136,76 @@ class PublisherController extends Controller
     {
         $page_title = "All Domains";
         $empty_message = 'No domains';
-        $domainVerifications = DomainVerifcation::where('publisher_id', auth()->guard('publisher')->user()->id)->latest()->paginate(25);
+        $domainVerifications = DomainVerifcation::where('publisher_id', auth()->guard('publisher')->user()->id)->paginate(3);
         return view($this->activeTemplate . 'publisher.domain.domainVerify', compact('domainVerifications', 'page_title', 'empty_message'));
     }
 
     public function domainVerify(Request $request)
     {
+        $keyword = $request->keywords[0];
+        $keywords= preg_split("/[,]/",$keyword);
+
         $request->validate(
             [
-                'domain_name' => ['required', 'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'],
+                'domain_name' => [
+                    'required',
+                    'regex:/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/'
+                ],
                 'keywords' => 'required',
                 'keywords.*' => 'required',
                 'category' => 'required',
                 'category.*' => 'required',
 
-            ],
-            [
+            ], [
                 'keywords.*.required' => 'The Keywords field is required',
                 'domain_name.url' => 'Please Enter a valid Url',
                 'category.*.required' => 'Please selected category',
             ]
         );
 
-        $domainVerify = new DomainVerifcation();
-        $domainVerify->tracker = getTrx(8) . rand(0, 100);
-        $domainVerify->domain_name =urlToDomain($request->domain_name);
-        $domainVerify->publisher_id = Auth::guard('publisher')->user()->id;
-        $domainVerify->verify_code = getTrx(32);
-        $domainVerify->keywords = $request->keywords;
-        $domainVerify->category = implode(',',$request->category);
-        $domainVerify->status = 0;
-        $domainVerify->save();
-        $notify[] = ['success', 'Domain submitted'];
-        return back()->withNotify($notify);
+        $path = parse_url($request->domain_name);
+        $url = str_replace("www.", "", $path);
+        $url = str_replace("WWW.", "", $url);
+
+        $domainVerifcations = DomainVerifcation::where('domain_name', $url)->get();
+        $domainVerifcation = "";
+        foreach($domainVerifcations as $k => $data)
+        {
+            $domainVerifcation = $data->domain_name;
+        }
+
+        if(!empty($url['path'] == $domainVerifcation))
+        {
+            $domain = DomainVerifcation::where('domain_name',$domainVerifcation)->first();
+            $domain->tracker = getTrx(8) . rand(0, 100);
+            $domain->domain_name =urlToDomain($request->domain_name);
+            $domain->publisher_id = Auth::guard('publisher')->user()->id;
+            $domain->verify_code = getTrx(32);
+            $domain->keywords = implode(' , ',$keywords);
+            $domain->category = implode(' , ',$request->category);
+            $domain->status = 0;
+            $domain->save();
+            $notify[] = ['success', 'Domain submitted'];
+            return back()->withNotify($notify);
+        }
+        else
+        {
+            $domainVerify = new DomainVerifcation();
+            $domainVerify->tracker = getTrx(8) . rand(0, 100);
+            $domainVerify->domain_name =urlToDomain($request->domain_name);
+            $domainVerify->publisher_id = Auth::guard('publisher')->user()->id;
+            $domainVerify->verify_code = getTrx(32);
+            $domainVerify->keywords = implode(' , ',$keywords);
+            $domainVerify->category = implode(' , ',$request->category);
+            $domainVerify->status = 0;
+            $domainVerify->save();
+            $notify[] = ['success', 'Domain submitted'];
+            return back()->withNotify($notify);
+        }
     }
 
     public function domainVerifyAct($tracker)
     {
-
         $general = GeneralSetting::first();
         $page_title = "Verify the Domain";
         $domain = DomainVerifcation::whereTracker($tracker)->first();
@@ -189,8 +221,8 @@ class PublisherController extends Controller
     public function updateDomainKeyword(Request $request, $tracker)
     {
         $request->validate([
-            'keywords' => 'required'
-        ]);
+                               'keywords' => 'required'
+                           ]);
         $domain = DomainVerifcation::whereTracker($tracker)->first();
         $domain->keywords = $request->keywords;
         $domain->update();

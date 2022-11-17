@@ -4,6 +4,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="table-responsive--lg">
+
                     <table class="table style--two custom-data-table" id="example">
                         <thead>
                         <tr>
@@ -11,10 +12,10 @@
                             <th scope="col">@lang('Domain Name')</th>
                             <th scope="col">@lang('Site Keywords')</th>
                             <th scope="col">@lang('Category')</th>
-                            <th scope="col">@lang('Status')</th>
                             <th scope="col">@lang('Action')</th>
                         </tr>
                         </thead>
+
                         <tbody>
                         @php
                             $in = 0;
@@ -22,7 +23,9 @@
                         @forelse($domainVerifications as $key=>$dv)
                             @php
                                 $in++;
+                                 $domain_name = $dv->domain_name;
                                  $keywords = json_encode($dv->keywords);
+                                 $category = json_encode($dv->category);
                             @endphp
                             <tr>
                                 <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$in}}</span></td>
@@ -30,24 +33,17 @@
                                 <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$dv->domain_name}}</span></td>
 
                                 <td data-label="@lang('Site Keywords')">
-                                    <button type="button" class="btn btn--primary btn-sm view" data-keyword="{{$keywords}}" data-toggle="modal" data-target="#modal">@lang('View')</button>
+                                    <span class="font-weight-bold">{{$keywords}}
                                 </td>
 
                                 <td data-label="@lang('Category')"><span class="font-weight-bold">{{$dv->category}}</span></td>
 
-                                @if ($dv->status == 0)
-                                    <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal badge--danger ">@lang('Unverified')</span></td>
-                                @elseif($dv->status == 1)
-                                    <td data-label=""><span class="text--small badge font-weight-normal badge--success ">@lang('Verified')</span></td>
-                                @else
-                                    <td data-label="Action"><span class="text--small badge font-weight-normal badge--warning ">@lang('Pending')</span></td>
-                                @endif
-
-                                <td data-label="@lang('Action')">
+                                <td data-label="@lang('Action')" style="width: 110px;">
                                     @if ($dv->status==0)
-                                        <a href="{{route('publisher.domain.verify.action',$dv->tracker)}}" class="icon-btn btn--success" data-toggle="tooltip" title="@lang('verify')" data-original-title="Verify domain">
-                                            <i class="las la-check-circle text--shadow"></i>
-                                        </a>
+                                        {{--                                        <a href="{{route('publisher.domain.verify.action',$dv->tracker)}}" class="icon-btn btn--success" data-toggle="tooltip" title="@lang('verify')" data-original-title="Verify domain">--}}
+                                        {{--                                            <i class="las la-check-circle text--shadow"></i>--}}
+                                        {{--                                        </a>--}}
+                                        {{--                                        <a class="icon-btn btn--primary edit text-white" data-toggle="modal" data-target="#update" data-toggle="tooltip" title="" data-original-title="@lang('update')" data-keyword="{{$domain_name}},{{$keywords}},{{$category}}" data-route="{{route('publisher.domain.update',$dv->tracker)}}">--}}
                                         <a class="icon-btn btn--primary edit text-white" data-toggle="modal" data-target="#update" data-toggle="tooltip" title="" data-original-title="@lang('update')" data-keyword="{{$keywords}}" data-route="{{route('publisher.domain.update',$dv->tracker)}}">
                                             <i class="las la-edit text--shadow "></i>
                                         </a>
@@ -64,18 +60,20 @@
                         @endforelse
 
                         </tbody>
+
                     </table>
                     <!-- table end -->
                 </div>
-
             </div>
             <div class="my-3">
-                {{--                    {{ $domainVerifications->links('templates.basic.publisher.partials.paginate') }}--}}
+
                 {{$domainVerifications->links('templates.basic.publisher.partials.paginate')}}
             </div>
         </div>
+
         <!-- Button trigger modal -->
-        <!-- Modal -->
+
+        <!--Add new Domain Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -95,9 +93,8 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">@lang('Keywords')<span class="text-danger">*</span></label>
-                                (<small class="ml-2 mt-2 text-facebook">@lang('Please use the suggested keywords only')</small> )
-                                <select name="keywords[]" class="form-control select2-multi-select" id="keyword" multiple="multiple" required>
-                                </select>
+                                {{--                                <input type="text" class="form-control tags_input w-100" id="KeywordsInput" name="keywords[]" placeholder="" multiple="multiple" required>--}}
+                                <input type="text" name="keywords[]" class="form-control tags_input w-100" placeholder="" multiple="multiple" required>
                             </div>
 
                             <div class="form-group">
@@ -121,93 +118,103 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <!--edit modal-->
+        <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg--primary">
+                        <h5 class="modal-title text-white" id="exampleModalLabel">@lang('Update keywords')</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" method="POST">
+                            @csrf
+                            <div class="form-group">
+                                <label class="font-weight-bold">@lang('Domain_name')<span class="text-danger">*</span></label>
+                                {{--                                    <input name="domain_name" class="form-control select2-multi-select" id="updatedomain_name" multiple="multiple">--}}
+                                <input type="text" class="form-control domain_name" name="domain_name" id="updatedomain_name" placeholder="Enter Domain Name e.g.(site.com)">
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">@lang('Keywords')<span class="text-danger">*</span></label>
+                                (<small class="ml-2 mt-2 text-facebook">@lang('Please use the suggested keywords only')</small> )
+                                <select name="keywords[]" class="form-control select2-multi-select" id="updatekeyword" multiple="multiple">
 
-            <!--edit modal-->
-            <div class="modal fade" id="update" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-weight-bold">@lang('Category')<span class="text-danger">*</span></label>
+                                (<small class="ml-2 mt-2 text-facebook">@lang('Please use the suggested keywords only')</small> )
+                                <select name="category[]" class="form-control select2-multi-select" id="updatecategory" multiple="multiple">
+
+                                </select>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
+                                <button type="submit" class="btn btn--primary">@lang('Save changes')</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg--primary">
-                            <h5 class="modal-title text-white" id="exampleModalLabel">@lang('Update keywords')</h5>
+                            <h5 class="modal-title text-white" id="exampleModalLabel">@lang('Keywords')</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form action="" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label class="font-weight-bold">@lang('Keywords')<span class="text-danger">*</span></label>
-                                    (<small class="ml-2 mt-2 text-facebook">@lang('Please use the suggested keywords only')</small> )
-                                    <select name="keywords[]" class="form-control select2-multi-select" id="updatekeyword" multiple="multiple">
-
-                                    </select>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
-                                    <button type="submit" class="btn btn--primary">@lang('Save changes')</button>
-                                </div>
-                            </form>
+                            <div class="tags d-flex justify-content-center flex-wrap"></div>
                         </div>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg--primary">
-                                <h5 class="modal-title text-white" id="exampleModalLabel">@lang('Keywords')</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="tags d-flex justify-content-center flex-wrap"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <button type="button" class="close ml-auto m-3" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <form action="" method="POST">
-                            @csrf
-                            <div class="modal-body text-center">
-
-
-                                <i class="las la-exclamation-circle text-danger f-size--100  mb-15"></i>
-                                <h3 class="text--secondary mb-15">@lang('Are You Sure Want to Delete This?')</h3>
-
-                            </div>
-                            <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('close')</button>
-                                <button type="submit" class="btn btn--danger del">@lang('Delete')</button>
-                            </div>
-
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <!--delete modal-->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <button type="button" class="close ml-auto m-3" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <form action="" method="POST">
+                        @csrf
+                        <div class="modal-body text-center">
+
+
+                            <i class="las la-exclamation-circle text-danger f-size--100  mb-15"></i>
+                            <h3 class="text--secondary mb-15">@lang('Are You Sure Want to Delete This?')</h3>
+
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('close')</button>
+                            <button type="submit" class="btn btn--danger del">@lang('Delete')</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
 
         @endsection
-
-
 
         @push('breadcrumb-plugins')
             <button type="button" class="btn btn--primary new mr-2 mt-1" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i>
                 @lang('Add new Domain')
             </button>
 
-
             <form method="GET" class="form-inline float-sm-right bg--white">
                 <div class="input-group has_append">
                     <input type="text" name="search_table" class="form-control" placeholder="{{trans('Search')}}">
-
                 </div>
             </form>
 
@@ -216,6 +223,9 @@
         @push('script')
             <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
             <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
+
+            <link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
+            <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
 
 
             <script>
@@ -242,7 +252,9 @@
 
                 $('.edit').on('click', function () {
                     $('#updatekeyword').children().remove()
+
                     var keywords = $(this).data('keyword')
+
                     var route = $(this).data('route')
                     $('#update').find('form').attr('action', route)
 
@@ -253,6 +265,7 @@
                             $('#updatekeyword').append(`<option value="${element}" selected>${element}</option>`)
                         });
                     }
+
 
                     var keywordUrl = "{{route('keywords')}}";
                     $.get(keywordUrl, function (result) {
@@ -342,12 +355,33 @@
                 });
             </script>
 
+            {{--  bootstrap-tagsinput    --}}
+
+            <script>
+                'use strict';
+                var keywords_Input = $('.tags_input');
+                keywords_Input.tagsinput({
+                    tagClass: 'badge badge-primary'
+                });
+                $('#TargetingTypeInputSelect2').select2({
+                    theme: "classic",
+                    placeholder: 'Placements',
+                    allowClear: true
+                });
+            </script>
+
         @endpush
 
         @push('style')
             <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css"/>
 
             <style>
+
+                .form-group .bootstrap-tagsinput {
+                    width: 100%;
+                    min-height: 35px;
+                }
+
                 .fv-plugins-bootstrap:not(.form-inline) label ~ .fv-plugins-icon {
                     top: 29px;
                 }
@@ -356,11 +390,14 @@
                     padding: 0 20px 20px;
                 }
 
-                .modal-body select {
-                    -webkit-appearance: none;
-                    -moz-appearance: none;
-                    text-indent: 1px;
-                    text-overflow: '';
+                .select2-selection--multiple:before {
+                    content: "";
+                    position: absolute;
+                    right: 7px;
+                    top: 42%;
+                    border-top: 5px solid #888;
+                    border-left: 4px solid transparent;
+                    border-right: 4px solid transparent;
                 }
 
                 .ss {
@@ -383,5 +420,4 @@
                     -o-border-radius: 3px;
                 }
             </style>
-
     @endpush
