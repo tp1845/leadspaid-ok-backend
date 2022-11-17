@@ -181,7 +181,7 @@
                                             <select multiple class="form-control" id="target_placements_Input" name="target_placements[]">
                                                 <option value="google.com">google.com</option>
                                                 <option value="facebook.com">facebook.com</option>
-
+                                                <option value="sgpr.sg">sgpr.sg</option>
                                             </select>
                                         </div>
                                     </div>
