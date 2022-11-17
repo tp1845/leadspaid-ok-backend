@@ -17,7 +17,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-menu-item sidebar-dropdown">
+                {{-- <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('advertiser.ad*',3)}}">
                         <i class="menu-icon la las la-ad"></i>
                         <span class="menu-title">@lang('Advertisements')</span>
@@ -47,7 +47,7 @@
 
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.index')}}">
                     <a href="{{route('advertiser.campaigns.index')}}" class="nav-link" >
@@ -63,13 +63,13 @@
                     </a>
                 </li>
 
-                <li class="sidebar-menu-item  {{menuActive('advertiser.price.plan')}}">
+                {{-- <li class="sidebar-menu-item  {{menuActive('advertiser.price.plan')}}">
                     <a href="{{route('advertiser.price.plan')}}" class="nav-link"
                       >
                         <i class="menu-icon las la-money-bill"></i>
                         <span class="menu-title">@lang('Price Plans') </span>
                     </a>
-                </li>
+                </li> --}}
 
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('user.deposit*',3)}}">
