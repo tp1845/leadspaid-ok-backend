@@ -9,7 +9,7 @@
   <title>Singapore PR Application 2022 </title>
   <style>
     body {
-      background-color: #f4f4f4;
+      background-color: #fff;
       margin: 0;
       padding: 0;
       font-family: Arial, Helvetica, sans-serif;
@@ -24,6 +24,7 @@
     .container {
       width: 300px;
       margin: 10px auto;
+      background-color: #f4f4f4;
     }
 
     .video {
@@ -216,9 +217,9 @@
     <div class="loading" style="text-align: center; padding:15px">Loading...</div>
     <form id="LeadForm" method="POST" action="{{ route('front_campaign_form.save') }}" style="display: none;" >
         @csrf
-        <input type="text" id="domain" name="domain" value="{{$domain}}" />
+        <input type="hidden" id="domain" name="domain" value="{{$domain}}" />
 
-        <input type="text" name="capf_id" id="capf_id" value="0" >
+        <input type="hidden" name="capf_id" id="capf_id" value="0" >
         <div id="loadData"></div>
         <div class="message" id="message">
             @if(session()->has('notify'))
@@ -239,7 +240,7 @@
           <div class="form-row">
             <button type="submit" id="saveData" class="form-btn">Submit</button>
             <p class="policy">I agree to your privacy policy by submitting the form</p>
-            <p class="logo"><img src="logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
+            <p class="logo"><img src="/assets/images/campaign_forms/logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
           </div>
     </form>
   </div>
@@ -247,6 +248,7 @@
   <script>
    // var website = document.referrer?document.referrer:false;
    var website = $('#domain').val();
+   var website = 'sgpr.sg';
     var publisher_id = {{$publisher_id}};
     var actionUrl =  '/api/campaign_form/find/'+website+'/'+publisher_id;
     var formData = { 'website': website , 'publisher_id': publisher_id  };
@@ -257,7 +259,6 @@
         data: formData ,
         success: function(data) {
             if (data.success) {
-                $('#LeadForm').append("<p>"+ data.type+"</p>");
                 previewData(data.form, publisher_id)
             } else {
                 $('.loading').html(data.form);
@@ -265,11 +266,44 @@
         }
     });
     function previewData(data, publisher_id){
+        //creating new array
+
+        var image_src = '/assets/images/campaign_forms/';
+        var media = [];
+        if(data.youtube_1  ){
+            media.push({ id:'1', type : 'youtube', url : data.youtube_1 });
+        }
+        if(data.youtube_2  ){
+            media.push({ id:'2', type : 'youtube', url : data.youtube_2 });
+        }
+        if(data.youtube_3  ){
+            media.push({ id:'3', type : 'youtube', url : data.youtube_3 });
+        }
+        if(data.image_1  ){
+            media.push({ id:'4', type : 'image', url : data.image_1 });
+        }
+        if(data.image_2  ){
+            media.push({ id:'5', type : 'image', url : data.image_2 });
+        }
+        if(data.image_3  ){
+            media.push({ id:'6', type : 'image', url : data.image_3 });
+        }
+        show_media = media[Math.floor(Math.random() * media.length)];
+
         $('#capf_id').attr('value', data.campaign_id +','+data.advertiser_id +','+publisher_id +','+data.id  );
         form = $('#LeadForm');
             t='';
-            // t +=' <input type="text" name="c_id" value="'+data.id+'" >';
-            //if(data.youtube_1){ t +='<div class="video">  <iframe width="100%" height="175" src="'+data.youtube_1+' " title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>'; }
+            if(show_media){
+                if(show_media.type == 'youtube'){
+                    const videoId = getVideoId(show_media.url);
+                    const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
+                    t +='<div class="video">'+ iframeMarkup +'</div>';
+                }
+                if(show_media.type == 'image'){
+                    t +='<div class="video image"><img src="'+ image_src + show_media.url +'" alt="" width="100%" /></div>';
+                }
+            }
+
             if(data.form_title){ t +='<h2 class="form-title">'+data.form_title+'</h2>'; }
             if(data.offer_desc){ t +='<p class="form-subtitle">'+data.offer_desc+'</p>'; }
             for ($i = 1; $i < 6; $i++){
@@ -318,7 +352,11 @@
                     }
                 });
         });
-
+        function getVideoId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url?.match(regExp);
+            return (match && match[2].length === 11)?match[2]:null;
+        }
         </script>
 </body>
 </html>
