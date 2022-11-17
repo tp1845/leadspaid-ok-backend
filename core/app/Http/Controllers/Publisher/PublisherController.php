@@ -136,7 +136,7 @@ class PublisherController extends Controller
     {
         $page_title = "All Domains";
         $empty_message = 'No domains';
-        $domainVerifications = DomainVerifcation::where('publisher_id', auth()->guard('publisher')->user()->id)->paginate(3);
+        $domainVerifications = DomainVerifcation::where('publisher_id', auth()->guard('publisher')->user()->id)->orderBy('id', 'DESC')->paginate(3);
         return view($this->activeTemplate . 'publisher.domain.domainVerify', compact('domainVerifications', 'page_title', 'empty_message'));
     }
 
