@@ -9,8 +9,8 @@
                         <table class="table style--two">
                             <thead>
                             <tr>
-                                <th scope="col">@lang('Ad Name')</th>
-                                <th scope="col">@lang('Ad Type')</th>
+                                {{-- <th scope="col">@lang('Ad Name')</th> --}}
+                                {{-- <th scope="col">@lang('Ad Type')</th> --}}
                                 <th scope="col">@lang('Ad Width')</th>
                                 <th scope="col">@lang('Ad Height')</th>
                                 <th scope="col">@lang('Script')</th>
@@ -20,16 +20,16 @@
                             <tbody>
                             @forelse($ads as $ad)
                             <tr>
-                                <td data-label="@lang('Ad Name')" >{{ $ad->adName }}</td>
-                                <td data-label="@lang('Ad Type')" ><span class="text--small badge font-weight-normal badge--success">{{ $ad->type }}</span></td>
-                                <td data-label="@lang('Ad Width')" ><span class="text--small badge font-weight-normal badge--primary">{{ $ad->width }}px</span></td>
-                                <td data-label="@lang('Ad Height')" ><span class="text--small badge font-weight-normal badge--warning">{{ $ad->height }}px</span></td>
+                                {{-- <td data-label="@lang('Ad Name')" >{{ $ad->adName }}</td> --}}
+                                {{-- <td data-label="@lang('Ad Type')" ><span class="text--small badge font-weight-normal badge--success">{{ $ad->type }}</span></td> --}}
+                                <td data-label="@lang('Ad Width')" ><span class="text--small badge font-weight-normal badge--primary">300px</span></td>
+                                <td data-label="@lang('Ad Height')" ><span class="text--small badge font-weight-normal badge--warning">600px</span></td>
                                 <td data-label="@lang('Script')" >
-                                    <textarea id="advertScript{{$ad->id}}" class="form-control" rows="2" readonly><div class='MainAdverTiseMentDiv' data-publisher="{{ Crypt::encryptString(Auth::guard('publisher')->user()->id) }}" data-adsize="{{$ad->slug}}"></div> <script class="adScriptClass" src="{{url('/')}}/assets/ads/ad.js"></script></textarea> 
+                                    <textarea id="advertScript{{$ad->id}}" class="form-control" rows="2" readonly><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}" sandbox="allow-top-navigation allow-scripts allow-forms" width="300" height="600"></iframe></textarea>
                                 </td>
 
                                 <td data-label="@lang('Copy Script')">
-                                    <span>  
+                                    <span>
                                     <div class="toast d-none t{{ $ad->id }}">
                                     <div class="toast-header bg-secondary">
                                       @lang('Copied')
@@ -41,7 +41,7 @@
                                     </button>
                                 </td>
                             </tr>
-                            
+
                             @empty
                                 <tr>
                                     <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>

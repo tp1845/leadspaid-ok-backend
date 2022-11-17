@@ -240,17 +240,16 @@
           <div class="form-row">
             <button type="submit" id="saveData" class="form-btn">Submit</button>
             <p class="policy">I agree to your privacy policy by submitting the form</p>
-            <p class="logo"><img src="/assets/images/campaign_forms/logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
+            <p class="logo"><img src="{{url("/")}}/assets/images/campaign_forms/logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
           </div>
     </form>
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script>
-   // var website = document.referrer?document.referrer:false;
-   var website = $('#domain').val();
-   var website = 'sgpr.sg';
+    // var website = document.referrer?document.referrer:false;
+    var website = $('#domain').val();
     var publisher_id = {{$publisher_id}};
-    var actionUrl =  '/api/campaign_form/find/'+website+'/'+publisher_id;
+    var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
     var formData = { 'website': website , 'publisher_id': publisher_id  };
     $.ajax({
         type: "GET",
@@ -268,7 +267,7 @@
     function previewData(data, publisher_id){
         //creating new array
 
-        var image_src = '/assets/images/campaign_forms/';
+        var image_src = '{{url("/")}}/assets/images/campaign_forms/';
         var media = [];
         if(data.youtube_1  ){
             media.push({ id:'1', type : 'youtube', url : data.youtube_1 });
