@@ -124,6 +124,32 @@ function uploadImage($file, $location, $size = null, $old = null, $thumb = null)
     return $filename;
 }
 
+//moveable uploadVideo
+function uploadVideo($file, $location, $size = null, $old = null, $thumb = null)
+{
+    $path = makeDirectory($location);
+    if(!$path)
+    {
+        throw new Exception('File could not been created.');
+    }
+
+    if(!empty($old))
+    {
+        removeFile($location . '/' . $old);
+        removeFile($location . '/thumb_' . $old);
+    }
+    //    $filenameWithExt = $file->getClientOriginalName();
+    //
+    //    $file_name = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+
+    $filename = uniqid() . time() . '.' . $file->getClientOriginalExtension();
+
+
+    $file->move($location, $filename);
+
+    return $filename;
+}
+
 function uploadFile($file, $location, $size = null, $old = null)
 {
     $path = makeDirectory($location);
