@@ -10,9 +10,10 @@ use App\DomainVerifcation;
 
 class CampaignFormController extends Controller
 {
-    public function campaign_form_view ($publisher_id){
+    public function campaign_form_view ($publisher_id, $style){
         $page_title ='';
-        return view(activeTemplate() . 'CampaignFormView', compact('publisher_id',  'page_title' ));
+        $style = $style>3?1:$style;
+        return view(activeTemplate() . 'campaign_form.Style'.$style.'View', compact('publisher_id',  'page_title' ));
     }
     public function campaign_form_save(Request $request){
         $request->validate([

@@ -550,4 +550,4 @@ Route::get('/{slug}', 'SiteController@pages')->name('pages');
 Route::get('/', 'SiteController@index')->name('home');
 
 
- Route::get('/campaign_form/{publisher_id}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
+Route::get('/campaign_form/{publisher_id}/{style}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
