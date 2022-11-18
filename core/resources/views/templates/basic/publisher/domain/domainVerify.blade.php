@@ -8,7 +8,7 @@
                     <table class="table style--two custom-data-table" id="example">
                         <thead>
                         <tr>
-                            <th scope="col">@lang('SR No')</th>
+                            <th scope="col">@lang('S.No')</th>
                             <th scope="col">@lang('Domain Name')</th>
                             <th scope="col">@lang('Site Keywords')</th>
                             <th scope="col">@lang('Category')</th>
@@ -174,6 +174,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
         <!--delete modal-->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -205,10 +206,12 @@
         @endsection
 
         @push('breadcrumb-plugins')
+            {{-- Add new Domain--}}
             <button type="button" class="btn btn--primary new mr-2 mt-1" data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus"></i>
                 @lang('Add new Domain')
             </button>
 
+            {{-- Search filter --}}
             <form method="GET" class="form-inline float-sm-right bg--white">
                 <div class="input-group has_append">
                     <input type="text" name="search_table" class="form-control" placeholder="{{trans('Search')}}">
@@ -218,13 +221,15 @@
         @endpush
 
         @push('script')
+            {{-- form Validation js --}}
             <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
             <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
 
+            {{-- bootstrap-tagsinput css/ js --}}
             <link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
             <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
 
-
+            {{--Open model --}}
             <script>
                 'use strict'
                 $('.new').on('click', function () {
@@ -236,6 +241,7 @@
                     })
                 })
 
+                // View model
                 $('.view').on('click', function () {
                     $('.tags').children().remove()
                     var keywords = $(this).data('keyword')
@@ -247,6 +253,7 @@
                     }
                 })
 
+                // Edit model
                 $('.edit').on('click', function () {
                     $('#updatekeyword').children().remove()
 
@@ -268,8 +275,6 @@
                         });
                     }
 
-
-                    // $('#updatecategory').val(category);
                     $('#updatecategory').empty();
                     var data_category = $(this).data('cat')
                     var category = data_category.split(',');
@@ -282,7 +287,6 @@
                             $('#updatecategory').append(`<option value="${value}" selected>${value}</option>`)
                         });
                     }
-
                     var categoryUrl = "{{route('categorys',":id")}}";
                     categoryUrl = categoryUrl.replace(':id', existing);
                     $.get(categoryUrl, function (result) {
@@ -294,16 +298,14 @@
 
                 })
 
+                // Delete model
                 $('.delete').on('click', function () {
                     var route = $(this).data('route')
 
                     var modal = $('#deleteModal');
                     modal.find('form').attr('action', route)
                     modal.modal('show');
-
-
                 })
-
 
                 $('.custom-data-table').closest('.card').find('.card-body').attr('style', 'padding-top:0px');
                 var tr_elements = $('.custom-data-table tbody tr');
@@ -320,9 +322,9 @@
                     }
                 })
 
-
             </script>
 
+            {{--  Validation in Domain model open  --}}
             <script>
                 document.addEventListener('DOMContentLoaded', function (e) {
                     FormValidation.formValidation(document.querySelector('#kt_docs_formvalidation_text'), {
@@ -374,9 +376,8 @@
             </script>
 
             {{--  bootstrap-tagsinput    --}}
-
             <script>
-                'use strict';
+                    'use strict';
                 var keywords_Input = $('.tags_input');
                 keywords_Input.tagsinput({
                     tagClass: 'badge badge-primary'
@@ -391,6 +392,7 @@
         @endpush
 
         @push('style')
+            {{-- form Validation css --}}
             <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css"/>
 
             <style>

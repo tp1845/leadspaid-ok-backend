@@ -18,14 +18,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($ads as $ad)
+                                @php
+                                $iframe = (object) [
+                                    (object) ['id' => 1, 'adName' => 'style 1', 'type' => 'iframe', 'width' => 300, 'height' => 600, 'style' => 1],
+                                    (object) ['id' => 2, 'adName' => 'style 2', 'type' => 'iframe', 'width' => 1140, 'height' => 526, 'style' => 2],
+                                    (object) ['id' => 3, 'adName' => 'style 3', 'type' => 'iframe', 'width' => 1024, 'height' => 573, 'style' => 3],
+                                ];
+                            @endphp
+                            @forelse($iframe as $ad)
                             <tr>
                                 {{-- <td data-label="@lang('Ad Name')" >{{ $ad->adName }}</td> --}}
                                 {{-- <td data-label="@lang('Ad Type')" ><span class="text--small badge font-weight-normal badge--success">{{ $ad->type }}</span></td> --}}
-                                <td data-label="@lang('Ad Width')" ><span class="text--small badge font-weight-normal badge--primary">300px</span></td>
-                                <td data-label="@lang('Ad Height')" ><span class="text--small badge font-weight-normal badge--warning">600px</span></td>
+                                <td data-label="@lang('Ad Width')" ><span class="text--small badge font-weight-normal badge--primary">{{$ad->width}}px</span></td>
+                                <td data-label="@lang('Ad Height')" ><span class="text--small badge font-weight-normal badge--warning">{{$ad->height}}px</span></td>
                                 <td data-label="@lang('Script')" >
-                                    <textarea id="advertScript{{$ad->id}}" class="form-control" rows="2" readonly><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}" sandbox="allow-top-navigation allow-scripts allow-forms" width="300" height="600"></iframe></textarea>
+                                    <textarea id="advertScript{{$ad->id}}" class="form-control" rows="2" readonly><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/{{$ad->style}}" sandbox="allow-top-navigation allow-scripts allow-forms" width="100%" height="{{$ad->height}}"></iframe></textarea>
                                 </td>
 
                                 <td data-label="@lang('Copy Script')">

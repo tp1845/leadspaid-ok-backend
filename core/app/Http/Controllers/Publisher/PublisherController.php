@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use function Symfony\Component\String\s;
 
 class PublisherController extends Controller
 {
@@ -63,7 +64,6 @@ class PublisherController extends Controller
 
         return view($this->activeTemplate . 'publisher.dashboard', compact('page_title', 'todayReport', 'publisherAd', 'publisher', 'totalWidthdraw', 'report', 'wdata', 'perDay'));
     }
-
 
     public function profile()
     {
@@ -119,7 +119,6 @@ class PublisherController extends Controller
         return redirect()->route('publisher.profile')->withNotify($notify);
     }
 
-
     public function password()
     {
         $page_title = 'Password Setting';
@@ -160,12 +159,11 @@ class PublisherController extends Controller
         return redirect()->route('publisher.password')->withNotify($notify);
     }
 
-
     public function domainVerification()
     {
         $page_title          = "All Domains";
         $empty_message       = 'No domains';
-        $domainVerifications = DomainVerifcation::where('publisher_id', auth()->guard('publisher')->user()->id)->orderBy('id', 'DESC')->paginate(3);
+        $domainVerifications = DomainVerifcation::where('publisher_id', auth()->guard('publisher')->user()->id)->orderBy('domain_name', 'asc')->paginate(50);
 
         return view($this->activeTemplate . 'publisher.domain.domainVerify', compact('domainVerifications', 'page_title', 'empty_message'));
     }
@@ -203,8 +201,15 @@ class PublisherController extends Controller
         }
 
         $path = parse_url($request->domain_name);
+        unset($path['scheme']);
         $url  = str_replace("www.", "", $path);
         $url  = str_replace("WWW.", "", $url);
+        $url = str_replace("http.", "", $url);
+
+        foreach($url as $k => $urls)
+        {
+            $url = $urls;
+        }
 
         $domainVerifcations = DomainVerifcation::where('domain_name', $url)->get();
         $domainVerifcation  = "";
@@ -213,7 +218,7 @@ class PublisherController extends Controller
             $domainVerifcation = $data->domain_name;
         }
 
-        if(!empty($url['path'] == $domainVerifcation))
+        if(!empty($url == $domainVerifcation))
         {
             $domain               = DomainVerifcation::where('domain_name', $domainVerifcation)->first();
             $domain->tracker      = getTrx(8) . rand(0, 100);
@@ -307,8 +312,15 @@ class PublisherController extends Controller
 
 
         $path = parse_url($request->domain_name);
+        unset($path['scheme']);
         $url  = str_replace("www.", "", $path);
         $url  = str_replace("WWW.", "", $url);
+        $url = str_replace("http.", "", $url);
+
+        foreach($url as $k => $urls)
+        {
+            $url = $urls;
+        }
 
         $domainVerifcations = DomainVerifcation::where('domain_name', $url)->get();
         $domainVerifcation  = "";
@@ -316,7 +328,7 @@ class PublisherController extends Controller
         {
             $domainVerifcation = $data->domain_name;
         }
-        if(!empty($url['path'] == $domainVerifcation))
+        if(!empty($url == $domainVerifcation))
         {
             $domain               = DomainVerifcation::where('domain_name', $domainVerifcation)->first();
             $domain->tracker      = getTrx(8) . rand(0, 100);
@@ -458,7 +470,6 @@ class PublisherController extends Controller
 
         return view($this->activeTemplate . 'publisher.reports.dayToday', compact('logs', 'page_title', 'empty_message'));
     }
-
 
     public function show2faForm()
     {
