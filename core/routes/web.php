@@ -148,7 +148,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/campaigns/leads/export','CampaignsFormsController@export')->name('leads.export');
         Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
         Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
-
+        Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
 
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
