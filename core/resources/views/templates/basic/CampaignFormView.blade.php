@@ -220,6 +220,7 @@
         <input type="hidden" id="domain" name="domain" value="{{$domain}}" />
 
         <input type="hidden" name="capf_id" id="capf_id" value="0" >
+        <iframe style="float: none; margin-left: auto; margin-right: auto; display: block;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" xml="lang" src="https://www.youtube-nocookie.com/embed/_kUWuN-gWrE" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
         <div class="plyr__video-embed" id="player">
             <video  controls  crossorigin  playsinline id="player" style="width: 100%" >
                 <source src="{{url("/")}}/assets/images/campaign_forms/testing.mp4" type="video/mp4" size="720"  />
