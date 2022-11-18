@@ -549,8 +549,9 @@ Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name(
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
 Route::get('/', 'SiteController@index')->name('home');
 
+Route::middleware(['corsIframe'])->group(function () {
 //Route::get('/campaign_form/{campaign_id}/{publisher_id}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
 Route::get('/campaign_form/{publisher_id}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
 // Route::post('/campaign_form','CampaignFormController@campaign_form_save')->name('front_campaign_form.save');
 // Route::get('/campaign_form/find/{website}/{publisher_id}','CampaignFormController@campaign_form_find')->name('front_campaign_form.find');
-
+});
