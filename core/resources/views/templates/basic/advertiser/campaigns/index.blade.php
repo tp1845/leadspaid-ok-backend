@@ -42,9 +42,9 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td>0</td>
-                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">Xlsx</a> |
-                                <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">Csv</a> |
-                                    <a href="#">Google Sheet</a>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX Download</a> |
+                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV Download</a> |
+                                    <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a>
                                 </td>
                             </tr>
                         @empty
@@ -181,7 +181,7 @@
                                             <select multiple class="form-control" id="target_placements_Input" name="target_placements[]">
                                                 <option value="google.com">google.com</option>
                                                 <option value="facebook.com">facebook.com</option>
-                                                <option value="sgpr.sg">sgpr.sg</option>
+
                                             </select>
                                         </div>
                                     </div>
@@ -300,27 +300,26 @@
                         <div class="card border shadow-sm mb-4">
                             <div class="card-header bg-light text-secondary">Creative</div>
                             <div class="card-body">
+
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Youtube video URL1 (Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Upload a video 1(Optional)</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube video URL1">
-                                        {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
+                                        <input type="file" class="form-control-file pl-0" id="image_1_Input" name="youtube_1" placeholder="Youtube video URL1">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Youtube video URL2 (Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Upload a video 2(Optional)</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube video URL2">
-                                        {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
+                                        <input type="file" class="form-control-file pl-0" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube video URL2">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Youtube video URL3 (Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Upload a video 3(Optional)</label>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube video URL3">
-                                        {{-- <small class="form-text text-muted">"Upload an image of  (minimum width = 300px / minimum height = 180px)"</small> --}}
+                                        <input type="file" class="form-control-file pl-0" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube video URL3">
                                     </div>
                                 </div>
+
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="image_1_Input">Upload an image 1 (Optional)</label>
                                     <div class="col-sm-6">
@@ -343,6 +342,7 @@
                                         <small class="form-text text-muted">Upload an image of (minimum width = 300px / minimum height = 180px)</small>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                         {{-- lead fields settings  --}}
