@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Page;
 use App\Keyword;
 use App\Frontend;
@@ -221,10 +222,41 @@ class SiteController extends Controller
         return response()->json($key);
     }
 
+    public function categorys($id)
+    {
+        $id        = explode(',', $id);
+        $categorys = [
+            'test 1',
+            'test 2',
+            'test 3',
+            'test 4',
+            'test 5',
+        ];
+
+        $value = [];
+        foreach($id as $k => $category)
+        {
+            $cat     = trim($category);
+            $value[] = $cat;
+        }
+
+        $key = [];
+        foreach($categorys as $k => $category)
+        {
+            if(!in_array($category, $value))
+            {
+                $key[] = $category;
+            }
+
+        }
+
+        return response()->json($key);
+    }
+
     public function countries()
     {
         $countries = \App\Country::all();
-        $key      = [];
+        $key       = [];
         foreach($countries as $country)
         {
             $key[] = $country->country_name;

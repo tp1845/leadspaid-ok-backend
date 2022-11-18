@@ -24,8 +24,10 @@
                             @php
                                 $in++;
                                  $domain_name = $dv->domain_name;
-                                 $keywords = json_encode($dv->keywords);
-                                 $category = json_encode($dv->category);
+                                 $keywords = $dv->keywords;
+                                 $category = $dv->category;
+                                 $kk = json_encode($dv->keywords);
+                                 $cat = json_encode($dv->category);
                             @endphp
                             <tr>
                                 <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$in}}</span></td>
@@ -33,7 +35,7 @@
                                 <td data-label="@lang('Domain Name')"><span class="font-weight-bold">{{$dv->domain_name}}</span></td>
 
                                 <td data-label="@lang('Site Keywords')">
-                                    <span class="font-weight-bold">{{$keywords}}
+                                    <span class="font-weight-bold">{!! str_replace('"',' ',$kk) !!}
                                 </td>
 
                                 <td data-label="@lang('Category')"><span class="font-weight-bold">{{$dv->category}}</span></td>
@@ -44,7 +46,7 @@
                                         {{--                                            <i class="las la-check-circle text--shadow"></i>--}}
                                         {{--                                        </a>--}}
                                         {{--                                        <a class="icon-btn btn--primary edit text-white" data-toggle="modal" data-target="#update" data-toggle="tooltip" title="" data-original-title="@lang('update')" data-keyword="{{$domain_name}},{{$keywords}},{{$category}}" data-route="{{route('publisher.domain.update',$dv->tracker)}}">--}}
-                                        <a class="icon-btn btn--primary edit text-white" data-toggle="modal" data-target="#update" data-toggle="tooltip" title="" data-original-title="@lang('update')" data-keyword="{{$keywords}}" data-route="{{route('publisher.domain.update',$dv->tracker)}}">
+                                        <a class="icon-btn btn--primary edit text-white" data-toggle="modal" data-target="#update" data-toggle="tooltip" title="" data-original-title="@lang('update')" data-keyword="{{$kk}}" data-domain="{{$domain_name}}" data-cat="{{$cat}}" data-route="{{route('publisher.domain.update',$dv->tracker)}}">
                                             <i class="las la-edit text--shadow "></i>
                                         </a>
                                     @endif
@@ -93,7 +95,6 @@
 
                             <div class="form-group">
                                 <label class="font-weight-bold">@lang('Keywords')<span class="text-danger">*</span></label>
-                                {{--                                <input type="text" class="form-control tags_input w-100" id="KeywordsInput" name="keywords[]" placeholder="" multiple="multiple" required>--}}
                                 <input type="text" name="keywords[]" class="form-control tags_input w-100" placeholder="" multiple="multiple" required>
                             </div>
 
@@ -101,11 +102,11 @@
                                 <label for="exampleInputEmail1">@lang('Categories')</label>
                                 <select name="category[]" class="form-control select2-multi-select" id="category" multiple="multiple" required>
                                     <option disabled>--select category--</option>
-                                    <option>test 1</option>
-                                    <option>test 2</option>
-                                    <option>test 3</option>
-                                    <option>test 4</option>
-                                    <option>test 5</option>
+                                    <option value="test 1">test 1</option>
+                                    <option value="test 2">test 2</option>
+                                    <option value="test 3">test 3</option>
+                                    <option value="test 4">test 4</option>
+                                    <option value="test 5">test 5</option>
                                 </select>
                             </div>
 
@@ -134,24 +135,20 @@
                             @csrf
                             <div class="form-group">
                                 <label class="font-weight-bold">@lang('Domain_name')<span class="text-danger">*</span></label>
-                                {{--                                    <input name="domain_name" class="form-control select2-multi-select" id="updatedomain_name" multiple="multiple">--}}
-                                <input type="text" class="form-control domain_name" name="domain_name" id="updatedomain_name" placeholder="Enter Domain Name e.g.(site.com)">
+                                <input type="text" class="form-control domain_name" name="domain_name" id="updatedomain_name" placeholder="Enter Domain Name e.g.(site.com)" required>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold">@lang('Keywords')<span class="text-danger">*</span></label>
-                                (<small class="ml-2 mt-2 text-facebook">@lang('Please use the suggested keywords only')</small> )
-                                <select name="keywords[]" class="form-control select2-multi-select" id="updatekeyword" multiple="multiple">
-
-                                </select>
+                                <small class="ml-2 mt-2 text-facebook">@lang('( Please use the suggested keywords only )')</small>
+                                <input type="text" name="keywords[]" data-role="tagsinput" class="form-control tags_input w-100" id="updatekeyword" multiple="multiple" required>
                             </div>
                             <div class="form-group">
                                 <label class="font-weight-bold">@lang('Category')<span class="text-danger">*</span></label>
-                                (<small class="ml-2 mt-2 text-facebook">@lang('Please use the suggested keywords only')</small> )
-                                <select name="category[]" class="form-control select2-multi-select" id="updatecategory" multiple="multiple">
+                                <small class="ml-2 mt-2 text-facebook">@lang('( Please use the suggested keywords only )')</small>
+                                <select name="category[]" class="form-control select2-multi-select" id="updatecategory" multiple="multiple" required>
 
                                 </select>
                             </div>
-
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('Close')</button>
                                 <button type="submit" class="btn btn--primary">@lang('Save changes')</button>
@@ -253,27 +250,48 @@
                 $('.edit').on('click', function () {
                     $('#updatekeyword').children().remove()
 
-                    var keywords = $(this).data('keyword')
+                    var data_domain = $(this).data('domain')
+                    $('#updatedomain_name').val(data_domain);
 
                     var route = $(this).data('route')
                     $('#update').find('form').attr('action', route)
 
+                    var string = $(this).data('keyword');
+                    var keywords = string.split(',');
                     var existing = []
                     if (keywords != null) {
+                        $("input[data-role=tagsinput]").tagsinput('removeAll');
                         keywords.forEach(element => {
-                            existing.push(element);
-                            $('#updatekeyword').append(`<option value="${element}" selected>${element}</option>`)
+                            var value = element.replace(/\"/g, "");
+                            existing.push(value);
+                            $('#updatekeyword').tagsinput('add', value)
                         });
                     }
 
 
-                    var keywordUrl = "{{route('keywords')}}";
-                    $.get(keywordUrl, function (result) {
+                    // $('#updatecategory').val(category);
+                    $('#updatecategory').empty();
+                    var data_category = $(this).data('cat')
+                    var category = data_category.split(',');
+
+                    var existing = []
+                    if (category != null) {
+                        category.forEach(element => {
+                            var value = element.replace(/\"/g, "");
+                            existing.push(value);
+                            $('#updatecategory').append(`<option value="${value}" selected>${value}</option>`)
+                        });
+                    }
+
+                    var categoryUrl = "{{route('categorys',":id")}}";
+                    categoryUrl = categoryUrl.replace(':id', existing);
+                    $.get(categoryUrl, function (result) {
                         result = result.filter(val => !existing.includes(val));
                         result.forEach(function (cn) {
-                            $('#updatekeyword').append('<option value="' + cn + '">' + cn + '</option>')
+                            $('#updatecategory').append('<option value="' + cn + '">' + cn + '</option>')
                         });
-                    })
+                    });
+
                 })
 
                 $('.delete').on('click', function () {
