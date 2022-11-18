@@ -6,14 +6,14 @@ $isPublisherForm = 'show active';
 $isAdvertiserForm = 'show';
 $isTab = 'none';
 if (isset($type)){
-    $isAdvertiserForm =  ($isTab == 'none')?($type == 'Advertiser')?'show active':'':'none';
-    $isPublisherForm = ($isTab == 'none')?($type == 'Publisher')?'show active':'':'active';
+$isAdvertiserForm = ($isTab == 'none')?($type == 'Advertiser')?'show active':'':'none';
+$isPublisherForm = ($isTab == 'none')?($type == 'Publisher')?'show active':'':'active';
 }else{
-    $isTab = (isset($type) == '')?'flex':'none';
-    if (old('form_type') == 'Advertiser') {
-        $isAdvertiserForm = 'show active';
-        $isPublisherForm = 'show';
-    }
+$isTab = (isset($type) == '')?'flex':'none';
+if (old('form_type') == 'Advertiser') {
+$isAdvertiserForm = 'show active';
+$isPublisherForm = 'show';
+}
 }
 @endphp
 @section('content')
@@ -27,7 +27,7 @@ if (isset($type)){
 
                 <div class="col-lg-8">
                     <div class="account-wrapper">
-                        <ul class="nav nav-tabs account-tab-nav" id="myTab"  style="display: {{$isTab}}" role="tablist">
+                        <ul class="nav nav-tabs account-tab-nav" id="myTab" style="display: {{$isTab}}" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link {{$isPublisherForm}}" id="publisher-tab" data-toggle="tab" href="#publisher" role="tab" aria-controls="publisher" aria-selected="flase">@lang('Publisher')</a>
                             </li>
@@ -35,48 +35,76 @@ if (isset($type)){
                                 <a class="nav-link {{$isAdvertiserForm}}" id="advertiser-tab" data-toggle="tab" href="#advertiser" role="tab" aria-controls="advertiser" aria-selected="false">@lang('Advertiser')</a>
                             </li>
                         </ul>
-                        <div class="tab-content mt-5" id="myTabContent">
+                        <div class="tab-content " id="myTabContent">
                             <div class="tab-pane fade {{$isPublisherForm}}" id="publisher" role="tabpanel" aria-labelledby="publisher-tab">
-                                <form class="account-form" method="POST" action="{{route('publisher.register')}}">
+                                <h2 class="p-4 text-center">Register as a Publisher</h2>
+                                <form class="account-form" id="publisher_form" method="POST" action="{{route('publisher.register')}}">
                                     @csrf
-                                    <div class="form-group">
-                                        <label>@lang('Name') <sup class="text-danger">*</sup></label>
-                                        <input type="text" name="name" placeholder="Full Name" class="form-control" value="{{old('name')}}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>@lang('Email Address') <sup class="text-danger">*</sup></label>
-                                        <input type="email" name="email" placeholder="Email address" class="form-control" value="{{old('email')}}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>@lang('Username') <sup class="text-danger">*</sup></label>
-                                        <input type="text" name="username" placeholder="User Name" class="form-control" value="{{old('username')}}" required>
-                                    </div>
-                                    <div class="form-group country-code">
-                                        <div class="input-group ">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text">
-                                                    <select name="country_code" class="nic-select">
-                                                        @include('partials.country_code')
-                                                    </select>
-                                                </span>
+                                    <div class="card border shadow-sm mb-4" style="overflow: inherit;">
+                                        <div class="bg-light card-header font-weight-bolder text-body"> Basic Information </div>
+                                        <input type="text" hidden name="form_type" value="Publisher">
+                                        <div class="card-body">
+                                            <div class="form-group ">
+                                                <label>@lang('Company Name')</label>
+                                                <input type="text" class="form-control" name="company_name" value="{{old('company_name')}}" placeholder="Company Name">
                                             </div>
-                                            <input type="text" name="phone" class="form-control" placeholder="@lang('Your Phone Number')">
+
+                                            <div class="form-group">
+                                                <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
+                                                <input type="text" name="name" placeholder="Full Name" class="form-control" value="{{old('name')}}" required>
+                                            </div>
+                                            <div class="form-group country-code">
+                                                <div class="input-group ">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">
+                                                            <select name="country_code" class="nic-select">
+                                                                @include('partials.country_code')
+                                                            </select>
+                                                        </span>
+                                                    </div>
+                                                    <input type="text" name="phone" value="{{ old('phone') }}" class="form-control" required placeholder="@lang('Your Phone Number')">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="email" name="email" placeholder="Billing Email address" class="form-control" value="{{old('email')}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" placeholder="City" name="city" class="form-control" value="{{ old('city') }}" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <select class="custom-select mr-sm-2 form-control" value="{{ old('country') }}" required name="country">
+                                                    @foreach ($countries as $country)
+                                                    <option @if($country_code==$country->country_code) selected="selected" @endif value=" {{ $country->country_name }} " label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" placeholder="Postal Code" name="postal_code" class="form-control" value="{{ old('postal_code') }}">
+                                            </div>
                                         </div>
 
+
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" placeholder="Country" name="country" class="form-control" value="{{ old('country') }}" required readonly>
-                                    </div>
-                                    <div class="form-group">
-                                        <input type="text" placeholder="City" name="city" class="form-control" value="{{ old('city') }}" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>@lang('Password') <sup class="text-danger">*</sup></label>
-                                        <input type="password" name="password" placeholder="Enter Password" class="form-control" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>@lang('Confirm Password') <sup class="text-danger">*</sup></label>
-                                        <input type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control" required>
+                                    <div class="card border shadow-sm mb-4">
+                                        <div class="bg-light card-header font-weight-bolder text-body"> User Information </div>
+                                        <div class="card-body">
+                                            <div class="form-group">
+                                                <label>@lang('Username') <sup class="text-danger">*</sup></label>
+                                                <input type="text" name="username" placeholder="User Name" class="form-control" value="{{old('username')}}" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>@lang('Password') <sup class="text-danger">*</sup></label>
+                                                <input type="password" name="password" placeholder="Enter Password" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>@lang('Confirm Password') <sup class="text-danger">*</sup></label>
+                                                <input type="password" name="password_confirmation" placeholder="Confirm Password" class="form-control" required>
+
+                                            </div>
+                                        </div>
+
                                     </div>
 
                                     @include($activeTemplate.'partials.custom-captcha')
@@ -89,11 +117,12 @@ if (isset($type)){
                                 </form>
                             </div>
                             <div class="tab-pane fade {{$isAdvertiserForm}}" id="advertiser" role="tabpanel" aria-labelledby="advertiser-tab">
+                                <h2 class="p-4 text-center">Register as a Advertiser</h2>
                                 <form class="account-form" id="advertiser_form" method="POST" action="{{route('advertiser.register')}}">
                                     @csrf
                                     <div class="card border shadow-sm mb-4" style="overflow: inherit;">
                                         <div class="bg-light card-header font-weight-bolder text-body"> Basic Information </div>
-                                        <input type="text" hidden name="form_type"  value="Advertiser">
+                                        <input type="text" hidden name="form_type" value="Advertiser">
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Company Name')</label>
@@ -212,6 +241,123 @@ if (isset($type)){
         document.getElementById('g-recaptcha-error').innerHTML = '';
     }
     document.addEventListener('DOMContentLoaded', function(e) {
+        FormValidation.formValidation(document.querySelector('#publisher_form'), {
+            fields: {
+                company_name: {
+                    validators: {
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Full Company Name.',
+                        }
+                    },
+                },
+
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Full Name.',
+                        },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Full Name.',
+                        },
+                        regexp: {
+                            regexp: /^[a-z A-Z]+$/,
+                            message: 'Full Name Invalid.',
+                        },
+                    },
+                },
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Phone Number.',
+                        },
+                        stringLength: {
+                            min: 6,
+                            message: 'Please fill Phone Number.',
+                        },
+                    },
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill vaild Email.',
+                        },
+                        emailAddress: {},
+                    },
+                },
+                city: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill city.',
+                        },
+                        stringLength: {
+                            min: 2,
+                            message: 'Please fill city.',
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'City Invalid.',
+                        },
+                    },
+                },
+                country: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Select Country.',
+                        }
+                    },
+                },
+                username: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Username.',
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: 'Username Invalid.',
+                        },
+                    },
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Password',
+                        },
+                    },
+                },
+                password_confirmation: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Confirm Password',
+                        },
+                        checkConfirmation: {
+                            message: 'Passowrd Mismatch',
+                            callback: function(input) {
+                                return document.querySelector("#publisher_form").querySelector('[name="password"]').value === input.value;
+                            },
+                        },
+                    },
+                }
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap: new FormValidation.plugins.Bootstrap(),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                icon: new FormValidation.plugins.Icon({
+                    valid: 'fa fa-check',
+                    invalid: 'fa fa-times',
+                    validating: 'fa fa-refresh',
+                }),
+                alias: new FormValidation.plugins.Alias({
+                    checkConfirmation: 'callback'
+                }),
+            },
+        }).on('core.form.valid', function() {
+            document.querySelector('#publisher_form').submit();
+
+        });
+
         FormValidation.formValidation(document.querySelector('#advertiser_form'), {
             fields: {
                 company_name: {

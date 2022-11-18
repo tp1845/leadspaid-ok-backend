@@ -8,6 +8,7 @@ use App\PublisherAd;
 use App\Transaction;
 use App\GeneralSetting;
 use App\WithdrawMethod;
+use App\Country;
 use App\DomainVerifcation;
 use App\EarningLogs;
 use Illuminate\Http\Request;
@@ -67,9 +68,12 @@ class PublisherController extends Controller
     public function profile()
     {
         $page_title = 'Profile';
-        $publisher  = Auth::guard('publisher')->user();
+        $publisher  = Auth::guard('publisher')->user();        
+        $info         = json_decode(json_encode(getIpInfo()), true);
+        $country_code = @implode(',', $info['code']);
+        $countries    = Country::all();
 
-        return view($this->activeTemplate . 'publisher.profile', compact('page_title', 'publisher'));
+        return view($this->activeTemplate . 'publisher.profile', compact('page_title', 'publisher','country_code','countries'));
     }
 
     public function profileUpdate(Request $request)

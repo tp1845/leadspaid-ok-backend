@@ -142,7 +142,7 @@ $user = auth()->guard('advertiser')->user();
                     validators: {
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Company Name',
+                            message: 'Please fill Full Company Name.',
                         }
                     },
                 },
@@ -150,76 +150,78 @@ $user = auth()->guard('advertiser')->user();
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Full Name',
+                            message: 'Please fill Full Name.',
                         },
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Full Name',
+                            message: 'Please fill Full Name.',
                         },
                         regexp: {
                             regexp: /^[a-z A-Z]+$/,
-                            message: 'Please fill Full Name',
+                            message: 'Full Name Invalid.',
                         },
                     },
                 },
                 mobile: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Phone Number',
+                            message: 'Please fill Phone Number.',
                         },
                         stringLength: {
                             min: 6,
-                            message: 'Please fill Phone Number',
+                            message: 'Please fill Phone Number.',
                         },
                     },
                 },
                 billed_to: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Billed to',
+                            message: 'Please fill Billed to.',
                         },
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Billed to',
+                            message: 'Please fill Billed to.',
                         },
                     },
                 },
                 email: {
                     validators: {
-                        notEmpty: {},
+                        notEmpty: {
+                            message: 'Please fill vaild Email.',
+                        },
                         emailAddress: {},
                     },
                 },
                 city: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill city',
+                            message: 'Please fill city.',
                         },
                         stringLength: {
                             min: 2,
-                            message: 'Please fill city',
+                            message: 'Please fill city.',
                         },
                         regexp: {
                             regexp: /^[a-zA-Z]+$/,
-                            message: 'Please fill city',
+                            message: 'City Invalid.',
                         },
                     },
                 },
                 country: {
                     validators: {
                         notEmpty: {
-                            message: 'Select Country',
+                            message: 'Select Country.',
                         }
                     },
                 },
                 username: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Username',
+                            message: 'Please fill Username.',
                         },
                         regexp: {
                             regexp: /^[a-zA-Z0-9_]+$/,
-                            message: 'Please fill Username',
+                            message: 'Username Invalid.',
                         },
                     },
                 },
