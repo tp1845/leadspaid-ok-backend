@@ -221,12 +221,9 @@
 
         <input type="hidden" name="capf_id" id="capf_id" value="0" >
         <div class="plyr__video-embed" id="player">
-            <iframe
-              src="https://www.youtube.com/embed/X1QJGzvyoZI"
-              allowfullscreen
-              allowtransparency
-              allow="autoplay"
-            ></iframe>
+            <video  controls  crossorigin  playsinline id="player" style="width: 100%" >
+                <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-720p.mp4" type="video/mp4" size="720"  />
+              </video>
           </div>
         <div id="loadData"></div>
         <div class="message" id="message">
