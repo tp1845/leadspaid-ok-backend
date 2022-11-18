@@ -64,7 +64,8 @@ class RegisterController extends Controller
         $info = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
         $countries = Country::all();
-        return view($this->activeTemplate. 'register', compact('page_title','country_code', 'countries'));
+        $type = 'Advertiser';
+        return view($this->activeTemplate. 'register', compact('page_title','country_code', 'countries','type'));
     }
 
 
