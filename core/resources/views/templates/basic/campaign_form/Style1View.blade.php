@@ -249,7 +249,6 @@
   <script>
    // var website = document.referrer?document.referrer:false;
    var website = $('#domain').val();
-   var website = 'sgpr.sg';
     var publisher_id = {{$publisher_id}};
     var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
     var formData = { 'website': website , 'publisher_id': publisher_id  };
