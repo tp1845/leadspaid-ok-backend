@@ -220,6 +220,14 @@
         <input type="hidden" id="domain" name="domain" value="{{$domain}}" />
 
         <input type="hidden" name="capf_id" id="capf_id" value="0" >
+        <div class="plyr__video-embed" id="player">
+            <iframe
+              src="https://www.youtube.com/embed/X1QJGzvyoZI"
+              allowfullscreen
+              allowtransparency
+              allow="autoplay"
+            ></iframe>
+          </div>
         <div id="loadData"></div>
         <div class="message" id="message">
             @if(session()->has('notify'))
@@ -357,5 +365,8 @@
             return (match && match[2].length === 11)?match[2]:null;
         }
         </script>
+        <script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
+        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
+        <script> const player = new Plyr('#player'); </script>
 </body>
 </html>
