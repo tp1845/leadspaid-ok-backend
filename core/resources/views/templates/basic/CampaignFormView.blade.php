@@ -220,12 +220,6 @@
         <input type="hidden" id="domain" name="domain" value="{{$domain}}" />
 
         <input type="hidden" name="capf_id" id="capf_id" value="0" >
-        <iframe style="float: none; margin-left: auto; margin-right: auto; display: block;" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" xml="lang" src="https://www.youtube-nocookie.com/embed/_kUWuN-gWrE" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
-        <div class="plyr__video-embed" id="player">
-            <video  controls  crossorigin  playsinline id="player" style="width: 100%" >
-                <source src="{{url("/")}}/assets/images/campaign_forms/testing.mp4" type="video/mp4" size="720"  />
-              </video>
-          </div>
         <div id="loadData"></div>
         <div class="message" id="message">
             @if(session()->has('notify'))
@@ -301,7 +295,7 @@
             if(show_media){
                 if(show_media.type == 'youtube'){
                     const videoId = getVideoId(show_media.url);
-                    const iframeMarkup = '<iframe src="https://www.youtube-nocookie.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
+                    const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
                     t +='<div class="video">'+ iframeMarkup +'</div>';
                 }
                 if(show_media.type == 'image'){
@@ -363,8 +357,5 @@
             return (match && match[2].length === 11)?match[2]:null;
         }
         </script>
-        <script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
-        <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
-        <script> const player = new Plyr('#player'); </script>
 </body>
 </html>
