@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Publisher\Auth;
 
 use App\UserLogin;
 use App\GeneralSetting;
+use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -45,8 +46,10 @@ class RegisterController extends Controller
     {
         $page_title = "Publisher Sign Up";
         $info = json_decode(json_encode(getIpInfo()), true);
-        $country_code = @implode(',', $info['code']);
-        return view($this->activeTemplate . 'publisher.auth.register', compact('page_title','country_code'));
+        $country_code = @implode(',', $info['code']);        
+        $countries = Country::all();
+        $type = 'Publisher';
+        return view($this->activeTemplate . 'register', compact('page_title','country_code','countries','type'));
     }
 
 

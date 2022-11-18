@@ -2,8 +2,20 @@
 
 @php
 $bg = getContent('login.content',true)->data_values;
+$isPublisherForm = 'show active';
+$isAdvertiserForm = 'show';
+$isTab = 'none';
+if (isset($type)){
+    $isAdvertiserForm =  ($isTab == 'none')?($type == 'Advertiser')?'show active':'':'none';
+    $isPublisherForm = ($isTab == 'none')?($type == 'Publisher')?'show active':'':'active';
+}else{
+    $isTab = (isset($type) == '')?'flex':'none';
+    if (old('form_type') == 'Advertiser') {
+        $isAdvertiserForm = 'show active';
+        $isPublisherForm = 'show';
+    }
+}
 @endphp
-
 @section('content')
 
 @include($activeTemplate.'partials.breadcrumb')
@@ -15,16 +27,16 @@ $bg = getContent('login.content',true)->data_values;
 
                 <div class="col-lg-8">
                     <div class="account-wrapper">
-                        <ul class="nav nav-tabs account-tab-nav" id="myTab" role="tablist">
+                        <ul class="nav nav-tabs account-tab-nav" id="myTab"  style="display: {{$isTab}}" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link active" id="publisher-tab" data-toggle="tab" href="#publisher" role="tab" aria-controls="publisher" aria-selected="true">@lang('Publisher')</a>
+                                <a class="nav-link {{$isPublisherForm}}" id="publisher-tab" data-toggle="tab" href="#publisher" role="tab" aria-controls="publisher" aria-selected="flase">@lang('Publisher')</a>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="advertiser-tab" data-toggle="tab" href="#advertiser" role="tab" aria-controls="advertiser" aria-selected="false">@lang('Advertiser')</a>
+                                <a class="nav-link {{$isAdvertiserForm}}" id="advertiser-tab" data-toggle="tab" href="#advertiser" role="tab" aria-controls="advertiser" aria-selected="false">@lang('Advertiser')</a>
                             </li>
                         </ul>
                         <div class="tab-content mt-5" id="myTabContent">
-                            <div class="tab-pane fade show active" id="publisher" role="tabpanel" aria-labelledby="publisher-tab">
+                            <div class="tab-pane fade {{$isPublisherForm}}" id="publisher" role="tabpanel" aria-labelledby="publisher-tab">
                                 <form class="account-form" method="POST" action="{{route('publisher.register')}}">
                                     @csrf
                                     <div class="form-group">
@@ -76,11 +88,12 @@ $bg = getContent('login.content',true)->data_values;
                                     <button type="submit" class="cmn-btn w-100">@lang('SignUp')</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade show" id="advertiser" role="tabpanel" aria-labelledby="advertiser-tab">
+                            <div class="tab-pane fade {{$isAdvertiserForm}}" id="advertiser" role="tabpanel" aria-labelledby="advertiser-tab">
                                 <form class="account-form" id="advertiser_form" method="POST" action="{{route('advertiser.register')}}">
                                     @csrf
                                     <div class="card border shadow-sm mb-4" style="overflow: inherit;">
                                         <div class="bg-light card-header font-weight-bolder text-body"> Basic Information </div>
+                                        <input type="text" hidden name="form_type"  value="Advertiser">
                                         <div class="card-body">
                                             <div class="form-group ">
                                                 <label>@lang('Company Name')</label>
@@ -205,7 +218,7 @@ $bg = getContent('login.content',true)->data_values;
                     validators: {
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Company Name',
+                            message: 'Please fill Full Company Name.',
                         }
                     },
                 },
@@ -213,76 +226,78 @@ $bg = getContent('login.content',true)->data_values;
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Full Name',
+                            message: 'Please fill Full Name.',
                         },
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Full Name',
+                            message: 'Please fill Full Name.',
                         },
                         regexp: {
                             regexp: /^[a-z A-Z]+$/,
-                            message: 'Please fill Full Name',
+                            message: 'Full Name Invalid.',
                         },
                     },
                 },
                 mobile: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Phone Number',
+                            message: 'Please fill Phone Number.',
                         },
                         stringLength: {
                             min: 6,
-                            message: 'Please fill Phone Number',
+                            message: 'Please fill Phone Number.',
                         },
                     },
                 },
                 billed_to: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Billed to',
+                            message: 'Please fill Billed to.',
                         },
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Billed to',
+                            message: 'Please fill Billed to.',
                         },
                     },
                 },
                 email: {
                     validators: {
-                        notEmpty: {},
+                        notEmpty: {
+                            message: 'Please fill vaild Email.',
+                        },
                         emailAddress: {},
                     },
                 },
                 city: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill city',
+                            message: 'Please fill city.',
                         },
                         stringLength: {
                             min: 2,
-                            message: 'Please fill city',
+                            message: 'Please fill city.',
                         },
                         regexp: {
                             regexp: /^[a-zA-Z]+$/,
-                            message: 'Please fill city',
+                            message: 'City Invalid.',
                         },
                     },
                 },
                 country: {
                     validators: {
                         notEmpty: {
-                            message: 'Select Country',
+                            message: 'Select Country.',
                         }
                     },
                 },
                 username: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Username',
+                            message: 'Please fill Username.',
                         },
                         regexp: {
                             regexp: /^[a-zA-Z0-9_]+$/,
-                            message: 'Please fill Username',
+                            message: 'Username Invalid.',
                         },
                     },
                 },
