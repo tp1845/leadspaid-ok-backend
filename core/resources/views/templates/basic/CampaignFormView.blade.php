@@ -300,7 +300,7 @@
             if(show_media){
                 if(show_media.type == 'youtube'){
                     const videoId = getVideoId(show_media.url);
-                    const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
+                    const iframeMarkup = '<iframe src="https://www.youtube-nocookie.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
                     t +='<div class="video">'+ iframeMarkup +'</div>';
                 }
                 if(show_media.type == 'image'){
