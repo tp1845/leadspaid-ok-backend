@@ -13,12 +13,12 @@
 
 @endsection
 @push('breadcrumb-plugins')
-<form>
-    <div class="form-group">
-      <label for="exampleFormControlFile1">Example file input</label>
-      <input type="file" class="form-control-file" id="exampleFormControlFile1">
+<form >
+    <div class="form-row">
+      <input type="file" class="form-control-file" name="file" required style="width: 150px; display:inline-block" required>
+      <button type="button" class="btn btn-success">Upload</button>
     </div>
-  </form>
+</form>
 @endpush
 @push('style')
 
