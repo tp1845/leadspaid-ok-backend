@@ -3,6 +3,7 @@
 namespace App\Exports;
 
 use App\campaign_forms_leads;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -54,7 +55,7 @@ class LeadsExport implements FromArray, WithHeadings
             $this->advertiser_id,
             $this->campaign_name,
             '',
-            '',
+            Carbon::now()->format('Y-m-d'),
             '',
             '',
             '',

@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\campaign_forms_leads;
+use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Illuminate\Support\Facades\DB;
@@ -81,7 +82,7 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
                 $form_lead->advertiser_id = $sheet_advertiser_id;
                 $form_lead->campaign_id =  $sheet_campaign_id;
                 $form_lead->publisher_id =  $row['publisher_id'];
-                $form_lead->lgen_date    =  $row['lgen_date'];
+                $form_lead->lgen_date    = $row['lgen_date']?$row['lgen_date']:Carbon::now()->format('Y-m-d');
                 $form_lead->lgen_source  =  $row['lgen_source'];
                 $form_lead->lgen_medium  =  $row['lgen_medium'];
                 $form_lead->lgen_campaign =  $row['lgen_campaign'];
