@@ -32,7 +32,7 @@
                                 <td data-label="@lang('Ad Width')" ><span class="text--small badge font-weight-normal badge--primary">{{$ad->width}}px</span></td>
                                 <td data-label="@lang('Ad Height')" ><span class="text--small badge font-weight-normal badge--warning">{{$ad->height}}px</span></td>
                                 <td data-label="@lang('Script')" >
-                                    <textarea id="advertScript{{$ad->id}}" class="form-control" rows="2" readonly><iframe  id="leadpaidform_{{$ad->id}}" src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/{{$ad->style}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="{{$ad->iwidth}}" height="{{$ad->height}}"></iframe></textarea>
+                                    <textarea id="advertScript{{$ad->id}}" class="form-control" rows="2" readonly><iframe  id="leadpaidform_{{$ad->id}}" src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/{{$ad->style}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="{{$ad->iwidth}}" height="{{$ad->height}}" style="border: 1px solid black;"></iframe></textarea>
                                 </td>
 
                                 <td data-label="@lang('Copy Script')">
