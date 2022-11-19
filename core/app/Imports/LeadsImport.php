@@ -81,6 +81,10 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
                 $form_lead->advertiser_id = $sheet_advertiser_id;
                 $form_lead->campaign_id =  $sheet_campaign_id;
                 $form_lead->publisher_id =  $row['publisher_id'];
+                $form_lead->lgen_date    =  $row['lgen_date'];
+                $form_lead->lgen_source  =  $row['lgen_source'];
+                $form_lead->lgen_medium  =  $row['lgen_medium'];
+                $form_lead->lgen_campaign =  $row['lgen_campaign'];
                 $form_lead->field_1 = $row['field_1'];
                 $form_lead->field_2 = $row['field_2'];
                 $form_lead->field_3 = $row['field_3'];
