@@ -148,6 +148,12 @@
                                     <span class="menu-title">@lang('All Campaigns')</span>
                                 </a>
                             </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.campaigns.lgenspend')}}">
+                                <a href="{{route('admin.campaigns.lgenspend')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('LGen Spend Upload')</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>

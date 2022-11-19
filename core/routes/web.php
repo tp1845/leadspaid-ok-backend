@@ -152,6 +152,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
         Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
 
+        Route::get('/campaigns/lgenspend','LgenSpendController@index')->name('campaigns.lgenspend');
+
+
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
         Route::get('/publisher/active/all','PublisherController@allActivePublisher')->name('publisher.active.all');
