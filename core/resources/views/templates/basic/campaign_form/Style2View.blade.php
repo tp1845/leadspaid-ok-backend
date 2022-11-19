@@ -102,6 +102,10 @@
         @csrf
         <input type="hidden" id="domain" name="domain" value="{{$domain}}" />
         <input type="hidden" name="capf_id" id="capf_id" value="0" >
+        <input type="hidden" name="utm_id" id="utm_id" value="0" >
+        <input type="hidden" name="utm_source" id="utm_source" value="0" >
+        <input type="hidden" name="utm_medium" id="utm_medium" value="0" >
+        <input type="hidden" name="utm_campaign" id="utm_campaign" value="0" >
         <div class="row">
             <div class="col-lg-4" id="loadMedia"></div>
             <div class="col-lg-8">
@@ -144,7 +148,16 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script>
-   // var website = document.referrer?document.referrer:false;
+   const url = document.referrer;
+    urlParams = getUrlParams(url);
+    var utm_id =  urlParams.utm_id;
+    var utm_source =  urlParams.utm_source ;
+    var utm_medium =  urlParams.utm_medium ;
+    var utm_campaign =  urlParams.utm_campaign ;
+    $('#utm_id').val(utm_id);
+    $('#utm_source').val(utm_source);
+    $('#utm_medium').val(utm_medium);
+    $('#utm_campaign').val(utm_campaign);
    var website = $('#domain').val();
     var publisher_id = {{$publisher_id}};
     var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
@@ -258,6 +271,29 @@
         return (match && match[2].length === 11)?match[2]:null;
     }
 
+    function getUrlParams(urlOrQueryString) {
+        if ((i = urlOrQueryString.indexOf('?')) >= 0) {
+            const queryString = urlOrQueryString.substring(i+1);
+            if (queryString) {
+            return _mapUrlParams(queryString);
+            }
+        }
+        return {};
+    }
+
+    function _mapUrlParams(queryString) {
+    return queryString
+        .split('&')
+        .map(function(keyValueString) { return keyValueString.split('=') })
+        .reduce(function(urlParams, [key, value]) {
+        if (Number.isInteger(parseInt(value)) && parseInt(value) == value) {
+            urlParams[key] = parseInt(value);
+        } else {
+            urlParams[key] = decodeURI(value);
+        }
+        return urlParams;
+        }, {});
+    }
 </script>
 
 </body>

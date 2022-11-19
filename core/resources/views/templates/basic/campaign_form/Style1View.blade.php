@@ -252,8 +252,6 @@
   <script>
     const url = document.referrer;
     urlParams = getUrlParams(url);
-    console.log(url);
-    console.log(urlParams.utm_id);
     var utm_id =  urlParams.utm_id;
     var utm_source =  urlParams.utm_source ;
     var utm_medium =  urlParams.utm_medium ;
