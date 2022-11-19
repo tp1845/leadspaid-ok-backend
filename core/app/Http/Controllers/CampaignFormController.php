@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\campaigns;
 use App\DomainVerifcation;
+use Carbon\Carbon;
 
 class CampaignFormController extends Controller
 {
@@ -41,6 +42,10 @@ class CampaignFormController extends Controller
             $lead->campaign_id = $campaign_id;
             $lead->advertiser_id = $advertiser_id;
             $lead->publisher_id = $publisher_id;
+            $lead->lgen_date = Carbon::now();
+            $lead->lgen_source =  $request->utm_source;
+            $lead->lgen_medium =  $request->utm_medium;
+            $lead->lgen_campaign =  $request->utm_campaign;
             $lead->form_id = $form_id;
             $lead->field_1 = $request->field_1;
             $lead->field_2 = $request->field_2;
@@ -49,12 +54,9 @@ class CampaignFormController extends Controller
             $lead->field_5 = $request->field_5;
             $lead->save();
             return response()->json(['success'=>true, 'form'=>'Form Submit Successfully'   ]);;
-            //$notify[] = ['success', 'Form Submit Successfully'];
         }else{
-           // $notify[] = ['error', 'Try After Sometime!'];
            return response()->json(['success'=>false, 'form'=>'Something went wrong. please contact the administrator' ]);;
         }
-        //return back()->withNotify($notify);
     }
     public function campaign_form_find ($website, $publisher_id){
         $campaign_by_website = false;

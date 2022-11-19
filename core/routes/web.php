@@ -181,8 +181,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/domain/remove/{id}','DomainController@remove')->name('domain.remove');
         Route::get('/domain/search/','DomainController@search')->name('domain.search');
 
-
-
         // Deposit Gateway
         Route::name('gateway.')->prefix('gateway')->group(function(){
             // Automatic Gateway

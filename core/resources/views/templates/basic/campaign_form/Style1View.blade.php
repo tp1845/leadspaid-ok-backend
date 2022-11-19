@@ -219,8 +219,11 @@
     <form id="LeadForm" method="POST" action="{{ route('front_campaign_form.save') }}" style="display: none;" >
         @csrf
         <input type="hidden" id="domain" name="domain" value="{{$domain}}" />
-
         <input type="hidden" name="capf_id" id="capf_id" value="0" >
+        <input type="hidden" name="utm_id" id="utm_id" value="0" >
+        <input type="hidden" name="utm_source" id="utm_source" value="0" >
+        <input type="hidden" name="utm_medium" id="utm_medium" value="0" >
+        <input type="hidden" name="utm_campaign" id="utm_campaign" value="0" >
         <div id="loadData"></div>
         <div class="message" id="message">
             @if(session()->has('notify'))
@@ -247,7 +250,18 @@
   </div>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   <script>
-   // var website = document.referrer?document.referrer:false;
+    const url = document.referrer;
+    urlParams = getUrlParams(url);
+    console.log(url);
+    console.log(urlParams.utm_id);
+    var utm_id =  urlParams.utm_id;
+    var utm_source =  urlParams.utm_source ;
+    var utm_medium =  urlParams.utm_medium ;
+    var utm_campaign =  urlParams.utm_campaign ;
+    $('#utm_id').val(utm_id);
+    $('#utm_source').val(utm_source);
+    $('#utm_medium').val(utm_medium);
+    $('#utm_campaign').val(utm_campaign);
    var website = $('#domain').val();
     var publisher_id = {{$publisher_id}};
     var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
@@ -292,71 +306,95 @@
 
         $('#capf_id').attr('value', data.campaign_id +','+data.advertiser_id +','+publisher_id +','+data.id  );
         form = $('#LeadForm');
-            t='';
-            if(show_media){
-                if(show_media.type == 'youtube'){
-                    const videoId = getVideoId(show_media.url);
-                    const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
-                    t +='<div class="video">'+ iframeMarkup +'</div>';
-                }
-                if(show_media.type == 'image'){
-                    t +='<div class="video image"><img src="'+ image_src + show_media.url +'" alt="" width="100%" /></div>';
-                }
+        t='';
+        if(show_media){
+            if(show_media.type == 'youtube'){
+                const videoId = getVideoId(show_media.url);
+                const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
+                t +='<div class="video">'+ iframeMarkup +'</div>';
             }
+            if(show_media.type == 'image'){
+                t +='<div class="video image"><img src="'+ image_src + show_media.url +'" alt="" width="100%" /></div>';
+            }
+        }
 
-            if(data.form_title){ t +='<h2 class="form-title">'+data.form_title+'</h2>'; }
-            if(data.offer_desc){ t +='<p class="form-subtitle">'+data.offer_desc+'</p>'; }
-            for ($i = 1; $i < 6; $i++){
-                var $field = data['field_'+$i];
+        if(data.form_title){ t +='<h2 class="form-title">'+data.form_title+'</h2>'; }
+        if(data.offer_desc){ t +='<p class="form-subtitle">'+data.offer_desc+'</p>'; }
+        for ($i = 1; $i < 6; $i++){
+            var $field = data['field_'+$i];
+            if($field){
+                t +='<div class="form-row">';
+                t +='<label for="Input_field_'+$i+'" class="form-label">'+$field['question_text']+'*</label>';
                 if($field){
-                    t +='<div class="form-row">';
-                    t +='<label for="Input_field_'+$i+'" class="form-label">'+$field['question_text']+'*</label>';
-                    if($field){
-                        if($field['question_type']== "ShortAnswer"){
-                            t +='<input type="text" class="form-control" id="Input_field_'+$i+'" name="field_'+$i+'" placeholder="'+$field['question_text']+'*"  required >';
-                        }else{
-                            t +='<select class="form-select" id="Input_field_'+$i+'"  name="field_'+$i+'" required>';
-                            t +='<option selected value="" class="holder"> '+$field['question_text']+'* </option>';
-                            t +='<option value="'+ $field['option_1']+'">'+ $field['option_1']+'</option>';
-                            t +='<option value="'+ $field['option_2']+'">'+ $field['option_2']+'</option>';
-                            t +='<option value="'+ $field['option_3']+'">'+ $field['option_3']+'</option>';
-                            t +='<option value="'+ $field['option_4']+'">'+ $field['option_4']+'</option>';
-                            t +='</select>';
-                        }
+                    if($field['question_type']== "ShortAnswer"){
+                        t +='<input type="text" class="form-control" id="Input_field_'+$i+'" name="field_'+$i+'" placeholder="'+$field['question_text']+'*"  required >';
+                    }else{
+                        t +='<select class="form-select" id="Input_field_'+$i+'"  name="field_'+$i+'" required>';
+                        t +='<option selected value="" class="holder"> '+$field['question_text']+'* </option>';
+                        t +='<option value="'+ $field['option_1']+'">'+ $field['option_1']+'</option>';
+                        t +='<option value="'+ $field['option_2']+'">'+ $field['option_2']+'</option>';
+                        t +='<option value="'+ $field['option_3']+'">'+ $field['option_3']+'</option>';
+                        t +='<option value="'+ $field['option_4']+'">'+ $field['option_4']+'</option>';
+                        t +='</select>';
                     }
-                    t +='</div>';
                 }
+                t +='</div>';
             }
-            $('#loadData', form).append(t);
-            $('.loading').hide();
-            $(form).show();
         }
+        $('#loadData', form).append(t);
+        $('.loading').hide();
+        $(form).show();
+    }
 
-        $("#LeadForm").submit(function(e){
-            e.preventDefault();
-            var form = $(this);
-            var actionUrl = form.attr('action');
-            formData = form.serialize();
-            $.ajax({
-                    type: "POST",
-                    url: actionUrl,
-                    data: formData,
-                    success: function(data)
-                    {
-                        if (data.success) {
-                            form[0].reset();
-                            $('#message').html('<div class="alert success">'+data.form+'</div>');
-                        }else{
-                            $('#message').html('<div class="alert error">'+data.form+'</div>');
-                        }
+    $("#LeadForm").submit(function(e){
+        e.preventDefault();
+        var form = $(this);
+        var actionUrl = form.attr('action');
+        formData = form.serialize();
+        $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data: formData,
+                success: function(data)
+                {
+                    if (data.success) {
+                        form[0].reset();
+                        $('#message').html('<div class="alert success">'+data.form+'</div>');
+                    }else{
+                        $('#message').html('<div class="alert error">'+data.form+'</div>');
                     }
-                });
-        });
-        function getVideoId(url) {
-            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-            const match = url?.match(regExp);
-            return (match && match[2].length === 11)?match[2]:null;
+                }
+            });
+    });
+    function getVideoId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url?.match(regExp);
+        return (match && match[2].length === 11)?match[2]:null;
+    }
+
+    function getUrlParams(urlOrQueryString) {
+        if ((i = urlOrQueryString.indexOf('?')) >= 0) {
+            const queryString = urlOrQueryString.substring(i+1);
+            if (queryString) {
+            return _mapUrlParams(queryString);
+            }
         }
-        </script>
+        return {};
+    }
+
+    function _mapUrlParams(queryString) {
+    return queryString
+        .split('&')
+        .map(function(keyValueString) { return keyValueString.split('=') })
+        .reduce(function(urlParams, [key, value]) {
+        if (Number.isInteger(parseInt(value)) && parseInt(value) == value) {
+            urlParams[key] = parseInt(value);
+        } else {
+            urlParams[key] = decodeURI(value);
+        }
+        return urlParams;
+        }, {});
+    }
+</script>
 </body>
 </html>
