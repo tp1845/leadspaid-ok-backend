@@ -153,6 +153,9 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
 
         Route::get('/campaigns/lgenspend','LgenSpendController@index')->name('campaigns.lgenspend');
+        Route::get('/campaigns/lgenspend/export/{cid}/{aid}/{fid}','LgenSpendController@export')->name('campaigns.lgenspend.export');
+        Route::post('/campaigns/lgenspend/import/{cid}/{aid}/{fid}','LgenSpendController@import')->name('campaigns.lgenspend.import');
+        Route::post('/campaigns/lgenspend/importpreview/{cid}/{aid}/{fid}','LgenSpendController@importpreview')->name('campaigns.lgenspend.importpreview');
 
 
         //Manage publisher

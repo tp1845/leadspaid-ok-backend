@@ -22,8 +22,8 @@
                                     <th>Leads</th>
                                     <th>Cost per <br>Leads</th>
                                     <th>Approve</th>
+                                    <th>Spend</th>
                                     <th>Action</th>
-
                                     <th>Targeting Placements</th>
                                     <th>Keywords </th>
                                     <th>Service </th>
@@ -51,16 +51,24 @@
                                         <td>0</td>
                                         <td>0</td>
                                         <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
+                                        <td class="spend_col">
+                                            <form id="upload_form_{{$campaign->id}}" data-type="spends"  class="uploadform" action="{{ route('admin.campaigns.lgenspend.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                                @csrf
+                                                <a href="{{ route('admin.campaigns.lgenspend.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-light-red up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="text-danger up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
+                                                </div>
+                                            </form>
+                                        </td>
                                         <td>
-                                            <form id="upload_form_{{$campaign->id}}"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                            <form id="upload_form_{{$campaign->id}}" data-type="leads"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
                                                 @csrf
                                                 <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
                                                 <div class="upload-btn-wrapper">
                                                     <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
                                                     <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
                                                 </div>
-                                                {{-- <input id="selectimportfile" type="file" name="file" class="form-file " required > --}}
-                                                {{-- <button class="btn btn-success"> <i class="fa fas fa-arrow-alt-circle-up"></i> Import </button> --}}
 
                                             </form>
                                         </td>
@@ -118,6 +126,7 @@
     .btn { cursor: pointer; }
     .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; width: 100%; height: 100%; left: 0; top: 0; opacity: 0; cursor: pointer; }
     .up-down-btn{ font-size: 28px; background: transparent; border: 0; padding: 0 }
+    .text-light-red{ color: #ff7481!important}
 </style>
 @endpush
 @push('script')
@@ -149,6 +158,7 @@
                 var form_id = '#'+data_form;
                 var form =$(form_id);
                 var actionUrl = form.attr('action');
+                var datatype = form.attr('data-type');
                 actionUrl = actionUrl.replace('import', 'importpreview');
                 var formData = new FormData(form[0]);
                 $.ajax({
@@ -162,7 +172,11 @@
                     {
                         if (data.success) {
                             $('#saveLeadsData').attr('data-form', data_form );
+                            if(datatype =="leads"){
                             previewData(data.data);
+                            }else{
+                            previewSpendData(data.data);
+                            }
                             leads_preview_modal.attr('data-form', data_form );
                             leads_preview_modal.modal('show');
                         }else{
@@ -193,7 +207,7 @@
                     success: function(data)
                     {
                         if (data.success) {
-                            alert('Leads Saved');
+                            if(datatype =="leads"){ alert('Leads Saved');}else{alert('Spends Saved');}
                             reset_upload_preview(form);
                         }else{
                             alert('Try Again');
@@ -235,6 +249,34 @@
             t += "</table>"
             $('#previewData').html(t);
         }
+
+        function previewSpendData(data){
+          //  rows = $.parseJSON(data);
+          var t = "<table class='table table-strip '>";
+            t += '<tr>';
+                    t += '<td> campaign_id </td>';
+                    t += '<td> campaign_name </td>';
+                    t += '<td> Cost </td>';
+                    t += '<td> lgen_date </td>';
+                    t += '<td> lgen_source </td>';
+                    t += '<td> lgen_medium </td>';
+                    t += '<td> lgen_campaign </td>';
+                t += '</tr>';
+            $.each(data, function(index, vl) {
+                t += '<tr>';
+                    t += '<td>' + vl.campaign_id + '</td>';
+                    t += '<td>' + data[0].campaign_name + '</td>';
+                    t += '<td>' + vl.cost + '</td>';
+                    t += '<td>' + vl.lgen_date + '</td>';
+                    t += '<td>' + vl.lgen_source + '</td>';
+                    t += '<td>' + vl.lgen_medium + '</td>';
+                    t += '<td>' + vl.lgen_campaign + '</td>';
+                t += '</tr>';
+            });
+            t += "</table>"
+            $('#previewData').html(t);
+        }
+
         function reset_upload_preview(form){
             form[0].reset();
             leads_preview_modal.modal('hide').removeAttr('data-form');

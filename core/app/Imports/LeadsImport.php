@@ -37,7 +37,6 @@ class LeadsImport implements WithValidation, SkipsOnFailure, ToCollection, WithH
 
         if($rows[0]['campaign_id']){   $sheet_campaign_id = $rows[0]['campaign_id'];  }
         if($rows[0]['advertiser_id']){ $sheet_advertiser_id = $rows[0]['advertiser_id']; }
-        DB::beginTransaction();
 
         foreach ($rows as $key=>$row) {
             if($key != 0){
