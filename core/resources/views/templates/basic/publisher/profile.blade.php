@@ -8,8 +8,8 @@
         <div class="account-area">
             <div class="row justify-content-center">
 
-                <div class="col-lg-8">
-                    <div class="account-wrapper">
+                <div class="col-lg-7">
+                    <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
                             <form method="POST" id="publisher_form" action="{{route('publisher.profile.update')}}">
                                 @csrf

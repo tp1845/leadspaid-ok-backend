@@ -71,24 +71,13 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $customMessages = [
-            'name.required' => 'Fill your full name',
-            'company_name.min' => 'Fill your Company name in full. Otherwise leave it blank if you want to use your individual name',
-            'city.min' => 'Fill city',
-        ];
+ 
         $request->validate([
-            'company_name' => 'nullable|string|max:60|min:3',
-            'name' => 'sometimes|required|string|max:60|min:3|regex:/^[a-z A-Z]+$/u',
             'mobile' => 'required|string|unique:advertisers|min:6',
-            'billed_to' => 'sometimes|required|string|max:60',
             'email' => 'required|string|email|max:160|unique:advertisers',
-            'city' => 'required|string|max:160|min:2',
-            'country' => 'required|string|max:160',
-            'postal_code' => 'required|string|max:160',
-            'username' => 'required|alpha_num|unique:advertisers|min:6',
+            'username' => 'required|unique:advertisers|min:6',
             'password' => 'required|string|min:6|confirmed',
-            'captcha' => 'sometimes|required'
-        ], $customMessages);
+        ]);
         if (isset($request->captcha)) {
             if (!captchaVerify($request->captcha, $request->captcha_secret)) {
                 $notify[] = ['error', "Invalid Captcha"];

@@ -9,8 +9,8 @@ $user = auth()->guard('advertiser')->user();
         <div class="account-area">
             <div class="row justify-content-center">
 
-                <div class="col-lg-8">
-                    <div class="account-wrapper">
+                <div class="col-lg-7">
+                    <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
                             <form method="POST" id="advertiser_form" action="{{route('advertiser.profile.update')}}">
                                 @csrf

@@ -2746,7 +2746,11 @@ span.is-active:after {
     .account-wrapper {
         padding: 30px;
     }
+    .register.account-wrapper{
+        padding: 10px!important;
+    }
 }
+
 
 .account-tab-nav {
     border-bottom: none;

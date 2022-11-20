@@ -25,8 +25,8 @@ $isPublisherForm = 'show';
         <div class="account-area">
             <div class="row justify-content-center">
 
-                <div class="col-lg-8">
-                    <div class="account-wrapper">
+                <div class="col-lg-7">
+                    <div class="register account-wrapper">
                         <ul class="nav nav-tabs account-tab-nav" id="myTab" style="display: {{$isTab}}" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link {{$isPublisherForm}}" id="publisher-tab" data-toggle="tab" href="#publisher" role="tab" aria-controls="publisher" aria-selected="flase">@lang('Publisher')</a>
