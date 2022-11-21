@@ -69,7 +69,11 @@
                                                 </div>
                                             </form>
                                         </td>
-                                        <td>{{ $campaign->target_placements }}</td>
+                                        <td> @if($campaign->target_placements)
+                                            @foreach($campaign->target_placements as $target_placements)
+                                            {{$target_placements}} ,
+                                            @endforeach
+                                            @endif</td>
                                         <td>{{ $campaign->keywords }}</td>
                                         <td>{{ $campaign->service_sell_buy }}</td>
                                         <td>{{ $campaign->website_url }}</td>
