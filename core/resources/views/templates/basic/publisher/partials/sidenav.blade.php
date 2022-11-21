@@ -15,7 +15,24 @@
                         <span class="menu-title">@lang('Dashboard')</span>
                     </a>
                 </li>
-
+                @if(auth()->guard('publisher')->user()->role === 1)
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('publisher.campaigns*',3)}}">
+                        <i class="menu-icon lab la-autoprefixer"></i>
+                        <span class="menu-title">@lang('Manage Campaigns')</span>
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('publisher.campaigns*',2)}} ">
+                        <ul>
+                            <li class="sidebar-menu-item {{menuActive('publisher.campaigns.all')}}">
+                                <a href="{{route('publisher.campaigns.all')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('All Campaigns')</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                @endif
                 <li class="sidebar-menu-item {{menuActive(['publisher.domain.verify','publisher.domain.verify.action'])}}">
                     <a href="{{route('publisher.domain.verify')}}" class="nav-link ">
                         <i class="menu-icon las la-check-circle"></i>
