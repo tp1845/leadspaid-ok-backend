@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
         'advertiser' => \App\Http\Middleware\RedirectIfNotAdvertiser::class,
         'advertiser.guest' => \App\Http\Middleware\RedirectIfAdvertiser::class,
         'publisher' => \App\Http\Middleware\RedirectIfNotPublisher::class,
+        'publisherAdmin' => \App\Http\Middleware\RedirectIfNotPublisherAdmin::class,
         'publisher.guest' => \App\Http\Middleware\RedirectIfPublisher::class,
 
         'regStatus' => \App\Http\Middleware\AllowRegistration::class,

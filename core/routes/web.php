@@ -504,7 +504,20 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::get('twofactor', 'PublisherController@show2faForm')->name('twofactor');
         Route::post('twofactor/enable', 'PublisherController@create2fa')->name('twofactor.enable');
         Route::post('twofactor/disable', 'PublisherController@disable2fa')->name('twofactor.disable');
+
     });
+    //  if publisher Admin
+    Route::middleware(['publisher','checkStatus:publisher','publisherAdmin:publisher'])->group(function () {
+        //Manage Campaigns for publiser admin
+        Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
+        Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
+        Route::post('/campaigns/leads/importpreview/{cid}/{aid}/{fid}','CampaignsController@importpreview')->name('leads.importpreview');
+        Route::post('/campaigns/leads/import/{cid}/{aid}/{fid}','CampaignsController@import')->name('leads.import');
+
+        Route::get('/campaigns/lgenspend/export/{cid}/{aid}/{fid}','LgenSpendController@export')->name('campaigns.lgenspend.export');
+        Route::post('/campaigns/lgenspend/import/{cid}/{aid}/{fid}','LgenSpendController@import')->name('campaigns.lgenspend.import');
+        Route::post('/campaigns/lgenspend/importpreview/{cid}/{aid}/{fid}','LgenSpendController@importpreview')->name('campaigns.lgenspend.importpreview');
+   });
 });
 
 

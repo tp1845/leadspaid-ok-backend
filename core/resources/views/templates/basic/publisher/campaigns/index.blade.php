@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends($activeTemplate.'layouts.publisher.frontend')
 @section('panel')
     <div class="row">
         <div class="col-lg-12">
@@ -12,7 +12,7 @@
                                     <th>Advertiser</th>
                                     <th>C.Id</th>
                                     <th>Campaign Name</th>
-                                    <th>Approve</th>
+                                    <th>Delivery</th>
                                     <th>Start</th>
                                     <th>End</th>
                                     <th>Target Country / City</th>
@@ -23,11 +23,6 @@
                                     <th>Cost per <br>Leads</th>
                                     <th>Action</th>
                                     <th>Spend</th>
-                                    <th>Targeting Placements</th>
-                                    <th>Keywords </th>
-                                    <th>Service </th>
-                                    <th>Website URL</th>
-                                    <th>Social Media</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -37,7 +32,8 @@
                                         <td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
-                                        <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
+
+                                        <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
                                         <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
@@ -48,36 +44,28 @@
                                         <td>0</td>
                                         <td>0</td>
                                         <td>0</td>
+
                                         <td>
-                                            <form id="upload_form_{{$campaign->id}}" data-type="leads"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                            <form id="upload_form_{{$campaign->id}}" data-type="leads"  class="uploadform" action="{{ route('publisher.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
                                                 @csrf
-                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <a href="{{ route('publisher.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
                                                 <div class="upload-btn-wrapper">
                                                     <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
                                                     <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
                                                 </div>
 
-                                            </form>
+                                           </form>
                                         </td>
                                         <td class="spend_col">
-                                            <form id="upload_spends_form_{{$campaign->id}}" data-type="spends"  class="uploadform" action="{{ route('admin.campaigns.lgenspend.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                            <form id="upload_spends_form_{{$campaign->id}}" data-type="spends"  class="uploadform" action="{{ route('publisher.campaigns.lgenspend.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
                                                 @csrf
-                                                <a href="{{ route('admin.campaigns.lgenspend.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-light-red up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <a href="{{ route('publisher.campaigns.lgenspend.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-light-red up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
                                                 <div class="upload-btn-wrapper">
                                                     <button class="text-danger up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
                                                     <input data-form="upload_spends_form_{{$campaign->id}}" type="file" name="file" required    />
                                                 </div>
                                             </form>
                                         </td>
-                                        <td> @if($campaign->target_placements)
-                                            @foreach($campaign->target_placements as $target_placements)
-                                            {{$target_placements}} ,
-                                            @endforeach
-                                            @endif</td>
-                                        <td>{{ $campaign->keywords }}</td>
-                                        <td>{{ $campaign->service_sell_buy }}</td>
-                                        <td>{{ $campaign->website_url }}</td>
-                                        <td>{{ $campaign->social_media_page }}</td>
                                     </tr>
                                 @empty
                                     <tr>

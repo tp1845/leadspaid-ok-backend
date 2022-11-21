@@ -28,7 +28,7 @@ class CampaignsController extends Controller
 
         $campaign = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->where('id', $id)->first();
 
-        $campaign->target_placements = unserialize($campaign->target_placements);
+       // $campaign->target_placements = unserialize($campaign->target_placements);
         return response()->json($campaign );
     }
 
@@ -65,7 +65,7 @@ class CampaignsController extends Controller
         $campaign->target_country = $request->target_country;
         $campaign->target_city = $request->target_city;
         $campaign->target_type = $request->target_type;
-        $campaign->target_placements = serialize($request->target_placements);
+        $campaign->target_placements = $request->target_placements;
         $campaign->service_sell_buy = $request->service_sell_buy;
         $campaign->keywords = $request->keywords;
         $campaign->form_id = $request->form_id;

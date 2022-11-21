@@ -48,7 +48,7 @@ class LgenSpendImport implements WithValidation, SkipsOnFailure, ToCollection, W
         //     }
         // }
 
-        $rows = array_map("unserialize", array_unique(array_map("serialize", $rows)));
+        // $rows = array_map("unserialize", array_unique(array_map("serialize", $rows)));
 
         foreach ($rows as $key=>$row) {
             $validator = Validator::make($row, $this->rules(), $this->customValidationMessages());
@@ -63,19 +63,19 @@ class LgenSpendImport implements WithValidation, SkipsOnFailure, ToCollection, W
                     }
                 }
             }
-            if(!$this->errors ){
-                $row['campaign_id'] = $this->campaign_id;
-                $row['lgen_date'] = Carbon::now()->format('Y-m-d');
-                $form_lead = new lgen_spend();
-                $form_lead->campaign_id =  $sheet_campaign_id;
-                $form_lead->lgen_date    =   $row['lgen_date'];
-                $form_lead->lgen_source =  $row['lgen_source'];
-                $form_lead->lgen_medium =  $row['lgen_medium'];
-                $form_lead->lgen_campaign =  $row['lgen_campaign'];
-                $form_lead->cost =  $row['cost'];
+            if(!$this->errors && $key != 0  ){
+                $row['campaign_id'] =$sheet_campaign_id;
+                $row['lgen_date'] = $row['lgen_date']?Carbon::instance(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row['lgen_date']))->format('Y-m-d'):Carbon::now()->format('Y-m-d');;
                 if(!$this->preview ){
-                $form_lead->save();
-                $this->Spenddata[] = $row;
+                    $form_lead = new lgen_spend();
+                    $form_lead->campaign_id =  $row['campaign_id'];
+                    $form_lead->lgen_date    =   $row['lgen_date'];
+                    $form_lead->lgen_source =  $row['lgen_source'];
+                    $form_lead->lgen_medium =  $row['lgen_medium'];
+                    $form_lead->lgen_campaign =  $row['lgen_campaign'];
+                    $form_lead->cost =  $row['cost'];
+                    $form_lead->save();
+                    $this->Spenddata[] = $row;
                 }else{
                     $row['campaign_name'] = $rows[0]['campaign_name'];
                     $this->Spenddata[] = $row;

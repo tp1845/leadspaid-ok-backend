@@ -63,7 +63,8 @@ class CampaignFormController extends Controller
         $campaign_by_keywords = false;
         $campaign_by_category = false;
         if($website){
-                $campaign_by_website = campaigns::where('target_placements', 'like', '%'.$website.'%' )->with('campaign_forms')->inRandomOrder()->first();
+               // $campaign_by_website = campaigns::where('target_placements', 'like', '%'.$website.'%' )->with('campaign_forms')->inRandomOrder()->first();
+                $campaign_by_website = campaigns::whereJsonContains('target_placements',  $website  )->with('campaign_forms')->inRandomOrder()->first();
         }
         if($campaign_by_website){
             $campaign_by_website->campaign_forms->campaign_id = $campaign_by_website->id;
