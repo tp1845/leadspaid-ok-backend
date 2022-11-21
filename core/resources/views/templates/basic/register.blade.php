@@ -22,11 +22,11 @@ $isPublisherForm = 'show';
 
 <section class="pt-100 pb-100">
     <div class="container">
-        <div class="account-area">
+        <div >
             <div class="row justify-content-center">
 
                 <div class="col-lg-7">
-                    <div class="register account-wrapper">
+                    <div class="register ">
                         <ul class="nav nav-tabs account-tab-nav" id="myTab" style="display: {{$isTab}}" role="tablist">
                             <li class="nav-item" role="presentation">
                                 <a class="nav-link {{$isPublisherForm}}" id="publisher-tab" data-toggle="tab" href="#publisher" role="tab" aria-controls="publisher" aria-selected="flase">@lang('Publisher')</a>
@@ -314,8 +314,8 @@ $isPublisherForm = 'show';
                             message: 'Please fill Username.',
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_]+$/,
-                            message: 'Username Invalid.',
+                            regexp: /^[a-zA-Z0-9_.]+$/,
+                            message: 'Username should not contain special characters.',
                         },
                     },
                 },
@@ -442,8 +442,8 @@ $isPublisherForm = 'show';
                             message: 'Please fill Username.',
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_]+$/,
-                            message: 'Username Invalid.',
+                            regexp: /^[a-zA-Z0-9_.]+$/,
+                            message: 'Username should not contain special characters.',
                         },
                     },
                 },

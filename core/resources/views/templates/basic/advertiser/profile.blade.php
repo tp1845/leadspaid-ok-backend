@@ -220,8 +220,8 @@ $user = auth()->guard('advertiser')->user();
                             message: 'Please fill Username.',
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z0-9_]+$/,
-                            message: 'Username Invalid.',
+                            regexp: /^[a-zA-Z0-9_.]+$/,
+                            message: 'Username should not contain special characters.',
                         },
                     },
                 },
