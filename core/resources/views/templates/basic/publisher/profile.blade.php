@@ -3,12 +3,12 @@
 @section('panel')
 
 
-<section class="pt-100 pb-100">
+<section >
     <div class="container">
         <div class="account-area">
             <div class="row justify-content-center">
 
-                <div class="col-lg-7">
+                <div class="col-lg-5" style="max-width: 475px;">
                     <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
                             <form method="POST" id="publisher_form" action="{{route('publisher.profile.update')}}">
@@ -167,7 +167,7 @@
                             message: 'Please fill city.',
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-z A-Z]+$/,
                             message: 'City Invalid.',
                         },
                     },

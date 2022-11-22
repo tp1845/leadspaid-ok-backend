@@ -4,12 +4,12 @@ $user = auth()->guard('advertiser')->user();
 @endphp
 @section('panel')
 
-<section class="pt-100 pb-100">
+<section>
     <div class="container">
         <div class="account-area">
             <div class="row justify-content-center">
 
-                <div class="col-lg-7">
+                <div class="col-lg-5" style="max-width: 475px;">
                     <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
                             <form method="POST" id="advertiser_form" action="{{route('advertiser.profile.update')}}">
@@ -202,7 +202,7 @@ $user = auth()->guard('advertiser')->user();
                             message: 'Please fill city.',
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-z A-Z]+$/,
                             message: 'City Invalid.',
                         },
                     },

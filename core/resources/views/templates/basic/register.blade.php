@@ -296,7 +296,7 @@ $isPublisherForm = 'show';
                             message: 'Please fill city.',
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-z A-Z]+$/,
                             message: 'City Invalid.',
                         },
                     },
@@ -424,7 +424,7 @@ $isPublisherForm = 'show';
                             message: 'Please fill city.',
                         },
                         regexp: {
-                            regexp: /^[a-zA-Z]+$/,
+                            regexp: /^[a-z A-Z]+$/,
                             message: 'City Invalid.',
                         },
                     },
