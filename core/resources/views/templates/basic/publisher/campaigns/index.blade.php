@@ -8,7 +8,7 @@
                         <table class="table table--light style--two">
                             <thead>
                                 <tr>
-                                    <th>Status</th>
+                                    <th>Off/On</th>
                                     <th>Advertiser</th>
                                     <th>C.Id</th>
                                     <th>Campaign Name</th>
