@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-8">
                     <h1 class="h1">Generate Leads Directly</h1>
-                    <p>Generate Leads Directly</p>
+                    <p>Pay only for Leads. Not for cliks or impressions</p>
                     <a href="#" class="btn btn-secondary btn-lg">Generate Leads</a>
                 </div>
             </div>
