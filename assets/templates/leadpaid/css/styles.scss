@@ -1,0 +1,19 @@
+
+$primary: #183b68;
+$secondary: #d12420;
+
+$font_normal : 'Roboto', sans-serif;
+ 
+@import "bootstrap/bootstrap";
+
+a{ text-decoration: none; color: $primary;}
+.logo{ font-size: 26px;}
+body, p{ font-family: 'Roboto', sans-serif;  }
+ h1,h2,h3,h4,h5,h6{   font-family: 'Poppins', sans-serif; font-weight: bold; }
+.MainBanner-Home{  background-color: #1a273a; color: #fff; text-align: center; padding: 50px 0;  }
+.MainBanner-Home {
+    .h1{   color: #fff; font-size: 52px; }
+    p{ font-size: 26px; font-weight: 300; }
+    .btn{ font-weight: bold;}
+}
+.MainBanner-bottom h3{ font-size: 32px; }
