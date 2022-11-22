@@ -25,7 +25,7 @@ $isPublisherForm = 'show';
         <div >
             <div class="row justify-content-center">
 
-                <div class="col-lg-7">
+                <div class="col-lg-6">
                     <div class="register ">
                         <ul class="nav nav-tabs account-tab-nav" id="myTab" style="display: {{$isTab}}" role="tablist">
                             <li class="nav-item" role="presentation">
