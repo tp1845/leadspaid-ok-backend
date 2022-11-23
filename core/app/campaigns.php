@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class campaigns extends Model
 {
-    protected $casts = [ 'target_placements' => 'array', ];
+    protected $casts = [ 'target_placements' => 'array', 'target_categories' => 'array' ];
     protected $guarded = [];
     public function advertiser()
     {

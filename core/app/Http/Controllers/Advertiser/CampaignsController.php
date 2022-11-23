@@ -66,6 +66,7 @@ class CampaignsController extends Controller
         $campaign->target_city = $request->target_city;
         $campaign->target_type = $request->target_type;
         $campaign->target_placements = $request->target_placements;
+        $campaign->target_categories = $request->target_categories;
         $campaign->service_sell_buy = $request->service_sell_buy;
         $campaign->keywords = $request->keywords;
         $campaign->form_id = $request->form_id;

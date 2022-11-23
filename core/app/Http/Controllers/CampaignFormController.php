@@ -95,9 +95,11 @@ class CampaignFormController extends Controller
             if($domain_data){
             $publisher_category = (explode(",",$domain_data->category));
 
-            $query = campaigns::whereRaw("find_in_set('".$publisher_category[0]."',service_sell_buy)");
+            $query = campaigns::whereJsonContains('target_categories',  $publisher_category[0]  );
+            // $query = campaigns::whereRaw("find_in_set('".$publisher_category[0]."',service_sell_buy)");
             foreach($publisher_category as $category){
-                $query->orWhereRaw("find_in_set('".$category."',service_sell_buy)");
+                $query->orwhereJsonContains('target_categories',  $category  );
+               // $query->orWhereRaw("find_in_set('".$category."',service_sell_buy)");
             }
             $campaign_by_category = $query->with('campaign_forms')->inRandomOrder()->first();
             if($campaign_by_category){

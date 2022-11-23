@@ -176,7 +176,7 @@
                                 </div>
                                 <div class="Hide-on-Broad" style="display: none">
                                     <div class="form-group row">
-                                        <label class="col-sm-12 col-form-label" for="TargetingTypeInputSelect2">Targeting Placements </label>
+                                        <label class="col-sm-12 col-form-label" for="target_placements_Input">Targeting Placements </label>
                                         <div class="col-sm-6">
                                             <select multiple class="form-control" id="target_placements_Input" name="target_placements[]">
                                                 <option value="google.com">google.com</option>
@@ -190,6 +190,16 @@
                                         <label class="col-sm-12 col-form-label" for="KeywordsInput">Keywords or tags of those products / services</label>
                                         <div class="col-sm-6">
                                             <input type="text" class="form-control tags_input w-100" id="KeywordsInput" name="keywords" placeholder=" ">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-form-label" for="target_categories_Input">Targeting Categories </label>
+                                        <div class="col-sm-6">
+                                            <select multiple class="form-control" id="target_categories_Input" name="target_categories[]">
+                                                <option value="Immigration ">Immigration </option>
+                                                <option value="Permanent Residency">Permanent Residency</option>
+                                                <option value="Citizenship">Citizenship</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -481,6 +491,9 @@
                 /// target_placements_Input
                 $.each(data.target_placements, function (idx, val) {
                     $("select#target_placements_Input option[value='" + val + "']").prop("selected", true);
+                });
+                $.each(data.target_categories, function (idx, val) {
+                    $("select#target_categories_Input option[value='" + val + "']").prop("selected", true);
                 });
             })
         });
