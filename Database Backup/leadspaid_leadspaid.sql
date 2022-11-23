@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 07, 2022 at 01:41 PM
+-- Generation Time: Nov 23, 2022 at 12:10 PM
 -- Server version: 5.7.40
 -- PHP Version: 7.4.30
 
@@ -76,7 +76,11 @@ CREATE TABLE `advertisers` (
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `country` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `billed_to` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `postal_code` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_code` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `balance` decimal(18,8) DEFAULT '0.00000000',
   `status` int(11) NOT NULL COMMENT '1 = active, 2 = banned, 0 = deactive, ',
@@ -101,9 +105,18 @@ CREATE TABLE `advertisers` (
 -- Dumping data for table `advertisers`
 --
 
-INSERT INTO `advertisers` (`id`, `name`, `email`, `username`, `image`, `country`, `city`, `mobile`, `password`, `balance`, `status`, `ev`, `sv`, `ts`, `tv`, `tsc`, `ver_code`, `ver_code_send_at`, `click_credit`, `impression_credit`, `total_budget`, `amount_used`, `wallet_deposit`, `card_session`, `created_at`, `updated_at`) VALUES
-(1, 'advertiser1', 'advertiser1@gmail.com', 'advertiser1', NULL, 'Pitcairn', 'advertiser1', '88023434534543', '$2y$10$MrXAnXG8cWH0BnQcwYOIxOx3sC6oMg8H.Mk8dRQzCqDWcp8lUPlvC', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 200, 350, 200, 'seti_1Lzsx7Lvd118Nt671KT8oUuE', '2022-10-29 15:56:14', '2022-11-04 09:30:01'),
-(2, 'advertiser2', 'advertiser2@gmail.com', 'advertiser2', NULL, 'Pitcairn', 'Acrra', '88023434534543', '$2y$10$jl7nwa/vRdxsGMceMyFAl.Arc86fx7FSJT97l6as06Oah88m3pi.u', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 300, 0, 300, 'seti_1M0ImVLvd118Nt67PsvSwWcI', '2022-11-04 05:49:23', '2022-11-04 06:00:04');
+INSERT INTO `advertisers` (`id`, `name`, `email`, `username`, `image`, `country`, `city`, `company_name`, `billed_to`, `postal_code`, `mobile`, `country_code`, `password`, `balance`, `status`, `ev`, `sv`, `ts`, `tv`, `tsc`, `ver_code`, `ver_code_send_at`, `click_credit`, `impression_credit`, `total_budget`, `amount_used`, `wallet_deposit`, `card_session`, `created_at`, `updated_at`) VALUES
+(1, 'advertiser sdfsdf', 'advertiser1@gmail.com', 'advertiser1', NULL, 'Singapore', 'brunasarea', 'dsf dsf', 'sdfsdf sdf sf', '232A', '88023434534543', '', '$2y$10$MrXAnXG8cWH0BnQcwYOIxOx3sC6oMg8H.Mk8dRQzCqDWcp8lUPlvC', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 200, 300, 200, 'seti_1Lzsx7Lvd118Nt671KT8oUuE', '2022-10-29 15:56:14', '2022-11-22 06:05:45'),
+(2, 'advertiser2', 'advertiser2@gmail.com', 'advertiser2', NULL, 'Bangladesh', 'Acrra', '', '', '', '88023434534543', '', '$2y$10$jl7nwa/vRdxsGMceMyFAl.Arc86fx7FSJT97l6as06Oah88m3pi.u', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 300, 0, 300, 'seti_1M0ImVLvd118Nt67PsvSwWcI', '2022-11-04 05:49:23', '2022-11-09 00:25:44'),
+(3, 'Zakir Hossen', 'zakirhoss12345@gmail.com', 'zakirhossen', NULL, 'Bangladesh', 'Kushtia', 'Company Name', 'Company name full', '7000', '880234234234234', '880', '$2y$10$KhJgEHrLU6RI6MuHMsvEBO2OAS8J1HubKyIa/kP39OsWhY7WM4nT.', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 400, 0, 400, 'seti_1M3LrwLvd118Nt67wE1sAAJN', '2022-11-12 15:30:31', '2022-11-12 15:44:21'),
+(4, 'Advertiser Tester 1', 'advertisertest1@gmail.com', 'Advertiser2advtester1', NULL, 'Bangladesh', 'Kushtia', 'Company Name1', 'Leadspaid', '7001', '880234234234234', '880', '$2y$10$hDk9.2dZnd7nQbRCxo.CrOxQDtaIVsNWbafDsWNkTfNywROwXXdmG', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, '', '2022-11-12 16:30:52', '2022-11-12 16:30:52'),
+(5, 'Zakir Hossen', 'advertisertest12@gmail.com', 'advertisertest1', NULL, 'Bangladesh', 'Accra', 'Zakirhossen', 'Advertiser Tester', '7000', '880435345345345', '880', '$2y$10$L6LK1G8ESeiqv1/e.W6SoOApdoWd4voK8Has/ZzK7q9Y90vkH5y9u', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 300, 0, 300, 'seti_1M3Ng1Lvd118Nt67jPJiGGN0', '2022-11-12 17:39:00', '2022-11-13 21:24:52'),
+(6, 'Advertiser Tester K', 'advertisertest13@gmail.com', 'advertisertest3', NULL, 'Bangladesh', 'Accra', 'Zakir Hossen 2', 'Advertiser Tester', '33243', '880435345345345', '880', '$2y$10$JokgwlCMZpM9Ge4vbEaenOAjk5fSlS4Qs9.1QVxrpuvGSp7oDMM7a', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 500, 0, 500, 'seti_1M3NkFLvd118Nt67NrHRd5zQ', '2022-11-12 17:43:50', '2022-11-12 17:44:22'),
+(7, 'Advertiser Tester L', 'advertisertest14@gmail.com', 'advertisertest4', NULL, 'Anguilla', 'Accra', 'Zakir Hossen 3', 'Advertiser Tester L', '4343', '8804353453465345', '880', '$2y$10$e92BMfX06273T8Q1iYoHv.WrjvcUefb/nKTrd4Rkg./5CdHnFVOAW', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 100, 50, 100, 'seti_1M3NufLvd118Nt67QhnkdlUK', '2022-11-12 17:48:04', '2022-11-15 10:49:50'),
+(8, 'tyt', 'arun.saba@premiumleads.co', 'publisher', NULL, 'Singapore', 'sd', NULL, '456456', '456fgdf', '654565544', '65', '$2y$10$R6vGHCaPKnZzW98tK1w5eesY5Bn4U5KKDxqWgu55ZWjxJhIpDEI4i', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, '', '2022-11-16 03:12:00', '2022-11-16 03:12:00'),
+(9, 'asd', 'nandhini@premiumleads.co', 'advertiser6', NULL, 'Singapore', 'Singapore', 'sdf', 'sdfdsf dgdfgfdg', '332038', '6590909090', '65', '$2y$10$2IBPmTY6AgtS1sRnb4ia6.mWoS6SDtZClE9yg4mCPttH2GgjdNlZG', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, '', '2022-11-18 09:51:44', '2022-11-18 09:51:44'),
+(10, 'Addfg', 'marketing@nxgloimmigration.com.sg', 'advertiser_1', NULL, 'Singapore', 'Singapore', 'dfgdfg', 'sdfdsf dfsdf', '332038', '658978978978', '65', '$2y$10$WRaOYIwbD54mzSFu./EyUuCZt6ztI9vvQ2zOx2MWWVcrF4adPyiPi', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, '', '2022-11-21 09:51:42', '2022-11-21 09:51:42'),
+(11, 'Advertiser Test', 'arunsaba1@premiumleads.co', 'advertiser_test', NULL, 'Singapore', 'Singapore', 'Advertiser Test', 'sdfdsf dgdfgfdg', '330000', '6590909090', '65', '$2y$10$aY3Jx89gQkWn2lnQzTPokeyGrdvUn4fCqDUpyDYbggsPwwDCUVhpm', '0.00000000', 1, 1, 1, 0, 1, NULL, NULL, NULL, NULL, NULL, 0, 0, 0, '', '2022-11-23 03:16:37', '2022-11-23 03:16:37');
 
 -- --------------------------------------------------------
 
@@ -158,7 +171,7 @@ CREATE TABLE `ad_types` (
 --
 
 INSERT INTO `ad_types` (`id`, `adName`, `type`, `width`, `height`, `status`, `slug`, `created_at`, `updated_at`) VALUES
-(1, 'test', 'image', '250', '250', '1', '250x250', '2022-11-01 12:59:49', '2022-11-01 12:59:49');
+(1, 'test', 'image', '300', '600', '1', '300x600', '2022-11-01 12:59:49', '2022-11-01 12:59:49');
 
 -- --------------------------------------------------------
 
@@ -194,15 +207,16 @@ CREATE TABLE `campaigns` (
   `target_country` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `target_city` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `target_type` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `target_placements` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `target_placements` text COLLATE utf8mb4_unicode_ci,
+  `target_categories` text COLLATE utf8mb4_unicode_ci,
   `service_sell_buy` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `form_id` int(11) NOT NULL,
-  `website_url` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `social_media_page` int(11) DEFAULT NULL,
+  `website_url` text COLLATE utf8mb4_unicode_ci,
+  `social_media_page` text COLLATE utf8mb4_unicode_ci,
   `status` tinyint(1) DEFAULT '0' COMMENT '0: off, 1: active',
   `delivery` tinyint(1) DEFAULT '0' COMMENT '0: off, 1: active',
-  `apporve` tinyint(1) DEFAULT '0' COMMENT 'admin approval default 0 { 0: No, 1: Yes }',
+  `approve` tinyint(1) DEFAULT '0' COMMENT 'admin approval default 0 { 0: No, 1: Yes }',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -211,11 +225,116 @@ CREATE TABLE `campaigns` (
 -- Dumping data for table `campaigns`
 --
 
-INSERT INTO `campaigns` (`id`, `advertiser_id`, `name`, `start_date`, `end_date`, `daily_budget`, `target_country`, `target_city`, `target_type`, `target_placements`, `service_sell_buy`, `keywords`, `form_id`, `website_url`, `social_media_page`, `status`, `delivery`, `apporve`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Campaign Testing', '2022-11-01', '2022-11-30', '21.00', 'India', 'Patiala', 'broad', NULL, 'Sell or Buy in', NULL, 1, 'Website URLWebsite URLWebsite URLWebsite URL', 0, 1, 0, 0, '2022-11-07 04:40:38', '2022-11-07 05:24:34'),
-(2, 1, 'Tejinder Singh', '2022-11-01', '2022-11-07', '21.00', 'India', 'Patiala', 'broad', NULL, NULL, NULL, 1, NULL, NULL, 0, 0, 0, '2022-11-07 05:25:01', '2022-11-07 06:50:43'),
-(3, 1, 'Tejinder Singh', '2022-11-01', '2022-11-07', '21.00', 'India', 'Patiala', 'broad', NULL, NULL, NULL, 1, NULL, NULL, 0, 0, 0, '2022-11-07 05:25:33', '2022-11-07 05:25:33'),
-(4, 1, 'Campaign A', '2022-11-07', NULL, '500.00', 'Singapore', NULL, 'narrow', 'facebook.com', NULL, 'apply pr', 1, NULL, NULL, 0, 0, 0, '2022-11-07 06:51:55', '2022-11-07 06:51:55');
+INSERT INTO `campaigns` (`id`, `advertiser_id`, `name`, `start_date`, `end_date`, `daily_budget`, `target_country`, `target_city`, `target_type`, `target_placements`, `target_categories`, `service_sell_buy`, `keywords`, `form_id`, `website_url`, `social_media_page`, `status`, `delivery`, `approve`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Campaign Testing', '2022-11-01', '2022-11-30', '21.00', 'India', 'Patiala', 'narrow', '[\"facebook.com\"]', NULL, 'Sell or Buy in', 'passport1', 1, 'Website URLWebsite URLWebsite URLWebsite URL', '0', 0, NULL, 1, '2022-11-07 04:40:38', '2022-11-21 15:39:03'),
+(2, 1, 'Sgpr test', '2022-11-01', '2022-11-07', '21.00', 'India', 'Patiala', 'narrow', '[\"google.com\",\"facebook.com\"]', NULL, 'test 5', NULL, 1, 'aa', NULL, 1, 1, 1, '2022-11-07 05:25:01', '2022-11-21 05:30:50'),
+(3, 1, 'Tejinder Singh', '2022-11-01', '2022-11-07', '21.00', 'India', 'Patiala', 'broad', '[\"google.com\",\"facebook.com\"]', NULL, NULL, 'passport1', 1, NULL, NULL, 0, 1, 1, '2022-11-07 05:25:33', '2022-11-22 05:31:28'),
+(5, 1, 'Online Test', '2022-11-01', NULL, '100.00', 'Burundi', 'Patiala', 'narrow', '[\"google.com\",\"facebook.com\"]', NULL, 'Sell or Buy in', 'tag 1,tag 2', 1, 'www.lead.com', 'Social Media Page', 0, 1, 1, '2022-11-11 10:01:12', '2022-11-21 05:30:54'),
+(6, 1, 'SGPR_Apply_SG_Broad', '2022-11-21', NULL, '1000.00', 'Singapore', 'Singapore', 'broad', NULL, NULL, 'singapore Pr application services', NULL, 7, 'www.a1-immigration.sg', 'https://facebook.com/aA1-Immigration-Consultancy-105470548656107', 1, 1, 1, '2022-11-21 10:12:34', '2022-11-22 05:31:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `campaign_forms`
+--
+
+CREATE TABLE `campaign_forms` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `advertiser_id` int(11) NOT NULL,
+  `form_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `company_logo` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `form_title` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `offer_desc` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `youtube_1` text COLLATE utf8mb4_unicode_ci,
+  `youtube_2` text COLLATE utf8mb4_unicode_ci,
+  `youtube_3` text COLLATE utf8mb4_unicode_ci,
+  `video_1` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video_2` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `video_3` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_1` text COLLATE utf8mb4_unicode_ci,
+  `image_2` text COLLATE utf8mb4_unicode_ci,
+  `image_3` text COLLATE utf8mb4_unicode_ci,
+  `field_1` text COLLATE utf8mb4_unicode_ci,
+  `field_2` text COLLATE utf8mb4_unicode_ci,
+  `field_3` text COLLATE utf8mb4_unicode_ci,
+  `field_4` text COLLATE utf8mb4_unicode_ci,
+  `field_5` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(1) DEFAULT '1' COMMENT '0: off, 1: active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `campaign_forms`
+--
+
+INSERT INTO `campaign_forms` (`id`, `advertiser_id`, `form_name`, `company_name`, `company_logo`, `form_title`, `offer_desc`, `youtube_1`, `youtube_2`, `youtube_3`, `video_1`, `video_2`, `video_3`, `image_1`, `image_2`, `image_3`, `field_1`, `field_2`, `field_3`, `field_4`, `field_5`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Form 1', 'Ng Glow', NULL, 'APPLY SINGAPORE PR', 'Singapore’s Leading PR & Immigrations Specialist | Your Residency, Our Responsibility.', 'https://www.youtube.com/embed/X1QJGzvyoZI', 'https://www.youtube.com/watch?v=dceVOSrnuoM', NULL, NULL, NULL, NULL, '63764b46b62b31668696902.jpg', NULL, NULL, '{\"sort\":\"1\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Company\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"2\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Your Email\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"3\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Your Phone\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"4\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Message\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"5\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Services\",\"option_1\":\"1\",\"option_2\":\"2\",\"option_3\":\"3\",\"option_4\":\"4\"}', 1, '2022-11-11 10:00:58', '2022-11-11 10:00:58'),
+(2, 1, 'Judah Calhoun', 'Doyle Swanson Associates', NULL, 'Sapiente quam volupt', 'Debitis ut anim magn', '637789af09c2a1668778415.mp4', '637789af0a5801668778415.mp4', '637789af0af4c1668778415.mp4', NULL, NULL, NULL, NULL, NULL, NULL, '{\"sort\":\"1\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Aperiam amet ut ut\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"2\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Aspernatur id dolore\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"3\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Ullam qui eos quide\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"4\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Reprehenderit rem e\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"5\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Et voluptas consecte\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', 1, '2022-11-18 13:33:35', '2022-11-18 13:33:35'),
+(3, 1, 'Jared Bartlett', 'Hood Stark Associates', NULL, 'Mollit et sunt minim', 'Qui veritatis velit', '63778a088073a1668778504.mp4', '63778a0885bd81668778504.mp4', '63778a08863551668778504.mp4', NULL, NULL, NULL, NULL, NULL, NULL, '{\"sort\":\"1\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Id enim quis cillum\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"2\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Dolores nulla praese\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"3\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Velit reprehenderit\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"4\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Dolorem aliquip iust\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"5\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Voluptas magni iste\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', 1, '2022-11-18 13:35:04', '2022-11-18 13:35:04'),
+(4, 1, 'Brenna Garcia', 'Hobbs Cochran Associates', NULL, 'Aliquam blanditiis e', 'Autem adipisci ipsum', '63778a49ccdab1668778569.mp4', '63778a49cdfee1668778569.mp4', '63778a49ce5731668778569.mp4', NULL, NULL, NULL, NULL, NULL, NULL, '{\"sort\":\"1\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Ut provident sed te\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"2\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Est rerum eos est c\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"3\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Excepturi aut exerci\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"4\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Similique harum face\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"5\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Delectus debitis ha\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', 1, '2022-11-18 13:36:09', '2022-11-18 13:36:09'),
+(5, 1, 'Brenna Garcia', 'Hobbs Cochran Associates', NULL, 'Aliquam blanditiis e', 'Autem adipisci ipsum', '63778c8a2908d1668779146.mp4', '63778c8a29a791668779146.mp4', '63778c8a29f861668779146.mp4', NULL, NULL, NULL, NULL, NULL, NULL, '{\"sort\":\"1\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Ut provident sed te\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"2\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Est rerum eos est c\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"3\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Excepturi aut exerci\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"4\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Similique harum face\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"5\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Delectus debitis ha\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', 1, '2022-11-18 13:45:46', '2022-11-18 13:45:46'),
+(6, 1, 'Brenna Garcia', 'Hobbs Cochran Associates', NULL, 'Aliquam blanditiis e', 'Autem adipisci ipsum', '63778ced2b0ac1668779245.mp4', '63778ced2b5d81668779245.mp4', '63778ced2ba541668779245.mp4', NULL, NULL, NULL, NULL, NULL, NULL, '{\"sort\":\"1\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Ut provident sed te\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"2\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Est rerum eos est c\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"3\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Excepturi aut exerci\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"4\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Similique harum face\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"5\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Delectus debitis ha\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', 1, '2022-11-18 13:47:25', '2022-11-18 13:47:25'),
+(7, 1, 'Apply Singapore PR', 'a1-immigration.sg', '637b4ec7a3bb81669025479.jpg', 'Apply Singapore PR', 'Unlimited Warranty Till Approval', NULL, NULL, NULL, NULL, NULL, NULL, '637b4ec7a6bbd1669025479.png', '637b4ec7d42e51669025479.png', '637b4ec80fad61669025480.png', '{\"sort\":\"1\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Applicant\'s Full Name\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', '{\"sort\":\"2\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Residential Status\\/ Work Pass in Singapore\",\"option_1\":\"employment Pass \\/ PEP\",\"option_2\":\"SPass\",\"option_3\":\"LTVP \\/ LTVP+ \\/ DP (Spouse)\",\"option_4\":\"Student\"}', '{\"sort\":\"3\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Relationship to Singaporean\\/PR\",\"option_1\":\"No Relationship\",\"option_2\":\"Spouse\",\"option_3\":\"Child\",\"option_4\":\"Aged Parent\"}', '{\"sort\":\"4\",\"question_type\":\"MultipleChoice\",\"question_text\":\"Length of stay in Singapore\",\"option_1\":\"Over 2 Years\",\"option_2\":\"2 Years\",\"option_3\":\"1 Year\",\"option_4\":\"Less than 1 Year\"}', '{\"sort\":\"5\",\"question_type\":\"ShortAnswer\",\"question_text\":\"Inform my results to - Singapore Mobile Number\",\"option_1\":null,\"option_2\":null,\"option_3\":null,\"option_4\":null}', 1, '2022-11-21 10:11:20', '2022-11-21 10:11:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `campaign_forms_leads`
+--
+
+CREATE TABLE `campaign_forms_leads` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `advertiser_id` int(11) NOT NULL,
+  `campaign_id` int(11) NOT NULL,
+  `publisher_id` int(11) NOT NULL,
+  `form_id` int(11) NOT NULL,
+  `lgen_date` date DEFAULT NULL,
+  `lgen_source` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lgen_medium` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lgen_campaign` text COLLATE utf8mb4_unicode_ci,
+  `field_1` text COLLATE utf8mb4_unicode_ci,
+  `field_2` text COLLATE utf8mb4_unicode_ci,
+  `field_3` text COLLATE utf8mb4_unicode_ci,
+  `field_4` text COLLATE utf8mb4_unicode_ci,
+  `field_5` text COLLATE utf8mb4_unicode_ci,
+  `price` decimal(11,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `campaign_forms_leads`
+--
+
+INSERT INTO `campaign_forms_leads` (`id`, `advertiser_id`, `campaign_id`, `publisher_id`, `form_id`, `lgen_date`, `lgen_source`, `lgen_medium`, `lgen_campaign`, `field_1`, `field_2`, `field_3`, `field_4`, `field_5`, `price`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 1, NULL, NULL, NULL, NULL, 'Tejinder', 'Singh', '9023412334', 'email@gmail.com', 'message me ', NULL, '2022-11-09 04:34:21', '2022-11-09 04:34:21'),
+(2, 1, 1, 1, 1, NULL, NULL, NULL, NULL, 'Arun', 'a@a.com', '123456', 'test@test.com', 'service1', NULL, '2022-11-09 04:34:21', '2022-11-09 04:34:21'),
+(3, 1, 5, 0, 1, NULL, NULL, NULL, NULL, 'Teji', 'Test', 'cam 5', 'pr ', '2 row 500', '250.00', '2022-11-13 14:25:37', '2022-11-13 14:25:37'),
+(4, 1, 5, 0, 1, NULL, NULL, NULL, NULL, 'Teji 2', 'Test', 'cam 6', 'pr ', '2 row 500', '250.00', '2022-11-13 14:25:37', '2022-11-13 14:25:37'),
+(5, 1, 5, 0, 1, NULL, NULL, NULL, NULL, 'Teji', 'Test', 'cam 5', 'pr ', '2 row 500', '250.00', '2022-11-13 14:25:45', '2022-11-13 14:25:45'),
+(6, 1, 5, 0, 1, NULL, NULL, NULL, NULL, 'Teji 2', 'Test', 'cam 6', 'pr ', '2 row 500', '250.00', '2022-11-13 14:25:45', '2022-11-13 14:25:45'),
+(7, 1, 5, 0, 1, NULL, NULL, NULL, NULL, 'Teji 3', 'Test', 'cam 5', 'pr ', '3 row 250', '83.33', '2022-11-13 14:35:10', '2022-11-13 14:35:10'),
+(8, 1, 5, 0, 1, NULL, NULL, NULL, NULL, 'Teji 3', 'Test', 'cam 6', 'pr ', '3 row 250', '83.33', '2022-11-13 14:35:10', '2022-11-13 14:35:10'),
+(9, 1, 5, 0, 1, NULL, NULL, NULL, NULL, 'Teji 3', 'Test', 'cam 6', 'pr ', '3 row 250', '83.33', '2022-11-13 14:35:10', '2022-11-13 14:35:10'),
+(10, 1, 1, 0, 1, NULL, NULL, NULL, NULL, 'a1', 'b1', 'c1', 'd1', 'e1', '75.00', '2022-11-14 04:57:57', '2022-11-14 04:57:57'),
+(37, 1, 2, 1, 1, NULL, NULL, NULL, NULL, 's', 's', 's', 's', '1', NULL, '2022-11-16 13:37:50', '2022-11-16 13:37:50'),
+(36, 1, 2, 1, 1, NULL, NULL, NULL, NULL, '1', '2', '3', '4', '2', NULL, '2022-11-16 13:35:00', '2022-11-16 13:35:00'),
+(35, 1, 2, 1, 1, NULL, NULL, NULL, NULL, '1', '2', '3', '4', '2', NULL, '2022-11-16 13:34:45', '2022-11-16 13:34:45'),
+(34, 1, 2, 1, 1, NULL, NULL, NULL, NULL, '1', '2', '3', '4', '2', NULL, '2022-11-16 13:34:14', '2022-11-16 13:34:14'),
+(33, 1, 2, 1, 1, NULL, NULL, NULL, NULL, '1', '2', '3', '4', '1', NULL, '2022-11-16 13:06:55', '2022-11-16 13:06:55'),
+(30, 1, 2, 1, 1, NULL, NULL, NULL, NULL, '1', '2', '3', '4', '2', NULL, '2022-11-16 12:57:52', '2022-11-16 12:57:52'),
+(31, 1, 2, 1, 1, NULL, NULL, NULL, NULL, '1', '2', '3', '4', '2', NULL, '2022-11-16 13:00:40', '2022-11-16 13:00:40'),
+(32, 1, 2, 1, 1, NULL, NULL, NULL, NULL, '1', '2', '3', '4', '2', NULL, '2022-11-16 13:01:03', '2022-11-16 13:01:03'),
+(38, 1, 1, 0, 1, NULL, NULL, NULL, NULL, 'Teji', 'email_teji', '123456789', 'wwww', 'clear', '0.00', '2022-11-19 06:25:55', '2022-11-19 06:25:55'),
+(39, 1, 2, 1, 1, '2022-11-19', 'google', 'cpc', 'abc', 'hero', 'tejinder.email@gmail.com', '+919023412334', 'tesing', '2', NULL, '2022-11-19 10:50:28', '2022-11-19 10:50:28'),
+(40, 1, 2, 0, 1, '0000-00-00', 'google', 'check', 'texst', 'teji 1', 'test 2', '123456789', 'this l gen import', 'done', '0.00', '2022-11-19 12:20:15', '2022-11-19 12:20:15'),
+(41, 1, 2, 0, 1, '2022-11-19', 'google', 'check', 'texst', 'teji 1', 'test 2', '123456789', 'this l gen import', 'done', '0.00', '2022-11-19 12:20:15', '2022-11-19 12:20:15'),
+(42, 1, 2, 0, 1, '0000-00-00', 'google', 'check', 'texst', 'teji 1', 'test 2', '123456789', 'this l gen import', 'done', '0.00', '2022-11-19 12:29:50', '2022-11-19 12:29:50'),
+(43, 1, 2, 0, 1, '2022-11-19', 'google', 'check', 'texst', 'teji 1', 'test 2', '123456789', 'this l gen import', 'done', '0.00', '2022-11-19 12:29:50', '2022-11-19 12:29:50'),
+(44, 1, 6, 0, 7, '2022-11-20', 'a', 'a', 'a', 'Jayaraman karuppaiah', 'S Pass', 'No Relationship', 'Over 2 years', '86725700', '0.00', '2022-11-21 10:39:46', '2022-11-21 10:39:46'),
+(45, 1, 6, 0, 7, '2022-11-21', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '0.00', '2022-11-21 10:39:46', '2022-11-21 10:39:46');
 
 -- --------------------------------------------------------
 
@@ -226,256 +345,258 @@ INSERT INTO `campaigns` (`id`, `advertiser_id`, `name`, `start_date`, `end_date`
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `country_code` varchar(2) NOT NULL DEFAULT '',
-  `country_name` varchar(100) NOT NULL DEFAULT ''
+  `country_name` varchar(100) NOT NULL DEFAULT '',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `countries`
 --
 
-INSERT INTO `countries` (`id`, `country_code`, `country_name`) VALUES
-(1, 'US', 'United States'),
-(2, 'CA', 'Canada'),
-(3, 'AF', 'Afghanistan'),
-(4, 'AL', 'Albania'),
-(5, 'DZ', 'Algeria'),
-(6, 'DS', 'American Samoa'),
-(7, 'AD', 'Andorra'),
-(8, 'AO', 'Angola'),
-(9, 'AI', 'Anguilla'),
-(10, 'AQ', 'Antarctica'),
-(11, 'AG', 'Antigua and/or Barbuda'),
-(12, 'AR', 'Argentina'),
-(13, 'AM', 'Armenia'),
-(14, 'AW', 'Aruba'),
-(15, 'AU', 'Australia'),
-(16, 'AT', 'Austria'),
-(17, 'AZ', 'Azerbaijan'),
-(18, 'BS', 'Bahamas'),
-(19, 'BH', 'Bahrain'),
-(20, 'BD', 'Bangladesh'),
-(21, 'BB', 'Barbados'),
-(22, 'BY', 'Belarus'),
-(23, 'BE', 'Belgium'),
-(24, 'BZ', 'Belize'),
-(25, 'BJ', 'Benin'),
-(26, 'BM', 'Bermuda'),
-(27, 'BT', 'Bhutan'),
-(28, 'BO', 'Bolivia'),
-(29, 'BA', 'Bosnia and Herzegovina'),
-(30, 'BW', 'Botswana'),
-(31, 'BV', 'Bouvet Island'),
-(32, 'BR', 'Brazil'),
-(33, 'IO', 'British lndian Ocean Territory'),
-(34, 'BN', 'Brunei Darussalam'),
-(35, 'BG', 'Bulgaria'),
-(36, 'BF', 'Burkina Faso'),
-(37, 'BI', 'Burundi'),
-(38, 'KH', 'Cambodia'),
-(39, 'CM', 'Cameroon'),
-(40, 'CV', 'Cape Verde'),
-(41, 'KY', 'Cayman Islands'),
-(42, 'CF', 'Central African Republic'),
-(43, 'TD', 'Chad'),
-(44, 'CL', 'Chile'),
-(45, 'CN', 'China'),
-(46, 'CX', 'Christmas Island'),
-(47, 'CC', 'Cocos (Keeling) Islands'),
-(48, 'CO', 'Colombia'),
-(49, 'KM', 'Comoros'),
-(50, 'CG', 'Congo'),
-(51, 'CK', 'Cook Islands'),
-(52, 'CR', 'Costa Rica'),
-(53, 'HR', 'Croatia (Hrvatska)'),
-(54, 'CU', 'Cuba'),
-(55, 'CY', 'Cyprus'),
-(56, 'CZ', 'Czech Republic'),
-(57, 'DK', 'Denmark'),
-(58, 'DJ', 'Djibouti'),
-(59, 'DM', 'Dominica'),
-(60, 'DO', 'Dominican Republic'),
-(61, 'TP', 'East Timor'),
-(62, 'EC', 'Ecuador'),
-(63, 'EG', 'Egypt'),
-(64, 'SV', 'El Salvador'),
-(65, 'GQ', 'Equatorial Guinea'),
-(66, 'ER', 'Eritrea'),
-(67, 'EE', 'Estonia'),
-(68, 'ET', 'Ethiopia'),
-(69, 'FK', 'Falkland Islands (Malvinas)'),
-(70, 'FO', 'Faroe Islands'),
-(71, 'FJ', 'Fiji'),
-(72, 'FI', 'Finland'),
-(73, 'FR', 'France'),
-(74, 'FX', 'France, Metropolitan'),
-(75, 'GF', 'French Guiana'),
-(76, 'PF', 'French Polynesia'),
-(77, 'TF', 'French Southern Territories'),
-(78, 'GA', 'Gabon'),
-(79, 'GM', 'Gambia'),
-(80, 'GE', 'Georgia'),
-(81, 'DE', 'Germany'),
-(82, 'GH', 'Ghana'),
-(83, 'GI', 'Gibraltar'),
-(84, 'GR', 'Greece'),
-(85, 'GL', 'Greenland'),
-(86, 'GD', 'Grenada'),
-(87, 'GP', 'Guadeloupe'),
-(88, 'GU', 'Guam'),
-(89, 'GT', 'Guatemala'),
-(90, 'GN', 'Guinea'),
-(91, 'GW', 'Guinea-Bissau'),
-(92, 'GY', 'Guyana'),
-(93, 'HT', 'Haiti'),
-(94, 'HM', 'Heard and Mc Donald Islands'),
-(95, 'HN', 'Honduras'),
-(96, 'HK', 'Hong Kong'),
-(97, 'HU', 'Hungary'),
-(98, 'IS', 'Iceland'),
-(99, 'IN', 'India'),
-(100, 'ID', 'Indonesia'),
-(101, 'IR', 'Iran (Islamic Republic of)'),
-(102, 'IQ', 'Iraq'),
-(103, 'IE', 'Ireland'),
-(104, 'IL', 'Israel'),
-(105, 'IT', 'Italy'),
-(106, 'CI', 'Ivory Coast'),
-(107, 'JM', 'Jamaica'),
-(108, 'JP', 'Japan'),
-(109, 'JO', 'Jordan'),
-(110, 'KZ', 'Kazakhstan'),
-(111, 'KE', 'Kenya'),
-(112, 'KI', 'Kiribati'),
-(113, 'KP', 'Korea, Democratic People\'s Republic of'),
-(114, 'KR', 'Korea, Republic of'),
-(115, 'XK', 'Kosovo'),
-(116, 'KW', 'Kuwait'),
-(117, 'KG', 'Kyrgyzstan'),
-(118, 'LA', 'Lao People\'s Democratic Republic'),
-(119, 'LV', 'Latvia'),
-(120, 'LB', 'Lebanon'),
-(121, 'LS', 'Lesotho'),
-(122, 'LR', 'Liberia'),
-(123, 'LY', 'Libyan Arab Jamahiriya'),
-(124, 'LI', 'Liechtenstein'),
-(125, 'LT', 'Lithuania'),
-(126, 'LU', 'Luxembourg'),
-(127, 'MO', 'Macau'),
-(128, 'MK', 'Macedonia'),
-(129, 'MG', 'Madagascar'),
-(130, 'MW', 'Malawi'),
-(131, 'MY', 'Malaysia'),
-(132, 'MV', 'Maldives'),
-(133, 'ML', 'Mali'),
-(134, 'MT', 'Malta'),
-(135, 'MH', 'Marshall Islands'),
-(136, 'MQ', 'Martinique'),
-(137, 'MR', 'Mauritania'),
-(138, 'MU', 'Mauritius'),
-(139, 'TY', 'Mayotte'),
-(140, 'MX', 'Mexico'),
-(141, 'FM', 'Micronesia, Federated States of'),
-(142, 'MD', 'Moldova, Republic of'),
-(143, 'MC', 'Monaco'),
-(144, 'MN', 'Mongolia'),
-(145, 'ME', 'Montenegro'),
-(146, 'MS', 'Montserrat'),
-(147, 'MA', 'Morocco'),
-(148, 'MZ', 'Mozambique'),
-(149, 'MM', 'Myanmar'),
-(150, 'NA', 'Namibia'),
-(151, 'NR', 'Nauru'),
-(152, 'NP', 'Nepal'),
-(153, 'NL', 'Netherlands'),
-(154, 'AN', 'Netherlands Antilles'),
-(155, 'NC', 'New Caledonia'),
-(156, 'NZ', 'New Zealand'),
-(157, 'NI', 'Nicaragua'),
-(158, 'NE', 'Niger'),
-(159, 'NG', 'Nigeria'),
-(160, 'NU', 'Niue'),
-(161, 'NF', 'Norfork Island'),
-(162, 'MP', 'Northern Mariana Islands'),
-(163, 'NO', 'Norway'),
-(164, 'OM', 'Oman'),
-(165, 'PK', 'Pakistan'),
-(166, 'PW', 'Palau'),
-(167, 'PA', 'Panama'),
-(168, 'PG', 'Papua New Guinea'),
-(169, 'PY', 'Paraguay'),
-(170, 'PE', 'Peru'),
-(171, 'PH', 'Philippines'),
-(172, 'PN', 'Pitcairn'),
-(173, 'PL', 'Poland'),
-(174, 'PT', 'Portugal'),
-(175, 'PR', 'Puerto Rico'),
-(176, 'QA', 'Qatar'),
-(177, 'RE', 'Reunion'),
-(178, 'RO', 'Romania'),
-(179, 'RU', 'Russian Federation'),
-(180, 'RW', 'Rwanda'),
-(181, 'KN', 'Saint Kitts and Nevis'),
-(182, 'LC', 'Saint Lucia'),
-(183, 'VC', 'Saint Vincent and the Grenadines'),
-(184, 'WS', 'Samoa'),
-(185, 'SM', 'San Marino'),
-(186, 'ST', 'Sao Tome and Principe'),
-(187, 'SA', 'Saudi Arabia'),
-(188, 'SN', 'Senegal'),
-(189, 'RS', 'Serbia'),
-(190, 'SC', 'Seychelles'),
-(191, 'SL', 'Sierra Leone'),
-(192, 'SG', 'Singapore'),
-(193, 'SK', 'Slovakia'),
-(194, 'SI', 'Slovenia'),
-(195, 'SB', 'Solomon Islands'),
-(196, 'SO', 'Somalia'),
-(197, 'ZA', 'South Africa'),
-(198, 'GS', 'South Georgia South Sandwich Islands'),
-(199, 'ES', 'Spain'),
-(200, 'LK', 'Sri Lanka'),
-(201, 'SH', 'St. Helena'),
-(202, 'PM', 'St. Pierre and Miquelon'),
-(203, 'SD', 'Sudan'),
-(204, 'SR', 'Suriname'),
-(205, 'SJ', 'Svalbarn and Jan Mayen Islands'),
-(206, 'SZ', 'Swaziland'),
-(207, 'SE', 'Sweden'),
-(208, 'CH', 'Switzerland'),
-(209, 'SY', 'Syrian Arab Republic'),
-(210, 'TW', 'Taiwan'),
-(211, 'TJ', 'Tajikistan'),
-(212, 'TZ', 'Tanzania, United Republic of'),
-(213, 'TH', 'Thailand'),
-(214, 'TG', 'Togo'),
-(215, 'TK', 'Tokelau'),
-(216, 'TO', 'Tonga'),
-(217, 'TT', 'Trinidad and Tobago'),
-(218, 'TN', 'Tunisia'),
-(219, 'TR', 'Turkey'),
-(220, 'TM', 'Turkmenistan'),
-(221, 'TC', 'Turks and Caicos Islands'),
-(222, 'TV', 'Tuvalu'),
-(223, 'UG', 'Uganda'),
-(224, 'UA', 'Ukraine'),
-(225, 'AE', 'United Arab Emirates'),
-(226, 'GB', 'United Kingdom'),
-(227, 'UM', 'United States minor outlying islands'),
-(228, 'UY', 'Uruguay'),
-(229, 'UZ', 'Uzbekistan'),
-(230, 'VU', 'Vanuatu'),
-(231, 'VA', 'Vatican City State'),
-(232, 'VE', 'Venezuela'),
-(233, 'VN', 'Vietnam'),
-(234, 'VG', 'Virgin Islands (British)'),
-(235, 'VI', 'Virgin Islands (U.S.)'),
-(236, 'WF', 'Wallis and Futuna Islands'),
-(237, 'EH', 'Western Sahara'),
-(238, 'YE', 'Yemen'),
-(239, 'YU', 'Yugoslavia'),
-(240, 'ZR', 'Zaire'),
-(241, 'ZM', 'Zambia'),
-(242, 'ZW', 'Zimbabwe');
+INSERT INTO `countries` (`id`, `country_code`, `country_name`, `created_at`, `updated_at`) VALUES
+(1, 'US', 'United States', NULL, NULL),
+(2, 'CA', 'Canada', NULL, NULL),
+(3, 'AF', 'Afghanistan', NULL, NULL),
+(4, 'AL', 'Albania', NULL, NULL),
+(5, 'DZ', 'Algeria', NULL, NULL),
+(6, 'DS', 'American Samoa', NULL, NULL),
+(7, 'AD', 'Andorra', NULL, NULL),
+(8, 'AO', 'Angola', NULL, NULL),
+(9, 'AI', 'Anguilla', NULL, NULL),
+(10, 'AQ', 'Antarctica', NULL, NULL),
+(11, 'AG', 'Antigua and Barbuda', NULL, NULL),
+(12, 'AR', 'Argentina', NULL, NULL),
+(13, 'AM', 'Armenia', NULL, NULL),
+(14, 'AW', 'Aruba', NULL, NULL),
+(15, 'AU', 'Australia', NULL, NULL),
+(16, 'AT', 'Austria', NULL, NULL),
+(17, 'AZ', 'Azerbaijan', NULL, NULL),
+(18, 'BS', 'Bahamas', NULL, NULL),
+(19, 'BH', 'Bahrain', NULL, NULL),
+(20, 'BD', 'Bangladesh', NULL, NULL),
+(21, 'BB', 'Barbados', NULL, NULL),
+(22, 'BY', 'Belarus', NULL, NULL),
+(23, 'BE', 'Belgium', NULL, NULL),
+(24, 'BZ', 'Belize', NULL, NULL),
+(25, 'BJ', 'Benin', NULL, NULL),
+(26, 'BM', 'Bermuda', NULL, NULL),
+(27, 'BT', 'Bhutan', NULL, NULL),
+(28, 'BO', 'Bolivia', NULL, NULL),
+(29, 'BA', 'Bosnia and Herzegovina', NULL, NULL),
+(30, 'BW', 'Botswana', NULL, NULL),
+(31, 'BV', 'Bouvet Island', NULL, NULL),
+(32, 'BR', 'Brazil', NULL, NULL),
+(33, 'IO', 'British lndian Ocean Territory', NULL, NULL),
+(34, 'BN', 'Brunei Darussalam', NULL, NULL),
+(35, 'BG', 'Bulgaria', NULL, NULL),
+(36, 'BF', 'Burkina Faso', NULL, NULL),
+(37, 'BI', 'Burundi', NULL, NULL),
+(38, 'KH', 'Cambodia', NULL, NULL),
+(39, 'CM', 'Cameroon', NULL, NULL),
+(40, 'CV', 'Cape Verde', NULL, NULL),
+(41, 'KY', 'Cayman Islands', NULL, NULL),
+(42, 'CF', 'Central African Republic', NULL, NULL),
+(43, 'TD', 'Chad', NULL, NULL),
+(44, 'CL', 'Chile', NULL, NULL),
+(45, 'CN', 'China', NULL, NULL),
+(46, 'CX', 'Christmas Island', NULL, NULL),
+(47, 'CC', 'Cocos (Keeling) Islands', NULL, NULL),
+(48, 'CO', 'Colombia', NULL, NULL),
+(49, 'KM', 'Comoros', NULL, NULL),
+(50, 'CG', 'Congo', NULL, NULL),
+(51, 'CK', 'Cook Islands', NULL, NULL),
+(52, 'CR', 'Costa Rica', NULL, NULL),
+(53, 'HR', 'Croatia (Hrvatska)', NULL, NULL),
+(54, 'CU', 'Cuba', NULL, NULL),
+(55, 'CY', 'Cyprus', NULL, NULL),
+(56, 'CZ', 'Czech Republic', NULL, NULL),
+(57, 'DK', 'Denmark', NULL, NULL),
+(58, 'DJ', 'Djibouti', NULL, NULL),
+(59, 'DM', 'Dominica', NULL, NULL),
+(60, 'DO', 'Dominican Republic', NULL, NULL),
+(61, 'TP', 'East Timor', NULL, NULL),
+(62, 'EC', 'Ecuador', NULL, NULL),
+(63, 'EG', 'Egypt', NULL, NULL),
+(64, 'SV', 'El Salvador', NULL, NULL),
+(65, 'GQ', 'Equatorial Guinea', NULL, NULL),
+(66, 'ER', 'Eritrea', NULL, NULL),
+(67, 'EE', 'Estonia', NULL, NULL),
+(68, 'ET', 'Ethiopia', NULL, NULL),
+(69, 'FK', 'Falkland Islands (Malvinas)', NULL, NULL),
+(70, 'FO', 'Faroe Islands', NULL, NULL),
+(71, 'FJ', 'Fiji', NULL, NULL),
+(72, 'FI', 'Finland', NULL, NULL),
+(73, 'FR', 'France', NULL, NULL),
+(74, 'FX', 'France, Metropolitan', NULL, NULL),
+(75, 'GF', 'French Guiana', NULL, NULL),
+(76, 'PF', 'French Polynesia', NULL, NULL),
+(77, 'TF', 'French Southern Territories', NULL, NULL),
+(78, 'GA', 'Gabon', NULL, NULL),
+(79, 'GM', 'Gambia', NULL, NULL),
+(80, 'GE', 'Georgia', NULL, NULL),
+(81, 'DE', 'Germany', NULL, NULL),
+(82, 'GH', 'Ghana', NULL, NULL),
+(83, 'GI', 'Gibraltar', NULL, NULL),
+(84, 'GR', 'Greece', NULL, NULL),
+(85, 'GL', 'Greenland', NULL, NULL),
+(86, 'GD', 'Grenada', NULL, NULL),
+(87, 'GP', 'Guadeloupe', NULL, NULL),
+(88, 'GU', 'Guam', NULL, NULL),
+(89, 'GT', 'Guatemala', NULL, NULL),
+(90, 'GN', 'Guinea', NULL, NULL),
+(91, 'GW', 'Guinea-Bissau', NULL, NULL),
+(92, 'GY', 'Guyana', NULL, NULL),
+(93, 'HT', 'Haiti', NULL, NULL),
+(94, 'HM', 'Heard and Mc Donald Islands', NULL, NULL),
+(95, 'HN', 'Honduras', NULL, NULL),
+(96, 'HK', 'Hong Kong', NULL, NULL),
+(97, 'HU', 'Hungary', NULL, NULL),
+(98, 'IS', 'Iceland', NULL, NULL),
+(99, 'IN', 'India', NULL, NULL),
+(100, 'ID', 'Indonesia', NULL, NULL),
+(101, 'IR', 'Iran (Islamic Republic of)', NULL, NULL),
+(102, 'IQ', 'Iraq', NULL, NULL),
+(103, 'IE', 'Ireland', NULL, NULL),
+(104, 'IL', 'Israel', NULL, NULL),
+(105, 'IT', 'Italy', NULL, NULL),
+(106, 'CI', 'Ivory Coast', NULL, NULL),
+(107, 'JM', 'Jamaica', NULL, NULL),
+(108, 'JP', 'Japan', NULL, NULL),
+(109, 'JO', 'Jordan', NULL, NULL),
+(110, 'KZ', 'Kazakhstan', NULL, NULL),
+(111, 'KE', 'Kenya', NULL, NULL),
+(112, 'KI', 'Kiribati', NULL, NULL),
+(113, 'KP', 'Korea, Democratic People\'s Republic of', NULL, NULL),
+(114, 'KR', 'Korea, Republic of', NULL, NULL),
+(115, 'XK', 'Kosovo', NULL, NULL),
+(116, 'KW', 'Kuwait', NULL, NULL),
+(117, 'KG', 'Kyrgyzstan', NULL, NULL),
+(118, 'LA', 'Lao People\'s Democratic Republic', NULL, NULL),
+(119, 'LV', 'Latvia', NULL, NULL),
+(120, 'LB', 'Lebanon', NULL, NULL),
+(121, 'LS', 'Lesotho', NULL, NULL),
+(122, 'LR', 'Liberia', NULL, NULL),
+(123, 'LY', 'Libyan Arab Jamahiriya', NULL, NULL),
+(124, 'LI', 'Liechtenstein', NULL, NULL),
+(125, 'LT', 'Lithuania', NULL, NULL),
+(126, 'LU', 'Luxembourg', NULL, NULL),
+(127, 'MO', 'Macau', NULL, NULL),
+(128, 'MK', 'Macedonia', NULL, NULL),
+(129, 'MG', 'Madagascar', NULL, NULL),
+(130, 'MW', 'Malawi', NULL, NULL),
+(131, 'MY', 'Malaysia', NULL, NULL),
+(132, 'MV', 'Maldives', NULL, NULL),
+(133, 'ML', 'Mali', NULL, NULL),
+(134, 'MT', 'Malta', NULL, NULL),
+(135, 'MH', 'Marshall Islands', NULL, NULL),
+(136, 'MQ', 'Martinique', NULL, NULL),
+(137, 'MR', 'Mauritania', NULL, NULL),
+(138, 'MU', 'Mauritius', NULL, NULL),
+(139, 'TY', 'Mayotte', NULL, NULL),
+(140, 'MX', 'Mexico', NULL, NULL),
+(141, 'FM', 'Micronesia, Federated States of', NULL, NULL),
+(142, 'MD', 'Moldova, Republic of', NULL, NULL),
+(143, 'MC', 'Monaco', NULL, NULL),
+(144, 'MN', 'Mongolia', NULL, NULL),
+(145, 'ME', 'Montenegro', NULL, NULL),
+(146, 'MS', 'Montserrat', NULL, NULL),
+(147, 'MA', 'Morocco', NULL, NULL),
+(148, 'MZ', 'Mozambique', NULL, NULL),
+(149, 'MM', 'Myanmar', NULL, NULL),
+(150, 'NA', 'Namibia', NULL, NULL),
+(151, 'NR', 'Nauru', NULL, NULL),
+(152, 'NP', 'Nepal', NULL, NULL),
+(153, 'NL', 'Netherlands', NULL, NULL),
+(154, 'AN', 'Netherlands Antilles', NULL, NULL),
+(155, 'NC', 'New Caledonia', NULL, NULL),
+(156, 'NZ', 'New Zealand', NULL, NULL),
+(157, 'NI', 'Nicaragua', NULL, NULL),
+(158, 'NE', 'Niger', NULL, NULL),
+(159, 'NG', 'Nigeria', NULL, NULL),
+(160, 'NU', 'Niue', NULL, NULL),
+(161, 'NF', 'Norfork Island', NULL, NULL),
+(162, 'MP', 'Northern Mariana Islands', NULL, NULL),
+(163, 'NO', 'Norway', NULL, NULL),
+(164, 'OM', 'Oman', NULL, NULL),
+(165, 'PK', 'Pakistan', NULL, NULL),
+(166, 'PW', 'Palau', NULL, NULL),
+(167, 'PA', 'Panama', NULL, NULL),
+(168, 'PG', 'Papua New Guinea', NULL, NULL),
+(169, 'PY', 'Paraguay', NULL, NULL),
+(170, 'PE', 'Peru', NULL, NULL),
+(171, 'PH', 'Philippines', NULL, NULL),
+(172, 'PN', 'Pitcairn', NULL, NULL),
+(173, 'PL', 'Poland', NULL, NULL),
+(174, 'PT', 'Portugal', NULL, NULL),
+(175, 'PR', 'Puerto Rico', NULL, NULL),
+(176, 'QA', 'Qatar', NULL, NULL),
+(177, 'RE', 'Reunion', NULL, NULL),
+(178, 'RO', 'Romania', NULL, NULL),
+(179, 'RU', 'Russian Federation', NULL, NULL),
+(180, 'RW', 'Rwanda', NULL, NULL),
+(181, 'KN', 'Saint Kitts and Nevis', NULL, NULL),
+(182, 'LC', 'Saint Lucia', NULL, NULL),
+(183, 'VC', 'Saint Vincent and the Grenadines', NULL, NULL),
+(184, 'WS', 'Samoa', NULL, NULL),
+(185, 'SM', 'San Marino', NULL, NULL),
+(186, 'ST', 'Sao Tome and Principe', NULL, NULL),
+(187, 'SA', 'Saudi Arabia', NULL, NULL),
+(188, 'SN', 'Senegal', NULL, NULL),
+(189, 'RS', 'Serbia', NULL, NULL),
+(190, 'SC', 'Seychelles', NULL, NULL),
+(191, 'SL', 'Sierra Leone', NULL, NULL),
+(192, 'SG', 'Singapore', NULL, NULL),
+(193, 'SK', 'Slovakia', NULL, NULL),
+(194, 'SI', 'Slovenia', NULL, NULL),
+(195, 'SB', 'Solomon Islands', NULL, NULL),
+(196, 'SO', 'Somalia', NULL, NULL),
+(197, 'ZA', 'South Africa', NULL, NULL),
+(198, 'GS', 'South Georgia South Sandwich Islands', NULL, NULL),
+(199, 'ES', 'Spain', NULL, NULL),
+(200, 'LK', 'Sri Lanka', NULL, NULL),
+(201, 'SH', 'St. Helena', NULL, NULL),
+(202, 'PM', 'St. Pierre and Miquelon', NULL, NULL),
+(203, 'SD', 'Sudan', NULL, NULL),
+(204, 'SR', 'Suriname', NULL, NULL),
+(205, 'SJ', 'Svalbarn and Jan Mayen Islands', NULL, NULL),
+(206, 'SZ', 'Swaziland', NULL, NULL),
+(207, 'SE', 'Sweden', NULL, NULL),
+(208, 'CH', 'Switzerland', NULL, NULL),
+(209, 'SY', 'Syrian Arab Republic', NULL, NULL),
+(210, 'TW', 'Taiwan', NULL, NULL),
+(211, 'TJ', 'Tajikistan', NULL, NULL),
+(212, 'TZ', 'Tanzania, United Republic of', NULL, NULL),
+(213, 'TH', 'Thailand', NULL, NULL),
+(214, 'TG', 'Togo', NULL, NULL),
+(215, 'TK', 'Tokelau', NULL, NULL),
+(216, 'TO', 'Tonga', NULL, NULL),
+(217, 'TT', 'Trinidad and Tobago', NULL, NULL),
+(218, 'TN', 'Tunisia', NULL, NULL),
+(219, 'TR', 'Turkey', NULL, NULL),
+(220, 'TM', 'Turkmenistan', NULL, NULL),
+(221, 'TC', 'Turks and Caicos Islands', NULL, NULL),
+(222, 'TV', 'Tuvalu', NULL, NULL),
+(223, 'UG', 'Uganda', NULL, NULL),
+(224, 'UA', 'Ukraine', NULL, NULL),
+(225, 'AE', 'United Arab Emirates', NULL, NULL),
+(226, 'GB', 'United Kingdom', NULL, NULL),
+(227, 'UM', 'United States minor outlying islands', NULL, NULL),
+(228, 'UY', 'Uruguay', NULL, NULL),
+(229, 'UZ', 'Uzbekistan', NULL, NULL),
+(230, 'VU', 'Vanuatu', NULL, NULL),
+(231, 'VA', 'Vatican City State', NULL, NULL),
+(232, 'VE', 'Venezuela', NULL, NULL),
+(233, 'VN', 'Vietnam', NULL, NULL),
+(234, 'VG', 'Virgin Islands (British)', NULL, NULL),
+(235, 'VI', 'Virgin Islands (U.S.)', NULL, NULL),
+(236, 'WF', 'Wallis and Futuna Islands', NULL, NULL),
+(237, 'EH', 'Western Sahara', NULL, NULL),
+(238, 'YE', 'Yemen', NULL, NULL),
+(239, 'YU', 'Yugoslavia', NULL, NULL),
+(240, 'ZR', 'Zaire', NULL, NULL),
+(241, 'ZM', 'Zambia', NULL, NULL),
+(242, 'ZW', 'Zimbabwe', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -552,10 +673,34 @@ CREATE TABLE `domain_verifcations` (
   `verify_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `keywords` text COLLATE utf8mb4_unicode_ci,
   `status` int(11) NOT NULL COMMENT '0=>non verified, 1=> verified, 2=>pending',
+  `category` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `domain_verifcations`
+--
+
+INSERT INTO `domain_verifcations` (`id`, `tracker`, `publisher_id`, `domain_name`, `verify_code`, `keywords`, `status`, `category`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'MCB9UYY935', 1, 'digital.com', '8TYQU71TBOWNCJEMCRM4GRRJV9OA5F9D', '[\"passport\",\"visa\"]', 0, NULL, '2022-11-18 09:53:31', '2022-11-16 05:19:20', '2022-11-18 09:53:31'),
+(2, 'GX7UXHEG10', 1, 'test.com', 'CEUEOE2TADAF85YNC2SGQE36QUCM2UOK', '[\"passport\",\"visa\"]', 0, NULL, '2022-11-18 09:53:33', '2022-11-16 05:20:34', '2022-11-18 09:53:33'),
+(3, 'BKA2J43349', 1, 'aa', 'PMM4WE4OVNM3W77TQVBAXSOYDNJJ3G81', '[\"passport\"]', 0, NULL, '2022-11-18 09:53:36', '2022-11-16 05:48:11', '2022-11-18 09:53:36'),
+(4, 'CQMDX24M100', 1, 'test1.com', 'OGGNRFTTN4PAOYCEU9UH7E4A91MPE6Q6', '[\"passport\"]', 0, 'test 1,test 2,test 3,test 4', NULL, '2022-11-16 11:58:55', '2022-11-16 11:58:55'),
+(5, 'BNWY78NV71', 1, 'test3.com', 'T9MVQY67HTGEHD3AVXC1HSKTED2EKODK', '[\"visa\"]', 0, 'test 1,test 2,test 3,test 4', NULL, '2022-11-16 12:01:02', '2022-11-16 12:01:02'),
+(6, '8E4QKHA923', 1, 'test4.com', 'MP3RV31XJQWYETMA5ZH97BHNRWDU9EN3', '\"test1 , test2 , test3 , test4\"', 0, 'test 1 , test 2 , test 3', NULL, '2022-11-16 12:01:17', '2022-11-17 12:28:03'),
+(7, 'V3QKWAU111', 1, 'test5.com', '768P8SU7CG9HX56W4DGX3T21U3SV5HH1', '[\"passport\",\"visa\"]', 0, 'test 1,test 2', NULL, '2022-11-16 12:01:37', '2022-11-16 12:01:37'),
+(8, 'XD7F8B7N6', 1, 'domain.com', 'M1X1MK1HUP94EU35JCRAZAE6P2DUFOXU', '[\"visa\"]', 0, 'test 2,test 3,test 4', NULL, '2022-11-16 12:02:10', '2022-11-16 12:02:10'),
+(9, 'FNQ65XAR85', 1, 'sgpr.com', '9HMQO6VCA2VG5A4ACM9W44PC7413QOOY', '[\"passport\",\"visa\"]', 0, 'test 1', NULL, '2022-11-16 13:48:31', '2022-11-16 13:48:31'),
+(10, 'Q4M2DMUF61', 1, 'sgpr.com', 'ZOCU7VM65SQHEMMQZE2FJY93K3ZMX23D', '[\"passport\",\"visa\"]', 0, 'test 2', NULL, '2022-11-16 13:52:06', '2022-11-16 13:52:06'),
+(11, 'HBAOUDRA22', 1, 'sgpr.sg', 'N6M8HVFAMNZEBRDDDGE8GJTGAFFNTTPU', '[\"passport\"]', 0, 'test 5', NULL, '2022-11-16 13:59:49', '2022-11-16 13:59:49'),
+(12, 'AQKD64QX7', 1, 'publisher.com', 'JMFP4YTG2VNPK7C4Z7FRS7JPP1AKS615', '\"test, publisher\"', 0, 'test 1', NULL, '2022-11-17 12:29:24', '2022-11-18 09:53:31'),
+(13, 'RBPTA3Z888', 1, 'keywords.com', '19RQWRQJZC9H392WJ3CVJAE321461Z5S', '\"test1\"', 0, 'test 1, test 2, test 4', '2022-11-18 09:00:12', '2022-11-18 07:58:20', '2022-11-18 09:00:12'),
+(14, '2WFXBUHO20', 1, 'hello.com', 'BSHD7K3Y9VRGA28PB1BA9RY9XHH8ZA7T', '\"hello, TEST-1\"', 0, 'test 1, test 2', '2022-11-18 07:59:59', '2022-11-18 07:59:47', '2022-11-18 07:59:59'),
+(15, 'O7Y8QDPG35', 1, 'google.com', 'ZMO1J69AXXEASAJA9SNZGX249JVQE9P7', '\"test1, test2\"', 0, 'test 1, test 2', NULL, '2022-11-18 08:57:09', '2022-11-18 09:50:36'),
+(16, 'DEFOUK4694', 1, 'google.com', 'VSN8XSHV6U89J3DWQ16TGU29KUGBPNS7', '\"test1\"', 0, 'test 1', '2022-11-18 09:50:43', '2022-11-18 09:50:11', '2022-11-18 09:50:43'),
+(17, '7TMAFSHQ41', 1, 'leadspaid.com', '2MT1O6DYJ7YYFA1EO5X4EPXWUU16JZJB', '\"test, test1\"', 0, 'test 1', NULL, '2022-11-18 09:51:48', '2022-11-18 11:23:43');
 
 -- --------------------------------------------------------
 
@@ -646,7 +791,7 @@ CREATE TABLE `extensions` (
 INSERT INTO `extensions` (`id`, `act`, `name`, `description`, `image`, `script`, `shortcode`, `support`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'tawk-chat', 'Tawk.to', 'Key location is shown bellow', 'tawky_big.png', '<script>\r\n                        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();\r\n                        (function(){\r\n                        var s1=document.createElement(\"script\"),s0=document.getElementsByTagName(\"script\")[0];\r\n                        s1.async=true;\r\n                        s1.src=\"https://embed.tawk.to/{{app_key}}\";\r\n                        s1.charset=\"UTF-8\";\r\n                        s1.setAttribute(\"crossorigin\",\"*\");\r\n                        s0.parentNode.insertBefore(s1,s0);\r\n                        })();\r\n                    </script>', '{\"app_key\":{\"title\":\"App Key\",\"value\":\"58dd135ef7bbaa72\"}}', 'twak.png', 0, NULL, '2019-10-18 23:16:05', '2021-05-24 05:54:43'),
 (2, 'google-recaptcha2', 'Google Recaptcha 2', 'Key location is shown bellow', 'recaptcha3.png', '\r\n<script src=\"https://www.google.com/recaptcha/api.js\"></script>\r\n<div class=\"g-recaptcha\" data-sitekey=\"{{sitekey}}\" data-callback=\"verifyCaptcha\"></div>\r\n<div id=\"g-recaptcha-error\"></div>', '{\"sitekey\":{\"title\":\"Site Key\",\"value\":\"6Lfpm3cUAAAAAGIjbEJKhJNKS4X1Gns9ANjh8MfH\"}}', 'recaptcha.png', 0, NULL, '2019-10-18 23:16:05', '2021-03-08 23:45:27'),
-(3, 'custom-captcha', 'Custom Captcha', 'Just Put Any Random String', 'customcaptcha.png', NULL, '{\"random_key\":{\"title\":\"Random String\",\"value\":\"SecureString\"}}', 'na', 1, NULL, '2019-10-18 23:16:05', '2021-03-08 23:42:48'),
+(3, 'custom-captcha', 'Custom Captcha', 'Just Put Any Random String', 'customcaptcha.png', NULL, '{\"random_key\":{\"title\":\"Random String\",\"value\":\"SecureString\"}}', 'na', 0, NULL, '2019-10-18 23:16:05', '2022-11-09 02:05:23'),
 (4, 'google-analytics', 'Google Analytics', 'Key location is shown bellow', 'google-analytics.png', '<script async src=\"https://www.googletagmanager.com/gtag/js?id={{app_key}}\"></script>\r\n                <script>\r\n                  window.dataLayer = window.dataLayer || [];\r\n                  function gtag(){dataLayer.push(arguments);}\r\n                  gtag(\"js\", new Date());\r\n                \r\n                  gtag(\"config\", \"{{app_key}}\");\r\n                </script>', '{\"app_key\":{\"title\":\"App Key\",\"value\":\"Demo\"}}', 'ganalytics.png', 0, NULL, NULL, '2021-04-05 01:26:00'),
 (5, 'fb-comment', 'Facebook Comment ', 'Key location is shown bellow', 'Facebook.png', '<div id=\"fb-root\"></div><script async defer crossorigin=\"anonymous\" src=\"https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v4.0&appId={{app_key}}&autoLogAppEvents=1\"></script>', '{\"app_key\":{\"title\":\"App Key\",\"value\":\"713047905830100\"}}', 'fb_com.PNG', 1, NULL, NULL, '2021-03-08 00:50:50');
 
@@ -898,6 +1043,14 @@ CREATE TABLE `keywords` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `keywords`
+--
+
+INSERT INTO `keywords` (`id`, `keywords`, `created_at`, `updated_at`) VALUES
+(1, 'passport', '2022-11-16 10:33:33', '2022-11-16 10:33:33'),
+(2, 'visa', '2022-11-16 10:33:33', '2022-11-16 10:33:33');
+
 -- --------------------------------------------------------
 
 --
@@ -923,6 +1076,24 @@ INSERT INTO `languages` (`id`, `name`, `code`, `icon`, `text_align`, `is_default
 (1, 'English', 'en', '5f15968db08911595250317.png', 0, 1, '2020-07-06 03:47:55', '2020-07-21 04:05:19'),
 (5, 'Spanish', 'spanish', NULL, 0, 0, '2021-04-06 07:01:40', '2021-04-06 07:01:40'),
 (6, 'Hindi', 'hindi', NULL, 0, 0, '2021-04-06 07:21:08', '2021-04-06 07:21:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lgen_spend`
+--
+
+CREATE TABLE `lgen_spend` (
+  `id` int(11) NOT NULL,
+  `campaign_id` int(11) NOT NULL,
+  `lgen_date` date NOT NULL,
+  `lgen_source` varchar(255) DEFAULT NULL,
+  `lgen_medium` varchar(25) DEFAULT NULL,
+  `lgen_campaign` text,
+  `cost` decimal(11,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -1018,7 +1189,10 @@ CREATE TABLE `publishers` (
   `image` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_name` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postal_code` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `country_code` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `earnings` decimal(18,8) DEFAULT '0.00000000',
   `status` int(11) DEFAULT NULL COMMENT '1 = active, 2 = banned, 0 = deactive,',
@@ -1031,9 +1205,19 @@ CREATE TABLE `publishers` (
   `tsc` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ver_code` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `ver_code_send_at` datetime DEFAULT NULL,
+  `role` int(11) NOT NULL DEFAULT '0' COMMENT '0:normal, 1: admin',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `publishers`
+--
+
+INSERT INTO `publishers` (`id`, `name`, `email`, `username`, `image`, `country`, `city`, `company_name`, `postal_code`, `phone`, `country_code`, `password`, `earnings`, `status`, `total_imp`, `total_click`, `ev`, `sv`, `ts`, `tv`, `tsc`, `ver_code`, `ver_code_send_at`, `role`, `created_at`, `updated_at`) VALUES
+(1, 'Publisher K', 'publisher1@gmail.com', 'publisher', NULL, 'Bangladesh', 'Acca', NULL, '', '8805464564564564', '', '$2y$10$CBEKYbbiooWrFrJuU3kIn.sGnBb3PqR5kfYztG36OUWT.I.VrRZpC', '0.00000000', 1, NULL, NULL, 1, 1, 0, 1, NULL, NULL, NULL, 0, '2022-11-15 14:12:32', '2022-11-15 14:12:32'),
+(2, 'MD BAHA UDDIN', 'nicesoftwarebd@gmail.com', 'publisher21', NULL, 'Bangladesh', 'Moulvibazar', 'ytwedsf', '788719', '88001300676724', '880', '$2y$10$XpVrEndENSVql9o/WBqCau0xWcIJy0zzBjTpbekLbtVEakK4H5q.G', '0.00000000', 1, NULL, NULL, 1, 1, 0, 1, NULL, NULL, NULL, 0, '2022-11-18 17:13:51', '2022-11-18 17:13:51'),
+(3, 'Publisher Admin One', 'publisher.admin@premiumleads.co', 'publisheradmin1', NULL, 'Singapore', 'Singapore', 'Premium Leads Pte. Ltd.', '332038', '6584578616', '65', '$2y$10$DiXlvY.5KIKO8mDdSZAxJOlydbsJ1Lc3Nw5Mvj5PKoFLast.EEYVW', '0.00000000', 1, NULL, NULL, 1, 1, 0, 1, NULL, NULL, NULL, 1, '2022-11-20 08:01:42', '2022-11-20 08:01:42');
 
 -- --------------------------------------------------------
 
@@ -1097,6 +1281,15 @@ CREATE TABLE `support_messages` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `support_messages`
+--
+
+INSERT INTO `support_messages` (`id`, `supportticket_id`, `admin_id`, `message`, `created_at`, `updated_at`) VALUES
+(1, 1, 0, 'Неllo аll, guуѕ! Ι knоw, mу mеѕsаge mау bе tоo speсific,\r\nВut my sister fоund niсе man herе and they marriеd, sо hоw аbоut me?ǃ :)\r\nI am 23 yearѕ old, Νаtаliа, frоm Rоmаnіа, I knоw Еnglіsh and German languagеѕ аlsо\r\nΑnd... Ι havе sрecifіс diseaѕe, nаmеd nуmрhomanіa. Ԝhо know whаt is thіѕ, саn understand me (bеttеr tо ѕaу it immеdiatelу)\r\nΑh уеѕ, I сook verу tаstу! and Ι love nоt onlу cооk ;))\r\nIm reаl gіrl, not prоstіtutе, and lookіng for serіouѕ аnd hot relаtіоnѕhіp...\r\nАnywаy, you саn fіnd my рrоfіlе hеrе: http://inpirep.tk/page/77285/', '2022-11-18 06:11:22', '2022-11-18 06:11:22'),
+(2, 2, 0, 'Hеllо!  leadspaid.com \r\n \r\nDid yоu knоw thаt it is pоssiblе tо sеnd prоpоsаl pеrfесtly lеgаl? \r\nWе submit а nеw mеthоd оf sеnding businеss prоpоsаl thrоugh соntасt fоrms. Suсh fоrms аrе lосаtеd оn mаny sitеs. \r\nWhеn suсh аppеаl аrе sеnt, nо pеrsоnаl dаtа is usеd, аnd mеssаgеs аrе sеnt tо fоrms spесifiсаlly dеsignеd tо rесеivе mеssаgеs аnd аppеаls. \r\nаlsо, mеssаgеs sеnt thrоugh соntасt Fоrms dо nоt gеt intо spаm bесаusе suсh mеssаgеs аrе соnsidеrеd impоrtаnt. \r\nWе оffеr yоu tо tеst оur sеrviсе fоr frее. Wе will sеnd up tо 50,000 mеssаgеs fоr yоu. \r\nThе соst оf sеnding оnе milliоn mеssаgеs is 49 USD. \r\n \r\nThis lеttеr is сrеаtеd аutоmаtiсаlly. Plеаsе usе thе соntасt dеtаils bеlоw tо соntасt us. \r\n \r\nContact us. \r\nTelegram - @FeedbackMessages \r\nSkype  live:contactform_18 \r\nWhatsApp - +375259112693 \r\nWe only use chat. \r\nno.reply.chava@gmail.com', '2022-11-18 14:55:50', '2022-11-18 14:55:50'),
+(3, 3, 0, 'Hi there \r\n \r\nJust checked your leadspaid.com in ahrefs and saw that you could use an authority boost. \r\n \r\nWith our service you will get a guaranteed ahrefs score within just 3 months time. This will increase the organic visibility and strengthen your website authority, thus getting it stronger against G updates as well. \r\n \r\nFor more information, please check our offers \r\nhttps://www.monkeydigital.co/domain-authority-plan/ \r\n \r\nThanks and regards \r\nMike Baker\r\n \r\n \r\n \r\nPS: For a limited time, we`ll add ahrefs UR50+ for free.', '2022-11-21 21:59:34', '2022-11-21 21:59:34');
+
 -- --------------------------------------------------------
 
 --
@@ -1116,6 +1309,15 @@ CREATE TABLE `support_tickets` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `support_tickets`
+--
+
+INSERT INTO `support_tickets` (`id`, `user_id`, `publisher_id`, `name`, `email`, `ticket`, `subject`, `status`, `last_reply`, `created_at`, `updated_at`) VALUES
+(1, NULL, NULL, 'NataliaNivy', 'nataliaNivy@hotmail.com', '77899255', 'Ι want to meеt sеrious mаn... (:', 0, '2022-11-18 06:11:22', '2022-11-18 06:11:22', '2022-11-18 06:11:22'),
+(2, NULL, NULL, 'Williamchava', 'no.reply.amart@gmail.com', '56078349', 'Do you want cheap and innovative advertising for little money?', 0, '2022-11-18 14:55:50', '2022-11-18 14:55:50', '2022-11-18 14:55:50'),
+(3, NULL, NULL, 'Mike Baker', 'no-replynagplele@gmail.com', '01438020', 'Increase the DR of your leadspaid.com in ahrefs', 0, '2022-11-21 21:59:34', '2022-11-21 21:59:34', '2022-11-21 21:59:34');
 
 -- --------------------------------------------------------
 
@@ -1163,7 +1365,96 @@ CREATE TABLE `transactions_advertiser` (
 
 INSERT INTO `transactions_advertiser` (`id`, `user_id`, `trx_date`, `init_blance`, `total_budget`, `spent_previous_day`, `deduct`, `final_wallet`, `created_at`, `updated_at`) VALUES
 (28, 1, '2022-11-06 09:38:33', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-06 03:38:35', '2022-11-06 03:38:35'),
-(29, 2, '2022-11-06 09:38:35', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-06 03:38:35', '2022-11-06 03:38:35');
+(29, 2, '2022-11-06 09:38:35', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-06 03:38:35', '2022-11-06 03:38:35'),
+(52, 1, '2022-11-07 06:01:01', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-07 14:01:04', '2022-11-07 14:01:04'),
+(53, 2, '2022-11-07 06:01:04', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-07 14:01:04', '2022-11-07 14:01:04'),
+(54, 1, '2022-11-08 06:01:01', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-08 00:01:04', '2022-11-08 00:01:04'),
+(55, 2, '2022-11-08 06:01:04', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-08 00:01:04', '2022-11-08 00:01:04'),
+(56, 1, '2022-11-08 06:01:02', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-08 12:01:04', '2022-11-08 12:01:04'),
+(57, 2, '2022-11-08 06:01:04', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-08 12:01:04', '2022-11-08 12:01:04'),
+(58, 1, '2022-11-09 06:01:02', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-09 00:01:04', '2022-11-09 00:01:04'),
+(59, 2, '2022-11-09 06:01:04', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-09 00:01:05', '2022-11-09 00:01:05'),
+(60, 1, '2022-11-09 06:24:23', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-09 00:24:25', '2022-11-09 00:24:25'),
+(61, 1, '2022-11-09 06:25:04', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-09 00:25:07', '2022-11-09 00:25:07'),
+(62, 1, '2022-11-09 06:25:25', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-09 00:25:28', '2022-11-09 00:25:28'),
+(63, 1, '2022-11-09 06:25:53', '200.00000000', '200.00000000', '350.00000000', '360.5(350+GST)', '200.00000000', '2022-11-09 00:25:55', '2022-11-09 00:25:55'),
+(64, 2, '2022-11-09 06:25:55', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-09 00:25:56', '2022-11-09 00:25:56'),
+(65, 1, '2022-11-09 06:01:02', '200.00000000', '500.00000000', '300.00000000', '618(600+GST)', '500.00000000', '2022-11-09 04:01:04', '2022-11-09 04:01:04'),
+(66, 2, '2022-11-09 06:01:01', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-09 12:01:02', '2022-11-09 12:01:02'),
+(67, 1, '2022-11-09 06:01:01', '500.00000000', '500.00000000', '300.00000000', '309(300+GST)', '500.00000000', '2022-11-09 16:01:04', '2022-11-09 16:01:04'),
+(68, 2, '2022-11-10 06:01:02', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-10 00:01:03', '2022-11-10 00:01:03'),
+(69, 1, '2022-11-10 06:01:02', '500.00000000', '500.00000000', '300.00000000', '309(300+GST)', '500.00000000', '2022-11-10 04:01:04', '2022-11-10 04:01:04'),
+(70, 2, '2022-11-10 06:01:02', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-10 12:01:02', '2022-11-10 12:01:02'),
+(71, 1, '2022-11-10 06:01:01', '500.00000000', '500.00000000', '300.00000000', '309(300+GST)', '500.00000000', '2022-11-10 16:01:04', '2022-11-10 16:01:04'),
+(72, 2, '2022-11-11 06:01:01', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-11 00:01:02', '2022-11-11 00:01:02'),
+(73, 1, '2022-11-11 06:01:02', '500.00000000', '500.00000000', '300.00000000', '309(300+GST)', '500.00000000', '2022-11-11 04:01:05', '2022-11-11 04:01:05'),
+(74, 2, '2022-11-11 06:01:02', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-11 12:01:03', '2022-11-11 12:01:03'),
+(75, 1, '2022-11-11 06:01:01', '500.00000000', '500.00000000', '300.00000000', '309(300+GST)', '500.00000000', '2022-11-11 16:01:04', '2022-11-11 16:01:04'),
+(76, 2, '2022-11-12 06:01:02', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-12 00:01:03', '2022-11-12 00:01:03'),
+(77, 1, '2022-11-12 06:01:01', '500.00000000', '500.00000000', '300.00000000', '309(300+GST)', '500.00000000', '2022-11-12 04:01:04', '2022-11-12 04:01:04'),
+(78, 2, '2022-11-12 06:01:01', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-12 12:01:02', '2022-11-12 12:01:02'),
+(79, 3, '2022-11-12 09:44:21', '0.00000000', '400.00000000', '0.00000000', '412(400+GST)', '400.00000000', '2022-11-12 15:44:23', '2022-11-12 15:44:23'),
+(80, 1, '2022-11-12 06:01:02', '500.00000000', '500.00000000', '300.00000000', '309(300+GST)', '500.00000000', '2022-11-12 16:01:04', '2022-11-12 16:01:04'),
+(81, 1, '2022-11-12 06:59:02', '500.00000000', '500.00000000', '300.00000000', '309(300+3% service charge)', '500.00000000', '2022-11-12 16:59:04', '2022-11-12 16:59:04'),
+(82, 5, '2022-11-12 11:40:16', '0.00000000', '300.00000000', '0.00000000', '309(300+3% service charge)', '300.00000000', '2022-11-12 17:40:18', '2022-11-12 17:40:18'),
+(83, 6, '2022-11-12 11:44:22', '0.00000000', '500.00000000', '0.00000000', '515(500+3% service charge)', '500.00000000', '2022-11-12 17:44:24', '2022-11-12 17:44:24'),
+(84, 7, '2022-11-12 01:54:58', '100.00000000', '100.00000000', '0.00000000', '0', '100.00000000', '2022-11-12 17:54:58', '2022-11-12 17:54:58'),
+(85, 7, '2022-11-12 01:55:13', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-12 17:55:16', '2022-11-12 17:55:16'),
+(86, 7, '2022-11-12 06:59:01', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-12 22:59:03', '2022-11-12 22:59:03'),
+(87, 2, '2022-11-13 06:59:01', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-13 00:59:02', '2022-11-13 00:59:02'),
+(88, 3, '2022-11-13 06:59:02', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-13 00:59:03', '2022-11-13 00:59:03'),
+(89, 1, '2022-11-13 06:59:01', '500.00000000', '500.00000000', '300.00000000', '309(300+3% service charge)', '500.00000000', '2022-11-13 04:59:04', '2022-11-13 04:59:04'),
+(90, 7, '2022-11-13 06:59:02', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-13 10:59:04', '2022-11-13 10:59:04'),
+(91, 2, '2022-11-13 06:59:02', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-13 12:59:02', '2022-11-13 12:59:02'),
+(92, 3, '2022-11-13 06:59:02', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-13 12:59:03', '2022-11-13 12:59:03'),
+(93, 5, '2022-11-13 08:28:11', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-13 14:28:12', '2022-11-13 14:28:12'),
+(94, 1, '2022-11-13 06:00:00', '500.00000000', '500.00000000', '300.00000000', '309(300+3% service charge)', '500.00000000', '2022-11-13 16:00:04', '2022-11-13 16:00:04'),
+(95, 5, '2022-11-14 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-13 17:00:03', '2022-11-13 17:00:03'),
+(96, 2, '2022-11-14 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-14 00:00:03', '2022-11-14 00:00:03'),
+(97, 3, '2022-11-14 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-14 00:00:04', '2022-11-14 00:00:04'),
+(98, 1, '2022-11-14 05:51:29', '500.00000000', '500.00000000', '300.00000000', '309(300+3% service charge)', '500.00000000', '2022-11-14 03:51:32', '2022-11-14 03:51:32'),
+(99, 1, '2022-11-14 06:00:00', '500.00000000', '200.00000000', '300.00000000', '0', '200.00000000', '2022-11-14 04:00:03', '2022-11-14 04:00:03'),
+(100, 1, '2022-11-14 06:18:26', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-14 04:18:29', '2022-11-14 04:18:29'),
+(101, 7, '2022-11-14 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-14 10:00:04', '2022-11-14 10:00:04'),
+(102, 2, '2022-11-15 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-15 00:00:03', '2022-11-15 00:00:03'),
+(103, 3, '2022-11-15 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-15 00:00:03', '2022-11-15 00:00:03'),
+(104, 1, '2022-11-15 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-15 04:00:05', '2022-11-15 04:00:05'),
+(105, 7, '2022-11-15 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-15 10:00:05', '2022-11-15 10:00:05'),
+(106, 2, '2022-11-16 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-16 00:00:03', '2022-11-16 00:00:03'),
+(107, 3, '2022-11-16 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-16 00:00:04', '2022-11-16 00:00:04'),
+(108, 1, '2022-11-16 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-16 04:00:04', '2022-11-16 04:00:04'),
+(109, 7, '2022-11-16 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-16 10:00:04', '2022-11-16 10:00:04'),
+(110, 2, '2022-11-17 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-17 00:00:03', '2022-11-17 00:00:03'),
+(111, 3, '2022-11-17 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-17 00:00:04', '2022-11-17 00:00:04'),
+(112, 1, '2022-11-17 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-17 04:00:05', '2022-11-17 04:00:05'),
+(113, 7, '2022-11-17 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-17 10:00:04', '2022-11-17 10:00:04'),
+(114, 2, '2022-11-18 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-18 00:00:02', '2022-11-18 00:00:02'),
+(115, 3, '2022-11-18 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-18 00:00:03', '2022-11-18 00:00:03'),
+(116, 1, '2022-11-18 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-18 04:00:05', '2022-11-18 04:00:05'),
+(117, 7, '2022-11-18 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-18 10:00:04', '2022-11-18 10:00:04'),
+(118, 2, '2022-11-19 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-19 00:00:03', '2022-11-19 00:00:03'),
+(119, 3, '2022-11-19 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-19 00:00:03', '2022-11-19 00:00:03'),
+(120, 1, '2022-11-19 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-19 04:00:05', '2022-11-19 04:00:05'),
+(121, 7, '2022-11-19 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-19 10:00:05', '2022-11-19 10:00:05'),
+(122, 2, '2022-11-20 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-20 00:00:03', '2022-11-20 00:00:03'),
+(123, 3, '2022-11-20 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-20 00:00:03', '2022-11-20 00:00:03'),
+(124, 1, '2022-11-20 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-20 04:00:06', '2022-11-20 04:00:06'),
+(125, 7, '2022-11-20 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-20 10:00:04', '2022-11-20 10:00:04'),
+(126, 2, '2022-11-21 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-21 00:00:03', '2022-11-21 00:00:03'),
+(127, 3, '2022-11-21 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-21 00:00:03', '2022-11-21 00:00:03'),
+(128, 1, '2022-11-21 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-21 04:00:05', '2022-11-21 04:00:05'),
+(129, 7, '2022-11-21 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-21 10:00:04', '2022-11-21 10:00:04'),
+(130, 2, '2022-11-22 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-22 00:00:03', '2022-11-22 00:00:03'),
+(131, 3, '2022-11-22 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-22 00:00:04', '2022-11-22 00:00:04'),
+(132, 1, '2022-11-22 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-22 04:00:05', '2022-11-22 04:00:05'),
+(133, 7, '2022-11-22 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-22 10:00:05', '2022-11-22 10:00:05'),
+(134, 5, '2022-11-22 18:49:26', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-22 12:49:27', '2022-11-22 12:49:27'),
+(135, 1, '2022-11-23 06:00:00', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-22 22:00:04', '2022-11-22 22:00:04'),
+(136, 2, '2022-11-23 06:00:00', '300.00000000', '300.00000000', '0.00000000', '0', '300.00000000', '2022-11-23 00:00:02', '2022-11-23 00:00:02'),
+(137, 3, '2022-11-23 06:00:00', '400.00000000', '400.00000000', '0.00000000', '0', '400.00000000', '2022-11-23 00:00:03', '2022-11-23 00:00:03'),
+(138, 1, '2022-11-23 13:53:12', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-23 05:53:14', '2022-11-23 05:53:14'),
+(139, 1, '2022-11-23 13:53:19', '200.00000000', '200.00000000', '300.00000000', '309(300+3% service charge)', '200.00000000', '2022-11-23 05:53:21', '2022-11-23 05:53:21'),
+(140, 7, '2022-11-23 06:00:00', '100.00000000', '100.00000000', '50.00000000', '51.5(50+3% service charge)', '100.00000000', '2022-11-23 10:00:04', '2022-11-23 10:00:04');
 
 -- --------------------------------------------------------
 
@@ -1231,7 +1522,113 @@ INSERT INTO `user_logins` (`id`, `publisher_id`, `advertiser_id`, `user_ip`, `lo
 (37, NULL, 1, '172.70.189.179', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-07 06:47:29', '2022-11-07 06:47:29'),
 (38, NULL, 1, '172.70.219.24', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-07 08:40:37', '2022-11-07 08:40:37'),
 (39, NULL, 2, '172.70.219.54', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-07 09:50:27', '2022-11-07 09:50:27'),
-(40, NULL, 1, '172.70.188.92', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-07 10:35:49', '2022-11-07 10:35:49');
+(40, NULL, 1, '172.70.188.92', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-07 10:35:49', '2022-11-07 10:35:49'),
+(41, NULL, 1, '162.158.162.123', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-08 10:05:49', '2022-11-08 10:05:49'),
+(42, NULL, 2, '172.70.218.153', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-08 11:40:12', '2022-11-08 11:40:12'),
+(43, NULL, 2, '172.70.218.79', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-08 20:44:49', '2022-11-08 20:44:49'),
+(44, NULL, 2, '172.71.202.78', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-08 23:13:43', '2022-11-08 23:13:43'),
+(45, NULL, 2, '172.70.242.172', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-09 00:54:50', '2022-11-09 00:54:50'),
+(46, NULL, 1, '172.70.142.161', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-09 02:16:15', '2022-11-09 02:16:15'),
+(47, NULL, 1, '172.70.142.159', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-09 03:49:16', '2022-11-09 03:49:16'),
+(48, NULL, 1, '172.70.219.47', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-09 04:35:45', '2022-11-09 04:35:45'),
+(49, NULL, 1, '172.70.142.158', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-09 09:52:47', '2022-11-09 09:52:47'),
+(50, NULL, 2, '172.70.219.54', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-09 20:44:20', '2022-11-09 20:44:20'),
+(51, NULL, 1, '162.158.170.223', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-10 03:57:12', '2022-11-10 03:57:12'),
+(52, NULL, 1, '172.71.198.147', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-10 05:15:04', '2022-11-10 05:15:04'),
+(53, NULL, 2, '172.70.218.251', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-10 05:44:39', '2022-11-10 05:44:39'),
+(54, NULL, 1, '172.71.218.137', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-10 09:47:45', '2022-11-10 09:47:45'),
+(55, NULL, 1, '172.70.219.23', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-10 15:21:29', '2022-11-10 15:21:29'),
+(56, NULL, 1, '172.70.219.23', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-11 04:50:53', '2022-11-11 04:50:53'),
+(57, NULL, 1, '172.70.188.92', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-11 05:19:23', '2022-11-11 05:19:23'),
+(58, NULL, 1, '162.158.227.125', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-11 08:45:06', '2022-11-11 08:45:06'),
+(59, NULL, 1, '162.158.162.9', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-11 10:28:33', '2022-11-11 10:28:33'),
+(60, NULL, 1, '172.70.147.12', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-11 10:36:00', '2022-11-11 10:36:00'),
+(61, NULL, 1, '172.71.186.203', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-12 12:39:00', '2022-11-12 12:39:00'),
+(62, NULL, 1, '172.70.219.23', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-12 12:44:36', '2022-11-12 12:44:36'),
+(63, NULL, 1, '162.158.170.237', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-12 12:58:10', '2022-11-12 12:58:10'),
+(64, NULL, 2, '172.70.218.233', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-12 14:33:15', '2022-11-12 14:33:15'),
+(65, NULL, 3, '172.70.219.48', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-12 15:30:31', '2022-11-12 15:30:31'),
+(66, NULL, 4, '172.70.246.165', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-12 16:30:53', '2022-11-12 16:30:53'),
+(67, NULL, 5, '172.71.198.164', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-12 17:39:01', '2022-11-12 17:39:01'),
+(68, NULL, 6, '172.70.219.24', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-12 17:43:50', '2022-11-12 17:43:50'),
+(69, NULL, 7, '172.70.218.153', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-12 17:48:04', '2022-11-12 17:48:04'),
+(70, NULL, 1, '172.70.142.237', 'Singapore - - Singapore - SG ', 'Handheld Browser', 'Android', '103.8657', '1.3616', 'Singapore', 'SG', '2022-11-13 05:21:03', '2022-11-13 05:21:03'),
+(71, NULL, 2, '172.70.250.165', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-13 05:28:25', '2022-11-13 05:28:25'),
+(72, NULL, 1, '172.70.250.165', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-13 05:30:33', '2022-11-13 05:30:33'),
+(73, NULL, 1, '172.71.198.63', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-13 14:07:01', '2022-11-13 14:07:01'),
+(74, NULL, 5, '172.70.250.80', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-13 14:25:13', '2022-11-13 14:25:13'),
+(75, NULL, 2, '172.70.250.106', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-13 21:20:50', '2022-11-13 21:20:50'),
+(76, NULL, 5, '162.158.90.124', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-13 21:23:50', '2022-11-13 21:23:50'),
+(77, NULL, 1, '172.70.188.198', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-14 03:11:51', '2022-11-14 03:11:51'),
+(78, NULL, 1, '172.70.143.107', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-14 04:17:10', '2022-11-14 04:17:10'),
+(79, NULL, 1, '172.70.188.105', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-14 06:41:47', '2022-11-14 06:41:47'),
+(80, NULL, 1, '162.158.22.179', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-14 10:04:56', '2022-11-14 10:04:56'),
+(81, NULL, 1, '172.70.142.158', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-15 07:48:01', '2022-11-15 07:48:01'),
+(82, 1, NULL, '162.158.91.191', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-15 14:12:33', '2022-11-15 14:12:33'),
+(83, NULL, 1, '162.158.170.232', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-15 14:18:49', '2022-11-15 14:18:49'),
+(84, 1, NULL, '172.70.142.159', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-15 14:24:00', '2022-11-15 14:24:00'),
+(85, NULL, 8, '172.70.147.13', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 03:12:01', '2022-11-16 03:12:01'),
+(86, 1, NULL, '172.71.198.164', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-16 03:39:58', '2022-11-16 03:39:58'),
+(87, 1, NULL, '172.70.142.159', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 03:42:52', '2022-11-16 03:42:52'),
+(88, NULL, 1, '172.70.142.158', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 03:50:19', '2022-11-16 03:50:19'),
+(89, 1, NULL, '162.158.163.190', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 03:52:47', '2022-11-16 03:52:47'),
+(90, 1, NULL, '172.70.188.93', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 03:55:18', '2022-11-16 03:55:18'),
+(91, 1, NULL, '162.158.227.197', 'Vadodara - - India - IN ', 'Chrome', 'Windows 10', '73.2028', '22.3007', 'India', 'IN', '2022-11-16 03:59:54', '2022-11-16 03:59:54'),
+(92, 1, NULL, '172.71.202.48', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-16 04:05:04', '2022-11-16 04:05:04'),
+(93, 1, NULL, '162.158.235.76', 'Vadodara - - India - IN ', 'Chrome', 'Windows 10', '73.2028', '22.3007', 'India', 'IN', '2022-11-16 04:30:19', '2022-11-16 04:30:19'),
+(94, 1, NULL, '172.70.188.199', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 04:59:05', '2022-11-16 04:59:05'),
+(95, NULL, 1, '172.70.147.13', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 06:07:32', '2022-11-16 06:07:32'),
+(96, 1, NULL, '162.158.163.190', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 06:13:59', '2022-11-16 06:13:59'),
+(97, 1, NULL, '162.158.170.251', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 06:26:38', '2022-11-16 06:26:38'),
+(98, 1, NULL, '162.158.170.233', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 08:27:24', '2022-11-16 08:27:24'),
+(99, 1, NULL, '172.71.202.115', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-16 09:30:54', '2022-11-16 09:30:54'),
+(100, 1, NULL, '172.70.189.179', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-16 13:47:43', '2022-11-16 13:47:43'),
+(101, NULL, 1, '162.158.235.182', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-16 15:00:45', '2022-11-16 15:00:45'),
+(102, NULL, 1, '172.71.202.115', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-17 04:14:11', '2022-11-17 04:14:11'),
+(103, 1, NULL, '162.158.170.251', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-17 04:17:27', '2022-11-17 04:17:27'),
+(104, 1, NULL, '172.71.202.115', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-17 04:27:08', '2022-11-17 04:27:08'),
+(105, 1, NULL, '172.70.218.153', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-17 06:05:29', '2022-11-17 06:05:29'),
+(106, NULL, 1, '162.158.235.181', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-17 06:26:52', '2022-11-17 06:26:52'),
+(107, NULL, 8, '172.70.147.26', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-17 06:37:57', '2022-11-17 06:37:57'),
+(108, 1, NULL, '172.70.142.160', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-17 10:12:55', '2022-11-17 10:12:55'),
+(109, NULL, 1, '172.71.198.106', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-17 11:09:35', '2022-11-17 11:09:35'),
+(110, NULL, 1, '172.70.218.251', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-17 12:25:36', '2022-11-17 12:25:36'),
+(111, 1, NULL, '172.70.218.250', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-17 12:26:06', '2022-11-17 12:26:06'),
+(112, 1, NULL, '172.71.218.71', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-17 16:05:31', '2022-11-17 16:05:31'),
+(113, 1, NULL, '172.71.198.4', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-18 07:57:16', '2022-11-18 07:57:16'),
+(114, NULL, 8, '172.70.147.13', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-18 08:55:44', '2022-11-18 08:55:44'),
+(115, 1, NULL, '172.70.147.13', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-18 08:56:11', '2022-11-18 08:56:11'),
+(116, NULL, 9, '172.70.147.130', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8884', '1.3479', 'Singapore', 'SG', '2022-11-18 09:51:44', '2022-11-18 09:51:44'),
+(117, 1, NULL, '172.70.147.131', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-18 09:52:07', '2022-11-18 09:52:07'),
+(118, NULL, 1, '172.70.142.158', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-18 11:23:42', '2022-11-18 11:23:42'),
+(119, NULL, 1, '172.70.219.48', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-18 11:47:21', '2022-11-18 11:47:21'),
+(120, NULL, 1, '172.70.218.250', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-18 11:50:32', '2022-11-18 11:50:32'),
+(121, NULL, 1, '172.70.92.193', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-18 14:24:09', '2022-11-18 14:24:09'),
+(122, 2, NULL, '172.70.218.250', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-18 17:13:51', '2022-11-18 17:13:51'),
+(123, NULL, 1, '172.71.202.115', ' - - India - IN ', 'Chrome', 'Windows 10', '77', '20', 'India', 'IN', '2022-11-19 06:19:21', '2022-11-19 06:19:21'),
+(124, 1, NULL, '172.70.218.153', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-19 11:27:08', '2022-11-19 11:27:08'),
+(125, 1, NULL, '162.158.170.237', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-19 15:53:31', '2022-11-19 15:53:31'),
+(126, NULL, 1, '162.158.170.123', 'Singapore - - Singapore - SG ', 'Handheld Browser', 'Android', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-19 21:32:45', '2022-11-19 21:32:45'),
+(127, 3, NULL, '162.158.170.222', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.8547', '1.2929', 'Singapore', 'SG', '2022-11-20 08:01:43', '2022-11-20 08:01:43'),
+(128, NULL, 1, '172.70.143.114', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-21 07:17:41', '2022-11-21 07:17:41'),
+(129, NULL, 10, '172.70.142.161', 'Singapore - - Singapore - SG ', 'Handheld Browser', 'Android', '103.839', '1.297', 'Singapore', 'SG', '2022-11-21 09:51:42', '2022-11-21 09:51:42'),
+(130, NULL, 1, '172.70.189.180', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-21 09:59:53', '2022-11-21 09:59:53'),
+(131, NULL, 1, '162.158.227.153', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-21 15:38:08', '2022-11-21 15:38:08'),
+(132, 1, NULL, '172.71.198.165', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-21 15:50:16', '2022-11-21 15:50:16'),
+(133, NULL, 1, '172.70.189.180', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-22 05:28:49', '2022-11-22 05:28:49'),
+(134, NULL, 1, '162.158.170.250', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-22 06:03:21', '2022-11-22 06:03:21'),
+(135, NULL, 5, '162.158.90.57', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-22 09:23:57', '2022-11-22 09:23:57'),
+(136, NULL, 5, '172.70.242.168', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-22 12:32:21', '2022-11-22 12:32:21'),
+(137, 2, NULL, '172.70.242.47', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-22 12:40:45', '2022-11-22 12:40:45'),
+(138, 2, NULL, '172.70.246.173', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-22 12:43:25', '2022-11-22 12:43:25'),
+(139, 2, NULL, '162.158.92.214', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-22 12:49:01', '2022-11-22 12:49:01'),
+(140, NULL, 5, '162.158.92.215', ' - - Bangladesh - BD ', 'Chrome', 'Windows 10', '90.3742', '23.7018', 'Bangladesh', 'BD', '2022-11-22 12:49:12', '2022-11-22 12:49:12'),
+(141, NULL, 1, '172.70.188.198', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-23 03:12:52', '2022-11-23 03:12:52'),
+(142, NULL, 11, '172.70.142.161', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-23 03:16:37', '2022-11-23 03:16:37'),
+(143, NULL, 1, '172.70.147.13', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-23 05:26:30', '2022-11-23 05:26:30'),
+(144, NULL, 1, '172.70.189.180', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-23 05:49:34', '2022-11-23 05:49:34'),
+(145, NULL, 1, '162.158.90.163', 'Bathinda - - India - IN ', 'Chrome', 'Windows 10', '74.9389', '30.2075', 'India', 'IN', '2022-11-23 06:44:56', '2022-11-23 06:44:56'),
+(146, NULL, 1, '172.70.92.192', 'Singapore - - Singapore - SG ', 'Chrome', 'Windows 10', '103.839', '1.297', 'Singapore', 'SG', '2022-11-23 09:15:13', '2022-11-23 09:15:13');
 
 -- --------------------------------------------------------
 
@@ -1336,6 +1733,18 @@ ALTER TABLE `campaigns`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `campaign_forms`
+--
+ALTER TABLE `campaign_forms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `campaign_forms_leads`
+--
+ALTER TABLE `campaign_forms_leads`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
@@ -1425,6 +1834,12 @@ ALTER TABLE `keywords`
 -- Indexes for table `languages`
 --
 ALTER TABLE `languages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `lgen_spend`
+--
+ALTER TABLE `lgen_spend`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1538,7 +1953,7 @@ ALTER TABLE `admin_password_resets`
 -- AUTO_INCREMENT for table `advertisers`
 --
 ALTER TABLE `advertisers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `advertiser_password_resets`
@@ -1568,7 +1983,19 @@ ALTER TABLE `analytics`
 -- AUTO_INCREMENT for table `campaigns`
 --
 ALTER TABLE `campaigns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `campaign_forms`
+--
+ALTER TABLE `campaign_forms`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `campaign_forms_leads`
+--
+ALTER TABLE `campaign_forms_leads`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -1592,7 +2019,7 @@ ALTER TABLE `deposits`
 -- AUTO_INCREMENT for table `domain_verifcations`
 --
 ALTER TABLE `domain_verifcations`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `earning_logs`
@@ -1652,13 +2079,19 @@ ALTER TABLE `ip_logs`
 -- AUTO_INCREMENT for table `keywords`
 --
 ALTER TABLE `keywords`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `languages`
 --
 ALTER TABLE `languages`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `lgen_spend`
+--
+ALTER TABLE `lgen_spend`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1682,7 +2115,7 @@ ALTER TABLE `price_plans`
 -- AUTO_INCREMENT for table `publishers`
 --
 ALTER TABLE `publishers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `publisher_ads`
@@ -1706,13 +2139,13 @@ ALTER TABLE `support_attachments`
 -- AUTO_INCREMENT for table `support_messages`
 --
 ALTER TABLE `support_messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `support_tickets`
 --
 ALTER TABLE `support_tickets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `transactions`
@@ -1724,13 +2157,13 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `transactions_advertiser`
 --
 ALTER TABLE `transactions_advertiser`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=141;
 
 --
 -- AUTO_INCREMENT for table `user_logins`
 --
 ALTER TABLE `user_logins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`
