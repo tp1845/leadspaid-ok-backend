@@ -1,3 +1,7 @@
+@php
+  $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
+@endphp
+
 <div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/1.jpg')}}')">
     <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
     <button class="sidebar__expand"><i class="las la-plus"></i></button>
@@ -10,13 +14,14 @@
 
         <div class="sidebar__menu-wrapper" id="sidebar__menuWrapper">
             <ul class="sidebar__menu">
+            @if( $testing  )
                 <li class="sidebar-menu-item {{menuActive('advertiser.dashboard')}}">
                     <a href="{{route('advertiser.dashboard')}}" class="nav-link ">
                         <i class="menu-icon las la-home"></i>
                         <span class="menu-title">@lang('Dashboard')</span>
                     </a>
                 </li>
-
+                @endif
                 {{-- <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('advertiser.ad*',3)}}">
                         <i class="menu-icon la las la-ad"></i>
@@ -70,7 +75,7 @@
                         <span class="menu-title">@lang('Price Plans') </span>
                     </a>
                 </li> --}}
-
+                @if( $testing  )
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('user.deposit*',3)}}">
                         <i class="menu-icon la la-list"></i>
@@ -127,6 +132,7 @@
                             <span class="menu-title">@lang('2FA Security')</span>
                         </a>
                     </li>
+                @endif
                     <li class="sidebar-menu-item {{menuActive('advertiser.payments')}}">
                     <a href="{{route('advertiser.payments')}}" class="nav-link">
                         <i class="menu-icon las la-credit-card"></i>
