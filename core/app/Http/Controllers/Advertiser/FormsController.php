@@ -32,9 +32,9 @@ class FormsController extends Controller
                                'form_name' => 'required',
                                'form_title' => 'required',
                                'company_logo' => 'mimes:jpeg,jpg,png,gif|max:2048',
-                               'youtube_1' => 'mimes:mp4,mov,ogg,qt | max:20000',
-                               'youtube_2' => 'mimes:mp4,mov,ogg,qt | max:20000',
-                               'youtube_3' => 'mimes:mp4,mov,ogg,qt | max:20000',
+                               'video_1' => 'mimes:mp4,mov,ogg,qt | max:20000',
+                               'video_2' => 'mimes:mp4,mov,ogg,qt | max:20000',
+                               'video_3' => 'mimes:mp4,mov,ogg,qt | max:20000',
                                'image_1' => 'mimes:jpeg,jpg,png,gif|max:2048',
                                'image_2' => 'mimes:jpeg,jpg,png,gif|max:2048',
                                'image_3' => 'mimes:jpeg,jpg,png,gif|max:2048',
@@ -60,9 +60,9 @@ class FormsController extends Controller
             $campaign_forms->company_logo  = $request->company_logo;
             $campaign_forms->form_title    = $request->form_title;
             $campaign_forms->offer_desc    = $request->offer_desc;
-            //            $campaign_forms->youtube_1     = $request->youtube_1;
-            //            $campaign_forms->youtube_2     = $request->youtube_2;
-            //            $campaign_forms->youtube_3     = $request->youtube_3;
+            $campaign_forms->youtube_1     = $request->youtube_1;
+            $campaign_forms->youtube_2     = $request->youtube_2;
+            $campaign_forms->youtube_3     = $request->youtube_3;
             $campaign_forms->image_1 = $request->image_1;
             $campaign_forms->image_2 = $request->image_2;
             $campaign_forms->image_3 = $request->image_3;
@@ -91,17 +91,17 @@ class FormsController extends Controller
             }
 
             $video_path = 'assets\images\campaign_forms\videos';
-            if($request->file('youtube_1'))
+            if($request->file('video_1'))
             {
-                $campaign_forms->youtube_1 = uploadVideo($request->youtube_1, $video_path);
+                $campaign_forms->video_1 = uploadVideo($request->video_1, $video_path);
             }
-            if($request->file('youtube_2'))
+            if($request->file('video_2'))
             {
-                $campaign_forms->youtube_2 = uploadVideo($request->youtube_2, $video_path);
+                $campaign_forms->video_2 = uploadVideo($request->video_2, $video_path);
             }
-            if($request->file('youtube_3'))
+            if($request->file('video_3'))
             {
-                $campaign_forms->youtube_3 = uploadVideo($request->youtube_3, $video_path);
+                $campaign_forms->video_3 = uploadVideo($request->video_3, $video_path);
             }
 
             if($campaign_forms->save())

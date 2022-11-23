@@ -312,23 +312,42 @@
                             <div class="card-body">
 
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Upload a video 1(Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Youtube 1(Optional)</label>
                                     <div class="col-sm-6">
-                                        <input type="file" class="form-control-file pl-0" id="image_1_Input" name="youtube_1" placeholder="Youtube video URL1">
+                                        <input type="text" class="form-control pl-0" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube video URL1">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Upload a video 2(Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Youtube 2(Optional)</label>
                                     <div class="col-sm-6">
-                                        <input type="file" class="form-control-file pl-0" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube video URL2">
+                                        <input type="text" class="form-control pl-0" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube video URL2">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Upload a video 3(Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Youtube 3(Optional)</label>
                                     <div class="col-sm-6">
-                                        <input type="file" class="form-control-file pl-0" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube video URL3">
+                                        <input type="text" class="form-control pl-0" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube video URL3">
                                     </div>
                                 </div>
+
+                                {{-- <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="video_1_Input">Upload a video 1(Optional)</label>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file pl-0" id="video_1_Input" name="video_1" placeholder="video video URL1">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="video_URL_2_Input">Upload a video 2(Optional)</label>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file pl-0" id="video_URL_2_Input" name="video_2" placeholder="video video URL2">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-3 col-form-label" for="video_URL_3_Input">Upload a video 3(Optional)</label>
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file pl-0" id="video_URL_3_Input" name="video_3" placeholder="video video URL3">
+                                    </div>
+                                </div> --}}
 
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="image_1_Input">Upload an image 1 (Optional)</label>
