@@ -1,4 +1,6 @@
-
+@php
+  $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
+@endphp
 <nav class="navbar-wrapper active">
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
     <form class="navbar-search">
@@ -12,10 +14,10 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>@lang('Menu')</span>
       </button>
-    
+      @if( $testing  )
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto main-menu align-items-center">
-          
+
           <li class="dropdown">
             <a href="#0" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">@lang('Deposit') <i class="las la-angle-down"></i></a>
             <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
@@ -46,13 +48,14 @@
               </a>
             </div>
           </li>
-          
+
         </ul>
       </div>
+      @endif
     </div>
     <div class="navbar__right">
       <ul class="main-menu d-flex flex-wrap align-items-center">
-       
+
         <li class="dropdown">
           <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             <span class="navbar-user">
@@ -61,7 +64,7 @@
             </span>
           </button>
           <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
-         
+
             @if(Route::has('advertiser.profile'))
             <a href="{{route('advertiser.profile')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
               <i class="dropdown-menu__icon las la-cog"></i>
