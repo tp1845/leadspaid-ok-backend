@@ -1,9 +1,221 @@
 @extends($activeTemplate.'layouts.advertiser.frontend')
 
 @section('panel')
-<div class="container-fluid position-relative px-0">
+<style>
+    .adsrock-list ul li {
+        display: flex;
+    }
+    .adsrock-billing-summary p, .adsrock-detail-list, .adsrock-detail-list, .adsrock-name-list, .adsrock-name-list, .adsrock-bill-list p, .adsrock-bill-list p a, .adsrock-heading p {
+        font-size: 12px;
+    }
+    .adsrock-bill-list h6 {
+        font-size: 10px;
+    }
+    .adsrock-heading h4, .adsrock-heading h3, .adsrock-heading h5 {
+        font-size: 14px;
+    }
+    .adsrock-name-list, .adsrock-name-list {
+        flex: 0 0 30%;
+        width: 30%;
+        border-right: 1px solid #ddd;
+        padding: 7px 0;        
+    }
+    .adsrock-detail-list, .adsrock-detail-list {
+        flex: 0 0 70%;
+        width:70%;   
+        padding: 7px 0;
+    }
+    .adsrock-download-pd {
+        padding: 10px 20px;
+    }
+    .adsrock-invoice ul li a {
+    padding: 10px 30px;
+}
+.adsrock-icon svg {
+    width: 20px;
+    height: 20px;
+}
+.adsrock-icon.setup-payment {
+    cursor: pointer;
+}
+</style>
+<div class="container-fluid position-relative px-0     5555555">
 
-    <form method="POST" action="{{ route('advertiser.payments.update') }}" enctype="multipart/form-data">
+  <div class="row">
+     <div class="col-md-9 col-xl-10 col-lg-10 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
+        <div class="row">
+            <div  class="col-md-6 border mb-xl-0 mb-lg-0 mb-md-4 mb-sm-4 mb-4">
+                <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
+                    <h4 class="">Contact Information</h4>
+                    <div class="adsrock-icon"><a href="{{ url('/') }}/advertiser/profile">
+                        <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M6 34.5v7.5h7.5l22.13-22.13-7.5-7.5-22.13 22.13zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/><path d="M0 0h48v48h-48z" fill="none"/></svg>
+                    </a>
+                    </div>
+                </div>
+                <div class="adsrock-list pt-3">
+                    <ul>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Company:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                {{ auth()->guard('advertiser')->user()->company_name }}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Name:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                               {{auth()->guard('advertiser')->user()->name}}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Address:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                             {{auth()->guard('advertiser')->user()->billed_to}}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                City:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                               {{auth()->guard('advertiser')->user()->city}}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Country:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                {{auth()->guard('advertiser')->user()->country}}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Postal Code:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                {{auth()->guard('advertiser')->user()->postal_code}}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Billing Email:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                {{auth()->guard('advertiser')->user()->email}}
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+            <div  class="col-md-6 border">
+                <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
+                   <h4 class="">Payment Information</h4>
+                    <div class="adsrock-icon setup-payment">
+                        <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg"><path d="M6 34.5v7.5h7.5l22.13-22.13-7.5-7.5-22.13 22.13zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z"/><path d="M0 0h48v48h-48z" fill="none"/></svg>
+                    </div>
+                </div>
+               <div class="adsrock-list pt-3">
+                    <ul>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Card Type:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                {{auth()->guard('advertiser')->user()->username}}
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Card Number:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                Test
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Expires:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                Test
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Cardholder Name:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                Test
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Address:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                Test
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                City:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                Test
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Country:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                Test
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                ZIP/Postal Code:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                Test
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <p class="py-2">* Please note that 3% will be reflected in your Invoice.</p>
+            </div> 
+        </div>
+     </div>   
+    <div class="col-md-3 col-xl-2 col-lg-2 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
+        <div class="row">
+            <div class="col-12 border p-3">
+                 <h4>Billing Summary</h4>
+                 <div class="adsrock-billing-summary">
+                     <p>Current Wallet Balance:</p>
+                     <h5>$ {{ Auth::guard('advertiser')->user()->wallet_deposit }}</h5>
+                 </div>
+                 <hr>
+                 <div class="adsrock-bill-list">
+                     <h6>Next Bill:</h6>
+                     <h3>November 30, 2022</h3>
+                     <p>or when your campaign reaches $1,000</p>
+                     <p><a href="javascript:void(0);">threshold Payments</a></p>
+                 </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+    <form method="POST" class="d-none" action="{{ route('advertiser.payments.update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser">
 
@@ -29,7 +241,7 @@
         </div>
     </form>
 
-    <div class="bg-white p-3 rounded-lg" style="width: 150px;position: absolute;right: 2rem;top: 0rem;">
+    <div class="bg-white p-3 rounded-lg d-none" >
         <div class="text-center">
             <span class="form-text text--black">Wallet Deposit</span>
         </div>
@@ -42,7 +254,7 @@
 
 </div>
 
-<div class="container-fluid position-relative px-0">
+<div class="container-fluid position-relative px-0 d-none">
 
     <form method="POST" action="{{ route('advertiser.payments.createsession') }}">
         @csrf
@@ -55,7 +267,7 @@
 </div>
 
 
-<div class="container-fluid position-relative px-0">
+<div class="container-fluid position-relative px-0 d-none">
 
     <form method="POST" action="{{ route('ipn.current_advertiser_charge') }}">
         @csrf
@@ -68,19 +280,234 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12 d d-flex justify-content-end">
+    <div class="col-lg-12 d d-flex justify-content-between align-items-end">
+        <div class="adsrock-invoice my-2">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#tabs-2" role="tab">Invoices</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " data-toggle="tab" href="#tabs-1" role="tab">Payments</a>
+                </li>
+                
+            </ul><!-- Tab panes -->
+        </div>
+        <div class="my-2">
+            <input type="text" id="daterange" name="daterange" value="Today">
+            <form method="GET" id="RangeForm" hidden>
+            <input id="startDate" name="startDate" />
+            <input id="endDate" name="endDate" />      
+            </form>
+            <!-- <button type="button" class="btn btn-danger rounded-0 ml-2 adsrock-download-pd">Download Invoice</button> -->
+        </div>
 
-        <input type="text" id="daterange" name="daterange" value="Today">
+    </div>
+    <div class="col-12">
+        <div class="tab-content">
+            <div class="tab-pane " id="tabs-1" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="table-responsive--lg">
+                                <table class="table style--two">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Transaction Date</th>
+                                            <th scope="col">Inital Wallet Balance</th>
+                                            <th scope="col">Total Campaign Budget</th>
+                                            <th scope="col">Amount Spent Yesterday</th>
+                                            <th scope="col">Amount Deducted From Card</th>
+                                            <th scope="col">Final Wallet Balance</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                                                <tr>
+                                            <td data-label="Transaction Date">06-Nov '22 | 03:08 PM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">07-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">08-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">08-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">09-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">09-Nov '22 | 11:54 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">09-Nov '22 | 11:55 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">09-Nov '22 | 11:55 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">09-Nov '22 | 11:55 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 200 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 350 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 360.5(350+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 200</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">09-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 200</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 500 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 300 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 618(600+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 500</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">09-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 500</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 500 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 300 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 309(300+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 500</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">10-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 500</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 500 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 300 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 309(300+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 500</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">10-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 500</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 500 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 300 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 309(300+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 500</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">11-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 500</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 500 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 300 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 309(300+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 500</td>
+                                        </tr>
+                                                                <tr>
+                                            <td data-label="Transaction Date">11-Nov '22 | 11:31 AM</td>
+                                            <td data-label="Inital Wallet Balance" class="budget">$ 500</td>
+                                            <td data-label="Total Campaign Budget" class="budget">$ 500 </td>
+                                            <td data-label="Amount Spent Yesterday" class="budget">$ 300 </td>
+                                            <td data-label="Amount Deducted From Card" class="budget"> 309(300+GST)</td>
+                                            <td data-label="Final Wallet Balance" class="budget">$ 500</td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table><!-- table end -->
+                            </div>
+                        </div>
+                        <div class="my-3">
+                            <nav aria-label="...">
+                                <ul class="pagination justify-content-end mb-0">   
+                                    <li class="page-item active">
+                                    <a class="page-link" href="javascript:void(0)">1</a>
+                                    </li>                                                     
+                                    <li class="page-item ">
+                                    <a class="page-link" href="http://localhost/leadspaids/leadspaid/public/advertiser/payments?page=2">2</a>
+                                    </li>                                                                    
+                                    <li class="page-item ">
+                                    <a class="page-link" href="http://localhost/leadspaids/leadspaid/public/advertiser/payments?page=3">3</a>
+                                    </li>                                                                    
+                                    <li class="page-item">
+                                    <a class="page-link" href="http://localhost/leadspaids/leadspaid/public/advertiser/payments?page=2">
+                                    <i class="fa fa-angle-right"></i>
+                                    <span class="sr-only">Next</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane active" id="tabs-2" role="tabpanel">
+                <div class="col-lg-12">
+                        <div class="card">
+                            <div class="table-responsive--lg">
+                                <table class="table style--two">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"><span class="bg-white text-dark px-1">Invoice Number</span></th>
+                                            <th scope="col"><span class="bg-white text-dark px-1">Date</span></th>
+                                            <th scope="col"><span class="bg-white text-dark px-1">Amount(usd)</span></th>
+                                            <th scope="col"><span class="bg-white text-dark px-1">Payment Status</span></th>
+                                            <th scope="col"><span class="bg-white text-dark px-1">Download</span></th>
+                                            <th scope="col"><span class="bg-white text-white px-1">gfgdfggggr</span></th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                         <tr>
+                                            <td scope="col">Inv00168628 </td>
+                                            <td scope="col">31/10/2022</td>
+                                            <td scope="col">$7.661.19</td>
+                                            <td scope="col">Paid in Full</td>
+                                            <td scope="col"><a href=""><svg style="enable-background:new 0 0 128 128; width:20px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g/><g id="Ps"/><g id="Ai"/><g id="Ai_download"/><g id="Image"/><g id="Image_download"/><g id="Video"/><g id="Video_download"/><g id="Ps_download"/><g id="Doc"/><g id="Doc_download"/><g id="Music"/><g id="Music_download"/><g id="Pdf"><g><g><g><path d="M104,126H24c-5.514,0-10-4.486-10-10V12c0-5.514,4.486-10,10-10h40.687      c2.671,0,5.183,1.041,7.07,2.929l39.314,39.314c1.889,1.889,2.929,4.399,2.929,7.07V116C114,121.514,109.514,126,104,126z M24,6      c-3.309,0-6,2.691-6,6v104c0,3.309,2.691,6,6,6h80c3.309,0,6-2.691,6-6V51.313c0-1.579-0.641-3.125-1.757-4.242L68.929,7.757      C67.796,6.624,66.289,6,64.687,6H24z" style="fill:#FD4233;"/></g></g><g><g><path d="M95.21,80.32c-0.07-0.51-0.48-1.15-0.92-1.58c-1.26-1.24-4.03-1.89-8.25-1.95      c-2.86-0.03-6.3,0.22-9.92,0.73c-1.62-0.93-3.29-1.95-4.6-3.18c-3.53-3.29-6.47-7.86-8.31-12.89c0.12-0.47,0.22-0.88,0.32-1.3      c0,0,1.98-11.28,1.46-15.1c-0.07-0.52-0.12-0.67-0.26-1.08l-0.17-0.44c-0.54-1.25-1.6-2.57-3.26-2.5L60.32,41H60.3      c-1.86,0-3.36,0.95-3.76,2.36c-1.2,4.44,0.04,11.09,2.29,19.69l-0.58,1.4c-1.61,3.94-3.63,7.9-5.41,11.39l-0.23,0.45      c-1.88,3.67-3.58,6.79-5.13,9.43l-1.59,0.84c-0.12,0.06-2.85,1.51-3.49,1.89c-5.43,3.25-9.03,6.93-9.63,9.85      c-0.19,0.94-0.05,2.13,0.92,2.68l1.54,0.78c0.67,0.33,1.38,0.5,2.1,0.5c3.87,0,8.36-4.82,14.55-15.62      c7.14-2.32,15.28-4.26,22.41-5.32c5.43,3.05,12.11,5.18,16.33,5.18c0.75,0,1.4-0.07,1.92-0.21c0.81-0.22,1.49-0.68,1.91-1.3      C95.27,83.76,95.43,82.06,95.21,80.32z M36.49,99.33c0.7-1.93,3.5-5.75,7.63-9.13c0.26-0.21,0.9-0.81,1.48-1.37      C41.28,95.72,38.39,98.46,36.49,99.33z M60.95,43c1.24,0,1.95,3.13,2.01,6.07c0.06,2.94-0.63,5-1.48,6.53      c-0.71-2.26-1.05-5.82-1.05-8.15C60.43,47.45,60.38,43,60.95,43z M53.65,83.14c0.87-1.55,1.77-3.19,2.69-4.92      c2.25-4.25,3.67-7.57,4.72-10.3c2.1,3.82,4.72,7.07,7.79,9.67c0.39,0.32,0.8,0.65,1.22,0.98C63.82,79.8,58.41,81.31,53.65,83.14      z M93.08,82.79c-0.38,0.23-1.47,0.37-2.17,0.37c-2.26,0-5.07-1.03-9-2.72c1.51-0.11,2.9-0.17,4.14-0.17      c2.27,0,2.94-0.01,5.17,0.56C93.44,81.4,93.47,82.55,93.08,82.79z" style="fill:#FF402F;"/></g></g></g></g><g id="Pdf_download"/><g id="Word"/><g id="Word_download"/><g id="Exel"/><g id="Exel_download"/><g id="Powerpoint"/><g id="Powerpoint_download"/><g id="Zip"/><g id="Zip_download"/></svg>Download<a></td>
+                                        </tr>
 
-        <form method="GET" id="RangeForm" hidden>
-        <input id="startDate" name="startDate" />
-        <input id="endDate" name="endDate" />
-      
-    </form>
+
+
+
+                                    </tbody>
+                                </table><!-- table end -->
+                            </div>
+                        </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row">
+<div class="row d-none">
     <div class="col-lg-12">
         <div class="card">
             <div class="table-responsive--lg">
