@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Stripe\PaymentMethod;
 use Stripe\SetupIntent;
+use PDF; 
 
 class AdvertiserController extends Controller
 {
@@ -72,7 +73,7 @@ class AdvertiserController extends Controller
     }
 
     public function profile()
-    {
+    { 
         $page_title = 'Profile';
         $countries = Country::all();
         $advertiser = Auth::guard('advertiser')->user();
@@ -211,9 +212,18 @@ class AdvertiserController extends Controller
         $page_title = 'Two Factor';
         return view($this->activeTemplate . 'advertiser.twofactor', compact('page_title', 'secret', 'qrCodeUrl', 'prevcode', 'prevqr'));
     }
+
+
+
     public function showPayments(Request $request)
     {
      
+         
+        $ta = TransactionAdvertiser::whereNotNull('deduct')->get();
+        
+        
+        
+       
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
         $gateway_parameter = json_decode($method->parameters);
         \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
@@ -235,8 +245,22 @@ class AdvertiserController extends Controller
                     ->whereBetween('trx_date', array($request->startDate, $request->endDate))->paginate(15);
         }
         $empty_message = 'No Transactions';
-        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key'));
+        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key','ta'));
     }
+
+  public function showinvoices($id){
+    
+ 
+     $ta = TransactionAdvertiser::where('id',$id)->first();
+     $page_title = 'Payments';
+        $data = ['title' => 'Laravel 7 Generate PDF From View Example Tutorial'];
+        $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf',compact('page_title'))->setOptions(['defaultFont' => 'sans-serif']);
+     
+        return $pdf->download('Nicesnippets.pdf','+w');
+
+  }
+
+
     public function PaymentsCreateSession(Request $request)
     {
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
@@ -367,4 +391,5 @@ class AdvertiserController extends Controller
             return back()->with($notify);
         }
     }
+
 }
