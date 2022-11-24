@@ -513,8 +513,8 @@
                 $("input[name='service_sell_buy']").val(data.service_sell_buy);
                 $("input[name='website_url']").val(data.website_url);
                 $("input[name='social_media_page']").val(data.social_media_page);
-                $("input[name=form_id][value=" + data.form_id + "]").prop('checked', true);
                 $("input[name=form_id]").prop("disabled", true);
+                $("input[name=form_id][value=" + data.form_id + "]").prop('checked', true).prop("disabled", false);
                 $("#CreateFormModal_btn").hide();
                 /// target_placements_Input
                 $.each(data.target_placements, function (idx, val) {
