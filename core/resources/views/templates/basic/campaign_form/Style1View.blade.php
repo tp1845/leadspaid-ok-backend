@@ -325,9 +325,13 @@
                 t +='<label for="Input_field_'+$i+'" class="form-label">'+$field['question_text']+'*</label>';
                 if($field){
                     if($field['question_type']== "ShortAnswer"){
-                        t +='<input type="text" class="form-control" id="Input_field_'+$i+'" name="field_'+$i+'" placeholder="'+$field['question_text']+'*"  required >';
+                        t +='<input type="text" class="form-control" id="Input_field_'+$i+'" name="field_'+$i+'" placeholder="'+$field['question_text']+'*" ';
+                        if($field['required']){ t +=' required '; }
+                        t +='>';
                     }else{
-                        t +='<select class="form-select" id="Input_field_'+$i+'"  name="field_'+$i+'" required>';
+                        t +='<select class="form-select" id="Input_field_'+$i+'"  name="field_'+$i+'" ';
+                        if($field['required']){ t +=' required '; }
+                        t +='>';
                         t +='<option selected value="" class="holder"> '+$field['question_text']+'* </option>';
                         t +='<option value="'+ $field['option_1']+'">'+ $field['option_1']+'</option>';
                         t +='<option value="'+ $field['option_2']+'">'+ $field['option_2']+'</option>';
