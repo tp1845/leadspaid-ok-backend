@@ -430,7 +430,9 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::post('/payments/update', 'AdvertiserController@PaymentsUpdate')->name('payments.update');
         Route::get('/payments/createsession', 'AdvertiserController@PaymentsCreateSession')->name('payments.createsession');
         Route::get('/payments/success', 'AdvertiserController@PaymentsSuccessSession')->name('payments.success');
-
+    /// invoice
+	
+	Route::get('invoices/{id}','AdvertiserController@showinvoices')->name('showinvoices');
     });
 });
 

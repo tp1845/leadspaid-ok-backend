@@ -59,7 +59,8 @@
         <li class="dropdown">
           <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             <span class="navbar-user">
-              <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span>
+                {{auth()->guard('advertiser')->user()->id}}
+                {{-- <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span> --}}
               <span class="icon"><i class="las la-chevron-circle-down"></i></span>
             </span>
           </button>
