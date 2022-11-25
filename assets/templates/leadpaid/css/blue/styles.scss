@@ -1,0 +1,78 @@
+
+$primary: #1a273a;
+$secondary: #1361b2;
+$font_normal : 'Roboto', sans-serif;
+@import "../bootstrap/bootstrap";
+.btn{ border-radius: 0; }
+a{ text-decoration: none; color: $primary;}
+.logo{ font-size: 26px;}
+body, p{ font-family: 'Roboto', sans-serif;  }
+ h1,h2,h3,h4,h5,h6{   font-family: 'Poppins', sans-serif; font-weight: bold; }
+ 
+ #MainNav{
+    .navbar-nav{ margin-top: 15px;}
+     a.nav-link{ color: #fff; text-transform: uppercase; font-weight: 400; &:hover{ color: $secondary;} }
+     @media (min-width: 992px) {
+        a.nav-link {
+            padding-right:25px;
+            padding-left: 25px; 
+        }
+    }
+    .navbar-toggler { 
+        color: #fff; 
+        border-color: #fff;  
+        .navbar-toggler-icon{
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255,255,255,0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");;
+        }
+    }
+    @media (max-width: 992px) {
+        a.nav-link { 
+            background: #0000002b;
+            padding: 15px;
+            margin-bottom: 4px;
+        }
+    }
+ }
+.MainBanner-Home{  background-color: #1a273a; color: #fff; text-align: center; padding: 50px 0;  }
+.MainBanner-Home {
+    .h1{   color: #fff; font-size: 62px; }
+    p{ font-size: 32px; font-weight: 300; }
+    .btn{ font-weight: bold; font-size: 26px; text-transform: uppercase; max-width: 300px; width: 100%; text-align: center;     box-shadow: 0px 3px 10px 0px #000; }
+}
+.MainBanner-bottom h3{ font-size: 32px; }
+
+#MainFooter{
+    border-top: 10px solid $secondary!important;
+    background-color: $primary;
+    padding-top: 3em; 
+    h5{ color: #fff; text-transform: uppercase;}
+    ul{
+        li{
+            margin-bottom: 5px;
+            a{ color: #fff; &:hover{ color: $secondary; }  }
+        }
+    }
+    .footer_social{
+        border-bottom: 1px solid #313a42;
+        ul{
+            margin-top: 40px;
+            margin-bottom: 1.25rem;
+            list-style: none;
+            text-align: center; ;
+            li{
+                display: inline-block;
+                margin: 0 5px;
+                a{
+                    color: #efefef;
+                    font-size: 26px;
+                    &:hover{ color: $secondary;}
+                }
+            }
+        }
+    }
+    .footer_copywrite{
+        min-height: 40px;
+        padding: 20px;
+        font-size: 12px;
+    }
+}

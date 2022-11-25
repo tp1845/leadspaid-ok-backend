@@ -3,25 +3,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @include('partials.seo')
-  <title>{{ $general->sitename($page_title ?? '') }}</title>
-  <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
-  <!-- jQuery library -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-  <!-- From Validatation CSS -->
-  <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @include('partials.seo')
+    <title>{{ $general->sitename($page_title ?? '') }}</title>
+    <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
+    <!-- jQuery library -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <!-- From Validatation CSS -->
+    <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-
-    <link href="{{asset('assets/templates/leadpaid/css/styles.min.css')}}" rel="stylesheet" >
-
-  <link rel="stylesheet" href="{{asset('assets/templates/basic/css/line-awesome.min.css')}}">
-
-  @stack('style-lib')
-  @stack('style')
+    <link href="{{asset('assets/templates/leadpaid/css/blue/styles.min.css')}}" rel="stylesheet" >
+    <link rel="stylesheet" href="{{asset('assets/templates/basic/css/line-awesome.min.css')}}">
+    @stack('style-lib')
+    @stack('style')
 </head>
   <body>
     @php
@@ -44,37 +41,35 @@
       <!-- header-section start  -->
 
       <header>
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg bg-primary " id="MainNav">
             <div class="container">
-              <a class="navbar-brand fw-bold logo" href="{{route('home')}}"><span class="text-dark">Leads</span><span class="text-danger">Paid.com</span></a>
-              {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
+                <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
+                </a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-              </button> --}}
-              <div class="collapsess navbar-collapsess" id="navbarSupportedContent">
-               {{-- <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <a class="nav-link" href="#">About Us</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
+                    <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
                   </li>
-                </ul> --}}
+                  @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('login')}}">Advertiser Login</a>
+                  </li>
+                  @endif
 
-                <a href="{{route('home')}}" class="btn btn-secondary ms-auto">Generate Leads</a>
+
+                </ul>
+
+
               </div>
             </div>
           </nav>
@@ -85,6 +80,59 @@
 
         <!-- footer section start -->
         {{-- @include($activeTemplate.'partials.footer') --}}
+
+
+        <footer class="pt-4 my-md-5 pt-md-5 border-top" id="MainFooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
+                            <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
+                            </a>
+
+                      <small class="d-block mb-3 text-muted">© 2017–2022</small>
+                    </div>
+                    <div class="col-6 col-md">
+                      <h5>Company</h5>
+                      <ul class="list-unstyled text-small">
+                        <li><a href="#">About </a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-6 col-md">
+                      <h5>Advertiser</h5>
+                      <ul class="list-unstyled text-small">
+                        <li><a href="#">Join as Advertiser </a></li>
+                        <li><a href="#">Login</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-6 col-md">
+                      <h5>Publisher</h5>
+                      <ul class="list-unstyled text-small">
+                        <li><a href="#">Join as Publisher</a></li>
+                        <li><a href="#">Login</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                    <div class="footer_social row">
+                        <div class="col-12">
+                            <ul>
+                                <li><a href="#"><i class="lab la-twitter"></i></a></li>
+                                <li><a href="#"><i class="lab la-facebook"></i></a></li>
+                                <li><a href="#"><i class="lab la-google-plus"></i></a></li>
+                                <li><a href="#"><i class="lab la-instagram"></i></a></li>
+                                <li><a href="#"><i class="lab la-vimeo-square"></i></a></li>
+                                <li><a href="#"><i class="lab la-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <div class="footer_copywrite text-center text-light">
+                © COPYRIGHT 2022  LEADSPAID.COM. ALL RIGHTS RESERVED
+            </div>
+          </footer>
+
           <!-- footer section end -->
         </div> <!-- page-wrapper end -->
 
