@@ -52,7 +52,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
@@ -60,13 +60,11 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
                   </li>
-                  @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
+                  {{-- @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user()) --}}
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}">Advertiser Login</a>
                   </li>
-                  @endif
-
-
+                  {{-- @endif --}}
                 </ul>
 
 
@@ -80,7 +78,13 @@
 
         <!-- footer section start -->
         {{-- @include($activeTemplate.'partials.footer') --}}
-
+        @php
+        $footer = getContent('footer.content',true);
+        $footer = $footer->data_values;
+        $overview = getContent('overview.content',true);
+        $overview =  $overview->data_values;
+        $policies = getContent('policy.element',false);
+        @endphp
 
         <footer class="pt-4 my-md-5 pt-md-5 border-top" id="MainFooter">
             <div class="container">
@@ -96,8 +100,12 @@
                       <h5>Company</h5>
                       <ul class="list-unstyled text-small">
                         <li><a href="#">About </a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="{{route('home.contact')}}">Contact Us</a></li>
+                        @foreach ($policies as $policy)
+                        <li>
+                          <a href="{{route('policy',[$policy->id,slug($policy->data_values->heading)])}}">{{$policy->data_values->heading}}</a>
+                        </li>
+                        @endforeach
                       </ul>
                     </div>
                     <div class="col-6 col-md">

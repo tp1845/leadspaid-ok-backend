@@ -1,0 +1,24 @@
+/* inner hero section css start */
+.inner-hero {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 3em;
+    background-position: center;
+    background-size: cover;
+}
+
+.inner-hero::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #062c4e;
+    opacity: 0.75;
+    z-index: -1;
+}
+
+/* inner hero section css end */

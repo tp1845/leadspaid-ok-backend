@@ -3,6 +3,8 @@ $primary: #1a273a;
 $secondary: #1361b2;
 $font_normal : 'Roboto', sans-serif;
 @import "../bootstrap/bootstrap";
+@import "innerhero";
+@import "contact"; 
 .btn{ border-radius: 0; }
 a{ text-decoration: none; color: $primary;}
 .logo{ font-size: 26px;}

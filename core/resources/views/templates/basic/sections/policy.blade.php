@@ -1,5 +1,5 @@
 
-@extends($activeTemplate.'layouts.frontend')
+@extends($activeTemplate.'layouts.frontendLeadPaid')
 
 @section('content')
 
