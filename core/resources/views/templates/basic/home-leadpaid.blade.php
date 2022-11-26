@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-lg-8">
                     <h1 class="h1">Generate Leads Directly</h1>
-                    <p>Pay only for Leads. Not for cliks or impressions</p>
+                    <p>Alternative Lead Source<br> distinct from Search, display & Native Ads</p>
                     <a href="#" class="btn btn-secondary btn-lg my-2">Generate Leads</a>
                 </div>
             </div>
@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3> Pay only for Leads. Not for cliks or impressions</h3>
+                   <h3> Pay Only For Leads. Not for cliks or impressions</h3>
                 </div>
             </div>
         </div>
