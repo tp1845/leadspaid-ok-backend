@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3> Pay Only For Leads. Not for cliks or impressions</h3>
+                   <h3> Pay Only For Leads. Not for click or impressions</h3>
                 </div>
             </div>
         </div>
