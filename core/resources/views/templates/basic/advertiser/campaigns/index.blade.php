@@ -489,6 +489,17 @@
         $('.create-campaign-btn').on('click', function () {
             campaign_create_modal.modal('show');
             $("#campaign_form").find("#submit").text('Create Campaign');
+            $("#StartDate_input").prop('readonly',false);
+                     $("#StartDate_input").css('pointer-events','unset');
+                     $("#TargetCountryInput").css('pointer-events','unset');
+                     $("#TargetingTypeInput").css('pointer-events','unset');
+                     $("#target_placements_Input").css('pointer-events','unset');
+                     $(".bootstrap-tagsinput").css('pointer-events','unset');
+                     $("#target_categories_Input").css('pointer-events','unset');
+                     $("#formOptions").css('pointer-events','unset');
+                     $("#ServiceSellBuyInput").css('pointer-events','unset');
+                     $("#WebsiteInput").css('pointer-events','unset');
+                     $("#SocialInput").css('pointer-events','unset');
         });
         $('body').on('click', '.editcampaign, .duplicatecampaign', function (e) {
             e.preventDefault();
