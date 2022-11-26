@@ -1,7 +1,10 @@
+
 <style>
+    
     .pdf-main-full, .pdf-main-full .pdf-row, .table-3 {
         width: 100%;
         clear: both;
+    font-family: 'poppinsmedium';
     }
   .pdf-main {
     width: 100%;
@@ -20,12 +23,12 @@
   padding: 1rem;
 }
 .table-3 thead > tr > th {
-  border: 1px solid #ed1b24;
+  border: 1px solid #1c273b;
 color: #fff;
 }
 
 .table-3 thead > tr > th {
-    background-color: #ed1b24;
+    background-color: #1c273b;
 }
 .table-2 tbody {
   border: 5px solid #ddd;
@@ -62,15 +65,15 @@ color: #fff;
 <div class="pdf-main">
     <div class="pdf-row">
         <div class="table-responsive--lg">
-            <table class="table style--two">
+            <table class="table style--two" style="font-family: 'Poppins', sans-serif;">
                 <thead>
                     <tr>
-                        <th style=" font-size: 40px; text-align: left;">
-                            <span style="color:#ed1b24;">Leads</span>Paid.com
+                        <th style=" font-size: 40px; font-family: 'Poppins', sans-serif; text-align: left;">
+                            <span style="color:#1c273b;">Leads</span>Paid.com
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="border:2px solid #1c273b;border-radius: 5px !important; font-family: 'Poppins', sans-serif;">
                     <tr>
                         <td><h3>Leads Paids inc.</h3></td>
                     </tr>
@@ -85,7 +88,7 @@ color: #fff;
                     </tr>                    
                 </tbody>
             </table><!-- table end -->
-            <table class="table table-1 style--two" style="width:50%; float:left;">
+            <table class="table table-1 style--two" style="width:50%; float:left;font-family: 'Poppins', sans-serif;">
                 <thead>
                     <tr>
                         <th style="text-align:left; font-size:25px; padding-top: 15px; padding-left: 1rem;">Invoice</th>
@@ -97,15 +100,15 @@ color: #fff;
                     
                        
                         <td>Date</td>
-                        <td>1</td>
+                        <td>{{ date('Y-m-d',strtotime($ta->trx_date))}}</td>
                     </tr>  
                     <tr>
-                        <td>invoice#</td>
-                        <td> 2</td>
+                        <td>Invoice#</td>
+                        <td> {{ get_invoice_format($ta->id)  }} </td>
                     </tr>  
                     <tr>
-                        <td>currency</td>
-                        <td>usd</td>
+                        <td>Currency</td>
+                        <td>USD</td>
                     </tr>  
                                     
                 </tbody>
@@ -114,7 +117,7 @@ color: #fff;
     </div>
 </div>
 
-<div class="pdf-main">
+<div class="pdf-main" style="font-family: 'Poppins', sans-serif;">
     <div class="pdf-row">
         <div class="table-responsive--lg">
             <table class="table table-2 style--two">
@@ -125,49 +128,63 @@ color: #fff;
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Put Client information here Pte Ltd</td>
+                        <td><b>{{ auth()->guard('advertiser')->user()->company_name }}</b></td>
                     </tr>
                     <tr>
-                        <td>Crystral Time Building</td>
+                        <td>{{auth()->guard('advertiser')->user()->name}}</td>
                     </tr>
                     <tr>
-                        <td>16 Tannery ln#08-00,Singapore</td>
+                        <td>{{auth()->guard('advertiser')->user()->billed_to}}</td>
                     </tr>
                     <tr>
-                        <td>Singapore,344778</td>
+                        <td>{{auth()->guard('advertiser')->user()->city}}</td>
                     </tr>
                     <tr>
-                        <td>Singapore</td>
-                    </tr>                      
+                        <td>{{auth()->guard('advertiser')->user()->country}}</td>
+                    </tr>     
+
                 </tbody>
             </table><!-- table end -->
         </div>
     </div>
 </div>
 
-<div class="pdf-main-full">
+<div class="pdf-main-full" style="font-family: 'Poppins', sans-serif;">
     <div class="pdf-row">
         <div class="table-responsive--lg">
+                    @php 
+                     $amun= $ta->deduct;                 
+                        $amoun_arr=explode('(',$amun);
+                        $card_s_c=$amoun_arr[0]-$ta->spent_previous_day;
+                        $ga=$card_s_c+$ta->spent_previous_day;
+                    @endphp
             <table class="table-3 style--two">
                 <thead>
                     <tr>
-                        <th scope="col">Description</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Card Service Charge%</th>
-                        <th scope="col">Card Service Charge Amount</th>
-                        <th scope="col">Gross Amount</th>
+                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Date</th>
+                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Description</th>
+                        
+                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Amount</th>
+                       
+                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Card Service <br>Charge </th>
+                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Gross Amount</th>
                     </tr>
                 </thead>
                 <tbody>   
-                                                                 
-                    <tr>
+                          
+
+
+
+
+                    <tr style="font-family: 'Poppins', sans-serif;">
+                        <td data-label="Inital Wallet Balance" class="budget">{{ date('Y-m-d',strtotime($ta->trx_date))}}</td>
                         <td data-label="Transaction Date">Lead Generation Charges</td>
-                        <td data-label="Inital Wallet Balance" class="budget">122</td>
-                        <td data-label="Total Campaign Budget" class="budget"> 222</td>
-                        <td data-label="Amount Spent Yesterday" class="budget">$ 300 </td>
-                        <td data-label="Amount Deducted From Card" class="budget"> 309(300+GST)</td>
-                        <td data-label="Final Wallet Balance" class="budget">$ 500</td>
+                        
+                        <td data-label="Total Campaign Budget" class="budget"> $ {{ number_format((float)$ta->spent_previous_day, 2, '.', '')}}</td>
+                        
+                        <td data-label="Amount Deducted From Card" class="budget"> $ {{  number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
+                        <td data-label="Final Wallet Balance" class="budget">
+                         $ {{ number_format((float)$ga, 2, '.', '')}}</td>
                     </tr>
                 
                 </tbody>

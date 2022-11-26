@@ -254,9 +254,9 @@ class AdvertiserController extends Controller
      $ta = TransactionAdvertiser::where('id',$id)->first();
      $page_title = 'Payments';
         $data = ['title' => 'Laravel 7 Generate PDF From View Example Tutorial'];
-        $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf',compact('page_title'))->setOptions(['defaultFont' => 'sans-serif']);
+        $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf',compact('page_title','ta'))->setOptions(['defaultFont' => 'Poppins']);
      
-        return $pdf->download('Nicesnippets.pdf','+w');
+        return $pdf->download('invooice-'.$id.'.pdf','+w');
 
   }
 

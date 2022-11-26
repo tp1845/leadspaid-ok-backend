@@ -882,3 +882,30 @@ function urlToDomain($url)
     $domain = str_replace("www.", "", $domain);
     return $domain;
 }
+
+function countDigits($MyNum){
+  $MyNum = (int)$MyNum;
+  if($MyNum != 0)
+    return 1 + countDigits($MyNum/10);
+  else
+    return 0;
+}
+
+function get_invoice_format($invoice){
+    if(countDigits($invoice)==1){
+        return 'INV000000'.$invoice;
+    }elseif(countDigits($invoice)==2){
+        return 'INV00000'.$invoice;
+    }elseif(countDigits($invoice)==3){
+         return 'INV0000'.$invoice;
+    }elseif(countDigits($invoice)==4){
+         return 'INV000'.$invoice;
+    }elseif(countDigits($invoice)==5){
+         return 'INV00'.$invoice;
+    }elseif(countDigits($invoice)==6){
+         return 'INV0'.$invoice;
+    }elseif(countDigits($invoice)==7){
+         return 'INV'.$invoice;
+    }
+}
+}

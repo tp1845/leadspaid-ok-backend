@@ -39,6 +39,31 @@
 .adsrock-icon.setup-payment {
     cursor: pointer;
 }
+#myTable_length .custom-select {
+    width: 70px;
+}
+
+#myTable_length {
+    padding: 5px 0px 0px 5px;
+    float: left;
+    width: 20%;
+}
+#myTable_info {
+    width: 20%;
+    float: left;
+    clear: unset;
+}
+#myTable_info {
+    width: 20%;
+    float: left;
+    clear: unset;
+}
+#myTable_paginate ul li {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
@@ -293,7 +318,7 @@
                 
             </ul><!-- Tab panes -->
         </div>
-        <div class="my-2">
+        <div class="my-2 paymentt_tab" style="display:none;">
             <input type="text" id="daterange" name="daterange" value="Today">
             <form method="GET" id="RangeForm" hidden>
             <input id="startDate" name="startDate" />
@@ -479,8 +504,9 @@
                                 <table class="table style--two" id="myTable">
                                     <thead>
                                         <tr>
-                                            <th scope="col"><span class="text-white px-1">Invoice Number</span></th>
+                                           
                                             <th scope="col"><span class="text-white px-1">Date</span></th>
+                                             <th scope="col"><span class="text-white px-1">Invoice Number</span></th>
                                             <th scope="col"><span class="text-white px-1">Amount(usd)</span></th>
                                             <th scope="col"><span class="text-white px-1">Payment Status</span></th>
                                             <th scope="col"><span class="text-white px-1">Download</span></th>
@@ -493,8 +519,11 @@
  
                                            @if($tas['deduct'] !=0)
                                          <tr>
-                                            <td scope="col">INV00000{{$tas['id']}}</td>
-                                            <td scope="col">{{$tas['trx_date']}}</td>
+                                            <td scope="col">{{date('Y-m-d',strtotime($tas['trx_date']))}}</td>
+                                            <td scope="col">
+                                               {{get_invoice_format($tas['id'])  }} 
+                                           </td>
+                                            
                                             <td scope="col">{{$tas['deduct']}}</td>
                                             <td scope="col">Paid in Full</td>
                                             <td scope="col">
@@ -615,8 +644,20 @@
     });
 
     $(document).ready( function () {
-    $('#myTable').DataTable();
+    $('#myTable').DataTable({searching: false,"order": [[ 1, "desc" ]],"sDom": 'Lfrtlip'    });
 } );
+
+$(".nav-item").find(".nav-link").click(function(){
+
+    var hrff=$(this).attr("href");
+      
+    if(hrff=="#tabs-2"){
+     $(".paymentt_tab").hide();
+    }else if(hrff=="#tabs-1"){
+    $(".paymentt_tab").show();
+    }
+
+})
 </script>
 
 <script>
