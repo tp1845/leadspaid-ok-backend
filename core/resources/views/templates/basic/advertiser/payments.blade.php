@@ -775,5 +775,5 @@ $(".nav-item").find(".nav-link").click(function(){
    
 </style>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-
+ 
 @endpush
