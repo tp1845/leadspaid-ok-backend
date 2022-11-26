@@ -5,7 +5,11 @@
         <div class="container">
             <div class="row align-item-center justify-content-center align-items-center">
                 <div class="col-lg-4">
-                    <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-01.png?v1" class="img-fluid" alt="leadsPaid">
+                    @if(Request::get('v') == 1 )
+                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
+                    @else
+                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-01.png?v1" class="img-fluid" alt="leadsPaid">
+                    @endif
                 </div>
                 <div class="col-lg-8">
                     <h1 class="h1">Generate Leads Directly</h1>
