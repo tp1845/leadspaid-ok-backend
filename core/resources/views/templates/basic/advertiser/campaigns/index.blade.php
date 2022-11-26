@@ -3,6 +3,10 @@
     $user = auth()->guard('advertiser')->user();
 @endphp
 @section('panel')
+<style>
+    .green{  color:green;    }
+    .orange{color:orange;}
+</style>
     <div class="row">
         <div class="col-lg-12">
             <div class=" ">
@@ -31,7 +35,8 @@
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="editcampaign create-campaign-btn">Edit</a></td>
-                                <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
+                                <td> @if($campaign->approve)<span class='green'>Approval</span>
+                                @else <span class='orange'>Pending </span>"  @endif</td>
                                 <td>{{ $campaign->start_date }}</td>
                                 <td>{{ $campaign->end_date }}</td>
                                 <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
@@ -83,7 +88,7 @@
                 </div>
                 <div class="modal-body h-100" style="overflow-y: scroll">
                     <div id="error-message"></div>
-                    <form method="POST" action="{{ route('advertiser.campaigns.store') }}" id="campaign_form">
+                    <form method="POST" action="{{ route('advertiser.campaigns.store') }}">
                         @csrf
                         <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
@@ -92,24 +97,25 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="CampaignNameInput">Campaign Name<i>*</i></label>
-                                    <div class="col-sm-10 input-col">
+                                    <div class="col-sm-10">
                                         <input type="text" class="form-control" id="CampaignNameInput" name="name" placeholder="Campaign Name" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
 
                                     <label class="col-sm-2 col-form-label" for="start_dateInput">Start Date<i>*</i></label>
-                                    <div class="col-sm-4 input-col">
-                                        <input type="text" name="start_date" id="StartDate_input" class="form-control"  required>
+                                    <div class="col-sm-4">
+                                        <input type="text" name="start_date" data-range="false" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control" data-position='bottom left' placeholder="@lang('Start date')" required>
                                     </div>
                                 </div>
+
 
                                 <div class="form-group row">
 
                                     <div class="col">
                                         <div class=" row ">
                                             <label class="col-sm-4 col-form-label " for="SelectEndDateSelect">End Date </label>
-                                            <div class="col-sm-8 input-col">
+                                            <div class="col-sm-8">
                                                 <select class="custom-select mr-sm-2" name="end_date_select" id="SelectEndDateSelect">
                                                     <option value="NoEndDate" selected>No end Date</option>
                                                     <option value="SetEndDate">Set end Date</option>
@@ -119,9 +125,8 @@
                                     </div>
                                     <div class="col">
                                         <div class=" row ">
-                                            <div class="col-sm-6 input-col">
-                                                {{-- <input style="display: none" id="EndDate_input" type="text" name="end_date" data-range="false" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control" data-position='bottom left' placeholder="@lang('End date')"> --}}
-                                                <input class="form-control" style="display: none" id="EndDate_input" type="text" name="end_date" placeholder="@lang('End date')">
+                                            <div class="col-sm-6">
+                                                <input style="display: none" id="EndDate_input" type="text" name="end_date" data-range="false" data-multiple-dates-separator=" - " data-language="en" class="datepicker-here form-control" data-position='bottom left' placeholder="@lang('End date')">
                                             </div>
                                         </div>
                                     </div>
@@ -130,7 +135,7 @@
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="DailyBudgetInput">Daily Budget<i>*</i></label>
-                                    <div class="col-sm-4 input-col">
+                                    <div class="col-sm-4">
                                         <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daily Budget" required>
                                     </div>
                                 </div>
@@ -144,10 +149,10 @@
                                     <div class="col">
                                         <div class="row">
                                             <label class="col-sm-4 col-form-label" for="TargetCountryInput">Target Country<i>*</i></label>
-                                            <div class="col-sm-8 input-col">
+                                            <div class="col-sm-8">
 
                                                 <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
-                                                    <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
+                                                    <option value="0" label="Select a country ... " selected="selected">Select a country ...</option>
                                                     @foreach ($countries as $country)
                                                         <option @if($user->country === $country->country_name) selected="selected" @endif   value="{{ $country->country_name }}" label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
                                                     @endforeach
@@ -157,9 +162,9 @@
                                     </div>
                                     <div class="col">
                                         <div class=" row ">
-                                            <label class="col-sm-3 col-form-label text-sm-right" for="target_cityInput">Target City<i>*</i></label>
-                                            <div class="col-sm-9 input-col">
-                                                <input type="text" id="target_cityInput" class="form-control" placeholder="@lang('Target City')" name="target_city" required>
+                                            <label class="col-sm-3 col-form-label text-sm-right" for="target_cityInput">Target City</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" id="target_cityInput" class="form-control" placeholder="@lang('Target City')" name="target_city">
                                             </div>
                                         </div>
                                     </div>
@@ -167,7 +172,7 @@
 
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label" for="TargetingTypeInput">Targeting Type<i>*</i></label>
-                                    <div class="col-sm-4 input-col">
+                                    <div class="col-sm-4">
                                         <select class="custom-select mr-sm-2" id="TargetingTypeInput" name="target_type" required>
                                             <option value="broad" selected>Broad</option>
                                             <option value="narrow">Narrow</option>
@@ -177,25 +182,26 @@
                                 <div class="Hide-on-Broad" style="display: none">
                                     <div class="form-group row">
                                         <label class="col-sm-12 col-form-label" for="target_placements_Input">Targeting Placements </label>
-                                        <div class="col-sm-6 input-col">
+                                        <div class="col-sm-6">
                                             <select multiple class="form-control" id="target_placements_Input" name="target_placements[]">
                                                 <option value="google.com">google.com</option>
                                                 <option value="facebook.com">facebook.com</option>
+
                                             </select>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
                                         <label class="col-sm-12 col-form-label" for="KeywordsInput">Keywords or tags of those products / services</label>
-                                        <div class="col-sm-6 input-col">
+                                        <div class="col-sm-6">
                                             <input type="text" class="form-control tags_input w-100" id="KeywordsInput" name="keywords" placeholder=" ">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-12 col-form-label" for="target_categories_Input">Targeting Categories </label>
-                                        <div class="col-sm-6 input-col">
+                                        <div class="col-sm-6">
                                             <select multiple class="form-control" id="target_categories_Input" name="target_categories[]">
-                                                <option value="Immigration">Immigration </option>
+                                                <option value="Immigration ">Immigration </option>
                                                 <option value="Permanent Residency">Permanent Residency</option>
                                                 <option value="Citizenship">Citizenship</option>
                                             </select>
@@ -209,13 +215,8 @@
                             <div class="card-header bg-light text-secondary">Lead Form Used</div>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="FormUsedInput"> <a href="#" id="CreateFormModal_btn" data-toggle="modal" data-target="#CreateFormModal"> + Create Form </a></label>
-                                    <div id="formOptions" class="input-col">
-                                        <div class="form-check" style="height:1px; overflow:hidden;">
-                                            <input class="form-check-input" type="radio" name="form_id" id="form_0" value="" required>
-                                            <label class="form-check-label" for="form_0">
-                                            </label>
-                                        </div>
+                                    <label for="FormUsedInput"> <a href="#" data-toggle="modal" data-target="#CreateFormModal"> + Create Form </a></label>
+                                    <div id="formOptions">
                                         @foreach ($forms as $form)
                                             <div class="form-check">
                                                 <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required>
@@ -233,20 +234,20 @@
                             <div class="card-header bg-light text-secondary"> Optional</div>
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-form-label" for="ServiceSellBuyInput">Product / Service you Sell or Buy in this Campaign</label>
-                                    <div class="col-sm-12">
+                                    <label class="col-sm-2 col-form-label" for="ServiceSellBuyInput">Product / Service you Sell or Buy in this Campaign</label>
+                                    <div class="col-sm-10">
                                         <input type="text" class="form-control" id="ServiceSellBuyInput" name="service_sell_buy" placeholder="Product  / Service you Sell or Buy in this Campaign">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-form-label" for="WebsiteInput">Website URL (Optional)</label>
-                                    <div class="col-sm-12">
+                                    <label class="col-sm-2 col-form-label" for="WebsiteInput">Website URL (Optional)</label>
+                                    <div class="col-sm-10">
                                         <input type="text" class="form-control" id="WebsiteInput" name="website_url" placeholder="Website URL (Optional)">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-form-label" for="SocialInput">Social Media Page URL (Optional)</label>
-                                    <div class="col-sm-12">
+                                    <label class="col-sm-2 col-form-label" for="SocialInput">Social Media Page URL (Optional)</label>
+                                    <div class="col-sm-10">
                                         <input type="text" class="form-control" id="SocialInput" name="social_media_page" placeholder="Social Media Page URL (Optional)">
                                     </div>
                                 </div>
@@ -278,33 +279,33 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="FormNameInput">Form Name</label>
-                                    <div class="col-sm-6 input-col">
-                                        <input type="text" class="form-control" id="FormNameInput" name="form_name" placeholder="Form Name" required minlength="3">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="FormNameInput" name="form_name" placeholder="Form Name" required>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="CompanyBrandNameInput">Company / Brand Name</label>
-                                    <div class="col-sm-6 input-col">
-                                        <input type="text" class="form-control" id="CompanyBrandNameInput" name="company_name" placeholder="Company / Brand Name" required minlength="3">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="CompanyBrandNameInput" name="company_name" placeholder="Company / Brand Name">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="CompanyLogoInput">Company Logo</label>
-                                    <div class="col-sm-6 input-col">
-                                        <input type="file" class="form-control-file pl-0" name="company_logo" id="CompanyLogoInput" required >
+                                    <div class="col-sm-6">
+                                        <input type="file" class="form-control-file pl-0" name="company_logo" id="CompanyLogoInput">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="FormTitleInput">Form Title</label>
-                                    <div class="col-sm-6 input-col">
-                                        <input type="text" class="form-control" id="FormTitleInput" name="form_title" placeholder="Form Title"  required minlength="3">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="FormTitleInput" name="form_title" placeholder="Form Title" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="OfferDescriptionInput">Offer Description</label>
-                                    <div class="col-sm-6 input-col">
-                                        <input type="text" class="form-control" id="OfferDescriptionInput" name="offer_desc" placeholder="Offer Description" required minlength="3">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" id="OfferDescriptionInput" name="offer_desc" placeholder="Offer Description">
                                     </div>
                                 </div>
 
@@ -355,21 +356,22 @@
 
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="image_1_Input">Upload an image 1 (Optional)</label>
-                                    <div class="col-sm-6 input-col">
+                                    <div class="col-sm-6">
+
                                         <input type="file" class="form-control-file pl-0" id="image_1_Input" name="image_1" placeholder="Upload an image 1">
                                         <small class="form-text text-muted">Upload an image of (minimum width = 300px / minimum height = 180px)</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="image_2_Input">Upload an image 2 (Optional)</label>
-                                    <div class="col-sm-6 input-col">
+                                    <div class="col-sm-6">
                                         <input type="file" class="form-control-file pl-0" id="image_2_Input" name="image_2" placeholder="Upload an image 2">
                                         <small class="form-text text-muted">Upload an image of (minimum width = 300px / minimum height = 180px)</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-3 col-form-label" for="image_3_Input">Upload an image 3 (Optional)</label>
-                                    <div class="col-sm-6 input-col">
+                                    <div class="col-sm-6">
                                         <input type="file" class="form-control-file pl-0" id="image_3_Input" name="image_3" placeholder="Upload an image 3">
                                         <small class="form-text text-muted">Upload an image of (minimum width = 300px / minimum height = 180px)</small>
                                     </div>
@@ -386,7 +388,6 @@
                                     <tr>
                                         <th scope="col" width="10px">#</th>
                                         <th scope="col">Field Type</th>
-                                        <th scope="col">Required</th>
                                         <th scope="col">Question</th>
                                         <th scope="col"></th>
                                         <th scope="col"></th>
@@ -406,13 +407,10 @@
                                                     <option value="MultipleChoice">Multiple Choice</option>
                                                 </select>
                                             </td>
-                                            <td>
-                                                <input type="checkbox" class="InputQuestion_Required"  name='field_{{ $i }}[required]'>
-                                            </td>
-                                            <td><input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name='field_{{ $i }}[question_text]' @if($i <= 3)required @endif ></td>
-                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_1" placeholder="Option 1" style="display: none" name='field_{{ $i }}[option_1]'></td>
-                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_2" placeholder="Option 2" style="display: none" name='field_{{ $i }}[option_2]'></td>
-                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_3" placeholder="Option 3" style="display: none" name='field_{{ $i }}[option_3]'></td>
+                                            <td><input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name='field_{{ $i }}[question_text]'></td>
+                                            <td><input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_1" placeholder="Option 1" style="display: none" name='field_{{ $i }}[option_1]'></td>
+                                            <td><input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_2" placeholder="Option 2" style="display: none" name='field_{{ $i }}[option_2]'></td>
+                                            <td><input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_3" placeholder="Option 3" style="display: none" name='field_{{ $i }}[option_3]'></td>
                                             <td><input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_4" placeholder="Option 4" style="display: none" name='field_{{ $i }}[option_4]'></td>
                                         </tr>
                                     @endfor
@@ -445,7 +443,6 @@
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-
     <script>
         'use strict';
         var keywords_Input = $('.tags_input');
@@ -496,6 +493,7 @@
             // url =  "/advertiser/campaigns/edit/"+ campaign_id;
             var url = $(this).attr('href');
             $.get(url, function (data) {
+                console.log(data);
                 $('#input_campaign_id').val(campaign_id);
                 $("input[name='name']").val(data.name);
                 $("input[name='start_date']").val(data.start_date);
@@ -513,9 +511,7 @@
                 $("input[name='service_sell_buy']").val(data.service_sell_buy);
                 $("input[name='website_url']").val(data.website_url);
                 $("input[name='social_media_page']").val(data.social_media_page);
-                $("input[name=form_id]").prop("disabled", true);
-                $("input[name=form_id][value=" + data.form_id + "]").prop('checked', true).prop("disabled", false);
-                $("#CreateFormModal_btn").hide();
+                $("input[name=form_id][value=" + data.form_id + "]").prop('checked', true);
                 /// target_placements_Input
                 $.each(data.target_placements, function (idx, val) {
                     $("select#target_placements_Input option[value='" + val + "']").prop("selected", true);
@@ -532,8 +528,6 @@
             $('#TargetingTypeInput').val("broad").change();
             $('#campaign_create_modal form').trigger("reset");
             $('#input_campaign_id').val(0);
-            $("input[name=form_id]").prop("disabled", false);
-            $("#CreateFormModal_btn").show();
             keywords_Input.tagsinput('removeAll');
         }
 
@@ -541,19 +535,13 @@
         $("#TargetingTypeInput").on('change', function () {
             if (this.value == "broad") {
                 $(".Hide-on-Broad").hide();
-                $("#target_placements_Input").prop("required", false);
-                $("#KeywordsInput").prop("required", false);
-                $("#target_categories_Input").prop("required", false);
             } else {
                 $(".Hide-on-Broad").show();
-                $("#target_placements_Input").prop("required", true);
-                $("#KeywordsInput").prop("required", true);
-                $("#target_categories_Input").prop("required", true);
             }
         })
         $("#SelectEndDateSelect").on('change', function () {
             if (this.value == "NoEndDate") {
-                $("#EndDate_input").hide().prop("required", false).val('');
+                $("#EndDate_input").hide().prop("required", false);
             } else {
                 $("#EndDate_input").show().prop("required", true);
                 // setTimeout(function(){   $("#EndDate_input").focus() }, 100);
@@ -596,14 +584,8 @@
                 stop: function (event, ui) {
                     var i = 1;
                     $('.sortable-group').each(function (k, el) {
-                        if(i <=3){
-                            $(el).find(".InputQuestion_text").prop("required", true);
-                        }else{
-                            $(el).find(".InputQuestion_text").prop("required", false).removeClass('is-invalid');
-                        }
                         $(el).find("input.sort").val(i).attr('name', 'field_' + i + '[sort]');
                         $(el).find(".InputQuestionType").attr('name', 'field_' + i + '[question_type]');
-                        $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
                         $(el).find(".InputQuestion_text").attr('name', 'field_' + i + '[question_text]');
                         $(el).find(".InputQuestion_Option_1").attr('name', 'field_' + i + '[option_1]');
                         $(el).find(".InputQuestion_Option_2").attr('name', 'field_' + i + '[option_2]');
@@ -619,20 +601,19 @@
                 var QuestionOption = ".QuestionOption_" + id;
                 if (this.value == "ShortAnswer") {
                     $(QuestionOption).hide();
-                    $(QuestionOption+'.QuestionOption_requried').prop("required", false);;
-
                 } else {
                     $(QuestionOption).show();
-                    $(QuestionOption+'.QuestionOption_requried').prop("required", true)
                 }
             })
         });
         // Edit campaign
         // Save Form
-        function ajaxSubmit_createForm(form_ele, form_id){
-            var form = $(form_id);
+        $("#CreateForm").submit(function (e) {
+            e.preventDefault();
+            var form = $(this);
             var actionUrl = form.attr('action');
-            var formData = new FormData(form_ele);
+            var formData = new FormData(this);
+            ;
             $.ajax({
                 type: "POST",
                 url: actionUrl,
@@ -649,43 +630,13 @@
                         option += '<label class="form-check-label" for="form_' + data.form_id + '">' + data.form_name + '</label>';
                         option += '</div>';
                         $('#formOptions').append(option);
-                        form.trigger("reset");
                     } else {
                         console.log(data);
                         Toast('red', data.form_name);
                     }
                 }
             });
-        }
-       // $("#CreateForm").submit(function (e) {
-            // e.preventDefault();
-            // var form = $(this);
-            // var actionUrl = form.attr('action');
-            // var formData = new FormData(this);
-            // ;
-            // $.ajax({
-            //     type: "POST",
-            //     url: actionUrl,
-            //     data: formData,
-            //     cache: false,
-            //     contentType: false,
-            //     processData: false,
-            //     success: function (data) {
-            //         if (data.success) {
-            //             Toast('green', 'Form successfully Created');
-            //             $('#CreateFormModal').modal('hide');
-            //             var option = '<div class="form-check">';
-            //             option += '<input class="form-check-input" type="radio" name="form_id" id="form_' + data.form_id + '" value="' + data.form_id + '" required >';
-            //             option += '<label class="form-check-label" for="form_' + data.form_id + '">' + data.form_name + '</label>';
-            //             option += '</div>';
-            //             $('#formOptions').append(option);
-            //         } else {
-            //             console.log(data);
-            //             Toast('red', data.form_name);
-            //         }
-            //     }
-            // });
-      //  });
+        });
 
         // End Form Saving
         function Toast(color = 'green', message) {
@@ -696,86 +647,6 @@
                 position: 'topRight'
             });
         }
-    </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
-    <script>
-        $.validator.setDefaults({
-            errorElement: 'span',
-            errorPlacement: function (error, element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group .input-col').append(error);
-            },
-            highlight: function (element, errorClass, validClass) {
-                $(element).addClass('is-invalid');
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).removeClass('is-invalid');
-            }
-        });
-
-        $.validator.addMethod( "greaterThan",
-        function(endvalue, element, params) {
-            var startalue = $(params).val();
-            var isValueNumeric = !isNaN(parseFloat(endvalue)) && isFinite(endvalue);
-            var isTargetNumeric = !isNaN(parseFloat(startalue)) && isFinite(startalue);
-            if (!/Invalid|NaN/.test(new Date(endvalue))) {
-                return Date.parse(endvalue) > Date.parse(startalue);
-            } else{ return false };
-        }, 'Must be greater than Start Date.');
-        $.validator.addMethod(
-            "money",
-            function(value, element) {
-                var isValidMoney = /^\d{0,4}(\.\d{0,2})?$/.test(value);
-                return this.optional(element) || isValidMoney;
-            },
-            "Enter Correct value. "
-        );
-
-        $("#campaign_form").validate({
-            rules: {
-                name: {  minlength: 3 },
-                end_date: { greaterThan: "#StartDate_input" },
-                daily_budget: {  required: true, money: true},
-            }
-        });
-        $('[name="start_date"]').datepicker({
-            dateFormat: 'mm/dd/yy',
-            range: false,
-            position: 'bottom left'
-        }).on('changeDate', function(e) {
-            // Revalidate the date field
-            $(this).focus().blur();
-        });
-        $('[name="end_date"]').datepicker({
-            dateFormat: 'mm/dd/yy',
-            range: false,
-            position: 'bottom left'
-
-        }).on('change', function(e) {
-            // Revalidate the date field
-            $(this).focus().blur();
-
-        });
-
-        $("#CreateForm").validate({
-            rules: {
-                company_logo: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-                image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-                image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-                image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-            },
-            messages: {
-                company_logo: "File must be JPG, GIF or PNG, less than 2MB",
-                image_1: "File must be JPG, GIF or PNG, less than 2MB",
-                image_2: "File must be JPG, GIF or PNG, less than 2MB",
-                image_3: "File must be JPG, GIF or PNG, less than 2MB",
-            },
-            submitHandler: function(form) {
-                ajaxSubmit_createForm(form, '#CreateForm');
-                return false;
-            }
-        });
     </script>
 @endpush
 @push('style')

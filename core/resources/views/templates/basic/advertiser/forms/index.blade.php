@@ -25,11 +25,11 @@
                             @foreach ($forms as $form)
                             <tr>
                                 <td>{{ $form->form_name }}</td>
-                                <td> Order : {{$form->field_1['sort'] }} <br> {{$form->field_1['question_text'] }}</td>
-                                <td> Order : {{$form->field_2['sort'] }} <br> {{$form->field_2['question_text'] }}</td>
-                                <td> Order : {{$form->field_3['sort'] }} <br> {{$form->field_3['question_text'] }}</td>
-                                <td> Order : {{$form->field_4['sort'] }} <br> {{$form->field_4['question_text'] }}</td>
-                                <td> Order : {{$form->field_5['sort'] }} <br> {{$form->field_5['question_text'] }}</td>
+                                <td>   {{$form->field_1['question_text'] }}</td>
+                                <td>  {{$form->field_2['question_text'] }}</td>
+                                <td>  {{$form->field_3['question_text'] }}</td>
+                                <td>  {{$form->field_4['question_text'] }}</td>
+                                <td>  {{$form->field_5['question_text'] }}</td>
                                 <td>10</td>
                                 <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">Xlsx</a> |
                                 <a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">Csv</a> |
