@@ -908,4 +908,3 @@ function get_invoice_format($invoice){
          return 'INV'.$invoice;
     }
 }
-}
