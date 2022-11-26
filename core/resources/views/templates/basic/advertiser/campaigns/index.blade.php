@@ -3,6 +3,7 @@
     $user = auth()->guard('advertiser')->user();
 @endphp
 @section('panel')
+
     <div class="row">
         <div class="col-lg-12">
             <div class=" ">
@@ -16,7 +17,7 @@
                             <th>Delivery</th>
                             <th>Start</th>
                             <th>End</th>
-                            <th>Target Country / City</th>
+                            <th>Target Country </th>
                             <th>Form Used</th>
                             <th>Daily Budget</th>
                             <th>Cost</th>
@@ -30,8 +31,11 @@
                         @forelse($campaigns as $campaign)
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                                <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="editcampaign create-campaign-btn">Edit</a></td>
-                                <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
+                                <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
+                                <td>@if($campaign->approve) <span class="green">Approved  </span> @else
+                                    <span class="orange">Pending</span>
+                                   @endif
+                                </td>
                                 <td>{{ $campaign->start_date }}</td>
                                 <td>{{ $campaign->end_date }}</td>
                                 <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
@@ -156,12 +160,12 @@
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div class=" row ">
+                                        <!--div class=" row ">
                                             <label class="col-sm-3 col-form-label text-sm-right" for="target_cityInput">Target City<i>*</i></label>
                                             <div class="col-sm-9 input-col">
                                                 <input type="text" id="target_cityInput" class="form-control" placeholder="@lang('Target City')" name="target_city" required>
                                             </div>
-                                        </div>
+                                        </div -->
                                     </div>
                                 </div>
 
@@ -234,25 +238,25 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <label class="col-sm-12 col-form-label" for="ServiceSellBuyInput">Product / Service you Sell or Buy in this Campaign</label>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 input-col">
                                         <input type="text" class="form-control" id="ServiceSellBuyInput" name="service_sell_buy" placeholder="Product  / Service you Sell or Buy in this Campaign">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-form-label" for="WebsiteInput">Website URL (Optional)</label>
-                                    <div class="col-sm-12">
+                                    <label class="col-sm-12 col-form-label" for="WebsiteInput">Website URL used in this Campaign (Optional)</label>
+                                    <div class="col-sm-12 input-col">
                                         <input type="text" class="form-control" id="WebsiteInput" name="website_url" placeholder="Website URL (Optional)">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-12 col-form-label" for="SocialInput">Social Media Page URL (Optional)</label>
+                                    <label class="col-sm-12 col-form-label" for="SocialInput">Social Media Page URL used in this Campaign(Optional)</label>
                                     <div class="col-sm-12">
                                         <input type="text" class="form-control" id="SocialInput" name="social_media_page" placeholder="Social Media Page URL (Optional)">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button id="submit" class="btn btn--primary">Submit</button>
+                        <button id="submit" class="btn btn--primary">Create Campaign</button>
                     </form>
                 </div>
             </div>
@@ -316,19 +320,19 @@
                             <div class="card-body">
 
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Youtube 1(Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Youtube Video Url1(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control pl-0" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube video URL1">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Youtube 2(Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Youtube Video Url2(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control pl-0" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube video URL2">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Youtube 3(Optional)</label>
+                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Youtube Video Url3(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control pl-0" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube video URL3">
                                     </div>
@@ -386,7 +390,7 @@
                                     <tr>
                                         <th scope="col" width="10px">#</th>
                                         <th scope="col">Field Type</th>
-                                        <th scope="col">Required</th>
+                                        <th scope="col" class="required_field">Required</th>
                                         <th scope="col">Question</th>
                                         <th scope="col"></th>
                                         <th scope="col"></th>
@@ -484,9 +488,11 @@
         })
         $('.create-campaign-btn').on('click', function () {
             campaign_create_modal.modal('show');
+            $("#campaign_form").find("#submit").text('Create Campaign');
         });
-        $('body').on('click', '.editcampaign', function (e) {
+        $('body').on('click', '.editcampaign, .duplicatecampaign', function (e) {
             e.preventDefault();
+            var typp=$(this).data('type');
             reset_campaign_create_form();
             $('#campaign_createModalLabel').html('Edit Campaign');
             campaign_create_modal.modal('show');
@@ -496,7 +502,9 @@
             // url =  "/advertiser/campaigns/edit/"+ campaign_id;
             var url = $(this).attr('href');
             $.get(url, function (data) {
+                $("#campaign_form").find("#submit").text('Save Campaign');
                 $('#input_campaign_id').val(campaign_id);
+
                 $("input[name='name']").val(data.name);
                 $("input[name='start_date']").val(data.start_date);
                 $("input[name='end_date']").val(data.end_date);
@@ -523,6 +531,58 @@
                 $.each(data.target_categories, function (idx, val) {
                     $("select#target_categories_Input option[value='" + val + "']").prop("selected", true);
                 });
+                
+                 if(data.approve==1){
+                     $("#StartDate_input").prop('readonly',true);
+                     $("#StartDate_input").css('pointer-events','none');
+                     $("#TargetCountryInput").css('pointer-events','none');
+                     $("#TargetingTypeInput").css('pointer-events','none');
+                     $("#target_placements_Input").css('pointer-events','none');
+                     $(".bootstrap-tagsinput").css('pointer-events','none');
+                     $("#target_categories_Input").css('pointer-events','none');
+                     $("#formOptions").css('pointer-events','none');
+                     $("#ServiceSellBuyInput").css('pointer-events','none');
+                     $("#WebsiteInput").css('pointer-events','none');
+                     $("#SocialInput").css('pointer-events','none');
+                 }else{
+                       $("#StartDate_input").prop('readonly',false);
+                     $("#StartDate_input").css('pointer-events','unset');
+                     $("#TargetCountryInput").css('pointer-events','unset');
+                     $("#TargetingTypeInput").css('pointer-events','unset');
+                     $("#target_placements_Input").css('pointer-events','unset');
+                     $(".bootstrap-tagsinput").css('pointer-events','unset');
+                     $("#target_categories_Input").css('pointer-events','unset');
+                     $("#formOptions").css('pointer-events','unset');
+                     $("#ServiceSellBuyInput").css('pointer-events','unset');
+                     $("#WebsiteInput").css('pointer-events','unset');
+                     $("#SocialInput").css('pointer-events','unset');
+                 }
+
+                 if(typp=="duplicate"){
+                    $("#campaign_form").find("#submit").text('Create Campaign');
+                 $("input[name='name']").val(data.name+'-copy');
+                 $('#input_campaign_id').val('');
+                 $("#campaign_createModalLabel").text('Duplicate Campaign');
+                 $("#StartDate_input").val('{{ date("Y-m-d")}}');
+                 $("#SelectEndDateSelect").val('NoEndDate');
+                 $("#EndDate_input").hide();
+                 $("#StartDate_input").prop('readonly',false);
+                     $("#StartDate_input").css('pointer-events','unset');
+                     $("#TargetCountryInput").css('pointer-events','unset');
+                     $("#TargetingTypeInput").css('pointer-events','unset');
+                     $("#target_placements_Input").css('pointer-events','unset');
+                     $(".bootstrap-tagsinput").css('pointer-events','unset');
+                     $("#target_categories_Input").css('pointer-events','unset');
+                     $("#formOptions").css('pointer-events','unset');
+                     $("#ServiceSellBuyInput").css('pointer-events','unset');
+                     $("#WebsiteInput").css('pointer-events','unset');
+                     $("#SocialInput").css('pointer-events','unset');
+ 
+
+               }else{
+                $("#campaign_createModalLabel").text('Edit Campaign');
+               }
+
             })
         });
 
@@ -736,12 +796,24 @@
             rules: {
                 name: {  minlength: 3 },
                 end_date: { greaterThan: "#StartDate_input" },
-                daily_budget: {  required: true, money: true},
+                daily_budget: {  required: true, money: true,min: 50},
+                 service_sell_buy: {  minlength: 3 },
+                 website_url: {minlength: 7}
+
+            },messages: {
+             daily_budget:'Daily Budget should be minimum $50',
+             service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
+             website_url: 'Please fill Website URL - or leave it blank',
             }
         });
+
+      
+       
+
         $('[name="start_date"]').datepicker({
             dateFormat: 'mm/dd/yy',
             range: false,
+            minDate: 0,
             position: 'bottom left'
         }).on('changeDate', function(e) {
             // Revalidate the date field
@@ -750,6 +822,7 @@
         $('[name="end_date"]').datepicker({
             dateFormat: 'mm/dd/yy',
             range: false,
+            minDate: 0,
             position: 'bottom left'
 
         }).on('change', function(e) {
@@ -770,6 +843,7 @@
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
+
             },
             submitHandler: function(form) {
                 ajaxSubmit_createForm(form, '#CreateForm');
@@ -780,6 +854,7 @@
 @endpush
 @push('style')
     <style>
+        th.required_field {    width: 8%;}
         .handle {
             cursor: move;
         }
@@ -877,5 +952,8 @@
             box-shadow: none !important;
             border: 1px solid #ced4da !important;
         }
+.green{    color:green;}
+.orange{color:orange;}
+
     </style>
 @endpush
