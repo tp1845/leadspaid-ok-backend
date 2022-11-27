@@ -66,11 +66,14 @@
 @endpush
 @push('style')
 <style>
-    .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
-    .toggle.btn-sm {  min-width: 40px; min-height: 15px;  height: 15px; }
+    .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: 0;  }
+    .toggle.btn-sm {  min-width: 60px; min-height: 15px;  height: 15px; }
     .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
-    .toggle.ios .toggle-handle { border-radius: 20px; }
-    .toggle input[data-size="small"] ~ .toggle-group label {   text-indent: -999px;   }
+    .toggle.ios .toggle-handle { border-radius: 20px; display: none; }
+    .toggle input[data-size="small"] ~ .toggle-group label {
+        /* text-indent: -999px;    */
+        padding: 5px;
+    }
     .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
 </style>
@@ -86,8 +89,8 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                       url:  "{{route('admin.publisher.role')}}" ,
-                    // url: "/admin/publisher/role",
+                    //url:  "{{route('admin.publisher.role')}}" ,
+                     url: "/admin/publisher/role",
                     data: { 'role': role, 'publisher_id': publisher_id },
                     success: function(data) {
                         if (data.success) {
