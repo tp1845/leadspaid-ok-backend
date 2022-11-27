@@ -26,7 +26,7 @@
                                 <td data-label="@lang('Username')">{{ $publisher->username }}</td>
                                 <td data-label="@lang('Phone')">{{ $publisher->phone }}</td>
                                 <td data-label="@lang('Role')">
-                                    <input type="checkbox" name="role" @if($publisher->role) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-role" data-id="{{$publisher->id}}">
+                                    <input type="checkbox" name="role" @if($publisher->role) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" data-on="Admin" data-off="User" class="toggle-role" data-id="{{$publisher->id}}">
                                 </td>
                                 <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $publisher->status==1?'badge--success':'badge--warning' }} ">{{ $publisher->status==1?'Active':'Banned' }}</span></td>
                                 <td data-label="@lang('Actions')">
@@ -63,6 +63,17 @@
             </div>
         </div>
     </form>
+@endpush
+@push('style')
+<style>
+    .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
+    .toggle.btn-sm {  min-width: 40px; min-height: 15px;  height: 15px; }
+    .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
+    .toggle.ios .toggle-handle { border-radius: 20px; }
+    .toggle input[data-size="small"] ~ .toggle-group label {   text-indent: -999px;   }
+    .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
+    .toggle.btn.off .toggle-handle{ left: 9px; }
+</style>
 @endpush
 @push('script')
     <script>
