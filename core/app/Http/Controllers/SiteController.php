@@ -325,5 +325,22 @@ class SiteController extends Controller
 
         return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
     }
+    public function privacy_policy()
+    {
+        $id = 127;
+        $policy     = Frontend::findOrFail($id);
+        $page_title = $policy->data_values->heading;
+
+        return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
+    }
+
+    public function terms_condition()
+    {
+        $id = 128;
+        $policy     = Frontend::findOrFail($id);
+        $page_title = $policy->data_values->heading;
+
+        return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
+    }
 
 }

@@ -92,20 +92,19 @@
                     <div class="col-12 col-md">
                         <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
                             <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
-                            </a>
-
-                      <small class="d-block mb-3 text-muted">© 2017–2022</small>
+                        </a>
                     </div>
                     <div class="col-6 col-md">
                       <h5>Company</h5>
                       <ul class="list-unstyled text-small">
                         <li><a href="#">About </a></li>
                         <li><a href="{{route('home.contact')}}">Contact Us</a></li>
-                        @foreach ($policies as $policy)
                         <li>
-                          <a href="{{route('policy',[$policy->id,slug($policy->data_values->heading)])}}">{{$policy->data_values->heading}}</a>
+                            <a href="{{route('privacy_policy')}}">Privacy Policy</a>
                         </li>
-                        @endforeach
+                        <li>
+                            <a href="{{route('terms_condition')}}">Terms & Condition</a>
+                        </li>
                       </ul>
                     </div>
                     <div class="col-6 col-md">

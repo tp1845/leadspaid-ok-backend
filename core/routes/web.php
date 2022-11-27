@@ -431,7 +431,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/payments/createsession', 'AdvertiserController@PaymentsCreateSession')->name('payments.createsession');
         Route::get('/payments/success', 'AdvertiserController@PaymentsSuccessSession')->name('payments.success');
     /// invoice
-	
+
 	Route::get('invoices/{id}','AdvertiserController@showinvoices')->name('showinvoices');
     });
 });
@@ -538,14 +538,11 @@ Route::name('user.')->prefix('publisher')->group(function () {
     });
 });
 
-
 Route::get('user/authorization/{guard}', 'AuthorizationController@authorizeForm')->name('authorization');
 Route::get('resend-verify/{guard}', 'AuthorizationController@sendVerifyCode')->name('send_verify_code');
 Route::post('verify-email/{guard}', 'AuthorizationController@emailVerification')->name('verify_email');
 Route::post('verify-sms/{guard}', 'AuthorizationController@smsVerification')->name('verify_sms');
 Route::post('verify-g2fa/{guard}', 'AuthorizationController@g2faVerification')->name('go2fa.verify');
-
-
 
 Route::get('/contact', 'SiteController@contactPage')->name('home.contact');
 Route::post('/contact', 'SiteController@contactSubmit')->name('contact.send');
@@ -553,7 +550,6 @@ Route::get('/change/{lang?}', 'SiteController@changeLanguage')->name('lang');
 Route::get('keywords', 'SiteController@keywords')->name('keywords');
 Route::get('categorys/{id}', 'SiteController@categorys')->name('categorys');
 Route::get('countries', 'SiteController@countries')->name('countries');
-
 
 Route::get('/login','SiteController@showLoginForm')->name('login');
 Route::get('/register','SiteController@showRegisterForm')->name('register');
@@ -564,12 +560,12 @@ Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details
 Route::get('/ads/{publisher}/{type}/{current}', 'VisitorController@getAdvertise')->name('adsUrl');
 Route::get('/ad-clicked/{publisher}/{track_id}', 'VisitorController@adClicked')->name('adClicked');
 Route::get('company/plicy/{id}/{slug}', 'SiteController@policy')->name('policy');
-
+Route::get('privacy-policy', 'SiteController@privacy_policy')->name('privacy_policy');
+Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_condition');
 
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
 
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
 Route::get('/', 'SiteController@index')->name('home');
-
 
 Route::get('/campaign_form/{publisher_id}/{style}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
