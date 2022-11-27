@@ -217,6 +217,20 @@ class PublisherController extends Controller
         return view('admin.publisher.all', compact('page_title', 'search', 'empty_message', 'publishers'));
     }
 
-
+    public function update_role(Request $request){
+        $request->validate(['role' => 'required', 'publisher_id' => 'required' ]);
+        $user = Publisher::findOrFail( $request->publisher_id);
+        if($user){
+            $user->role =  $request->role;
+            $user->update();
+            if( $request->role  == 1){
+                return response()->json(['success'=>true, 'message'=> 'User is publisher admin']);
+            }else{
+                return response()->json(['success'=>false, 'message'=> 'User is normal publisher']);
+            }
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
+        }
+    }
 
 }

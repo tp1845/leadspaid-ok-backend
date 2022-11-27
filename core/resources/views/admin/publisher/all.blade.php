@@ -13,6 +13,7 @@
                                 <th scope="col">@lang('Email')</th>
                                 <th scope="col">@lang('Username')</th>
                                 <th scope="col">@lang('Phone')</th>
+                                <th scope="col">@lang('Role')</th>
                                 <th scope="col">@lang('Status')</th>
                                 <th scope="col">@lang('Actions')</th>
                             </tr>
@@ -24,12 +25,15 @@
                                 <td data-label="@lang('Email')">{{ $publisher->email }}</td>
                                 <td data-label="@lang('Username')">{{ $publisher->username }}</td>
                                 <td data-label="@lang('Phone')">{{ $publisher->phone }}</td>
+                                <td data-label="@lang('Role')">
+                                    <input type="checkbox" name="role" @if($publisher->role) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-role" data-id="{{$publisher->id}}">
+                                </td>
                                 <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $publisher->status==1?'badge--success':'badge--warning' }} ">{{ $publisher->status==1?'Active':'Banned' }}</span></td>
                                 <td data-label="@lang('Actions')">
                                     <a href="{{ route('admin.publisher.details',['id'=>$publisher->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="@lang('Details')">
-                                        <i class="las la-desktop text--shadow"></i>                 
+                                        <i class="las la-desktop text--shadow"></i>
                                     </a>
-                                    
+
                                 </td>
                             </tr>
                             @empty
@@ -59,4 +63,38 @@
             </div>
         </div>
     </form>
+@endpush
+@push('script')
+    <script>
+        'use strict';
+        var leads_preview_modal = $('#leads_preview_modal');
+        $(document).ready(function() {
+            $('.toggle-role').change(function() {
+                var role = $(this).prop('checked') == true ? 1 : 0;
+                var publisher_id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                       url:  "{{route('admin.publisher.role')}}" ,
+                    // url: "/admin/publisher/role",
+                    data: { 'role': role, 'publisher_id': publisher_id },
+                    success: function(data) {
+                        if (data.success) {
+                            Toast('green', data.message);
+                        } else {
+                            Toast('red', data.message);
+                        }
+                    }
+                });
+            });
+        });
+        function Toast( color = 'green', message ){
+            iziToast.show({
+                // icon: 'fa fa-solid fa-check',
+                color: color, // blue, red, green, yellow
+                message: message,
+                position: 'topRight'
+            });
+        }
+    </script>
 @endpush
