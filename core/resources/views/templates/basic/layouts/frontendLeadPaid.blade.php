@@ -58,9 +58,9 @@
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
                   </li>
-                  <li class="nav-item">
+                  {{-- <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
-                  </li>
+                  </li> --}}
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
                   </li>
@@ -111,7 +111,7 @@
                     <div class="col-6 col-md">
                       <h5>Company</h5>
                       <ul class="list-unstyled text-small">
-                        <li><a href="#">About </a></li>
+                        {{-- <li><a href="#">About </a></li> --}}
                         <li><a href="{{route('home.contact')}}">Contact Us</a></li>
                         <li>
                             <a href="{{route('privacy_policy')}}">Privacy Policy</a>
