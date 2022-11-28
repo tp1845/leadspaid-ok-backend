@@ -6,14 +6,14 @@
             <div class="row align-item-center justify-content-center align-items-center">
                 <div class="col-lg-4">
                     @if(Request::get('v') == 1 )
-                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
-                    @else
                         <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-01.png?v1" class="img-fluid" alt="leadsPaid">
+                    @else
+                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
                     @endif
                 </div>
                 <div class="col-lg-8">
                     <h1 class="h1">Generate Leads Directly</h1>
-                    <p>Alternative Lead Source<br> distinct from Search, display & Native Ads</p>
+                    <p>An Alternative Lead Source<br>distinct from Search, display & Native Ads</p>
                     <a href="#" class="btn btn-secondary btn-lg my-2">Generate Leads</a>
                 </div>
             </div>
