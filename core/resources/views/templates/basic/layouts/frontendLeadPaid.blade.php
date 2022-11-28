@@ -60,11 +60,17 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
                   </li>
-                  {{-- @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user()) --}}
+                  @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}">Advertiser Login</a>
                   </li>
-                  {{-- @endif --}}
+                  @endif
+                  @if(auth()->guard('publisher')->user())
+                  <li class="nav-item"><a href="{{route('publisher.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
+                  @endif
+                  @if(auth()->guard('advertiser')->user())
+                  <li class="nav-item"><a href="{{route('advertiser.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
+                  @endif
                 </ul>
 
 
