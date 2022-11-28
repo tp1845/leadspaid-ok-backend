@@ -190,6 +190,12 @@
                                     <span class="menu-title">@lang('All Publisher')</span>
                                 </a>
                             </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.publisher.admin.all')}}">
+                                <a href="{{route('admin.publisher.admin.all')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('All Admin Publisher')</span>
+                                </a>
+                            </li>
                             <li class="sidebar-menu-item {{menuActive('admin.publisher.active.all')}}">
                                 <a href="{{route('admin.publisher.active.all')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>

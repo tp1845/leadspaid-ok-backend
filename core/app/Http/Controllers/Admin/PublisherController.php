@@ -114,6 +114,14 @@ class PublisherController extends Controller
         return view('admin.publisher.banned',compact('page_title','empty_message','publishers'));
     }
 
+    public function allAdminPublisher()
+    {
+        $page_title = 'All Admin publishers';
+        $empty_message = 'No data';
+        $publishers = Publisher::where('role', 1)->get();
+        return view('admin.publisher.admin',compact('page_title','empty_message','publishers'));
+    }
+
     public function addSubBalance(Request $request, $id)
     {
         $request->validate(['amount' => 'required|numeric|gt:0']);

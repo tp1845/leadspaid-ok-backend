@@ -179,6 +179,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('publisher/send-email', 'PublisherController@sendEmailAll')->name('publisher.email.send');
         Route::get('publisher/search', 'PublisherController@search')->name('publisher.search');
         Route::get('publisher/role/', 'PublisherController@update_role')->name('publisher.role');
+        Route::get('/publisher/admin/all','PublisherController@allAdminPublisher')->name('publisher.admin.all');
 
         //domain manage
         Route::get('/domain/pending','DomainController@pending')->name('domain.pending');
