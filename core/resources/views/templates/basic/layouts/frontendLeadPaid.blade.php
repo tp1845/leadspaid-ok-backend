@@ -44,7 +44,11 @@
         <nav class="navbar navbar-expand-lg bg-primary " id="MainNav">
             <div class="container">
               <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
-                <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
+                @if(Request::get('v') == 2 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 250px" alt="site-logo">
+                @else
+                 <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
+                @endif
                 </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
