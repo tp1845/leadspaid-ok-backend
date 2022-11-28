@@ -277,6 +277,9 @@
                         @csrf
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
                         {{-- Form Settings --}}
+						
+						 <div class="row">
+                            <div class="col-md-8">
                         <div class="card border shadow-sm mb-4">
                             <div class="card-header bg-light text-secondary">Form Settings</div>
                             <div class="card-body">
@@ -381,6 +384,63 @@
 
                             </div>
                         </div>
+						</div>
+						
+						<div class="col-md-4">
+                    <div class="card sidbar_preview">
+
+                   <form>
+      <div class="video">
+        <iframe width="100%" height="175" src="https://www.youtube.com/embed/X1QJGzvyoZI" title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+      <h2 class="form-title">Singapore PR Application 2022</h2>
+      <p class="form-subtitle">Calculate Your PR Chances Now!</p>
+      <div class="form-row">
+        <label for="InputText1" class="form-label">Full Name*</label>
+        <input type="text" class="form-control" id="InputText1" placeholder="Full Name*" required>
+      </div>
+      <div class="form-row">
+        <label for="InputText3" class="form-label">Singapore Mobile Number*</label>
+        <input type="text" class="form-control" id="InputText3" placeholder="Singapore Mobile Number*" required>
+      </div>
+      <div class="form-row">
+        <label for="InputText2" class="form-label">Work Email*</label>
+        <input type="email" class="form-control" id="InputText2" placeholder="Work Email*" required>
+      </div>
+      <div class="form-row">
+        <label for="InputText4" class="form-label">Relationship to Singaporean/PR*</label>
+        <select class="form-select" id="InputText3" required>
+          <option selected value="" class="holder">Relationship to Singaporean/PR*</option>
+          <option value="No Relationship">No Relationship</option>
+          <option value="Spouse">Spouse</option>
+          <option value="Child">Child</option>
+          <option value="Aged Parent">Aged Parent</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="InputText4" class="form-label">Length of stay in Singapore?*</label>
+        <select class="form-select" id="InputText3" required>
+          <option selected value="" disabled>Length of stay in Singapore?*</option>
+          <option value="Over 2 years">Over 2 years</option>
+          <option value="2 years">2 years</option>
+          <option value="1 year">1 year</option>
+          <option value="Less than 6 months">Less than 6 months</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <button type="submit" class="form-btn">Submit</button>
+        <p class="policy">I agree to your privacy policy by submitting the form</p>
+        <p class="logo"><img src="logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
+      </div>
+    </form>
+</div>
+                   </div>
+						
+						</div>
+						
                         {{-- lead fields settings  --}}
                         <div class="card border shadow-sm mb-4">
                             <div class="card-header bg-light text-secondary">Lead Fields Settings</div>
@@ -965,6 +1025,172 @@
         }
 .green{    color:green;}
 .orange{color:orange;}
+.container {
+      width: 300px;
+      margin: 10px auto;
+    }
 
+    .video {
+      margin-bottom: 5px;
+      padding: 0 5px;
+    }
+
+    .video iframe {
+      border: 1px solid #000;
+    }
+
+    .form-title {
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      margin: 0 0 0 0;
+      padding: 0;
+    }
+
+    .form-subtitle {
+      text-align: center;
+      font-size: 14px;
+      margin: 0 0 10px 0;
+      padding: 0;
+    }
+
+    .form-row {
+      width: 100%;
+      margin-bottom: 8px;
+      padding: 0 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .form-row.form-check {
+      flex-direction: row;
+    }
+
+    .form-row .form-label {
+      display: none;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    .form-row .form-control,
+    .form-row .form-select {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0.375rem 0.5rem;
+      font-size: .9rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 3px;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    }
+
+    .form-row .form-control {}
+
+    .form-row .form-select {
+      background-color: #fff;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 16px 12px;
+    }
+
+    .form-row select:invalid,
+    .form-row select option:first-child {
+      color: gray !important;
+    }
+
+    .form-btn {
+      display: block;
+      width: 100%;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #fff;
+      background-color: #000;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-top: 2px;
+    }
+
+    .policy {
+      margin: 5px 0 0 0;
+      padding: 0;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+      width: 100%;
+    }
+    .logo{
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+      display: flex;
+      align-content: center;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .logo img{ display: inline-block; width: 120px; }
+
+    .form-row select:invalid,
+    .form-row select option:first-child {
+      color: gray !important;
+      font-size: 13px;
+    }
+
+    ::-webkit-input-placeholder {
+      /* WebKit, Blink, Edge */
+      color: gray !important;
+      font-size: 13px;
+    }
+
+    :-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: gray !important;
+      font-size: 13px;
+      opacity: 1;
+    }
+
+    ::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: gray !important;
+      font-size: 13px;
+      opacity: 1;
+    }
+
+    :-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: gray !important;
+      font-size: 13px;
+    }
+
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: gray !important;
+      font-size: 13px;
+    }
+
+    ::placeholder {
+      /* Most modern browsers support this now. */
+      color: gray !important;
+      font-size: 13px;
+    }
+	      .card.sidbar_preview {
+    border: 5px solid #000;
+    padding: 5px !important;
+}
     </style>
 @endpush
