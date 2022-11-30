@@ -61,6 +61,11 @@
 
                  @elseif(Request::get('v') == 7 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-7.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 8 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-8.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 9 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-9.png')}}" style="max-width: 250px" alt="site-logo">
+
 
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
