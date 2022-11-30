@@ -56,6 +56,12 @@
                  @elseif(Request::get('v') == 5 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-5.png')}}" style="max-width: 250px" alt="site-logo">
 
+                 @elseif(Request::get('v') == 6 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-6.png')}}" style="max-width: 250px" alt="site-logo">
+
+                 @elseif(Request::get('v') == 7 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-7.png')}}" style="max-width: 250px" alt="site-logo">
+
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                 @endif
