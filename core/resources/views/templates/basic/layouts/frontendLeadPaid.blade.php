@@ -46,6 +46,16 @@
               <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
                 @if(Request::get('v') == 2 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 250px" alt="site-logo">
+
+                 @elseif(Request::get('v') == 3 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-3.png')}}" style="max-width: 250px" alt="site-logo">
+
+                 @elseif(Request::get('v') == 4 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-4.png')}}" style="max-width: 250px" alt="site-logo">
+
+                 @elseif(Request::get('v') == 5 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-5.png')}}" style="max-width: 250px" alt="site-logo">
+
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                 @endif
