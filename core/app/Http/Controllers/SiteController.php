@@ -346,6 +346,9 @@ class SiteController extends Controller
 
     $data['page_title'] = 'Home';
     $page_title="home";
-     return view($this->activeTemplate . 'register-advertiser',compact('data','page_title'));
+	 $info         = json_decode(json_encode(getIpInfo()), true);
+        $country_code = @implode(',', $info['code']);
+        $countries    = Country::all();
+     return view($this->activeTemplate . 'register-advertiser',compact('data','page_title','country_code','countries'));
    }
 }

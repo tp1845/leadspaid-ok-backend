@@ -13,7 +13,9 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-11 mx-auto">
+                <div class="row justify-content-evenly">
+            <div class="col-md-5">
                 <div class="Rg_advts_bsc">
                     <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
 
@@ -23,21 +25,17 @@
                         <input name="fName" id="inputForm" type="text" value="" class="form-control Rg_advts_name mb-3 rounded-0" placeholder="First Name " aria-required="true" aria-invalid="false">
 
                         <select class="form-select mb-3 rounded-0" aria-label="Default select example">
-                          <option selected>Country</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                           @foreach ($countries as $country)
+                                                    <option @if($country_code==$country->country_code) selected="selected" @endif value=" {{ $country->country_name }} " label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
+                                                    @endforeach
                         </select>
 
                         <div class="Rg_advts_number">
                             <select class="form-select mb-3 rounded-0" aria-label="Default select example">
-                              <option selected>+91</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
+                               @include('partials.country_code')
                             </select>
 
-                            <input name="fName" id="inputNumber" type="text" value="" class=" Rg_advts_name mb-3 rounded-0" placeholder="Your phone number " aria-required="true" aria-invalid="false">
+                            <input name="fName" id="inputNumber" type="text" value="" class=" Rg_advts_name mb-3 rounded-0" placeholder="@lang('Your Phone Number')" aria-required="true" aria-invalid="false">
                             
                         </div>
 
@@ -46,12 +44,12 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="Rg_advts_bsc">
                     <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
 
                    <form class="Rg_advts_form">
-                       <textarea class="form-control Rg_advts_name mb-3 rounded-0" rows="3" placeholder="Products or Services you want to generate lead for us" id="floatingTextarea"></textarea>
+                       <textarea class="form-control Rg_advts_name mb-3 rounded-0" placeholder="Products or Services you want to generate lead for us" id="floatingTextarea"></textarea>
 
                         <input name="wName" id="inputForm" type="text" value="" class="form-control Rg_advts_name mb-3 rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false">
 
@@ -60,28 +58,42 @@
                 </div>
             </div>
         </div>
+        </div>
+        </div>
 
         <div class="row">
-             <div class="user_info_Rg_advts"><h4 class="Rg_advts_bsc_ttls mb-4">User Information</h4></div>
-            <div class="col-md-9">
-                <div class="row">
-                    <div class="col-md-8">
-                        <input name="wName" id="inputForm" type="email" value="" class="form-control rounded-0 Rg_advts_name mb-3" placeholder="Email Address " aria-required="true" aria-invalid="false">
+            <div class="col-md-11 mx-auto">
+                <div class="row justify-content-evenly">
+                <div class="col-11">
+                        <div class="user_info_Rg_advts"><h4 class="Rg_advts_bsc_ttls mb-4">User Information</h4></div>
                     </div>
-                    <div class="col-md-4">
-                     <input name="wName" id="inputForm" type="password" value="" class="rounded-0 form-control Rg_advts_name mb-3" placeholder="Password " aria-required="true" aria-invalid="false"></div>
                 </div>
-                
-            </div>
-            <div class="col-md-3">
-                 <input name="wName" id="inputForm" type="password" value="" class="form-control rounded-0 Rg_advts_name mb-3" placeholder="Confirm Password " aria-required="true" aria-invalid="false">
-             </div>
+                <div class="row justify-content-evenly">
 
-             <div class="col-md-7 ms-auto mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
-                 <button type="button" class="btn btn-secondary Rg_advts_my_btn">Sign Up</button>
-             </div>
+                    
+             
+                    <div class="col-md-7">
+                        <div class="row">
+
+                            <div class="col-md-8">
+                                <input name="wName" id="inputForm" type="email" value="" class="form-control rounded-0 Rg_advts_name mb-3" placeholder="Email Address " aria-required="true" aria-invalid="false">
+                            </div>
+                            <div class="col-md-4">
+                             <input name="wName" id="inputForm" type="password" value="" class="rounded-0 form-control Rg_advts_name mb-3" placeholder="Password " aria-required="true" aria-invalid="false"></div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-3">
+                         <input name="wName" id="inputForm" type="password" value="" class="form-control rounded-0 Rg_advts_name mb-3" placeholder="Confirm Password " aria-required="true" aria-invalid="false">
+                     </div>
+
+                     <div class="col-md-7 ms-auto mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
+                         <button type="button" class="btn btn-secondary Rg_advts_my_btn">SIGN UP</button>
+                     </div>
 
         </div>
+    </div>
+</div>
 
 
 
@@ -142,12 +154,12 @@
     flex-wrap: wrap;
 }
 .Rg_advts_number select.form-select {
-    flex: 0 0 20%;
-    width: 20%;
+    flex: 0 0 30%;
+    width: 30%;
 }
 .Rg_advts_number input {
-    flex: 0 0 80%;
-    width: 80%;
+    flex: 0 0 70%;
+    width: 70%;
     border: 1px solid #ced4da;
     font-size: 19px;
         line-height: normal;
@@ -165,6 +177,13 @@
         transition: All .2s ease-in-out!important;
    
 }
+.Rg_advts_bsc textarea.form-control{
+    min-height: 140px;
+}
+button.btn.btn-secondary.Rg_advts_my_btn {
+    font-size: 24px;
+    font-weight: 500;
+}
 .Rg_advts_my_btn {
     width: 100%;
     max-width: 250px;
@@ -172,20 +191,22 @@
         line-height: normal;
 }
 .Rg_advts input::placeholder {
-  color: #8a8c8a;
+  
 }
 
 .Rg_advts input:-ms-input-placeholder { /* Internet Explorer 10-11 */
-color: #8a8c8a;
+
 }
 
 .Rg_advts input::-ms-input-placeholder { /* Microsoft Edge */
-color: #8a8c8a;
+
+}
+.user_info_Rg_advts {
+    padding-left: 15px;
 }
 
 .Rg_advts input, .Rg_advts select, .Rg_advts textarea {
     font-weight: 300;
-    color: #8a8c8a;
 }
 @media screen and (max-width: 480px){
     .Rg_advts_number input {
