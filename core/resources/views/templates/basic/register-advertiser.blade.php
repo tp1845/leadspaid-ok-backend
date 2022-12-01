@@ -6,6 +6,11 @@
 
 <section class="Rg_advts">
     <div class="container">
+	 <div class="row text-center">
+            <div class="col-lg-12 pt-5">
+               <p class="Rg_advts_ttls_1">Generate Leads Now</p>
+            </div>
+        </div>
         <div class="row text-center">
             <div class="col-lg-12 pt-5">
                <p class="Rg_advts_ttls mb-5">Register as an Advertiser</p>
@@ -125,6 +130,15 @@
         font-size: 38px;
         letter-spacing: 1px;
     }
+	 .Rg_advts_ttls_1 {
+        
+        font-family: Poppins !important;
+        font-weight: 400;
+        font-size: 35px;
+        letter-spacing: 1px;
+        color: #cccdcc;
+    }
+	
     .user_info_Rg_advts h4,
     .Rg_advts_bsc .Rg_advts_bsc_ttls{
         font-size: 20px;
