@@ -142,6 +142,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('advertiser/send-email', 'AdvertiserController@showEmailAllForm')->name('advertiser.email.all');
         Route::post('advertiser/send-email', 'AdvertiserController@sendEmailAll')->name('advertiser.email.send');
         Route::get('advertiser/search', 'AdvertiserController@search')->name('advertiser.search');
+        Route::get('advertiser/update_status/', 'AdvertiserController@update_status')->name('advertiser.update_status');
 
         //Manage Campaigns
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
