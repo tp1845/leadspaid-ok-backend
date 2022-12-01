@@ -22,6 +22,18 @@ class CampaignsController extends Controller
         $empty_message = "No Campaigns";
         return view(activeTemplate() . 'advertiser.campaigns.index', compact('campaigns','forms', 'countries', 'page_title', 'empty_message'));
     }
+	
+	  public function index2(Request $request)
+    {
+        $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
+        $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->get();
+
+        $countries = Country::all();
+        $page_title = 'All Campaigns';
+        $empty_message = "No Campaigns";
+        return view(activeTemplate() . 'advertiser.campaigns.index2', compact('campaigns','forms', 'countries', 'page_title', 'empty_message'));
+    }
+	
 
     public function edit(Request $request, $id)
     {
