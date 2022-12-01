@@ -342,5 +342,10 @@ class SiteController extends Controller
 
         return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
     }
+     public function register_advertiser(){
 
+    $data['page_title'] = 'Home';
+    $page_title="home";
+     return view($this->activeTemplate . 'register-advertiser',compact('data','page_title'));
+   }
 }
