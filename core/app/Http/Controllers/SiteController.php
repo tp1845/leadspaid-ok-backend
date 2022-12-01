@@ -351,4 +351,15 @@ class SiteController extends Controller
         $countries    = Country::all();
      return view($this->activeTemplate . 'register-advertiser',compact('data','page_title','country_code','countries'));
    }
+   
+   public function home2()
+    {
+        
+
+        $data['page_title'] = 'New Home';
+        
+
+        return view($this->activeTemplate . 'home-leadpaid2', $data);
+    }
+   
 }

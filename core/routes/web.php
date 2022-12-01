@@ -570,7 +570,7 @@ Route::get('privacy-policy', 'SiteController@privacy_policy')->name('privacy_pol
 Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_condition');
 
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
-
+Route::get('new-home', 'SiteController@home2')->name('new-home');
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
 Route::get('/', 'SiteController@index')->name('home');
 
