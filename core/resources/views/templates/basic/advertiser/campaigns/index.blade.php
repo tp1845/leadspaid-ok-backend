@@ -183,8 +183,10 @@
                                         <label class="col-sm-12 col-form-label" for="target_placements_Input">Targeting Placements </label>
                                         <div class="col-sm-6 input-col">
                                             <select multiple class="form-control" id="target_placements_Input" name="target_placements[]">
+                                                   <option value="none">none</option>
                                                 <option value="google.com">google.com</option>
                                                 <option value="facebook.com">facebook.com</option>
+                                              
                                             </select>
                                         </div>
                                     </div>
@@ -199,6 +201,7 @@
                                         <label class="col-sm-12 col-form-label" for="target_categories_Input">Targeting Categories </label>
                                         <div class="col-sm-6 input-col">
                                             <select multiple class="form-control" id="target_categories_Input" name="target_categories[]">
+                                                 <option value="none">none</option>
                                                 <option value="Immigration">Immigration </option>
                                                 <option value="Permanent Residency">Permanent Residency</option>
                                                 <option value="Citizenship">Citizenship</option>
@@ -243,10 +246,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
+
                                     <label class="col-sm-12 col-form-label" for="WebsiteInput">Website URL used in this Campaign (Optional)</label>
                                     <div class="col-sm-12 input-col">
-                                        <input type="text" class="form-control" id="WebsiteInput" name="website_url" placeholder="Website URL (Optional)">
+                                        <input type="url" class="form-control" id="website_url" name=" website_url" placeholder="Website URL (Optional)" onblur="ValidURL(this.value)"
+
                                     </div>
+                                    <span style="color: red;">
+                                         @error('website_url'){{$message}}@enderror
+                                    </span>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-12 col-form-label" for="SocialInput">Social Media Page URL used in this Campaign(Optional)</label>
@@ -277,39 +285,38 @@
                         @csrf
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
                         {{-- Form Settings --}}
-						
-						 <div class="row">
+                        <div class="row">
                             <div class="col-md-8">
                         <div class="card border shadow-sm mb-4">
                             <div class="card-header bg-light text-secondary">Form Settings</div>
                             <div class="card-body">
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="FormNameInput">Form Name</label>
+                                    <label class="col-sm-6 col-form-label" for="FormNameInput">Form Name</label>
                                     <div class="col-sm-6 input-col">
                                         <input type="text" class="form-control" id="FormNameInput" name="form_name" placeholder="Form Name" required minlength="3">
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="CompanyBrandNameInput">Company / Brand Name</label>
+                                    <label class="col-sm-6 col-form-label" for="CompanyBrandNameInput">Company / Brand Name</label>
                                     <div class="col-sm-6 input-col">
                                         <input type="text" class="form-control" id="CompanyBrandNameInput" name="company_name" placeholder="Company / Brand Name" required minlength="3">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="CompanyLogoInput">Company Logo</label>
+                                    <label class="col-sm-6 col-form-label" for="CompanyLogoInput">Company Logo</label>
                                     <div class="col-sm-6 input-col">
-                                        <input type="file" class="form-control-file pl-0" name="company_logo" id="CompanyLogoInput" required >
+                                        <input type="file" class="form-control-file pl-0" name="company_logo" id="CompanyLogoInput" class="CompanyLogoInput" required >
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="FormTitleInput">Form Title</label>
+                                    <label class="col-sm-6 col-form-label" for="FormTitleInput">Form Title</label>
                                     <div class="col-sm-6 input-col">
                                         <input type="text" class="form-control" id="FormTitleInput" name="form_title" placeholder="Form Title"  required minlength="3">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="OfferDescriptionInput">Offer Description</label>
+                                    <label class="col-sm-6 col-form-label" for="OfferDescriptionInput">Offer Description</label>
                                     <div class="col-sm-6 input-col">
                                         <input type="text" class="form-control" id="OfferDescriptionInput" name="offer_desc" placeholder="Offer Description" required minlength="3">
                                     </div>
@@ -323,59 +330,59 @@
                             <div class="card-body">
 
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_1_Input">Youtube Video Url1(Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="Youtube_URL_1_Input">Youtube Video Url1(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control pl-0" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube video URL1">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_2_Input">Youtube Video Url2(Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="Youtube_URL_2_Input">Youtube Video Url2(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control pl-0" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube video URL2">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="Youtube_URL_3_Input">Youtube Video Url3(Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="Youtube_URL_3_Input">Youtube Video Url3(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control pl-0" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube video URL3">
                                     </div>
                                 </div>
 
                                 {{-- <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="video_1_Input">Upload a video 1(Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="video_1_Input">Upload a video 1(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="file" class="form-control-file pl-0" id="video_1_Input" name="video_1" placeholder="video video URL1">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="video_URL_2_Input">Upload a video 2(Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="video_URL_2_Input">Upload a video 2(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="file" class="form-control-file pl-0" id="video_URL_2_Input" name="video_2" placeholder="video video URL2">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="video_URL_3_Input">Upload a video 3(Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="video_URL_3_Input">Upload a video 3(Optional)</label>
                                     <div class="col-sm-6">
                                         <input type="file" class="form-control-file pl-0" id="video_URL_3_Input" name="video_3" placeholder="video video URL3">
                                     </div>
                                 </div> --}}
 
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="image_1_Input">Upload an image 1 (Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="image_1_Input">Upload an image 1 (Optional)</label>
                                     <div class="col-sm-6 input-col">
                                         <input type="file" class="form-control-file pl-0" id="image_1_Input" name="image_1" placeholder="Upload an image 1">
                                         <small class="form-text text-muted">Upload an image of (minimum width = 300px / minimum height = 180px)</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="image_2_Input">Upload an image 2 (Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="image_2_Input">Upload an image 2 (Optional)</label>
                                     <div class="col-sm-6 input-col">
                                         <input type="file" class="form-control-file pl-0" id="image_2_Input" name="image_2" placeholder="Upload an image 2">
                                         <small class="form-text text-muted">Upload an image of (minimum width = 300px / minimum height = 180px)</small>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-3 col-form-label" for="image_3_Input">Upload an image 3 (Optional)</label>
+                                    <label class="col-sm-6 col-form-label" for="image_3_Input">Upload an image 3 (Optional)</label>
                                     <div class="col-sm-6 input-col">
                                         <input type="file" class="form-control-file pl-0" id="image_3_Input" name="image_3" placeholder="Upload an image 3">
                                         <small class="form-text text-muted">Upload an image of (minimum width = 300px / minimum height = 180px)</small>
@@ -384,35 +391,38 @@
 
                             </div>
                         </div>
-						</div>
-						
-						<div class="col-md-4">
+                    </div>
+                   <div class="col-md-4">
+                    <div class="text-center">
+                        <h3>Preview:<span class="form_name_t">Form Name<span> </h3>
+                    </div>
                     <div class="card sidbar_preview">
 
-                   <form>
+                  
       <div class="video">
-        <iframe width="100%" height="175" src="https://www.youtube.com/embed/X1QJGzvyoZI" title="YouTube video player"
+        <iframe max-width="300px" max-height="600px" src="https://www.youtube.com/embed/X1QJGzvyoZI" title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
       </div>
       <h2 class="form-title">Singapore PR Application 2022</h2>
       <p class="form-subtitle">Calculate Your PR Chances Now!</p>
-      <div class="form-row">
+      <div class="form-wrap">
+      <div class="form-row InputText1fullname" id="p1">
         <label for="InputText1" class="form-label">Full Name*</label>
-        <input type="text" class="form-control" id="InputText1" placeholder="Full Name*" required>
+        <input type="text" class="form-control " id="InputText1" placeholder="Full Name*" required>
       </div>
-      <div class="form-row">
+      <div class="form-row singapore_mobile_number" id="p2">
         <label for="InputText3" class="form-label">Singapore Mobile Number*</label>
-        <input type="text" class="form-control" id="InputText3" placeholder="Singapore Mobile Number*" required>
+        <input type="text" class="form-control" id="singapore_mobile_number" placeholder="Singapore Mobile Number*" required>
       </div>
-      <div class="form-row">
+      <div class="form-row work_email" id="p3">
         <label for="InputText2" class="form-label">Work Email*</label>
-        <input type="email" class="form-control" id="InputText2" placeholder="Work Email*" required>
+        <input type="email" class="form-control" id="work_email" placeholder="Work Email*" required>
       </div>
-      <div class="form-row">
+      <div class="form-row relationship_to_singaporean" id="p4">
         <label for="InputText4" class="form-label">Relationship to Singaporean/PR*</label>
-        <select class="form-select" id="InputText3" required>
+        <select class="form-select" id="relationship_to_singaporean" required>
           <option selected value="" class="holder">Relationship to Singaporean/PR*</option>
           <option value="No Relationship">No Relationship</option>
           <option value="Spouse">Spouse</option>
@@ -420,9 +430,9 @@
           <option value="Aged Parent">Aged Parent</option>
         </select>
       </div>
-      <div class="form-row">
+      <div class="form-row length_of_stay" id="p5">
         <label for="InputText4" class="form-label">Length of stay in Singapore?*</label>
-        <select class="form-select" id="InputText3" required>
+        <select class="form-select" id="length_of_stay" required>
           <option selected value="" disabled>Length of stay in Singapore?*</option>
           <option value="Over 2 years">Over 2 years</option>
           <option value="2 years">2 years</option>
@@ -430,17 +440,20 @@
           <option value="Less than 6 months">Less than 6 months</option>
         </select>
       </div>
+  </div>
       <div class="form-row">
         <button type="submit" class="form-btn">Submit</button>
         <p class="policy">I agree to your privacy policy by submitting the form</p>
-        <p class="logo"><img src="logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
+        <p class="logo company_logo_t "><img src="{{ url('/')}}/assets/images/logo.png" alt="" class="company_logo_t2" > 
+            <span class="brandname_t"></span></p>
       </div>
-    </form>
+   
 </div>
                    </div>
-						
-						</div>
-						
+
+
+
+                </div>
                         {{-- lead fields settings  --}}
                         <div class="card border shadow-sm mb-4">
                             <div class="card-header bg-light text-secondary">Lead Fields Settings</div>
@@ -461,23 +474,23 @@
                                     <tbody id="sortable">
 
                                     @for ($i = 1; $i < 6; $i++)
-                                        <tr class="sortable-group">
-                                            <td class="handle"><i class="fa fa-solid fa-grip-vertical"></i>
+                                        <tr class="sortable-group" >
+                                            <td class="handle" data-order="{{ $i }}"><i class="fa fa-solid fa-grip-vertical"></i>
                                                 <input type="hidden" class="sort" name='field_{{ $i }}[sort]' value="{{ $i }}"></td>
                                             <th scope="row">
-                                                <select class="custom-select mr-sm-2 InputQuestionType" id="InputQuestionType_{{ $i }}" data-id="{{ $i }}" name='field_{{ $i }}[question_type]'>
+                                                <select class="custom-select mr-sm-2 InputQuestionType" id="InputQuestionType_{{ $i }}" data-id="{{ $i }}" name='field_{{ $i }}[question_type]' onchange="change_filed_type({{ $i }},this.value)">
                                                     <option value="ShortAnswer" selected="">Short Answer</option>
                                                     <option value="MultipleChoice">Multiple Choice</option>
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="checkbox" class="InputQuestion_Required"  name='field_{{ $i }}[required]'>
+                                                <input type="checkbox" id="checkbox_field_{{ $i }}" class="InputQuestion_Required"  name='field_{{ $i }}[required]'>
                                             </td>
-                                            <td><input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name='field_{{ $i }}[question_text]' @if($i <= 3)required @endif ></td>
-                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_1" placeholder="Option 1" style="display: none" name='field_{{ $i }}[option_1]'></td>
-                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_2" placeholder="Option 2" style="display: none" name='field_{{ $i }}[option_2]'></td>
-                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_3" placeholder="Option 3" style="display: none" name='field_{{ $i }}[option_3]'></td>
-                                            <td><input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_4" placeholder="Option 4" style="display: none" name='field_{{ $i }}[option_4]'></td>
+                                            <td><input type="text" class="form-control InputQuestion_text_field_{{ $i }}" placeholder="Enter Your Question" name='field_{{ $i }}[question_text]' @if($i <= 3)required @endif ></td>
+                                            <td><input type="text" class="InputQuestion_text_1 form-control QuestionOption_{{ $i }} InputQuestion_Option_1" placeholder="Option 1" style="display: none" name='field_{{ $i }}[option_1]' onblur="appendoptiion({{ $i }},this.value)"  ></td>
+                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_2" placeholder="Option 2" style="display: none" name='field_{{ $i }}[option_2]' onblur="appendoptiion({{ $i }},this.value)" ></td>
+                                            <td><input type="text" class="QuestionOption_requried form-control QuestionOption_{{ $i }} InputQuestion_Option_3" placeholder="Option 3" style="display: none" name='field_{{ $i }}[option_3]' onblur="appendoptiion({{ $i }},this.value)" ></td>
+                                            <td><input type="text" class="form-control QuestionOption_{{ $i }} InputQuestion_Option_4" placeholder="Option 4" style="display: none" name='field_{{ $i }}[option_4]'  onblur="appendoptiion({{ $i }},this.value)" ></td>
                                         </tr>
                                     @endfor
                                     </tbody>
@@ -611,7 +624,7 @@
                      $("#target_placements_Input").css('pointer-events','none');
                      $(".bootstrap-tagsinput").css('pointer-events','none');
                      $("#target_categories_Input").css('pointer-events','none');
-                     $("#formOptions").css('pointer-events','none');
+                   //  $("#formOptions").css('pointer-events',);
                      $("#ServiceSellBuyInput").css('pointer-events','none');
                      $("#WebsiteInput").css('pointer-events','none');
                      $("#SocialInput").css('pointer-events','none');
@@ -732,6 +745,13 @@
                         }else{
                             $(el).find(".InputQuestion_text").prop("required", false).removeClass('is-invalid');
                         }
+                        var jj=$(el).find('.handle').data("order");
+
+                        console.log(jj);
+                        $("#p"+i).css('order',jj);
+
+                        var abdc= $(el).find("input.sort").val(i);
+                        console.log(abdc);
                         $(el).find("input.sort").val(i).attr('name', 'field_' + i + '[sort]');
                         $(el).find(".InputQuestionType").attr('name', 'field_' + i + '[question_type]');
                         $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
@@ -827,9 +847,22 @@
                 position: 'topRight'
             });
         }
+         function ValidURL(str) {
+            var regex = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$(?:www\.)?/
+            if (!regex.test(str)) {
+              
+                
+            } else {
+               $("#website_url").removeClass("is-invalid");
+               
+
+               
+            }
+        }
     </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script src="http://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
     <script>
         $.validator.setDefaults({
             errorElement: 'span',
@@ -869,12 +902,12 @@
                 end_date: { greaterThan: "#StartDate_input" },
                 daily_budget: {  required: true, money: true,min: 50},
                  service_sell_buy: {  minlength: 3 },
-                 website_url: {minlength: 7}
+           
 
             },messages: {
              daily_budget:'Daily Budget should be minimum $50',
              service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
-             website_url: 'Please fill Website URL - or leave it blank',
+            
             }
         });
 
@@ -921,10 +954,182 @@
                 return false;
             }
         });
+        // just for the demos, avoids form submit
+
+        $("#FormNameInput").on('keypress',function(){
+           var name=$(this).val();
+           $(".form_name_t").text(name);
+        });
+
+        $("#CompanyBrandNameInput").on('keypress',function(){
+           var name=$(this).val();
+           $(".brandname_t").text(name);
+        });
+       
+       $("#FormTitleInput").on('keypress',function(){
+          var name=$(this).val();
+           $(".form-title").text(name);
+       });
+
+        $("#OfferDescriptionInput").on('keypress',function(){
+          var name=$(this).val();
+           $(".form-subtitle").text(name);
+       });
+
+        // for InputQuestion_text
+        $(".InputQuestion_text").on('keypress',function(){
+         if($("#InputQuestionType_1").val()=="ShortAnswer"){
+               
+                 var input2=$(this).val();
+                var str='';
+                if($("#checkbox_field_1").is(':checked')){
+                    str='*';
+                    
+                }
+
+                  $("#InputText1").attr("placeholder",input2+' '+str);
+                     
+                }
+        });
+     $("#checkbox_field_1").click(function(){
+        
+
+        if($(this).is(":checked")){
+            
+         var InputText1=$("#InputText1").attr('placeholder');
+           if(InputText1.indexOf('*') != -1){
+               $("#InputText1").attr('placeholder',InputText1+'');
+               
+           }else{
+                var ppp=InputText1.slice(0,-1);
+             $("#InputText1").attr('placeholder',ppp+' *');
+                  
+           }
+        }
+
+  });
+
+      // for InputQuestion_text
+        $(".InputQuestion_text_field_1").on('keydown, keyup',function(){
+         setpreviewdata(1);
+         });
+
+
+           $(".InputQuestion_text_field_2").on('keydown, keyup',function(){
+              setpreviewdata(2); 
+           });
+              $(".InputQuestion_text_field_3").on('keydown, keyup',function(){
+                setpreviewdata(3); 
+               });
+               $(".InputQuestion_text_field_4").on('keydown, keyup',function(){
+                setpreviewdata(4); 
+               });
+                $(".InputQuestion_text_field_5").on('keydown, keyup',function(){
+                setpreviewdata(5); 
+               });
+    
+     function change_filed_type(id,val){
+        console.log("id:",id);
+        console.log("value:",val);
+
+        if(val=="ShortAnswer"){
+        $("#p"+id).find("select").remove();
+        $("#p"+id).find("label").after('<input type="text" name="" class="form-control" aria-required="true">');
+        }else if(val=="MultipleChoice"){
+            $("#p"+id).find("input").remove();
+            $("#p"+id).find("label").after('<select name="" class="form-select"></select>');
+        }
+      
+     }
+
+     function setpreviewdata(id){
+           
+        if($("#InputQuestionType_"+id).val()=="ShortAnswer"){
+               
+                 var input2=$('.InputQuestion_text_field_'+id).val();
+                var str='';
+                if($("#checkbox_field_"+id).is(':checked')){
+                    str='*';
+                    
+                }
+
+                  $("#p"+id).find("input").attr("placeholder",input2+' '+str);
+                     
+                }else if( $("#InputQuestionType_"+id).val()=="MultipleChoice"){
+                   
+                  
+                  var input2=$('.InputQuestion_text_field_'+id).val();
+                  var option='<option value="">'+input2+"</option>";                                  
+                   $("#p"+id).find("select").find('option:first').text(input2);
+                } 
+     }
+
+  function appendoption(id,val){
+     if(val!==""){
+    var opt='<option value="'+val+'">'+val+'</option>';
+
+    $("#p"+id).find("select").append(opt);
+     }
+
+  }
+
+
+     $("#checkbox_field_1").click(function(){
+        
+
+        if($(this).is(":checked")){
+            
+         var InputText1=$("#InputText1").attr('placeholder');
+           if(InputText1.indexOf('*') != -1){
+               $("#InputText1").attr('placeholder',InputText1+'');
+               
+           }else{
+                var ppp=InputText1.slice(0,-1);
+             $("#InputText1").attr('placeholder',ppp+' *');
+             
+           }
+        }else{
+           
+            var InputText1=$("#InputText1").attr('placeholder');
+            if(InputText1.indexOf('*') != -1){
+                 var ppp=InputText1.slice(0,-1);
+               $("#InputText1").attr('placeholder',ppp+'');
+               
+           }else{
+              
+             $("#InputText1").attr('placeholder',InputText1+' ');
+            
+           }
+           
+        }
+
+
+  });
+
+
+$(document).ready(()=>{
+      $('#CompanyLogoInput').change(function(){
+        const file = this.files[0];
+        
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+           
+            $('.company_logo_t2').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    });
+
     </script>
 @endpush
 @push('style')
     <style>
+        .card.sidbar_preview {
+    border: 5px solid #000;
+    padding: 5px !important;
+}
         th.required_field {    width: 8%;}
         .handle {
             cursor: move;
@@ -1025,7 +1230,7 @@
         }
 .green{    color:green;}
 .orange{color:orange;}
-.container {
+ .container {
       width: 300px;
       margin: 10px auto;
     }
@@ -1188,9 +1393,37 @@
       color: gray !important;
       font-size: 13px;
     }
-	      .card.sidbar_preview {
-    border: 5px solid #000;
+  .card.sidbar_preview {
+    border: 2px solid #000;
     padding: 5px !important;
+    border-radius: 0;
+}
+
+.form-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#p1 {
+    order: 1;
+}
+
+#p2 {
+    order: 2;
+}
+
+#p3 {
+    order: 3;
+}
+
+#p4 {
+    order: 4;
+}
+
+#p5 {
+    order: 5;
 }
     </style>
+    
 @endpush
