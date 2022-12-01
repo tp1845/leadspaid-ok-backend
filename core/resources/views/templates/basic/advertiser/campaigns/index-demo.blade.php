@@ -495,9 +495,10 @@
 @endpush
 @push('style')
 <style>
-    #campaign_create_modal .form-control, #campaign_create_modal .custom-select{
+   #campaign_create_modal .form-control, #campaign_create_modal .custom-select{
         border-radius: 0; background-color:#fff;
         font-size: 20px!important;
+        font-weight: 300!important;
         color: #000!important;
         border-radius: 0!important;
         vertical-align: middle!important;
@@ -535,7 +536,7 @@
         background-color: #ddf5ff;
         max-width: 80%;
         font-size: 1.15rem;
-        font-weight: 500;
+        font-weight: 300;
         text-overflow: ellipsis;
         white-space: nowrap;
         cursor: pointer;
