@@ -569,7 +569,7 @@
         color: #fff!important;
 
     }
-
+    #campaign_create_modal table th { font-weight: 500; }
 
     table th:last-child { text-align: left; }
     .input-group-append.bg-white .input-group-text{ background-color: transparent!important; border: 0px!important; padding: 0 0 0 9px;     font-size: 1.4rem;  }
