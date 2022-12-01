@@ -60,6 +60,12 @@
                         <span class="menu-title">@lang('Campaigns') </span>
                     </a>
                 </li>
+				<li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.index2')}}">
+                    <a href="{{route('advertiser.campaigns.index2')}}" class="nav-link" >
+                        <i class="menu-icon las la-money-bill"></i>
+                        <span class="menu-title">@lang('Campaigns2') </span>
+                    </a>
+                </li> 
 
                 <li class="sidebar-menu-item  {{menuActive('advertiser.forms.index')}}">
                     <a href="{{route('advertiser.forms.index')}}" class="nav-link" >
