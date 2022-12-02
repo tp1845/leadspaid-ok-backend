@@ -74,7 +74,6 @@ body {
 .fw-normal-side {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     height: 100%;
     align-items: stretch;
     align-content: space-around;
