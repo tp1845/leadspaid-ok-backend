@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3> Pay Only For Leads. Not for click or impressions</h3>
+                   <h3> Pay Only For Leads. Not for Clicks or Impressions</h3>
                 </div>
             </div>
         </div>
@@ -40,9 +40,10 @@
 
           <div class="col-lg-8">
            <div class="fw-normal-side">
-                <h2 class="fw-normal mb-5">An Alternative Lead Source <br>
-                <span>distinct from Search, display & Native Ads</span></h2>
-            <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p>
+                <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
+                <span>distinct from Search, display & Native Ads</span></h3>
+                <p class="text2">Generate leads fast & easy instead of buying website traffic through search, social, display, native or programmatic ads.</p>
+            <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
            </div>
             
           </div><!-- /.col-lg-8 -->
@@ -65,7 +66,9 @@ body {
 .fw-normal span {
     font-size: 34px;
     color: #1361b2;
-    font-weight: 500;
+    font-weight: 600;
+    padding-top: 10px;
+    display: inline-block;
 }
 .fw-normal{
     color: #1361b2;
@@ -74,6 +77,7 @@ body {
 .fw-normal-side {
     display: flex;
     flex-wrap: wrap;
+/*    justify-content: center;*/
     height: 100%;
     align-items: stretch;
     align-content: space-around;
@@ -91,8 +95,9 @@ body {
     font-size: 22px !important;
     font-weight: 300;
 }
-.marketing  h2.fw-normal.mb-5 {
+.marketing  h3.fw-normal.mb-5 {
     font-size: 47px;
+    font-weight: 500 !important;
 }
 .text2 a:hover {
     color: #6c6c6c;
