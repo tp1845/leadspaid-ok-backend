@@ -107,7 +107,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-form-label" for="leadsCriteriaInput">Leads Criteria<i>*</i></label>
                                             <div class="col-sm-12 input-col">
-                                                <input type="text" class="form-control" id="leadsCriteriaInput" name="leads_criteria" placeholder="Leads Criteria" required>
+                                                {{-- <input type="text" class="form-control" id="leadsCriteriaInput" name="leads_criteria" placeholder="Leads Criteria" required> --}}
+                                                <textarea name="leads_criteria" class="form-control" id="leadsCriteriaInput"  placeholder="Leads Criteria" required maxlength="255" rows="3"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
