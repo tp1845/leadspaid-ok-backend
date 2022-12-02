@@ -8,7 +8,7 @@
                 <div class="col-lg-12">
                     <h1 class="h1">Generate Leads Directly</h1>
                     <p>An Alternative Lead Source distinct from Search, display & Native Ads</p>
-                    <a href="#" class="btn btn-secondary btn-lg my-2">Generate Leads</a>
+                    <a href="#" class="btn btn-secondary btn-lg my-2">Join As Advertiser</a>
                 </div>
             </div>
         </div>
@@ -22,8 +22,8 @@
             </div>
         </div>
      </section>
-
-    <div class="container marketing py-5 text-center">
+     <div class="marketing">
+    <div class="container py-5 text-center">
        
 
         <div class="row pt-5 ">
@@ -41,7 +41,7 @@
            <div class="fw-normal-side">
                 <h2 class="fw-normal mb-5">An Alternative Lead Sources <br>
                 <span>distinct from Search, display & Native Ads</span></h2>
-            <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column Some representative placeholder content for the three columns of text below the carousel.</p>
+            <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic from Search Ads or other forms of ads</p>
            </div>
             
           </div><!-- /.col-lg-8 -->
@@ -49,7 +49,7 @@
          
         </div><!-- /.row -->
     </div>
-
+    </div>
 
      @endsection
      @push('script-lib')
@@ -57,12 +57,20 @@
      @endpush
 
 <style>
-    .fw-normal span {
+body {
+    background: #e0e0e0 !important;
+}
+.fw-normal span {
     font-size: 25px;
     color: #1361b2;
 }
 .fw-normal{
     color: #1361b2;
+}
+
+.text2{
+    text-align:left;
+        font-size: 20px;
 }
 .fw-normal-side {
     display: flex;
@@ -71,5 +79,21 @@
     height: 100%;
     align-items: stretch;
     align-content: space-around;
+}
+.MainBanner-Home {
+    background-color: #1a273a;
+    color: #fff;
+    text-align: center;
+    padding: 50px 0;
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+}
+.MainBanner-Home p {
+    font-size: 22px !important;
+    font-weight: 300;
+}
+.marketing  h2.fw-normal.mb-5 {
+    font-size: 42px;
 }
 </style>
