@@ -41,7 +41,7 @@
           <div class="col-lg-8">
            <div class="fw-normal-side">
                 <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
-                <span>distinct from Search, display & Native Ads</span></h3>
+                <span>Distinct from Search, Display & Programmatic Ads</span></h3>
                 <p class="text2">Generate leads fast & easy instead of buying website traffic through search, social, display, native or programmatic ads.</p>
             <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
            </div>
@@ -61,8 +61,11 @@
 <style>
 body {
     background: #e0e0e0 !important;
+    font-family: Poppins !important;
 }
-
+.MainBanner-Home {
+ font-family: Poppins !important;   
+}
 .fw-normal span {
     font-size: 34px;
     color: #1361b2;
@@ -111,10 +114,17 @@ body {
     color: #6c6c6c;
 }
 
+.MainBanner-Home .btn {
+    max-width: unset !important;
+    width: unset !important;
+    font-size: 48px !important;
+    margin-top: 30px !important;
+}
 
 @media only screen and (min-width: 768px) {
 .MainBanner-Home .h1 {
     font-size: 81px !important;
+    font-family: Poppins !important
 }
 .MainBanner-Home p {
     font-size: 36px !important;
