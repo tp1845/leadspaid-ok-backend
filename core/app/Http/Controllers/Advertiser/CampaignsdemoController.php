@@ -100,9 +100,9 @@ class CampaignsdemoController extends Controller
 
             $campaign->advertiser_id = $user;
             $campaign->name = $request->campaign_name;
-            // $campaign->leads_criteria = $request->leads_criteria;
+            $campaign->leads_criteria = $request->leads_criteria;
             $campaign->daily_budget = $request->daily_budget;
-            //$campaign->target_cost = $request->target_cost;
+            $campaign->target_cost = $request->target_cost;
             $campaign->target_country = $request->target_country;
             $campaign->website_url = $request->website_url;
             $campaign->social_media_page = $request->social_media_page;
