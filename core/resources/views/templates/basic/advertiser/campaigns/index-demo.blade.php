@@ -80,16 +80,16 @@
     {{-- SETUP campaign_create MODAL --}}
     <div id="campaign_create_modal" style="max-width: 100vw;" class="modal fade right modal-lg" tabindex="-1" role="dialog">
         <div class="float-right h-100 m-0 modal-dialog w-100" style="max-width: 25rem;" role="document">
-            <form method="POST" action="{{ route('advertiser.campaigns.store') }}" id="campaign_form">
+            <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form">
             @csrf
             <div class="modal-content h-100">
                 <div class="modal-header bg-primary row m-0">
-                    <div class="col-lg-3"> <input type="text" class="form-control" placeholder="LGen_Campaign_1" value="LGen_Campaign_1" required></div>
-                    <div class="col-lg-3"><input type="text" class="form-control" placeholder="Company Name to Display" required></div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required></div>
+                    <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="form['company_name']" required></div>
+                    <div class="col-lg-3 input-col">
                         <div class="upload-box">
-                            <input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
-                            <label for="file-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
+                            <input type="file" name="form['company_logo']" required id="form_company_logo" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
+                            <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
                         </div>
                     </div>
                     <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
@@ -105,33 +105,36 @@
                                     <div class="card-header bg-primary">Leads Criteria</div>
                                     <div class="card-body">
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-form-label" for="CampaignNameInput">Leads Criteria<i>*</i></label>
+                                            <label class="col-sm-12 col-form-label" for="leadsCriteriaInput">Leads Criteria<i>*</i></label>
                                             <div class="col-sm-12 input-col">
-                                                <input type="text" class="form-control" id="CampaignNameInput" name="name" placeholder="Leads Criteria" required>
+                                                <input type="text" class="form-control" id="leadsCriteriaInput" name="leads_criteria" placeholder="Leads Criteria" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col">
                                                 <div class=" row ">
-                                                    <label class="col-sm-12 col-form-label " for="SelectEndDateSelect">From Which Conuntry</label>
+                                                    <label class="col-sm-12 col-form-label " for="TargetCountryInput">From Which Conuntry</label>
                                                     <div class="col-sm-12 input-col">
-                                                        <select class="custom-select mr-sm-2" name=" "  >
-                                                            <option value="NoEndDate" selected>Singapore</option>
+                                                        <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
+                                                            <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
+                                                            @foreach ($countries as $country)
+                                                                <option @if($user->country === $country->country_name) selected="selected" @endif   value="{{ $country->country_name }}" label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-form-label" for="CampaignNameInput">Daliy Budget<i>*</i></label>
+                                            <label class="col-sm-12 col-form-label" for="DailyBudgetInput">Daliy Budget<i>*</i></label>
                                             <div class="col-sm-12 input-col">
-                                                <input type="number" class="form-control" id="CampaignNameInput"  placeholder="Daliy Budget" required>
+                                                <input type="number" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-12 col-form-label" for="CampaignNameInput">Target Cost Per Leads<i>*</i></label>
+                                            <label class="col-sm-12 col-form-label" for="TargetCostInput">Target Cost Per Leads<i>*</i></label>
                                             <div class="col-sm-12 input-col">
-                                                <input type="number" class="form-control" id="CampaignNameInput"  placeholder="Target Cost Per Leads" required>
+                                                <input type="number" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Leads" required>
                                                 <small   class="form-text text-muted">We'll never share your email with anyone else.</small>
                                             </div>
                                         </div>
@@ -147,10 +150,8 @@
 
                                             <div class="col-12 SelectFormType">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="form_id" id="form_1" value="1" required="">
-                                                    <label class="form-check-label" for="form_1">
-                                                        Create New Form
-                                                    </label>
+                                                    <input class="form-check-input" type="radio" checked>
+                                                    <label class="form-check-label" for="form_1"> Create New Form </label>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,8 +166,8 @@
                                                             <th scope="col">Fileds</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="sortable" class="ui-sortable" style="">
-                                                        <tr class="sortable-group" style="">
+                                                    <tbody id="sortable" data-row='2'>
+                                                        <tr class="sortable-group">
                                                             <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
                                                                 <input type="hidden" class="sort" name="field_1[sort]" value="1">
                                                             </td>
@@ -182,22 +183,23 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                        <tr class="sortable-group" style="">
+                                                        {{-- <tr class="sortable-group" >
                                                             <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
-                                                                <input type="hidden" class="sort" name="field_1[sort]" value="1">
+                                                                <input type="hidden" class="sort" name="field_2[sort]" value="2">
                                                             </td>
                                                             <td>
-                                                                <input type="checkbox" class="InputQuestion_Required" name="field_1[required]">
+                                                                <input type="checkbox" class="InputQuestion_Required" name="field_2[required]">
                                                             </td>
                                                             <td>
                                                                 <div class="input-group">
-                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[question_text]" required="">
+                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" required="">
                                                                     <div class="input-group-append bg-white">
                                                                         <div class="input-group-text"> <a href="#" class="text-danger del-row" ><i class="fas fa-times-circle"></i></a></div>
                                                                       </div>
                                                                 </div>
                                                             </td>
-                                                        </tr>
+                                                        </tr> --}}
+                                                        <tr class="sortable-group"><td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i><input type="hidden" class="sort" name="field_2[sort]" value="2"></td><td><input type="checkbox" class="InputQuestion_Required" name="field_2[required]"></td><td><div class="input-group"><input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" required=""><div class="input-group-append bg-white"><div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div></div></div><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_2[option_1]" required=""><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_2[option_2]" required=""><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_2[option_3]" required=""><input type="text" class="form-control " placeholder="Option 4" name="field_2[option_4]"></td></tr>
                                                     </tbody>
                                                 </table>
 
@@ -227,7 +229,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="optional_block" >
+                        <div class="row" id="optional_block" style="display: none">
                             <div class="col-12 mt-3">
                                 <div class="card border mb-4 ">
                                     <div class="card-header bg-light">Add a few creatives relevant to this campaign (Optional)</div>
@@ -236,34 +238,34 @@
                                             <div class="col-lg-3">
                                                 <div>
                                                     <label class="col-form-label" for="WebsiteInput">Your Website (Optional)</label>
-                                                    <input type="text" class="form-control" id="WebsiteInput" name="website" placeholder="Your Website">
+                                                    <input type="text" class="form-control" id="WebsiteInput" name="website_url" placeholder="Your Website">
                                                 </div>
                                                 <div>
                                                     <label class="col-form-label" for="SocialInput">Social Media URL (Optional)</label>
-                                                    <input type="text" class="form-control" id="SocialInput" name="social" placeholder="Social Media URL">
+                                                    <input type="text" class="form-control" id="SocialInput" name="social_media_page" placeholder="Social Media URL">
                                                 </div>
 
                                             </div>
                                             <div class="col-lg-3">
 
                                                 <label class="col-form-label" >Youtube Video Url (Optional)  </label>
-                                                <input type="text" class="form-control" id="Youtube_1_Input" name="youtube_1" placeholder="Youtube Video Url 1">
-                                                <input type="text" class="form-control my-3" id="Youtube_2_Input" name="youtube_2" placeholder="Youtube Video Url 2">
-                                                <input type="text" class="form-control" id="Youtube_3_Input" name="youtube_3" placeholder="Youtube Video Url 3">
+                                                <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1">
+                                                <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2">
+                                                <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3">
                                             </div>
                                             <div class="col-lg-3">
                                                 <label class="col-form-label" for="CampaignNameInput">Upload upto 3 images (Optional)</label>
                                                 <div class="upload-box grey">
-                                                    <input type="file" name="image_1" id="image-1" class="inputfile inputfile-1">
-                                                    <label for="image-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
+                                                    <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1">
+                                                    <label for="image_1_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
                                                 </div>
                                                 <div class="upload-box grey  my-2">
-                                                    <input type="file" name="image_2" id="image-2" class="inputfile inputfile-1">
-                                                    <label for="image-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
+                                                    <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1">
+                                                    <label for="image_2_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
                                                 </div>
                                                 <div class="upload-box grey">
-                                                    <input type="file" name="image_3" id="image-3" class="inputfile inputfile-1">
-                                                    <label for="image-1"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 3</span></label>
+                                                    <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1">
+                                                    <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 3</span></label>
                                                 </div>
 
                                             </div>
@@ -305,9 +307,6 @@
 
     <script>
         'use strict';
-
-
-
         $('.toggle-status').change(function () {
             var status = $(this).prop('checked') == true ? 1 : 0;
             var campaign_id = $(this).data('id');
@@ -333,8 +332,18 @@
         campaign_create_modal.on('hidden.bs.modal', function (event) { })
         $('.create-campaign-btn').on('click', function () { campaign_create_modal.modal('show');  });
 
-        function add_form_field(type){ }
+        $("input").keyup(function(){ show_optional_block() });
+        $("select").change(function(){ show_optional_block() });
+        function show_optional_block(){ $('#optional_block').show(); }
+
+        $('table').on('click', '.del-row', function(e){
+            Toast('red', "Delete row");
+        })
+        function add_form_field(type = 'single'){
+            Toast('red', "Add new row");
+        }
         $(document).ready(function () {
+
             $("#sortable").sortable({
                 handle: ".handle",
                 stop: function (event, ui) {
@@ -359,34 +368,7 @@
             });
         });
         // Edit campaign
-        // Save Form
-        function ajaxSubmit_createForm(form_ele, form_id){
-            var form = $(form_id);
-            var actionUrl = form.attr('action');
-            var formData = new FormData(form_ele);
-            $.ajax({
-                type: "POST",
-                url: actionUrl,
-                data: formData,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    if (data.success) {
-                        Toast('green', 'Form successfully Created');
-                        $('#CreateFormModal').modal('hide');
-                        var option = '<div class="form-check">';
-                        option += '<input class="form-check-input" type="radio" name="form_id" id="form_' + data.form_id + '" value="' + data.form_id + '" required >';
-                        option += '<label class="form-check-label" for="form_' + data.form_id + '">' + data.form_name + '</label>';
-                        option += '</div>';
-                        $('#formOptions').append(option);
-                        form.trigger("reset");
-                    } else {
-                        Toast('red', data.form_name);
-                    }
-                }
-            });
-        }
+
 
         // End Form Saving
         function Toast(color = 'green', message) {
@@ -405,7 +387,7 @@
             errorElement: 'span',
             errorPlacement: function (error, element) {
                 error.addClass('invalid-feedback');
-                element.closest('.form-group .input-col').append(error);
+                element.closest('.input-col').append(error);
             },
             highlight: function (element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
@@ -436,66 +418,29 @@
         $("#campaign_form").validate({
             rules: {
                 name: {  minlength: 3 },
-                end_date: { greaterThan: "#StartDate_input" },
                 daily_budget: {  required: true, money: true,min: 50},
-                 service_sell_buy: {  minlength: 3 },
-                 website_url: {minlength: 7}
-
-            },messages: {
-             daily_budget:'Daily Budget should be minimum $50',
-             service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
-             website_url: 'Please fill Website URL - or leave it blank',
-            }
-        });
-
-
-
-
-        $('[name="start_date"]').datepicker({
-            dateFormat: 'mm/dd/yy',
-            range: false,
-            minDate: 0,
-            position: 'bottom left'
-        }).on('changeDate', function(e) {
-            // Revalidate the date field
-            $(this).focus().blur();
-        });
-        $('[name="end_date"]').datepicker({
-            dateFormat: 'mm/dd/yy',
-            range: false,
-            minDate: 0,
-            position: 'bottom left'
-
-        }).on('change', function(e) {
-            // Revalidate the date field
-            $(this).focus().blur();
-
-        });
-
-        $("#CreateForm").validate({
-            rules: {
+                website_url: {minlength: 7},
                 company_logo: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-            },
-            messages: {
+
+            },messages: {
+                daily_budget:'Daily Budget should be minimum $50',
+                service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
+                website_url: 'Please fill Website URL - or leave it blank',
                 company_logo: "File must be JPG, GIF or PNG, less than 2MB",
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
-
-            },
-            submitHandler: function(form) {
-                ajaxSubmit_createForm(form, '#CreateForm');
-                return false;
             }
         });
+
     </script>
 @endpush
 @push('style')
 <style>
-   #campaign_create_modal .form-control, #campaign_create_modal .custom-select{
+    #campaign_create_modal .form-control, #campaign_create_modal .custom-select{
         border-radius: 0; background-color:#fff;
         font-size: 20px!important;
         font-weight: 300!important;
@@ -569,8 +514,8 @@
         color: #fff!important;
 
     }
-    #campaign_create_modal table th { font-weight: 500; }
 
+    #campaign_create_modal table th { font-weight: 500; }
     table th:last-child { text-align: left; }
     .input-group-append.bg-white .input-group-text{ background-color: transparent!important; border: 0px!important; padding: 0 0 0 9px;     font-size: 1.4rem;  }
 
@@ -641,6 +586,7 @@
             max-width: 104.5rem !important;
         }
         .modal-header span{ color: #000!important; }
+        .modal-header .error.invalid-feedback{ color: #fff!important; }
 
         #CreateFormModal {
             background-color: #00000080;
@@ -737,7 +683,7 @@
       width: 100%;
       padding: 0.375rem 0.5rem;
       font-size: .9rem;
-      font-weight: 400;
+      font-weight: 300;
       line-height: 1.5;
       color: #212529;
       background-color: #fff;
