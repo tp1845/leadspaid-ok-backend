@@ -619,7 +619,7 @@
             max-width: 104.5rem !important;
         }
         .modal-header span{ color: #000!important; }
-        .modal-header .error.invalid-feedback{ color: #fff!important; }
+        .modal-header .error.invalid-feedback{ color: #ff9e9e!important; }
 
         #CreateFormModal {
             background-color: #00000080;
