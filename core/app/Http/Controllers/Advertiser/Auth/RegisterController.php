@@ -107,7 +107,7 @@ class RegisterController extends Controller
 		
         $data=$this->decode_arr($request->code_verifiyed);
 	
-       return $user = $this->guard()->user($data['userid']);
+       return $user = 'test:'.$this->guard()->user($data['userid']);
 		  
         if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
             $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
