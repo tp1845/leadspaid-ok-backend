@@ -1,4 +1,5 @@
 @extends($activeTemplate.'layouts.frontendLeadPaid')
+
 @php
     $bg = getContent('login.content',true)->data_values;
     $isPublisherForm = 'show active';
@@ -15,108 +16,115 @@
     }
     }
 @endphp
-
 @section('content')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://leadspaid.com/assets/templates/basic/css/all.min.css">
 <section class="Rg_advts">
     <div class="container">
-	 <div class="row text-center">
+        <div class="row text-center">
             <div class="col-lg-12 pt-5">
                <p class="Rg_advts_ttls_1">Generate Leads Now</p>
             </div>
         </div>
         <div class="row text-center">
-            <div class="col-lg-12 pt-5">
+            <div class="col-lg-12 pt-4">
                <p class="Rg_advts_ttls mb-5">Register as an Advertiser</p>
             </div>
         </div>
-
+    <form class="Rg_advts_form" id="advertiser_form"  method="POST" action="{{route('advertiser.register_adv')}}">
+        @csrf
         <div class="row">
             <div class="col-md-11 mx-auto">
                 <div class="row justify-content-evenly">
-            <div class="col-md-5">
-                <div class="Rg_advts_bsc">
-                    <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
+                    <div class="col-md-5">
+                        <div class="Rg_advts_bsc" id="publisher___form">
+                            <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
 
-                   <form class="Rg_advts_form">
-                       <input name="cName" id="inputForm" type="text" value="" class="form-control Rg_advts_name mb-3 rounded-0" placeholder="Company Name(Optional ) " aria-required="true" aria-invalid="false">
+                                <div class="form-group mb-3">
+                                   <input name="company_name" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional ) " aria-required="true" aria-invalid="false" required>
+                               </div>
+                               <div class="form-group mb-3">
+                                    <input name="name" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="First Name " aria-required="true" aria-invalid="false" required>
+                                </div>
+                                <div class="form-group mb-3 custom-state">
+                                    <select class="form-select rounded-0" name="country" aria-label="Default select example">
+                                       @foreach ($countries as $country)
+                                        <option @if($country_code==$country->country_code) selected="selected" @endif value=" {{ $country->country_name }} " label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="Rg_advts_number">
+                                    <div class="form-group mb-3">
+                                    <select class="form-select rounded-0" name="country_code" aria-label="Default select example">
+                                       @include('partials.country_code')
+                                    </select>
 
-                        <input name="fName" id="inputForm" type="text" value="" class="form-control Rg_advts_name mb-3 rounded-0" placeholder="First Name " aria-required="true" aria-invalid="false">
-
-                        <select class="form-select mb-3 rounded-0" aria-label="Default select example">
-                           @foreach ($countries as $country)
-                                                    <option @if($country_code==$country->country_code) selected="selected" @endif value=" {{ $country->country_name }} " label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
-                                                    @endforeach
-                        </select>
-
-                        <div class="Rg_advts_number">
-                            <select class="form-select mb-3 rounded-0" aria-label="Default select example">
-                               @include('partials.country_code')
-                            </select>
-
-                            <input name="fName" id="inputNumber" type="text" value="" class=" Rg_advts_name mb-3 rounded-0" placeholder="@lang('Your Phone Number')" aria-required="true" aria-invalid="false">
-                            
+                                    <input name="phone" id="inputNumber" type="text" value="" class=" Rg_advts_name rounded-0" name="phone" placeholder="@lang('Your Phone Number')" aria-required="true" aria-invalid="false" required>
+                                    </div>
+                                </div>
                         </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="Rg_advts_bsc" id="advertiser___form">
+                            <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
 
-
-                   </form>
+                           <div class="Rg_advts_form">
+                               <div class="form-group mb-3">
+                               <textarea class="form-control Rg_advts_name mb-3 rounded-0" name="product_services" placeholder="Products or Services you want to generate lead for us" id="floatingTextarea" required></textarea>
+                           </div>
+                               <div class="form-group mb-3">
+                                    <input name="Website" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false" required>
+                                </div>
+                                <div class="form-group mb-3">
+                                     <input name="Social" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Social Media Page URL(Optional) " aria-required="true" aria-invalid="false" required>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="col-md-5">
-                <div class="Rg_advts_bsc">
-                    <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
-
-                   <form class="Rg_advts_form">
-                       <textarea class="form-control Rg_advts_name mb-3 rounded-0" placeholder="Products or Services you want to generate lead for us" id="floatingTextarea"></textarea>
-
-                        <input name="wName" id="inputForm" type="text" value="" class="form-control Rg_advts_name mb-3 rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false">
-
-                         <input name="wName" id="inputForm" type="text" value="" class="form-control Rg_advts_name mb-3 rounded-0" placeholder="Social Media Page URL(Optional) " aria-required="true" aria-invalid="false">
-                   </form>
-                </div>
-            </div>
         </div>
-        </div>
-        </div>
-
         <div class="row">
             <div class="col-md-11 mx-auto">
                 <div class="row justify-content-evenly">
-                <div class="col-11">
+                    <div class="col-11">
                         <div class="user_info_Rg_advts"><h4 class="Rg_advts_bsc_ttls mb-4">User Information</h4></div>
                     </div>
                 </div>
-                <div class="row justify-content-evenly">
-
-                    
-             
-                    <div class="col-md-7">
-                        <div class="row">
-
-                            <div class="col-md-8">
-                                <input name="wName" id="inputForm" type="email" value="" class="form-control rounded-0 Rg_advts_name mb-3" placeholder="Email Address " aria-required="true" aria-invalid="false">
+                <div class="password-custom">
+                    <div class="row justify-content-evenly">
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group mb-3">
+                                        <input name="email" id="inputForm" type="email" value="" class="form-control rounded-0 Rg_advts_name" placeholder="Email Address " aria-required="true" aria-invalid="false" required>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-4">
-                             <input name="wName" id="inputForm" type="password" value="" class="rounded-0 form-control Rg_advts_name mb-3" placeholder="Password " aria-required="true" aria-invalid="false"></div>
                         </div>
-                        
+                        <div class="col-md-5">
+                            <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                     <input name="password" id="inputForm" type="password" value="" class="rounded-0 form-control Rg_advts_name" placeholder="Password " aria-required="true" aria-invalid="false" required>
+                                 </div>
+                             </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                     <input name="password_confirmation" id="inputFormc" type="password" value="" class="form-control rounded-0 Rg_advts_name" placeholder="Confirm Password " aria-required="true" aria-invalid="false" required>
+                                 </div>
+                             </div>
+                         </div>
+                         </div>
+                         <div class="col-md-7 ms-auto mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
+                             <button type="submit" class="btn btn-secondary Rg_advts_my_btn">SIGN UP</button>
+                         </div>
                     </div>
-                    <div class="col-md-3">
-                         <input name="wName" id="inputForm" type="password" value="" class="form-control rounded-0 Rg_advts_name mb-3" placeholder="Confirm Password " aria-required="true" aria-invalid="false">
-                     </div>
-
-                     <div class="col-md-7 ms-auto mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
-                         <button type="button" class="btn btn-secondary Rg_advts_my_btn">SIGN UP</button>
-                     </div>
-
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-
-
-
+        </form>        
     </div>
  </section>
     
@@ -127,13 +135,15 @@
 
 @push('script-lib')
 <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>  
+<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script> 
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
 
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>    
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>   
+
 @endpush
+
 @push('script')
 <script>
     "use strict";
@@ -297,14 +307,23 @@
         
     });
 </script>
-
+@endpush
 <style>
+    
     .Rg_advts {
         font-family: Poppins !important;
         font-weight: 200;
 
     }
-
+    .Rg_advts .form-control:focus {
+    border-color: #16C79A !important;
+}
+    .Rg_advts_form .custom-state.fv-plugins-icon-container.has-success .form-select {
+        background: none !important;
+    }
+.Rg_advts_number .form-select, .Rg_advts_form .form-select {
+    background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+}
     .Rg_advts_ttls {
         color: #1361b2;
         font-family: Poppins !important;
@@ -312,7 +331,7 @@
         font-size: 38px;
         letter-spacing: 1px;
     }
-	 .Rg_advts_ttls_1 {
+     .Rg_advts_ttls_1 {
         
         font-family: Poppins !important;
         font-weight: 400;
@@ -320,7 +339,6 @@
         letter-spacing: 1px;
         color: #cccdcc;
     }
-	
     .user_info_Rg_advts h4,
     .Rg_advts_bsc .Rg_advts_bsc_ttls{
         font-size: 20px;
@@ -328,7 +346,7 @@
         font-weight: 500;
     }
 
-    input#inputForm {
+    .Rg_advts input {
         display: block;
         font-size: 19px;
         padding: 16px 24px;
@@ -340,12 +358,13 @@
         border-radius: 0;
         line-height: normal;
     }
-     .Rg_advts_form textarea{
-         font-size: 19px;
+    .Rg_advts_form textarea {
+        font-size: 19px;
+        padding: 16px 24px;
         line-height: normal;
-     }
+    }
 
-.Rg_advts_number {
+.Rg_advts_number .form-group {
     display: flex;
     flex-wrap: wrap;
 }
@@ -369,9 +388,12 @@
 }
 .Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
-    border: 1px solid #DEDEDE!important;
+    border: 1px solid #16C79A !important;
         transition: All .2s ease-in-out!important;
    
+}
+.Rg_advts .form-control:valid:focus, .Rg_advts .form-control.is-valid:focus {
+    box-shadow: none;
 }
 .Rg_advts_bsc textarea.form-control{
     min-height: 140px;
@@ -403,6 +425,13 @@ button.btn.btn-secondary.Rg_advts_my_btn {
 
 .Rg_advts input, .Rg_advts select, .Rg_advts textarea {
     font-weight: 300;
+}
+.Rg_advts .form-group i {
+    top: 13px;
+    right: 20px;
+}
+.Rg_advts .form-group .fv-plugins-message-container {
+    font-weight: 400;
 }
 @media screen and (max-width: 480px){
     .Rg_advts_number input {

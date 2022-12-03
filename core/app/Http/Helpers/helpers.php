@@ -571,6 +571,10 @@ function send_email($user, $type = null, $shortCodes = [])
 function send_email_adv($user, $type = null, $link)
 {
     $general = GeneralSetting::first();
+	 $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
+    if ($general->en != 1 || !$email_template) {
+        return;
+    }
     
         $message ='
         <html>

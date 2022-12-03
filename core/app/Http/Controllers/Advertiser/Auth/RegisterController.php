@@ -140,7 +140,7 @@ class RegisterController extends Controller
             'code' =>verificationCode(6),
             'userid'=>$user->id
         ];
-        $route = Route::current();
+        
         $link='http://localhost/leadspaids/leadspaid/public/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
     
