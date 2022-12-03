@@ -107,8 +107,8 @@
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-form-label" for="leadsCriteriaInput">Leads Criteria<i>*</i></label>
                                             <div class="col-sm-12 input-col">
-                                                {{-- <input type="text" class="form-control" id="leadsCriteriaInput" name="leads_criteria" placeholder="Leads Criteria" required> --}}
-                                                <textarea name="leads_criteria" class="form-control" id="leadsCriteriaInput"  placeholder="Leads Criteria" required maxlength="255" rows="3"></textarea>
+                                                 {{-- <input type="text" class="form-control" id="leadsCriteriaInput" name="leads_criteria" placeholder="Leads Criteria" required> --}}
+                                                 <textarea name="leads_criteria" class="form-control" id="leadsCriteriaInput"  placeholder="Leads Criteria" required maxlength="255" rows="3"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -338,10 +338,44 @@
         function show_optional_block(){ $('#optional_block').show(); }
 
         $('table').on('click', '.del-row', function(e){
-            Toast('red', "Delete row");
+            var table = $('#sortable');
+            var row = table.attr('data-row');
+            row = --row;
+            table.attr('data-row', row);
+            $(this).closest('tr').remove()
         })
+
         function add_form_field(type = 'single'){
-            Toast('red', "Add new row");
+            var table = $('#sortable');
+            var row = table.attr('data-row');
+                row = ++row;
+                if(row <=5){
+                var html ='<tr class="sortable-group">';
+                html +='<td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>';
+                html +='<input type="hidden" class="sort" name="field_'+row+'[sort]" value="'+row+'">';
+                html +='</td>';
+                html +='<td>';
+                html +='<input type="checkbox" class="InputQuestion_Required" name="field_'+row+'[required]">';
+                html +='</td>';
+                html +='<td>';
+                html +='<div class="input-group">';
+                html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required>';
+                html +='<div class="input-group-append bg-white">';
+                html +='<div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>';
+                html +='</div>';
+                html +='</div>';
+                if(type == 'multiple'){
+                    html +='<input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_'+row+'[option_1]" required>';
+                    html +='<input type="text" class="form-control mb-3" placeholder="Option 2" name="field_'+row+'[option_2]" required>';
+                    html +='<input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]" required>';
+                    html +='<input type="text" class="form-control " placeholder="Option 4" name="field_'+row+'[option_4]" >';
+                }
+                html +='</td>';
+                html +='</tr>';
+                table.append(html).attr('data-row', row);
+            }else{
+                Toast('red', "Only 5 fields allowed");
+            }
         }
         $(document).ready(function () {
 
@@ -370,8 +404,6 @@
         });
         // Edit campaign
 
-
-        // End Form Saving
         function Toast(color = 'green', message) {
             iziToast.show({
                 // icon: 'fa fa-solid fa-check',
