@@ -568,6 +568,37 @@ function send_email($user, $type = null, $shortCodes = [])
 }
 
 
+function send_email_adv($user, $type = null, $link)
+{
+    $general = GeneralSetting::first();
+    
+        $message ='
+        <html>
+        <head>
+          <title>email varification</title>
+        </head>
+        <body>
+          <p>thanks for connection with use please click on link bellow</p>
+          <a href='.$link.'>click here</a>
+        </body>
+        </html>
+        ';    
+
+    $config = $general->mail_config;
+
+    if ($config->name == 'php') {
+        send_php_mail($user->email, $user->username, $general->email_from, $email_template->subj, $message);
+    } else if ($config->name == 'smtp') {
+        send_smtp_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+    } else if ($config->name == 'sendgrid') {
+        send_sendGrid_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+    } else if ($config->name == 'mailjet') {
+        send_mailjet_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+    }
+}
+
+
+
 function send_php_mail($receiver_email, $receiver_name, $sender_email, $subject, $message)
 {
     $gnl = GeneralSetting::first();

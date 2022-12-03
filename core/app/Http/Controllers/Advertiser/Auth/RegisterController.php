@@ -93,6 +93,135 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
+    public function checkValidCode_adv($user, $code, $add_min = 10000)
+    {
+        if (!$code) return false;
+        if (!$user->ver_code_send_at) return false;
+        if ($user->ver_code_send_at->addMinutes($add_min) < Carbon::now()) return false;
+        if ($user->ver_code !== $code) return false;
+        return true;
+    }
+
+    public function varify_adv(){
+
+        return 'test';
+        $user = Auth::guard($guard)->user($request->id);
+        if ($this->checkValidCode($user, $user->ver_code, 2)) {
+            $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
+            $delay = $target_time - time();
+            throw ValidationException::withMessages(['resend' => 'Please Try after ' . $delay . ' Seconds']);
+        }
+        if (!$this->checkValidCode($user, $user->ver_code)) {
+            $user->ver_code = verificationCode(6);
+            $user->ver_code_send_at = Carbon::now();
+            $user->save();
+        } else {
+            $user->ver_code = $user->ver_code;
+            $user->ver_code_send_at = Carbon::now();
+            $user->save();
+        }
+    }
+    
+    public function encode_arr($data) {
+        return base64_encode(serialize($data));
+    }
+    
+    public  function decode_arr($data) {
+        return unserialize(base64_decode($data));
+    }
+
+    public function register_advertiser(Request $request){ 
+
+        event(new Registered($user = $this->create_adv($request->all())));
+
+        $this->guard()->login($user);
+
+        $code=[
+            'code' =>verificationCode(6),
+            'userid'=>$user->id
+        ];
+        $route = Route::current();
+        $link='http://localhost/leadspaids/leadspaid/public/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
+        // custom code email send
+    
+          send_email_adv($user, 'EVER_CODE',$link);
+
+            $notify[] = ['success', 'Email verification link sent successfully please check your email'];
+            return back()->withNotify($notify);
+
+
+      //  return $this->registered($request, $user)
+          //  ?: redirect($this->redirectPath());
+    }
+
+    protected function create_adv(array $data)
+    {
+
+        $gnl = GeneralSetting::first();
+
+        $adv = new Advertiser ();
+        $adv->name = $data['name'];
+        
+        $adv->email = $data['email'];
+        $username=strstr($data['email'],'@',true);
+        $adv->username = $username;
+        $adv->country = $data['country'];
+        
+        $adv->company_name = $data['company_name'];
+        
+        
+        $mobile = preg_replace('/\D/', '', $data['country_code'].$data['phone']);
+        $adv->mobile = $mobile;
+        $adv->product_services = $data['product_services'];
+        $adv->Website = $data['Website'];
+        $adv->Social = $data['Social'];
+        $adv->country_code = $data['country_code'];
+        $adv->password = Hash::make($data['password']);
+
+        $adv->status = 1;
+        $adv->ev = $gnl->ev==0 ? 1 : 0;
+        $adv->sv = $gnl->sv==0 ? 1 : 0;
+        $adv->ts = 0;
+        $adv->tv = 1;
+        $adv->save();
+        $ip = $_SERVER["REMOTE_ADDR"];
+        $exist = UserLogin::where('user_ip',$ip)->first();
+        $userLogin = new UserLogin();
+        if ($exist) {
+            $userLogin->longitude =  $exist->longitude;
+            $userLogin->latitude =  $exist->latitude;
+            $userLogin->location =  $exist->location;
+            $userLogin->country_code = $exist->country_code;
+            $userLogin->country =  $exist->country;
+        }else{
+            $info = json_decode(json_encode(getIpInfo()), true);
+            $userLogin->longitude =  @implode(',',$info['long']);
+            $userLogin->latitude =  @implode(',',$info['lat']);
+            $userLogin->location =  @implode(',',$info['city']) . (" - ". @implode(',',$info['area']) ."- ") . @implode(',',$info['country']) . (" - ". @implode(',',$info['code']) . " ");
+            $userLogin->country_code = @implode(',',$info['code']);
+            $userLogin->country =  @implode(',', $info['country']);
+        }
+
+        /*$userAgent = osBrowser();
+        $userLogin->advertiser_id = $adv->id;
+        $userLogin->user_ip =  $ip;
+
+        $userLogin->browser = @$userAgent['browser'];
+        $userLogin->os = @$userAgent['os_platform'];
+        $userLogin->save(); */
+
+        return $adv;
+    }
+
+    public function user_varify(Request $request)
+    {
+
+
+
+
+    }
+
+
 
     /**
      * Create a new user instance after a valid registration.

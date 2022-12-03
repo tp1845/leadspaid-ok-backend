@@ -372,6 +372,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'RegisterController@register')->name('signup')->middleware(['regStatus']);
+		Route::post('register-advertiser', 'RegisterController@register_advertiser')->name('register_adv')->middleware(['regStatus']);
+        Route::get('register-veryfy', 'RegisterController@varify_adv')->name('varify_adv');
         // Admin Password Reset
         Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.reset');
         Route::post('password/reset', 'ForgotPasswordController@sendResetLinkEmail');

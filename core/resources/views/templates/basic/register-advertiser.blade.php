@@ -1,5 +1,20 @@
 @extends($activeTemplate.'layouts.frontendLeadPaid')
-
+@php
+    $bg = getContent('login.content',true)->data_values;
+    $isPublisherForm = 'show active';
+    $isAdvertiserForm = 'show';
+    $isTab = 'none';
+    if (isset($type)){
+    $isAdvertiserForm = ($isTab == 'none')?($type == 'Advertiser')?'show active':'':'none';
+    $isPublisherForm = ($isTab == 'none')?($type == 'Publisher')?'show active':'':'active';
+    }else{
+    $isTab = (isset($type) == '')?'flex':'none';
+    if (old('form_type') == 'Advertiser') {
+    $isAdvertiserForm = 'show active';
+    $isPublisherForm = 'show';
+    }
+    }
+@endphp
 
 @section('content')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
@@ -112,9 +127,176 @@
 
 @push('script-lib')
 <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>    
-@endpush
+<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>  
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
 
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>    
+@endpush
+@push('script')
+<script>
+    "use strict";
+    @if($country_code)
+    var t = $(`option[data-code={{ $country_code }}]`).attr('selected', '');
+    @endif
+    $('select[name=country_code]').change(function() {
+        $('input[name=country]').val($('select[name=country_code] :selected').data('country'));
+    }).change();
+
+
+
+    function submitUserForm() {
+        var response = grecaptcha.getResponse();
+        if (response.length == 0) {
+            document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">@lang("Captcha field is required.")</span>';
+            return false;
+        }
+        return true;
+    }
+
+    function verifyCaptcha() {
+        document.getElementById('g-recaptcha-error').innerHTML = '';
+    }
+
+
+    document.addEventListener('DOMContentLoaded', function(e) {
+        FormValidation.formValidation(document.querySelector('#advertiser_form'), {
+            fields: {
+                company_name: {
+                    validators: {
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Full Company Name.',
+                        }
+                    },
+                },
+
+                name: {
+                     validators: {
+                        notEmpty: {
+                            message: 'Please fill Full Name.',
+                        },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Full Name.',
+                        },
+                        regexp: {
+                            regexp: /^[a-z A-Z]+$/,
+                            message: 'Full Name Invalid.',
+                        },
+                    },
+               
+                },
+
+                phone: {
+                       validators: {
+                        notEmpty: {
+                            message: 'Please fill Phone Number.',
+                        },
+                        stringLength: {
+                            min: 6,
+                            message: 'Please fill Phone Number.',
+                        },
+                    },
+                },
+              
+                country: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Select Country.',
+                        }
+                    },
+                },
+                product_services: {
+                      validators: {
+                        notEmpty: {
+                            message: 'Please fill product or services.',
+                        }
+                    },
+                },
+
+                Social: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Social Media.',
+                        },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Social Media.',
+                        },
+                        regexp: {
+                            regexp: /^[a-z A-Z]+$/,
+                            message: 'Full Name Invalid.',
+                        },
+                    },
+                },
+                Website: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Website Name.',
+                        },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Website Name.',
+                        },
+                        regexp: {
+                            regexp: /^[a-z A-Z]+$/,
+                            message: 'Full Name Invalid.',
+                        },
+                    },
+                },
+
+                email: {
+                     validators: {
+                        notEmpty: {
+                            message: 'Please fill vaild Email.',
+                        },
+                        emailAddress: {},
+                    },
+                },
+                password: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Password',
+                        },
+                    },
+                },
+                password_confirmation: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please fill Confirm Password',
+                        },
+                        checkConfirmation: {
+                            message: 'Passowrd Mismatch',
+                            callback: function(input) {
+                              
+                                return document.querySelector("#advertiser_form").querySelector('[name="password"]').value === input.value;
+                            },
+                        },
+                    },
+                },
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap: new FormValidation.plugins.Bootstrap(),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                icon: new FormValidation.plugins.Icon({
+                    valid: 'fa fa-check',
+                    invalid: 'fa fa-times',
+                    validating: 'fa fa-refresh',
+                }),
+                alias: new FormValidation.plugins.Alias({
+                    checkConfirmation: 'callback'
+                }),
+            },
+        }).on('core.form.valid', function() {
+            document.querySelector('#advertiser_form').submit();
+
+        });
+        
+    });
+</script>
 
 <style>
     .Rg_advts {
