@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Advertiser\Auth;
 
+use Carbon\Carbon;
 use App\UserLogin;
 use App\Advertiser;
 use App\Country;
@@ -102,22 +103,24 @@ class RegisterController extends Controller
         return true;
     }
 
-    public function varify_adv(){
-
-        return 'test';
-        $user = Auth::guard($guard)->user($request->id);
-        if ($this->checkValidCode($user, $user->ver_code, 2)) {
+    public function varify_adv(Request $request){
+        $data=$this->decode_arr($request->code_verifiyed);
+        $user = $this->guard()->user($data['userid']);
+        if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
             $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
             $delay = $target_time - time();
             throw ValidationException::withMessages(['resend' => 'Please Try after ' . $delay . ' Seconds']);
         }
-        if (!$this->checkValidCode($user, $user->ver_code)) {
-            $user->ver_code = verificationCode(6);
+        if (!$this->checkValidCode_adv($user, $user->ver_code)) {
+            $user->ver_code = $data['code'];
             $user->ver_code_send_at = Carbon::now();
+            $user->status = 0;
             $user->save();
+            send_email_adv_admin($user, 'EVER_CODE',$user->username);
         } else {
             $user->ver_code = $user->ver_code;
             $user->ver_code_send_at = Carbon::now();
+            $user->status = 0;
             $user->save();
         }
     }
@@ -133,21 +136,18 @@ class RegisterController extends Controller
     public function register_advertiser(Request $request){ 
 
         event(new Registered($user = $this->create_adv($request->all())));
-
         $this->guard()->login($user);
-
         $code=[
             'code' =>verificationCode(6),
             'userid'=>$user->id
         ];
-        
-        $link='http://localhost/leadspaids/leadspaid/public/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
+        $urll= url('');
+        // $link='http://localhost/leadspaids/leadspaid/public/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
+        $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
-    
-          send_email_adv($user, 'EVER_CODE',$link);
-
-            $notify[] = ['success', 'Email verification link sent successfully please check your email'];
-            return back()->withNotify($notify);
+        send_email_adv($user, 'EVER_CODE',$link);
+        $notify[] = ['success', 'Email verification link sent successfully please check your email'];
+        return back()->withNotify($notify);
 
 
       //  return $this->registered($request, $user)
@@ -177,8 +177,7 @@ class RegisterController extends Controller
         $adv->Social = $data['Social'];
         $adv->country_code = $data['country_code'];
         $adv->password = Hash::make($data['password']);
-
-        $adv->status = 1;
+        $adv->status = 0;
         $adv->ev = $gnl->ev==0 ? 1 : 0;
         $adv->sv = $gnl->sv==0 ? 1 : 0;
         $adv->ts = 0;

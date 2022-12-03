@@ -537,12 +537,11 @@ function send_sms($user, $type, $shortCodes = [])
 function send_email($user, $type = null, $shortCodes = [])
 {
     $general = GeneralSetting::first();
-
+    
     $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) {
         return;
     }
-
 
     $message = shortCodeReplacer("{{name}}", $user->username, $general->email_template);
     $message = shortCodeReplacer("{{message}}", $email_template->email_body, $message);
@@ -567,11 +566,10 @@ function send_email($user, $type = null, $shortCodes = [])
     }
 }
 
-
 function send_email_adv($user, $type = null, $link)
 {
     $general = GeneralSetting::first();
-	 $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
+    $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) {
         return;
     }
@@ -601,6 +599,38 @@ function send_email_adv($user, $type = null, $link)
     }
 }
 
+
+function send_email_adv_admin($user, $type = null, $username)
+{
+    $general = GeneralSetting::first();
+    $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
+    if ($general->en != 1 || !$email_template) {
+        return;
+    }
+    
+        $message ='
+        <html>
+        <head>
+          <title>email varification</title>
+        </head>
+        <body>
+          <p>user '.$username.' registered please varify from admin</p>
+        </body>
+        </html>
+        ';    
+
+    $config = $general->mail_config;
+
+    if ($config->name == 'php') {
+        send_php_mail($user->email, $user->username, $general->email_from, $email_template->subj, $message);
+    } else if ($config->name == 'smtp') {
+        send_smtp_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+    } else if ($config->name == 'sendgrid') {
+        send_sendGrid_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+    } else if ($config->name == 'mailjet') {
+        send_mailjet_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+    }
+}
 
 
 function send_php_mail($receiver_email, $receiver_name, $sender_email, $subject, $message)
@@ -917,6 +947,7 @@ function urlToDomain($url)
     $domain = str_replace("www.", "", $domain);
     return $domain;
 }
+
 
 function countDigits($MyNum){
   $MyNum = (int)$MyNum;
