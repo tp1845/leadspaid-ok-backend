@@ -216,8 +216,6 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-
-                                                        <tr class="sortable-group"><td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i><input type="hidden" class="sort" name="field_2[sort]" value="2"></td><td><input type="checkbox" class="InputQuestion_Required" name="field_2[required]"></td><td><div class="input-group"><input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" required=""><div class="input-group-append bg-white"><div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div></div></div><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_2[option_1]" required=""><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_2[option_2]" required=""><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_2[option_3]" required=""><input type="text" class="form-control " placeholder="Option 4" name="field_2[option_4]"></td></tr>
                                                     </tbody>
                                                 </table>
 
