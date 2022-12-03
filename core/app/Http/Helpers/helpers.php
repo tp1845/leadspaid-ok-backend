@@ -580,8 +580,8 @@ function send_email_adv($user, $type = null, $link)
           <title>email varification</title>
         </head>
         <body>
-          <p>thanks for connection with use please click on link bellow</p>
-          <a href='.$link.'>click here</a>
+          <p>Please verify your account on this link  <a href='.$link.'>Click here</a></p>
+           
         </body>
         </html>
         ';    
@@ -611,10 +611,10 @@ function send_email_adv_admin($user, $type = null, $username)
         $message ='
         <html>
         <head>
-          <title>email varification</title>
+          <title>email varified</title>
         </head>
         <body>
-          <p>user '.$username.' registered please varify from admin</p>
+          <p> User '.$username.' verifyed. Please activate user from admin pannel</p>
         </body>
         </html>
         ';    

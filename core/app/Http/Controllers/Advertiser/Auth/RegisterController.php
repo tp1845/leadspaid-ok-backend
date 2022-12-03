@@ -120,11 +120,14 @@ class RegisterController extends Controller
             $user->status = 0;
             $user->save();
             send_email_adv_admin($user, 'EVER_CODE',$user->username);
+            $page_title = "user activate";
+            return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
         } else {
             $user->ver_code = $user->ver_code;
             $user->ver_code_send_at = Carbon::now();
             $user->status = 0;
             $user->save();
+            return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
         }
     }
     
@@ -145,16 +148,11 @@ class RegisterController extends Controller
             'userid'=>$user->id
         ];
         $urll= url('');
-        // $link='http://localhost/leadspaids/leadspaid/public/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
         send_email_adv($user, 'EVER_CODE',$link);
-        $notify[] = ['success', 'Email verification link sent successfully please check your email'];
-        return back()->withNotify($notify);
-
-
-      //  return $this->registered($request, $user)
-          //  ?: redirect($this->redirectPath());
+        $page_title = "Thanks email";
+        return view($this->activeTemplate . 'thanks-email', compact('page_title'));
     }
 
     protected function create_adv(array $data)
