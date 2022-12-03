@@ -100,10 +100,10 @@
                         <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
                         <div class="row">
-                            <div class="col">
+                            <div class="col-3">
                                 <div class="card border mb-4 h-100">
                                     <div class="card-header bg-primary">Leads Criteria</div>
-                                    <div class="card-body">
+                                    <div class="card-body bg-ddd">
                                         <div class="form-group row">
                                             <label class="col-sm-12 col-form-label" for="leadsCriteriaInput">Leads Criteria<i>*</i></label>
                                             <div class="col-sm-12 input-col">
@@ -167,7 +167,7 @@
                                                             <th scope="col">Fileds</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="sortable" data-row='2'>
+                                                    <tbody id="sortable" data-row='3'>
                                                         <tr class="sortable-group">
                                                             <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
                                                                 <input type="hidden" class="sort" name="field_1[sort]" value="1">
@@ -184,7 +184,7 @@
                                                                 </div>
                                                             </td>
                                                         </tr>
-                                                        {{-- <tr class="sortable-group" >
+                                                        <tr class="sortable-group">
                                                             <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
                                                                 <input type="hidden" class="sort" name="field_2[sort]" value="2">
                                                             </td>
@@ -195,11 +195,28 @@
                                                                 <div class="input-group">
                                                                     <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" required="">
                                                                     <div class="input-group-append bg-white">
-                                                                        <div class="input-group-text"> <a href="#" class="text-danger del-row" ><i class="fas fa-times-circle"></i></a></div>
+                                                                        <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
                                                                       </div>
                                                                 </div>
                                                             </td>
-                                                        </tr> --}}
+                                                        </tr>
+                                                        <tr class="sortable-group">
+                                                            <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
+                                                                <input type="hidden" class="sort" name="field_3[sort]" value="3">
+                                                            </td>
+                                                            <td>
+                                                                <input type="checkbox" class="InputQuestion_Required" name="field_3[required]">
+                                                            </td>
+                                                            <td>
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_3[question_text]" required="">
+                                                                    <div class="input-group-append bg-white">
+                                                                        <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
+                                                                      </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
                                                         <tr class="sortable-group"><td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i><input type="hidden" class="sort" name="field_2[sort]" value="2"></td><td><input type="checkbox" class="InputQuestion_Required" name="field_2[required]"></td><td><div class="input-group"><input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" required=""><div class="input-group-append bg-white"><div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div></div></div><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_2[option_1]" required=""><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_2[option_2]" required=""><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_2[option_3]" required=""><input type="text" class="form-control " placeholder="Option 4" name="field_2[option_4]"></td></tr>
                                                     </tbody>
                                                 </table>
@@ -473,6 +490,7 @@
 @endpush
 @push('style')
 <style>
+     .bg-ddd {  background-color: #ddd!important; }
     #campaign_create_modal .form-control, #campaign_create_modal .custom-select{
         border-radius: 0; background-color:#fff;
         font-size: 20px!important;
@@ -579,6 +597,11 @@
             border: 1px solid #e5e5e5 !important;
             padding: 10px 10px !important;
         }
+
+        tr.sortable-group td:nth-child(2){ text-align: center!important; }
+        tr.sortable-group .input-group-text{ width: 35px; }
+        tr.sortable-group.row_1 .del-row, tr.sortable-group.row_2 .del-row{ display: none!important; }
+        tr.sortable-group .type{ float: right; padding-right: 35px; }
 
         .toggle-group .btn {
             padding-top: 0 !important;
