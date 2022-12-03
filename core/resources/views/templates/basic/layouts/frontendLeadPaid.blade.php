@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	 @if(Route::current()->getName() == 'old-home')
+    <meta name="robots" content="noindex, nofollow">
+      @endif
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
     <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
