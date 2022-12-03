@@ -820,13 +820,13 @@
     }
 
     ::placeholder {
-      /* Most modern browsers support this now. */
-      color: gray !important;
-      font-size: 20px;
+        /* Most modern browsers support this now. */
+        color: gray !important;
+        font-size: 20px;
     }
     .card.sidbar_preview {
-    border: 5px solid #000;
-    padding: 5px !important;
+        border: 5px solid #000;
+        padding: 5px !important;
     }
     .SelectFormType label { font-size: 20px; }
     .SelectFormType input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
