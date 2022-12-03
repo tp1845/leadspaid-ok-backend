@@ -572,7 +572,8 @@ Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_con
 
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
 Route::get('new-home', 'SiteController@home2')->name('new-home');
+Route::get('/old-home', 'SiteController@index')->name('old-home');
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
-Route::get('/', 'SiteController@index')->name('home');
+Route::get('/', 'SiteController@home2')->name('home');
 
 Route::get('/campaign_form/{publisher_id}/{style}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
