@@ -23,7 +23,7 @@ class CampaignsdemoController extends Controller
         $countries = Country::all();
         $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
-        return view(activeTemplate() . 'advertiser.campaigns.index-demo', compact('campaigns', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message'));
+        return view(activeTemplate() . 'advertiser.campaigns.index2', compact('campaigns', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message'));
     }
 
     public function store(Request $request)

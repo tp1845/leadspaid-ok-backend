@@ -412,7 +412,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         //Campaigns
         Route::get('/campaigns', 'CampaignsController@index')->name('campaigns.index');
-		Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
+		//Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
         Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');
         Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
         Route::get('/campaigns/status/', 'CampaignsController@changeStatus')->name('campaigns.status');
@@ -420,8 +420,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/forms', 'FormsController@index')->name('forms.index');
         Route::post('/forms/create', 'FormsController@store')->name('forms.store');
 
-        Route::get('/campaigns/demo', 'CampaignsdemoController@index')->name('campaigns.demo');
-        Route::post('/campaigns/demo/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
+        Route::get('/campaigns2', 'CampaignsdemoController@index')->name('campaigns.index2');
+        Route::post('/campaigns2/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
 
         //price plans
         Route::get('/ad/price-plans', 'AdController@pricePlans')->name('price.plan');

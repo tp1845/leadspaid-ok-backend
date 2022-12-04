@@ -22,7 +22,7 @@ class CampaignsController extends Controller
         $empty_message = "No Campaigns";
         return view(activeTemplate() . 'advertiser.campaigns.index', compact('campaigns','forms', 'countries', 'page_title', 'empty_message'));
     }
-	
+
 	  public function index2(Request $request)
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
@@ -33,7 +33,7 @@ class CampaignsController extends Controller
         $empty_message = "No Campaigns";
         return view(activeTemplate() . 'advertiser.campaigns.index2', compact('campaigns','forms', 'countries', 'page_title', 'empty_message'));
     }
-	
+
 
     public function edit(Request $request, $id)
     {
