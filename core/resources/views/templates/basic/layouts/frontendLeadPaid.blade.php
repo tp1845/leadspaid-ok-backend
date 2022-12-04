@@ -10,7 +10,7 @@
       @endif
 	@if(Route::current()->getName() == 'privacy_policy')
     <meta name="robots" content="noindex, nofollow">
-      @endif  
+      @endif
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
     <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
@@ -71,6 +71,8 @@
                  <img src="{{asset('assets/templates/leadpaid/images/logo-8.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 9 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-9.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 10 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-10.png')}}" style="max-width: 250px" alt="site-logo">
 
 
                 @else
