@@ -51,7 +51,7 @@
             <div class="container">
               <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
                 @if(Request::get('v') == 2 )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-{{2}}.png')}}" style="max-width: 250px" alt="site-logo">
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 3 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-3.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 4 )
