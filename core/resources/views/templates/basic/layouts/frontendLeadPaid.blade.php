@@ -50,8 +50,30 @@
         <nav class="navbar navbar-expand-lg bg-primary " id="MainNav">
             <div class="container">
               <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
-                @if( Request::get('v') )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-{{Request::get('v')}}.png')}}" style="max-width: 250px" alt="site-logo">
+                @if(Request::get('v') == 2 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-{{2}}.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 3 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-3.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 4 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-4.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 5 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-5.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 6 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-6.png')}}" style="max-width: 250px" alt="site-logo">
+                @elseif(Request::get('v') == 7 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-7.png')}}" style="max-width: 250px" alt="site-logo">
+                @elseif(Request::get('v') == 8 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-8.png')}}" style="max-width: 250px" alt="site-logo">
+                @elseif(Request::get('v') == 9 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-9.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 10 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-10.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 11 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-11.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 12 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-12.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 13 )
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-13.png')}}" style="max-width: 250px" alt="site-logo">
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                 @endif
