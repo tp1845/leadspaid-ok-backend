@@ -50,7 +50,7 @@
         <nav class="navbar navbar-expand-lg bg-primary " id="MainNav">
             <div class="container">
               <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
-                @if(Request::get('v') <= 13 )
+                @if( Request::get('v') )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-{{Request::get('v')}}.png')}}" style="max-width: 250px" alt="site-logo">
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
