@@ -69,7 +69,7 @@
                  @elseif(Request::get('v') == 10 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-10.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 11 )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-11.png')}}" style="max-width: 300px" alt="site-logo">
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-11.png')}}" style="max-width: 275px" alt="site-logo">
                  @elseif(Request::get('v') == 12 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-12.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 13 )
