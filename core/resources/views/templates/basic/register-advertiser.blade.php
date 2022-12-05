@@ -28,7 +28,7 @@
         </div>
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls mb-5">Register as an Advertiser</p>
+                 <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
             </div>
         </div>
     <form class="Rg_advts_form" id="advertiser_form"  method="POST" action="{{route('advertiser.register_adv')}}">
