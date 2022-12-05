@@ -406,8 +406,8 @@ button.btn.btn-secondary.Rg_advts_my_btn {
     font-weight: 300;
 }
 .Rg_advts .form-group i {
-    top: 3px;
-    right: 6px;
+    top: 10px;
+    right: 10px;
 }
 .Rg_advts .form-group .fv-plugins-message-container {
     font-weight: 400;
