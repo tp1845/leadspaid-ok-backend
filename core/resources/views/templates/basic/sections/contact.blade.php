@@ -43,7 +43,6 @@
     font-weight: 500;
 }
 .input-group {
-    margin-bottom: 1rem;
     border-color: #94a1b5 !important;
 }
 .contact-3 .form-group {
@@ -69,25 +68,18 @@
     padding: 16px 24px;
     line-height: normal;
     font-weight:300;
-    margin-bottom: 1rem;
 }
-/* .log-in .form-control:focus, .log-in .form-select:focus {
-    box-shadow: 0 0 20px rgb(0 0 0 / 16%);
-    border: 1px solid #16C79A !important;
-    transition: All .2s ease-in-out!important;
-}
-.log-in .form-control:focus {
-    color: #212529;
-    background-color: #fff;
-    border-color: #8d939d;
-    outline: 0;
-    box-shadow: 0 0 20px rgb(0 0 0 / 16%);
-} */
+
 .contact-3 .form-group .input-group .form-control:focus, .contact-3 .contact_msg:focus  {
     background-color: #fff;
     border: 1px solid #16C79A !important;
     box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
     transition: All .2s ease-in-out!important;
+}
+
+.contact-3 .form-group i {
+    top: 10px;
+    right: 10px;
 }
 </style>
 
@@ -104,9 +96,9 @@
                         <h2>Contact Us</h2>
                     </div>
 
-                        <form method="POST" action="{{route('contact.send')}}" class="row gx-3 get-in-touch">
+                        <form method="POST" id="form-contact" action="{{route('contact.send')}}" class="row gx-3 get-in-touch">
                             @csrf
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-6 mb-3">
                             <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
@@ -114,52 +106,52 @@
                                     </div>
                                 </div> -->
                                 {{-- <label>@lang('Name') <sup class="text-danger">*</sup></label> --}}
-                                <input type="text" name="name" placeholder="@lang('Full Name')" class="rounded-0 form-control py-2" required value="{{old('name')}}" required >
+                                <input type="text" id="conact_name" name="name" placeholder="@lang('Full Name')" class="rounded-0 form-control py-2" required value="{{old('name')}}" required >
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group mb-3 col-md-6">
                             <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text conpant_icon">
                                         <svg id="Layer_1" style="enable-background:new 0 0 91 91;" version="1.1" viewBox="0 0 91 91" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M52.7,19.1H19.9v53.2h32.8V19.1z M34.7,62.2h-3.4v-6.2h3.4V62.2z M34.7,49.7h-3.4v-6.2h3.4V49.7z M34.7,37.3h-3.4v-6.2h3.4   V37.3z M45,62.2h-3.4v-6.2H45V62.2z M45,49.7h-3.4v-6.2H45V49.7z M45,37.3h-3.4v-6.2H45V37.3z"/><path d="M75.2,65.6V40.9l-19.7,0v31.4h13C72.2,72.3,75.2,69.3,75.2,65.6z M67.6,62.3H61V59h6.6V62.3z M67.6,54H61v-3.4h6.6V54z"/></g></svg>
                                     </div>
                                 </div> -->
-                                <input type="text" name="company" placeholder="@lang('Company Name')" class="rounded-0 form-control py-2" required value="{{old('email')}}">
+                                <input type="text"  id="conact_company" name="company" placeholder="@lang('Company Name')" class="rounded-0 form-control py-2" required value="{{old('email')}}">
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group mb-3 col-md-6">
                             <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     </div>
                                 </div> -->
-                                <input type="email" name="email" placeholder="@lang('Email Address')" class="rounded-0 form-control py-2" required value="{{old('email')}}">
+                                <input type="email" id="conact_email" name="email" placeholder="@lang('Email Address')" class="rounded-0 form-control py-2" required value="{{old('email')}}">
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group mb-3 col-md-6">
                             <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                                     </div>
                                 </div> -->
-                                <input type="tel" name="phone" placeholder="@lang('Phone Number')" class="rounded-0 form-control py-2" required value="{{old('phone')}}">
+                                <input type="tel" id="conact_phone" name="phone" placeholder="@lang('Phone Number')" class="rounded-0 form-control py-2" required value="{{old('phone')}}">
                             </div>
                         </div>
 
-                        {{-- <div class="form-group col-md-12">
+                        {{-- <div class="form-group mb-3 col-md-12">
                             <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     </div>
                                 </div> -->
-                                <input type="text" name="subject" placeholder="@lang('Subject')" class="rounded-0 form-control" required value="{{old('subject')}}">
+                                <input type="text" id="conact_subject" name="subject" placeholder="@lang('Subject')" class="rounded-0 form-control" required value="{{old('subject')}}">
                             </div>
                         </div> --}}
-                        <div class="form-group col-md-12">
-                            <textarea name="message" placeholder="@lang('Message')" class="form-control contact_msg rounded-0 py-2" required rows="4">{{old('message')}}</textarea>
+                        <div class="form-group mb-3 col-md-12">
+                            <textarea name="message" id="conact_message" placeholder="@lang('Message')" class="form-control contact_msg rounded-0 py-2" required rows="4">{{old('message')}}</textarea>
                         </div>
                         <div class="col-md-12 submit-btn">
                             <button type="submit" class="btn btn-secondary px-5 py-2 text-uppercase fw-bold">@lang('Submit Message')</button>
@@ -190,3 +182,107 @@
 </section>
       <!-- contact section end -->
 @endsection
+@push('script-lib')
+<script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
+<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script> 
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>   
+
+@endpush
+@push('script')
+<script>
+document.addEventListener('DOMContentLoaded', function(e) {
+
+FormValidation.formValidation(document.querySelector('#form-contact'), {
+    fields: {
+        name: {
+            validators: {
+                stringLength: {
+                    min: 3,
+                    message: 'Please fill Full  Name.',
+                }
+            },
+        },
+        company: {
+             validators: {
+                notEmpty: {
+                    message: 'Please fill company Name.',
+                },
+                stringLength: {
+                    min: 3,
+                    message: 'Please fill company Name.',
+                },
+            },
+       
+        },
+
+        email: {
+            validators: {
+                notEmpty: {
+                    message: 'Please fill valid email address',
+                },
+                emailAddress: {
+                    message: 'Please fill valid email address',
+                },
+            },
+               
+        },
+      
+        phone: {
+            validators: {
+                notEmpty: {
+                    message: 'Please fill Phone Number.',
+                },
+                stringLength: {
+                    min: 6,
+                    message: 'Please fill Phone Number.',
+                },
+            },
+        },
+        subject: {
+              validators: {
+                notEmpty: {
+                    message: 'Please fill subject.',
+                },
+                stringLength: {
+                    min: 20,
+                    message: 'Please fill subject.',
+                },
+            },
+        },
+        message: {
+             validators: {
+                notEmpty: {
+                    message: 'Please fill message.',
+                },
+                emailAddress: {
+                    message: 'Please fill message.',
+                },
+            },
+        },
+    },
+    plugins: {
+        trigger: new FormValidation.plugins.Trigger(),
+        bootstrap: new FormValidation.plugins.Bootstrap(),
+        submitButton: new FormValidation.plugins.SubmitButton(),
+        icon: new FormValidation.plugins.Icon({
+            valid: 'fa fa-check',
+            invalid: 'fa fa-times',
+            validating: 'fa fa-refresh',
+        }),
+        alias: new FormValidation.plugins.Alias({
+            checkConfirmation: 'callback'
+        }),
+    },
+}).on('core.form.valid', function() {
+    document.querySelector('#form-contact').submit();
+
+});
+
+});
+</script>    
+
+@endpush
