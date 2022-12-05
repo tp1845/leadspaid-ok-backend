@@ -98,7 +98,7 @@ class RegisterController extends Controller
     public function varify_adv(Request $request){
         
         $data=$this->decode_arr($request->code_verifiyed);
-        $user =UserLogin::findOrFail($data['userid']);
+        $user =User::findOrFail($data['userid']);
 
        retun $user.$user['ver_code'];
 
