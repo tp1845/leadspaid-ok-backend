@@ -326,19 +326,19 @@
 
     .Rg_advts input {
         display: block;
-        font-size: 15px;
-        padding: 10px 15px;
+        font-size: 19px;
+        padding: 16px 24px;
         line-height: normal;
     }
     .Rg_advts_form select{
-         font-size: 15px;
-        padding: 10px 15px;
+        font-size: 19px;
+        padding: 16px 24px;
         border-radius: 0;
         line-height: normal;
     }
     .Rg_advts_form textarea {
-        font-size: 15px;
-        padding: 10px 15px;
+        font-size: 19px;
+        padding: 16px 24px;
         line-height: normal;
     }
 
@@ -354,9 +354,9 @@
     flex: 0 0 75%;
     width: 75%;
     border: 1px solid #94a1b5;
-    font-size: 15px;
+    font-size: 19px;
         line-height: normal;
-    padding: 10px 25px;
+    padding: 16px 24px;
 }
 .Rg_advts_form input:focus-visible {
     outline: none;

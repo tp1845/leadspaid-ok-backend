@@ -105,7 +105,7 @@
                   </li>
                   @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('login')}}">Join As Advertiser</a>
+                    <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="{{route('login')}}">Login</a>

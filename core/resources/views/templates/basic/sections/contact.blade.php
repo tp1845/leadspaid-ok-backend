@@ -30,12 +30,64 @@
     }
     .contact_wrap p, .contact_wrap p a, .contact_msg {
     color: #586167 !important;
+    font-weight:300;
 }
     .conpant_icon svg {
         height:24px !important;
     }
     .contact_wrap .title {
     color: #1361b2;
+}
+.submit-btn button.btn {
+    font-size: 24px;
+    font-weight: 500;
+}
+.input-group {
+    margin-bottom: 1rem;
+    border-color: #94a1b5 !important;
+}
+.contact-3 .form-group {
+    margin-bottom: unset;
+}
+.contact-3 .form-group .input-group input {
+    color: #586167;
+    outline: none;
+    display: block;
+    font-size: 19px;
+    height: 63px;
+    border-bottom: none;
+    border: 1px solid #94a1b5 !important;
+    padding: 16px 24px;
+    line-height: normal;
+    background: #f2f7ff;
+    font-weight:300;
+}
+.contact-3 .form-group textarea {
+    border: 1px solid #94a1b5 !important;
+    background: #f2f7ff;
+    font-size: 19px;
+    padding: 16px 24px;
+    line-height: normal;
+    font-weight:300;
+    margin-bottom: 1rem;
+}
+/* .log-in .form-control:focus, .log-in .form-select:focus {
+    box-shadow: 0 0 20px rgb(0 0 0 / 16%);
+    border: 1px solid #16C79A !important;
+    transition: All .2s ease-in-out!important;
+}
+.log-in .form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #8d939d;
+    outline: 0;
+    box-shadow: 0 0 20px rgb(0 0 0 / 16%);
+} */
+.contact-3 .form-group .input-group .form-control:focus, .contact-3 .contact_msg:focus  {
+    background-color: #fff;
+    border: 1px solid #16C79A !important;
+    box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
+    transition: All .2s ease-in-out!important;
 }
 </style>
 
@@ -55,59 +107,59 @@
                         <form method="POST" action="{{route('contact.send')}}" class="row gx-3 get-in-touch">
                             @csrf
                         <div class="form-group col-md-6">
-                            <div class="input-group border">
+                            <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
                                     </div>
                                 </div> -->
                                 {{-- <label>@lang('Name') <sup class="text-danger">*</sup></label> --}}
-                                <input type="text" name="name" placeholder="@lang('Full Name')" class="form-control border-0 py-2" required value="{{old('name')}}" required >
+                                <input type="text" name="name" placeholder="@lang('Full Name')" class="rounded-0 form-control py-2" required value="{{old('name')}}" required >
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <div class="input-group border">
+                            <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text conpant_icon">
                                         <svg id="Layer_1" style="enable-background:new 0 0 91 91;" version="1.1" viewBox="0 0 91 91" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><path d="M52.7,19.1H19.9v53.2h32.8V19.1z M34.7,62.2h-3.4v-6.2h3.4V62.2z M34.7,49.7h-3.4v-6.2h3.4V49.7z M34.7,37.3h-3.4v-6.2h3.4   V37.3z M45,62.2h-3.4v-6.2H45V62.2z M45,49.7h-3.4v-6.2H45V49.7z M45,37.3h-3.4v-6.2H45V37.3z"/><path d="M75.2,65.6V40.9l-19.7,0v31.4h13C72.2,72.3,75.2,69.3,75.2,65.6z M67.6,62.3H61V59h6.6V62.3z M67.6,54H61v-3.4h6.6V54z"/></g></svg>
                                     </div>
                                 </div> -->
-                                <input type="text" name="company" placeholder="@lang('Company Name')" class="form-control border-0 py-2" required value="{{old('email')}}">
+                                <input type="text" name="company" placeholder="@lang('Company Name')" class="rounded-0 form-control py-2" required value="{{old('email')}}">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <div class="input-group border">
+                            <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     </div>
                                 </div> -->
-                                <input type="email" name="email" placeholder="@lang('Email Address')" class="form-control border-0 py-2" required value="{{old('email')}}">
+                                <input type="email" name="email" placeholder="@lang('Email Address')" class="rounded-0 form-control py-2" required value="{{old('email')}}">
                             </div>
                         </div>
                         <div class="form-group col-md-6">
-                            <div class="input-group border">
+                            <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
                                     </div>
                                 </div> -->
-                                <input type="tel" name="phone" placeholder="@lang('Phone Number')" class="form-control border-0 py-2" required value="{{old('phone')}}">
+                                <input type="tel" name="phone" placeholder="@lang('Phone Number')" class="rounded-0 form-control py-2" required value="{{old('phone')}}">
                             </div>
                         </div>
 
                         {{-- <div class="form-group col-md-12">
-                            <div class="input-group border">
+                            <div class="input-group">
                                 <!-- <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                                     </div>
                                 </div> -->
-                                <input type="text" name="subject" placeholder="@lang('Subject')" class="form-control border-0" required value="{{old('subject')}}">
+                                <input type="text" name="subject" placeholder="@lang('Subject')" class="rounded-0 form-control" required value="{{old('subject')}}">
                             </div>
                         </div> --}}
                         <div class="form-group col-md-12">
-                            <textarea name="message" placeholder="@lang('Message')" class="form-control contact_msg border rounded-0 py-2" required rows="4">{{old('message')}}</textarea>
+                            <textarea name="message" placeholder="@lang('Message')" class="form-control contact_msg rounded-0 py-2" required rows="4">{{old('message')}}</textarea>
                         </div>
                         <div class="col-md-12 submit-btn">
                             <button type="submit" class="btn btn-secondary px-5 py-2 text-uppercase fw-bold">@lang('Submit Message')</button>
@@ -127,7 +179,7 @@
                     <div class="col-lg-12 col-sm-6">
                         <div class="contact_wrap">
                             <h4 class="title mb-0">@lang('LeadsPaid.com Inc.')</h4>
-                            <p class="mb-2">1 Amphitheatre Parkway; Mountain View, CA 94043</p>
+                            <p class="mb-2">1 Amphitheatre Parkway Mountain View, CA 94043</p>
                             <p> <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></p>
                         </div>
                     </div>
