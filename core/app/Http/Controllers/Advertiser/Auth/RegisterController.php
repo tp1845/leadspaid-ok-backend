@@ -108,7 +108,9 @@ class RegisterController extends Controller
         $data=$this->decode_arr($request->code_verifiyed);
 	
        // $user = $this->guard()->user()->find($data['userid']);
-		  $user = new Advertiser (); 
+		 // $user = new Advertiser (); 
+
+       return  $user = Advertiser::findOrFail($data['userid']);
         if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
             $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
             $delay = $target_time - time();
