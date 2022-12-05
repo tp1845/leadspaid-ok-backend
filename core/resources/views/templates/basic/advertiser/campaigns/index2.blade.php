@@ -84,7 +84,7 @@
                 <div class="modal-content h-100">
                     <div class="modal-header bg-primary row m-0">
                         <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required></div>
-                        <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="form['company_name']" required></div>
+                        <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="company_name" required></div>
                         <div class="col-lg-3 input-col d-flex  flex-wrap">
                             <img id="company_logo_img" src="#" alt="company_logo_img" width="50px" height="50px" style="display: none" />
                             <div class="upload-box">
