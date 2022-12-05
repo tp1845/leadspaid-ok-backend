@@ -9,7 +9,7 @@
       @endif
       @if(Route::current()->getName() == 'privacy_policy')
     <meta name="robots" content="noindex, nofollow">
-      @endif  
+      @endif
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
@@ -90,6 +90,8 @@
                  <img src="{{asset('assets/templates/leadpaid/images/logo-14.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 15)
                  <img src="{{asset('assets/templates/leadpaid/images/logo-15.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 16)
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-16.png')}}" style="max-width: 250px" alt="site-logo">
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                 @endif
