@@ -200,6 +200,9 @@ FormValidation.formValidation(document.querySelector('#form-contact'), {
     fields: {
         name: {
             validators: {
+                notEmpty: {
+                    message: 'Please fill Full  Name',
+                },
                 stringLength: {
                     min: 3,
                     message: 'Please fill Full  Name.',
