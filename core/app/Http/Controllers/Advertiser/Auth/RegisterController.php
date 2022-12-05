@@ -100,7 +100,7 @@ class RegisterController extends Controller
         $data=$this->decode_arr($request->code_verifiyed);
         $user =User::findOrFail($data['userid']);
 
-       retun $user.$user['ver_code'];
+       retun $user;
 
             $user['ver_code'] = $data['code'];
             $user['ver_code_send_at'] = Carbon::now();
