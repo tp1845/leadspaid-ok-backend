@@ -131,12 +131,14 @@ body {
     font-weight: 300;
 }
   .MainBanner-Home .btn {
-    font-size: 25px !important;
+    font-size: 34px !important;
     }
     }
 @media only screen and (max-width: 768px) {
     .MainBanner-Home .btn {
-    font-size: 25px !important;
+        font-size: 35px !important;
+        padding-right: 35px;
+        padding-left: 35px;
     }
-}  
+}    
 </style>
