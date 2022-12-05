@@ -88,7 +88,7 @@
                  <img src="{{asset('assets/templates/leadpaid/images/logo-13.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 14)
                  <img src="{{asset('assets/templates/leadpaid/images/logo-14.png')}}" style="max-width: 250px" alt="site-logo">
-                 @elseif(Request::get('v') == 14)
+                 @elseif(Request::get('v') == 15)
                  <img src="{{asset('assets/templates/leadpaid/images/logo-15.png')}}" style="max-width: 250px" alt="site-logo">
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
