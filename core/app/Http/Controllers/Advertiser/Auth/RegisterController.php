@@ -106,9 +106,9 @@ class RegisterController extends Controller
     public function varify_adv(Request $request){
 		
         $data=$this->decode_arr($request->code_verifiyed);
-        $user =UserLogin::findOrFail($data['userid']);
+        $user =User::findOrFail($data['userid']);
         //$user = $this->guard()->user()->find($data['userid']);
-         return $user['id'];
+         return $user->id;
         if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
             $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
             $delay = $target_time - time();
