@@ -334,7 +334,7 @@
      .Rg_advts_ttls_1 {
         
         font-family: Poppins !important;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 63px;
         letter-spacing: 1px;
         color: #cccdcc;
