@@ -44,7 +44,7 @@
                                    <input name="company_name" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional ) " aria-required="true" aria-invalid="false" required>
                                </div>
                                <div class="form-group mb-3">
-                                    <input name="name" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="First Name " aria-required="true" aria-invalid="false" required>
+                                    <input name="name" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Full Name" aria-required="true" aria-invalid="false" required>
                                 </div>
                                 <div class="form-group mb-3 custom-state">
                                     <select class="form-select rounded-0" name="country" aria-label="Default select example">
@@ -70,13 +70,13 @@
 
                            <div class="Rg_advts_form">
                                <div class="form-group mb-3">
-                               <textarea class="form-control Rg_advts_name mb-3 rounded-0" name="product_services" placeholder="Products or Services you want to generate lead for us" id="floatingTextarea" required></textarea>
+                               <textarea class="form-control Rg_advts_name mb-3 rounded-0" name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea" required></textarea>
                            </div>
                                <div class="form-group mb-3">
-                                    <input name="Website" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false" required>
+                                    <input name="Website" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false">
                                 </div>
                                 <div class="form-group mb-3">
-                                     <input name="Social" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Social Media Page URL(Optional) " aria-required="true" aria-invalid="false" required>
+                                     <input name="Social" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Social Media Page URL(Optional) " aria-required="true" aria-invalid="false">
                                 </div>
                            </div>
                         </div>
@@ -225,38 +225,6 @@
                         }
                     },
                 },
-
-                Social: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Social Media.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Social Media.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'Full Name Invalid.',
-                        },
-                    },
-                },
-                Website: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Website Name.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Website Name.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'Full Name Invalid.',
-                        },
-                    },
-                },
-
                 email: {
                      validators: {
                         notEmpty: {
