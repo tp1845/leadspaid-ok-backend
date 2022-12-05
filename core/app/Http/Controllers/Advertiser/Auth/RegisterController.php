@@ -98,15 +98,14 @@ class RegisterController extends Controller
     public function varify_adv(Request $request){
         
         $data=$this->decode_arr($request->code_verifiyed);
-        //$user =UserLogin::findOrFail($data['userid']);
-       return $user = User::whereid($data['userid'])->firstOrFail();
+        $user =UserLogin::findOrFail($data['userid']);
         //$user = $this->guard()->user()->find($data['userid']);
 
             $user['ver_code'] = $data['code'];
             $user['ver_code_send_at'] = Carbon::now();
             $user['status'] = 0;
-            $user->save();
-            send_email_adv_admin($user, 'EVER_CODE',$user->username);
+            DB::update('update advertisers set ver_code = ?,ver_code_send_at=?,status=? where id = ?',[$user['ver_code'],$user['ver_code_send_at'],$user['status'],$data['userid']]);
+            send_email_adv_admin($user, 'EVER_CODE',$user['username']);
             $page_title = "user activate";
             return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
        
