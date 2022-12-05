@@ -79,15 +79,16 @@
     <div id="campaign_create_modal" style="max-width: 100vw;" class="modal fade right modal-lg" tabindex="-1" role="dialog">
         <div class="float-right h-100 m-0 modal-dialog w-100" style="max-width: 25rem;" role="document">
             <button type="button" class="close campaign_create_close"  data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-            <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form">
+            <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content h-100">
                     <div class="modal-header bg-primary row m-0">
                         <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required></div>
                         <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="form['company_name']" required></div>
-                        <div class="col-lg-3 input-col">
+                        <div class="col-lg-3 input-col d-flex">
+                            <img id="company_logo_img" src="#" alt="company_logo_img" width="50px" height="50px" style="display: none" />
                             <div class="upload-box">
-                                <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple="">
+                                <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
                                 <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
                             </div>
                         </div>
@@ -112,7 +113,7 @@
                                         <div class="form-group row">
                                             <div class="col">
                                                 <div class=" row ">
-                                                    <label class="col-sm-12 col-form-label " for="TargetCountryInput">From Which Conuntry</label>
+                                                    <label class="col-sm-12 col-form-label " for="TargetCountryInput">From Which Country</label>
                                                     <div class="col-sm-12 input-col">
                                                         <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
                                                             <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
@@ -166,7 +167,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody id="sortable" data-row='3'>
-                                                        <tr class="sortable-group row_1">
+                                                        <tr class="sortable-group row_1 ">
                                                             <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
                                                                 <input type="hidden" class="sort" name="field_1[sort]" value="1">
                                                             </td>
@@ -175,7 +176,7 @@
                                                             </td>
                                                             <td>
                                                                 <small class="type">Short Answer</small>
-                                                                <div class="input-group">
+                                                                <div class="input-group input-col">
                                                                     <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[question_text]" value="Full Name" required="">
                                                                     <div class="input-group-append bg-white">
                                                                         <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
@@ -192,7 +193,7 @@
                                                             </td>
                                                             <td>
                                                                 <small class="type">Short Answer</small>
-                                                                <div class="input-group">
+                                                                <div class="input-group input-col">
                                                                     <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" value="Email id" required="">
                                                                     <div class="input-group-append bg-white">
                                                                         <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
@@ -209,7 +210,7 @@
                                                             </td>
                                                             <td>
                                                                 <small class="type">Short Answer</small>
-                                                                <div class="input-group">
+                                                                <div class="input-group input-col">
                                                                     <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_3[question_text]" value="Phone Number" required="">
                                                                     <div class="input-group-append bg-white">
                                                                         <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
@@ -225,8 +226,8 @@
                                                         + Add question
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle"></i> Sort Answer</a>
-                                                        <a class="dropdown-item" href="#" onclick="add_form_field('multiple')"> <i class="far fa-dot-circle"></i> Multiple Choise</a>
+                                                        <a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle"></i> Short Answer</a>
+                                                        <a class="dropdown-item" href="#" onclick="add_form_field('multiple')"> <i class="far fa-dot-circle"></i> Multiple Choice</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -262,7 +263,6 @@
 
                                             </div>
                                             <div class="col-lg-3">
-
                                                 <label class="col-form-label" >Youtube Video Url (Optional)  </label>
                                                 <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1">
                                                 <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2">
@@ -270,23 +270,26 @@
                                             </div>
                                             <div class="col-lg-3">
                                                 <label class="col-form-label" >Upload upto 3 images (Optional)</label>
-                                                <div class="input-col">
+                                                <div class="input-col d-flex">
                                                     <div class="upload-box grey">
-                                                        <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1">
+                                                        <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                         <label for="image_1_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
                                                     </div>
+                                                    <img id="image_1_img" src="#" alt="image_1_img" width="50px" height="50px" style="display: none" />
                                                 </div>
-                                                <div class="input-col">
+                                                <div class="input-col d-flex">
                                                     <div class="upload-box grey  my-2">
-                                                        <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1">
+                                                        <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                         <label for="image_2_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
                                                     </div>
+                                                    <img id="image_2_img" src="#" alt="image_2_img" width="50px" height="50px" style="display: none" />
                                                 </div>
-                                                <div class="input-col">
+                                                <div class="input-col d-flex">
                                                     <div class="upload-box grey">
-                                                        <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1">
+                                                        <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                         <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 3</span></label>
                                                     </div>
+                                                    <img id="image_3_img" src="#" alt="image_3_img" width="50px" height="50px" style="display: none" />
                                                 </div>
                                             </div>
                                         </div>
@@ -311,6 +314,8 @@
     <button class="btn btn--primary create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</button>
 @endpush
 @push('script')
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{asset('assets/admin/js/vendor/datepicker.min.js')}}"></script>
@@ -322,8 +327,7 @@
     <link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
     <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
 
     <script>
         'use strict';
@@ -360,6 +364,15 @@
         $("select").change(function(){ show_optional_block() });
         function show_optional_block(){ $('#optional_block').show(); }
 
+
+
+        form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; }}
+        image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; }}
+        image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; }}
+        image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; }}
+
+
+
         $('table').on('click', '.del-row', function(e){
             var table = $('#sortable');
             var row = table.attr('data-row');
@@ -367,6 +380,47 @@
             table.attr('data-row', row);
             $(this).closest('tr').remove()
         })
+
+        $('table').on('click', '.del-option', function(e){
+            var options_block = $(this).parent().parent().parent();
+            var options_section = options_block.parent();
+            var btn_add_option = $('.btn-add-option', options_section );
+            var option = btn_add_option.attr('data-option');
+            btn_add_option.attr('data-option', --option);
+            $(this).closest('.input-group.option').remove();
+
+            update_options(options_section);
+        })
+
+        $('body').on('click', '.btn-add-option', function(e){
+           // var options_block = $(this).closest('.options-section');
+           var options_block = $(this).parent().prev();
+           var options_section = options_block.parent();
+           var row = $(this).attr('data-row');
+            var option = $(this).attr('data-option');
+            if(option <= 6){
+            var name = 'field_'+row+'[option_'+option+']';
+            var placeholder = "Option "+ option;
+            var  html ='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="'+placeholder+'" name="'+name+'" ><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+            $(options_block).append(html);
+            update_options(options_section);
+            }else{
+                Toast('red', 'Only 6 Option Allowed') ;
+            }
+
+        });
+        function update_options(options_section){
+            var options_block =  $(options_section).find(".options-block");
+            var btn_add_option = $('.btn-add-option',options_section);
+            var row = btn_add_option.attr('data-row');
+            var i = 1;
+            $('.input-group.option', options_block).each(function (k, el) {
+                $(el).find("input").attr('name', 'field_'+row+'[option_'+i+']').attr('placeholder', "Option "+ i );
+                i++;
+            });
+            btn_add_option.attr('data-option', i);
+        }
+
 
         function add_form_field(type = 'single'){
             var table = $('#sortable');
@@ -382,23 +436,27 @@
                 html +='</td>';
                 html +='<td>';
                 if(type == 'multiple'){
-                    html +=' <small class="type">Multiple Choise</small>';
+                    html +=' <small class="type">Multiple Choice</small>';
                 }else{
                     html +=' <small class="type">Short Answer</small>';
                 }
-                html +='<div class="input-group">';
+                html +='<div class="input-group input-col">';
                 html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required>';
                 html +='<div class="input-group-append bg-white">';
                 html +='<div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>';
                 html +='</div>';
                 html +='</div>';
                 if(type == 'multiple'){
-                    html +='<div class="pl-5">';
-                    html +='<input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_'+row+'[option_1]" required>';
-                    html +='<input type="text" class="form-control mb-3" placeholder="Option 2" name="field_'+row+'[option_2]" required>';
-                    html +='<input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]" required>';
-                    html +='<input type="text" class="form-control " placeholder="Option 4" name="field_'+row+'[option_4]" >';
+                    html +='<div class="options-section">';
+                    html +='<div class="pl-5 options-block">';
+                    html +='<div class="input-group option"><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_'+row+'[option_1]" required><div class="input-group-text ">  </div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_'+row+'[option_2]" required><div class="input-group-text">  </div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]" required><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 4" name="field_'+row+'[option_4]" ><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
                     html +='</div>';
+                    html +='<div class="pl-5"><a class="btn-add-option btn"  data-row="'+row+'" data-option="5">+ Add Option</a></div>';
+                    html +='</div>';
+
                 }
                 html +='</td>';
                 html +='</tr>';
@@ -557,10 +615,13 @@
                         $(el).find(".InputQuestionType").attr('name', 'field_' + i + '[question_type]');
                         $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
                         $(el).find(".InputQuestion_text").attr('name', 'field_' + i + '[question_text]');
-                        $(el).find(".InputQuestion_Option_1").attr('name', 'field_' + i + '[option_1]');
-                        $(el).find(".InputQuestion_Option_2").attr('name', 'field_' + i + '[option_2]');
-                        $(el).find(".InputQuestion_Option_3").attr('name', 'field_' + i + '[option_3]');
-                        $(el).find(".InputQuestion_Option_4").attr('name', 'field_' + i + '[option_4]');
+                        // $(el).find(".InputQuestion_Option_1").attr('name', 'field_' + i + '[option_1]');
+                        // $(el).find(".InputQuestion_Option_2").attr('name', 'field_' + i + '[option_2]');
+                        // $(el).find(".InputQuestion_Option_3").attr('name', 'field_' + i + '[option_3]');
+                        // $(el).find(".InputQuestion_Option_4").attr('name', 'field_' + i + '[option_4]');
+                        $(el).find(".btn-add-option").attr('data-row',  i);
+                        var options_section =  $(el).find(".options-section");
+                        update_options(options_section);
                         i++;
                     });
                 }
@@ -620,22 +681,33 @@
             rules: {
                 name: { minlength: 3 },
                 daily_budget: { required: true, money: true,min: 50,max: 1000 },
-                target_cost: { required: true, money: true,min: 50,max: 1000 },
+                target_cost: { required: false, money: true,min: 10,max: 1000 },
                 website_url: { minlength: 7 },
                 company_logo: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-                image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
+                image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 }
 
             },messages: {
-                daily_budget:'Daily Budget should be minimum $50 and less then $1000',
-                target_cost:'Daily Budget is requried and less then $1000',
+                daily_budget:  { required : 'Daily Budget is required.', min:'Daily Budget should be minimum $50', max: 'Daily Budget should not be greater than $1000'} ,
+                target_cost:  { required : 'Target Cost is required.', min:'Target Cost should be minimum $50', max: 'Target Cost should not be greater than $1000'} ,
                 service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
                 website_url: 'Please fill Website URL - or leave it blank',
                 company_logo: "File must be JPG, GIF or PNG, less than 2MB",
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
+            },
+            submitHandler: function (form) {
+                if( $('#sortable .sortable-group').length >= 3 ){
+                    //form.submit();
+                    return true;
+
+                }else{
+                    Toast('red', 'Minimum 3 form fields are required');
+                    return false;
+
+                }
             }
         });
     </script>
@@ -643,6 +715,38 @@
 @push('style')
 
 <style>
+    .btn--primary {  background-color: #1A273A !important; }
+    .btn--primary:hover {  background-color: #1361b2 !important; }
+    .small, small { font-size: 90%; }
+    table.dataTable thead tr { background-color: #1A273A; }
+    .dataTables_paginate .pagination .page-item.active .page-link{
+    background-color: #1361b2;
+    border-color: #1361b2;
+    box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
+}
+
+.btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
+#campaign_list td{ font-size: 15px; }
+#campaign_list td:nth-child(3){  font-size: 14px; }
+#campaign_list a.create-campaign-btn { font-size: 13px; }
+
+
+#campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
+#campaign_list_wrapper .dataTables_length select,
+#campaign_list_wrapper .dataTables_filter input {
+    border-radius: 0!important;
+}
+
+.page-wrapper.default-version, table td, tfoot tr { font-weight: normal;  font-family: Poppins; }
+#campaign_list_wrapper{  overflow-x: scroll; }
+
+#company_logo_img, #image_1_img, #image_2_img, #image_3_img{
+    height: 54px;
+    width: 54px;
+    padding: 0 5px;
+
+}
+
     .bg-ddd { background-color: #ddd!important; }
     .invalid-feedback { font-size: 90%!important;  }
     #campaign_create_modal .campaign_create_close{ position: absolute; top: 0; left: -30px; width: 30px; height: 30px; background: #fff; opacity: 1; cursor: pointer; }
@@ -685,7 +789,7 @@
     #campaign_create_modal .inputfile-1 + label {
         color: #f1e5e6;
         background-color: #ddf5ff;
-        max-width: 80%;
+        max-width: 100%;
         font-size: 1.15rem;
         font-weight: 300;
         text-overflow: ellipsis;
@@ -724,6 +828,7 @@
     #campaign_create_modal table th { font-weight: 500; }
     table th:last-child { text-align: left; }
     .input-group-append.bg-white .input-group-text{ background-color: transparent!important; border: 0px!important; padding: 0 0 0 9px;     font-size: 1.4rem;  }
+    .input-group.option .input-group-text{ background-color: transparent!important; border: 0px!important; padding: 0 0 0 9px;     font-size: 1.4rem;  }
 
 
     #formPreview{
@@ -758,7 +863,7 @@
         }
         tr.sortable-group td:nth-child(2){ text-align: center!important; }
         tr.sortable-group .input-group-text{ width: 35px; }
-        tr.sortable-group.row_1 .del-row, tr.sortable-group.row_2 .del-row{ display: none!important; }
+        /* tr.sortable-group.row_1 .del-row, tr.sortable-group.row_2 .del-row{ display: none!important; } */
         tr.sortable-group .type{ float: right; padding-right: 35px; }
 
         .toggle-group .btn {
