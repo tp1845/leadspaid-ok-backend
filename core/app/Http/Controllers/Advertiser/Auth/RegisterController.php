@@ -106,11 +106,9 @@ class RegisterController extends Controller
     public function varify_adv(Request $request){
 		
         $data=$this->decode_arr($request->code_verifiyed);
-
+	
         $user = $this->guard()->user()->find($data['userid']);
-
-        $user = $this->guard()->user()->find($data['userid']);
-        return 'test:'.$user;
+          return 'test:'.$user;
         die();
 		  
         if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
