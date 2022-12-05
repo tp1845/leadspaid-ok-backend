@@ -2,7 +2,7 @@
 <option value="United Kingdom">@lang("United Kingdom")</option>
 <option value="Canada">@lang("Canada")</option>
 <option value="Singapore">@lang("Singapore")</option>
-<option value="----">@lang("------")</option>
+<option value="" disabled>@lang("_____")</option>
 <option value="Afghanistan">@lang("Afghanistan")</option>
 <option value="Åland Islands">@lang("Åland Islands")</option>
 <option value="Albania">@lang("Albania")</option>
