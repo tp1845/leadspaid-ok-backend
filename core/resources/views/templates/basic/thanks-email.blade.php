@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12 pt-5">
-               <p class="Rg_advts_ttls_1">Thanks for register</p>
+               <p class="Rg_advts_ttls__1">Thanks for register</p>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls mb-5">please check your email to verify your account</p>
+               <p class="Rg_advts_ttls-1 mb-5">please check your email to verify your account</p>
             </div>
         </div>
            
@@ -27,8 +27,12 @@
 <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>    
 
 @endpush
-
-
-
-
-
+<style>
+    .Rg_advts_ttls-1, .Rg_advts_ttls__1 {
+    color: #1361b2;
+    font-family: Poppins !important;
+    font-weight: 600;
+    font-size: 38px;
+    letter-spacing: 1px;
+}
+</style>

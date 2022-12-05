@@ -9,7 +9,7 @@
                 <div class="col-lg-12">
                     <h1 class="h1">Generate Leads Directly</h1>
                     <p>From High Ranking/ Authority Websites & Apps</p>
-                    <a href="#" class="btn btn-secondary btn-lg my-2">Join As Advertiser</a>
+                    <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2">Join As Advertiser</a>
                 </div>
             </div>
         </div>
@@ -130,9 +130,13 @@ body {
     font-size: 36px !important;
     font-weight: 300;
 }
-  .MainBanner-Home .btn {
-    font-size: 34px !important;
-    }
+
+.MainBanner-Home .btn {
+    font-size: 35px !important;
+    padding-right: 35px;
+    padding-left: 35px;
+    display: inline-block;
+}
     }
 @media only screen and (max-width: 768px) {
     .MainBanner-Home .btn {

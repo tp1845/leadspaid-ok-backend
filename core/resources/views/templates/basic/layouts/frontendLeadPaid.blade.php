@@ -4,13 +4,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    @if(Route::current()->getName() == 'old-home')
+    <meta name="robots" content="noindex, nofollow">
+      @endif
+      @if(Route::current()->getName() == 'privacy_policy')
+    <meta name="robots" content="noindex, nofollow">
+      @endif  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	 @if(Route::current()->getName() == 'old-home')
-    <meta name="robots" content="noindex, nofollow">
-      @endif
-	@if(Route::current()->getName() == 'privacy_policy')
-    <meta name="robots" content="noindex, nofollow">
-      @endif
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
     <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
@@ -25,6 +25,18 @@
     <link rel="stylesheet" href="{{asset('assets/templates/basic/css/line-awesome.min.css')}}">
     @stack('style-lib')
     @stack('style')
+
+    <style>
+      #MainNav a.nav-link {
+    color: #fff;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+#navbarSupportedContent li:nth-child(2),#navbarSupportedContent li:nth-child(3) {
+    border: 2px solid #fff;
+    margin: 0px 10px;
+}
+    </style>
 </head>
   <body>
     @php
@@ -37,7 +49,7 @@
     </div>
 
     <!-- scroll-to-top start -->
-    <div class="scroll-to-top">
+    <div class="scroll-to-top" style="display:none">
       <span class="scroll-icon">
         <i class="fa fa-rocket" aria-hidden="true"></i>
       </span>
@@ -52,30 +64,27 @@
               <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
                 @if(Request::get('v') == 2 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 250px" alt="site-logo">
+
                  @elseif(Request::get('v') == 3 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-3.png')}}" style="max-width: 250px" alt="site-logo">
+
                  @elseif(Request::get('v') == 4 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-4.png')}}" style="max-width: 250px" alt="site-logo">
+
                  @elseif(Request::get('v') == 5 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-5.png')}}" style="max-width: 250px" alt="site-logo">
+
                  @elseif(Request::get('v') == 6 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-6.png')}}" style="max-width: 250px" alt="site-logo">
-                @elseif(Request::get('v') == 7 )
+
+                 @elseif(Request::get('v') == 7 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-7.png')}}" style="max-width: 250px" alt="site-logo">
-                @elseif(Request::get('v') == 8 )
+                 @elseif(Request::get('v') == 8 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-8.png')}}" style="max-width: 250px" alt="site-logo">
-                @elseif(Request::get('v') == 9 )
+                 @elseif(Request::get('v') == 9 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-9.png')}}" style="max-width: 250px" alt="site-logo">
-                 @elseif(Request::get('v') == 10 )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-10.png')}}" style="max-width: 250px" alt="site-logo">
-                 @elseif(Request::get('v') == 11 )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-11.png')}}" style="max-width: 275px" alt="site-logo">
-                 @elseif(Request::get('v') == 12 )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-12.png')}}" style="max-width: 250px" alt="site-logo">
-                 @elseif(Request::get('v') == 13 )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-13.png')}}" style="max-width: 250px" alt="site-logo">
-                 @elseif(Request::get('v') == 14 )
-                 <img src="{{asset('assets/templates/leadpaid/images/logo-14.png')}}" style="max-width: 275px" alt="site-logo">
+
+
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                 @endif
@@ -85,9 +94,9 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
+                  {{--<li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
-                  </li>
+                  </li> --}}
                   {{-- <li class="nav-item">
                     <a class="nav-link" href="#">About Us</a>
                   </li> --}}
@@ -96,7 +105,10 @@
                   </li>
                   @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('login')}}">Advertiser Login</a>
+                    <a class="nav-link" href="{{route('login')}}">Join As Advertiser</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{route('login')}}">Login</a>
                   </li>
                   @endif
                   @if(auth()->guard('publisher')->user())

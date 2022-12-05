@@ -107,7 +107,7 @@ class SiteController extends Controller
         $ticket->user_id = auth()->id();
         $ticket->name    = $request->name;
         $ticket->email   = $request->email;
-
+        $ticket->company   = $request->company;
 
         $ticket->ticket     = $random;
         $ticket->subject    = $request->subject;
@@ -325,6 +325,8 @@ class SiteController extends Controller
 
         return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
     }
+
+
     public function privacy_policy()
     {
         $id = 127;
@@ -334,24 +336,19 @@ class SiteController extends Controller
         return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
     }
 
-    public function terms_condition()
-    {
-        $id = 128;
-        $policy     = Frontend::findOrFail($id);
-        $page_title = $policy->data_values->heading;
-
-        return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
-    }
-     public function register_advertiser(){
+   public function register_advertiser(){
 
     $data['page_title'] = 'Home';
-    $page_title="home";
-	 $info         = json_decode(json_encode(getIpInfo()), true);
+    $page_title="Sign Up";
+
+
+        $info         = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
         $countries    = Country::all();
+
      return view($this->activeTemplate . 'register-advertiser',compact('data','page_title','country_code','countries'));
    }
-   
+
    public function home2()
     {
         
@@ -361,5 +358,6 @@ class SiteController extends Controller
 
         return view($this->activeTemplate . 'home-leadpaid2', $data);
     }
-   
+
+
 }

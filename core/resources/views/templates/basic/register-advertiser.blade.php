@@ -48,9 +48,8 @@
                                 </div>
                                 <div class="form-group mb-3 custom-state">
                                     <select class="form-select rounded-0" name="country" aria-label="Default select example">
-                                       @foreach ($countries as $country)
-                                        <option @if($country_code==$country->country_code) selected="selected" @endif value=" {{ $country->country_name }} " label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
-                                        @endforeach
+                                      <option value="">Select Country</option>
+                                       @include('partials.country')
                                     </select>
                                 </div>
                                 <div class="Rg_advts_number">
@@ -70,7 +69,7 @@
 
                            <div class="Rg_advts_form">
                                <div class="form-group mb-3">
-                               <textarea class="form-control Rg_advts_name mb-3 rounded-0" name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea" required></textarea>
+                               <textarea class="form-control Rg_advts_name rounded-0" name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea" required></textarea>
                            </div>
                                <div class="form-group mb-3">
                                     <input name="Website" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false">
@@ -171,6 +170,7 @@
 
 
     document.addEventListener('DOMContentLoaded', function(e) {
+
         FormValidation.formValidation(document.querySelector('#advertiser_form'), {
             fields: {
                 company_name: {
@@ -222,21 +222,31 @@
                       validators: {
                         notEmpty: {
                             message: 'Please fill product or services.',
-                        }
+                        },
+                        stringLength: {
+                            min: 20,
+                            message: 'Please fill product or services in detail.',
+                        },
                     },
                 },
-                email: {
+                 email: {
                      validators: {
                         notEmpty: {
-                            message: 'Please fill vaild Email.',
+                            message: 'Please fill valid email address (will be used as username to login)',
                         },
-                        emailAddress: {},
+                        emailAddress: {
+                            message: 'Please fill valid email address (will be used as username to login)',
+                        },
                     },
                 },
                 password: {
                     validators: {
                         notEmpty: {
                             message: 'Please fill Password',
+                        },
+                        stringLength: {
+                            min: 6,
+                            message: 'Please fill minimum 6 characters',
                         },
                     },
                 },
@@ -289,9 +299,9 @@
     .Rg_advts_form .custom-state.fv-plugins-icon-container.has-success .form-select {
         background: none !important;
     }
-.Rg_advts_number .form-select, .Rg_advts_form .form-select {
-    background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
-}
+    .Rg_advts_number .form-select, .Rg_advts_form .form-select {
+    background: #f2f7ff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+    }
     .Rg_advts_ttls {
         color: #1361b2;
         font-family: Poppins !important;
@@ -316,19 +326,19 @@
 
     .Rg_advts input {
         display: block;
-        font-size: 19px;
-        padding: 16px 24px;
+        font-size: 15px;
+        padding: 10px 15px;
         line-height: normal;
     }
     .Rg_advts_form select{
-         font-size: 19px;
-        padding: 16px 24px;
+         font-size: 15px;
+        padding: 10px 15px;
         border-radius: 0;
         line-height: normal;
     }
     .Rg_advts_form textarea {
-        font-size: 19px;
-        padding: 16px 24px;
+        font-size: 15px;
+        padding: 10px 15px;
         line-height: normal;
     }
 
@@ -337,22 +347,23 @@
     flex-wrap: wrap;
 }
 .Rg_advts_number select.form-select {
-    flex: 0 0 30%;
-    width: 30%;
+    flex: 0 0 25%;
+    width: 25%;
 }
 .Rg_advts_number input {
-    flex: 0 0 70%;
-    width: 70%;
-    border: 1px solid #ced4da;
-    font-size: 19px;
+    flex: 0 0 75%;
+    width: 75%;
+    border: 1px solid #94a1b5;
+    font-size: 15px;
         line-height: normal;
-    padding: 16px 24px;
+    padding: 10px 25px;
 }
 .Rg_advts_form input:focus-visible {
     outline: none;
 }
-.Rg_advts .form-control{
-     border: 1px solid #B9B9B9;
+.Rg_advts .form-control, .Rg_advts_form select, .Rg_advts_number input {
+    border: 1px solid #94a1b5;
+    background: #f2f7ff;
 }
 .Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
@@ -395,8 +406,8 @@ button.btn.btn-secondary.Rg_advts_my_btn {
     font-weight: 300;
 }
 .Rg_advts .form-group i {
-    top: 13px;
-    right: 20px;
+    top: 3px;
+    right: 6px;
 }
 .Rg_advts .form-group .fv-plugins-message-container {
     font-weight: 400;

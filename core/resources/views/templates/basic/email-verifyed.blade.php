@@ -8,7 +8,7 @@
         
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls mb-5">thanks for verify your account. you account will activate soon</p>
+               <p class="Rg_advts_ttls-1 mb-5">Thanks for verify your account. you account will activated soon</p>
             </div>
         </div>
            
@@ -23,7 +23,15 @@
 <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>    
 
 @endpush
-
+<style>
+    .Rg_advts_ttls-1 {
+    color: #1361b2;
+    font-family: Poppins !important;
+    font-weight: 600;
+    font-size: 38px;
+    letter-spacing: 1px;
+}
+</style>
 
 
 
