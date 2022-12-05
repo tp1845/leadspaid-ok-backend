@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
-use DB;
+
 
 class RegisterController extends Controller
 {
@@ -94,23 +94,42 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
+    public function checkValidCode_adv($user, $code, $add_min = 10000)
+    {
+        if (!$code) return false;
+        if (!$user->ver_code_send_at) return false;
+        if ($user->ver_code_send_at->addMinutes($add_min) < Carbon::now()) return false;
+        if ($user->ver_code !== $code) return false;
+        return true;
+    }
 
     public function varify_adv(Request $request){
-        
+		
         $data=$this->decode_arr($request->code_verifiyed);
-        $user =User::findOrFail($data['userid']);
-
-       retun $user;
-
-            $user['ver_code'] = $data['code'];
-            $user['ver_code_send_at'] = Carbon::now();
-            $user['status'] = 0;
-            DB::update('update advertisers set ver_code = ?,ver_code_send_at=?,status=? where id = ?',[$user['ver_code'],$user['ver_code_send_at'],$user['status'],$data['userid']]);
-
-            send_email_adv_admin($user, 'EVER_CODE',$user['username']);
+	
+       retun $user = UserLogin::whereUserId->find($data['userid']);
+		  
+        if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
+            $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
+            $delay = $target_time - time();
+            throw ValidationException::withMessages(['resend' => 'Please Try after ' . $delay . ' Seconds']);
+        }
+        if (!$this->checkValidCode_adv($user, $user->ver_code)) {
+            $user->ver_code = $data['code'];
+            $user->ver_code_send_at = Carbon::now();
+            $user->status = 0;
+            $user->save();
+            send_email_adv_admin($user, 'EVER_CODE',$user->username);
             $page_title = "user activate";
             return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
-       
+        } else {
+            $user->ver_code = $user->ver_code;
+            $user->ver_code_send_at = Carbon::now();
+            $user->status = 0;
+            $user->save();
+            return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
+        }
+    }
     
     public function encode_arr($data) {
         return base64_encode(serialize($data));

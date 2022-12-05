@@ -622,13 +622,13 @@ function send_email_adv_admin($user, $type = null, $username)
     $config = $general->mail_config;
 
     if ($config->name == 'php') {
-        send_php_mail($user['email'], $user['username'], $general->email_from, $email_template->subj, $message);
+        send_php_mail($user->email, $user->username, $general->email_from, $email_template->subj, $message);
     } else if ($config->name == 'smtp') {
-        send_smtp_mail($config, $user['email'], $user['username'], $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_smtp_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config, $user['email'], $user['username'], $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_sendGrid_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, $user['email'], $user['username'], $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_mailjet_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     }
 }
 
