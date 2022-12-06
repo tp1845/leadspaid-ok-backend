@@ -1,8 +1,7 @@
 <option value="United States">@lang("United States")</option>
 <option value="United Kingdom">@lang("United Kingdom")</option>
-<option value="Canada">@lang("Canada")</option>
 <option value="Singapore">@lang("Singapore")</option>
-<option value="" disabled>@lang("_____")</option>
+<!-- <option value="" disabled>@lang("_____")</option>
 <option value="Afghanistan">@lang("Afghanistan")</option>
 <option value="Åland Islands">@lang("Åland Islands")</option>
 <option value="Albania">@lang("Albania")</option>
@@ -39,6 +38,7 @@
 <option value="Bulgaria">@lang("Bulgaria")</option>
 <option value="Burkina Faso">@lang("Burkina Faso")</option>
 <option value="Burundi">@lang("Burundi")</option>
+<option value="Canada">@lang("Canada")</option>
 <option value="Cambodia">@lang("Cambodia")</option>
 <option value="Cameroon">@lang("Cameroon")</option>
 <option value="Cape Verde">@lang("Cape Verde")</option>
@@ -244,4 +244,4 @@
 <option value="Wallis and Futuna">@lang("Wallis and Futuna")</option>
 <option value="Yemen">@lang("Yemen")</option>
 <option value="Zambia">@lang("Zambia")</option>
-<option value="Zimbabwe">@lang("Zimbabwe")</option>
+<option value="Zimbabwe">@lang("Zimbabwe")</option> -->

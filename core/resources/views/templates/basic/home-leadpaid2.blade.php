@@ -57,7 +57,7 @@
            <div class="fw-normal-side">
                 <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
                 <span>Distinct from Search, Display & Programmatic Ads</span></h3>
-                <p class="text2">Get leads to your crm instead of buying website traffic through ppc, video or banner ads</p>
+                <p class="text2">Get leads instead of buying website traffic through ppc, video or banner ads</p>
             <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
            </div>
             
@@ -177,7 +177,7 @@
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
 
-    <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script> 
+  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script> 
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>   
 
      @endpush
