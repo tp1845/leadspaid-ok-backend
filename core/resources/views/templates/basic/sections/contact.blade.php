@@ -268,8 +268,9 @@ FormValidation.formValidation(document.querySelector('#form-contact'), {
                 notEmpty: {
                     message: 'Please fill message.',
                 },
-                emailAddress: {
-                    message: 'Please fill message.',
+                stringLength: {
+                    min: 20,
+                    message: 'Please fill message in detials',
                 },
             },
         },
