@@ -23,7 +23,7 @@
                 
                 <div class="col-lg-12">
                     <h1 class="h1">Generate Leads Directly</h1>
-                    <p>From High Ranking/ Authority Websites & Apps</p>
+                    <p>From High Ranking/ Authority Sites & Apps</p>
                     <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2">Join As Advertiser</a>
                 </div>
             </div>
