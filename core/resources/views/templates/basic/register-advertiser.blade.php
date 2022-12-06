@@ -28,7 +28,7 @@
         </div>
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-                 <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
+               <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
             </div>
         </div>
     <form class="Rg_advts_form" id="advertiser_form"  method="POST" action="{{route('advertiser.register_adv')}}">
@@ -75,7 +75,7 @@
                                     <input name="Website" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false">
                                 </div>
                                 <div class="form-group mb-3">
-                                     <input name="Social" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Social Media Page URL(Optional) " aria-required="true" aria-invalid="false">
+                                     <input name="Social" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional) " aria-required="true" aria-invalid="false">
                                 </div>
                            </div>
                         </div>
@@ -300,7 +300,7 @@
         background: none !important;
     }
     .Rg_advts_number .form-select, .Rg_advts_form .form-select {
-    background: #f2f7ff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
     }
     .Rg_advts_ttls {
         color: #1361b2;
@@ -363,7 +363,7 @@
 }
 .Rg_advts .form-control, .Rg_advts_form select, .Rg_advts_number input {
     border: 1px solid #94a1b5;
-    background: #f2f7ff;
+    /* background: #f2f7ff; */
 }
 .Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
@@ -412,6 +412,8 @@ button.btn.btn-secondary.Rg_advts_my_btn {
 .Rg_advts .form-group .fv-plugins-message-container {
     font-weight: 400;
 }
+
+
 @media screen and (max-width: 480px){
     .Rg_advts_number input {
         flex: 0 0 70%;

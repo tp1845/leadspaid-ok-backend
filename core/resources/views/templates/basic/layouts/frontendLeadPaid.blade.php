@@ -165,9 +165,9 @@
                         <li>
                             <a href="{{route('privacy_policy')}}">Privacy Policy</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="{{route('terms_condition')}}">Terms & Condition</a>
-                        </li>
+                        </li> -->
                       </ul>
                     </div>
                     <div class="col-6 col-md">

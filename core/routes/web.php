@@ -570,12 +570,14 @@ Route::get('/ads/{publisher}/{type}/{current}', 'VisitorController@getAdvertise'
 Route::get('/ad-clicked/{publisher}/{track_id}', 'VisitorController@adClicked')->name('adClicked');
 Route::get('company/plicy/{id}/{slug}', 'SiteController@policy')->name('policy');
 Route::get('privacy-policy', 'SiteController@privacy_policy')->name('privacy_policy');
-Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_condition');
+//Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_condition');
 
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
 Route::get('new-home', 'SiteController@home2')->name('new-home');
 Route::get('/old-home', 'SiteController@index')->name('old-home');
+Route::get('/new_home_2_test','SiteController@home3')->name('new_home_2_test');
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
 Route::get('/', 'SiteController@home2')->name('home');
+
 
 Route::get('/campaign_form/{publisher_id}/{style}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');

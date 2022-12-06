@@ -58,12 +58,12 @@
     border: 1px solid #94a1b5 !important;
     padding: 16px 24px;
     line-height: normal;
-    background: #f2f7ff;
+    /* background: #f2f7ff; */
     font-weight:300;
 }
 .contact-3 .form-group textarea {
     border: 1px solid #94a1b5 !important;
-    background: #f2f7ff;
+    /* background: #f2f7ff; */
     font-size: 19px;
     padding: 16px 24px;
     line-height: normal;
@@ -80,6 +80,10 @@
 .contact-3 .form-group i {
     top: 10px;
     right: 10px;
+}
+.contact-3 .contact_section .contact_wrap {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
 }
 </style>
 
