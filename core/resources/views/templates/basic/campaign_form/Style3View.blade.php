@@ -444,11 +444,27 @@ body {
                             t +='<select class="form-select" id="Input_field_'+$i+'"  name="field_'+$i+'" ';
                             if($field['required']){ t +=' required '; }
                             t +='>';
+                            if($field['question_text']){
                             t +='<option selected value="" class="holder"> '+$field['question_text']+'* </option>';
-                            t +='<option value="'+ $field['option_1']+'">'+ $field['option_1']+'</option>';
-                            t +='<option value="'+ $field['option_2']+'">'+ $field['option_2']+'</option>';
-                            t +='<option value="'+ $field['option_3']+'">'+ $field['option_3']+'</option>';
-                            t +='<option value="'+ $field['option_4']+'">'+ $field['option_4']+'</option>';
+                            }
+                            if($field['option_1']){
+                                t +='<option value="'+ $field['option_1']+'">'+ $field['option_1']+'</option>';
+                            }
+                            if($field['option_2']){
+                                t +='<option value="'+ $field['option_2']+'">'+ $field['option_2']+'</option>';
+                            }
+                            if($field['option_3']){
+                                t +='<option value="'+ $field['option_3']+'">'+ $field['option_3']+'</option>';
+                            }
+                            if($field['option_4']){
+                                t +='<option value="'+ $field['option_4']+'">'+ $field['option_4']+'</option>';
+                            }
+                            if($field['option_5']){
+                                t +='<option value="'+ $field['option_5']+'">'+ $field['option_5']+'</option>';
+                            }
+                            if($field['option_6']){
+                                t +='<option value="'+ $field['option_6']+'">'+ $field['option_6']+'</option>';
+                            }
                             t +='</select>';
                         }
                         t +='</div>';
