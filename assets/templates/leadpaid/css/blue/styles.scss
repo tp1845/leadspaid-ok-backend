@@ -1,15 +1,15 @@
 
 $primary: #1a273a;
 $secondary: #1361b2;
-$font_normal : 'Roboto', sans-serif;
+$font_normal : Poppins;
 @import "../bootstrap/bootstrap";
 @import "innerhero";
 @import "contact"; 
 .btn{ border-radius: 0; }
 a{ text-decoration: none; color: $primary;}
 .logo{ font-size: 26px;}
-body, p{ font-family: 'Roboto', sans-serif;  }
- h1,h2,h3,h4,h5,h6{   font-family: 'Poppins', sans-serif; font-weight: bold; }
+body, p{ font-family: Poppins;  }
+ h1,h2,h3,h4,h5,h6{   font-family:Poppins; font-weight: bold; }
  
  #MainNav{
     .navbar-nav{ margin-top: 15px;}

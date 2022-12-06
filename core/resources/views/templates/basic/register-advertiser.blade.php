@@ -367,9 +367,15 @@
 }
 .Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
-    border: 1px solid #16C79A !important;
+    border: 1px solid #94a1b5 !important;
         transition: All .2s ease-in-out!important;
    
+}
+.Rg_advts .form-control.is-valid {
+    border: 1px solid #94a1b5 !important;
+}
+.Rg_advts .was-validated .form-control:valid, .Rg_advts .form-control.is-valid {
+    border-color: #94a1b5 !important;
 }
 .Rg_advts .form-control:valid:focus, .Rg_advts .form-control.is-valid:focus {
     box-shadow: none;

@@ -70,9 +70,9 @@
     font-weight:300;
 }
 
-.contact-3 .form-group .input-group .form-control:focus, .contact-3 .contact_msg:focus  {
+.contact-3 .form-group .input-group .form-control:focus, .contact-3 .contact_msg:focus, .contact-3 .was-validated .form-select:valid, .contact-3 .form-select.is-valid {
     background-color: #fff;
-    border: 1px solid #16C79A !important;
+    border: 1px solid #94a1b5 !important;
     box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
     transition: All .2s ease-in-out!important;
 }
