@@ -86,11 +86,12 @@
                         <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required></div>
                         <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="company_name" required></div>
                         <div class="col-lg-3 input-col d-flex  flex-wrap">
-                            <img id="company_logo_img" src="#" alt="company_logo_img" width="50px" height="50px" style="display: none" />
+
                             <div class="upload-box">
                                 <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
                                 <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
                             </div>
+                            <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
                         </div>
                         <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
                     </div>
@@ -172,7 +173,7 @@
                                                                 <input type="hidden" class="sort" name="field_1[sort]" value="1">
                                                             </td>
                                                             <td>
-                                                                <input type="checkbox" class="InputQuestion_Required" name="field_1[required]">
+                                                                <input type="checkbox" checked class="InputQuestion_Required" name="field_1[required]">
                                                             </td>
                                                             <td>
                                                                 <small class="type">Short Answer</small>
@@ -275,21 +276,21 @@
                                                         <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                         <label for="image_1_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
                                                     </div>
-                                                    <img id="image_1_img" src="#" alt="image_1_img" width="50px" height="50px" style="display: none" />
+                                                    <img id="image_1_img" src="#" alt="image_1_img" style="display: none" />
                                                 </div>
                                                 <div class="input-col d-flex  flex-wrap">
                                                     <div class="upload-box grey  my-2">
                                                         <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                         <label for="image_2_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
                                                     </div>
-                                                    <img id="image_2_img" src="#" alt="image_2_img" width="50px" height="50px" style="display: none" />
+                                                    <img id="image_2_img" src="#" alt="image_2_img" style="display: none" />
                                                 </div>
                                                 <div class="input-col d-flex ">
                                                     <div class="upload-box grey">
                                                         <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                         <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 3</span></label>
                                                     </div>
-                                                    <img id="image_3_img" src="#" alt="image_3_img" width="50px" height="50px" style="display: none" />
+                                                    <img id="image_3_img" src="#" alt="image_3_img" style="display: none" />
                                                 </div>
                                             </div>
                                         </div>
@@ -432,7 +433,7 @@
                 html +='<input type="hidden" class="sort" name="field_'+row+'[sort]" value="'+row+'">';
                 html +='</td>';
                 html +='<td>';
-                html +='<input type="checkbox" class="InputQuestion_Required" name="field_'+row+'[required]">';
+                html +='<input type="checkbox" checked class="InputQuestion_Required" name="field_'+row+'[required]">';
                 html +='</td>';
                 html +='<td>';
                 if(type == 'multiple'){
@@ -742,9 +743,9 @@
 
 #company_logo_img, #image_1_img, #image_2_img, #image_3_img{
     height: 54px;
-    width: 54px;
+    width: auto;
+    max-width: 160px;
     padding: 0 5px;
-
 }
 
     .bg-ddd { background-color: #ddd!important; }
