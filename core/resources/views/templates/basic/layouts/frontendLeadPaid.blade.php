@@ -9,7 +9,7 @@
       @endif
       @if(Route::current()->getName() == 'privacy_policy')
     <meta name="robots" content="noindex, nofollow">
-      @endif
+      @endif  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
@@ -61,7 +61,7 @@
       <header>
         <nav class="navbar navbar-expand-lg bg-primary " id="MainNav">
             <div class="container">
-               <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
+              <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
                 @if(Request::get('v') == 2 )
                  <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 3 )
@@ -92,6 +92,14 @@
                  <img src="{{asset('assets/templates/leadpaid/images/logo-15.png')}}" style="max-width: 250px" alt="site-logo">
                  @elseif(Request::get('v') == 16)
                  <img src="{{asset('assets/templates/leadpaid/images/logo-16.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 17)
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-17.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 18)
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-18.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 19)
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-19.png')}}" style="max-width: 250px" alt="site-logo">
+                 @elseif(Request::get('v') == 20)
+                 <img src="{{asset('assets/templates/leadpaid/images/logo-20.png')}}" style="max-width: 250px" alt="site-logo">
                 @else
                  <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                 @endif
