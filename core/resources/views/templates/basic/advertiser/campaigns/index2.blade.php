@@ -190,7 +190,7 @@
                                                                 <input type="hidden" class="sort" name="field_2[sort]" value="2">
                                                             </td>
                                                             <td>
-                                                                <input type="checkbox" class="InputQuestion_Required" name="field_2[required]">
+                                                                <input type="checkbox" checked class="InputQuestion_Required" name="field_2[required]">
                                                             </td>
                                                             <td>
                                                                 <small class="type">Short Answer</small>
@@ -207,7 +207,7 @@
                                                                 <input type="hidden" class="sort" name="field_3[sort]" value="3">
                                                             </td>
                                                             <td>
-                                                                <input type="checkbox" class="InputQuestion_Required" name="field_3[required]">
+                                                                <input type="checkbox" checked class="InputQuestion_Required" name="field_3[required]">
                                                             </td>
                                                             <td>
                                                                 <small class="type">Short Answer</small>
@@ -691,7 +691,7 @@
 
             },messages: {
                 daily_budget:  { required : 'Daily Budget is required.', min:'Daily Budget should be minimum $50', max: 'Daily Budget should not be greater than $1000'} ,
-                target_cost:  { required : 'Target Cost is required.', min:'Target Cost should be minimum $50', max: 'Target Cost should not be greater than $1000'} ,
+                target_cost:  { required : 'Target Cost is required.', min:'Target Cost should be minimum $10', max: 'Target Cost should not be greater than $1000'} ,
                 service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
                 website_url: 'Please fill Website URL - or leave it blank',
                 company_logo: "File must be JPG, GIF or PNG, less than 2MB",
