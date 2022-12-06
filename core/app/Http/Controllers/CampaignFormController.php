@@ -19,11 +19,11 @@ class CampaignFormController extends Controller
     public function campaign_form_save(Request $request){
         $request->validate([
             'capf_id' => 'required',
-            'field_1' => 'required',
-            'field_2' => 'required',
-            'field_3' => 'required',
-            'field_4' => 'required',
-            'field_5' => 'required'
+            // 'field_1' => 'required',
+            // 'field_2' => 'required',
+            // 'field_3' => 'required',
+            // 'field_4' => 'required',
+            // 'field_5' => 'required'
         ],[
             'capf_id.required' => 'All fields are required.',
             'field_1.required' => 'All fields are required.',

@@ -176,7 +176,8 @@
                                                                 <input type="checkbox" checked class="InputQuestion_Required" name="field_1[required]">
                                                             </td>
                                                             <td>
-                                                                <small class="type">Short Answer</small>
+                                                                {{-- <small class="type">Short Answer</small> --}}
+                                                                <input type="text" readonly class="small_info InputQuestionType" name="field_1[question_type]" value="ShortAnswer" required>
                                                                 <div class="input-group input-col">
                                                                     <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[question_text]" value="Full Name" required="">
                                                                     <div class="input-group-append bg-white">
@@ -193,7 +194,8 @@
                                                                 <input type="checkbox" checked class="InputQuestion_Required" name="field_2[required]">
                                                             </td>
                                                             <td>
-                                                                <small class="type">Short Answer</small>
+                                                                {{-- <small class="type">Short Answer</small> --}}
+                                                                <input type="text" readonly class="small_info InputQuestionType" name="field_2[question_type]" value="ShortAnswer" required>
                                                                 <div class="input-group input-col">
                                                                     <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" value="Email id" required="">
                                                                     <div class="input-group-append bg-white">
@@ -210,7 +212,8 @@
                                                                 <input type="checkbox" checked class="InputQuestion_Required" name="field_3[required]">
                                                             </td>
                                                             <td>
-                                                                <small class="type">Short Answer</small>
+                                                                {{-- <small class="type">Short Answer</small> --}}
+                                                                <input type="text" readonly class="small_info InputQuestionType" name="field_3[question_type]" value="ShortAnswer" required>
                                                                 <div class="input-group input-col">
                                                                     <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_3[question_text]" value="Phone Number" required="">
                                                                     <div class="input-group-append bg-white">
@@ -379,7 +382,8 @@
             var row = table.attr('data-row');
             row = --row;
             table.attr('data-row', row);
-            $(this).closest('tr').remove()
+            $(this).closest('tr').remove();
+            update_field();
         })
 
         $('table').on('click', '.del-option', function(e){
@@ -423,6 +427,28 @@
         }
 
 
+        function update_field(){
+            var i = 1;
+            $('#sortable .sortable-group').each(function (k, el) {
+                $(el).removeClass (function (index, className) { return (className.match (/(^|\s)row_\S+/g) || []).join(' ');  });
+                $(el).addClass('row_'+i);
+                if(i <=3){
+                    $(el).find(".InputQuestion_text").prop("required", true);
+                }else{
+                    $(el).find(".InputQuestion_text").prop("required", false).removeClass('is-invalid');
+                }
+                $(el).find("input.sort").val(i).attr('name', 'field_' + i + '[sort]');
+                $(el).find(".InputQuestionType").attr('name', 'field_' + i + '[question_type]');
+                $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
+                $(el).find(".InputQuestion_text").attr('name', 'field_' + i + '[question_text]');
+                $(el).find(".btn-add-option").attr('data-row',  i);
+                var options_section =  $(el).find(".options-section");
+                update_options(options_section);
+                i++;
+            });
+        }
+
+
         function add_form_field(type = 'single'){
             var table = $('#sortable');
             var row = table.attr('data-row');
@@ -437,9 +463,12 @@
                 html +='</td>';
                 html +='<td>';
                 if(type == 'multiple'){
-                    html +=' <small class="type">Multiple Choice</small>';
+                   // html +=' <small class="type">Multiple Choice</small>';
+                    html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="MultipleChoice" required>';
                 }else{
-                    html +=' <small class="type">Short Answer</small>';
+                  //  html +=' <small class="type">Short Answer</small>';
+                    html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="ShortAnswer" required>';
+
                 }
                 html +='<div class="input-group input-col">';
                 html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required>';
@@ -462,6 +491,7 @@
                 html +='</td>';
                 html +='</tr>';
                 table.append(html).attr('data-row', row);
+                update_field();
             }else{
                 Toast('red', "Only 5 fields allowed");
             }
@@ -603,28 +633,7 @@
             $("#sortable").sortable({
                 handle: ".handle",
                 stop: function (event, ui) {
-                    var i = 1;
-                    $('.sortable-group').each(function (k, el) {
-                        $(el).removeClass (function (index, className) { return (className.match (/(^|\s)row_\S+/g) || []).join(' ');  });
-                        $(el).addClass('row_'+i);
-                        if(i <=3){
-                            $(el).find(".InputQuestion_text").prop("required", true);
-                        }else{
-                            $(el).find(".InputQuestion_text").prop("required", false).removeClass('is-invalid');
-                        }
-                        $(el).find("input.sort").val(i).attr('name', 'field_' + i + '[sort]');
-                        $(el).find(".InputQuestionType").attr('name', 'field_' + i + '[question_type]');
-                        $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
-                        $(el).find(".InputQuestion_text").attr('name', 'field_' + i + '[question_text]');
-                        // $(el).find(".InputQuestion_Option_1").attr('name', 'field_' + i + '[option_1]');
-                        // $(el).find(".InputQuestion_Option_2").attr('name', 'field_' + i + '[option_2]');
-                        // $(el).find(".InputQuestion_Option_3").attr('name', 'field_' + i + '[option_3]');
-                        // $(el).find(".InputQuestion_Option_4").attr('name', 'field_' + i + '[option_4]');
-                        $(el).find(".btn-add-option").attr('data-row',  i);
-                        var options_section =  $(el).find(".options-section");
-                        update_options(options_section);
-                        i++;
-                    });
+                    update_field();
                 }
             });
         });
@@ -866,7 +875,8 @@
         tr.sortable-group td:nth-child(2){ text-align: center!important; }
         tr.sortable-group .input-group-text{ width: 35px; }
         /* tr.sortable-group.row_1 .del-row, tr.sortable-group.row_2 .del-row{ display: none!important; } */
-        tr.sortable-group .type{ float: right; padding-right: 35px; }
+        tr.sortable-group .small_info { float: right; padding:0 35px 0 0; border: 0; text-align: right;  cursor:unset;   }
+        tr.sortable-group .small_info:focus {  box-shadow: none; }
 
         .toggle-group .btn {
             padding-top: 0 !important;
