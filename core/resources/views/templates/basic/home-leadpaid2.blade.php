@@ -177,7 +177,7 @@
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
 
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script> 
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>   
 
      @endpush

@@ -1,12 +1,12 @@
 /* reset css start */
-@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet");
 
 html {
     scroll-behavior: smooth;
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins";
     color: #6f6f6f;
     font-size: 16px;
     padding: 0;
@@ -813,7 +813,7 @@ p, li, span {
 a {
     text-decoration: none;
     display: inline-block;
-    font-family: "Roboto", sans-serif;
+    font-family: "Poppins";
     font-weight: 400;
 }
 
