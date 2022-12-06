@@ -367,7 +367,6 @@ body {
     $('#utm_medium').val(utm_medium);
     $('#utm_campaign').val(utm_campaign);
    var website = $('#domain').val();
-   website = 'sgpr.sg';
     var publisher_id = {{$publisher_id}};
     var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
     var formData = { 'website': website , 'publisher_id': publisher_id  };
