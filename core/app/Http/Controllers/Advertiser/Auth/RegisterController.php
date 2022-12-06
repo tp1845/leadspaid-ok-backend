@@ -104,11 +104,11 @@ class RegisterController extends Controller
     }
 
     public function varify_adv(Request $request){
-		
+        
         $data=$this->decode_arr($request->code_verifiyed);
-	
+    
        // $user = $this->guard()->user()->find($data['userid']);
-		 // $user = new Advertiser (); 
+         // $user = new Advertiser (); 
 
          $user = Advertiser::findOrFail($data['userid']);
         // return $user->id;
@@ -150,12 +150,13 @@ class RegisterController extends Controller
             'code' =>verificationCode(6),
             'userid'=>$user->id
         ];
+        $useremail=$user->email;
         $urll= url('');
         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
         send_email_adv($user, 'EVER_CODE',$link);
         $page_title = "Thanks email";
-        return view($this->activeTemplate . 'thanks-email', compact('page_title'));
+        return view($this->activeTemplate . 'thanks-email', compact('page_title','useremail'));
     }
 
     protected function create_adv(array $data)

@@ -57,100 +57,26 @@ class SiteController extends Controller
     }
 
 
-    public function contactSubmit(Request $request)
+     public function contactSubmit(Request $request)
     {
-        $ticket  = new SupportTicket();
-        $message = new SupportMessage();
 
-        $imgs        = $request->file('attachments');
-        $allowedExts = array(
-            'jpg',
-            'png',
-            'jpeg',
-            'pdf',
-        );
+         if($request->email)
+         {
 
-        $this->validate(
-            $request, [
-                        'attachments' => [
-                            'sometimes',
-                            'max:4096',
-                            function ($attribute, $value, $fail) use ($imgs, $allowedExts){
-                                foreach($imgs as $img)
-                                {
-                                    $ext = strtolower($img->getClientOriginalExtension());
-                                    if(($img->getSize() / 1000000) > 2)
-                                    {
-                                        return $fail("Images MAX  2MB ALLOW!");
-                                    }
-                                    if(!in_array($ext, $allowedExts))
-                                    {
-                                        return $fail("Only png, jpg, jpeg, pdf images are allowed");
-                                    }
-                                }
-                                if(count($imgs) > 5)
-                                {
-                                    return $fail("Maximum 5 images can be uploaded");
-                                }
-                            },
-                        ],
-                        'name' => 'required|max:191',
-                        'email' => 'required|max:191',
-                        'subject' => 'required|max:100',
-                        'message' => 'required',
-                    ]
-        );
+            $name    = $request->name;
+            $email   = $request->email;
+            $company   = $request->company;
+            $phone     = $request->phone;
+            $message     = $request->message;
+            send_email_contact_admin($name,$email,$company,$phone,$message);
 
+            $page_title = "Thanks email";
+            $useremail = $request->email;
+            return view($this->activeTemplate . 'thanks-email-contact', compact('page_title','useremail'));
+            
 
-        $random = getNumber();
-
-        $ticket->user_id = auth()->id();
-        $ticket->name    = $request->name;
-        $ticket->email   = $request->email;
-        $ticket->company   = $request->company;
-
-        $ticket->ticket     = $random;
-        $ticket->subject    = $request->subject;
-        $ticket->last_reply = Carbon::now();
-        $ticket->status     = 0;
-        $ticket->save();
-
-        $message->supportticket_id = $ticket->id;
-        $message->message          = $request->message;
-        $message->save();
-
-        $path = imagePath()['ticket']['path'];
-
-        if($request->hasFile('attachments'))
-        {
-            foreach($request->file('attachments') as $image)
-            {
-                try
-                {
-                    $attachment                     = new SupportAttachment();
-                    $attachment->support_message_id = $message->id;
-                    $attachment->image              = uploadFile($image, $path);
-                    $attachment->save();
-
-                }
-                catch(\Exception $exp)
-                {
-                    $notify[] = [
-                        'error',
-                        'Could not upload your ' . $image,
-                    ];
-
-                    return back()->withNotify($notify)->withInput();
-                }
-
-            }
-        }
-        $notify[] = [
-            'success',
-            'ticket created successfully!',
-        ];
-
-        return redirect()->route('ticket.view', [$ticket->ticket])->withNotify($notify);
+         }
+       
     }
 
     public function viewTicket($ticket)
