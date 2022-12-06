@@ -116,4 +116,10 @@ class CampaignFormController extends Controller
             return response()->json(['success'=>false, 'form'=>'Something went wrong. please contact the administrator' ]);;
         }
     }
+
+    public function by_campaign_id_form ($campaign_id, $publisher_id){
+        $campaign = campaigns::where('id',  $campaign_id )->with('campaign_forms')->inRandomOrder()->first();
+        $campaign->campaign_forms->campaign_id = $campaign->id;
+        return response()->json(['success'=>true,'type'=>'By_campaign_id', 'form'=>$campaign->campaign_forms ]);
+    }
 }

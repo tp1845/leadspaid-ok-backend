@@ -4,8 +4,8 @@
         <div class="col-lg-12">
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
-                    <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
+                    <div class="table-responsive--lg">
+                        <table id="campaign_list" class="table table-striped table-bordered datatable">
                             <thead>
                                 <tr>
                                     <th>Off/On</th>
@@ -23,6 +23,9 @@
                                     <th>Cost per <br>Leads</th>
                                     <th>Action</th>
                                     <th>Spend</th>
+                                    <th>iframe 1</th>
+                                    <th>iframe 2</th>
+                                    <th>iframe 3</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,6 +69,17 @@
                                                 </div>
                                             </form>
                                         </td>
+                                        <td data-label="Script">
+                                            <textarea onclick="this.focus();this.select()" id="advertScript1" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/1/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="600" style="border: 1px solid black;"></iframe></textarea>
+                                        </td>
+
+                                        <td data-label="Script">
+                                            <textarea onclick="this.focus();this.select()" id="advertScript2" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/2/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="526" style="border: 1px solid black;"></iframe></textarea>
+                                        </td>
+
+                                        <td data-label="Script">
+                                            <textarea onclick="this.focus();this.select()" id="advertScript3" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/3/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="573" style="border: 1px solid black;"></iframe></textarea>
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -102,6 +116,32 @@
 @endsection
 @push('style')
 <style>
+    .btn--primary {  background-color: #1A273A !important; }
+    .btn--primary:hover {  background-color: #1361b2 !important; }
+    .small, small { font-size: 90%; }
+    table.dataTable thead tr { background-color: #1A273A; }
+    .dataTables_paginate .pagination .page-item.active .page-link{
+    background-color: #1361b2;
+    border-color: #1361b2;
+    box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
+    }
+
+    .btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
+    #campaign_list td{ font-size: 15px; }
+    #campaign_list td:nth-child(3){  font-size: 14px; }
+    #campaign_list a.create-campaign-btn { font-size: 13px; }
+
+
+    #campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
+    #campaign_list_wrapper .dataTables_length select,
+    #campaign_list_wrapper .dataTables_filter input {
+    border-radius: 0!important;
+    }
+
+    .page-wrapper.default-version, table td, tfoot tr { font-weight: normal;  font-family: Poppins; }
+    #campaign_list_wrapper{  overflow-x: scroll; }
+
+    .td-iframe{ min-width: 200px!important;}
     .table th { padding: 12px 10px; max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
@@ -121,6 +161,42 @@
 @push('script')
     <script>
         'use strict';
+
+        $(document).ready(function () {
+            var MyDatatable = $('#campaign_list').DataTable({
+                columnDefs: [{
+                    targets: 0,
+                    searchable: false,
+                    visible: true,
+                    orderable: false
+                },
+
+                    {
+                        targets:  [13, 14, 15, 16,17],
+                        searchable: false,
+                        visible: true,
+                        orderable: false
+                    },
+                    {
+                        targets: [15, 16, 17],
+                        className: "td-iframe",
+                        width: "100px"
+                    },
+                    {
+                        targets: '_all',
+                        visible: true
+                    }
+                ]
+            });
+            // MyDatatable.columns.adjust().draw();
+            $("#sortable").sortable({
+                handle: ".handle",
+                stop: function (event, ui) {
+                    update_field();
+                }
+            });
+        });
+
         var leads_preview_modal = $('#leads_preview_modal');
         $(document).ready(function() {
             $('.toggle-approve').change(function() {

@@ -368,8 +368,14 @@ body {
     $('#utm_campaign').val(utm_campaign);
    var website = $('#domain').val();
     var publisher_id = {{$publisher_id}};
-    var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
-    var formData = { 'website': website , 'publisher_id': publisher_id  };
+    var campaign_id = {{$campaign_id?$campaign_id:0}};
+    if(campaign_id){
+        var actionUrl =  '{{url("/")}}/api/campaign_id_form/find/'+campaign_id+'/'+publisher_id;
+        var formData = { 'campaign_id': campaign_id , 'publisher_id': publisher_id  };
+    }else{
+        var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
+        var formData = { 'website': website , 'publisher_id': publisher_id  };
+    }
     $.ajax({
         type: "GET",
         dataType: "json",
