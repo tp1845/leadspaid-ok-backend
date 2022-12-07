@@ -123,7 +123,7 @@
                     <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="{{route('login')}}">Login</a>
+                    <a class="nav-link" href="{{route('login_advertiser')}}">Login</a>
                   </li>
                   @endif
                   @if(auth()->guard('publisher')->user())
@@ -181,8 +181,8 @@
                     <div class="col-6 col-md">
                       <h5>Advertiser</h5>
                       <ul class="list-unstyled text-small">
-                        <li><a href="#">Join as Advertiser </a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{{route('register_advertiser')}}">Join as Advertiser </a></li>
+                        <li><a href="{{route('login_advertiser')}}">Login</a></li>
                       </ul>
                     </div>
                     <div class="col-6 col-md">

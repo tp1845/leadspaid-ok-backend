@@ -563,6 +563,7 @@ Route::get('countries', 'SiteController@countries')->name('countries');
 Route::get('/login','SiteController@showLoginForm')->name('login');
 Route::get('/register','SiteController@showRegisterForm')->name('register');
 Route::get('register-advertiser','SiteController@register_advertiser')->name('register_advertiser');
+Route::get('login-advertiser','SiteController@login_advertiser')->name('login_advertiser');
 Route::get('/blog', 'SiteController@blogs')->name('blog');
 Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details');
 

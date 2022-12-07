@@ -274,6 +274,14 @@ class SiteController extends Controller
      return view($this->activeTemplate . 'register-advertiser',compact('data','page_title','country_code','countries'));
    }
 
+   public function login_advertiser(){
+
+    $data['page_title'] = 'Home';
+    $page_title="Login";
+
+     return view($this->activeTemplate . 'login-advertiser',compact('data','page_title'));
+   }
+
    public function home2()
     {
         
