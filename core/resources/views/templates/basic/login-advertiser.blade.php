@@ -11,34 +11,37 @@
                <p class="Rg_advts_ttls mb-5">Advertiser Login</p>
             </div>
         </div>
-                                    <form class="account-form" id="login_form" method="POST" action="{{ route('advertiser.login')}}" onsubmit="return submitUserForm()">
-                                        @csrf
-                                        <div class="form-group mb-3">
-                                            <label class="mb-2">@lang('Username/Email Address')<sup class="text-danger">*</sup></label>
-                                            <input type="text" name="username" placeholder="@lang('Username')" class="form-control" required>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label class="mb-2">@lang('Password') <sup class="text-danger">*</sup></label>
-                                            <input type="password" name="password" placeholder="@lang('Password')" class="form-control" required>
-                                        </div>
-                                        @include($activeTemplate.'partials.custom-captcha')
-                                        <div class="form-group row">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+            <form class="account-form" id="login_form" method="POST" action="{{ route('advertiser.login')}}" onsubmit="return submitUserForm()">
+                @csrf
+                <div class="form-group mb-3">
+                    <label class="mb-2">@lang('Username/Email Address')<sup class="text-danger">*</sup></label>
+                    <input type="text" name="username" placeholder="@lang('Username')" class="form-control" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="mb-2">@lang('Password') <sup class="text-danger">*</sup></label>
+                    <input type="password" name="password" placeholder="@lang('Password')" class="form-control" required>
+                </div>
+                @include($activeTemplate.'partials.custom-captcha')
+                <div class="form-group row">
 
-                                            <div class="col-md-12">
-                                                @php echo recaptcha() @endphp
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7 ms-auto mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
-                                        <button type="submit" class="cmn-btn ">@lang('Login Now')</button>
-                                        </div>
+                    <div class="col-md-12">
+                        @php echo recaptcha() @endphp
+                    </div>
+                </div>
+                <div class="col-md-12 text-center mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
+                <button type="submit" class="cmn-btn ">@lang('Login Now')</button>
+                </div>
 
-                                       
-                                        <div class="custom-forgot mt-4 mb-4 mb-sm-5 d-flex justify-content-between align-items-center">
-                                            <a href="{{route('advertiser.password.reset')}}">@lang('Forgot Password?')</a>
-                                            <a href="{{route('register_advertiser')}}">@lang('Don\'t have any account?')</a>
-                                        </div>
-                                    </form>
-                                  
+                
+                <div class="custom-forgot mt-4 mb-4 mb-sm-5 d-flex justify-content-between align-items-center">
+                    <a href="{{route('advertiser.password.reset')}}">@lang('Forgot Password?')</a>
+                    <a href="{{route('register_advertiser')}}">@lang('Don\'t have any account?')</a>
+                </div>
+            </form>
+        </div>
+    </div>                 
     </div>
  </section>
     
@@ -256,7 +259,7 @@ button.cmn-btn {
 } 
 button.cmn-btn {
     width: 100%;
-    max-width: 250px;
+    max-width: 200px;
     height: 63px;
     line-height: normal;
     background-color: #1361b2;
