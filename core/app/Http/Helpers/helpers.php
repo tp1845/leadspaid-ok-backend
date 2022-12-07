@@ -689,16 +689,17 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
         </html>
         ';   
 
-        $admin_email='customcoder245@gmail.com';
+        $admin_email='contact@leadspaid.com';
+        $subj="contact us email";
     $config = $general->mail_config;
     if ($config->name == 'php') {
-        send_php_mail($admin_email, $name, $general->email_from, $email_template->subj, $message);
+        send_php_mail($admin_email, $name, $general->email_from, $subj, $message);
     } else if ($config->name == 'smtp') {
-        send_smtp_mail($config,$admin_email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_smtp_mail($config,$admin_email, $name, $general->email_from, $general->sitetitle, $subj, $message);
     } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config,$admin_email,$name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_sendGrid_mail($config,$admin_email,$name, $general->email_from, $general->sitetitle, $subj, $message);
     } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, $admin_email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_mailjet_mail($config, $admin_email, $name, $general->email_from, $general->sitetitle, $subj, $message);
     }
 }
 
