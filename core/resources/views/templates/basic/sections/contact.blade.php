@@ -30,7 +30,8 @@
     }
     .contact_wrap p, .contact_wrap p a, .contact_msg {
     color: #586167 !important;
-    font-weight:300;
+    font-weight:400;
+    font-size:18px;
 }
     .conpant_icon svg {
         height:24px !important;
@@ -85,7 +86,11 @@
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
+.contact-3 .contact_section .contact_wrap h4 {
+    font-size:18px !important;
+}
 .contact-3 .contact_section .contact_wrap {
+    text-align:left !important;
     -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
     box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
 }
@@ -176,8 +181,8 @@
             <div class="col-lg-4 contact_section contact_right mb-4">
                 <div class="row">
                     <div class="col-lg-12 col-sm-6">
-                        <div class="contact_wrap">
-                            <h4 class="title mb-0">@lang('LeadsPaid.com Inc.')</h4>
+                        <div class="contact_wrap text-left">
+                            <h4 class="title mb-0">@lang('Leads Paid Inc.')</h4>
                             <p class="mb-2">1 Amphitheatre Parkway Mountain View, CA 94043</p>
                             <p> <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></p>
                         </div>
