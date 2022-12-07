@@ -208,10 +208,10 @@
                       formData['url'][index++] = el.value;
                     }
                 });
-                //var url = "{{route('publisher.campaigns.url_save')}}" ;
-                url: "/publisher/campaigns/campaign-url",
+                //var PostURL = "{{route('publisher.campaigns.url_save')}}" ;
+                var PostURL =  "/publisher/campaigns/campaign-url";
                 $.ajax({
-                    url: url,
+                    url: PostURL,
                     data: formData,
                     dataType: 'json',
                     type: 'POST',
