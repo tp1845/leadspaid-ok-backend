@@ -665,10 +665,10 @@ function send_email_adv_admin($user, $type = null, $username)
     }
 }
 
-function send_email_contact_admin($name,$email,$company,$phone,$message)
+function send_email_contact_admin($name,$type = null,$email,$company,$phone,$message)
 {
     $general = GeneralSetting::first();
-    $email_template = \App\EmailTemplate::where('act', 'EVER_CODE')->where('email_status', 1)->first();
+    $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) {
         return;
     }
@@ -690,15 +690,14 @@ function send_email_contact_admin($name,$email,$company,$phone,$message)
         ';    
 
     $config = $general->mail_config;
-
     if ($config->name == 'php') {
-        send_php_mail('customcoder245@gmail.com',$name,$email, $email_template->subj, $message);
+        send_php_mail($email, $name, $general->email_from, $email_template->subj, $message);
     } else if ($config->name == 'smtp') {
-        send_smtp_mail($config, 'customcoder245@gmail.com', $name,$email, $general->sitetitle, $email_template->subj, $message);
+        send_smtp_mail($config,$email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config, 'customcoder245@gmail.com', $name, $email, $general->sitetitle, $email_template->subj, $message);
+        send_sendGrid_mail($config, $email,$name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, 'customcoder245@gmail.com', $name, $email, $general->sitetitle, $email_template->subj, $message);
+        send_mailjet_mail($config, $email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     }
 }
 
