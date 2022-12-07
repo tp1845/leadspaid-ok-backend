@@ -692,13 +692,13 @@ function send_email_contact_admin($name,$email,$company,$phone,$message)
     $config = $general->mail_config;
 
     if ($config->name == 'php') {
-        send_php_mail('contact@leadspaid.com',$name,'contact@leadspaid.com', $email_template->subj, $message);
+        send_php_mail('customcoder245@gmail.com',$name,'customcoder245@gmail.com', $email_template->subj, $message);
     } else if ($config->name == 'smtp') {
-        send_smtp_mail($config, 'contact@leadspaid.com', $name, 'contact@leadspaid.com', $general->sitetitle, $email_template->subj, $message);
+        send_smtp_mail($config, 'customcoder245@gmail.com', $name, 'customcoder245@gmail.com', $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config, 'contact@leadspaid.com', $name, 'contact@leadspaid.com', $general->sitetitle, $email_template->subj, $message);
+        send_sendGrid_mail($config, 'customcoder245@gmail.com', $name, 'customcoder245@gmail.com', $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, 'contact@leadspaid.com', $name, 'contact@leadspaid.com', $general->sitetitle, $email_template->subj, $message);
+        send_mailjet_mail($config, 'customcoder245@gmail.com', $name, 'customcoder245@gmail.com', $general->sitetitle, $email_template->subj, $message);
     }
 }
 
