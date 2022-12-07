@@ -26,6 +26,9 @@
                                     <th>iframe 1</th>
                                     <th>iframe 2</th>
                                     <th>iframe 3</th>
+                                    <th>publisher_url 1</th>
+                                    <th>publisher_url 2</th>
+                                    <th>publisher_url 3</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -80,6 +83,15 @@
                                         <td data-label="Script">
                                             <textarea onclick="this.focus();this.select()" id="advertScript3" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/3/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="573" style="border: 1px solid black;"></iframe></textarea>
                                         </td>
+                                        <td data-label="url">
+                                            <input type="text" name="url[url_1]" value="{{ $campaign->campaign_publisher->url[0] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 1" class="form-control publisher_url url_cid_{{$campaign->id}}"  >
+                                        </td>
+                                        <td data-label="url">
+                                            <input type="text" name="url[url_2]" value="{{ $campaign->campaign_publisher->url[1] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 2"  class="form-control publisher_url url_cid_{{$campaign->id}}"  >
+                                        </td>
+                                        <td data-label="url">
+                                            <input type="text" name="url[url_3]" value="{{ $campaign->campaign_publisher->url[2] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 3"  class="form-control publisher_url url_cid_{{$campaign->id}}"  >
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>
@@ -131,12 +143,9 @@
     #campaign_list td:nth-child(3){  font-size: 14px; }
     #campaign_list a.create-campaign-btn { font-size: 13px; }
 
-
     #campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
     #campaign_list_wrapper .dataTables_length select,
-    #campaign_list_wrapper .dataTables_filter input {
-    border-radius: 0!important;
-    }
+    #campaign_list_wrapper .dataTables_filter input {  border-radius: 0!important; }
 
     .page-wrapper.default-version, table td, tfoot tr { font-weight: normal;  font-family: Poppins; }
     #campaign_list_wrapper{  overflow-x: scroll; }
@@ -188,12 +197,28 @@
                     }
                 ]
             });
-            // MyDatatable.columns.adjust().draw();
-            $("#sortable").sortable({
-                handle: ".handle",
-                stop: function (event, ui) {
-                    update_field();
-                }
+            $('td').on("blur","input.publisher_url",function(){
+                var url = [];
+                var campaign_id =  $(this).attr('data-cid');
+                var publisher_id =  {{Auth::guard('publisher')->user()->id}};
+                const formData = { "_token": "{{ csrf_token() }}", "campaign_id":campaign_id, "publisher_id":publisher_id, "url":[] };
+                var get_input = 'input.url_cid_'+campaign_id;
+                jQuery(get_input).each(function(index, el) {
+                    if(el.value){
+                      formData['url'][index++] = el.value;
+                    }
+                });
+                //var url = "{{route('publisher.campaigns.url_save')}}" ;
+                url: "/publisher/campaigns/campaign_url",
+                $.ajax({
+                    url: url,
+                    data: formData,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function ( data ) {
+                        Toast('green', 'URL Successfully Saved!');
+                    }
+                });
             });
         });
 

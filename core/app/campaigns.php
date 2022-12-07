@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class campaigns extends Model
 {
@@ -15,5 +16,9 @@ class campaigns extends Model
     public function campaign_forms()
     {
         return $this->belongsTo(campaign_forms::class, 'form_id');
+    }
+    public function campaign_publisher()
+    {
+        return $this->hasone(campaign_publisher::class, 'campaign_id')->where('publisher_id', Auth::guard('publisher')->user()->id);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Publisher;
 
+use App\campaign_publisher;
 use App\campaigns;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,7 +21,7 @@ class CampaignsController extends Controller
     {
         $page_title = 'All Campaigns';
         $empty_message = 'No Campaigns';
-        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->get();
+        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->get();
         return view($this->activeTemplate .'publisher.campaigns.index',compact('page_title','empty_message','campaigns'));
     }
 
@@ -82,6 +83,20 @@ class CampaignsController extends Controller
         }else{
             return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
         }
+    }
+
+    public function url_save(Request $request){
+        $campaign_id = $request->campaign_id;
+        $publisher_id = $request->publisher_id;
+        $campaign = campaign_publisher::firstOrNew([ 'campaign_id' => $campaign_id,  'publisher_id' => $publisher_id ]);
+       /// $campaign = campaign_publisher::where('campaign_id', $campaign_id )->where('publisher_id', $publisher_id)->first();
+        if($request->url){
+            $campaign->url =  $request->url;
+            $campaign->save();
+        } else{
+            $campaign->delete();
+        }
+        return response()->json(['success'=>true, 'message'=> $request->url]);
     }
 
 }
