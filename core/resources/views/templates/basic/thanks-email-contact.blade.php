@@ -8,7 +8,8 @@
         
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls-1 mb-5">Thanks for contacting with us will contact you soon.</p>
+               <p class="Rg_advts_ttls-1 mb-5">Thanks for contacting us.<br/>
+                We will contact you soon.</p>
             </div>
         </div>
            
