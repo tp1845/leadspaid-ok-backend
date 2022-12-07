@@ -209,7 +209,7 @@
                     }
                 });
                 //var url = "{{route('publisher.campaigns.url_save')}}" ;
-                url: "/publisher/campaigns/campaign_url",
+                url: "/publisher/campaigns/campaign-url",
                 $.ajax({
                     url: url,
                     data: formData,
