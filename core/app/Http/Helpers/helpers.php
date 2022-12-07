@@ -653,15 +653,15 @@ function send_email_adv_admin($user, $type = null, $username)
         ';    
 
     $config = $general->mail_config;
-
+    $admin_email='contact@leadspaid.com';
     if ($config->name == 'php') {
-        send_php_mail('contact@leadspaid.com',$user->username,'contact@leadspaid.com', $email_template->subj, $message);
+        send_php_mail($admin_email, $user->username, $general->email_from, $email_template->subj, $message);
     } else if ($config->name == 'smtp') {
-        send_smtp_mail($config, 'contact@leadspaid.com', $user->username, 'contact@leadspaid.com', $general->sitetitle, $email_template->subj, $message);
+        send_smtp_mail($config, $admin_email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config, 'contact@leadspaid.com', $user->username, 'contact@leadspaid.com', $general->sitetitle, $email_template->subj, $message);
+        send_sendGrid_mail($config, $admin_email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, 'contact@leadspaid.com', $user->username, 'contact@leadspaid.com', $general->sitetitle, $email_template->subj, $message);
+        send_mailjet_mail($config, $admin_email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     }
 }
 
@@ -687,17 +687,18 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
         
         </body>
         </html>
-        ';    
+        ';   
 
+        $admin_email='customcoder245@gmail.com';
     $config = $general->mail_config;
     if ($config->name == 'php') {
-        send_php_mail($email, $name, $general->email_from, $email_template->subj, $message);
+        send_php_mail($admin_email, $name, $general->email_from, $email_template->subj, $message);
     } else if ($config->name == 'smtp') {
-        send_smtp_mail($config,$email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_smtp_mail($config,$admin_email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config, $email,$name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_sendGrid_mail($config,$admin_email,$name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, $email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
+        send_mailjet_mail($config, $admin_email, $name, $general->email_from, $general->sitetitle, $email_template->subj, $message);
     }
 }
 
