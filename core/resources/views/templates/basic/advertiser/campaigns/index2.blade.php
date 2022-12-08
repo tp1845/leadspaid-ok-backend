@@ -83,8 +83,8 @@
                 @csrf
                 <div class="modal-content h-100">
                     <div class="modal-header bg-primary row m-0">
-                        <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required></div>
-                        <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="company_name" required></div>
+                        <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required maxlength="30"></div>
+                        <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="company_name" required maxlength="30"></div>
                         <div class="col-lg-3 input-col d-flex  flex-wrap">
 
                             <div class="upload-box">
@@ -182,7 +182,7 @@
                                                                 {{-- <small class="type">Short Answer</small> --}}
                                                                 <input type="text" readonly class="small_info InputQuestionType" name="field_1[question_type]" value="ShortAnswer" required>
                                                                 <div class="input-group input-col">
-                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[question_text]" value="Full Name" required="">
+                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[question_text]" value="Full Name" required="" maxlength="50">
                                                                     <div class="input-group-append bg-white">
                                                                         <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
                                                                         </div>
@@ -200,7 +200,7 @@
                                                                 {{-- <small class="type">Short Answer</small> --}}
                                                                 <input type="text" readonly class="small_info InputQuestionType" name="field_2[question_type]" value="ShortAnswer" required>
                                                                 <div class="input-group input-col">
-                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" value="Email id" required="">
+                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" value="Email id" required="" maxlength="50">
                                                                     <div class="input-group-append bg-white">
                                                                         <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
                                                                     </div>
@@ -218,7 +218,7 @@
                                                                 {{-- <small class="type">Short Answer</small> --}}
                                                                 <input type="text" readonly class="small_info InputQuestionType" name="field_3[question_type]" value="ShortAnswer" required>
                                                                 <div class="input-group input-col">
-                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_3[question_text]" value="Phone Number" required="">
+                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                                                                     <div class="input-group-append bg-white">
                                                                         <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
                                                                     </div>
@@ -261,19 +261,19 @@
                                             <div class="col-lg-3">
                                                 <div>
                                                     <label class="col-form-label" for="WebsiteInput">Your Website (Optional)</label>
-                                                    <input type="text" class="form-control" id="WebsiteInput" name="website_url" placeholder="Your Website">
+                                                    <input type="text" class="form-control" id="WebsiteInput" name="website_url" placeholder="Your Website"  maxlength="255">
                                                 </div>
                                                 <div>
                                                     <label class="col-form-label" for="SocialInput">Social Media URL (Optional)</label>
-                                                    <input type="text" class="form-control" id="SocialInput" name="social_media_page" placeholder="Social Media URL">
+                                                    <input type="text" class="form-control" id="SocialInput" name="social_media_page" placeholder="Social Media URL"  maxlength="255">
                                                 </div>
 
                                             </div>
                                             <div class="col-lg-3">
                                                 <label class="col-form-label" >Youtube Video Url (Optional)  </label>
-                                                <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1">
-                                                <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2">
-                                                <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3">
+                                                <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
+                                                <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2"  maxlength="255">
+                                                <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3"  maxlength="255">
                                             </div>
                                             <div class="col-lg-3">
                                                 <label class="col-form-label" >Upload upto 3 images (Optional)</label>
@@ -420,7 +420,7 @@
             if(option <= 6){
             var name = 'field_'+row+'[option_'+option+']';
             var placeholder = "Option "+ option;
-            var  html ='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="'+placeholder+'" name="'+name+'" ><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+            var  html ='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="'+placeholder+'" name="'+name+'"  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
             $(options_block).append(html);
             update_options(options_section);
             }else{
@@ -484,7 +484,7 @@
 
                 }
                 html +='<div class="input-group input-col">';
-                html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required>';
+                html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required maxlength="50">';
                 html +='<div class="input-group-append bg-white">';
                 html +='<div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>';
                 html +='</div>';
@@ -492,10 +492,10 @@
                 if(type == 'multiple'){
                     html +='<div class="options-section">';
                     html +='<div class="pl-5 options-block">';
-                    html +='<div class="input-group option"><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_'+row+'[option_1]" required><div class="input-group-text ">  </div></div>';
-                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_'+row+'[option_2]" required><div class="input-group-text">  </div></div>';
-                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]" required><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
-                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 4" name="field_'+row+'[option_4]" ><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_'+row+'[option_1]" required maxlength="30"><div class="input-group-text ">  </div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_'+row+'[option_2]" required  maxlength="30"><div class="input-group-text">  </div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]" required  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 4" name="field_'+row+'[option_4]"  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
                     html +='</div>';
                     html +='<div class="pl-5"><a class="btn-add-option btn"  data-row="'+row+'" data-option="5">+ Add Option</a></div>';
                     html +='</div>';
