@@ -145,6 +145,8 @@ class RegisterController extends Controller
    
    public function register_advertiser(Request $request){ 
 
+    return $request;
+
         event(new Registered($user = $this->create_adv($request->all())));
         $this->guard()->login($user);
         $code=[
