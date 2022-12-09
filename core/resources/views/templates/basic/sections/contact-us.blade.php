@@ -410,7 +410,7 @@ function checkLength(input, min ,max) {
           }
         
     }else if(input.value.length > max) {
-        showError(input, `${getFieldName(input)} must be les than ${max} characters`);
+        showError(input, `character  must be les than ${max} characters`);
     }else {
         showSucces(input);
      
