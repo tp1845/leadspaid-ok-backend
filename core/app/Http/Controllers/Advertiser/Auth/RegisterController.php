@@ -151,7 +151,8 @@ class RegisterController extends Controller
             'code' =>verificationCode(6),
             'userid'=>$user->id
         ];
-         $useremail=$user->email;
+        return $useremail=$user->email;
+        die();
         $urll= url('');
         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
