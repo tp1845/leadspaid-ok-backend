@@ -279,7 +279,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="input-group input-col" id="upload_image_3" style="display: none">
+                                                    <div class="input-group input-col" id="upload_image_3"  >
                                                         <div class="input-col d-flex"  style="width: 88%;">
                                                             <div class="upload-box grey">
                                                                 <input type="file" name="image_1" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
