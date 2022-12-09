@@ -61,8 +61,12 @@ class CampaignsdemoController extends Controller
         $campaign_forms->title    = $request->form_title;
         $campaign_forms->form_desc    = $request->form_desc;
 
-        $campaign_forms->form_title    = $request->form_title[1];
-        $campaign_forms->offer_desc    = $request->form_desc[1];
+        if(isset($request->form_title[1])){
+            $campaign_forms->form_title    = $request->form_title[1];
+        }
+        if(isset($request->form_desc[1])){
+         $campaign_forms->offer_desc    = $request->form_desc[1];
+        }
 
         $campaign_forms->youtube_1     = $request->youtube_1;
         $campaign_forms->youtube_2     = $request->youtube_2;
