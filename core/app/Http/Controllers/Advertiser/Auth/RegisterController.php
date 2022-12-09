@@ -142,22 +142,7 @@ class RegisterController extends Controller
         return unserialize(base64_decode($data));
     }
 
-    public function register_advertiser(Request $request){ 
-
-        event(new Registered($user = $this->create_adv($request->all())));
-        $this->guard()->login($user);
-        $code=[
-            'code' =>verificationCode(6),
-            'userid'=>$user->id
-        ];
-        $useremail=$user->email;
-        $urll= url('');
-        $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
-        // custom code email send
-        send_email_adv($user, 'EVER_CODE',$link);
-        $page_title = "Thanks email";
-        return view($this->activeTemplate . 'thanks-email', compact('page_title','useremail'));
-    }
+   
    public function register_advertiser(Request $request){ 
 
         event(new Registered($user = $this->create_adv($request->all())));
@@ -166,8 +151,7 @@ class RegisterController extends Controller
             'code' =>verificationCode(6),
             'userid'=>$user->id
         ];
-       retun $useremail=$user->email;
-       die();
+         $useremail=$user->email;
         $urll= url('');
         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
