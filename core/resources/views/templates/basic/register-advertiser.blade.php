@@ -18,7 +18,7 @@
 @endphp
 @section('content')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://leadspaid.com/assets/templates/basic/css/all.min.css">
+<!-- <link rel="stylesheet" href="https://leadspaid.com/assets/templates/basic/css/all.min.css"> -->
 <section class="Rg_advts">
     <div class="container">
         <div class="row text-center">
@@ -31,7 +31,7 @@
                <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
             </div>
         </div>
-    <form class="Rg_advts_form" id="advertiser_form"  method="POST" action="{{route('advertiser.register_adv')}}">
+    <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
         @csrf
         <div class="row">
             <div class="col-md-11 mx-auto">
@@ -39,28 +39,47 @@
                     <div class="col-md-5">
                         <div class="Rg_advts_bsc" id="publisher___form">
                             <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
-
-                                <div class="form-group mb-3">
-                                   <input name="company_name" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional ) " aria-required="true" aria-invalid="false" required>
-                               </div>
-                               <div class="form-group mb-3">
-                                    <input name="name" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Full Name" aria-required="true" aria-invalid="false" required>
+                            
+                            <div class="form-group mb-3">
+                                <input type="text" id="username"  name="company_name" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional)" >
+                                <small>Error Message</small>
+                                <div class="custom_msg">
+                                    <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                    <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
                                 </div>
-                                <div class="form-group mb-3 custom-state">
-                                    <select class="form-select rounded-0" name="country" aria-label="Default select example">
+                            </div>
+                            <div class="form-group mb-3">
+                                <input type="text" id="full_name" name="name" name="text" class="form-control Rg_advts_name rounded-0" placeholder="Full Name">
+                                <small>Error Message</small>
+                                <div class="custom_msg">
+                                    <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                    <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3 custom-state">
+                                    <select name="country" class="form-select rounded-0" id="country_id">
                                       <option value="">Select Country</option>
                                        @include('partials.country')
                                     </select>
+                                    <small>Error Message</small>
+                                <div class="custom_msg">
+                                    <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                    <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
                                 </div>
-                                <div class="Rg_advts_number">
-                                    <div class="form-group mb-3">
-                                    <select class="form-select rounded-0" name="country_code" aria-label="Default select example">
-                                       @include('partials.country_code')
-                                    </select>
-
-                                    <input name="phone" id="inputNumber" type="text" value="" class=" Rg_advts_name rounded-0" name="phone" placeholder="@lang('Your Phone Number')" aria-required="true" aria-invalid="false" required>
+                            </div>
+                            <div class="Rg_advts_number">
+                                <div class="form-group mb-3">
+                                        <select name="country_code" class="form-select rounded-0">
+                                        @include('partials.country_code')
+                                        </select>
+                                        <input type="text" name="phone" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
                                     </div>
                                 </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-5">
@@ -68,14 +87,30 @@
                             <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
 
                            <div class="Rg_advts_form">
-                               <div class="form-group mb-3">
-                               <textarea class="form-control Rg_advts_name rounded-0" name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea" required></textarea>
-                           </div>
-                               <div class="form-group mb-3">
-                                    <input name="Website" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional) " aria-required="true" aria-invalid="false">
+                            
+                                <div class="form-group mb-3">
+                                    <textarea name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea"></textarea>
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                                 <div class="form-group mb-3">
-                                     <input name="Social" id="inputForm" type="text" value="" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional) " aria-required="true" aria-invalid="false">
+                                    <input type="text" name="Website" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="text" name="Social" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
                                 </div>
                            </div>
                         </div>
@@ -96,7 +131,12 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <input name="email" id="inputForm" type="email" value="" class="form-control rounded-0 Rg_advts_name" placeholder="Email Address " aria-required="true" aria-invalid="false" required>
+                                        <input type="text" name="email" id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
+                                        <small>Error Message</small>
+                                        <div class="custom_msg">
+                                            <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                            <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -105,14 +145,24 @@
                             <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
-                                     <input name="password" id="inputForm" type="password" value="" class="rounded-0 form-control Rg_advts_name" placeholder="Password " aria-required="true" aria-invalid="false" required>
-                                 </div>
+                                    <input type="password" name="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password">
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                </div>
                              </div>
 
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
-                                     <input name="password_confirmation" id="inputFormc" type="password" value="" class="form-control rounded-0 Rg_advts_name" placeholder="Confirm Password " aria-required="true" aria-invalid="false" required>
-                                 </div>
+                                    <input type="password" name="password_confirmation" id="confirm_password" class="form-control Rg_advts_name rounded-0" placeholder="Confirm Password">
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                </div>
                              </div>
                          </div>
                          </div>
@@ -145,149 +195,282 @@
 
 @push('script')
 <script>
-    "use strict";
-    @if($country_code)
-    var t = $(`option[data-code={{ $country_code }}]`).attr('selected', '');
-    @endif
-    $('select[name=country_code]').change(function() {
-        $('input[name=country]').val($('select[name=country_code] :selected').data('country'));
-    }).change();
+    const form = document.getElementById('form');
+    const username = document.getElementById('username');
+    const country_id = document.getElementById('country_id');
+    const email = document.getElementById('email');
+    const floatingTextarea = document.getElementById('floatingTextarea');
+    const password = document.getElementById('password');
+    const password2 = document.getElementById('password2');
+
+//Show input error messages
+function showError(input, message) {
+    const formControl = input.parentElement;
+    formControl.className = 'form-control error';
+    const small = formControl.querySelector('small');
+    small.innerText = message;
+}
+
+//show success colour
+function showSucces(input) {
+    const formControl = input.parentElement;
+    formControl.className = 'form-control success';
+}
 
 
-
-    function submitUserForm() {
-        var response = grecaptcha.getResponse();
-        if (response.length == 0) {
-            document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">@lang("Captcha field is required.")</span>';
-            return false;
+//checkRequired fields
+function checkRequired(inputArr) {
+    inputArr.forEach(function(input){
+        if(input.value.trim() === ''){
+            var input_name=getFieldName(input);
+       // console.log(input_names);
+        if(input_name=='Username')
+        {
+            showError(input, 'Please fill Full Company Name.');
         }
-        return true;
-    }
-
-    function verifyCaptcha() {
-        document.getElementById('g-recaptcha-error').innerHTML = '';
-    }
-
-
-    document.addEventListener('DOMContentLoaded', function(e) {
-
-        FormValidation.formValidation(document.querySelector('#advertiser_form'), {
-            fields: {
-                company_name: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Company Name.',
-                        }
-                    },
-                },
-
-                name: {
-                     validators: {
-                        notEmpty: {
-                            message: 'Please fill Full Name.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Name.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'Full Name Invalid.',
-                        },
-                    },
-               
-                },
-
-                phone: {
-                       validators: {
-                        notEmpty: {
-                            message: 'Please fill Phone Number.',
-                        },
-                        stringLength: {
-                            min: 6,
-                            message: 'Please fill Phone Number.',
-                        },
-                    },
-                },
-              
-                country: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Select Country.',
-                        }
-                    },
-                },
-                product_services: {
-                      validators: {
-                        notEmpty: {
-                            message: 'Please fill product or services.',
-                        },
-                        stringLength: {
-                            min: 20,
-                            message: 'Please fill product or services in detail.',
-                        },
-                    },
-                },
-                 email: {
-                     validators: {
-                        notEmpty: {
-                            message: 'Please fill valid email address (will be used as username to login)',
-                        },
-                        emailAddress: {
-                            message: 'Please fill valid email address (will be used as username to login)',
-                        },
-                    },
-                },
-                password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Password',
-                        },
-                        stringLength: {
-                            min: 6,
-                            message: 'Please fill minimum 6 characters',
-                        },
-                    },
-                },
-                password_confirmation: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Confirm Password',
-                        },
-                        checkConfirmation: {
-                            message: 'Passowrd Mismatch',
-                            callback: function(input) {
-                              
-                                return document.querySelector("#advertiser_form").querySelector('[name="password"]').value === input.value;
-                            },
-                        },
-                    },
-                },
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap: new FormValidation.plugins.Bootstrap(),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                icon: new FormValidation.plugins.Icon({
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh',
-                }),
-                alias: new FormValidation.plugins.Alias({
-                    checkConfirmation: 'callback'
-                }),
-            },
-        }).on('core.form.valid', function() {
-            document.querySelector('#advertiser_form').submit();
-
-        });
+        if(input_name=='Full_name')
+        {
+            showError(input, 'Please fill Full Name.');
+        }
+        if(input_name=='Your_phone')
+        {
+            showError(input, 'Please fill Phone Number.');
+        }
+        if(input_name=='FloatingTextarea')
+        {
+            showError(input, 'Please fill Message.');
+        }
+        if(input_name=='Country_id')
+        {
+            showError(input, 'Select Country.');
+        }
+        if(input_name=='Password')
+        {
+            showError(input, 'Please fill Password');
+        }
+            
+        }else {
+            showSucces(input);
         
+        }
     });
+}
+
+
+//check input Length
+function checkLength(input, min ,max) {
+    if(input.value.length < min) {
+        var input_names=getFieldName(input);
+       // console.log(input_names);
+        if(input_names=='Username')
+        {
+            showError(input, 'Please fill Full Company Name.');
+        }
+        if(input_names=='Full_name')
+        {
+            showError(input, 'Please fill Full Name.');
+        }
+        if(input_names=='Your_phone')
+        {
+            showError(input, 'Please fill Phone Number.');
+        }
+        if(input_names=='FloatingTextarea')
+        {
+            showError(input, 'Please fill Message.');
+        }
+        if(input_names=='Country_id')
+        {
+            showError(input, 'Select Country.');
+        }
+        if(input_names=='Password')
+        {
+            showError(input, 'Please fill Password');
+        }
+        
+    }else if(input.value.length > max) {
+        showError(input, `${getFieldName(input)} must be les than ${max} characters`);
+    }else {
+        showSucces(input);
+       
+    }
+}
+
+//get FieldName
+function getFieldName(input) {
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
+// check passwords match
+function checkPasswordMatch(input1, input2) {
+    if(input1.value !== input2.value) {
+        showError(input2, 'Passwords do not match');
+    }
+}
+
+//check email is valid
+function checkEmail(input) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(re.test(input.value.trim())) {
+        showSucces(input)
+    }else {
+        showError(input,'Please fill valid email address (will be used as username to login)');
+    }
+}
+
+
+//Event Listeners
+form.addEventListener('submit',function(e) {
+    e.preventDefault();
+
+    checkRequired([username, full_name, your_phone, floatingTextarea, password, confirm_password]);
+    checkLength(username,3,15);
+    checkLength(full_name,3,15);
+    checkLength(your_phone,3,10);
+    checkLength(floatingTextarea,3,50);
+    checkLength(country_id,3,15);
+    checkLength(password,6,25);
+    checkEmail(email);
+    checkPasswordMatch(password, confirm_password);
+
+
+    const company_name1 = document.form.company_name.value;
+    const name1 =document.form.name.value;
+    const email1 = document.form.email.value;
+    const phone1 = document.form.phone.value;
+    const password1 = document.form.password.value;
+    const product_services1 = document.form.product_services.value;
+    const password_confirmation1 = document.form.password_confirmation.value;
+
+            //console.log('name',name);
+
+         if (company_name1=="" || name1==""  ||  email1==""  || phone1==""  || password1=="" || product_services1=="" || password_confirmation1==""){  
+             return false;  
+            }else
+            {
+                document.querySelector('#form').submit();
+          
+            }
+
+
+});
 </script>
 @endpush
 <style>
-    
+    .Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
+    background: none !important;
+}
+  .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small {
+    display: none;
+  }
+  .Rg_advts .form-control {
+    position: relative;
+  }
+  .error .custom_msg .fa-times {
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 22px;
+    color: #e74c3c;
+}
+  .success .custom_msg .fa-check {
+    display: block;
+    position: absolute;
+    top: 23px;
+    right: 22px;
+    color: #2ecc71;
+}
+
+.fa-times::before {
+    content: "\f00d";
+}
+.fa-check::before {
+    content: "\f00c";
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.fv-plugins-bootstrap .fv-plugins-icon {
+    height: 38px;
+    line-height: 38px;
+    width: 38px;
+}
+
+.Rg_advts .form-group{
+    position: relative;
+}
+
+.Rg_advts .form-group label{
+    color:#777;
+    display: block;
+    margin-bottom: 5px; 
+}
+ 
+
+.Rg_advts .form-group input:focus{
+    outline: 0;
+    border-color: #777;
+
+}
+.Rg_advts .form-control.success {
+    padding: 0;
+    border: none;
+    margin-bottom: 1rem !important;
+}
+.Rg_advts .form-control.error {
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+.Rg_advts .form-control.success small {
+    color:#2ecc71;
+}
+.Rg_advts .form-control.success input {
+    border-color: #2ecc71;
+}
+.Rg_advts_number .form-control.success select, .Rg_advts .form-control.success textarea, .Rg_advts .form-control.success #country_id {
+    border: 1px solid #2ecc71;
+}
+.Rg_advts textarea, .Rg_advts textarea:hover {
+    border:1px solid #94a1b5;
+}
+.Rg_advts textarea:focus-visible {
+    outline: none;
+}
+.Rg_advts .form-control.error input, .Rg_advts_form .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
+    border-color: #e74c3c;    
+}
+.Rg_advts .form-control.error small {
+    color: #e74c3c;
+}
+.Rg_advts .form-group small{
+    color: #e74c3c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.Rg_advts .form-groupl.error small{
+    visibility: visible;
+}
+.form button {
+    cursor: pointer;
+    /* background-color: #3498db;
+    border: 2px solid #3498db;
+    border-radius: 4px; */
+    color: #fff;
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    margin-top:20px;
+    width:100%;
+}
     .Rg_advts {
         font-family: Poppins !important;
         font-weight: 200;
@@ -299,8 +482,9 @@
     .Rg_advts_form .custom-state.fv-plugins-icon-container.has-success .form-select {
         background: none !important;
     }
-    .Rg_advts_number .form-select, .Rg_advts_form .form-select {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+    .Rg_advts_bsc select, .Rg_advts_number select {
+    border: 1px solid #94a1b5;
+    background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
     }
     .Rg_advts_ttls {
         color: #1361b2;
@@ -337,16 +521,19 @@
         line-height: normal;
     }
     .Rg_advts_form textarea {
-        font-size: 19px;
-        padding: 16px 24px;
-        line-height: normal;
-    }
+    font-size: 19px;
+    padding: 16px 24px;
+    width: 100%;
+    line-height: normal;
+    max-height: 140px;
+    height: 100%;
+}
 
-.Rg_advts_number .form-group {
+    .Rg_advts_number .form-group, .Rg_advts_number .form-control.error, .Rg_advts_number .form-control.success {
     display: flex;
     flex-wrap: wrap;
 }
-.Rg_advts_number select.form-select {
+.Rg_advts_number select {
     flex: 0 0 25%;
     width: 25%;
 }
@@ -361,6 +548,7 @@
 .Rg_advts_form input:focus-visible {
     outline: none;
 }
+
 .Rg_advts .form-control, .Rg_advts_form select, .Rg_advts_number input {
     border: 1px solid #94a1b5;
     /* background: #f2f7ff; */
@@ -418,7 +606,12 @@ button.btn.btn-secondary.Rg_advts_my_btn {
 .Rg_advts .form-group .fv-plugins-message-container {
     font-weight: 400;
 }
-
+.Rg_advts_bsc select {
+    font-size: 19px;
+    padding: 16px 24px;
+    border-radius: 0;
+    line-height: normal;
+}
 
 @media screen and (max-width: 480px){
     .Rg_advts_number input {

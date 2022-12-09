@@ -7,12 +7,12 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12 pt-5">
-               <p class="Rg_advts_ttls__1">Thanks for register</p>
+               <p class="Rg_advts_ttls__1">Thanks for registering</p>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls-1 mb-5">please check your email to verify your account</p>
+               <p class="Rg_advts_ttls-1 mb-5">please check your email ({{$useremail}})to verify your account</p>
             </div>
         </div>
            

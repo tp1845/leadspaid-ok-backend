@@ -372,7 +372,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'RegisterController@register')->name('signup')->middleware(['regStatus']);
-		Route::post('register-advertiser', 'RegisterController@register_advertiser')->name('register_adv')->middleware(['regStatus']);
+        Route::post('register-advertiser/thank-you', 'RegisterController@register_advertiser')->name('register_adv')->middleware(['regStatus']);
         Route::get('register-veryfy', 'RegisterController@varify_adv')->name('varify_adv');
         // Admin Password Reset
         Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.reset');
@@ -412,7 +412,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         //Campaigns
         Route::get('/campaigns', 'CampaignsController@index')->name('campaigns.index');
-		//Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
+        Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
         Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');
         Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
         Route::get('/campaigns/status/', 'CampaignsController@changeStatus')->name('campaigns.status');
@@ -420,8 +420,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/forms', 'FormsController@index')->name('forms.index');
         Route::post('/forms/create', 'FormsController@store')->name('forms.store');
 
-        Route::get('campaigns/style/{style}', 'CampaignsdemoController@index')->name('campaigns.style');
-        Route::post('/campaigns2/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
+        Route::get('/campaigns/demo', 'CampaignsdemoController@index')->name('campaigns.demo');
+        Route::post('/campaigns/demo/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
 
         //price plans
         Route::get('/ad/price-plans', 'AdController@pricePlans')->name('price.plan');
@@ -441,7 +441,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/payments/success', 'AdvertiserController@PaymentsSuccessSession')->name('payments.success');
     /// invoice
 
-	Route::get('invoices/{id}','AdvertiserController@showinvoices')->name('showinvoices');
+    Route::get('invoices/{id}','AdvertiserController@showinvoices')->name('showinvoices');
     });
 });
 
@@ -529,7 +529,6 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::get('/campaigns/lgenspend/export/{cid}/{aid}/{fid}','LgenSpendController@export')->name('campaigns.lgenspend.export');
         Route::post('/campaigns/lgenspend/import/{cid}/{aid}/{fid}','LgenSpendController@import')->name('campaigns.lgenspend.import');
         Route::post('/campaigns/lgenspend/importpreview/{cid}/{aid}/{fid}','LgenSpendController@importpreview')->name('campaigns.lgenspend.importpreview');
-        Route::post('/campaigns/campaign-url','CampaignsController@url_save')->name('campaigns.url_save');
    });
 });
 
@@ -554,8 +553,8 @@ Route::post('verify-email/{guard}', 'AuthorizationController@emailVerification')
 Route::post('verify-sms/{guard}', 'AuthorizationController@smsVerification')->name('verify_sms');
 Route::post('verify-g2fa/{guard}', 'AuthorizationController@g2faVerification')->name('go2fa.verify');
 
-Route::get('/contact', 'SiteController@contactPage')->name('home.contact');
-Route::post('/contact', 'SiteController@contactSubmit')->name('contact.send');
+Route::get('/contact-us', 'SiteController@contactPage')->name('home.contact');
+Route::post('/thank-you', 'SiteController@contactSubmit')->name('contact.send');
 Route::get('/change/{lang?}', 'SiteController@changeLanguage')->name('lang');
 Route::get('keywords', 'SiteController@keywords')->name('keywords');
 Route::get('categorys/{id}', 'SiteController@categorys')->name('categorys');
@@ -583,4 +582,3 @@ Route::get('/', 'SiteController@home2')->name('home');
 
 
 Route::get('/campaign_form/{publisher_id}/{style}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
-Route::get('/campaign_form/{publisher_id}/{style}/{campaign_id}','CampaignFormController@campaign_form_view')->name('front_campaign_id_form.view');
