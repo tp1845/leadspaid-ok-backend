@@ -70,11 +70,16 @@
 <section class="Rg_advts">
     <div class="container">
         <div class="row text-center">
+            <div class="col-lg-12 pt-5">
+               <p class="Rg_advts_ttls_1">Generate Leads Now</p>
+            </div>
+        </div>
+        <div class="row text-center">
             <div class="col-lg-12 pt-4">
                <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
             </div>
         </div>
-    <form id="form" class="form"  method="POST" action="{{route('advertiser.register_adv')}}">
+    <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
         @csrf
         <div class="row">
             <div class="col-md-11 mx-auto">
@@ -84,7 +89,7 @@
                             <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
                             
                             <div class="form-group mb-3">
-                                <input type="text" id="username" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional)" >
+                                <input type="text" id="username"  name="company_name" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional)" >
                                 <small>Error Message</small>
                                 <div class="custom_msg">
                                     <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -92,7 +97,7 @@
                                 </div>
                             </div>
                             <div class="form-group mb-3">
-                                <input type="text" id="full_name" name="text" class="form-control Rg_advts_name rounded-0" placeholder="Full Name">
+                                <input type="text" id="full_name" name="name" name="text" class="form-control Rg_advts_name rounded-0" placeholder="Full Name">
                                 <small>Error Message</small>
                                 <div class="custom_msg">
                                     <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -115,7 +120,7 @@
                                         <select name="country_code" class="form-select rounded-0">
                                         @include('partials.country_code')
                                         </select>
-                                        <input type="text" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
+                                        <input type="text" name="phone" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
                                     <small>Error Message</small>
                                     <div class="custom_msg">
                                         <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -140,7 +145,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input type="text" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
+                                    <input type="text" name="Website" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
                                     <small>Error Message</small>
                                     <div class="custom_msg">
                                         <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -148,7 +153,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input type="text" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
+                                    <input type="text" name="Social" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
                                     <small>Error Message</small>
                                     <div class="custom_msg">
                                         <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -174,7 +179,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group mb-3">
-                                        <input type="text" id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
+                                        <input type="text" name="email" id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
                                         <small>Error Message</small>
                                         <div class="custom_msg">
                                             <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -188,7 +193,7 @@
                             <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
-                                    <input type="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password">
+                                    <input type="password" name="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password">
                                     <small>Error Message</small>
                                     <div class="custom_msg">
                                         <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -199,7 +204,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
-                                    <input type="password" id="confirm_password" class="form-control Rg_advts_name rounded-0" placeholder="Confirm Password">
+                                    <input type="password" name="password_confirmation" id="confirm_password" class="form-control Rg_advts_name rounded-0" placeholder="Confirm Password">
                                     <small>Error Message</small>
                                     <div class="custom_msg">
                                         <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -233,12 +238,15 @@
      @endpush
 
      @push('script')
+
 <script>
-   const form = document.getElementById('form');
-const username = document.getElementById('username');
-const email = document.getElementById('email');
-const password = document.getElementById('password');
-const password2 = document.getElementById('password2');
+    const form = document.getElementById('form');
+    const username = document.getElementById('username');
+    const country_id = document.getElementById('country_id');
+    const email = document.getElementById('email');
+    const floatingTextarea = document.getElementById('floatingTextarea');
+    const password = document.getElementById('password');
+    const password2 = document.getElementById('password2');
 
 //Show input error messages
 function showError(input, message) {
@@ -254,33 +262,41 @@ function showSucces(input) {
     formControl.className = 'form-control success';
 }
 
-//check email is valid
-function checkEmail(input) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(re.test(input.value.trim())) {
-        showSucces(input)
-    }else {
-        showError(input,'Please fill valid email address (will be used as username to login)');
-    }
-}
-
 
 //checkRequired fields
 function checkRequired(inputArr) {
     inputArr.forEach(function(input){
         if(input.value.trim() === ''){
-            var input_names1=getFieldName(input);
-            //console.log(input_names1);
-            if(input_names1=='Confirm_password')
-            {
-                showError(input,'Please fill Confirm Password')
-            }else
-            {
-                showError(input,`${getFieldName(input)} is required`)
-            }
+            var input_name=getFieldName(input);
+       // console.log(input_names);
+        if(input_name=='Username')
+        {
+            showError(input, 'Please fill Full Company Name.');
+        }
+        if(input_name=='Full_name')
+        {
+            showError(input, 'Please fill Full Name.');
+        }
+        if(input_name=='Your_phone')
+        {
+            showError(input, 'Please fill Phone Number.');
+        }
+        if(input_name=='FloatingTextarea')
+        {
+            showError(input, 'Please fill Message.');
+        }
+        if(input_name=='Country_id')
+        {
+            showError(input, 'Select Country.');
+        }
+        if(input_name=='Password')
+        {
+            showError(input, 'Please fill Password');
+        }
             
         }else {
             showSucces(input);
+        
         }
     });
 }
@@ -320,6 +336,7 @@ function checkLength(input, min ,max) {
         showError(input, `${getFieldName(input)} must be les than ${max} characters`);
     }else {
         showSucces(input);
+       
     }
 }
 
@@ -335,20 +352,51 @@ function checkPasswordMatch(input1, input2) {
     }
 }
 
+//check email is valid
+function checkEmail(input) {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(re.test(input.value.trim())) {
+        showSucces(input)
+    }else {
+        showError(input,'Please fill valid email address (will be used as username to login)');
+    }
+}
+
 
 //Event Listeners
 form.addEventListener('submit',function(e) {
     e.preventDefault();
 
-    checkRequired([username, full_name, your_phone, email, floatingTextarea, password, confirm_password]);
+    checkRequired([username, full_name, your_phone, floatingTextarea, password, confirm_password]);
     checkLength(username,3,15);
     checkLength(full_name,3,15);
     checkLength(your_phone,3,10);
-    checkLength(floatingTextarea,3,15);
+    checkLength(floatingTextarea,3,50);
     checkLength(country_id,3,15);
     checkLength(password,6,25);
     checkEmail(email);
     checkPasswordMatch(password, confirm_password);
+
+
+    const company_name1 = document.form.company_name.value;
+    const name1 =document.form.name.value;
+    const email1 = document.form.email.value;
+    const phone1 = document.form.phone.value;
+    const password1 = document.form.password.value;
+    const product_services1 = document.form.product_services.value;
+    const password_confirmation1 = document.form.password_confirmation.value;
+
+            //console.log('name',name);
+
+         if (company_name1=="" || name1==""  ||  email1==""  || phone1==""  || password1=="" || product_services1=="" || password_confirmation1==""){  
+             return false;  
+            }else
+            {
+                document.querySelector('#form').submit();
+          
+            }
+
+
 });
 </script>
 @endpush
