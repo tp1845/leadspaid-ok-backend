@@ -412,7 +412,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         //Campaigns
         Route::get('/campaigns', 'CampaignsController@index')->name('campaigns.index');
-        Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
+        // Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
         Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');
         Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
         Route::get('/campaigns/status/', 'CampaignsController@changeStatus')->name('campaigns.status');
@@ -420,8 +420,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/forms', 'FormsController@index')->name('forms.index');
         Route::post('/forms/create', 'FormsController@store')->name('forms.store');
 
-        Route::get('/campaigns/demo', 'CampaignsdemoController@index')->name('campaigns.demo');
-        Route::post('/campaigns/demo/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
+        Route::get('campaigns/style/{style}', 'CampaignsdemoController@index')->name('campaigns.style');
+        Route::post('/campaigns2/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
 
         //price plans
         Route::get('/ad/price-plans', 'AdController@pricePlans')->name('price.plan');
@@ -529,6 +529,7 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::get('/campaigns/lgenspend/export/{cid}/{aid}/{fid}','LgenSpendController@export')->name('campaigns.lgenspend.export');
         Route::post('/campaigns/lgenspend/import/{cid}/{aid}/{fid}','LgenSpendController@import')->name('campaigns.lgenspend.import');
         Route::post('/campaigns/lgenspend/importpreview/{cid}/{aid}/{fid}','LgenSpendController@importpreview')->name('campaigns.lgenspend.importpreview');
+        Route::post('/campaigns/campaign-url','CampaignsController@url_save')->name('campaigns.url_save');
    });
 });
 
@@ -580,5 +581,5 @@ Route::get('/new_home_2_test','SiteController@home3')->name('new_home_2_test');
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
 Route::get('/', 'SiteController@home2')->name('home');
 
-
 Route::get('/campaign_form/{publisher_id}/{style}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
+Route::get('/campaign_form/{publisher_id}/{style}/{campaign_id}','CampaignFormController@campaign_form_view')->name('front_campaign_id_form.view');
