@@ -82,166 +82,309 @@
             <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content h-100">
-                    <div class="modal-header bg-primary row m-0">
-                        <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required maxlength="30"></div>
-                        <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="company_name" required maxlength="30"></div>
-                        <div class="col-lg-3 input-col d-flex  flex-wrap">
-
-                            <div class="upload-box">
-                                <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
-                                <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
+                    <div class="modal-header bg-primary m-0">
+                        <div class="w-100">
+                        <div class="row">
+                            <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required maxlength="30"></div>
+                            <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="company_name" required maxlength="30"></div>
+                            <div class="col-lg-3 input-col d-flex  flex-wrap">
+                                <div class="upload-box">
+                                    <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
+                                    <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
+                                </div>
+                                <div id="company_logo_preview" class="img_preview_box">
+                                    <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+                                    <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
+                                </div>
                             </div>
-                            <div id="company_logo_preview" class="img_preview_box">
-                                <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
-                                <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
-                            </div>
+                            <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
                         </div>
-                        <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
+                        <div class="row border-top">
+                            <div class="col-lg-3 input-col">
+                                <label class="form-label text-white" for="TargetCountryInput">From Which Country</label>
+                                <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
+                                    <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
+                                    @foreach ($countries as $country)
+                                        <option @if($user->country === $country->country_name) selected="selected" @endif   value="{{ $country->country_name }}" label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-lg-3 input-col">
+                                <label class="form-label text-white" for="DailyBudgetInput">Daliy Budget<i>*</i></label>
+                                <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required>
+                            </div>
+                            <div class="col-lg-3 input-col ">
+                                <label class=" form-label text-white" for="TargetCostInput">Target Cost Per Lead<i>*</i></label>
+                                    <input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
+                                    {{-- <small class="form-text text-muted">You will get the leads within this cost on average. However, the cost per lead may vary on different days.</small> --}}
+                            </div>
+
+                        </div>
+                    </div>
                     </div>
                     <div class="modal-body h-100" style="overflow-y: scroll">
                         <div id="error-message"></div>
                         <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
+                        <div class="row mb-3">
+                            <div class="col d-flex SelectFormType">
+                                <div class="form-check mr-4">
+                                    <input class="form-check-input" type="radio" name="SelectFormType" id="SelectFormType1" value="Create New Form" checked>
+                                    <label class="form-check-label" for="SelectFormType1">
+                                        Create New Form
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="SelectFormType" id="SelectFormType2" value="Use Existing Form">
+                                    <label class="form-check-label" for="SelectFormType2">
+                                      Use Existing Form
+                                    </label>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row" style="display: none">
+                            <div class="col">
+                                @foreach ($forms as $form)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required>
+                                    <label class="form-check-label" for="form_{{ $form->id }}">
+                                        {{ $form->form_name }}
+                                    </label>
+                                </div>
+                            @endforeach
+                            </div>
+                        </div>
                         <div class="row">
-                            <div class="col-3">
-                                <div class="card border mb-4 h-100">
-                                    <div class="card-header bg-primary">Leads Criteria</div>
-                                    <div class="card-body bg-ddd">
-                                        <div class="form-group row">
-                                            <label class="col-sm-12 col-form-label" for="leadsCriteriaInput">Leads Criteria<i>*</i></label>
-                                            <div class="col-sm-12 input-col">
-                                                {{-- <input type="text" class="form-control" id="leadsCriteriaInput" name="leads_criteria" placeholder="Leads Criteria" required> --}}
-                                                <textarea name="leads_criteria" class="form-control" id="leadsCriteriaInput"  placeholder="Eg. People intersted in health insurance" required maxlength="255" rows="3"></textarea>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="col">
-                                                <div class=" row ">
-                                                    <label class="col-sm-12 col-form-label " for="TargetCountryInput">From Which Country</label>
-                                                    <div class="col-sm-12 input-col">
-                                                        <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
-                                                            <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
-                                                            @foreach ($countries as $country)
-                                                                <option @if($user->country === $country->country_name) selected="selected" @endif   value="{{ $country->country_name }}" label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
-                                                            @endforeach
-                                                        </select>
+                            <div class="col">
+                                <div class="card border  h-100">
+                                    <div class="card-header bg-primary">  <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"> </div>
+                                    <div class="card-body p-0 ">
+                                        <div class="row m-0">
+                                            <div class="col-4 py-2 bg-ddd h-100">
+                                                <div>
+                                                    <h4 class="gray_title top"> Add Form Title & Description</h4>
+                                                    <div>
+                                                        <label class="col-form-label" for="WebsiteInput">Form Title ( add upto 3 variations )</label>
+                                                        <div id="form_title_1">
+                                                            <div class="input-group input-col">
+                                                                <input type="text" class="form-control" id="FormTitleInput" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3">
+                                                                <div class="input-group-append bg-none">
+                                                                    <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="form_title_2">
+                                                            <div class="input-group input-col my-3">
+                                                                <input type="text" class="form-control" id="FormTitleInput" name="form_title[2]" placeholder="Form Title 2" required="" minlength="3">
+                                                                <div class="input-group-append bg-none">
+                                                                    <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div id="form_title_3">
+                                                            <div class="input-group input-col">
+                                                                <input type="text" class="form-control" id="FormTitleInput" name="form_title[3]" placeholder="Form Title 3" required="" minlength="3">
+                                                                <div class="input-group-append bg-none">
+                                                                    <div class="input-group-text"> </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <label class="col-form-label" for="form_desc_1_Input">Form Description  ( add upto 3 variations )</label>
+                                                    <div id="FormDescription_1">
+                                                        <div class="input-group input-col">
+                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required="" minlength="3">
+                                                            <div class="input-group-append bg-none">
+                                                                <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="FormDescription_2">
+                                                        <div class="input-group input-col my-3">
+                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2" required="" minlength="3">
+                                                            <div class="input-group-append bg-none">
+                                                                <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="FormDescription_3">
+                                                        <div class="input-group input-col">
+                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3" required="" minlength="3">
+                                                            <div class="input-group-append bg-none">
+                                                                <div class="input-group-text"> </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <h4 class="gray_title"> Add a few relevant creative (Optional)</h4>
+                                                    <label class="col-form-label" >Youtube Video Url  ( add upto 3 variations )  </label>
+                                                    <div id="Youtube_1">
+                                                        <div class="input-group input-col">
+                                                            <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
+                                                            <div class="input-group-append bg-none">
+                                                                <div class="input-group-text"> <a href="#" class="text-success" onClick="show_next('#Youtube_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div id="Youtube_2"  >
+
+                                                        <div class="input-group input-col">
+                                                            <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2"  maxlength="255">
+                                                            <div class="input-group-append bg-none">
+                                                                <div class="input-group-text"> <a href="#" class="text-success" onClick="show_next('#Youtube_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="Youtube_3"  >
+
+                                                        <div class="input-group input-col">
+                                                            <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3"  maxlength="255">
+                                                            <div class="input-group-append bg-none">
+                                                                <div class="input-group-text">  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <label class="col-form-label" >Upload upto 3 images (Optional)</label>
+                                                    <div class="input-group input-col" id="upload_image_1">
+                                                        <div class="input-col d-flex "  style="width: 88%;">
+                                                            <div class="upload-box grey">
+                                                                <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+                                                                <label for="image_1_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
+                                                            </div>
+                                                            <div id="image_1_img_preview" class="img_preview_box">
+                                                                <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+                                                                <img id="image_1_img" src="#" alt="image_1_img" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group-append bg-none">
+                                                            <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group input-col" id="upload_image_2" >
+                                                        <div class="input-col d-flex  flex-wrap"  style="width: 88%;">
+                                                            <div class="upload-box grey  my-2">
+                                                                <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+                                                                <label for="image_2_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
+                                                            </div>
+                                                            <div id="image_2_img_preview" class="img_preview_box">
+                                                                <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+                                                                <img id="image_2_img" src="#" alt="image_2_img" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group-append bg-none">
+                                                            <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="input-group input-col" id="upload_image_3" style="display: none">
+                                                        <div class="input-col d-flex"  style="width: 88%;">
+                                                            <div class="upload-box grey">
+                                                                <input type="file" name="image_1" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+                                                                <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
+                                                            </div>
+                                                            <div id="image_3_img_preview" class="img_preview_box">
+                                                                <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+                                                                <img id="image_3_img" src="#" alt="image_3_img" style="display: none" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group-append bg-none">
+                                                            <div class="input-group-text">  </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-12 col-form-label" for="DailyBudgetInput">Daliy Budget<i>*</i></label>
-                                            <div class="col-sm-12 input-col">
-                                                <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-12 col-form-label" for="TargetCostInput">Target Cost Per Lead<i>*</i></label>
-                                            <div class="col-sm-12 input-col">
-                                                <input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
-                                                <small class="form-text text-muted">You will get the leads within this cost on average. However, the cost per lead may vary on different days.</small>
+                                            <div class="col">
+
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <h5 class="my-2">Leads Fileds Required</h5>
+                                                        <table class="table table-bordered ">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th scope="col" width="10px">#</th>
+                                                                    <th scope="col" >Required</th>
+                                                                    <th scope="col">Fileds</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody id="sortable" data-row='3'>
+                                                                <tr class="sortable-group row_1 ">
+                                                                    <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
+                                                                        <input type="hidden" class="sort" name="field_1[sort]" value="1">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="checkbox" checked class="InputQuestion_Required" name="field_1[required]">
+                                                                    </td>
+                                                                    <td>
+                                                                        {{-- <small class="type">Short Answer</small> --}}
+                                                                        <input type="text" readonly class="small_info InputQuestionType" name="field_1[question_type]" value="ShortAnswer" required>
+                                                                        <div class="input-group input-col">
+                                                                            <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[question_text]" value="Full Name" required="" maxlength="50">
+                                                                            <div class="input-group-append bg-white">
+                                                                                <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
+                                                                                </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="sortable-group row_2">
+                                                                    <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
+                                                                        <input type="hidden" class="sort" name="field_2[sort]" value="2">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="checkbox" checked class="InputQuestion_Required" name="field_2[required]">
+                                                                    </td>
+                                                                    <td>
+                                                                        {{-- <small class="type">Short Answer</small> --}}
+                                                                        <input type="text" readonly class="small_info InputQuestionType" name="field_2[question_type]" value="ShortAnswer" required>
+                                                                        <div class="input-group input-col">
+                                                                            <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" value="Email id" required="" maxlength="50">
+                                                                            <div class="input-group-append bg-white">
+                                                                                <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr class="sortable-group row_3">
+                                                                    <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
+                                                                        <input type="hidden" class="sort" name="field_3[sort]" value="3">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="checkbox" checked class="InputQuestion_Required" name="field_3[required]">
+                                                                    </td>
+                                                                    <td>
+                                                                        {{-- <small class="type">Short Answer</small> --}}
+                                                                        <input type="text" readonly class="small_info InputQuestionType" name="field_3[question_type]" value="ShortAnswer" required>
+                                                                        <div class="input-group input-col">
+                                                                            <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
+                                                                            <div class="input-group-append bg-white">
+                                                                                <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                        <div class="dropdown mt-3">
+                                                            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                + Add question
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle"></i> Short Answer</a>
+                                                                <a class="dropdown-item" href="#" onclick="add_form_field('multiple')"> <i class="far fa-dot-circle"></i> Multiple Choice</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             {{--  --}}
-                            <div class="col">
-                                <div class="card border mb-4 h-100">
-                                    <div class="card-header bg-primary"> Form Settings</div>
-                                    <div class="card-body">
-                                        <div class="form-group row">
 
-                                            <div class="col-12 SelectFormType">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" checked>
-                                                    <label class="form-check-label" for="form_1"> Create New Form </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <table class="table table-bordered ">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col" width="10px">#</th>
-                                                            <th scope="col" >Required</th>
-                                                            <th scope="col">Fileds</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="sortable" data-row='3'>
-                                                        <tr class="sortable-group row_1 ">
-                                                            <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
-                                                                <input type="hidden" class="sort" name="field_1[sort]" value="1">
-                                                            </td>
-                                                            <td>
-                                                                <input type="checkbox" checked class="InputQuestion_Required" name="field_1[required]">
-                                                            </td>
-                                                            <td>
-                                                                {{-- <small class="type">Short Answer</small> --}}
-                                                                <input type="text" readonly class="small_info InputQuestionType" name="field_1[question_type]" value="ShortAnswer" required>
-                                                                <div class="input-group input-col">
-                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[question_text]" value="Full Name" required="" maxlength="50">
-                                                                    <div class="input-group-append bg-white">
-                                                                        <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
-                                                                        </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="sortable-group row_2">
-                                                            <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
-                                                                <input type="hidden" class="sort" name="field_2[sort]" value="2">
-                                                            </td>
-                                                            <td>
-                                                                <input type="checkbox" checked class="InputQuestion_Required" name="field_2[required]">
-                                                            </td>
-                                                            <td>
-                                                                {{-- <small class="type">Short Answer</small> --}}
-                                                                <input type="text" readonly class="small_info InputQuestionType" name="field_2[question_type]" value="ShortAnswer" required>
-                                                                <div class="input-group input-col">
-                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_2[question_text]" value="Email id" required="" maxlength="50">
-                                                                    <div class="input-group-append bg-white">
-                                                                        <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                        <tr class="sortable-group row_3">
-                                                            <td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
-                                                                <input type="hidden" class="sort" name="field_3[sort]" value="3">
-                                                            </td>
-                                                            <td>
-                                                                <input type="checkbox" checked class="InputQuestion_Required" name="field_3[required]">
-                                                            </td>
-                                                            <td>
-                                                                {{-- <small class="type">Short Answer</small> --}}
-                                                                <input type="text" readonly class="small_info InputQuestionType" name="field_3[question_type]" value="ShortAnswer" required>
-                                                                <div class="input-group input-col">
-                                                                    <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
-                                                                    <div class="input-group-append bg-white">
-                                                                        <div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
-                                                                    </div>
-                                                                </div>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-
-                                                <div class="dropdown mt-3">
-                                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                        + Add question
-                                                    </button>
-                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                        <a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle"></i> Short Answer</a>
-                                                        <a class="dropdown-item" href="#" onclick="add_form_field('multiple')"> <i class="far fa-dot-circle"></i> Multiple Choice</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                             {{--  --}}
                             <div class="col" id="formPreview">
                                 <div class="card border  mb-4">
@@ -252,68 +395,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row" id="optional_block" style="display: none">
-                            <div class="col-12 mt-3">
-                                <div class="card border mb-4 ">
-                                    <div class="card-header bg-light">Add a few creatives relevant to this campaign (Optional)</div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-lg-3">
-                                                <div>
-                                                    <label class="col-form-label" for="WebsiteInput">Your Website (Optional)</label>
-                                                    <input type="text" class="form-control" id="WebsiteInput" name="website_url" placeholder="Your Website"  maxlength="255">
-                                                </div>
-                                                <div>
-                                                    <label class="col-form-label" for="SocialInput">Social Media URL (Optional)</label>
-                                                    <input type="text" class="form-control" id="SocialInput" name="social_media_page" placeholder="Social Media URL"  maxlength="255">
-                                                </div>
 
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <label class="col-form-label" >Youtube Video Url (Optional)  </label>
-                                                <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
-                                                <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2"  maxlength="255">
-                                                <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3"  maxlength="255">
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <label class="col-form-label" >Upload upto 3 images (Optional)</label>
-                                                <div class="input-col d-flex  flex-wrap">
-                                                    <div class="upload-box grey">
-                                                        <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                        <label for="image_1_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
-                                                    </div>
-                                                    <div id="image_1_img_preview" class="img_preview_box">
-                                                        <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
-                                                        <img id="image_1_img" src="#" alt="image_1_img" style="display: none" />
-                                                    </div>
-                                                </div>
-                                                <div class="input-col d-flex  flex-wrap">
-                                                    <div class="upload-box grey  my-2">
-                                                        <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                        <label for="image_2_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
-                                                    </div>
-                                                    <div id="image_2_img_preview" class="img_preview_box">
-                                                        <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
-                                                        <img id="image_2_img" src="#" alt="image_2_img" style="display: none" />
-                                                    </div>
-                                                </div>
-                                                <div class="input-col d-flex ">
-                                                    <div class="upload-box grey">
-                                                        <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                        <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 3</span></label>
-                                                    </div>
-                                                    <div id="image_3_img_preview" class="img_preview_box">
-                                                        <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
-                                                        <img id="image_3_img" src="#" alt="image_3_img" style="display: none" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
                         <div class="row">
                             <div class="col-12 mt-3">
                                 <button id="submit" class="btn btn--primary btn-xl mt-3 mb-5">Create Campaign</button>
@@ -342,9 +424,6 @@
 
     <link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
     <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
-
-
-
     <script>
         'use strict';
         $('.toggle-status').change(function () {
@@ -390,6 +469,10 @@
             var upload_box = $(this).parent().prev('.upload-box');
             $('.inputfile', upload_box).val("");
         });
+
+        function show_next(id, event){
+
+        }
 
         $('table').on('click', '.del-row', function(e){
             var table = $('#sortable');
@@ -476,12 +559,9 @@
                 html +='</td>';
                 html +='<td>';
                 if(type == 'multiple'){
-                   // html +=' <small class="type">Multiple Choice</small>';
                     html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="MultipleChoice" required>';
                 }else{
-                  //  html +=' <small class="type">Short Answer</small>';
                     html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="ShortAnswer" required>';
-
                 }
                 html +='<div class="input-group input-col">';
                 html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required maxlength="50">';
@@ -510,103 +590,6 @@
             }
         }
 
-
-        // $('body').on('click', '.editcampaign, .duplicatecampaign', function (e) {
-        //     e.preventDefault();
-        //     var typp=$(this).data('type');
-        //     reset_campaign_create_form();
-        //     $('#campaign_createModalLabel').html('Edit Campaign');
-        //     campaign_create_modal.modal('show');
-        //     var campaign_id = $(this).attr('data-id');
-        //     // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
-        //     // url = url.replace(':campaign_id', campaign_id);
-        //     // url =  "/advertiser/campaigns/edit/"+ campaign_id;
-        //     var url = $(this).attr('href');
-        //     $.get(url, function (data) {
-        //         $("#campaign_form").find("#submit").text('Save Campaign');
-        //         $('#input_campaign_id').val(campaign_id);
-
-        //         $("input[name='name']").val(data.name);
-        //         $("input[name='start_date']").val(data.start_date);
-        //         $("input[name='end_date']").val(data.end_date);
-        //         if (data.end_date !== null) {
-        //             $('#SelectEndDateSelect').val("SetEndDate").change();
-        //         } else {
-        //             $('#SelectEndDateSelect').val("NoEndDate").change();
-        //         }
-        //         $("input[name='daily_budget']").val(data.daily_budget);
-        //         $("#TargetCountryInput").val(data.target_country).change();
-        //         $("input[name='target_city']").val(data.target_city);
-        //         $("#TargetingTypeInput").val(data.target_type).change();
-        //         keywords_Input.tagsinput('add', data.keywords);
-        //         $("input[name='service_sell_buy']").val(data.service_sell_buy);
-        //         $("input[name='website_url']").val(data.website_url);
-        //         $("input[name='social_media_page']").val(data.social_media_page);
-        //         $("input[name=form_id]").prop("disabled", true);
-        //         $("input[name=form_id][value=" + data.form_id + "]").prop('checked', true).prop("disabled", false);
-        //         $("#CreateFormModal_btn").hide();
-        //         /// target_placements_Input
-        //         $.each(data.target_placements, function (idx, val) {
-        //             $("select#target_placements_Input option[value='" + val + "']").prop("selected", true);
-        //         });
-        //         $.each(data.target_categories, function (idx, val) {
-        //             $("select#target_categories_Input option[value='" + val + "']").prop("selected", true);
-        //         });
-
-        //          if(data.approve==1){
-        //              $("#StartDate_input").prop('readonly',true);
-        //              $("#StartDate_input").css('pointer-events','none');
-        //              $("#TargetCountryInput").css('pointer-events','none');
-        //              $("#TargetingTypeInput").css('pointer-events','none');
-        //              $("#target_placements_Input").css('pointer-events','none');
-        //              $(".bootstrap-tagsinput").css('pointer-events','none');
-        //              $("#target_categories_Input").css('pointer-events','none');
-        //            //  $("#formOptions").css('pointer-events',);
-        //              $("#ServiceSellBuyInput").css('pointer-events','none');
-        //              $("#WebsiteInput").css('pointer-events','none');
-        //              $("#SocialInput").css('pointer-events','none');
-        //          }else{
-        //                $("#StartDate_input").prop('readonly',false);
-        //              $("#StartDate_input").css('pointer-events','unset');
-        //              $("#TargetCountryInput").css('pointer-events','unset');
-        //              $("#TargetingTypeInput").css('pointer-events','unset');
-        //              $("#target_placements_Input").css('pointer-events','unset');
-        //              $(".bootstrap-tagsinput").css('pointer-events','unset');
-        //              $("#target_categories_Input").css('pointer-events','unset');
-        //              $("#formOptions").css('pointer-events','unset');
-        //              $("#ServiceSellBuyInput").css('pointer-events','unset');
-        //              $("#WebsiteInput").css('pointer-events','unset');
-        //              $("#SocialInput").css('pointer-events','unset');
-        //          }
-
-        //          if(typp=="duplicate"){
-        //             $("#campaign_form").find("#submit").text('Create Campaign');
-        //          $("input[name='name']").val(data.name+'-copy');
-        //          $('#input_campaign_id').val('');
-        //          $("#campaign_createModalLabel").text('Duplicate Campaign');
-        //          $("#StartDate_input").val('{{ date("Y-m-d")}}');
-        //          $("#SelectEndDateSelect").val('NoEndDate');
-        //          $("#EndDate_input").hide();
-        //          $("#StartDate_input").prop('readonly',false);
-        //              $("#StartDate_input").css('pointer-events','unset');
-        //              $("#TargetCountryInput").css('pointer-events','unset');
-        //              $("#TargetingTypeInput").css('pointer-events','unset');
-        //              $("#target_placements_Input").css('pointer-events','unset');
-        //              $(".bootstrap-tagsinput").css('pointer-events','unset');
-        //              $("#target_categories_Input").css('pointer-events','unset');
-        //              $("#formOptions").css('pointer-events','unset');
-        //              $("#ServiceSellBuyInput").css('pointer-events','unset');
-        //              $("#WebsiteInput").css('pointer-events','unset');
-        //              $("#SocialInput").css('pointer-events','unset');
-
-
-        //        }else{
-        //         $("#campaign_createModalLabel").text('Edit Campaign');
-        //        }
-
-        //     })
-        // });
-
         function reset_campaign_create_form() {
             $('#campaign_createModalLabel').html('Create Campaign');
             $('#campaign_create_modal form').trigger("reset");
@@ -620,29 +603,28 @@
                     visible: true,
                     orderable: false
                 },
-                    {
-                        targets: 2,
-                        searchable: false,
-                        orderable: false
-                    },
-                    {
-                        targets: 11,
-                        searchable: false,
-                        visible: true,
-                        orderable: false
-                    },
-                    {
-                        targets: [7, 8, 9, 10],
-                        className: "td-small",
-                        width: "10px"
-                    },
-                    {
-                        targets: '_all',
-                        visible: true
-                    }
+                {
+                    targets: 2,
+                    searchable: false,
+                    orderable: false
+                },
+                {
+                    targets: 11,
+                    searchable: false,
+                    visible: true,
+                    orderable: false
+                },
+                {
+                    targets: [7, 8, 9, 10],
+                    className: "td-small",
+                    width: "10px"
+                },
+                {
+                    targets: '_all',
+                    visible: true
+                }
                 ]
             });
-            // MyDatatable.columns.adjust().draw();
             $("#sortable").sortable({
                 handle: ".handle",
                 stop: function (event, ui) {
@@ -738,6 +720,9 @@
 @push('style')
 
 <style>
+    .gray_title{  background: #c3c3c3; padding: 10px;  color: #707070;  margin: 15px -14px 0px -15px; }
+    .gray_title.top{  margin-top: -8px; }
+
     .btn--primary {  background-color: #1A273A !important; }
     .btn--primary:hover {  background-color: #1361b2 !important; }
     .small, small { font-size: 90%; }
@@ -851,8 +836,9 @@
     table th:last-child { text-align: left; }
     .input-group-append.bg-white .input-group-text{ background-color: transparent!important; border: 0px!important; padding: 0 0 0 9px;     font-size: 1.4rem;  }
     .input-group.option .input-group-text{ background-color: transparent!important; border: 0px!important; padding: 0 0 0 9px;     font-size: 1.4rem;  }
-
-
+    .bg-none{ background-color: transparent!important;  }
+    .input-group-append.bg-none .input-group-text{  background-color: transparent!important;  border: none!important; font-size: 1.4rem;  }
+    #campaign_create_modal  .input-group-text {  width: 35px; }
     #formPreview{
         width: 370px;
         max-width: 370px;

@@ -46,8 +46,14 @@ class CampaignsdemoController extends Controller
         $campaign_forms->form_name     = $request->campaign_name.'-'. $request->company_name;
         $campaign_forms->company_name  = $request->company_name;
         $campaign_forms->company_logo  = $request->company_logo;
-        $campaign_forms->form_title    = $request->company_name;
-        $campaign_forms->offer_desc    = $request->company_name;
+        $campaign_forms->form_name    = $request->form_name;
+
+        $campaign_forms->title    = $request->form_title;
+        $campaign_forms->form_desc    = $request->form_desc;
+
+        $campaign_forms->form_title    = $request->form_title[1];
+        $campaign_forms->offer_desc    = $request->form_desc[1];
+
         $campaign_forms->youtube_1     = $request->youtube_1;
         $campaign_forms->youtube_2     = $request->youtube_2;
         $campaign_forms->youtube_3     = $request->youtube_3;
