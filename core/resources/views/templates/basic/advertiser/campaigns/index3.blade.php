@@ -390,7 +390,7 @@
                                 <div class="card border  mb-4">
                                     <div class="card-header gray"> Form Preview</div>
                                     <div class="card-body">
-                                        <iframe id="leadpaidform_1" src="https://leadspaid.com/campaign_form/1/1" referrerpolicy="unsafe-url" sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="300px" height="600" style="border: 1px solid black;"></iframe>
+
                                     </div>
                                 </div>
                             </div>
