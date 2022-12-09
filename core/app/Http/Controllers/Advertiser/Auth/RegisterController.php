@@ -155,7 +155,7 @@ class RegisterController extends Controller
         $urll= url('');
         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
-        send_email_adv($user, 'EVER_CODE',$link);
+        //send_email_adv($user, 'EVER_CODE',$link);
         $page_title = "Thanks email";
          $useremail=$request->email;
         return view($this->activeTemplate . 'thanks-email', compact('page_title','useremail'));
