@@ -420,7 +420,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/forms', 'FormsController@index')->name('forms.index');
         Route::post('/forms/create', 'FormsController@store')->name('forms.store');
 
-        Route::get('/campaigns2', 'CampaignsdemoController@index')->name('campaigns.index2');
+        Route::get('campaigns/style/{style}', 'CampaignsdemoController@index')->name('campaigns.style');
         Route::post('/campaigns2/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
 
         //price plans

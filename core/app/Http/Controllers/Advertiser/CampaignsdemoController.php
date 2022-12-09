@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CampaignsdemoController extends Controller
 {
-    public function index(Request $request)
+    public function index($style)
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
         $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->get();
@@ -23,7 +23,7 @@ class CampaignsdemoController extends Controller
         $countries = Country::all();
         $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
-        return view(activeTemplate() . 'advertiser.campaigns.index2', compact('campaigns', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message'));
+        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message'));
     }
 
     public function store(Request $request)
