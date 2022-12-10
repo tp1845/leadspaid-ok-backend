@@ -53,27 +53,29 @@
                         </ul>
                     </div>
                 </li> --}}
-
-                <li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.index')}}">
-                    <a href="{{route('advertiser.campaigns.index')}}" class="nav-link" >
+                <li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.style', 3)}}">
+                    <a href="{{route('advertiser.campaigns.style', 3)}}" class="nav-link" >
                         <i class="menu-icon las la-money-bill"></i>
                         <span class="menu-title">@lang('Campaigns') </span>
                     </a>
                 </li>
 
+
+
 				<li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.style', 2)}}">
                     <a href="{{route('advertiser.campaigns.style', 2)}}" class="nav-link" >
                         <i class="menu-icon las la-money-bill"></i>
-                        <span class="menu-title">@lang('Campaigns2') </span>
+                        <span class="menu-title">@lang('Campaigns v2') </span>
                     </a>
                 </li>
 
-				<li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.style', 3)}}">
-                    <a href="{{route('advertiser.campaigns.style', 3)}}" class="nav-link" >
+                <li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.index')}}">
+                    <a href="{{route('advertiser.campaigns.index')}}" class="nav-link" >
                         <i class="menu-icon las la-money-bill"></i>
-                        <span class="menu-title">@lang('Campaigns3') </span>
+                        <span class="menu-title">@lang('Campaigns Old') </span>
                     </a>
                 </li>
+
 
                 <li class="sidebar-menu-item  {{menuActive('advertiser.forms.index')}}">
                     <a href="{{route('advertiser.forms.index')}}" class="nav-link" >
