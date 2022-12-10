@@ -157,7 +157,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="card border  h-100">
-                                    <div class="card-header bg-primary">  <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"> </div>
+                                    <div class="card-header bg-primary"> <div class="input-col"> <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"></div> </div>
                                     <div class="card-body p-0 ">
                                         <div class="row m-0">
                                             <div class="col-4 py-2 bg-ddd h-100">
@@ -301,6 +301,9 @@
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <h5 class="my-2">Leads Fileds Required</h5>
+                                                        <div class="input-col">
+                                                            <input type="text"  name="min_row_validation" style=" border: none; height: 1px;  padding: 0; display: block; opacity: 0;"  >
+                                                        </div>
                                                         <table class="table table-bordered ">
                                                             <thead>
                                                                 <tr>
@@ -390,7 +393,7 @@
                                 <div class="card border  mb-4">
                                     <div class="card-header gray"> Form Preview</div>
                                     <div class="card-body">
-
+                                        <iframe id="leadpaidform_1" src="https://leadspaid.com/campaign_form/1/1" referrerpolicy="unsafe-url" sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="300px" height="600" style="border: 1px solid black;"></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -470,8 +473,9 @@
             $('.inputfile', upload_box).val("");
         });
 
-        function show_next(id, event){
-
+        function show_next(id , event){
+            $(id).show();
+            event.target.style.display = 'none';
         }
 
         $('table').on('click', '.del-row', function(e){
@@ -529,11 +533,11 @@
             $('#sortable .sortable-group').each(function (k, el) {
                 $(el).removeClass (function (index, className) { return (className.match (/(^|\s)row_\S+/g) || []).join(' ');  });
                 $(el).addClass('row_'+i);
-                if(i <=3){
+               // if(i <=3){
                     $(el).find(".InputQuestion_text").prop("required", true);
-                }else{
-                    $(el).find(".InputQuestion_text").prop("required", false).removeClass('is-invalid');
-                }
+               // }else{
+               //     $(el).find(".InputQuestion_text").prop("required", false).removeClass('is-invalid');
+               // }
                 $(el).find("input.sort").val(i).attr('name', 'field_' + i + '[sort]');
                 $(el).find(".InputQuestionType").attr('name', 'field_' + i + '[question_type]');
                 $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
@@ -681,10 +685,23 @@
             "Enter Correct value. "
         );
 
+        $.validator.addMethod(
+            "check_row",
+            function(value, element) {
+                 if( $('#sortable .sortable-group').length >= 3 ){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            "Minimum 3 fileds are requried"
+        );
+
 
         $("#campaign_form").validate({
             rules: {
                 name: { minlength: 3 },
+                min_row_validation:{  check_row: true },
                 daily_budget: { required: true, money: true,min: 50,max: 1000 },
                 target_cost: { required: false, money: true,min: 10,max: 1000 },
                 website_url: { minlength: 7 },
@@ -702,17 +719,6 @@
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
-            },
-            submitHandler: function (form) {
-                if( $('#sortable .sortable-group').length >= 3 ){
-                    //form.submit();
-                    return true;
-
-                }else{
-                    Toast('red', 'Minimum 3 form fields are required');
-                    return false;
-
-                }
             }
         });
     </script>
@@ -722,7 +728,6 @@
 <style>
     .gray_title{  background: #c3c3c3; padding: 10px;  color: #707070;  margin: 15px -14px 0px -15px; }
     .gray_title.top{  margin-top: -8px; }
-
     .btn--primary {  background-color: #1A273A !important; }
     .btn--primary:hover {  background-color: #1361b2 !important; }
     .small, small { font-size: 90%; }
@@ -914,7 +919,9 @@
             max-width: 104.5rem !important;
         }
         .modal-header span{ color: #000!important; }
-        .modal-header .error.invalid-feedback{ color: #ff9e9e!important; }
+        .modal-header .error.invalid-feedback,
+        .bg-primary .error.invalid-feedback
+        { color: #ff9e9e!important; font-size: 13px!important; }
         #CreateFormModal {
             background-color: #00000080;
         }
@@ -1127,7 +1134,3 @@
     .SelectFormType input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
 @endpush
-
-
-
-

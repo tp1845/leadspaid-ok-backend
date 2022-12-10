@@ -64,7 +64,7 @@ class CampaignsdemoController extends Controller
         if(isset($request->form_title[1])){
             $campaign_forms->form_title    = $request->form_title[1];
         }
-        if(isset($request->form_desc[1])){
+        if(isset($request->form_title[1])){
          $campaign_forms->offer_desc    = $request->form_desc[1];
         }
 

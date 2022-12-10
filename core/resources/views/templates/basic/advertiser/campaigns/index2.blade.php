@@ -162,6 +162,9 @@
 
                                         <div class="row">
                                             <div class="col-12">
+                                                <div class="input-col">
+                                                    <input type="text"  name="min_row_validation" style=" border: none; height: 1px;  padding: 0; display: block; opacity: 0;"  >
+                                                </div>
                                                 <table class="table table-bordered ">
                                                     <thead>
                                                         <tr>
@@ -699,10 +702,23 @@
             "Enter Correct value. "
         );
 
+        $.validator.addMethod(
+            "check_row",
+            function(value, element) {
+                 if( $('#sortable .sortable-group').length >= 3 ){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            "Minimum 3 fileds are requried"
+        );
+
 
         $("#campaign_form").validate({
             rules: {
                 name: { minlength: 3 },
+                min_row_validation:{  check_row: true },
                 daily_budget: { required: true, money: true,min: 50,max: 1000 },
                 target_cost: { required: false, money: true,min: 10,max: 1000 },
                 website_url: { minlength: 7 },
@@ -720,17 +736,6 @@
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
-            },
-            submitHandler: function (form) {
-                if( $('#sortable .sortable-group').length >= 3 ){
-                    //form.submit();
-                    return true;
-
-                }else{
-                    Toast('red', 'Minimum 3 form fields are required');
-                    return false;
-
-                }
             }
         });
     </script>
