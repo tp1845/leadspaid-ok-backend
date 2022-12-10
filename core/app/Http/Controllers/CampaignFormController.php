@@ -78,7 +78,7 @@ class CampaignFormController extends Controller
             if($domain_data) {
             $publisher_keywords = $domain_data->keywords;
             $query = campaigns::whereRaw("find_in_set('".$publisher_keywords[0]."',keywords)");
-            if($publisher_keywords){
+            if(is_array($publisher_keywords)){
                 foreach($publisher_keywords as $keyword){
                     $query->orWhereRaw("find_in_set('".$keyword."',keywords)");
                 }
