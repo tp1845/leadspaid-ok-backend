@@ -197,7 +197,7 @@
                     }
                 ]
             });
-            $('td').on("blur","input.publisher_url",function(){
+            $("body").on("blur", "td input.publisher_url", function() {
                 var url = [];
                 var campaign_id =  $(this).attr('data-cid');
                 var publisher_id =  {{Auth::guard('publisher')->user()->id}};
@@ -208,8 +208,7 @@
                       formData['url'][index++] = el.value;
                     }
                 });
-                //var PostURL = "{{route('publisher.campaigns.url_save')}}" ;
-                var PostURL =  "/publisher/campaigns/campaign-url";
+                var PostURL = "{{route('publisher.campaigns.url_save')}}";
                 $.ajax({
                     url: PostURL,
                     data: formData,
@@ -230,8 +229,7 @@
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                       // url:  "{{route('admin.campaigns.approval')}}" ,
-                     url: "/admin/campaigns/approval",
+                    url:  "{{route('admin.campaigns.approval')}}",
                     data: { 'approval': approval, 'campaign_id': campaign_id },
                     success: function(data) {
                         if (data.success) {
