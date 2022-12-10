@@ -13,7 +13,7 @@ class CampaignFormController extends Controller
 {
     public function campaign_form_view ($publisher_id, $style, $campaign_id=false){
         $page_title ='';
-        $style = $style>3?1:$style;
+        $style = $style>4?1:$style;
         return view(activeTemplate() . 'campaign_form.Style'.$style.'View', compact('publisher_id',  'campaign_id',  'page_title' ));
     }
     public function campaign_form_save(Request $request){

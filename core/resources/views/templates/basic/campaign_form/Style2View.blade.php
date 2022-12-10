@@ -12,6 +12,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<style>
+   #loadMedia {    display: flex;
+        flex-direction: column;
+        justify-content: center;}
+</style>
 <style media="screen and (min-width: 992px)">
     .container{ max-width: 1140px; padding: 0}
     #LeadForm{
@@ -90,11 +95,95 @@
     .alert{ border-radius: 0; }
 </style>
 
+<style media="screen and (min-width: 700px) and (max-width: 991px) ">
+    .container{ max-width: 700px; width: 100%; padding: 0; }
+    .col-md-7 {
+    flex: 0 0 auto;
+    width: 58.33333333%;
+    }
+    .col-md-5 {
+        flex: 0 0 auto;
+        width: 41.66666667%;
+    }
+
+    #LeadForm{
+        background: #fff;
+        padding: 15px 15px 30px 15px;
+        border: 1px solid #00297050;
+    }
+    .form-title{ text-transform: uppercase; font-weight: bold; font-size: 24px; text-align: center }
+    .form-subtitle{ text-align: center}
+    .video{ border: 3px solid #c38d30; box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 50%);}
+    iframe{ min-height: 460px; }
+    label {
+        display: none;
+        color: #000;
+        max-width: 100%;
+        font-weight: bold;
+        font-size: 15px;
+    }
+    .form-control, .form-select {
+        color: #222;
+        border: 1px solid #9e670b;
+        margin-bottom: 15px!important;
+        border-radius: 0;
+        font-size: 16px;
+        line-height: 18px;
+        padding: 9px 9px 9px;
+        height: 42px;
+    }
+    .form-control { background: #ffffff; }
+    .form-select{ }
+    .form-btn {
+        min-width: 230px;
+        padding: 10px 25px;
+        line-height: 23px;
+        border-radius: 3px;
+        box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 50%);
+        font-size: 18px!important;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #fff;
+        background-color: #000;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: 2px;
+        position: relative;
+        outline: 0!important;
+        font-weight: 700;
+        background: #e80002;
+        border: 3px solid #e80002;
+    }
+
+    .policy {
+      margin: 5px 0 0 0;
+      padding: 0;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+      width: 100%;
+    }
+    .logo{
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      font-size: 12px;
+      display: flex;
+      align-content: center;
+      flex-direction: row;
+      align-items: center;
+      gap: 5px;
+      justify-content: center;
+    }
+
+    .logo img{ display: inline-block; width: 120px; }
+    .alert{ border-radius: 0; }
+</style>
 
 
-
-<style media="screen and (max-width: 991px)">
-         body {
+<style media="screen and (max-width: 700px)">
+    body {
       background-color: #fff;
       margin: 0;
       padding: 0;
@@ -290,7 +379,7 @@
         background-color: #f8d7da;
         border-color: #f5c2c7;
     }
-    </style>
+</style>
 
 </head>
 <body>
@@ -310,8 +399,8 @@
         <input type="hidden" name="utm_medium" id="utm_medium" value="0" >
         <input type="hidden" name="utm_campaign" id="utm_campaign" value="0" >
         <div class="row">
-            <div class="col-lg-4" id="loadMedia"></div>
-            <div class="col-lg-8">
+            <div class="col-md-7 col-lg-4" id="loadMedia"></div>
+            <div class="col-md-5 col-lg-8">
                 <div class="row" id="loadData">
 
                 </div>
@@ -362,8 +451,9 @@
     $('#utm_medium').val(utm_medium);
     $('#utm_campaign').val(utm_campaign);
    var website = $('#domain').val();
-    var publisher_id = {{$publisher_id}};
-    var campaign_id = {{$campaign_id?$campaign_id:0}};
+   website = 'sgpr.sg';
+   var publisher_id = {{$publisher_id}};
+   var campaign_id = {{$campaign_id?$campaign_id:0}};
     if(campaign_id){
         var actionUrl =  '{{url("/")}}/api/campaign_id_form/find/'+campaign_id+'/'+publisher_id;
         var formData = { 'campaign_id': campaign_id , 'publisher_id': publisher_id  };
@@ -371,6 +461,8 @@
         var actionUrl =  '{{url("/")}}/api/campaign_form/find/'+website+'/'+publisher_id;
         var formData = { 'website': website , 'publisher_id': publisher_id  };
     }
+
+
     $.ajax({
         type: "GET",
         dataType: "json",

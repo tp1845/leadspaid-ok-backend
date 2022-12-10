@@ -186,7 +186,7 @@
                                                    <option value="none">none</option>
                                                 <option value="google.com">google.com</option>
                                                 <option value="facebook.com">facebook.com</option>
-                                              
+
                                             </select>
                                         </div>
                                     </div>
@@ -398,7 +398,7 @@
                     </div>
                     <div class="card sidbar_preview">
 
-                  
+
       <div class="video">
         <iframe max-width="300px" max-height="600px" src="https://www.youtube.com/embed/X1QJGzvyoZI" title="YouTube video player"
           frameborder="0"
@@ -444,10 +444,10 @@
       <div class="form-row">
         <button type="submit" class="form-btn">Submit</button>
         <p class="policy">I agree to your privacy policy by submitting the form</p>
-        <p class="logo company_logo_t "><img src="{{ url('/')}}/assets/images/logo.png" alt="" class="company_logo_t2" > 
+        <p class="logo company_logo_t "><img src="{{ url('/')}}/assets/images/logo.png" alt="" class="company_logo_t2" >
             <span class="brandname_t"></span></p>
       </div>
-   
+
 </div>
                    </div>
 
@@ -615,7 +615,7 @@
                 $.each(data.target_categories, function (idx, val) {
                     $("select#target_categories_Input option[value='" + val + "']").prop("selected", true);
                 });
-                
+
                  if(data.approve==1){
                      $("#StartDate_input").prop('readonly',true);
                      $("#StartDate_input").css('pointer-events','none');
@@ -661,7 +661,7 @@
                      $("#ServiceSellBuyInput").css('pointer-events','unset');
                      $("#WebsiteInput").css('pointer-events','unset');
                      $("#SocialInput").css('pointer-events','unset');
- 
+
 
                }else{
                 $("#campaign_createModalLabel").text('Edit Campaign');
@@ -850,13 +850,13 @@
          function ValidURL(str) {
             var regex = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$(?:www\.)?/
             if (!regex.test(str)) {
-              
-                
+
+
             } else {
                $("#website_url").removeClass("is-invalid");
-               
 
-               
+
+
             }
         }
     </script>
@@ -902,17 +902,17 @@
                 end_date: { greaterThan: "#StartDate_input" },
                 daily_budget: {  required: true, money: true,min: 50},
                  service_sell_buy: {  minlength: 3 },
-           
+
 
             },messages: {
              daily_budget:'Daily Budget should be minimum $50',
              service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
-            
+
             }
         });
 
-      
-       
+
+
 
         $('[name="start_date"]').datepicker({
             dateFormat: 'mm/dd/yy',
@@ -965,7 +965,7 @@
            var name=$(this).val();
            $(".brandname_t").text(name);
         });
-       
+
        $("#FormTitleInput").on('keypress',function(){
           var name=$(this).val();
            $(".form-title").text(name);
@@ -979,31 +979,31 @@
         // for InputQuestion_text
         $(".InputQuestion_text").on('keypress',function(){
          if($("#InputQuestionType_1").val()=="ShortAnswer"){
-               
+
                  var input2=$(this).val();
                 var str='';
                 if($("#checkbox_field_1").is(':checked')){
                     str='*';
-                    
+
                 }
 
                   $("#InputText1").attr("placeholder",input2+' '+str);
-                     
+
                 }
         });
      $("#checkbox_field_1").click(function(){
-        
+
 
         if($(this).is(":checked")){
-            
+
          var InputText1=$("#InputText1").attr('placeholder');
            if(InputText1.indexOf('*') != -1){
                $("#InputText1").attr('placeholder',InputText1+'');
-               
+
            }else{
                 var ppp=InputText1.slice(0,-1);
              $("#InputText1").attr('placeholder',ppp+' *');
-                  
+
            }
         }
 
@@ -1016,18 +1016,18 @@
 
 
            $(".InputQuestion_text_field_2").on('keydown, keyup',function(){
-              setpreviewdata(2); 
+              setpreviewdata(2);
            });
               $(".InputQuestion_text_field_3").on('keydown, keyup',function(){
-                setpreviewdata(3); 
+                setpreviewdata(3);
                });
                $(".InputQuestion_text_field_4").on('keydown, keyup',function(){
-                setpreviewdata(4); 
+                setpreviewdata(4);
                });
                 $(".InputQuestion_text_field_5").on('keydown, keyup',function(){
-                setpreviewdata(5); 
+                setpreviewdata(5);
                });
-    
+
      function change_filed_type(id,val){
         console.log("id:",id);
         console.log("value:",val);
@@ -1039,29 +1039,29 @@
             $("#p"+id).find("input").remove();
             $("#p"+id).find("label").after('<select name="" class="form-select"></select>');
         }
-      
+
      }
 
      function setpreviewdata(id){
-           
+
         if($("#InputQuestionType_"+id).val()=="ShortAnswer"){
-               
+
                  var input2=$('.InputQuestion_text_field_'+id).val();
                 var str='';
                 if($("#checkbox_field_"+id).is(':checked')){
                     str='*';
-                    
+
                 }
 
                   $("#p"+id).find("input").attr("placeholder",input2+' '+str);
-                     
+
                 }else if( $("#InputQuestionType_"+id).val()=="MultipleChoice"){
-                   
-                  
+
+
                   var input2=$('.InputQuestion_text_field_'+id).val();
-                  var option='<option value="">'+input2+"</option>";                                  
+                  var option='<option value="">'+input2+"</option>";
                    $("#p"+id).find("select").find('option:first').text(input2);
-                } 
+                }
      }
 
   function appendoption(id,val){
@@ -1075,32 +1075,32 @@
 
 
      $("#checkbox_field_1").click(function(){
-        
+
 
         if($(this).is(":checked")){
-            
+
          var InputText1=$("#InputText1").attr('placeholder');
            if(InputText1.indexOf('*') != -1){
                $("#InputText1").attr('placeholder',InputText1+'');
-               
+
            }else{
                 var ppp=InputText1.slice(0,-1);
              $("#InputText1").attr('placeholder',ppp+' *');
-             
+
            }
         }else{
-           
+
             var InputText1=$("#InputText1").attr('placeholder');
             if(InputText1.indexOf('*') != -1){
                  var ppp=InputText1.slice(0,-1);
                $("#InputText1").attr('placeholder',ppp+'');
-               
+
            }else{
-              
+
              $("#InputText1").attr('placeholder',InputText1+' ');
-            
+
            }
-           
+
         }
 
 
@@ -1110,11 +1110,11 @@
 $(document).ready(()=>{
       $('#CompanyLogoInput').change(function(){
         const file = this.files[0];
-        
+
         if (file){
           let reader = new FileReader();
           reader.onload = function(event){
-           
+
             $('.company_logo_t2').attr('src', event.target.result);
           }
           reader.readAsDataURL(file);
@@ -1425,5 +1425,5 @@ $(document).ready(()=>{
     order: 5;
 }
     </style>
-    
+
 @endpush

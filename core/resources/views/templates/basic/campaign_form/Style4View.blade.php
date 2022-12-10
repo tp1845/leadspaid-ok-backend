@@ -15,6 +15,9 @@
 
 <style  media="screen and (min-width: 992px)">
     .container{ max-width: 1024px; padding: 0}
+    .col-lg-8 #loadMedia .heading{ display: none!important; }
+    .col-lg-4  .heading{ display: block!important; }
+    #loadMedia { display: flex; flex-direction: column; justify-content: center;}
     #LeadForm{
         padding: 5px;
         border: 1px solid #00297050;
@@ -110,9 +113,7 @@
     }
     .col-lg-8 #loadMedia .heading{ display: none!important; }
     .col-lg-4  .heading{ display: block!important; }
-    #loadMedia {    display: flex;
-    flex-direction: column;
-    justify-content: center;}
+    #loadMedia { display: flex; flex-direction: column; justify-content: center;}
     #LeadForm{
         padding: 5px;
         border: 1px solid #00297050;
