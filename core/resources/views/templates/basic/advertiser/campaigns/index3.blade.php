@@ -462,7 +462,7 @@
         $("select").change(function(){ show_optional_block() });
         function show_optional_block(){ $('#optional_block').show(); }
 
-        // form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; }}
+        form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; }}
         image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block";  }}
         image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block";  }}
         image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block";  }}
