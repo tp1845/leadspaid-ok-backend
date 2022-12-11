@@ -16,7 +16,7 @@ class CampaignsdemoController extends Controller
     public function index($style)
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
-        $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->get();
+        $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
 
         $last_campaign = campaigns::orderBy('id', 'desc')->first();
         if($last_campaign){
@@ -30,7 +30,6 @@ class CampaignsdemoController extends Controller
         $countries = Country::all();
         $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
-
 
         return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message'));
     }
@@ -113,7 +112,7 @@ class CampaignsdemoController extends Controller
                 $campaign = campaigns::findOrFail( $request->campaign_id);
             }else{
                 $campaign = new campaigns();
-                $campaign->status = 0;
+                $campaign->status = 1;
                 $campaign->approve =  0;
                 $campaign->delivery = 0;
             }
