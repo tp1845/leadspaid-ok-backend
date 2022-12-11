@@ -81,8 +81,8 @@
             <button type="button" class="close campaign_create_close"  data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
             <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
                 @csrf
-                <div class="modal-content h-100">
-                    <div class="modal-header bg-primary m-0">
+                <div class="modal-content h-100 ">
+                    <div class="modal-header bg-primary m-0 PageFormStyle">
                         <div class="w-100">
                         <div class="row">
                             <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required maxlength="30"></div>
@@ -126,7 +126,7 @@
                         <div id="error-message"></div>
                         <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
-                        <div class="row mb-3">
+                        <div class="row mb-3 PageFormStyle">
                             <div class="col d-flex SelectFormType">
                                 <div class="form-check mr-4">
                                     <input class="form-check-input" type="radio" name="SelectFormType" id="SelectFormType1" value="Create New Form" checked>
@@ -155,7 +155,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col">
+                            <div class="col PageFormStyle">
                                 <div class="card border  h-100">
                                     <div class="card-header bg-primary"> <div class="input-col"> <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"></div> </div>
                                     <div class="card-body p-0 ">
@@ -164,26 +164,26 @@
                                                 <div>
                                                     <h4 class="gray_title top"> Add Form Title & Description</h4>
                                                     <div>
-                                                        <label class="col-form-label" for="WebsiteInput">Form Title ( add upto 3 variations )</label>
+                                                        <label class="col-form-label" for="FormTitleInput_1">Form Title ( add upto 3 variations )</label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="FormTitleInput" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3">
+                                                                <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div id="form_title_2">
+                                                        <div id="form_title_2" style="display: none">
                                                             <div class="input-group input-col my-3">
-                                                                <input type="text" class="form-control" id="FormTitleInput" name="form_title[2]" placeholder="Form Title 2" required="" minlength="3">
+                                                                <input type="text" class="form-control" id="FormTitleInput_2" name="form_title[2]" placeholder="Form Title 2"  minlength="3">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div id="form_title_3">
+                                                        <div id="form_title_3" style="display: none">
                                                             <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="FormTitleInput" name="form_title[3]" placeholder="Form Title 3" required="" minlength="3">
+                                                                <input type="text" class="form-control" id="FormTitleInput_3" name="form_title[3]" placeholder="Form Title 3"   minlength="3">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> </div>
                                                                 </div>
@@ -193,23 +193,23 @@
                                                     <label class="col-form-label" for="form_desc_1_Input">Form Description  ( add upto 3 variations )</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required="" minlength="3">
+                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="FormDescription_2">
+                                                    <div id="FormDescription_2" style="display: none">
                                                         <div class="input-group input-col my-3">
-                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2" required="" minlength="3">
+                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2"  minlength="3">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="FormDescription_3">
+                                                    <div id="FormDescription_3" style="display: none">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3" required="" minlength="3">
+                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3"   minlength="3">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> </div>
                                                             </div>
@@ -226,8 +226,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div id="Youtube_2"  >
-
+                                                    <div id="Youtube_2" style="display: none" >
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2"  maxlength="255">
                                                             <div class="input-group-append bg-none">
@@ -235,8 +234,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div id="Youtube_3"  >
-
+                                                    <div id="Youtube_3" style="display: none" >
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3"  maxlength="255">
                                                             <div class="input-group-append bg-none">
@@ -249,7 +247,7 @@
                                                     <label class="col-form-label" >Upload upto 3 images (Optional)</label>
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col d-flex "  style="width: 88%;">
-                                                            <div class="upload-box grey">
+                                                            <div class="upload-box grey image">
                                                                 <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                                 <label for="image_1_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
                                                             </div>
@@ -263,9 +261,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="input-group input-col" id="upload_image_2" >
+                                                    <div class="input-group input-col" id="upload_image_2"  style="display: none">
                                                         <div class="input-col d-flex  flex-wrap"  style="width: 88%;">
-                                                            <div class="upload-box grey  my-2">
+                                                            <div class="upload-box grey image  my-2">
                                                                 <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                                                 <label for="image_2_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
                                                             </div>
@@ -279,11 +277,11 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="input-group input-col" id="upload_image_3"  >
+                                                    <div class="input-group input-col" id="upload_image_3" style="display: none">
                                                         <div class="input-col d-flex"  style="width: 88%;">
-                                                            <div class="upload-box grey">
-                                                                <input type="file" name="image_1" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                                <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
+                                                            <div class="upload-box grey image">
+                                                                <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+                                                                <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 3</span></label>
                                                             </div>
                                                             <div id="image_3_img_preview" class="img_preview_box">
                                                                 <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
@@ -375,7 +373,7 @@
                                                                 + Add question
                                                             </button>
                                                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                <a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle"></i> Short Answer</a>
+                                                                <a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle icon-Aa"></i> Short Answer</a>
                                                                 <a class="dropdown-item" href="#" onclick="add_form_field('multiple')"> <i class="far fa-dot-circle"></i> Multiple Choice</a>
                                                             </div>
                                                         </div>
@@ -393,7 +391,53 @@
                                 <div class="card border  mb-4">
                                     <div class="card-header gray"> Form Preview</div>
                                     <div class="card-body">
-                                        <iframe id="leadpaidform_1" src="https://leadspaid.com/campaign_form/1/1" referrerpolicy="unsafe-url" sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="300px" height="600" style="border: 1px solid black;"></iframe>
+                                        <div id="formPreviewBLock">
+                                            <div class="container">
+                                                <div class="loading" style="text-align: center; padding: 15px; display: none;">Loading...</div>
+                                                <form id="LeadForm" method="POST" action="#">
+                                                    <div id="loadData">
+                                                        <div class="video">
+                                                            <iframe src="https://www.youtube.com/embed/X1QJGzvyoZI" id="preview_iframe" frameborder="0" width="100%" allowfullscreen=""></iframe>
+                                                        </div>
+                                                        <h2 id="preview_form_title" class="form-title"></h2>
+                                                        <p  id="preview_form_sub_title"class="form-subtitle"> </p>
+                                                        <div class="form-row">
+                                                            <label for="preview_field_1" class="form-label">Full Name*</label>
+                                                            <input type="text" class="form-control" id="preview_field_1"  placeholder="Full Name*" readonly>
+                                                        </div>
+
+                                                        <div class="form-row">
+                                                            <label for="preview_field_2" class="form-label">Email id*</label>
+                                                            <input type="text" class="form-control" id="preview_field_2"  placeholder="Email id*" readonly>
+                                                        </div>
+
+                                                        <div class="form-row">
+                                                            <label for="preview_field_3" class="form-label">Phone Number*</label>
+                                                            <input type="text" class="form-control" id="preview_field_3"  placeholder="Phone Number*" readonly>
+                                                        </div>
+
+                                                        {{-- <div class="form-row">
+                                                            <label for="Input_field_4" class="form-label">Relationship to Singaporean/PR (Optional)*</label>
+                                                            <select class="form-select" id="Input_field_4" >
+                                                                <option selected="" value="" class="holder"> Relationship to Singaporean/PR (Optional)* </option>
+                                                                <option value="No Relationship">No Relationship</option>
+                                                                <option value="Spouse">Spouse</option>
+                                                                <option value="Child">Child</option>
+                                                                <option value="Aged Parent">Aged Parent</option>
+                                                            </select>
+                                                        </div> --}}
+
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
+                                                        <p class="policy">I agree to your privacy policy by submitting the form</p>
+                                                        <p class="logo"><img src="https://leadspaid.com/assets/images/campaign_forms/logo.png" alt="">
+                                                            <span> A1 Immigration Consultancy</span>
+                                                        </p>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -722,14 +766,42 @@
             }
         });
     </script>
+
+    <script>
+        $('.PageFormStyle').on('input', function() {
+            var youtube_1 = $('#Youtube_URL_1_Input').val();
+            var youtube_2 = $('#Youtube_URL_2_Input').val();
+            var youtube_4 = $('#Youtube_URL_3_Input').val();
+
+            var title_1 = $('#FormTitleInput_1').val();
+            var title_2 = $('#FormTitleInput_2').val();
+            var title_3 = $('#FormTitleInput_3').val();
+
+            var sub_title_1 = $('#form_desc_1_Input').val();
+            var sub_title_2 = $('#form_desc_2_Input').val();
+            var sub_title_3 = $('#form_desc_3_Input').val();
+
+            $('#preview_form_title').html(title_1);
+            $('#preview_form_sub_title').html(sub_title_1);
+            if(youtube_1){
+                $('#preview_iframe').attr('src', youtube_1);
+            }
+        });
+
+    </script>
 @endpush
 @push('style')
 
 <style>
+
+    .icon-Aa{
+        background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23231f20;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M8.58,31.22l-3.64,11H.25L12.17,7.17h5.47l12,35.09H24.77L21,31.22Zm11.51-3.54-3.44-10.1c-.78-2.29-1.3-4.37-1.82-6.4h-.11c-.52,2.08-1.09,4.22-1.77,6.35L9.52,27.68Z'/%3E%3Cpath class='cls-1' d='M49.33,36.22a34.76,34.76,0,0,0,.42,6H45.58l-.36-3.18h-.16a9.37,9.37,0,0,1-7.7,3.75c-5.1,0-7.71-3.59-7.71-7.24,0-6.09,5.42-9.42,15.15-9.37V25.7c0-2.08-.57-5.83-5.73-5.83a12.49,12.49,0,0,0-6.55,1.88l-1.05-3a15.62,15.62,0,0,1,8.28-2.24c7.71,0,9.58,5.26,9.58,10.31ZM44.9,29.4c-5-.11-10.67.78-10.67,5.67a4.05,4.05,0,0,0,4.32,4.37,6.28,6.28,0,0,0,6.1-4.21,5,5,0,0,0,.25-1.46Z'/%3E%3C/svg%3E");
+    }
+    .icon-Aa:before {  opacity: 0; }
     .gray_title{  background: #c3c3c3; padding: 10px;  color: #707070;  margin: 15px -14px 0px -15px; }
     .gray_title.top{  margin-top: -8px; }
-    .btn--primary {  background-color: #1A273A !important; }
-    .btn--primary:hover {  background-color: #1361b2 !important; }
+    .btn--primary {  background-color: #1361b2 !important; }
+    .btn--primary:hover {  background-color: #093463 !important; }
     .small, small { font-size: 90%; }
     table.dataTable thead tr { background-color: #1A273A; }
     .dataTables_paginate .pagination .page-item.active .page-link{
@@ -762,7 +834,8 @@
     .invalid-feedback { font-size: 90%!important;  }
     .input-col .invalid-feedback{ width: 100%; }
     #campaign_create_modal .campaign_create_close{ position: absolute; top: 0; left: -30px; width: 30px; height: 30px; background: #fff; opacity: 1; cursor: pointer; }
-    #campaign_create_modal .form-control, #campaign_create_modal .custom-select{
+
+    #campaign_create_modal .PageFormStyle .form-control, #campaign_create_modal .PageFormStyle .custom-select{
         border-radius: 0; background-color:#fff;
         font-size: 20px!important;
         font-weight: 300!important;
@@ -774,6 +847,7 @@
         padding: 10px 18px!important;
         height: auto;
     }
+
     #campaign_create_modal .modal-header .btn{
         background-color:#fff;
     }
@@ -816,8 +890,10 @@
         background-color: #75a4b8;
     }
 
-    #campaign_create_modal .upload-box.grey .inputfile-1 + label { background-color: #535353; color: #fff!important; }
+    #campaign_create_modal .upload-box.grey .inputfile-1 + label { background-color: #535353; color: #fff!important; width: 100% }
     #campaign_create_modal .upload-box.grey .inputfile-1 + label:hover { background-color: #000; color: #fff!important; }
+    #campaign_create_modal .upload-box.grey.image{ min-width: 213px;}
+    #campaign_create_modal .input-group .input-col.d-flex { flex: 1 0 0;}
 
     #campaign_create_modal .inputfile-1 + label svg {
         width: 1em;
@@ -1030,7 +1106,7 @@
       transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
 
-    .form-row .form-control {}
+
 
     .form-row .form-select {
       background-color: #fff;
@@ -1133,4 +1209,5 @@
     .SelectFormType label { font-size: 20px; }
     .SelectFormType input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
+    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css')}}">
 @endpush

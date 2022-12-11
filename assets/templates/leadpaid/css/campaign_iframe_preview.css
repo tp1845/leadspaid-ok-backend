@@ -1,0 +1,181 @@
+#formPreviewBLock {
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    color: #333;
+  }
+
+  #formPreviewBLock  * {
+    box-sizing: border-box;
+  }
+
+  #formPreviewBLock  .container {
+    width: 300px;
+    margin: 10px auto;
+    padding-top: 15px;
+    padding-bottom: 15px; 
+    background-color: #f4f4f4;
+  }
+
+  #formPreviewBLock  .video {
+    margin-bottom: 5px;
+    padding: 0 5px;
+  }
+
+  #formPreviewBLock .video iframe {
+    border: 1px solid #000;
+  }
+
+  #formPreviewBLock  .form-title {
+    text-align: center;
+    font-size: 25px;
+    font-weight: bold;
+    margin: 0 0 0 0;
+    padding: 0;
+  }
+
+  #formPreviewBLock   .form-subtitle {
+    text-align: center;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    padding: 0;
+  }
+
+  #formPreviewBLock  .form-row {
+    width: 100%;
+    margin-bottom: 8px;
+    padding: 0 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #formPreviewBLock   .form-row.form-check {
+    flex-direction: row;
+  }
+
+  #formPreviewBLock  .form-row .form-label {
+    display: none;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  #formPreviewBLock  .form-row .form-control,
+  #formPreviewBLock  .form-row .form-select {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.375rem 0.5rem;
+    font-size: .9rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 3px;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+
+ 
+
+  #formPreviewBLock  .form-row .form-select {
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 12px;
+  }
+
+  #formPreviewBLock  .form-row select:invalid,
+  #formPreviewBLock  .form-row select option:first-child {
+    color: gray !important;
+  }
+
+  #formPreviewBLock   .form-btn {
+    display: block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #fff;
+    background-color: #e80002;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 2px;
+    border: 0;
+  }
+
+  #formPreviewBLock  .policy {
+    margin: 5px 0 0 0;
+    padding: 0;
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    width: 100%;
+  }
+  #formPreviewBLock  .logo{
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    display: flex;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  #formPreviewBLock  .logo img{ display: inline-block; width: 120px; }
+
+  #formPreviewBLock  .form-row select:invalid,
+  #formPreviewBLock   .form-row select option:first-child {
+    color: gray !important;
+    font-size: 13px;
+  }
+
+  #formPreviewBLock  ::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: gray !important;
+    font-size: 13px;
+  }
+
+  #formPreviewBLock   :-moz-placeholder {
+    /* Mozilla Firefox 4 to 18 */
+    color: gray !important;
+    font-size: 13px;
+    opacity: 1;
+  }
+
+  #formPreviewBLock  ::-moz-placeholder {
+    /* Mozilla Firefox 19+ */
+    color: gray !important;
+    font-size: 13px;
+    opacity: 1;
+  }
+
+  #formPreviewBLock  :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: gray !important;
+    font-size: 13px;
+  }
+
+  #formPreviewBLock   ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: gray !important;
+    font-size: 13px;
+  }
+
+  #formPreviewBLock  ::placeholder {
+    /* Most modern browsers support this now. */
+    color: gray !important;
+    font-size: 13px;
+  }
+ 
