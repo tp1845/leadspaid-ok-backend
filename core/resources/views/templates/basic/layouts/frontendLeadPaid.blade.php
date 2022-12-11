@@ -9,7 +9,7 @@
       @endif
       @if(Route::current()->getName() == 'privacy_policy')
     <meta name="robots" content="noindex, nofollow">
-      @endif  
+      @endif
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
@@ -101,7 +101,7 @@
                  @elseif(Request::get('v') == 20)
                  <img src="{{asset('assets/templates/leadpaid/images/logo-20.png')}}" style="max-width: 250px" alt="site-logo">
                 @else
-                 <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
+                 <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}?v1" style="max-width: 250px" alt="site-logo">
                 @endif
                 </a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
