@@ -145,6 +145,9 @@ class RegisterController extends Controller
    
  public function register_advertiser(Request $request){ 
 
+    return "test";
+    die();
+
         event(new Registered($user = $this->create_adv($request->all())));
         $this->guard()->login($user);
         $code=[
@@ -153,11 +156,11 @@ class RegisterController extends Controller
         ];
         $useremail=$user->email;
         $urll= url('');
-        return $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
+         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
         send_email_adv($user, 'EVER_CODE',$link);
-       return $page_title = "Thanks email";
-       die('test');
+        $page_title = "Thanks email";
+
         return view($this->activeTemplate . 'thanks-email', compact('page_title','useremail'));
     }
 
