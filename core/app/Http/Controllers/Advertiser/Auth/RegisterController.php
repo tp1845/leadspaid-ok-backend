@@ -142,14 +142,10 @@ class RegisterController extends Controller
         return unserialize(base64_decode($data));
     }
 
-   
- public function register_advertiser(Request $request){ 
+    public function register_advertiser(Request $request){ 
 
         event(new Registered($user = $this->create_adv($request->all())));
-
-        print_r($user);
-        die('test');
-
+        die();
         $this->guard()->login($user);
         $code=[
             'code' =>verificationCode(6),
@@ -157,11 +153,10 @@ class RegisterController extends Controller
         ];
         $useremail=$user->email;
         $urll= url('');
-         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
+        $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
         send_email_adv($user, 'EVER_CODE',$link);
         $page_title = "Thanks email";
-
         return view($this->activeTemplate . 'thanks-email', compact('page_title','useremail'));
     }
 
@@ -194,6 +189,8 @@ class RegisterController extends Controller
         $adv->ts = 0;
         $adv->tv = 1;
         $adv->save();
+        return $adv;
+        die();
         $ip = $_SERVER["REMOTE_ADDR"];
         $exist = UserLogin::where('user_ip',$ip)->first();
         $userLogin = new UserLogin();
@@ -222,7 +219,6 @@ class RegisterController extends Controller
 
         return $adv;
     }
-
 
     public function user_varify(Request $request)
     {
