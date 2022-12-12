@@ -146,12 +146,16 @@ class RegisterController extends Controller
  public function register_advertiser(Request $request){ 
 
         event(new Registered($user = $this->create_adv($request->all())));
+
+        print_r($user);
+        die('test');
+
         $this->guard()->login($user);
         $code=[
             'code' =>verificationCode(6),
             'userid'=>$user->id
         ];
-        return $useremail=$user->email;
+        $useremail=$user->email;
         $urll= url('');
          $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
