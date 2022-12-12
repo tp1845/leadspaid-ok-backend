@@ -145,7 +145,6 @@ class RegisterController extends Controller
     public function register_advertiser(Request $request){ 
 
         event(new Registered($user = $this->create_adv($request->all())));
-        die();
         $this->guard()->login($user);
         $code=[
             'code' =>verificationCode(6),
@@ -189,8 +188,6 @@ class RegisterController extends Controller
         $adv->ts = 0;
         $adv->tv = 1;
         $adv->save();
-        return $adv;
-        die();
         $ip = $_SERVER["REMOTE_ADDR"];
         $exist = UserLogin::where('user_ip',$ip)->first();
         $userLogin = new UserLogin();
