@@ -31,7 +31,7 @@
                <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
             </div>
         </div>
-    <form id="form" class="form" name="form"  method="POST" action="{{route('register_adv')}}">
+    <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
         @csrf
         <div class="row">
             <div class="col-md-11 mx-auto">
