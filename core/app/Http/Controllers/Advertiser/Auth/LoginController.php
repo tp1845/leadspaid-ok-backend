@@ -70,8 +70,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $user = Advertiser::whereUsername($request->username)->first();     
-        $this->validateLogin($request);
-        die();
+       // $this->validateLogin($request);
         if(isset($user)&&$user->status == 2){
              $notify[]=['error','Sorry! You have\'ve been banned by Admin'];
              return back()->withNotify($notify);
@@ -115,8 +114,6 @@ class LoginController extends Controller
 
     protected function validateLogin(Request $request)
     {
-        return $this->username();
-        die();
         $customRecaptcha = \App\Extension::where('act', 'custom-captcha')->where('status', 1)->first();
         $validation_rule = [
             $this->username() => 'required|string',
