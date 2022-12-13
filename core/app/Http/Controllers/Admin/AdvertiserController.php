@@ -175,14 +175,21 @@ class AdvertiserController extends Controller
         return redirect()->back()->withNotify($notify);
     }
 
-    public function update_status(Request $request){
+     public function update_status(Request $request){
         $request->validate(['status' => 'required', 'id' => 'required' ]);
         $id = $request->id;
         $Adv = Advertiser::findOrFail($id);
         if($Adv){
+
+          //  if( $Adv->email_activated == 0){
+           //     send_email_adv_activated($Adv, 'EVER_CODE',$Adv->name);
+          // }  
+
             $Adv->status = $request->status;
+            //$Adv->email_activated = 1;
             $Adv->update();
         if( $request->status == 1){
+             send_email_adv_activated($Adv, 'EVER_CODE',$Adv->name);
             return response()->json(['success'=>true, 'message'=> 'Advertiser has been activated']);
         }else{
             return response()->json(['success'=>false, 'message'=> 'Advertiser has been deactivated']);
