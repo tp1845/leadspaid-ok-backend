@@ -65,15 +65,16 @@ class LoginController extends Controller
         return Auth::guard('advertiser');
     }
 
-     public function username()
+     public function usernamee()
     {
         return $this->username;
     }
 
     public function findUsername($login)
     {
-        $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-        return $fieldType;
+       echo $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+       die();
+     
     }
 
     public function login(Request $request)
@@ -127,7 +128,7 @@ class LoginController extends Controller
     {
         $customRecaptcha = \App\Extension::where('act', 'custom-captcha')->where('status', 1)->first();
         $validation_rule = [
-            $this->username() => 'required',
+            $this->usernamee() => 'required',
             'password' => 'required|string',
         ];
 
