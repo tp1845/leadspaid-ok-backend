@@ -31,6 +31,8 @@ class LoginController extends Controller
      */
     public $redirectTo = 'advertiser/dashboard';
 
+      protected $username;
+
     /**
      * Create a new controller instance.
      *
