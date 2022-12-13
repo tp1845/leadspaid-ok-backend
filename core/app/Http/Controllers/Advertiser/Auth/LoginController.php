@@ -71,6 +71,7 @@ class LoginController extends Controller
     {
         $user = Advertiser::whereUsername($request->username)->first();     
         $this->validateLogin($request);
+        die();
         if(isset($user)&&$user->status == 2){
              $notify[]=['error','Sorry! You have\'ve been banned by Admin'];
              return back()->withNotify($notify);
