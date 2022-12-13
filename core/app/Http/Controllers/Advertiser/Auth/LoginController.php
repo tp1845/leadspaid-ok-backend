@@ -39,6 +39,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('advertiser.guest')->except('logout');
+          $this->username = $this->findUsername();
     }
 
     /**
@@ -62,15 +63,22 @@ class LoginController extends Controller
         return Auth::guard('advertiser');
     }
 
-    public function username()
+     public function username()
     {
-        return 'username';
+        return $this->username;
+    }
+
+    public function findUsername( $login)
+    {
+        $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+        return $fieldType;
     }
 
     public function login(Request $request)
     {
+         $this->findUsername($request->username);   
         $user = Advertiser::whereUsername($request->username)->first();     
-       // $this->validateLogin($request);
+        $this->validateLogin($request);
         if(isset($user)&&$user->status == 2){
              $notify[]=['error','Sorry! You have\'ve been banned by Admin'];
              return back()->withNotify($notify);
@@ -116,7 +124,7 @@ class LoginController extends Controller
     {
         $customRecaptcha = \App\Extension::where('act', 'custom-captcha')->where('status', 1)->first();
         $validation_rule = [
-            $this->username() => 'required|string',
+            $this->username() => 'required|string|email',
             'password' => 'required|string',
         ];
 
