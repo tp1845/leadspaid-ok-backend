@@ -8,7 +8,7 @@
         
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls-1 mb-5">Thanks for verify your account. you account will activated soon</p>
+               <p class="Rg_advts_ttls-1 mb-5">Thank you for verifying your account. Your account will activated soon.</p>
             </div>
         </div>
            
