@@ -69,6 +69,8 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+            return $request;
+        die();
         $user = Advertiser::whereUsername($request->username)->first();     
         $this->validateLogin($request);
         if(isset($user)&&$user->status == 2){
