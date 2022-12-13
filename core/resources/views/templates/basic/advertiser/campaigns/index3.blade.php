@@ -474,8 +474,9 @@
         });
 
         var campaign_create_modal = $('#campaign_create_modal');
-        campaign_create_modal.on('hidden.bs.modal', function (event) { reset_campaign_create_form(); })
+        campaign_create_modal.on('hidden.bs.modal', function (event) { reset_campaign_create_form(); updateformpreview(); })
         $('.create-campaign-btn').on('click', function () {
+            updateformpreview();
             campaign_create_modal.modal('show');
             $("#campaign_form").find("#submit").text('Create Campaign');
         });
