@@ -512,14 +512,16 @@
             media.push({ id:'6', type : 'image', url : data.image_3 });
         }
         show_media = media[Math.floor(Math.random() * media.length)];
+        form_title = get_random_object(data.title, 1);
+        form_desc = get_random_object(data.form_desc, 1);
 
         $('#capf_id').attr('value', data.campaign_id +','+data.advertiser_id +','+publisher_id +','+data.id  );
         form = $('#LeadForm');
             t='';
             m='';
             m +='<div class="heading">';
-            if(data.form_title){ m +='<h2 class="form-title">'+data.form_title+'</h2>'; }
-            if(data.offer_desc){ m +='<p class="form-subtitle">'+data.offer_desc+'</p>'; }
+                if(form_title){ m +='<h2 class="form-title">'+form_title+'</h2>'; }
+                if(form_desc){ m +='<p class="form-subtitle">'+form_desc+'</p>'; }
             m +='</div>';
             if(show_media){
                 if(show_media.type == 'youtube'){
@@ -533,8 +535,8 @@
             }
 
             t +='<div class="heading d-none">';
-            if(data.form_title){ t +='<h2 class="form-title">'+data.form_title+'</h2>'; }
-            if(data.offer_desc){ t +='<p class="form-subtitle">'+data.offer_desc+'</p>'; }
+                if(form_title){ t +='<h2 class="form-title">'+form_title+'</h2>'; }
+                if(form_desc){ t +='<p class="form-subtitle">'+form_desc+'</p>'; }
             t +='</div>';
 
             for ($i = 1; $i < 6; $i++){
@@ -607,6 +609,13 @@
                 }
             });
     });
+
+    function get_random_object(object_data, min = 1){
+      $.each( object_data, function(key, value){ if (value === "" || value === null){ delete  object_data[key]; } });
+      var max = Object.keys(object_data).length;
+      var random = Math.floor(Math.random() * (max - min + 1)) + min;
+      return object_data[random];
+    }
     function getVideoId(url) {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
         const match = url?.match(regExp);

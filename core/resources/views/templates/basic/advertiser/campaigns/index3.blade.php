@@ -396,37 +396,15 @@
                                                 <div class="loading" style="text-align: center; padding: 15px; display: none;">Loading...</div>
                                                 <form id="LeadForm" method="POST" action="#">
                                                     <div id="loadData">
-                                                        <div class="video">
-                                                            <iframe src="https://www.youtube.com/embed/X1QJGzvyoZI" id="preview_iframe" frameborder="0" width="100%" allowfullscreen=""></iframe>
-                                                        </div>
+                                                        <div class="video" id="preview_media"> </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
                                                         <p  id="preview_form_sub_title"class="form-subtitle"> </p>
-                                                        <div class="form-row">
-                                                            <label for="preview_field_1" class="form-label">Full Name*</label>
-                                                            <input type="text" class="form-control" id="preview_field_1"  placeholder="Full Name*" readonly>
-                                                        </div>
-
-                                                        <div class="form-row">
-                                                            <label for="preview_field_2" class="form-label">Email id*</label>
-                                                            <input type="text" class="form-control" id="preview_field_2"  placeholder="Email id*" readonly>
-                                                        </div>
-
-                                                        <div class="form-row">
-                                                            <label for="preview_field_3" class="form-label">Phone Number*</label>
-                                                            <input type="text" class="form-control" id="preview_field_3"  placeholder="Phone Number*" readonly>
-                                                        </div>
-
-                                                        {{-- <div class="form-row">
-                                                            <label for="Input_field_4" class="form-label">Relationship to Singaporean/PR (Optional)*</label>
-                                                            <select class="form-select" id="Input_field_4" >
-                                                                <option selected="" value="" class="holder"> Relationship to Singaporean/PR (Optional)* </option>
-                                                                <option value="No Relationship">No Relationship</option>
-                                                                <option value="Spouse">Spouse</option>
-                                                                <option value="Child">Child</option>
-                                                                <option value="Aged Parent">Aged Parent</option>
-                                                            </select>
-                                                        </div> --}}
-
+                                                        <div class="form-row" id="preview_filed_1"> </div>
+                                                        <div class="form-row" id="preview_filed_2"> </div>
+                                                        <div class="form-row" id="preview_filed_3"> </div>
+                                                        <div class="form-row" id="preview_filed_4"> </div>
+                                                        <div class="form-row" id="preview_filed_5"> </div>
+                                                        <div class="form-row" id="preview_filed_6"> </div>
                                                     </div>
                                                     <div class="form-row">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
@@ -501,13 +479,10 @@
             campaign_create_modal.modal('show');
             $("#campaign_form").find("#submit").text('Create Campaign');
         });
-        $("input").keyup(function(){ show_optional_block() });
-        $("textarea").keyup(function(){ show_optional_block() });
-        $("select").change(function(){ show_optional_block() });
-        function show_optional_block(){ $('#optional_block').show(); }
+
 
         form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; }}
-        image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block";  }}
+        image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block"; updateformpreview();  }}
         image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block";  }}
         image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block";  }}
         $('.del-preview').on('click', function(){
@@ -515,6 +490,7 @@
             $(this).parent().hide();
             var upload_box = $(this).parent().prev('.upload-box');
             $('.inputfile', upload_box).val("");
+            updateformpreview();
         });
 
         function show_next(id , event){
@@ -569,6 +545,7 @@
                 i++;
             });
             btn_add_option.attr('data-option', i);
+            updateformpreview();
         }
 
 
@@ -584,13 +561,14 @@
                // }
                 $(el).find("input.sort").val(i).attr('name', 'field_' + i + '[sort]');
                 $(el).find(".InputQuestionType").attr('name', 'field_' + i + '[question_type]');
-                $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
+                 $(el).find(".InputQuestion_Required").attr('name', 'field_' + i + '[required]');
                 $(el).find(".InputQuestion_text").attr('name', 'field_' + i + '[question_text]');
                 $(el).find(".btn-add-option").attr('data-row',  i);
                 var options_section =  $(el).find(".options-section");
                 update_options(options_section);
                 i++;
             });
+            updateformpreview();
         }
 
         function add_form_field(type = 'single'){
@@ -633,6 +611,7 @@
                 html +='</tr>';
                 table.append(html).attr('data-row', row);
                 update_field();
+                updateformpreview();
             }else{
                 Toast('red', "Only 5 fields allowed");
             }
@@ -768,25 +747,80 @@
     </script>
 
     <script>
-        $('.PageFormStyle').on('input', function() {
+
+        function updateformpreview() {
+
             var youtube_1 = $('#Youtube_URL_1_Input').val();
             var youtube_2 = $('#Youtube_URL_2_Input').val();
             var youtube_4 = $('#Youtube_URL_3_Input').val();
-
+            var image_1_img = $('#image_1_img').attr('src');
+            var image_2_img = $('#image_2_img').attr('src');
+            var image_3_img = $('#image_3_img').attr('src');
             var title_1 = $('#FormTitleInput_1').val();
             var title_2 = $('#FormTitleInput_2').val();
             var title_3 = $('#FormTitleInput_3').val();
-
             var sub_title_1 = $('#form_desc_1_Input').val();
             var sub_title_2 = $('#form_desc_2_Input').val();
             var sub_title_3 = $('#form_desc_3_Input').val();
-
             $('#preview_form_title').html(title_1);
             $('#preview_form_sub_title').html(sub_title_1);
             if(youtube_1){
-                $('#preview_iframe').attr('src', youtube_1);
+                const videoId = getVideoId(youtube_1);
+                const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
+                $('#preview_media').html('<div class="video">'+ iframeMarkup +'</div>');
+            }else if(image_1_img !== '#'){
+                $('#preview_media').html('<div class="video image"><img src="'+ image_1_img +'" alt="" width="100%" /></div>');
             }
-        });
+            for ($i = 1; $i < 6; $i++){
+                question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
+                question_text =  $('input[name="field_'+$i+'[question_text]"]').val();
+                question_required      =  $('input[name="field_'+$i+'[required]"]').prop('checked')?'*':'';
+                t ='';
+                if(question_type === 'MultipleChoice'){
+                    t +='<select class="form-select" id="Input_field_'+$i+'"';
+                    t +='>';
+                        if(question_text){  t +='<option selected value="" class="holder"> '+question_text+ question_required +' </option>'; }
+                        for ($j = 1; $j < 7; $j++){ op =  $('input[name="field_'+$i+'[option_'+$j+']"]').val();  if(op){ t +='<option value="'+ op+'">'+ op+'</option>'; } }
+                        t +='</select>';
+                }else if(question_type === 'ShortAnswer'){
+                    t +='<input type="text" class="form-control" id="Input_field_'+$i+'" placeholder="'+question_text+ question_required +'" ';
+                    t +='>';
+                }
+                if(t!==''){ $('#preview_filed_'+$i).html(t); }else{ $('#preview_filed_'+$i).html(t); }
+            }
+        }
+        updateformpreview();
+        $('.PageFormStyle').on('input', function() { updateformpreview(); });
+
+    function getVideoId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url?.match(regExp);
+        return (match && match[2].length === 11)?match[2]:null;
+    }
+
+    function getUrlParams(urlOrQueryString) {
+        if ((i = urlOrQueryString.indexOf('?')) >= 0) {
+            const queryString = urlOrQueryString.substring(i+1);
+            if (queryString) {
+            return _mapUrlParams(queryString);
+            }
+        }
+        return {};
+    }
+
+    function _mapUrlParams(queryString) {
+    return queryString
+        .split('&')
+        .map(function(keyValueString) { return keyValueString.split('=') })
+        .reduce(function(urlParams, [key, value]) {
+        if (Number.isInteger(parseInt(value)) && parseInt(value) == value) {
+            urlParams[key] = parseInt(value);
+        } else {
+            urlParams[key] = decodeURI(value);
+        }
+        return urlParams;
+        }, {});
+    }
 
     </script>
 @endpush
