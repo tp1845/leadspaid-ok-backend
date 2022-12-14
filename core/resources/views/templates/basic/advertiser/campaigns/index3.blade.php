@@ -82,13 +82,17 @@
             <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content h-100 ">
-                    <div class="modal-header bg-primary m-0 PageFormStyle">
+                    <div class="modal-header bg-primary m-0 PageFormStyle py-0">
                         <div class="w-100">
-                        <div class="row">
-                            <div class="col-lg-3 input-col"> <input type="text" class="form-control" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required maxlength="30"></div>
-                            <div class="col-lg-3 input-col"><input type="text" class="form-control" placeholder="Company Name to Display" name="company_name" required maxlength="30"></div>
-                            <div class="col-lg-3 input-col d-flex  flex-wrap">
-                                <div class="upload-box">
+                        <div class="row align-items-end pb-2">
+                            <div class="col-lg-3 input-col">
+                                <label class="form-label text-white mb-1" for="campaign_name_Input">Campaign Name</label>
+                                <input type="text" class="form-control" id="campaign_name_Input" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required maxlength="30"></div>
+                            <div class="col-lg-3 input-col">
+                                <label class="form-label text-white mb-1" for="company_name_Input">Company/Brand Name</label>
+                                <input type="text" class="form-control" id="company_name_Input" placeholder="Company/Brand Name to Display" name="company_name" required maxlength="30"></div>
+                            <div class="col-lg-3 input-col d-flex  flex-wrap pt-4">
+                                <div class="upload-box" style="height: 53px; ">
                                     <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
                                     <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
                                 </div>
@@ -99,9 +103,9 @@
                             </div>
                             <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
                         </div>
-                        <div class="row border-top">
+                        <div class="row border-top py-2">
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white" for="TargetCountryInput">From Which Country</label>
+                                <label class="form-label text-white mb-1" for="TargetCountryInput">From Which Country</label>
                                 <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
                                     <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
                                     @foreach ($countries as $country)
@@ -110,7 +114,7 @@
                                 </select>
                             </div>
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white" for="DailyBudgetInput">Daliy Budget<i>*</i></label>
+                                <label class="form-label text-white mb-1" for="DailyBudgetInput">Daliy Budget<i>*</i></label>
                                 <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required>
                             </div>
                             <div class="col-lg-3 input-col ">
@@ -155,12 +159,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col PageFormStyle">
-                                <div class="card border  h-100">
+                            <div class="col PageFormStyle formBlock">
+                                <div class="card border h-100">
                                     <div class="card-header bg-primary"> <div class="input-col"> <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"></div> </div>
                                     <div class="card-body p-0 ">
                                         <div class="row m-0">
-                                            <div class="col-4 py-2 bg-ddd h-100">
+                                            <div class="col-4 py-2 bg-ddd h-100 leftForm">
                                                 <div>
                                                     <h4 class="gray_title top"> Add Form Title & Description</h4>
                                                     <div>
@@ -294,8 +298,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col">
-
+                                            <div class="col rightForm">
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <h5 class="my-2">Leads Fileds Required</h5>
@@ -388,11 +391,11 @@
 
                             {{--  --}}
                             <div class="col" id="formPreview">
-                                <div class="card border  mb-4">
-                                    <div class="card-header gray"> Form Preview</div>
-                                    <div class="card-body">
+                                <div class=" mb-4">
+                                    <h3 class=" gray"> Form Preview</h3>
+                                    <div class=" ">
                                         <div id="formPreviewBLock">
-                                            <div class="container">
+                                            <div class="container w-100" style="max-width: 300px; height:600px; overflow-y:auto; border:1px solid #bfbebe">
                                                 <div class="loading" style="text-align: center; padding: 15px; display: none;">Loading...</div>
                                                 <form id="LeadForm" method="POST" action="#">
                                                     <div id="loadData">
@@ -828,7 +831,9 @@
 @push('style')
 
 <style>
-
+    .formBlock{ margin-right: 100px}
+    .leftForm{ width: 416px; }
+    .rightForm{   }
     .icon-Aa{
         background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23231f20;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M8.58,31.22l-3.64,11H.25L12.17,7.17h5.47l12,35.09H24.77L21,31.22Zm11.51-3.54-3.44-10.1c-.78-2.29-1.3-4.37-1.82-6.4h-.11c-.52,2.08-1.09,4.22-1.77,6.35L9.52,27.68Z'/%3E%3Cpath class='cls-1' d='M49.33,36.22a34.76,34.76,0,0,0,.42,6H45.58l-.36-3.18h-.16a9.37,9.37,0,0,1-7.7,3.75c-5.1,0-7.71-3.59-7.71-7.24,0-6.09,5.42-9.42,15.15-9.37V25.7c0-2.08-.57-5.83-5.73-5.83a12.49,12.49,0,0,0-6.55,1.88l-1.05-3a15.62,15.62,0,0,1,8.28-2.24c7.71,0,9.58,5.26,9.58,10.31ZM44.9,29.4c-5-.11-10.67.78-10.67,5.67a4.05,4.05,0,0,0,4.32,4.37,6.28,6.28,0,0,0,6.1-4.21,5,5,0,0,0,.25-1.46Z'/%3E%3C/svg%3E");
     }
@@ -925,8 +930,12 @@
         background-color: #75a4b8;
     }
 
-    #campaign_create_modal .upload-box.grey .inputfile-1 + label { background-color: #535353; color: #fff!important; width: 100% }
-    #campaign_create_modal .upload-box.grey .inputfile-1 + label:hover { background-color: #000; color: #fff!important; }
+    /* #campaign_create_modal .upload-box.grey .inputfile-1 + label { background-color: #535353; color: #fff!important; width: 100% }
+    #campaign_create_modal .upload-box.grey .inputfile-1 + label:hover { background-color: #000; color: #fff!important; } */
+
+    #campaign_create_modal .upload-box.grey .inputfile-1 + label { width: 100% }
+
+
     #campaign_create_modal .upload-box.grey.image{ min-width: 213px;}
     #campaign_create_modal .input-group .input-col.d-flex { flex: 1 0 0;}
 
@@ -956,8 +965,8 @@
     .input-group-append.bg-none .input-group-text{  background-color: transparent!important;  border: none!important; font-size: 1.4rem;  }
     #campaign_create_modal  .input-group-text {  width: 35px; }
     #formPreview{
-        width: 370px;
-        max-width: 370px;
+        width: 330px;
+        max-width: 330px;
     }
     </style>
     <style>

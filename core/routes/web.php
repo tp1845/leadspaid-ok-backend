@@ -411,7 +411,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/ad/search', 'AdController@adSearch')->name('ad.search');
 
         //Campaigns
-        Route::get('/campaigns', 'CampaignsController@index')->name('campaigns.index');
+        Route::get('/campaigns', 'CampaignsdemoController@index')->name('campaigns.index');
+        Route::get('/campaigns-old', 'CampaignsController@index')->name('campaigns.index_old');
         // Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
         Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');
         Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');

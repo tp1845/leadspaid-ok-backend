@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CampaignsdemoController extends Controller
 {
-    public function index($style)
+    public function index($style = 3)
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
         $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
