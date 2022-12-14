@@ -20,7 +20,7 @@
      <section class="MainBanner-Home">
         <div class="container">
             <div class="row align-item-center justify-content-center align-items-center">
-                
+
                 <div class="col-lg-12">
                     <h1 class="h1">Generate Leads Directly</h1>
                     <p>From High Ranking/ Popular/ Authority Sites & Apps</p>
@@ -40,7 +40,7 @@
      </section>
      <div class="marketing">
     <div class="container py-5 text-center">
-       
+
 
         <div class="row pt-5 ">
       <div class="col-lg-4">
@@ -60,14 +60,15 @@
                 <p class="text2">Get leads instead of buying website traffic through ppc, video or banner ads</p>
             <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
            </div>
-            
+
           </div><!-- /.col-lg-8 -->
-        
-         
+
+
         </div><!-- /.row -->
     </div>
 </div>
-<section class="Rg_advts">
+
+{{-- <section class="Rg_advts">
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12 pt-5">
@@ -79,107 +80,48 @@
                <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
             </div>
         </div>
-    <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
-        @csrf
-        <div class="row">
-            <div class="col-md-11 mx-auto">
-                <div class="row justify-content-evenly">
-                    <div class="col-md-5">
-                        <div class="Rg_advts_bsc" id="publisher___form">
-                            <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
-                            
-                            <div class="form-group mb-3">
-                                <input type="text" id="username"  name="company_name" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional)" >
-                                <small>Error Message</small>
-                                <div class="custom_msg">
-                                    <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                    <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="text" id="full_name" name="name" name="text" class="form-control Rg_advts_name rounded-0" placeholder="Full Name">
-                                <small>Error Message</small>
-                                <div class="custom_msg">
-                                    <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                    <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="form-group mb-3 custom-state">
-                                    <select name="country" class="form-select rounded-0" id="country_id">
-                                      <option value="">Select Country</option>
-                                       @include('partials.country')
-                                    </select>
-                                    <small>Error Message</small>
-                                <div class="custom_msg">
-                                    <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                    <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="Rg_advts_number">
-                                <div class="form-group mb-3">
-                                        <select name="country_code" class="form-select rounded-0">
-                                        @include('partials.country_code')
-                                        </select>
-                                        <input type="text" name="phone" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="Rg_advts_bsc" id="advertiser___form">
-                            <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
-
-                           <div class="Rg_advts_form">
-                            
-                                <div class="form-group mb-3">
-                                    <textarea name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea"></textarea>
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="text" name="Website" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <input type="text" name="Social" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-11 mx-auto">
-                <div class="row justify-content-evenly">
-                    <div class="col-11">
-                        <div class="user_info_Rg_advts"><h4 class="Rg_advts_bsc_ttls mb-4">User Information</h4></div>
-                    </div>
-                </div>
-                <div class="password-custom">
+        <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
+            @csrf
+            <div class="row">
+                <div class="col-md-11 mx-auto">
                     <div class="row justify-content-evenly">
                         <div class="col-md-5">
-                            <div class="row">
-                                <div class="col-md-12">
+                            <div class="Rg_advts_bsc" id="publisher___form">
+                                <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
+
+                                <div class="form-group mb-3">
+                                    <input type="text" id="username"  name="company_name" class="form-control Rg_advts_name rounded-0" placeholder="Company Name(Optional)" >
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input type="text" id="full_name" name="name" name="text" class="form-control Rg_advts_name rounded-0" placeholder="Full Name">
+                                    <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3 custom-state">
+                                        <select name="country" class="form-select rounded-0" id="country_id">
+                                            <option value="">Select Country</option>
+                                            @include('partials.country')
+                                        </select>
+                                        <small>Error Message</small>
+                                    <div class="custom_msg">
+                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <div class="Rg_advts_number">
                                     <div class="form-group mb-3">
-                                        <input type="text" name="email" id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
+                                            <select name="country_code" class="form-select rounded-0">
+                                            @include('partials.country_code')
+                                            </select>
+                                            <input type="text" name="phone" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
                                         <small>Error Message</small>
                                         <div class="custom_msg">
                                             <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
@@ -190,50 +132,109 @@
                             </div>
                         </div>
                         <div class="col-md-5">
-                            <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <input type="password" name="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password">
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                             </div>
+                            <div class="Rg_advts_bsc" id="advertiser___form">
+                                <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
 
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <input type="password" name="password_confirmation" id="confirm_password" class="form-control Rg_advts_name rounded-0" placeholder="Confirm Password">
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                <div class="Rg_advts_form">
+
+                                    <div class="form-group mb-3">
+                                        <textarea name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea"></textarea>
+                                        <small>Error Message</small>
+                                        <div class="custom_msg">
+                                            <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                            <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <input type="text" name="Website" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
+                                        <small>Error Message</small>
+                                        <div class="custom_msg">
+                                            <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                            <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <input type="text" name="Social" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
+                                        <small>Error Message</small>
+                                        <div class="custom_msg">
+                                            <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                            <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                        </div>
                                     </div>
                                 </div>
-                             </div>
-                         </div>
-                         </div>
-                         <div class="col-md-7 ms-auto mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
-                             <button type="submit" class="btn btn-secondary Rg_advts_my_btn">SIGN UP</button>
-                         </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        </form>        
+            <div class="row">
+                <div class="col-md-11 mx-auto">
+                    <div class="row justify-content-evenly">
+                        <div class="col-11">
+                            <div class="user_info_Rg_advts"><h4 class="Rg_advts_bsc_ttls mb-4">User Information</h4></div>
+                        </div>
+                    </div>
+                    <div class="password-custom">
+                        <div class="row justify-content-evenly">
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-3">
+                                            <input type="text" name="email" id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
+                                            <small>Error Message</small>
+                                            <div class="custom_msg">
+                                                <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                                <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <input type="password" name="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password">
+                                        <small>Error Message</small>
+                                        <div class="custom_msg">
+                                            <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                            <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group mb-3">
+                                        <input type="password" name="password_confirmation" id="confirm_password" class="form-control Rg_advts_name rounded-0" placeholder="Confirm Password">
+                                        <small>Error Message</small>
+                                        <div class="custom_msg">
+                                            <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
+                                            <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="col-md-7 ms-auto mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
+                                    <button type="submit" class="btn btn-secondary Rg_advts_my_btn">SIGN UP</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
- </section>
+ </section> --}}
 
      @endsection
      @push('script-lib')
      <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script> 
+<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
 
-  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script> 
-  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>   
+  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
 
      @endpush
 
@@ -293,10 +294,10 @@ function checkRequired(inputArr) {
         {
             showError(input, 'Please fill Password');
         }
-            
+
         }else {
             showSucces(input);
-        
+
         }
     });
 }
@@ -331,12 +332,12 @@ function checkLength(input, min ,max) {
         {
             showError(input, 'Please fill Password');
         }
-        
+
     }else if(input.value.length > max) {
         showError(input, `${getFieldName(input)} must be les than ${max} characters`);
     }else {
         showSucces(input);
-       
+
     }
 }
 
@@ -388,12 +389,12 @@ form.addEventListener('submit',function(e) {
 
             //console.log('name',name);
 
-         if (company_name1=="" || name1==""  ||  email1==""  || phone1==""  || password1=="" || product_services1=="" || password_confirmation1==""){  
-             return false;  
+         if (company_name1=="" || name1==""  ||  email1==""  || phone1==""  || password1=="" || product_services1=="" || password_confirmation1==""){
+             return false;
             }else
             {
                 document.querySelector('#form').submit();
-          
+
             }
 
 
@@ -457,9 +458,9 @@ body {
 .Rg_advts .form-group label{
     color:#777;
     display: block;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
- 
+
 
 .Rg_advts .form-group input:focus{
     outline: 0;
@@ -492,7 +493,7 @@ body {
     outline: none;
 }
 .Rg_advts .form-control.error input, .Rg_advts_form .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
-    border-color: #e74c3c;    
+    border-color: #e74c3c;
 }
 .Rg_advts .form-control.error small {
     color: #e74c3c;
@@ -524,11 +525,11 @@ body {
 .fv-plugins-icon-container {
     position: relative;
 }
-p, h1, h2, h3, h4, h5, h5, h6, .btn {    
+p, h1, h2, h3, h4, h5, h5, h6, .btn {
     font-family: Poppins !important
 }
 .MainBanner-Home {
- font-family: Poppins !important;   
+ font-family: Poppins !important;
 }
 .Rg_advts .form-control.is-valid {
     border: 1px solid #94a1b5 !important;
@@ -612,7 +613,7 @@ p, h1, h2, h3, h4, h5, h5, h6, .btn {
         letter-spacing: 1px;
     }
      .Rg_advts_ttls_1 {
-        
+
         font-family: Poppins !important;
         font-weight: 600;
         font-size: 63px;
@@ -674,7 +675,7 @@ p, h1, h2, h3, h4, h5, h5, h6, .btn {
        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
         border: 1px solid #94a1b5 !important;
         transition: All .2s ease-in-out!important;
-   
+
 }
 
 .Rg_advts .form-control:valid:focus, .Rg_advts .form-control.is-valid:focus {
@@ -694,7 +695,7 @@ button.btn.btn-secondary.Rg_advts_my_btn {
         line-height: normal;
 }
 .Rg_advts input::placeholder {
-  
+
 }
 
 .Rg_advts input:-ms-input-placeholder { /* Internet Explorer 10-11 */
@@ -727,29 +728,29 @@ button.btn.btn-secondary.Rg_advts_my_btn {
 }
 
 @media only screen and (min-width: 768px) {
-.MainBanner-Home .h1 {
-    font-size: 81px !important;
-    font-family: Poppins !important
-}
-.MainBanner-Home p {
-    font-size: 36px !important;
-    font-weight: 300;
-}
-
-.MainBanner-Home .btn {
-    font-size: 35px !important;
-    padding-right: 35px;
-    padding-left: 35px;
-    display: inline-block;
-}
+    .MainBanner-Home .h1 {
+        font-size: 81px !important;
+        font-family: Poppins !important
     }
-@media only screen and (max-width: 768px) {
+    .MainBanner-Home p {
+        font-size: 36px !important;
+        font-weight: 300;
+    }
+
     .MainBanner-Home .btn {
         font-size: 35px !important;
         padding-right: 35px;
         padding-left: 35px;
+        display: inline-block;
     }
-}    
+}
+@media only screen and (max-width: 768px) {
+    .MainBanner-Home .btn {
+        font-size: 30px !important;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
 
 @media screen and (max-width: 480px){
     .Rg_advts_number input {
