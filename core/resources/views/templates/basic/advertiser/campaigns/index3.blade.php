@@ -133,33 +133,38 @@
                         <div class="row mb-3 PageFormStyle">
                             <div class="col d-flex SelectFormType">
                                 <div class="form-check mr-4">
-                                    <input class="form-check-input" type="radio" name="SelectFormType" id="SelectFormType1" value="Create New Form" checked>
+                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType1" value="CreateNewForm"  >
                                     <label class="form-check-label" for="SelectFormType1">
                                         Create New Form
                                     </label>
                                   </div>
                                   <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="SelectFormType" id="SelectFormType2" value="Use Existing Form">
+                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType2" value="UseExistingForm">
                                     <label class="form-check-label" for="SelectFormType2">
                                       Use Existing Form
                                     </label>
                                   </div>
                             </div>
                         </div>
-                        <div class="row" style="display: none">
-                            <div class="col">
-                                @foreach ($forms as $form)
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required>
-                                    <label class="form-check-label" for="form_{{ $form->id }}">
-                                        {{ $form->form_name }}
-                                    </label>
-                                </div>
-                            @endforeach
-                            </div>
-                        </div>
-                        <div class="row">
+
+                        <div class="row w-100">
                             <div class="col PageFormStyle formBlock">
+                            <div id="UseExistingForm" style="display: none">
+                                 <div class="card border h-100">
+                                    <div class="card-header bg-primary">Form List</div>
+                                    <div class="card-body p-3 ">
+                                        @foreach ($forms as $form)
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required>
+                                                <label class="form-check-label" for="form_{{ $form->id }}">
+                                                    {{ $form->form_name }}
+                                                </label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <div  id="CreateNewForm" style="display: none">
                                 <div class="card border h-100">
                                     <div class="card-header bg-primary"> <div class="input-col"> <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"></div> </div>
                                     <div class="card-body p-0 ">
@@ -387,6 +392,7 @@
                                     </div>
                                 </div>
                             </div>
+                            </div>
                             {{--  --}}
 
                             {{--  --}}
@@ -454,6 +460,18 @@
     <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
     <script>
         'use strict';
+        $('input[type=radio][name=SelectFormType]').on('change', function() {
+            var type = $(this).val() ;
+            if ( type === 'CreateNewForm' ) {
+                $('#CreateNewForm').show();
+                $('#UseExistingForm').hide();
+                $('input[type=radio][name=form_id]').prop('checked', false);
+            } else if ( type === 'UseExistingForm' ) {
+                $('#CreateNewForm').hide();
+                $('#UseExistingForm').show();
+            }
+
+        });
         $('.toggle-status').change(function () {
             var status = $(this).prop('checked') == true ? 1 : 0;
             var campaign_id = $(this).data('id');

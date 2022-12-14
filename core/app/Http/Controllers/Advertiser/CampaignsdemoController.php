@@ -38,9 +38,7 @@ class CampaignsdemoController extends Controller
     public function store(Request $request)
     {
         $user = Auth::guard('advertiser')->user()->id;
-        $request->validate([
-
-        ]);
+        $request->validate([ ]);
 
         $validator = Validator::make(
             $request->all(), [
@@ -50,62 +48,65 @@ class CampaignsdemoController extends Controller
             ]
         );
         $validator->validate();
-        $campaign_forms = new campaign_forms();
-        $campaign_forms->advertiser_id = $user;
-        $campaign_forms->form_name     = $request->campaign_name.'-'. $request->company_name;
-        $campaign_forms->company_name  = $request->company_name;
-        $campaign_forms->company_logo  = $request->company_logo;
-        $campaign_forms->form_name    = $request->form_name;
+        if($request->form_id){
+            $form_id =$request->form_id;
+        }else{
+            $campaign_forms = new campaign_forms();
+            $campaign_forms->advertiser_id = $user;
+            $campaign_forms->form_name     = $request->campaign_name.'-'. $request->company_name;
+            $campaign_forms->company_name  = $request->company_name;
+            $campaign_forms->company_logo  = $request->company_logo;
+            $campaign_forms->form_name    = $request->form_name;
 
-        $campaign_forms->title    = $request->form_title;
-        $campaign_forms->form_desc    = $request->form_desc;
+            $campaign_forms->title    = $request->form_title;
+            $campaign_forms->form_desc    = $request->form_desc;
 
-        if(isset($request->form_title[1])){
-            $campaign_forms->form_title    = $request->form_title[1];
-        }
-        if(isset($request->form_title[1])){
-         $campaign_forms->offer_desc    = $request->form_desc[1];
-        }
+            if(isset($request->form_title[1])){
+                $campaign_forms->form_title    = $request->form_title[1];
+            }
+            if(isset($request->form_title[1])){
+            $campaign_forms->offer_desc    = $request->form_desc[1];
+            }
 
-        $campaign_forms->youtube_1     = $request->youtube_1;
-        $campaign_forms->youtube_2     = $request->youtube_2;
-        $campaign_forms->youtube_3     = $request->youtube_3;
-        $campaign_forms->image_1 = $request->image_1;
-        $campaign_forms->image_2 = $request->image_2;
-        $campaign_forms->image_3 = $request->image_3;
-        $campaign_forms->field_1 = $request->field_1;
-        $campaign_forms->field_2 = $request->field_2;
-        $campaign_forms->field_3 = $request->field_3;
-        $campaign_forms->field_4 = $request->field_4;
-        $campaign_forms->field_5 = $request->field_5;
+            $campaign_forms->youtube_1     = $request->youtube_1;
+            $campaign_forms->youtube_2     = $request->youtube_2;
+            $campaign_forms->youtube_3     = $request->youtube_3;
+            $campaign_forms->image_1 = $request->image_1;
+            $campaign_forms->image_2 = $request->image_2;
+            $campaign_forms->image_3 = $request->image_3;
+            $campaign_forms->field_1 = $request->field_1;
+            $campaign_forms->field_2 = $request->field_2;
+            $campaign_forms->field_3 = $request->field_3;
+            $campaign_forms->field_4 = $request->field_4;
+            $campaign_forms->field_5 = $request->field_5;
 
-        $path = 'assets/images/campaign_forms';
-        if($request->file('company_logo'))
-        {
-            $campaign_forms->company_logo = uploadImage($request->company_logo, $path);
-        }
-        if($request->file('image_1'))
-        {
-            $campaign_forms->image_1 = uploadImage($request->image_1, $path);
-        }
-        if($request->file('image_2'))
-        {
-            $campaign_forms->image_2 = uploadImage($request->image_2, $path);
-        }
-        if($request->file('image_3'))
-        {
-            $campaign_forms->image_3 = uploadImage($request->image_3, $path);
-        }
+            $path = 'assets/images/campaign_forms';
+            if($request->file('company_logo'))
+            {
+                $campaign_forms->company_logo = uploadImage($request->company_logo, $path);
+            }
+            if($request->file('image_1'))
+            {
+                $campaign_forms->image_1 = uploadImage($request->image_1, $path);
+            }
+            if($request->file('image_2'))
+            {
+                $campaign_forms->image_2 = uploadImage($request->image_2, $path);
+            }
+            if($request->file('image_3'))
+            {
+                $campaign_forms->image_3 = uploadImage($request->image_3, $path);
+            }
 
-        if($campaign_forms->save())
-        {
-            $form_id = $campaign_forms->id;
+            if($campaign_forms->save())
+            {
+                $form_id = $campaign_forms->id;
+            }
+            else{
+                $form_id = false;
+                $notify[] = ['success', 'Try After Sometime'];
+            }
         }
-        else{
-            $form_id = false;
-            $notify[] = ['success', 'Try After Sometime'];
-        }
-
         // ===================================
         if($form_id){
             if($request->campaign_id){
