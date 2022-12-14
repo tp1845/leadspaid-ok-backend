@@ -24,7 +24,7 @@
                 <div class="col-lg-12">
                     <h1 class="h1">Generate Leads Directly</h1>
                     <p>From High Ranking/ Popular/ Authority Sites & Apps</p>
-                    <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2">Join As Advertiser</a>
+                    <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2 button-large">Join As Advertiser</a>
                 </div>
             </div>
         </div>
@@ -63,7 +63,7 @@
                 <div class="fw-normal-side">
                         <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
                         <span>Distinct from Search, Display & Programmatic Ads</span></h3>
-                        <p class="h1 p-0"><i class="fas fa-quote-left"></i></p>
+                        <p class="h2 p-0 text-muted"><i class="fas fa-quote-left"></i></p>
                         <p class="text2">Get leads instead of buying website traffic through ppc, video or banner ads</p>
                         <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
                 </div>
@@ -78,31 +78,11 @@
                    <h2 class="title">Who Are Using LeadsPaids.com</h2>
                 </div>
             </div>
-            <div class="row g-5 py-5">
+            <div class="row g-5 py-5 align-items-center">
                 <div class="col-lg-3 text-center">
                     <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
                 </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
-                </div>
+
             </div>
         </div>
      </section>
@@ -112,7 +92,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                    <h2 class="title mb-4">Start Generating Leads</h2>
-                   <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2">Join As Advertiser</a>
+                   <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2 button-large px-5">Join As Advertiser</a>
                 </div>
             </div>
         </div>
@@ -633,7 +613,7 @@ p, h1, h2, h3, h4, h5, h5, h6, .btn {
     color: #6c6c6c;
 }
 
-.MainBanner-Home .btn {
+.MainBanner-Home .btn, .button-large {
     max-width: unset !important;
     width: unset !important;
     font-size: 48px !important;
@@ -785,7 +765,7 @@ button.btn.btn-secondary.Rg_advts_my_btn {
         font-weight: 300;
     }
 
-    .MainBanner-Home .btn {
+    .MainBanner-Home .btn, .button-large {
         font-size: 35px !important;
         padding-right: 35px;
         padding-left: 35px;
@@ -793,7 +773,7 @@ button.btn.btn-secondary.Rg_advts_my_btn {
     }
 }
 @media only screen and (max-width: 768px) {
-    .MainBanner-Home .btn {
+    .MainBanner-Home .btn, .button-large {
         font-size: 30px !important;
         padding-right: 15px;
         padding-left: 15px;
