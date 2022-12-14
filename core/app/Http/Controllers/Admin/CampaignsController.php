@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\LeadsExport;
 use App\Imports\LeadsImport;
+use Carbon\Carbon;
 
 
 class CampaignsController extends Controller
@@ -69,6 +70,7 @@ class CampaignsController extends Controller
         if($campaign){
             $campaign->approve =  $request->approval;
             $campaign->delivery = $request->approval;
+            $campaign->start_date = Carbon::now();
             $campaign->update();
         if( $request->approval  == 1){
             return response()->json(['success'=>true, 'message'=> 'Campaign successfully approve']);

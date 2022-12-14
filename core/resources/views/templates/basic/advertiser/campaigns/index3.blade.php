@@ -31,12 +31,12 @@
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
                                 <td>@if($campaign->approve) <span class="green">Approved  </span> @else
-                                    <span class="orange">Pending</span>
+                                    <span class="orange">Pending<br/>Approval</span>
                                    @endif
                                 </td>
-                                <td>{{ $campaign->start_date }}</td>
-                                <td>{{ $campaign->end_date }}</td>
-                                <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
+                                <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
+                                <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
+                                <td>{{ $campaign->target_country }} </td>
                                 <td> @if (isset($campaign->campaign_forms))
                                         {{$campaign->campaign_forms->form_name}}
                                     @endif</td>
@@ -45,8 +45,8 @@
                                 <td>0</td>
                                 <td>0</td>
                                 <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
-                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a> |
-                                    <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a>
+                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
+                                    {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
                                 </td>
                             </tr>
                         @empty
@@ -460,8 +460,7 @@
             $.ajax({
                 type: "GET",
                 dataType: "json",
-                // url:  "{{route('advertiser.campaigns.status')}}" ,
-                url: "/advertiser/campaigns/status",
+                 url:  "{{route('advertiser.campaigns.status')}}" ,
                 data: {
                     'status': status,
                     'campaign_id': campaign_id
@@ -853,7 +852,7 @@
 .btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
 #campaign_list td{ font-size: 15px; }
 #campaign_list td:nth-child(3){  font-size: 14px; }
-#campaign_list a.create-campaign-btn { font-size: 13px; }
+#campaign_list a.create-campaign-btn { font-size: 12px; }
 
 
 #campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
