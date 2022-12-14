@@ -33,40 +33,90 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3> Pay Only For Leads. Not for Clicks or Impressions</h3>
+                   <h3> Pay Only For Leads. Not for Clicks or Impressions.</h3>
                 </div>
             </div>
         </div>
      </section>
-     <div class="marketing">
-    <div class="container py-5 text-center">
 
+     <section class="bg-gray p-5" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center" style="min-height: 500px">
+                   <h2 class="title">How Its Works</h2>
+                </div>
+            </div>
+        </div>
+     </section>
 
-        <div class="row pt-5 ">
-      <div class="col-lg-4">
+    <div class="marketing">
+        <div class="container py-5 text-left">
+            <div class="row pt-5 ">
+                <div class="col-lg-4">
                     @if(Request::get('v') == 1 )
                         <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-01.png?v1" class="img-fluid" alt="leadsPaid">
                     @else
                         <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
                     @endif
                 </div>
-
-
-
-          <div class="col-lg-8">
-           <div class="fw-normal-side">
-                <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
-                <span>Distinct from Search, Display & Programmatic Ads</span></h3>
-                <p class="text2">Get leads instead of buying website traffic through ppc, video or banner ads</p>
-            <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
-           </div>
-
-          </div><!-- /.col-lg-8 -->
-
-
-        </div><!-- /.row -->
+                <div class="col-lg-8">
+                <div class="fw-normal-side">
+                        <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
+                        <span>Distinct from Search, Display & Programmatic Ads</span></h3>
+                        <p class="h1 p-0"><i class="fas fa-quote-left"></i></p>
+                        <p class="text2">Get leads instead of buying website traffic through ppc, video or banner ads</p>
+                        <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
+                </div>
+                </div><!-- /.col-lg-8 -->
+            </div><!-- /.row -->
+        </div>
     </div>
-</div>
+    <section class="bg-light p-5" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                   <h2 class="title">Who Are Using LeadsPaids.com</h2>
+                </div>
+            </div>
+            <div class="row g-5 py-5">
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+                <div class="col-lg-3 text-center">
+                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                </div>
+            </div>
+        </div>
+     </section>
+
+     <section class="bg-white p-5" >
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                   <h2 class="title mb-4">Start Generating Leads</h2>
+                   <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2">Join As Advertiser</a>
+                </div>
+            </div>
+        </div>
+     </section>
 
 {{-- <section class="Rg_advts">
     <div class="container">
@@ -386,26 +436,24 @@ form.addEventListener('submit',function(e) {
     const password1 = document.form.password.value;
     const product_services1 = document.form.product_services.value;
     const password_confirmation1 = document.form.password_confirmation.value;
-
-            //console.log('name',name);
-
-         if (company_name1=="" || name1==""  ||  email1==""  || phone1==""  || password1=="" || product_services1=="" || password_confirmation1==""){
-             return false;
-            }else
-            {
-                document.querySelector('#form').submit();
-
-            }
-
-
+    if (company_name1=="" || name1==""  ||  email1==""  || phone1==""  || password1=="" || product_services1=="" || password_confirmation1==""){
+        return false;
+    }else
+    {
+        document.querySelector('#form').submit();
+    }
 });
 </script>
 @endpush
 <style>
 body {
-    background: #e0e0e0 !important;
+    background-color: #fff;
     font-family: Poppins !important;
 }
+
+.bg-gray{ background-color: #e0e0e0 !important; }
+.bg-light{ background-color: #e9e9e9 !important; }
+.title{ color: #1a273a; font-size: 3rem; }
 .Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
     background: none !important;
 }
