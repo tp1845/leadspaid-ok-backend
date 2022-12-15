@@ -87,7 +87,7 @@
                         <div class="row align-items-end pb-2">
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1" for="campaign_name_Input">Campaign Name</label>
-                                <input type="text" class="form-control" id="campaign_name_Input" placeholder="Campaign Name" name="campaign_name" value="{{$next_campaign}}" required maxlength="30"></div>
+                                <input type="text" class="form-control" id="campaign_name_Input" placeholder="Campaign Name" name="campaign_name"   required maxlength="30"></div>
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1" for="company_name_Input">Company/Brand Name</label>
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="Company/Brand Name to Display" name="company_name" required maxlength="30"></div>
@@ -131,20 +131,22 @@
                         <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
                         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
                         <div class="row mb-3 PageFormStyle">
-                            <div class="col d-flex SelectFormType">
+                            <div class=" col input-col ">
+                            <div class=" d-flex SelectFormType ">
                                 <div class="form-check mr-4">
-                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType1" value="CreateNewForm"  >
+                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType1" value="CreateNewForm" required  >
                                     <label class="form-check-label" for="SelectFormType1">
                                         Create New Form
                                     </label>
                                   </div>
                                   <div class="form-check">
-                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType2" value="UseExistingForm">
+                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType2" value="UseExistingForm" required>
                                     <label class="form-check-label" for="SelectFormType2">
-                                      Use Existing Form
+                                        Use An Existing Form
                                     </label>
                                   </div>
                             </div>
+                        </div>
                         </div>
 
                         <div class="row w-100">
@@ -169,14 +171,14 @@
                                     <div class="card-header bg-primary"> <div class="input-col"> <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"></div> </div>
                                     <div class="card-body p-0 ">
                                         <div class="row m-0">
-                                            <div class="col-4 py-2 bg-ddd h-100 leftForm">
-                                                <div>
+                                            <div class="col-4 py-2  h-100 leftForm">
+                                                <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Form Title & Description</h4>
                                                     <div>
                                                         <label class="col-form-label" for="FormTitleInput_1">Form Title ( add upto 3 variations )</label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3">
+                                                                <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3" maxlength="25">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                                 </div>
@@ -184,7 +186,7 @@
                                                         </div>
                                                         <div id="form_title_2" style="display: none">
                                                             <div class="input-group input-col my-3">
-                                                                <input type="text" class="form-control" id="FormTitleInput_2" name="form_title[2]" placeholder="Form Title 2"  minlength="3">
+                                                                <input type="text" class="form-control" id="FormTitleInput_2" name="form_title[2]" placeholder="Form Title 2"  minlength="3" maxlength="25">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                                 </div>
@@ -192,17 +194,17 @@
                                                         </div>
                                                         <div id="form_title_3" style="display: none">
                                                             <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="FormTitleInput_3" name="form_title[3]" placeholder="Form Title 3"   minlength="3">
+                                                                <input type="text" class="form-control" id="FormTitleInput_3" name="form_title[3]" placeholder="Form Title 3"   minlength="3" maxlength="25">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label" for="form_desc_1_Input">Form Description  ( add upto 3 variations )</label>
+                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Form Description  ( add upto 3 variations )</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3">
+                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3" maxlength="85">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -210,7 +212,7 @@
                                                     </div>
                                                     <div id="FormDescription_2" style="display: none">
                                                         <div class="input-group input-col my-3">
-                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2"  minlength="3">
+                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2"  minlength="3" maxlength="85">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -218,13 +220,15 @@
                                                     </div>
                                                     <div id="FormDescription_3" style="display: none">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3"   minlength="3">
+                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3"   minlength="3" maxlength="85">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <h4 class="gray_title"> Add a few relevant creative (Optional)</h4>
+                                                </div>
+                                                <div class="fbox bg-ddd">
+                                                    <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small></h4>
                                                     <label class="col-form-label" >Youtube Video Url  ( add upto 3 variations )  </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
@@ -253,7 +257,7 @@
                                                     </div>
 
 
-                                                    <label class="col-form-label" >Upload upto 3 images (Optional)</label>
+                                                    <label class="col-form-label mt-4" >Upload upto 3 images<small>(Optional)</small></label>
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col d-flex "  style="width: 88%;">
                                                             <div class="upload-box grey image">
@@ -305,8 +309,8 @@
                                             </div>
                                             <div class="col rightForm">
                                                 <div class="row">
-                                                    <div class="col-12">
-                                                        <h5 class="my-2">Leads Fileds Required</h5>
+                                                    <div class="col-12 padding">
+                                                        <h5 class="my-2">Lead Form Fields <small>(Add Up to 5 Fields) </small></h5>
                                                         <div class="input-col">
                                                             <input type="text"  name="min_row_validation" style=" border: none; height: 1px;  padding: 0; display: block; opacity: 0;"  >
                                                         </div>
@@ -401,7 +405,7 @@
                                     <h3 class=" gray"> Form Preview</h3>
                                     <div class=" ">
                                         <div id="formPreviewBLock">
-                                            <div class="container w-100" style="max-width: 300px; height:600px; overflow-y:auto; border:1px solid #bfbebe">
+                                            <div class="container w-100"  >
                                                 <div class="loading" style="text-align: center; padding: 15px; display: none;">Loading...</div>
                                                 <form id="LeadForm" method="POST" action="#">
                                                     <div id="loadData">
@@ -418,8 +422,10 @@
                                                     <div class="form-row">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
                                                         <p class="policy">I agree to your privacy policy by submitting the form</p>
-                                                        <p class="logo"><img src="https://leadspaid.com/assets/images/campaign_forms/logo.png" alt="">
-                                                            <span> A1 Immigration Consultancy</span>
+                                                        <p class="logo">
+                                                            <span id="preview_company_logo"> </span>
+
+                                                            <span id="preview_company_name"> A1 Immigration Consultancy</span>
                                                         </p>
                                                     </div>
                                                 </form>
@@ -502,7 +508,7 @@
         });
 
 
-        form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; }}
+        form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; updateformpreview(); }}
         image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block"; updateformpreview();  }}
         image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block";  }}
         image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block";  }}
@@ -783,8 +789,17 @@
             var sub_title_1 = $('#form_desc_1_Input').val();
             var sub_title_2 = $('#form_desc_2_Input').val();
             var sub_title_3 = $('#form_desc_3_Input').val();
+            var company_name = $('#company_name_Input').val();
+            var company_logo = $('#company_logo_img').attr('src');
+
             $('#preview_form_title').html(title_1);
             $('#preview_form_sub_title').html(sub_title_1);
+
+           $('#preview_company_name').html(company_name);
+            if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
+
+            company_logo
+
             if(youtube_1){
                 const videoId = getVideoId(youtube_1);
                 const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
@@ -848,15 +863,20 @@
 @push('style')
 
 <style>
-    .formBlock{ margin-right: 100px}
-    .leftForm{ width: 416px; }
+    .formBlock{ margin-right: 130px}
+    .leftForm{ width: 416px; min-width: 416px;  max-width: 416px; }
     .rightForm{   }
+    .rightForm .padding{ padding: 25px 35px 0 35px; }
     .icon-Aa{
         background-image: url("data:image/svg+xml,%3Csvg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 50 50'%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill:%23231f20;%7D%3C/style%3E%3C/defs%3E%3Cpath class='cls-1' d='M8.58,31.22l-3.64,11H.25L12.17,7.17h5.47l12,35.09H24.77L21,31.22Zm11.51-3.54-3.44-10.1c-.78-2.29-1.3-4.37-1.82-6.4h-.11c-.52,2.08-1.09,4.22-1.77,6.35L9.52,27.68Z'/%3E%3Cpath class='cls-1' d='M49.33,36.22a34.76,34.76,0,0,0,.42,6H45.58l-.36-3.18h-.16a9.37,9.37,0,0,1-7.7,3.75c-5.1,0-7.71-3.59-7.71-7.24,0-6.09,5.42-9.42,15.15-9.37V25.7c0-2.08-.57-5.83-5.73-5.83a12.49,12.49,0,0,0-6.55,1.88l-1.05-3a15.62,15.62,0,0,1,8.28-2.24c7.71,0,9.58,5.26,9.58,10.31ZM44.9,29.4c-5-.11-10.67.78-10.67,5.67a4.05,4.05,0,0,0,4.32,4.37,6.28,6.28,0,0,0,6.1-4.21,5,5,0,0,0,.25-1.46Z'/%3E%3C/svg%3E");
     }
     .icon-Aa:before {  opacity: 0; }
-    .gray_title{  background: #c3c3c3; padding: 10px;  color: #707070;  margin: 15px -14px 0px -15px; }
-    .gray_title.top{  margin-top: -8px; }
+
+    .fbox{  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
+    .fbox.bg-blue{ background-color: #a7d3ee; }
+    .fbox .gray_title{  background: #cecece; padding: 10px;  color: #29404e;  margin: 0 -14px 15px -15px; }
+    .fbox.bg-blue .gray_title.top{  margin-top: -8px; background-color: #88c1e2; color: #29404e }
+    #campaign_create_modal .small, #campaign_create_modal small {  font-size: 80%!important; }
     .btn--primary {  background-color: #1361b2 !important; }
     .btn--primary:hover {  background-color: #093463 !important; }
     .small, small { font-size: 90%; }
