@@ -37,11 +37,11 @@ class Form_LeadsExport implements FromCollection, WithHeadings
             'Campaign Name',
             'Form Id',
             'Form Name',
-            $campaign_forms->field_1['question_text'],
-            $campaign_forms->field_2['question_text'],
-            $campaign_forms->field_3['question_text'],
-            $campaign_forms->field_4['question_text'],
-            $campaign_forms->field_5['question_text'],
+            $campaign_forms->field_1?$campaign_forms->field_1['question_text']:'',
+            $campaign_forms->field_2?$campaign_forms->field_2['question_text']:'',
+            $campaign_forms->field_3?$campaign_forms->field_3['question_text']:'',
+            $campaign_forms->field_4?$campaign_forms->field_4['question_text']:'',
+            $campaign_forms->field_5?$campaign_forms->field_5['question_text']:''
         ];
 
     }
