@@ -25,8 +25,8 @@
                             @foreach ($forms as $form)
                             <tr>
                                 <td>{{ $form->form_name }}</td>
-                                 <td>{{$form->field_1['question_text'] }}</td>
-                                <td>{{$form->field_2['question_text'] }}</td>
+                                 <td>{{$form->field_1['question_text']?? '' }}</td>
+                                <td>{{$form->field_2['question_text']?? '' }}</td>
                                 <td>{{$form->field_3['question_text']?? '' }}</td>
                                 <td>{{$form->field_4['question_text']?? '' }}</td>
                                 <td>{{$form->field_5['question_text']?? '' }}</td>
