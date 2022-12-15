@@ -3,27 +3,28 @@
 @section('panel')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 <style>
+    .fs-16{ font-size: 16px!important; }
     .adsrock-list ul li {
         display: flex;
     }
     .adsrock-billing-summary p, .adsrock-detail-list, .adsrock-detail-list, .adsrock-name-list, .adsrock-name-list, .adsrock-bill-list p, .adsrock-bill-list p a, .adsrock-heading p {
-/*        font-size: 12px;*/
+       font-size: 16px;
     }
     .adsrock-bill-list h6 {
 /*        font-size: 10px;*/
     }
     .adsrock-heading h4, .adsrock-heading h3, .adsrock-heading h5 {
-        font-size: 14px;
+        font-size: 16px;
     }
     .adsrock-name-list, .adsrock-name-list {
         flex: 0 0 30%;
         width: 30%;
         border-right: 1px solid #ddd;
-        padding: 7px 0;        
+        padding: 7px 0;
     }
     .adsrock-detail-list, .adsrock-detail-list {
         flex: 0 0 70%;
-        width:70%;   
+        width:70%;
         padding: 7px 0;
     }
     .adsrock-download-pd {
@@ -31,6 +32,7 @@
     }
     .adsrock-invoice ul li a {
     padding: 10px 30px;
+    font-size: 16px;
 }
 .adsrock-icon svg {
     width: 20px;
@@ -61,8 +63,10 @@
 #myTable_paginate ul li {
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0;
+}
+.table.style--two tr th, .table.style--two tr td ,.table.style--two tbody tr td{
+    font-size: 16px;
 }
 </style>
 <div class="container-fluid position-relative px-0     5555555">
@@ -138,7 +142,7 @@
                         </li>
                     </ul>
                 </div>
-            </div> 
+            </div>
             <div  class="col-md-6 border">
                 <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
                    <h4 class="">Payment Information</h4>
@@ -215,9 +219,9 @@
                     </ul>
                 </div>
                 <p class="py-2">*Please note that the Current Card Service Charge is 3%</p>
-            </div> 
+            </div>
         </div>
-     </div>   
+     </div>
     <div class="col-md-3 col-xl-2 col-lg-2 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
         <div class="row">
             <div class="col-12 border p-3">
@@ -246,7 +250,7 @@
         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser">
 
         <div class="form-inline">
-            <div class="has_append input-group" style="width: 215px;">
+            <div class="has_append input-group" style="width: 240px;">
                 <span class="form-text">Total Campaign Budget</span>
             </div>
             <div class="m-1">
@@ -254,7 +258,7 @@
             </div>
         </div>
         <div class="form-inline">
-            <div class="input-group has_append" style="width: 215px;">
+            <div class="input-group has_append" style="width: 240px;">
                 <span class="form-text">Amount used before this day</span>
             </div>
             <div class="m-1">
@@ -292,14 +296,14 @@
                 <li class="nav-item">
                     <a class="nav-link " data-toggle="tab" href="#tabs-1" role="tab">Payments</a>
                 </li>
-                
+
             </ul><!-- Tab panes -->
         </div>
         <div class="my-2 paymentt_tab" style="display:none;">
             <input type="text" id="daterange" name="daterange" value="Today">
             <form method="GET" id="RangeForm" hidden>
             <input id="startDate" name="startDate" />
-            <input id="endDate" name="endDate" />      
+            <input id="endDate" name="endDate" />
             </form>
             <!-- <button type="button" class="btn btn-danger rounded-0 ml-2 adsrock-download-pd">Download Invoice</button> -->
         </div>
@@ -444,23 +448,23 @@
                                             <td data-label="Amount Deducted From Card" class="budget"> 309(300+GST)</td>
                                             <td data-label="Final Wallet Balance" class="budget">$ 500</td>
                                         </tr>
-                                        
+
                                     </tbody>
                                 </table><!-- table end -->
                             </div>
                         </div>
                         <div class="my-3">
                             <nav aria-label="...">
-                                <ul class="pagination justify-content-end mb-0">   
+                                <ul class="pagination justify-content-end mb-0">
                                     <li class="page-item active">
                                     <a class="page-link" href="javascript:void(0)">1</a>
-                                    </li>                                                     
+                                    </li>
                                     <li class="page-item ">
                                     <a class="page-link" href="http://localhost/leadspaids/leadspaid/public/advertiser/payments?page=2">2</a>
-                                    </li>                                                                    
+                                    </li>
                                     <li class="page-item ">
                                     <a class="page-link" href="http://localhost/leadspaids/leadspaid/public/advertiser/payments?page=3">3</a>
-                                    </li>                                                                    
+                                    </li>
                                     <li class="page-item">
                                     <a class="page-link" href="http://localhost/leadspaids/leadspaid/public/advertiser/payments?page=2">
                                     <i class="fa fa-angle-right"></i>
@@ -481,26 +485,22 @@
                                 <table class="table style--two" id="myTable">
                                     <thead>
                                         <tr>
-                                           
                                             <th scope="col"><span class="text-white px-1">Date</span></th>
                                              <th scope="col"><span class="text-white px-1">Invoice Number</span></th>
                                             <th scope="col"><span class="text-white px-1">Amount(usd)</span></th>
                                             <th scope="col"><span class="text-white px-1">Payment Status</span></th>
                                             <th scope="col"><span class="text-white px-1">Download</span></th>
-                                            
-                                            
                                         </tr>
                                     </thead>
                                     <tbody>
                                          @foreach ($ta as $tas)
- 
                                            @if($tas['deduct'] !=0)
                                          <tr>
                                             <td scope="col">{{date('Y-m-d',strtotime($tas['trx_date']))}}</td>
                                             <td scope="col">
-                                               {{get_invoice_format($tas['id'])  }} 
+                                               {{get_invoice_format($tas['id'])  }}
                                            </td>
-                                            
+
                                             <td scope="col">{{$tas['deduct']}}</td>
                                             <td scope="col">Paid in Full</td>
                                             <td scope="col">
@@ -563,14 +563,14 @@
 
 
 <!------------------->
-<div class="container-fluid position-relative px-0">
+<div class="container-fluid position-relative px-0 mt-3 fs-16">
 
     <form method="POST" action="{{ route('advertiser.payments.update') }}" enctype="multipart/form-data">
         @csrf
         <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser">
 
         <div class="form-inline">
-            <div class="has_append input-group" style="width: 215px;">
+            <div class="has_append input-group" style="width: 240px;">
                 <span class="form-text">Total Campaign Budget</span>
             </div>
             <div class="m-1">
@@ -578,7 +578,7 @@
             </div>
         </div>
         <div class="form-inline">
-            <div class="input-group has_append" style="width: 215px;">
+            <div class="input-group has_append" style="width: 240px;">
                 <span class="form-text">Amount used before this day</span>
             </div>
             <div class="m-1">
@@ -587,7 +587,7 @@
             </div>
         </div>
         <div>
-            <button type="submit" class="btn btn--primary">@lang('Save changes')</button>
+            <button type="submit" class="btn btn--primary fs-16">@lang('Save changes')</button>
         </div>
     </form>
 
@@ -603,25 +603,22 @@
     </div>
 
 </div>
-<div class="container-fluid position-relative px-0 ">
-
+<div class="container-fluid position-relative px-0 my-2 fs-16">
     <form method="POST" action="{{ route('advertiser.payments.createsession') }}">
         @csrf
-
     </form>
     <div>
-        <button class="btn btn--primary setup-payment">@lang('Set up Payment Method')</button>
+        <button class="btn btn--primary setup-payment fs-16">@lang('Set up Payment Method')</button>
     </div>
-
 </div>
 
 
-<div class="container-fluid position-relative px-0 ">
+<div class="container-fluid position-relative px-0  fs-16">
 
     <form method="POST" action="{{ route('ipn.current_advertiser_charge') }}">
         @csrf
         <div>
-            <button type="submit" class="btn btn--primary">@lang('Make a payment')</button>
+            <button type="submit" class="btn btn--primary fs-16">@lang('Make a payment')</button>
         </div>
     </form>
 
@@ -682,7 +679,7 @@
                     'This Month': [moment().startOf('month'), moment().endOf('month')],
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
                 },
-                "alwaysShowCalendars": true,                
+                "alwaysShowCalendars": true,
                 "startDate": isSearched? startDate:moment().subtract(6, 'days'),
                 "endDate": isSearched?endDate:moment().add(1, 'days'),
                 "opens": "left",
@@ -704,7 +701,7 @@
 $(".nav-item").find(".nav-link").click(function(){
 
     var hrff=$(this).attr("href");
-      
+
     if(hrff=="#tabs-2"){
      $(".paymentt_tab").hide();
     }else if(hrff=="#tabs-1"){
@@ -772,8 +769,8 @@ $(".nav-item").find(".nav-link").click(function(){
     }
 </style>
 <style>
-   
+
 </style>
 <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
- 
+
 @endpush

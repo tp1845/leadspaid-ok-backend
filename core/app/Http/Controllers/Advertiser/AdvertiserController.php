@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Stripe\PaymentMethod;
 use Stripe\SetupIntent;
-use PDF; 
+use PDF;
 
 class AdvertiserController extends Controller
 {
@@ -73,7 +73,7 @@ class AdvertiserController extends Controller
     }
 
     public function profile()
-    { 
+    {
         $page_title = 'Profile';
         $countries = Country::all();
         $advertiser = Auth::guard('advertiser')->user();
@@ -82,7 +82,7 @@ class AdvertiserController extends Controller
 
     public function profileUpdate(Request $request)
     {
-     
+
         $user = Auth::guard('advertiser')->user();
 
         if ($request->hasFile('image')) {
@@ -217,13 +217,8 @@ class AdvertiserController extends Controller
 
     public function showPayments(Request $request)
     {
-     
-         
-        $ta = TransactionAdvertiser::whereNotNull('deduct')->get();
-        
-        
-        
-       
+        $ta = TransactionAdvertiser::whereNotNull('deduct')->orderBy('id', 'DESC')->get();
+
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
         $gateway_parameter = json_decode($method->parameters);
         \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
@@ -239,7 +234,7 @@ class AdvertiserController extends Controller
         );
 
         $page_title = 'Payments';
-        $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->paginate(15);
+        $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->orderBy('id', 'DESC')->paginate(15);
         if (isset($request->startDate)){
             $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)
                     ->whereBetween('trx_date', array($request->startDate, $request->endDate))->paginate(15);
@@ -249,13 +244,13 @@ class AdvertiserController extends Controller
     }
 
   public function showinvoices($id){
-    
- 
+
+
      $ta = TransactionAdvertiser::where('id',$id)->first();
      $page_title = 'Payments';
         $data = ['title' => 'Laravel 7 Generate PDF From View Example Tutorial'];
         $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf',compact('page_title','ta'))->setOptions(['defaultFont' => 'Poppins']);
-     
+
         return $pdf->download('invooice-'.$id.'.pdf','+w');
 
   }
