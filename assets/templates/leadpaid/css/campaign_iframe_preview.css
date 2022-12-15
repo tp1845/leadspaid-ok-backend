@@ -53,11 +53,14 @@
 
   #formPreviewBLock  .form-row {
     width: 100%;
-    margin-bottom: 2px;
+    margin-bottom: 8px;
     padding: 0 5px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+  }
+  #formPreviewBLock  .form-row:last-child { 
+    margin-bottom: 0px; 
   }
 
   #formPreviewBLock   .form-row.form-check {
