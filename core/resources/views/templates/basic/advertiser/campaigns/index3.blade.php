@@ -175,7 +175,7 @@
                                                 <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Form Title & Description</h4>
                                                     <div>
-                                                        <label class="col-form-label" for="FormTitleInput_1">Form Title ( add upto 3 variations )</label>
+                                                        <label class="col-form-label" for="FormTitleInput_1">Form Title (Add upto 3 variations)</label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
                                                                 <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3" maxlength="25">
@@ -201,7 +201,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Form Description  ( add upto 3 variations )</label>
+                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Form Description  (Add upto 3 variations)</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3" maxlength="85">
@@ -229,7 +229,7 @@
                                                 </div>
                                                 <div class="fbox bg-ddd">
                                                     <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small></h4>
-                                                    <label class="col-form-label" >Youtube Video Url  ( add upto 3 variations )  </label>
+                                                    <label class="col-form-label" >Youtube Video Url  (Add upto 3 variations)  </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
@@ -257,7 +257,7 @@
                                                     </div>
 
 
-                                                    <label class="col-form-label mt-4" >Upload upto 3 images<small>(Optional)</small></label>
+                                                    <label class="col-form-label mt-4" >Upload upto 3 images<small>(Add upto 3 variations)</small></label>
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col d-flex "  style="width: 88%;">
                                                             <div class="upload-box grey image">
@@ -318,7 +318,7 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col" width="10px">#</th>
-                                                                    <th scope="col" >Required</th>
+                                                                    <th scope="col" style="min-width: 76px;" >Required</th>
                                                                     <th scope="col">Fileds</th>
                                                                 </tr>
                                                             </thead>
@@ -875,7 +875,7 @@
     .fbox{  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
     .fbox.bg-blue{ background-color: #a7d3ee; }
     .fbox .gray_title{  background: #cecece; padding: 10px;  color: #29404e;  margin: 0 -14px 15px -15px; }
-    .fbox.bg-blue .gray_title.top{  margin-top: -8px; background-color: #88c1e2; color: #29404e }
+    .fbox.bg-blue .gray_title.top{  margin-top: -8px; background-color: #5a97bb; color: #29404e }
     #campaign_create_modal .small, #campaign_create_modal small {  font-size: 80%!important; }
     .btn--primary {  background-color: #1361b2 !important; }
     .btn--primary:hover {  background-color: #093463 !important; }
@@ -886,7 +886,8 @@
     border-color: #1361b2;
     box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
 }
-
+#UseExistingForm label{ font-size: 16px }
+#UseExistingForm  .form-check{ margin-bottom: 5px; }
 .btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
 #campaign_list td{ font-size: 15px; }
 #campaign_list td:nth-child(3){  font-size: 14px; }

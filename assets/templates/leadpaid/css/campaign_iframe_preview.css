@@ -28,7 +28,7 @@
 
   #formPreviewBLock  .video {
     margin-bottom: 5px;
-    padding: 0 5px;
+    padding: 0!important;
   }
 
   #formPreviewBLock .video iframe {
@@ -53,8 +53,8 @@
 
   #formPreviewBLock  .form-row {
     width: 100%;
-    margin-bottom: 7px;
-    padding: 0 5px;
+    margin: 0 0 7px 0; 
+    padding: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
