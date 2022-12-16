@@ -217,8 +217,6 @@ class AdvertiserController extends Controller
 
     public function showPayments(Request $request)
     {
-        $ta = TransactionAdvertiser::whereNotNull('deduct')->orderBy('id', 'DESC')->get();
-
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
         $gateway_parameter = json_decode($method->parameters);
         \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
@@ -234,10 +232,11 @@ class AdvertiserController extends Controller
         );
 
         $page_title = 'Payments';
-        $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->orderBy('id', 'DESC')->paginate(15);
+        $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->get();
+        $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->orderBy('id', 'DESC')->get();
         if (isset($request->startDate)){
-            $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)
-                    ->whereBetween('trx_date', array($request->startDate, $request->endDate))->paginate(15);
+            $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
+            $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
         }
         $empty_message = 'No Transactions';
         return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key','ta'));
