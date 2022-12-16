@@ -204,7 +204,7 @@
                                                     <label class="col-form-label mt-4" for="form_desc_1_Input">Form Description  (Add upto 3 variations)</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3" maxlength="85">
+                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3" maxlength="81">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -212,7 +212,7 @@
                                                     </div>
                                                     <div id="FormDescription_2" style="display: none">
                                                         <div class="input-group input-col my-3">
-                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2"  minlength="3" maxlength="85">
+                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2"  minlength="3" maxlength="81">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -220,7 +220,7 @@
                                                     </div>
                                                     <div id="FormDescription_3" style="display: none">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3"   minlength="3" maxlength="85">
+                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3"   minlength="3" maxlength="81">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> </div>
                                                             </div>
@@ -228,8 +228,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="fbox bg-ddd">
-                                                    <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small></h4>
-                                                    <label class="col-form-label" >Youtube Video Url  (Add upto 3 variations)  </label>
+                                                    <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small> </h4>
+                                                    <label class="col-form-label">Youtube Video Url  (Add upto 3 variations)  </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
@@ -405,13 +405,13 @@
                                     <h3 class=" gray"> Form Preview</h3>
                                     <div class=" ">
                                         <div id="formPreviewBLock">
-                                            <div class="container w-100"  >
-                                                <div class="loading" style="text-align: center; padding: 15px; display: none;">Loading...</div>
-                                                <form id="LeadForm" method="POST" action="#">
+                                            <div class="container w-100" >
+                                                <form id="LeadForm" action="#">
+                                                    <div>
                                                     <div id="loadData">
                                                         <div class="video" id="preview_media"> </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
-                                                        <p  id="preview_form_sub_title"class="form-subtitle"> </p>
+                                                        <p id="preview_form_sub_title"class="form-subtitle"> </p>
                                                         <div class="form-row" id="preview_filed_1"> </div>
                                                         <div class="form-row" id="preview_filed_2"> </div>
                                                         <div class="form-row" id="preview_filed_3"> </div>
@@ -422,12 +422,17 @@
                                                     <div class="form-row">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
                                                         <p class="policy">I agree to your privacy policy by submitting the form</p>
+
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-bottom-logo">
                                                         <p class="logo">
                                                             <span id="preview_company_logo"> </span>
-
                                                             <span id="preview_company_name"> A1 Immigration Consultancy</span>
                                                         </p>
                                                     </div>
+
+
                                                 </form>
                                             </div>
                                         </div>

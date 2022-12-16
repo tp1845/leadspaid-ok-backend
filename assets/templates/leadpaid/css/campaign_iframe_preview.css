@@ -27,7 +27,7 @@
   }
 
   #formPreviewBLock  .video {
-    margin-bottom: 5px;
+    margin: -10px -5px 0 -5px;
     padding: 0!important;
   }
 
@@ -132,20 +132,30 @@
     text-align: center;
     width: 100%;
   }
+  #formPreviewBLock .container { 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+   } 
+  
   #formPreviewBLock  .logo{
-    text-align: center;
+    text-align: left;
     width: 100%;
     margin: 0;
     padding: 0;
     font-size: 12px;
+    line-height: 15px;
     display: flex;
     align-content: center;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 5px;
+
   }
 
-  #formPreviewBLock  .logo img{ display: inline-block; width: 120px; }
+  #formPreviewBLock  .logo img{ display: inline-block; width: 120px; max-height: 41px; }
 
   #formPreviewBLock  .form-row select:invalid,
   #formPreviewBLock   .form-row select option:first-child {
