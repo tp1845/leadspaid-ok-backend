@@ -28,7 +28,7 @@
     }
 
     .video {
-      margin-bottom: 5px;
+      margin: 0 -15px 5px;
       padding: 0 5px;
     }
 
@@ -141,7 +141,7 @@
       gap: 5px;
     }
 
-    .logo img{ display: inline-block; width: 120px; }
+    .logo img{ display: inline-block; max-width: 120px; max-height: 40px;  }
 
     .form-row select:invalid,
     .form-row select option:first-child {
@@ -244,7 +244,7 @@
           <div class="form-row">
             <button type="submit" id="saveData" class="form-btn">Submit</button>
             <p class="policy">I agree to your privacy policy by submitting the form</p>
-            <p class="logo"><img src="{{url("/")}}/assets/images/campaign_forms/logo.png" alt="" > <span> A1 Immigration Consultancy</span></p>
+            <p class="logo"><img style="display: none" id="company_logo" src="" alt="" > <span  style="display: none" id="company_name"></span></p>
           </div>
     </form>
   </div>
@@ -326,6 +326,11 @@
 
         if(form_title){ t +='<h2 class="form-title">'+form_title+'</h2>'; }
         if(form_desc){ t +='<p class="form-subtitle">'+form_desc+'</p>'; }
+
+        if(data.company_logo){ $('#company_logo').attr('src', image_src + data.company_logo ).show();}
+        if(data.company_name){  $('#company_name').html(data.company_name).show(); }
+
+
         for ($i = 1; $i < 6; $i++){
             var $field = data['field_'+$i];
             if($field){
@@ -368,6 +373,7 @@
             }
         }
         $('#loadData', form).append(t);
+
         $('.loading').hide();
         $(form).show();
     }

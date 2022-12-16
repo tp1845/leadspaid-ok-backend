@@ -91,7 +91,7 @@
       justify-content: center;
     }
 
-    .logo img{ display: inline-block; width: 120px; }
+    .logo img{ display: inline-block; max-width: 120px; max-height: 40px;  }
     .alert{ border-radius: 0; }
 </style>
 
@@ -189,7 +189,7 @@
       justify-content: center;
     }
 
-    .logo img{ display: inline-block; width: 120px; }
+    .logo img{ display: inline-block; max-width: 120px; max-height: 40px;  }
     .alert{ border-radius: 0; }
 </style>
 <style media="screen and (max-width: 700px)">
@@ -218,8 +218,8 @@
     }
     .heading{}
     .video {
-    margin-bottom: 5px;
-    padding: 0 5px;
+        margin: 0 -15px 5px;
+        padding: 0 5px;
     }
 
     .video iframe {  border: 1px solid #000;  }
@@ -328,7 +328,7 @@
     gap: 5px;
     }
 
-    .logo img{ display: inline-block; width: 120px;
+    .logo img{ display: inline-block;  max-width: 120px; max-height: 40px;
     -webkit-filter: invert(100%); /* Safari/Chrome */
     filter: invert(100%); }
 
@@ -445,7 +445,7 @@
                             </div>
                             <button type="submit" id="saveData" class="form-btn">Submit <i class="fa fa-chevron-right"></i></button>
                             <p class="policy">I agree to your privacy policy by submitting the form</p>
-                            <p class="logo"><img src="{{url("/")}}/assets/images/campaign_forms/logo-white.png" alt="" > <span> A1 Immigration Consultancy</span></p>
+                            <p class="logo"><img style="display: none" id="company_logo" src="" alt="" > <span  style="display: none" id="company_name"></span></p>
                         </div>
                     </div>
             </div>
@@ -534,10 +534,13 @@
                 }
             }
 
+
             t +='<div class="heading d-none">';
                 if(form_title){ t +='<h2 class="form-title">'+form_title+'</h2>'; }
                 if(form_desc){ t +='<p class="form-subtitle">'+form_desc+'</p>'; }
             t +='</div>';
+            if(data.company_logo){ $('#company_logo').attr('src', image_src + data.company_logo ).show();}
+            if(data.company_name){  $('#company_name').html(data.company_name).show(); }
 
             for ($i = 1; $i < 6; $i++){
                 var $field = data['field_'+$i];
