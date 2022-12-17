@@ -74,15 +74,15 @@
                 <div class="col-lg-5">
                     <ul class="how-its-works-list">
                         <li>
-                            <b>Embed Lead Form</b>
+                            <b><span>1</span> Lead Form</b>
                             <p>We embed your lead form into popular publishers' leanding pages</p>
                         </li>
                         <li>
-                            <b>Relevant audience fill Form  </b>
+                            <b><span>2</span> Relevant audience fill Form  </b>
                             <p>Highly relevant audiences visit these pages & fill your lead form </p>
                         </li>
                         <li>
-                            <b>Downlead Leads </b>
+                            <b><span>3</span> Downlead Leads </b>
                             <p>Advertiser simply download the leads  </p>
                         </li>
                     </ul>
@@ -539,7 +539,29 @@ body {
 /* === */
 
 .how-its-works-list{ }
-.how-its-works-list li{ font-size: 22px; border-bottom: 1px solid #666; margin-bottom: 15px }
+.how-its-works-list li{
+    font-size: 22px;
+    margin-bottom: 15px;
+    background: #fff;
+    padding: 15px;
+    border-radius: 3px;
+    box-shadow: 0px 3px 2px #00000008;
+    list-style: none;
+}
+.how-its-works-list li b span{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 30px;
+    background: #1361b2;
+    color: #fff;
+    padding: 0;
+    border-radius: 100%;
+    margin-right: 3px;
+
+}
 
 
 .Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
