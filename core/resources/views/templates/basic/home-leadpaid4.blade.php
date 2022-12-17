@@ -44,7 +44,7 @@
                 <div class="col-lg-4">
                     <div class="hero-box">
                         <h4>11 Countries</h4>
-                        <img src="{{url('/')}}/assets/images/homepage/home-flags.png" alt="" width="100%" >
+                        <img src="{{url('/')}}/assets/images/homepage/home-flags.png" alt=""  width="300px"  class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -142,53 +142,53 @@
             </div>
             <div class="row g-5 align-items-center">
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 120px" >
                 </div>
             </div>
             <div class="row g-5 py-5 align-items-center justify-content-center">
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" width="100%" >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" width="100%" >
                 </div>
 
             </div>
             <div class="row g-5 align-items-center">
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" width="100%"  style="max-width: 180px" >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" width="100%"  style="max-width: 280px" >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" width="100%"  style="max-width: 220px" >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/erconly.png" alt="" width="100%" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%"  >
                 </div>
             </div>
         </div>
      </section>
 
-     <section class="bg-white p-5" >
+     <section class="bg-secondary  p-5" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                   <h2 class="title mb-4">Start Generating Leads</h2>
-                   <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2 button-large px-5">Join As Advertiser</a>
+                   <h2 class="title mb-4 text-white">Start Generating Leads</h2>
+                   <a href="{{route('register_advertiser')}}" class="btn btn-primary btn-lg my-2 button-large px-5">Join As Advertiser</a>
                 </div>
             </div>
         </div>
