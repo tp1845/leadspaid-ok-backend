@@ -175,7 +175,7 @@
                                                 <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Form Title & Description</h4>
                                                     <div>
-                                                        <label class="col-form-label" for="FormTitleInput_1">Form Title (Add upto 3 variations)</label>
+                                                        <label class="col-form-label" for="FormTitleInput_1">Form Title (Add up to 3 variations)</label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
                                                                 <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3" maxlength="25">
@@ -201,7 +201,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Form Description  (Add upto 3 variations)</label>
+                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Form Description  (Add up to 3 variations)</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3" maxlength="81">
@@ -229,7 +229,7 @@
                                                 </div>
                                                 <div class="fbox bg-ddd">
                                                     <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small> </h4>
-                                                    <label class="col-form-label">Youtube Video Url  (Add upto 3 variations)  </label>
+                                                    <label class="col-form-label">Youtube Video Url  (Add up to 3 variations)  </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
@@ -257,7 +257,7 @@
                                                     </div>
 
 
-                                                    <label class="col-form-label mt-4" >Upload upto 3 images<small>(Add upto 3 variations)</small></label>
+                                                    <label class="col-form-label mt-4" >Upload upto 3 images<small>(Add up to 3 variations)</small></label>
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col d-flex "  style="width: 88%;">
                                                             <div class="upload-box grey image">
@@ -1296,5 +1296,5 @@
     .SelectFormType label { font-size: 20px; }
     .SelectFormType input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
-    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v1')}}">
+    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v2')}}">
 @endpush

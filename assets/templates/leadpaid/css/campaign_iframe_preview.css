@@ -137,6 +137,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    box-shadow:  0 6px 11px #45535a52;
    } 
   
   #formPreviewBLock  .logo{
