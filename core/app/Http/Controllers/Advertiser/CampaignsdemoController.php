@@ -67,7 +67,7 @@ class CampaignsdemoController extends Controller
             if(isset($request->form_title[1])){
             $campaign_forms->offer_desc    = $request->form_desc[1];
             }
-
+            $campaign_forms->punchline    = $request->form_punchline;
             $campaign_forms->youtube_1     = $request->youtube_1;
             $campaign_forms->youtube_2     = $request->youtube_2;
             $campaign_forms->youtube_3     = $request->youtube_3;

@@ -226,6 +226,16 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
+                                                    <label class="col-form-label mt-4" for="FormPunchlineInput">Punchline / USP / Action Call (Optional)</label>
+                                                    <div id="form_title_1">
+                                                        <div class="input-group input-col">
+                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="Punchline / USP / Action Call"   maxlength="81">
+                                                            <div class="input-group-append bg-none">
+                                                                <div class="input-group-text">  </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="fbox bg-ddd">
                                                     <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small> </h4>
@@ -412,6 +422,8 @@
                                                         <div class="video" id="preview_media"> </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
                                                         <p id="preview_form_sub_title"class="form-subtitle"> </p>
+                                                        <p id="preview_Punchline"class="form-punchline"> </p>
+
                                                         <div class="form-row" id="preview_filed_1"> </div>
                                                         <div class="form-row" id="preview_filed_2"> </div>
                                                         <div class="form-row" id="preview_filed_3"> </div>
@@ -797,8 +809,11 @@
             var company_name = $('#company_name_Input').val();
             var company_logo = $('#company_logo_img').attr('src');
 
+            var Punchline = $('#FormPunchlineInput').val();
+
             $('#preview_form_title').html(title_1);
             $('#preview_form_sub_title').html(sub_title_1);
+            $('#preview_Punchline').html(Punchline);
 
            $('#preview_company_name').html(company_name);
             if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
@@ -1296,5 +1311,5 @@
     .SelectFormType label { font-size: 20px; }
     .SelectFormType input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
-    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v2')}}">
+    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v3')}}">
 @endpush
