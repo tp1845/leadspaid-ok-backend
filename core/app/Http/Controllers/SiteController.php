@@ -72,10 +72,10 @@ class SiteController extends Controller
             $page_title = "Thanks email";
             $useremail = $request->email;
             return view($this->activeTemplate . 'thanks-email-contact', compact('page_title','useremail'));
-            
+
 
          }
-       
+
     }
 
     public function viewTicket($ticket)
@@ -284,10 +284,10 @@ class SiteController extends Controller
 
    public function home2()
     {
-        
+
 
         $data['page_title'] = 'New Home';
-        
+
 
         return view($this->activeTemplate . 'home-leadpaid2', $data);
     }
@@ -302,8 +302,16 @@ class SiteController extends Controller
 
     }
 
+    public function home4()
+    {
 
-   
+        $data['page_title'] = 'New Home 4';
+
+        return view($this->activeTemplate . 'home-leadpaid4', $data);
+
+    }
+
+
 
 
 }
