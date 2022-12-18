@@ -150,14 +150,14 @@
                         </div>
 
                         <div class="row w-100">
-                            <div class="col PageFormStyle formBlock">
+                            <div class="col PageFormStyle formBlock" id="MainForm">
                             <div id="UseExistingForm" style="display: none">
                                  <div class="card border h-100">
                                     <div class="card-header bg-primary">Form List</div>
-                                    <div class="card-body p-3 ">
+                                    <div class="card-body p-3 input-col">
                                         @foreach ($forms as $form)
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required>
+                                            <div class="form-check large-check">
+                                                <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required  onclick="updateformpreview_by_Id(event,this)">
                                                 <label class="form-check-label" for="form_{{ $form->id }}">
                                                     {{ $form->form_name }}
                                                 </label>
@@ -406,6 +406,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             </div>
                             {{--  --}}
 
@@ -488,10 +489,12 @@
             if ( type === 'CreateNewForm' ) {
                 $('#CreateNewForm').show();
                 $('#UseExistingForm').hide();
+                $('#MainForm').removeClass('UseExistingCol');
                 $('input[type=radio][name=form_id]').prop('checked', false);
             } else if ( type === 'UseExistingForm' ) {
                 $('#CreateNewForm').hide();
                 $('#UseExistingForm').show();
+                $('#MainForm').addClass('UseExistingCol');
             }
 
         });
@@ -763,11 +766,28 @@
             },
             "Minimum 3 fileds are requried"
         );
-
+        var campaigns =  @json($campaigns);
+        $.validator.addMethod(
+            "unique_campaign_name",
+            function(value, element) {
+                var  $result = $.map(campaigns, function(item,i){  name =item.name;  if(name.toLowerCase() == value.toLowerCase()){  return 'exits'; } })[0];
+                return $result == 'exits'?false:true;
+            },
+            "Campaign name should be unique"
+        );
+        $.validator.addMethod(
+            "unique_form_name",
+            function(value, element) {
+              var  $result =$.map(campaigns, function(item,i){ name =item.campaign_forms.form_name; if(name.toLowerCase() == value.toLowerCase()){  return 'exits'; }  })[0];
+              return $result == 'exits'?false:true;
+            },
+            "Form name should be unique"
+        );
 
         $("#campaign_form").validate({
             rules: {
-                name: { minlength: 3 },
+                campaign_name: { minlength: 3, unique_campaign_name: true },
+                form_name: { minlength: 3, unique_form_name: true },
                 min_row_validation:{  check_row: true },
                 daily_budget: { required: true, money: true,min: 50,max: 1000 },
                 target_cost: { required: false, money: true,min: 10,max: 1000 },
@@ -792,11 +812,40 @@
 
     <script>
 
-        function updateformpreview() {
 
+        function updateformpreview_by_Id(event,el) {
+
+            form_id = $(el).val();
+            var getFormURL = "{{route('advertiser.campaigns.getform')}}";
+            const getformData = { "_token": "{{ csrf_token() }}", "form_id":form_id };
+            $.ajax({
+                    url: getFormURL,
+                    data: getformData,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function ( data ) {
+                        console.log(data)
+                        updateformpreview(data.form[0]);
+                    }
+                });
+
+        }
+        function resetformpreview() {
+            $('#preview_form_title').html('');
+            $('#preview_form_sub_title').html('');
+            $('#preview_Punchline').html('');
+            $('#preview_company_name').html('');
+            $('#preview_company_logo').html('');
+            $('#preview_media').html('');
+            for ($i = 1; $i < 6; $i++){  $('#preview_filed_'+$i).html('');  }
+        }
+
+        function updateformpreview(data = false) {
+            resetformpreview();
+            if(data == false){
             var youtube_1 = $('#Youtube_URL_1_Input').val();
             var youtube_2 = $('#Youtube_URL_2_Input').val();
-            var youtube_4 = $('#Youtube_URL_3_Input').val();
+            var youtube_3 = $('#Youtube_URL_3_Input').val();
             var image_1_img = $('#image_1_img').attr('src');
             var image_2_img = $('#image_2_img').attr('src');
             var image_3_img = $('#image_3_img').attr('src');
@@ -808,17 +857,32 @@
             var sub_title_3 = $('#form_desc_3_Input').val();
             var company_name = $('#company_name_Input').val();
             var company_logo = $('#company_logo_img').attr('src');
-
             var Punchline = $('#FormPunchlineInput').val();
+            }else{
+            var image_src = '{{url("/")}}/assets/images/campaign_forms/';
+            var youtube_1 = data.youtube_1;
+            var youtube_2 = data.youtube_2;
+            var youtube_3 = data.youtube_3;;
+            var image_1_img = image_src + data.image_1;
+            var image_2_img = image_src +  data.image_2;
+            var image_3_img = image_src + data.image_3;
+            var title_1 = data.title[1];;
+            var title_2 = data.title[2];
+            var title_3 = data.title[3];
+            var sub_title_1 = data.form_desc[1];
+            var sub_title_2 = data.form_desc[1];
+            var sub_title_3 = data.form_desc[1];
+            var company_name =  data.company_name;
+            var company_logo = image_src +  data.company_logo;
+            var Punchline = data.punchline;
+            }
 
             $('#preview_form_title').html(title_1);
             $('#preview_form_sub_title').html(sub_title_1);
             $('#preview_Punchline').html(Punchline);
-
            $('#preview_company_name').html(company_name);
-            if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
 
-            company_logo
+            if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
 
             if(youtube_1){
                 const videoId = getVideoId(youtube_1);
@@ -828,15 +892,45 @@
                 $('#preview_media').html('<div class="video image"><img src="'+ image_1_img +'" alt="" width="100%" /></div>');
             }
             for ($i = 1; $i < 6; $i++){
+                if(data == false){
                 question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
                 question_text =  $('input[name="field_'+$i+'[question_text]"]').val();
-                question_required      =  $('input[name="field_'+$i+'[required]"]').prop('checked')?'*':'';
+                question_required =  $('input[name="field_'+$i+'[required]"]').prop('checked')?'*':'';
+                }else{
+                    question_type = null;
+                    question_text =  null;
+                    question_required =  null;
+                    options=  [];
+                    var fd = data['field_'+$i];
+                    if( fd ){
+                        question_type = fd['question_type'];
+                        question_text = fd['question_text'];
+                        if(fd['required']){ question_required =  fd['required']?'*':''; }else{ question_required = '';  }
+                        if(question_type == 'MultipleChoice'){
+                            if(fd['option_1']){ options[0]= fd['option_1'] ; }
+                            if(fd['option_2']){ options[1]= fd['option_2'] ; }
+                            if(fd['option_3']){ options[2]= fd['option_3'] ; }
+                            if(fd['option_4']){ options[3]= fd['option_4'] ; }
+                            if(fd['option_5']){ options[4]= fd['option_5'] ; }
+                            if(fd['option_6']){ options[5]= fd['option_6'] ; }
+                        }
+                    }
+                }
                 t ='';
                 if(question_type === 'MultipleChoice'){
                     t +='<select class="form-select" id="Input_field_'+$i+'"';
                     t +='>';
                         if(question_text){  t +='<option selected value="" class="holder"> '+question_text+ question_required +' </option>'; }
-                        for ($j = 1; $j < 7; $j++){ op =  $('input[name="field_'+$i+'[option_'+$j+']"]').val();  if(op){ t +='<option value="'+ op+'">'+ op+'</option>'; } }
+                        if(data == false){
+                            for ($j = 1; $j < 7; $j++){
+                                op =  $('input[name="field_'+$i+'[option_'+$j+']"]').val();
+                                if(op){ t +='<option value="'+ op+'">'+ op+'</option>'; }
+                            }
+                        }else{
+                            $.each(options, function (key, val) {
+                                t +='<option value="'+ val+'">'+ val+'</option>';
+                            });
+                        }
                         t +='</select>';
                 }else if(question_type === 'ShortAnswer'){
                     t +='<input type="text" class="form-control" id="Input_field_'+$i+'" placeholder="'+question_text+ question_required +'" ';
@@ -884,6 +978,8 @@
 
 <style>
     .formBlock{ margin-right: 130px}
+    .formBlock.UseExistingCol{ margin-right: 350px}
+
     .leftForm{ width: 416px; min-width: 416px;  max-width: 416px; }
     .rightForm{   }
     .rightForm .padding{ padding: 25px 35px 0 35px; }
@@ -907,7 +1003,7 @@
     box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
 }
 #UseExistingForm label{ font-size: 16px }
-#UseExistingForm  .form-check{ margin-bottom: 5px; }
+#UseExistingForm  .form-check{ margin-bottom: 10px; }
 .btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
 #campaign_list td{ font-size: 15px; }
 #campaign_list td:nth-child(3){  font-size: 14px; }
@@ -1308,8 +1404,8 @@
         border: 5px solid #000;
         padding: 5px !important;
     }
-    .SelectFormType label { font-size: 20px; }
-    .SelectFormType input[type="radio"],  input.large[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
+    .SelectFormType label, .large-check label { font-size: 20px; }
+    .SelectFormType input[type="radio"] , .large-check input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
-    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v3')}}">
+    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v4')}}">
 @endpush
