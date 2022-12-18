@@ -138,4 +138,13 @@ class CampaignsdemoController extends Controller
         }
         return back()->withNotify($notify);
     }
+    public function getform(Request $request)
+    {
+        $form = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->where('id', $request->form_id)->get();
+        if( $form ){
+            return response()->json(['success'=>true, 'form'=>$form]);
+        }else{
+            return response()->json(['success'=>false, 'form'=>false]);
+        }
+    }
 }

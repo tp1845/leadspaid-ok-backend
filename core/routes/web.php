@@ -423,6 +423,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         Route::get('campaigns/style/{style}', 'CampaignsdemoController@index')->name('campaigns.style');
         Route::post('/campaigns2/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');
+        Route::post('/campaigns/getform', 'CampaignsdemoController@getform')->name('campaigns.getform');
 
         //price plans
         Route::get('/ad/price-plans', 'AdController@pricePlans')->name('price.plan');
