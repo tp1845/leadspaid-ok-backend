@@ -27,7 +27,7 @@
                 </div>
 
             </div>
-            <div class="row align-item-center justify-content-center  mt-5 pt-5">
+            <div class="row align-item-center justify-content-center  mt-1 mt-lg-5 pt-5">
 
                 <div class="col-lg-4">
                     <div class="hero-box">
@@ -60,7 +60,7 @@
         </div>
      </section>
 
-     <section class="bg-gray p-5" >
+     <section class="bg-gray p-1 py-5 p-lg-5" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -133,7 +133,7 @@
             </div><!-- /.row -->
         </div>
     </div>
-    <section class="bg-light p-5" >
+    <section class="bg-light p-1 py-5 p-lg-5" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -183,12 +183,12 @@
         </div>
      </section>
 
-     <section class="bg-secondary  p-5" >
+     <section class="bg-secondary p-1 py-5 p-lg-5" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                    <h2 class="title mb-4 text-white">Start Generating Leads</h2>
-                   <a href="{{route('register_advertiser')}}" class="btn btn-primary btn-lg my-2 button-large px-5">Join As Advertiser</a>
+                   <a href="{{route('register_advertiser')}}" class="btn btn-primary btn-lg my-2 button-large  ">Join As Advertiser</a>
                 </div>
             </div>
         </div>
@@ -538,7 +538,7 @@
         .hero-box h5{ font-size: 26px; font-weight: normal;  color: #fff }
         /* === */
 
-        .how-its-works-list{ }
+        .how-its-works-list{ padding: 0; margin: 0; }
         .how-its-works-list li{
         font-size: 22px;
         margin-bottom: 15px;
@@ -748,6 +748,10 @@
         width: unset !important;
         font-size: 48px !important;
         margin-top: 30px !important;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+        box-shadow: 0px 3px 10px 0px #000;
         }
         .Rg_advts {
             font-family: Poppins !important;
