@@ -884,7 +884,9 @@
         #MainFooter {
         margin-top: 0 !important;
         }
-
+        .MainBanner-bottom h3, .MainBanner-bottom .h3 {
+            font-size: 30px;
+        }
         @media only screen and (min-width: 768px) {
         .MainBanner-Home .h1 {
             font-size: 81px !important;
