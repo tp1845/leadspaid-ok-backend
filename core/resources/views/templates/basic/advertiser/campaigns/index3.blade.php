@@ -1309,7 +1309,7 @@
         padding: 5px !important;
     }
     .SelectFormType label { font-size: 20px; }
-    .SelectFormType input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
+    .SelectFormType input[type="radio"],  input.large[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v3')}}">
 @endpush
