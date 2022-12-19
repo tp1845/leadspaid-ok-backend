@@ -126,7 +126,7 @@
         <div class="container my-4">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                <h2 class="title mb-5 pb-5">Advertisers Using LeadsPaid</h2>
+                <h2 class="title   pb-5">Advertisers Using LeadsPaid</h2>
                 </div>
             </div>
             <div class="row g-5 align-items-center">
@@ -140,10 +140,10 @@
                     <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
                 </div>
                 <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 120px" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
                 </div>
             </div>
-            <div class="row gx-lg-5 my-5 py-3 align-items-center justify-content-center">
+            <div class="row gx-lg-5  py-3 align-items-center justify-content-center">
                 <div class="col-lg-3 text-center">
                     <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
                 </div>
@@ -155,7 +155,7 @@
                 </div>
 
             </div>
-            <div class="row g-5 align-items-center">
+            <div class="row g-5 align-items-center justify-content-center">
                 <div class="col-lg-3 text-center">
                     <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" width="100%"  style="max-width: 180px" >
                 </div>
@@ -185,6 +185,9 @@
         <div class="container">
             <div class="row align-item-center justify-content-center align-items-center">
                 <div class="col-lg-12">
+                    @if(Request::get('sub') == 1 )
+                        <h4 class="sub_title">An AI-Powered Leads Ad Network</h4>
+                    @endif
                     <h1 class="h1">Generate Leads Directly</h1>
                     <p>From High Ranking/ Popular/ Authority Sites & Apps</p>
                     <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2 button-large">Join As Advertiser</a>
@@ -249,6 +252,16 @@
             content: "";
             z-index: 1;
         }
+        @if(Request::get('bg') == 1 )
+        #MainHeroHeader #MainNav{
+            background-color: #000011cc!important;
+            border-bottom: 1px solid #000055;
+        }
+        #MainHeroHeader .MainBanner-Home{
+            background-color: #000011bc;
+        }
+        @endif
+
         #MainHeroHeader  #MainNav, #MainHeroHeader   .MainBanner-Home { position: relative; z-index: 10; }
 
         #MainNav{ background-color: transparent!important; }
@@ -267,6 +280,16 @@
         font-weight: 300;
         }
 
+        .MainBanner-Home .sub_title{
+            background-color: #EEEDE7;
+            box-shadow: 5px 5px 0 #1361b2;
+            color: #1361b2;
+            font-size: 28px;
+            font-weight: 500;
+            display: inline-block;
+            padding: 3px 15px;
+
+        }
         /* Hero */
         .hero-box{ border: 3px solid #fff; width: 100%; padding: 30px; text-align: center; height: 100%;; display: flex; flex-direction: column;  align-items: center; justify-content: center; }
         .hero-box h4{ font-size: 46px; font-weight: bold; color: #1361b2 }
@@ -361,34 +384,32 @@
             font-size: 30px;
         }
         @media only screen and (min-width: 768px) {
-        .MainBanner-Home .h1 {
-            font-size: 81px !important;
-            font-family: "Poppins-Bold"!important;
-            font-weight: bold;
-        }
-        .MainBanner-bottom h3, .MainBanner-bottom .h3 {
-            font-size: 45px;
-        }
-        .MainBanner-Home p {
-            font-size: 36px !important;
-            font-weight: 300;
-        }
+            .MainBanner-Home .h1 {
+                font-size: 81px !important;
+                font-family: "Poppins-Bold"!important;
+                font-weight: bold;
+            }
+            .MainBanner-bottom h3, .MainBanner-bottom .h3 {
+                font-size: 45px;
+            }
+            .MainBanner-Home p {
+                font-size: 36px !important;
+                font-weight: 300;
+            }
 
-        .MainBanner-Home .btn, .button-large {
-            font-size: 35px !important;
-            padding-right: 35px;
-            padding-left: 35px;
-            display: inline-block;
-        }
+            .MainBanner-Home .btn, .button-large {
+                font-size: 35px !important;
+                padding-right: 35px;
+                padding-left: 35px;
+                display: inline-block;
+            }
         }
         @media only screen and (max-width: 768px) {
-        .MainBanner-Home .btn, .button-large {
-            font-size: 30px !important;
-            padding-right: 15px;
-            padding-left: 15px;
+            .MainBanner-Home .btn, .button-large {
+                font-size: 30px !important;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
         }
-        }
-
-
     </style>
 @endpush
