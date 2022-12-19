@@ -230,7 +230,7 @@
                                                     <label class="col-form-label mt-4" for="FormPunchlineInput">Punchline / USP / Action Call (Optional)</label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="Punchline / USP / Action Call"   maxlength="81">
+                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="Punchline / USP / Action Call"   maxlength="28">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text">  </div>
                                                             </div>
@@ -749,10 +749,10 @@
         $.validator.addMethod(
             "money",
             function(value, element) {
-                var isValidMoney = /^\d{0,4}(\.\d{0,2})?$/.test(value);
+                var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
                 return this.optional(element) || isValidMoney;
             },
-            "Enter Correct value. "
+            "Enter Correct value."
         );
 
         $.validator.addMethod(
@@ -773,7 +773,7 @@
                 var  $result = $.map(campaigns, function(item,i){  name =item.name;  if(name.toLowerCase() == value.toLowerCase()){  return 'exits'; } })[0];
                 return $result == 'exits'?false:true;
             },
-            "Campaign name should be unique"
+            "Use a different campaign name (Same Campaign Name already exist)"
         );
         $.validator.addMethod(
             "unique_form_name",
@@ -781,7 +781,7 @@
               var  $result =$.map(campaigns, function(item,i){ name =item.campaign_forms.form_name; if(name.toLowerCase() == value.toLowerCase()){  return 'exits'; }  })[0];
               return $result == 'exits'?false:true;
             },
-            "Form name should be unique"
+            "Use a different Form name (Same Form Name already exist)"
         );
 
         $("#campaign_form").validate({
@@ -798,8 +798,25 @@
                 image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 }
 
             },messages: {
+                campaign_name:{  required : 'Campaign Name is required.' },
+                company_name:{  required : 'Company Name is required.' },
+                company_logo:{  required : 'Company Logo is required.' },
+                target_country:{  required : 'Country is required.' },
+
+
                 daily_budget:  { required : 'Daily Budget is required.', min:'Daily Budget should be minimum $50', max: 'Daily Budget should not be greater than $1000'} ,
                 target_cost:  { required : 'Target Cost is required.', min:'Target Cost should be minimum $10', max: 'Target Cost should not be greater than $1000'} ,
+                SelectFormType:{  required : 'Form is required.' },
+                form_name:{  required : 'Form Name is required.' },
+                'form_title[1]':{  required : 'Form Title is required.' },
+                'form_desc[1]':{  required : 'Form Description is required.' },
+                'field_1[question_text]':{  required : 'Question is required.' },
+                'field_2[question_text]':{  required : 'Question is required.' },
+                'field_3[question_text]':{  required : 'Question is required.' },
+                'field_4[question_text]':{  required : 'Question is required.' },
+                'field_5[question_text]':{  required : 'Question is required.' },
+                'form_id':{  required : 'Form is required.' },
+
                 service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
                 website_url: 'Please fill Website URL - or leave it blank',
                 company_logo: "File must be JPG, GIF or PNG, less than 2MB",
@@ -809,26 +826,21 @@
             }
         });
     </script>
-
     <script>
-
-
         function updateformpreview_by_Id(event,el) {
-
             form_id = $(el).val();
             var getFormURL = "{{route('advertiser.campaigns.getform')}}";
             const getformData = { "_token": "{{ csrf_token() }}", "form_id":form_id };
             $.ajax({
-                    url: getFormURL,
-                    data: getformData,
-                    dataType: 'json',
-                    type: 'POST',
-                    success: function ( data ) {
-                        console.log(data)
-                        updateformpreview(data.form[0]);
-                    }
-                });
-
+                url: getFormURL,
+                data: getformData,
+                dataType: 'json',
+                type: 'POST',
+                success: function ( data ) {
+                    console.log(data)
+                    updateformpreview(data.form[0]);
+                }
+            });
         }
         function resetformpreview() {
             $('#preview_form_title').html('');
@@ -978,7 +990,7 @@
 
 <style>
     .formBlock{ margin-right: 130px}
-    .formBlock.UseExistingCol{ margin-right: 350px}
+    .formBlock.UseExistingCol{ margin-right: 600px}
 
     .leftForm{ width: 416px; min-width: 416px;  max-width: 416px; }
     .rightForm{   }
@@ -1005,7 +1017,7 @@
 #UseExistingForm label{ font-size: 16px }
 #UseExistingForm  .form-check{ margin-bottom: 10px; }
 .btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
-#campaign_list td{ font-size: 15px; }
+#campaign_list td{ font-size: 16px; color: #1a273a;  }
 #campaign_list td:nth-child(3){  font-size: 14px; }
 #campaign_list a.create-campaign-btn { font-size: 12px; }
 
@@ -1407,5 +1419,5 @@
     .SelectFormType label, .large-check label { font-size: 20px; }
     .SelectFormType input[type="radio"] , .large-check input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
-    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v4')}}">
+    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v2')}}">
 @endpush
