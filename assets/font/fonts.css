@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "Poppins-Bold";
+  src: url("Poppins-Bold.woff2") format("woff2"),
+       url("Poppins-Bold.woff") format("woff"),
+       url("Poppins-Bold.ttf") format("truetype"),
+       url("Poppins-Bold.eot") format("embedded-opentype"),
+       url("Poppins-Bold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins-Light";
+  src: url("Poppins-Light.woff2") format("woff2"),
+       url("Poppins-Light.woff") format("woff"),
+       url("Poppins-Light.ttf") format("truetype"),
+       url("Poppins-Light.eot") format("embedded-opentype"),
+       url("Poppins-Light.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins-Medium";
+  src: url("Poppins-Medium.woff2") format("woff2"),
+       url("Poppins-Medium.woff") format("woff"),
+       url("Poppins-Medium.ttf") format("truetype"),
+       url("Poppins-Medium.eot") format("embedded-opentype"),
+       url("Poppins-Medium.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Poppins-SemiBold";
+  src: url("Poppins-SemiBold.woff2") format("woff2"),
+       url("Poppins-SemiBold.woff") format("woff"),
+       url("Poppins-SemiBold.ttf") format("truetype"),
+       url("Poppins-SemiBold.eot") format("embedded-opentype"),
+       url("Poppins-SemiBold.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "poppins-regular";
+  src: url("poppins-regular.woff2") format("woff2"),
+       url("poppins-regular.woff") format("woff"),
+       url("poppins-regular.ttf") format("truetype"),
+       url("poppins-regular.eot") format("embedded-opentype"),
+       url("poppins-regular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+} 

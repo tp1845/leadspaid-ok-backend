@@ -578,6 +578,7 @@ Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_con
 
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
 Route::get('/home-v4', 'SiteController@home4')->name('home_v4');
+Route::get('/home-v5', 'SiteController@home5')->name('home_v5');
 Route::get('new-home', 'SiteController@home2')->name('new-home');
 Route::get('/old-home', 'SiteController@index')->name('old-home');
 Route::get('/new_home_2_test','SiteController@home3')->name('new_home_2_test');
