@@ -122,8 +122,8 @@
             </div><!-- /.row -->
         </div>
     </div>
-    <section class="bg-light p-1 py-5 py-lg-5" >
-        <div class="container">
+    <section class="bg-light p-1 py-5 py-lg-5 " >
+        <div class="container my-4">
             <div class="row">
                 <div class="col-lg-12 text-center">
                 <h2 class="title mb-5 pb-5">Advertisers Using LeadsPaid</h2>
@@ -143,7 +143,7 @@
                     <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 120px" >
                 </div>
             </div>
-            <div class="row g-5 py-5 align-items-center justify-content-center">
+            <div class="row gx-lg-5 my-5 py-3 align-items-center justify-content-center">
                 <div class="col-lg-3 text-center">
                     <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
                 </div>
