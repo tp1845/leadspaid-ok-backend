@@ -165,9 +165,6 @@
                 <div class="col-lg-3 text-center">
                     <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" width="100%"  style="max-width: 220px" >
                 </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%"  >
-                </div>
             </div>
         </div>
     </section>
