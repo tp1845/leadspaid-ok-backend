@@ -122,11 +122,11 @@
             </div><!-- /.row -->
         </div>
     </div>
-    <section class="bg-light p-1 py-5 p-lg-5" >
+    <section class="bg-light p-1 py-5 py-lg-5" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                <h2 class="title mb-5">Advertisers Using LeadsPaid</h2>
+                <h2 class="title mb-5 pb-5">Advertisers Using LeadsPaid</h2>
                 </div>
             </div>
             <div class="row g-5 align-items-center">
