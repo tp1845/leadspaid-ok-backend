@@ -13,9 +13,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
-   #loadMedia {    display: flex;
+   #loadMedia {
+        display: flex;
         flex-direction: column;
-        justify-content: center;}
+        justify-content: center;
+        }
+        .form-punchline {
+        color: #3f51b5;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
+        margin: 0 0 5px 0;
+        padding: 0;
+        line-height: 1.3;
+    }
 </style>
 <style media="screen and (min-width: 992px)">
     .container{ max-width: 1140px; padding: 0}
@@ -26,7 +37,7 @@
 
     }
     .form-title{ text-transform: uppercase; font-weight: bold; font-size: 28px; text-align: center }
-    .form-subtitle{ text-align: center}
+    .form-subtitle{ text-align: center; margin-bottom: 0}
     .video{ border: 3px solid #c38d30; box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 50%);}
     iframe{ min-height: 460px; }
     label {
@@ -112,7 +123,7 @@
         border: 1px solid #00297050;
     }
     .form-title{ text-transform: uppercase; font-weight: bold; font-size: 24px; text-align: center }
-    .form-subtitle{ text-align: center}
+    .form-subtitle{ text-align: center; margin-bottom: 0}
     .video{ border: 3px solid #c38d30; box-shadow: 0px 3px 6px 0px rgb(0 0 0 / 50%);}
     iframe{ min-height: 460px; }
     label {
@@ -207,7 +218,10 @@
       padding: 0 5px;
     }
 
-    .video iframe {  border: 1px solid #000;  }
+    .video iframe {
+        border: 0px;
+        box-shadow: 0 0 2px #00000087;
+     }
 
     .form-title {
       text-align: center;
@@ -220,7 +234,7 @@
     .form-subtitle {
       text-align: center;
       font-size: 14px;
-      margin: 0 0 10px 0;
+      margin: 0;
       padding: 0;
     }
 
@@ -310,6 +324,7 @@
       align-content: center;
       flex-direction: row;
       align-items: center;
+      justify-content: center;
       gap: 5px;
     }
 
@@ -519,7 +534,7 @@
 
             if(form_title){ t +='<h2 class="form-title">'+form_title+'</h2>'; }
             if(form_desc){ t +='<p class="form-subtitle">'+form_desc+'</p>'; }
-
+            if(data.punchline){ t +='<p class="form-punchline">'+data.punchline+'</p>'; }
             if(data.company_logo){ $('#company_logo').attr('src', image_src + data.company_logo ).show();}
             if(data.company_name){  $('#company_name').html(data.company_name).show(); }
 

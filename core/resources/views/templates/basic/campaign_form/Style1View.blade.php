@@ -28,12 +28,13 @@
     }
 
     .video {
-      margin: 0 -15px 5px;
+      margin: 0 -5px 5px
       padding: 0 5px;
     }
 
     .video iframe {
-      border: 1px solid #000;
+        border: 0px;
+        box-shadow: 0 0 2px #00000087;
     }
 
     .form-title {
@@ -47,10 +48,18 @@
     .form-subtitle {
       text-align: center;
       font-size: 14px;
-      margin: 0 0 10px 0;
+      margin: 0;
       padding: 0;
     }
-
+    .form-punchline {
+        color: #3f51b5;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
+        margin: 0 0 5px 0;
+        padding: 0;
+        line-height: 1.3;
+    }
     .form-row {
       width: 100%;
       margin-bottom: 8px;
@@ -138,6 +147,7 @@
       align-content: center;
       flex-direction: row;
       align-items: center;
+        justify-content: center;
       gap: 5px;
     }
 
@@ -255,7 +265,7 @@
     var utm_id =  urlParams.utm_id;
     var utm_source =  urlParams.utm_source ;
     var utm_medium =  urlParams.utm_medium ;
-    var utm_campaign =  urlParams.utm_campaign ;
+    var utm_campaign =  urlParams.utm_campaign;
     $('#utm_id').val(utm_id);
     $('#utm_source').val(utm_source);
     $('#utm_medium').val(utm_medium);
@@ -326,6 +336,7 @@
 
         if(form_title){ t +='<h2 class="form-title">'+form_title+'</h2>'; }
         if(form_desc){ t +='<p class="form-subtitle">'+form_desc+'</p>'; }
+        if(data.punchline){ t +='<p class="form-punchline">'+data.punchline+'</p>'; }
 
         if(data.company_logo){ $('#company_logo').attr('src', image_src + data.company_logo ).show();}
         if(data.company_name){  $('#company_name').html(data.company_name).show(); }

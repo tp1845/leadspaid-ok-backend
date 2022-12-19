@@ -12,7 +12,19 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<style>
 
+    .form-punchline {
+    color: #c1cafd;
+    font-weight: 500;
+    font-size: 18px;
+    text-align: left;
+    margin: 0 0 5px 0;
+    padding: 0;
+    line-height: 1.3;
+    }
+    .form-subtitle{ margin-bottom: 0}
+ </style>
 <style  media="screen and (min-width: 992px)">
     .container{ max-width: 1024px; padding: 0}
     .col-lg-8 #loadMedia .heading{ display: none!important; }
@@ -223,7 +235,10 @@
     padding: 0 5px;
     }
 
-    .video iframe {  border: 1px solid #000;  }
+    .video iframe {
+        border: 0px;
+        box-shadow: 0 0 2px #00000087;
+     }
 
     .form-title {
     text-align: center;
@@ -236,10 +251,13 @@
     .form-subtitle {
     text-align: center;
     font-size: 14px;
-    margin: 0 0 10px 0;
+    margin:0;
     padding: 0;
     }
-
+    .form-punchline{
+        color: #3f51b5;
+        text-align: center;
+    }
     .form-row {
     width: 100%;
     margin-bottom: 8px;
@@ -326,12 +344,14 @@
     align-content: center;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     gap: 5px;
     }
 
     .logo img{ display: inline-block; max-width: 120px; max-height: 40px;
-    -webkit-filter: invert(100%); /* Safari/Chrome */
-    filter: invert(100%); }
+    /* -webkit-filter: invert(100%);
+    filter: invert(100%);  */
+}
 
 
     .form-row select:invalid,
@@ -523,6 +543,7 @@
             m +='<div class="heading">';
                 if(form_title){ m +='<h2 class="form-title">'+form_title+'</h2>'; }
                 if(form_desc){ m +='<p class="form-subtitle">'+form_desc+'</p>'; }
+                if(data.punchline){ m +='<p class="form-punchline">'+data.punchline+'</p>'; }
             m +='</div>';
             if(show_media){
                 if(show_media.type == 'youtube'){
@@ -538,6 +559,7 @@
             t +='<div class="heading d-none">';
             if(form_title){ t +='<h2 class="form-title">'+form_title+'</h2>'; }
             if(form_desc){ t +='<p class="form-subtitle">'+form_desc+'</p>'; }
+            if(data.punchline){ t +='<p class="form-punchline">'+data.punchline+'</p>'; }
             t +='</div>';
             if(data.company_logo){ $('#company_logo').attr('src', image_src + data.company_logo ).show();}
             if(data.company_name){  $('#company_name').html(data.company_name).show(); }
