@@ -4,200 +4,8 @@
 
 {{-- @include($activeTemplate.'partials.breadcrumb') --}}
 <div class="contact-banner">
-
-
-
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.3563763314287!2d-121.48248508516541!3d38.57164037368576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad0dd31655555%3A0x4400fdc2363ca6c4!2s1401%2021st%20Street%20Suite%20R%2C%20Sacramento%2C%20CA%2095811%2C%20USA!5e0!3m2!1sen!2sin!4v1670595056862!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.3563763314287!2d-121.48248508516541!3d38.57164037368576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad0dd31655555%3A0x4400fdc2363ca6c4!2s1401%2021st%20Street%20Suite%20R%2C%20Sacramento%2C%20CA%2095811%2C%20USA!5e0!3m2!1sen!2sin!4v1670595056862!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
-<style>
-    .contact-banner{
-        position: relative;
-        filter: invert(10%);
-    }
-
-    .contact-3 .title-3:before {
-        display:none;
-    }
-    .contact_wrap p, .contact_wrap p a, .contact_msg {
-    color: #586167 !important;
-    font-weight:400;
-    font-size:18px;
-}
-    .conpant_icon svg {
-        height:24px !important;
-    }
-    .contact_wrap .title {
-    color: #1361b2;
-}
-.submit-btn button.btn {
-    font-size: 24px;
-    font-weight: 500;
-}
-.input-group {
-    border-color: #94a1b5 !important;
-}
-.contact-3 .form-group {
-    margin-bottom: unset;
-}
-.contact-3 .form-group input {
-    color: #586167;
-    outline: none;
-    display: block;
-    font-size: 19px;
-    height: 63px;
-    border-bottom: none;
-    border: 1px solid #94a1b5 !important;
-    padding: 16px 24px;
-    line-height: normal;
-    /* background: #f2f7ff; */
-    font-weight:300;
-}
-.contact-3 .form-group textarea {
-    border: 1px solid #94a1b5 !important;
-    /* background: #f2f7ff; */
-    font-size: 19px;
-    padding: 16px 24px;
-    line-height: normal;
-    font-weight:300;
-}
-
-.contact-3 .form-group .form-control:focus, .contact-3 .contact_msg:focus, .contact-3 .was-validated .form-select:valid, .contact-3 .form-select.is-valid {
-    background-color: #fff;
-    border: 1px solid #94a1b5 !important;
-    box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
-    transition: All .2s ease-in-out!important;
-}
-
-.contact-3 .form-group i {
-    top: 10px;
-    right: 10px;
-}
-.contact-3 .theme-card {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
-.contact-3 .contact_section .contact_wrap h4 {
-    font-size:18px !important;
-}
-.contact-3 .contact_section .contact_wrap {
-    text-align:left !important;
-    -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
-    box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
-}
-.Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
-    background: none !important;
-}
-  .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small, .log-in .form-control.success small {
-    display: none;
-  }
-  .Rg_advts .form-control {
-    position: relative;
-  }
-  .error .custom_msg .fa-times {
-    display: block;
-    position: absolute;
-    top: 25px;
-    right: 22px;
-    color: #e74c3c;
-}
-  .success .custom_msg .fa-check {
-    display: block;
-    position: absolute;
-    top: 23px;
-    right: 22px;
-    color: #2ecc71;
-}
-
-.fa-times::before {
-    content: "\f00d";
-}
-.fa-check::before {
-    content: "\f00c";
-}
-.fa, .far, .fas {
-    font-family: "Font Awesome 5 Free";
-}
-.fa, .fab, .fad, .fal, .far, .fas {
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-}
-.fv-plugins-bootstrap .fv-plugins-icon {
-    height: 38px;
-    line-height: 38px;
-    width: 38px;
-}
-
-.log-in .form-group{
-    position: relative;
-}
-
-.log-in .form-group label{
-    color:#777;
-    display: block;
-    margin-bottom: 5px;
-}
-
-
-.log-in .form-group input:focus{
-    outline: 0;
-    border-color: #777;
-
-}
-.log-in .form-control.success {
-    padding: 0;
-    border: none;
-    margin-bottom: 1rem !important;
-}
-.log-in .form-control.error {
-    border: none;
-    padding: 0;
-    margin-bottom: 10px;
-}
-.log-in .form-control.success small {
-    color:#2ecc71;
-}
-.log-in .form-control.success input {
-    border-color: #2ecc71;
-}
-.Rg_advts_number .form-control.success select, .log-in .form-control.success textarea, .log-in .form-control.success #country_id {
-    border: 1px solid #2ecc71;
-}
-.log-in textarea, .log-in textarea:hover {
-    border:1px solid #94a1b5;
-}
-.log-in textarea:focus-visible {
-    outline: none;
-}
-.log-in .form-control.error input, .log-in .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
-    border-color: #e74c3c;
-}
-.log-in .form-control.error small {
-    color: #e74c3c;
-}
-.log-in .form-group small{
-    color: #e74c3c;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    visibility: hidden;
-}
-
-.log-in .form-groupl.error small{
-    visibility: visible;
-}
-.log-in input {
-    display: block;
-    font-size: 19px;
-    padding: 16px 24px;
-    line-height: normal;
-    height:63px;
-}
-.log-in .form-group, .log-in .form-control {
-    position: relative;
-}
-</style>
 
 @php
     $content = getContent('contact.content',true)
@@ -209,7 +17,7 @@
             <div class="col-lg-8 mb-4">
                 <div class="log-in theme-card">
                     <div class="title-3 text-start">
-                        <h2>Contact Us</h2>
+                        <h2>CONTACT US</h2>
                     </div>
                         <form method="POST" name="contact_form" id="contact_form" action="{{route('contact.send')}}" class="row form gx-3 get-in-touch">
                             @csrf
@@ -281,9 +89,19 @@
                 <div class="row">
                     <div class="col-lg-12 col-sm-6">
                         <div class="contact_wrap text-left">
-                            <h4 class="title mb-0">@lang('Leads Paid Inc.')</h4>
-                            <p class="mb-2">1401 21st Street STE R Sacramento, California 95811 United States</p>
-                            <p> <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></p>
+                            <h4 class="title mb-3">Leads Paid Inc.</h4>
+                            <p class="mb-0 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
+                                <span>1401 21st Street STE R Sacramento, California 95811 United States</span>
+                            </p>
+                            <p class="my-3 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
+                                <span><a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></span>
+                            </p>
+                            <p class="mb-0 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
+                                <span>1401</span>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -442,10 +260,221 @@ if (name=="" || company==""  ||  email==""  || phone==""  || message==""){
 {
     document.getElementById("contact_form").submit();
 }
-
-
 });
 
 </script>
 
+@endpush
+@push('style')
+<style>
+    .contact-banner{
+        position: relative;
+        filter: invert(10%);
+    }
+
+    .contact-3 .title-3:before {
+        display:none;
+    }
+    .contact_wrap p, .contact_wrap p a, .contact_msg {
+    color: #586167 !important;
+    font-weight:400;
+    font-size:18px;
+}
+    .conpant_icon svg {
+        height:24px !important;
+    }
+
+.submit-btn button.btn {
+    font-size: 24px;
+    font-weight: 500;
+}
+.input-group {
+    border-color: #94a1b5 !important;
+}
+.contact-3 .form-group {
+    margin-bottom: unset;
+}
+.contact-3 .form-group input {
+    color: #586167;
+    outline: none;
+    display: block;
+    font-size: 19px;
+    height: 63px;
+    border-bottom: none;
+    border: 1px solid #94a1b5 !important;
+    padding: 16px 24px;
+    line-height: normal;
+    /* background: #f2f7ff; */
+    font-weight:300;
+}
+.contact-3 .form-group textarea {
+    border: 1px solid #94a1b5 !important;
+    /* background: #f2f7ff; */
+    font-size: 19px;
+    padding: 16px 24px;
+    line-height: normal;
+    font-weight:300;
+}
+
+.contact-3 .form-group .form-control:focus, .contact-3 .contact_msg:focus, .contact-3 .was-validated .form-select:valid, .contact-3 .form-select.is-valid {
+    background-color: #fff;
+    border: 1px solid #94a1b5 !important;
+    box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
+    transition: All .2s ease-in-out!important;
+}
+
+.contact-3 .form-group i {
+    top: 10px;
+    right: 10px;
+}
+.contact-3 .theme-card {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.contact-3 .contact_section .contact_wrap {
+    text-align:left !important;
+    -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
+    box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
+}
+.Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
+    background: none !important;
+}
+  .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small, .log-in .form-control.success small {
+    display: none;
+  }
+  .Rg_advts .form-control {
+    position: relative;
+  }
+  .error .custom_msg .fa-times {
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 22px;
+    color: #e74c3c;
+}
+  .success .custom_msg .fa-check {
+    display: block;
+    position: absolute;
+    top: 23px;
+    right: 22px;
+    color: #2ecc71;
+}
+
+.fa-times::before {
+    content: "\f00d";
+}
+.fa-check::before {
+    content: "\f00c";
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Free";
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.fv-plugins-bootstrap .fv-plugins-icon {
+    height: 38px;
+    line-height: 38px;
+    width: 38px;
+}
+
+.log-in .form-group{
+    position: relative;
+}
+
+.log-in .form-group label{
+    color:#777;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+.log-in .form-group input:focus{
+    outline: 0;
+    border-color: #777;
+
+}
+.log-in .form-control.success {
+    padding: 0;
+    border: none;
+    margin-bottom: 1rem !important;
+}
+.log-in .form-control.error {
+    border: none;
+    padding: 0;
+    margin-bottom: 10px;
+}
+.log-in .form-control.success small {
+    color:#2ecc71;
+}
+.log-in .form-control.success input {
+    border-color: #2ecc71;
+}
+.Rg_advts_number .form-control.success select, .log-in .form-control.success textarea, .log-in .form-control.success #country_id {
+    border: 1px solid #2ecc71;
+}
+.log-in textarea, .log-in textarea:hover {
+    border:1px solid #94a1b5;
+}
+.log-in textarea:focus-visible {
+    outline: none;
+}
+.log-in .form-control.error input, .log-in .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
+    border-color: #e74c3c;
+}
+.log-in .form-control.error small {
+    color: #e74c3c;
+}
+.log-in .form-group small{
+    color: #e74c3c;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    visibility: hidden;
+}
+
+.log-in .form-groupl.error small{
+    visibility: visible;
+}
+.log-in input {
+    display: block;
+    font-size: 19px;
+    padding: 16px 24px;
+    line-height: normal;
+    height:63px;
+}
+.log-in .form-group, .log-in .form-control {
+    position: relative;
+}
+
+
+.contact_wrap p, .contact_wrap p a {
+    color: #586167 !important;
+    font-weight:400;
+    font-size:18px;
+}
+.contact_wrap .title {
+    font-family: Poppins !important;
+    font-weight: 600!important;
+    font-size: 30px!important;
+    margin-bottom: 15px!important;
+    color: #191f58!important;
+}
+.contact_wrap {
+    text-align:left !important;
+    -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
+    box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
+}
+
+section.Rg_advts {
+    margin-top: 50px;
+}
+.contact_wrap {
+    padding: 30px;
+}
+</style>
 @endpush

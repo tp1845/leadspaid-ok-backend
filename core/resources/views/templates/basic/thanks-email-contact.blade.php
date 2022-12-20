@@ -33,7 +33,6 @@
                         <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
                         <span>1401</span>
                     </p>
-
                 </div>
             </div>
         </div>
@@ -55,8 +54,8 @@
     font-size: 34px;
     letter-spacing: 1px;
     margin-bottom: 10px;
-}
-.contact-banner{
+    }
+    .contact-banner{
         position: relative;
       filter: invert(10%) ;
     }
@@ -87,8 +86,8 @@
 }
 .contact_wrap {
     text-align:left !important;
-    -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
-    box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
+    -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
+    box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
 }
 
 section.Rg_advts {
