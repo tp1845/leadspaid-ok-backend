@@ -557,7 +557,7 @@ Route::post('verify-sms/{guard}', 'AuthorizationController@smsVerification')->na
 Route::post('verify-g2fa/{guard}', 'AuthorizationController@g2faVerification')->name('go2fa.verify');
 
 Route::get('/contact-us', 'SiteController@contactPage')->name('home.contact');
-Route::post('/thank-you', 'SiteController@contactSubmit')->name('contact.send');
+Route::post('/contact-us/thank-you', 'SiteController@contactSubmit')->name('contact.send');
 Route::get('/change/{lang?}', 'SiteController@changeLanguage')->name('lang');
 Route::get('keywords', 'SiteController@keywords')->name('keywords');
 Route::get('categorys/{id}', 'SiteController@categorys')->name('categorys');
