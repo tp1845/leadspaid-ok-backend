@@ -164,6 +164,7 @@
                             <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                            @endif
                         </a>
+                        <p class="text-light mt-3"> 1401 21st Street STE R Sacramento, <br>California 95811 United States </p>
                     </div>
                     <div class="col-6 col-md">
                       <h5>Company</h5>
@@ -207,7 +208,7 @@
                     </div>
             </div>
             <div class="footer_copywrite text-center text-light">
-                © COPYRIGHT 2022  LEADSPAID.COM. ALL RIGHTS RESERVED
+                © COPYRIGHT 2022 LEADS PAID INC. ALL RIGHTS RESERVED.
             </div>
           </footer>
 

@@ -7,32 +7,30 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12 pt-5">
-               <p class="Rg_advts_ttls__1">Thanks for registering</p>
+               <p class="Rg_advts_ttls__1">Thank you for registering!</p>
             </div>
         </div>
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls-1 mb-5">please check your email ({{$useremail}})to verify your account</p>
+               <p class="Rg_advts_ttls-1 mb-5">Please check your email ({{$useremail}}) to verify your account.</p>
             </div>
         </div>
-           
     </div>
  </section>
-    
-   
 @endsection
 
 @push('script-lib')
 <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>    
-
+<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
 @endpush
-<style>
-    .Rg_advts_ttls-1, .Rg_advts_ttls__1 {
-    color: #1361b2;
-    font-family: Poppins !important;
-    font-weight: 600;
-    font-size: 38px;
-    letter-spacing: 1px;
-}
-</style>
+@push('style')
+    <style>
+        .Rg_advts_ttls-1, .Rg_advts_ttls__1 {
+            color: #1361b2;
+            font-family: Poppins !important;
+            font-weight: 600;
+            font-size: 38px;
+            letter-spacing: 1px;
+        }
+    </style>
+@endpush

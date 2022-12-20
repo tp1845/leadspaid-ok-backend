@@ -7,26 +7,14 @@
 
 
 
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.3563763314287!2d-121.48248508516541!3d38.57164037368576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad0dd31655555%3A0x4400fdc2363ca6c4!2s1401%2021st%20Street%20Suite%20R%2C%20Sacramento%2C%20CA%2095811%2C%20USA!5e0!3m2!1sen!2sin!4v1670595056862!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>      
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3119.3563763314287!2d-121.48248508516541!3d38.57164037368576!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ad0dd31655555%3A0x4400fdc2363ca6c4!2s1401%2021st%20Street%20Suite%20R%2C%20Sacramento%2C%20CA%2095811%2C%20USA!5e0!3m2!1sen!2sin!4v1670595056862!5m2!1sen!2sin" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 <style>
     .contact-banner{
         position: relative;
+        filter: invert(10%);
     }
-    .contact-banner:after{
-        
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 20;
-        width: 100%;
-        height: 100%;
-        display: block;
-        content: "";
-        background-color: #000;
-        opacity: .1;
 
-    }
     .contact-3 .title-3:before {
         display:none;
     }
@@ -148,9 +136,9 @@
 .log-in .form-group label{
     color:#777;
     display: block;
-    margin-bottom: 5px; 
+    margin-bottom: 5px;
 }
- 
+
 
 .log-in .form-group input:focus{
     outline: 0;
@@ -183,7 +171,7 @@
     outline: none;
 }
 .log-in .form-control.error input, .log-in .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
-    border-color: #e74c3c;    
+    border-color: #e74c3c;
 }
 .log-in .form-control.error small {
     color: #e74c3c;
@@ -255,7 +243,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <input type="text" id="conact_phone" name="phone" class="rounded-0 form-control py-2" placeholder="@lang('Phone Number')">
@@ -307,12 +295,12 @@
 @endsection
 @push('script-lib')
 <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script> 
+<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
 
-  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script> 
-  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>   
+  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
 
 @endpush
 @push('script')
@@ -336,18 +324,18 @@ function showError(input, message) {
 function showSucces(input) {
     const formControl = input.parentElement;
     formControl.className = 'form-control success';
-    
+
 }
 
 
 //checkRequired fields
 function checkRequired(inputArr) {
     inputArr.forEach(function(input){
-      
+
         if(input.value.trim() === ''){
-               
+
             var input_names=getFieldName(input);
-          
+
                 if(input_names=='Conact_name')
                 {
                     showError(input, 'Please fill Full Name.');
@@ -369,11 +357,11 @@ function checkRequired(inputArr) {
                     showError(input, 'Please fill Message.');
                 }else
                 {
-                    
+
                 }
 
-        }else {    
-          
+        }else {
+
             showSucces(input);
 
         }
@@ -384,7 +372,7 @@ function checkRequired(inputArr) {
 function checkLength(input, min ,max) {
     if(input.value.length < min) {
         var input_names=getFieldName(input);
-          
+
           if(input_names=='Conact_name')
           {
               showError(input, 'Please fill Full Name.');
@@ -406,14 +394,14 @@ function checkLength(input, min ,max) {
               showError(input, 'Please fill Message.');
           }else
           {
-              
+
           }
-        
+
     }else if(input.value.length > max) {
         showError(input, `character  must be les than ${max} characters`);
     }else {
         showSucces(input);
-     
+
     }
 }
 //check email is valid
@@ -435,7 +423,7 @@ function getFieldName(input) {
 form.addEventListener('submit',function(e) {
     e.preventDefault();
     checkRequired([conact_name, conact_email, conact_company, conact_phone, conact_message]);
-  
+
       checkLength(conact_name,3,15);
       checkLength(conact_company,3,10);
       checkEmail(conact_email);
@@ -448,16 +436,16 @@ form.addEventListener('submit',function(e) {
     const message = document.contact_form.message.value;
 //console.log('name',name);
 
-if (name=="" || company==""  ||  email==""  || phone==""  || message==""){  
-  return false;  
+if (name=="" || company==""  ||  email==""  || phone==""  || message==""){
+  return false;
 }else
 {
     document.getElementById("contact_form").submit();
 }
 
-   
+
 });
 
-</script>    
+</script>
 
 @endpush
