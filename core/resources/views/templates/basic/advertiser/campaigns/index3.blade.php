@@ -168,17 +168,22 @@
                             </div>
                             <div  id="CreateNewForm" style="display: none">
                                 <div class="card border h-100">
-                                    <div class="card-header bg-primary"> <div class="input-col"> <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;"></div> </div>
+                                    <div class="card-header bg-primary">
+                                        <div class="input-col">
+                                            <label class="col-form-label" for="form_name" style="">Form Name</label>
+                                            <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
+                                        </div>
+                                    </div>
                                     <div class="card-body p-0 ">
                                         <div class="row m-0">
-                                            <div class="col-4 py-2  h-100 leftForm">
+                                            <div class="col-4 pt-2  h-100 leftForm">
                                                 <div class="fbox bg-blue">
-                                                    <h4 class="gray_title top"> Add Form Title & Description</h4>
+                                                    <h4 class="gray_title top"> Add Product/Service Details</h4>
                                                     <div>
-                                                        <label class="col-form-label" for="FormTitleInput_1">Form Title (Add up to 3 variations)</label>
+                                                        <label class="col-form-label" for="FormTitleInput_1"><b>Product/Service/Offer</b> (Add up to 3 variations)</label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="Form Title 1" required="" minlength="3" maxlength="25">
+                                                                <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="eg. Start a Free 30-day Trial" required="" minlength="3" maxlength="25">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                                 </div>
@@ -186,7 +191,7 @@
                                                         </div>
                                                         <div id="form_title_2" style="display: none">
                                                             <div class="input-group input-col my-3">
-                                                                <input type="text" class="form-control" id="FormTitleInput_2" name="form_title[2]" placeholder="Form Title 2"  minlength="3" maxlength="25">
+                                                                <input type="text" class="form-control" id="FormTitleInput_2" name="form_title[2]" placeholder="eg. Start a Free 30-day Trial"  minlength="3" maxlength="25">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                                 </div>
@@ -194,14 +199,14 @@
                                                         </div>
                                                         <div id="form_title_3" style="display: none">
                                                             <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="FormTitleInput_3" name="form_title[3]" placeholder="Form Title 3"   minlength="3" maxlength="25">
+                                                                <input type="text" class="form-control" id="FormTitleInput_3" name="form_title[3]" placeholder="eg. Start a Free 30-day Trial"   minlength="3" maxlength="25">
                                                                 <div class="input-group-append bg-none">
                                                                     <div class="input-group-text"> </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Form Description  (Add up to 3 variations)</label>
+                                                    <label class="col-form-label mt-4" for="form_desc_1_Input"><b>Product/Service/Offer Description</b>  (Add up to 3 variations)</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3" maxlength="81">
@@ -227,7 +232,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4" for="FormPunchlineInput">Punchline / USP / Action Call (Optional)</label>
+                                                    <label class="col-form-label mt-4" for="FormPunchlineInput"><b>Unique Selling Proposition</b> (Why someone should buy your product or service)</label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="Punchline / USP / Action Call"   maxlength="28">
@@ -237,9 +242,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="fbox bg-ddd">
+                                                <div class="fbox">
                                                     <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small> </h4>
-                                                    <label class="col-form-label">Youtube Video Url  (Add up to 3 variations)  </label>
+                                                    <label class="col-form-label"><b>Youtube Video Url</b>  (Add up to 3 variations)  </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
@@ -267,7 +272,7 @@
                                                     </div>
 
 
-                                                    <label class="col-form-label mt-4" >Upload upto 3 images<small>(Add up to 3 variations)</small></label>
+                                                    <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label>
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col d-flex "  style="width: 88%;">
                                                             <div class="upload-box grey image">
@@ -413,7 +418,7 @@
                             {{--  --}}
                             <div class="col" id="formPreview">
                                 <div class=" mb-4">
-                                    <h3 class=" gray"> Form Preview</h3>
+                                    <h3 class=" gray formPreview_title"> Form Preview</h3>
                                     <div class=" ">
                                         <div id="formPreviewBLock">
                                             <div class="container w-100" >
@@ -1000,20 +1005,17 @@
     }
     .icon-Aa:before {  opacity: 0; }
 
-    .fbox{  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
-    .fbox.bg-blue{ background-color: #a7d3ee; }
-    .fbox .gray_title{  background: #cecece; padding: 10px;  color: #29404e;  margin: 0 -14px 15px -15px; }
-    .fbox.bg-blue .gray_title.top{  margin-top: -8px; background-color: #5a97bb; color: #29404e }
-    #campaign_create_modal .small, #campaign_create_modal small {  font-size: 80%!important; }
+    .fbox{ background-color: #004664;  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
+    .fbox .gray_title{  background: #5a97bb; padding: 10px;  color: #fff;  margin: 0 -14px 15px -15px; }
+    .fbox.bg-blue .gray_title{ margin-top: -8px; background-color: #5a97bb; color: #fff; }
+    .fbox label.col-form-label{ color: #fff!important; font-size: 14px!important; }
+
+    #campaign_create_modal .small, #campaign_create_modal small { font-size: 80%!important; }
     .btn--primary {  background-color: #1361b2 !important; }
     .btn--primary:hover {  background-color: #093463 !important; }
     .small, small { font-size: 90%; }
     table.dataTable thead tr { background-color: #1A273A; }
-    .dataTables_paginate .pagination .page-item.active .page-link{
-    background-color: #1361b2;
-    border-color: #1361b2;
-    box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
-}
+    .dataTables_paginate .pagination .page-item.active .page-link{ background-color: #1361b2; border-color: #1361b2; box-shadow: 0px 3px 5px rgb(0,0,0,0.125); }
 #UseExistingForm label{ font-size: 16px }
 #UseExistingForm  .form-check{ margin-bottom: 10px; }
 .btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
@@ -1079,7 +1081,7 @@
     }
 
     #campaign_create_modal .inputfile-1 + label {
-        color: #f1e5e6;
+        color: #004664;
         background-color: #ddf5ff;
         max-width: 100%;
         font-size: 1.15rem;
@@ -1117,11 +1119,8 @@
     #campaign_create_modal .card , #campaign_create_modal .card-header {  border-radius: 0!important; overflow: visible;  }
     #campaign_create_modal .card-header {   font-weight: 500!important; font-size: 1.2rem;}
 
-    #campaign_create_modal .card-header.bg-primary{
-        background-color: #0087c1!important;
-        color: #fff!important;
-
-    }
+    #campaign_create_modal .card-header.bg-primary{ background-color: #004664!important; color: #fff!important; }
+    #campaign_create_modal .card-header.bg-primary label{  font-size: 0.75rem; font-weight: 400; color: #fff!important; padding-top:0;  }
 
     #campaign_create_modal table th { font-weight: 500; }
     table th:last-child { text-align: left; }
@@ -1130,10 +1129,8 @@
     .bg-none{ background-color: transparent!important;  }
     .input-group-append.bg-none .input-group-text{  background-color: transparent!important;  border: none!important; font-size: 1.4rem;  }
     #campaign_create_modal  .input-group-text {  width: 35px; }
-    #formPreview{
-        width: 330px;
-        max-width: 330px;
-    }
+    #formPreview{ width: 336px; max-width: 336px; }
+    #formPreview .formPreview_title{ text-align: center; text-transform: uppercase; font-weight: bold; }
     </style>
     <style>
     .card.sidbar_preview {
@@ -1419,5 +1416,5 @@
     .SelectFormType label, .large-check label { font-size: 20px; }
     .SelectFormType input[type="radio"] , .large-check input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
-    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v2')}}">
+    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v5')}}">
 @endpush

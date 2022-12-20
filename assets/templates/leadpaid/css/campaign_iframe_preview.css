@@ -14,19 +14,24 @@
   }
 
   #formPreviewBLock  .container {
-    width: 300px;
+    width: 306px;
     margin: 10px auto; 
-    background-color: #f4f4f4;
-
-    max-width: 300px; 
-    height:600px; 
+    background-color: #f4f4f4; 
+    max-width: 306px; 
+    height:606px; 
     overflow-y:auto; 
-    border:1px solid #bfbebe; 
+    border:3px solid #113399; 
     padding-left:10px; 
     padding-right:10px; 
     padding-top: 10px;  
-    padding-bottom: 2px;
-  }
+    padding-bottom: 2px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow:  0 6px 11px #45535a52;
+   } 
+
 
   #formPreviewBLock  .video {
     margin: -10px -5px 0 -5px;
@@ -146,13 +151,7 @@
     text-align: center;
     width: 100%;
   }
-  #formPreviewBLock .container { 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow:  0 6px 11px #45535a52;
-   } 
+
    #formPreviewBLock .container div { width: 100%; }
   #formPreviewBLock  .logo{
     text-align: left;
