@@ -29,6 +29,6 @@
         .Rg_advts{  border-top: 3px solid #1361b2; background-color: #1a273a;  background-image: url("{{asset('assets/images/frontend')}}/bg connect.jpg"); background-position: center; background-size: cover;   padding-top: 80px; padding-bottom: 80px;}
         .Rg_advts .container{ max-width: 1200px; background-color: #fffffff0;    }
         #MainFooter { margin-top: 0!important; }
-        .Rg_advts_ttls-1, .Rg_advts_ttls__1 { color: #1a273a;  font-weight: 600; font-size: 32px; letter-spacing: 1px; }
+        .Rg_advts_ttls-1, .Rg_advts_ttls__1 { color: #1a273a;  font-weight: 600; font-size: 32px;   }
     </style>
 @endpush
