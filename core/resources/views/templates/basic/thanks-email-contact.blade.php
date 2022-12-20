@@ -46,6 +46,7 @@
 <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
 
 @endpush
+@push('style')
 <style>
     .Rg_advts_ttls-1, .Rg_advts_ttls__1 {
     color: #191f58;
@@ -97,3 +98,4 @@ section.Rg_advts {
     padding: 30px;
 }
 </style>
+@endpush
