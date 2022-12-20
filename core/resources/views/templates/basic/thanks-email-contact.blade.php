@@ -23,7 +23,7 @@
                     <h4 class="title mb-3">Leads Paid Inc.</h4>
                     <p class="mb-0 d-flex justify-content-start">
                         <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
-                        <span>1401 21st Street STE R Sacramento, California 95811<br>United States</span>
+                        <span>1401 21st Street STE R,<br/> Sacramento, California 95811<br>United States</span>
                     </p>
                     <p class="my-3 d-flex justify-content-start">
                         <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
