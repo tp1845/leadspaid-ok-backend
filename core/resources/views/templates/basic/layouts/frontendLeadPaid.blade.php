@@ -164,7 +164,7 @@
                             <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
                            @endif
                         </a>
-                        <p class="text-light mt-3"> 1401 21st Street STE R Sacramento, <br>California 95811 United States </p>
+                        <p class="text-light mt-3" style="font-size: 18px"> 1401 21st Street STE R Sacramento,  California 95811<br/> United States </p>
                     </div>
                     <div class="col-6 col-md">
                       <h5>Company</h5>

@@ -23,7 +23,7 @@
         <div class="row text-center">
             <div class="col-lg-12">
                 <p class="Rg_advts_ttls_1 pt-5">Generate Leads Now!</p>
-               <p class="Rg_advts_ttls mb-5">Register as Advertiser</p>
+               <p class="Rg_advts_ttls mb-5">REGISTER AS ADVERTISER</p>
             </div>
         </div>
     <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
@@ -360,116 +360,117 @@ form.addEventListener('submit',function(e) {
 </script>
 @endpush
 @push('style')
-    <style>
-    .Rg_advts{  background-color: #1a273a;  background-image: url("{{asset('assets/images/frontend')}}/bg connect.jpg"); background-position: center; background-size: cover;   padding-top: 50px; padding-bottom: 50px;}
-    .Rg_advts .container{ max-width: 1200px; background-color: #fff; padding-bottom: 30px }
+<style>
+    .Rg_advts{  border-top: 3px solid #1361b2; background-color: #1a273a;  background-image: url("{{asset('assets/images/frontend')}}/bg connect.jpg"); background-position: center; background-size: cover;   padding-top: 50px; padding-bottom: 50px;}
+    .Rg_advts .container{ max-width: 1200px; background-color: #fffffff0; padding-bottom: 60px;  border: 5px solid #1361b2; }
     #MainFooter { margin-top: 0!important; }
+
     /* ==== */
 
-    .Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
+.Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
     background: none !important;
-    }
-    .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small {
+}
+  .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small {
     display: none;
-    }
-    .Rg_advts .form-control {
+  }
+  .Rg_advts .form-control {
     position: relative;
-    }
-    .error .custom_msg .fa-times {
+  }
+  .error .custom_msg .fa-times {
     display: block;
     position: absolute;
     top: 25px;
     right: 22px;
     color: #e74c3c;
-    }
-    .success .custom_msg .fa-check {
+}
+  .success .custom_msg .fa-check {
     display: block;
     position: absolute;
     top: 23px;
     right: 22px;
     color: #2ecc71;
-    }
+}
 
-    .fa-times::before {
+.fa-times::before {
     content: "\f00d";
-    }
-    .fa-check::before {
+}
+.fa-check::before {
     content: "\f00c";
-    }
-    .fa, .far, .fas {
+}
+.fa, .far, .fas {
     font-family: "Font Awesome 5 Free";
-    }
-    .fa, .fab, .fad, .fal, .far, .fas {
+}
+.fa, .fab, .fad, .fal, .far, .fas {
     font-style: normal;
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-    }
-    .fv-plugins-bootstrap .fv-plugins-icon {
+}
+.fv-plugins-bootstrap .fv-plugins-icon {
     height: 38px;
     line-height: 38px;
     width: 38px;
-    }
+}
 
-    .Rg_advts .form-group{
+.Rg_advts .form-group{
     position: relative;
-    }
+}
 
-    .Rg_advts .form-group label{
+.Rg_advts .form-group label{
     color:#777;
     display: block;
     margin-bottom: 5px;
-    }
+}
 
 
-    .Rg_advts .form-group input:focus{
+.Rg_advts .form-group input:focus{
     outline: 0;
     border-color: #777;
 
-    }
-    .Rg_advts .form-control.success {
+}
+.Rg_advts .form-control.success {
     padding: 0;
     border: none;
     margin-bottom: 1rem !important;
-    }
-    .Rg_advts .form-control.error {
+}
+.Rg_advts .form-control.error {
     border: none;
     padding: 0;
     margin-bottom: 10px;
-    }
-    .Rg_advts .form-control.success small {
+}
+.Rg_advts .form-control.success small {
     color:#2ecc71;
-    }
-    .Rg_advts .form-control.success input {
+}
+.Rg_advts .form-control.success input {
     border-color: #2ecc71;
-    }
-    .Rg_advts_number .form-control.success select, .Rg_advts .form-control.success textarea, .Rg_advts .form-control.success #country_id {
+}
+.Rg_advts_number .form-control.success select, .Rg_advts .form-control.success textarea, .Rg_advts .form-control.success #country_id {
     border: 1px solid #2ecc71;
-    }
-    .Rg_advts textarea, .Rg_advts textarea:hover {
+}
+.Rg_advts textarea, .Rg_advts textarea:hover {
     border:1px solid #94a1b5;
-    }
-    .Rg_advts textarea:focus-visible {
+}
+.Rg_advts textarea:focus-visible {
     outline: none;
-    }
-    .Rg_advts .form-control.error input, .Rg_advts_form .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
+}
+.Rg_advts .form-control.error input, .Rg_advts_form .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
     border-color: #e74c3c;
-    }
-    .Rg_advts .form-control.error small {
+}
+.Rg_advts .form-control.error small {
     color: #e74c3c;
-    }
-    .Rg_advts .form-group small{
+}
+.Rg_advts .form-group small{
     color: #e74c3c;
     position: absolute;
     bottom: 0;
     left: 0;
     visibility: hidden;
-    }
+}
 
-    .Rg_advts .form-groupl.error small{
+.Rg_advts .form-groupl.error small{
     visibility: visible;
-    }
-    .form button {
+}
+.form button {
     cursor: pointer;
     /* background-color: #3498db;
     border: 2px solid #3498db;
@@ -480,7 +481,7 @@ form.addEventListener('submit',function(e) {
     font-size: 16px;
     margin-top:20px;
     width:100%;
-    }
+}
     .Rg_advts {
         font-family: Poppins !important;
         font-weight: 200;
@@ -488,7 +489,7 @@ form.addEventListener('submit',function(e) {
     }
     .Rg_advts .form-control:focus {
     border-color: #16C79A !important;
-    }
+}
     .Rg_advts_form .custom-state.fv-plugins-icon-container.has-success .form-select {
         background: none !important;
     }
@@ -503,7 +504,7 @@ form.addEventListener('submit',function(e) {
         text-transform: uppercase;
         margin: 0;
     }
-        .Rg_advts_ttls_1 {
+     .Rg_advts_ttls_1 {
         font-weight: bold;
         font-size: 38px;
         color: #1361b2;
@@ -513,7 +514,7 @@ form.addEventListener('submit',function(e) {
         .Rg_advts_ttls {
         font-size: 36px;
     }
-        .Rg_advts_ttls_1 {
+     .Rg_advts_ttls_1 {
 
         font-size: 28px;
     }
@@ -544,93 +545,93 @@ form.addEventListener('submit',function(e) {
     line-height: normal;
     max-height: 140px;
     height: 100%;
-    }
+}
 
     .Rg_advts_number .form-group, .Rg_advts_number .form-control.error, .Rg_advts_number .form-control.success {
     display: flex;
     flex-wrap: wrap;
-    }
-    .Rg_advts_number select {
+}
+.Rg_advts_number select {
     flex: 0 0 25%;
     width: 25%;
-    }
-    .Rg_advts_number input {
+}
+.Rg_advts_number input {
     flex: 0 0 75%;
     width: 75%;
     border: 1px solid #94a1b5;
     font-size: 19px;
         line-height: normal;
     padding: 16px 24px;
-    }
-    .Rg_advts_form input:focus-visible {
+}
+.Rg_advts_form input:focus-visible {
     outline: none;
-    }
+}
 
-    .Rg_advts .form-control, .Rg_advts_form select, .Rg_advts_number input {
+.Rg_advts .form-control, .Rg_advts_form select, .Rg_advts_number input {
     border: 1px solid #94a1b5;
     /* background: #f2f7ff; */
-    }
-    .Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
-        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
+}
+.Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
+       box-shadow: 0 0 20px rgb(0 0 0 / 16%);
     border: 1px solid #94a1b5 !important;
         transition: All .2s ease-in-out!important;
 
-    }
-    .Rg_advts .form-control.is-valid {
+}
+.Rg_advts .form-control.is-valid {
     border: 1px solid #94a1b5 !important;
-    }
-    .Rg_advts .was-validated .form-control:valid, .Rg_advts .form-control.is-valid {
+}
+.Rg_advts .was-validated .form-control:valid, .Rg_advts .form-control.is-valid {
     border-color: #94a1b5 !important;
-    }
-    .Rg_advts .form-control:valid:focus, .Rg_advts .form-control.is-valid:focus {
+}
+.Rg_advts .form-control:valid:focus, .Rg_advts .form-control.is-valid:focus {
     box-shadow: none;
-    }
-    .Rg_advts_bsc textarea.form-control{
+}
+.Rg_advts_bsc textarea.form-control{
     min-height: 140px;
-    }
-    button.btn.btn-secondary.Rg_advts_my_btn {
+}
+button.btn.btn-secondary.Rg_advts_my_btn {
     font-size: 24px;
     font-weight: 500;
-    }
-    .Rg_advts_my_btn {
+}
+.Rg_advts_my_btn {
     width: 100%;
     max-width: 250px;
     height: 63px;
         line-height: normal;
-    }
-    .Rg_advts input::placeholder {
+}
+.Rg_advts input::placeholder {
 
-    }
+}
 
-    .Rg_advts input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+.Rg_advts input:-ms-input-placeholder { /* Internet Explorer 10-11 */
 
-    }
+}
 
-    .Rg_advts input::-ms-input-placeholder { /* Microsoft Edge */
+.Rg_advts input::-ms-input-placeholder { /* Microsoft Edge */
 
-    }
-    .user_info_Rg_advts {
+}
+.user_info_Rg_advts {
     padding-left: 15px;
-    }
+}
 
-    .Rg_advts input, .Rg_advts select, .Rg_advts textarea {
+.Rg_advts input, .Rg_advts select, .Rg_advts textarea {
     font-weight: 300;
-    }
-    .Rg_advts .form-group i {
+}
+.Rg_advts .form-group i {
     top: 10px;
     right: 10px;
-    }
-    .Rg_advts .form-group .fv-plugins-message-container {
+}
+.Rg_advts .form-group .fv-plugins-message-container {
     font-weight: 400;
-    }
-    .Rg_advts_bsc select {
+}
+.Rg_advts_bsc select {
     font-size: 19px;
     padding: 16px 24px;
     border-radius: 0;
     line-height: normal;
-    }
+}
 
-    @media screen and (max-width: 480px){
+@media screen and (max-width: 480px){
     .Rg_advts_number input {
         flex: 0 0 70%;
         width: 70%;
@@ -639,7 +640,7 @@ form.addEventListener('submit',function(e) {
         flex: 0 0 30%;
         width: 30%;
     }
-    }
+}
 
-    </style>
+</style>
 @endpush
