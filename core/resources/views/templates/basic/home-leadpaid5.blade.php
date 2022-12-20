@@ -188,7 +188,7 @@
                     @if(Request::get('sub') == 1 )
                         <h4 class="sub_title">An AI-Powered Leads Ad Network</h4>
                     @endif
-                    <h1 class="h1">Generate Leads Directly</h1>
+                    <h1 class="h1 hero_title">Generate Leads Directly</h1>
                     <p>From High Ranking/ Popular/ Authority Sites & Apps</p>
                     <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2 button-large">Join As Advertiser</a>
                 </div>
@@ -258,7 +258,7 @@
             border-bottom: 1px solid #000055;
         }
         #MainHeroHeader .MainBanner-Home{
-            background-color: #000011bc;
+            /* background-color: #000011bc; */
         }
         @endif
 
@@ -383,33 +383,41 @@
         .MainBanner-bottom h3, .MainBanner-bottom .h3 {
             font-size: 30px;
         }
-        @media only screen and (min-width: 768px) {
-            .MainBanner-Home .h1 {
-                font-size: 81px !important;
-                font-family: "Poppins-Bold"!important;
-                font-weight: bold;
-            }
-            .MainBanner-bottom h3, .MainBanner-bottom .h3 {
-                font-size: 45px;
-            }
-            .MainBanner-Home p {
-                font-size: 36px !important;
-                font-weight: 300;
-            }
 
-            .MainBanner-Home .btn, .button-large {
-                font-size: 35px !important;
-                padding-right: 35px;
-                padding-left: 35px;
-                display: inline-block;
-            }
+        .MainBanner-Home .hero_title {
+            text-shadow: 7px 14px 10px #000000;
+            font-family: "Poppins-Bold"!important;
+            font-weight: bold;
+        }
+
+        .MainBanner-Home p {
+            text-shadow: 3px 7px 5px #000000;
+            font-weight: 400;
+        }
+        @media only screen and (min-width: 768px) {
+        .MainBanner-Home .hero_title {
+            font-size: 81px !important;
+        }
+        .MainBanner-bottom h3, .MainBanner-bottom .h3 {
+            font-size: 45px;
+        }
+        .MainBanner-Home p {
+            font-size: 36px !important;
+        }
+
+        .MainBanner-Home .btn, .button-large {
+            font-size: 35px !important;
+            padding-right: 35px;
+            padding-left: 35px;
+            display: inline-block;
+        }
         }
         @media only screen and (max-width: 768px) {
-            .MainBanner-Home .btn, .button-large {
-                font-size: 30px !important;
-                padding-right: 15px;
-                padding-left: 15px;
-            }
+        .MainBanner-Home .btn, .button-large {
+            font-size: 30px !important;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
         }
     </style>
 @endpush
