@@ -171,7 +171,7 @@
                                     <div class="card-header bg-primary">
                                         <div class="input-col">
                                             <label class="col-form-label" for="form_name" style="">Form Name</label>
-                                            <input type="text" class="form-control" id="form_name" name="form_name" placeholder="Form Name" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
+                                            <input type="text" class="form-control" id="form_name" name="form_name" placeholder="eg. ZohoOffer_form 1" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
                                         </div>
                                     </div>
                                     <div class="card-body p-0 ">
@@ -209,7 +209,7 @@
                                                     <label class="col-form-label mt-4" for="form_desc_1_Input"><b>Product/Service/Offer Description</b>  (Add up to 3 variations)</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Form Description 1" required  minlength="3" maxlength="81">
+                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Over 40k companies run their business with Zoho" required  minlength="3" maxlength="81">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -217,7 +217,7 @@
                                                     </div>
                                                     <div id="FormDescription_2" style="display: none">
                                                         <div class="input-group input-col my-3">
-                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Form Description 2"  minlength="3" maxlength="81">
+                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Over 40k companies run their business with Zoho"  minlength="3" maxlength="81">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -225,7 +225,7 @@
                                                     </div>
                                                     <div id="FormDescription_3" style="display: none">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Form Description 3"   minlength="3" maxlength="81">
+                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Over 40k companies run their business with Zoho"   minlength="3" maxlength="81">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> </div>
                                                             </div>
@@ -235,7 +235,7 @@
                                                     <label class="col-form-label mt-4" for="FormPunchlineInput"><b>Unique Selling Proposition</b> (Why someone should buy your product or service)</label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="Punchline / USP / Action Call"   maxlength="28">
+                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="28">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text">  </div>
                                                             </div>
