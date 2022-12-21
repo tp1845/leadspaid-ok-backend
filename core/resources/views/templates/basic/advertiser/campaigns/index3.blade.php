@@ -87,7 +87,7 @@
                         <div class="row align-items-end pb-2">
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1" for="campaign_name_Input">Campaign Name</label>
-                                <input type="text" class="form-control" id="campaign_name_Input" placeholder="Campaign Name" name="campaign_name"   required maxlength="30"></div>
+                                <input type="text" class="form-control" id="campaign_name_Input" placeholder="eg. Lead_Gen1" name="campaign_name"   required maxlength="30"></div>
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1" for="company_name_Input">Company/Brand Name</label>
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="Company/Brand Name to Display" name="company_name" required maxlength="30"></div>
@@ -115,11 +115,13 @@
                             </div>
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1" for="DailyBudgetInput">Daliy Budget<i>*</i></label>
-                                <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required>
+                                <div class="us_doller">
+                                <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required></div>
                             </div>
                             <div class="col-lg-3 input-col ">
-                                <label class=" form-label text-white" for="TargetCostInput">Target Cost Per Lead<i>*</i></label>
-                                    <input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
+                                <label class=" form-label text-white mb-1" for="TargetCostInput">Target Cost Per Lead<i>*</i></label>
+                                     <div class="us_doller"><input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
+                                     </div>
                                     {{-- <small class="form-text text-muted">You will get the leads within this cost on average. However, the cost per lead may vary on different days.</small> --}}
                             </div>
 
@@ -209,7 +211,7 @@
                                                     <label class="col-form-label mt-4" for="form_desc_1_Input"><b>Product/Service/Offer Description</b>  (Add up to 3 variations)</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Over 40k companies run their business with Zoho" required  minlength="3" maxlength="81">
+                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Over 40k companies run their business with Zoho" required  minlength="3" maxlength="68">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -217,7 +219,7 @@
                                                     </div>
                                                     <div id="FormDescription_2" style="display: none">
                                                         <div class="input-group input-col my-3">
-                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Over 40k companies run their business with Zoho"  minlength="3" maxlength="81">
+                                                            <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Over 40k companies run their business with Zoho"  minlength="3" maxlength="68">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -225,7 +227,7 @@
                                                     </div>
                                                     <div id="FormDescription_3" style="display: none">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Over 40k companies run their business with Zoho"   minlength="3" maxlength="81">
+                                                            <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Over 40k companies run their business with Zoho"   minlength="3" maxlength="68">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> </div>
                                                             </div>
@@ -235,7 +237,7 @@
                                                     <label class="col-form-label mt-4" for="FormPunchlineInput"><b>Unique Selling Proposition</b> (Why someone should buy your product or service)</label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="28">
+                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="23">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text">  </div>
                                                             </div>
@@ -273,11 +275,13 @@
 
 
                                                     <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label>
+                                                    <div class="custom_image_upload">
                                                     <div class="input-group input-col" id="upload_image_1">
-                                                        <div class="input-col d-flex "  style="width: 88%;">
+                                                        <div class="input-col "  style="width: 88%;">
                                                             <div class="upload-box grey image">
                                                                 <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                                <label for="image_1_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 1</span></label>
+                                                                <label for="image_1_Input">
+                                                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
                                                             </div>
                                                             <div id="image_1_img_preview" class="img_preview_box">
                                                                 <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
@@ -285,34 +289,42 @@
                                                             </div>
                                                         </div>
                                                         <div class="input-group-append bg-none">
-                                                            <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                            <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_2', event)">
+                                                                <!-- <i class="fas fa-plus-circle"></i></i> -->
+                                                            </a></div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="input-group input-col" id="upload_image_2"  style="display: none">
-                                                        <div class="input-col d-flex  flex-wrap"  style="width: 88%;">
-                                                            <div class="upload-box grey image  my-2">
+                                                    <div class="input-group input-col" id="upload_image_2">
+                                                        <div class="input-col flex-wrap"  style="width: 88%;">
+                                                            <div class="upload-box grey image">
                                                                 <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                                <label for="image_2_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 2</span></label>
+                                                                <label for="image_2_Input"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
                                                             </div>
                                                             <div id="image_2_img_preview" class="img_preview_box">
-                                                                <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+                                                                <a href="#" class="text-danger del-preview">
+                                                                    <i class="fas fa-times-circle"></i>
+                                                                </a>
                                                                 <img id="image_2_img" src="#" alt="image_2_img" />
                                                             </div>
                                                         </div>
                                                         <div class="input-group-append bg-none">
-                                                            <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+                                                            <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_3', event)">
+                                                                <!-- <i class="fas fa-plus-circle"></i></i> -->
+                                                            </a></div>
                                                         </div>
                                                     </div>
 
-                                                    <div class="input-group input-col" id="upload_image_3" style="display: none">
-                                                        <div class="input-col d-flex"  style="width: 88%;">
+                                                    <div class="input-group input-col" id="upload_image_3">
+                                                        <div class="input-col"  style="width: 88%;">
                                                             <div class="upload-box grey image">
                                                                 <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                                <label for="image_3_Input"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload image 3</span></label>
+                                                                <label for="image_3_Input"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
                                                             </div>
                                                             <div id="image_3_img_preview" class="img_preview_box">
-                                                                <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+                                                                <a href="#" class="text-danger del-preview">
+                                                                    <i class="fas fa-times-circle"></i>
+                                                                </a>
                                                                 <img id="image_3_img" src="#" alt="image_3_img" style="display: none" />
                                                             </div>
                                                         </div>
@@ -320,6 +332,7 @@
                                                             <div class="input-group-text">  </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                                 </div>
                                             </div>
                                             <div class="col rightForm">
@@ -1034,9 +1047,9 @@
 #campaign_list_wrapper{  overflow-x: scroll; }
 
     .img_preview_box{ position: relative; display: none;}
-    .img_preview_box .del-preview{ position: absolute; right: 0;  top: -8px; background: #fff;  display: inline-block; padding: 0;  border-radius: 20px; }
+    .img_preview_box .del-preview{ position: absolute; right: 0;  top: 0px; background: #fff;  display: inline-block; padding: 0;  border-radius: 20px; }
     .img_preview_box .del-preview i { display: block;}
-    #company_logo_img, #image_1_img, #image_2_img, #image_3_img{  height: 54px; width: auto;  max-width: 160px;   padding: 0 5px;  }
+    #company_logo_img, #image_1_img, #image_2_img, #image_3_img{  max-height: 54px; width: auto;  max-width: 160px;   padding: 0 5px;  }
 
     .bg-ddd { background-color: #ddd!important; }
     .invalid-feedback { font-size: 90%!important;  }
@@ -1045,12 +1058,12 @@
 
     #campaign_create_modal .PageFormStyle .form-control, #campaign_create_modal .PageFormStyle .custom-select{
         border-radius: 0; background-color:#fff;
-        font-size: 20px!important;
+        font-size: 19px!important;
         font-weight: 300!important;
-        color: #000!important;
+        color: #212529!important;
         border-radius: 0!important;
         vertical-align: middle!important;
-        border: 1px solid #B9B9B9!important;
+        border: 1px solid #94a1b5!important;
         outline: none!important;
         padding: 10px 18px!important;
         height: auto;
@@ -1415,6 +1428,78 @@
     }
     .SelectFormType label, .large-check label { font-size: 20px; }
     .SelectFormType input[type="radio"] , .large-check input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
+
+#campaign_create_modal .PageFormStyle .us_doller input {
+    padding-left: 70px !important;
+}
+.us_doller:after {
+    content: 'US$';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(33 37 41 / 80%);
+    left: 0;
+    background: #f1f1f2;
+    font-size: 19px;
+    height: 100%;
+    border: 1px solid #94a1b5;
+    padding: 10px;
+}
+.us_doller {
+    position: relative;
+}
+.custom_image_upload .input-group .input-col .upload-box.grey.image {
+    min-width: unset !important;
+}
+.custom_image_upload .input-group .input-col {
+    width: 100% !important;
+    position: relative;
+}
+.custom_image_upload .input-group {
+    flex: 0 0 30%;
+    width: 30%;
+}
+.custom_image_upload {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/*#upload_image_2, #upload_image_1 {
+    margin-right: 10px;
+}*/
+.custom_image_upload .input-group .input-col .upload-box.grey.image label {
+    height: 100%;
+    min-height: 100px;
+    border-radius: 5px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.custom_image_upload .input-group .input-col .upload-box.grey.image label span {
+    font-size: 14px;
+}
+.custom_image_upload .input-group .input-col .img_preview_box img {
+    padding: 10px 0 0 0 !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    margin: 0 !important;
+    width: 100% !important;
+    object-fit: cover;
+    border-radius: 0px 0px 4px 4px;
+}
+.custom_image_upload .input-group .input-col .img_preview_box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+}
+#campaign_create_modal form input {
+    font-size: 19px !important;
+}
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
 @endpush

@@ -166,6 +166,10 @@
         </div>
     </div>
 </div>
+<style>
+    .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
+
+</style>
 <!-- sidebar end -->
 
 <!-- Button trigger modal -->
