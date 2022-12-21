@@ -1416,5 +1416,5 @@
     .SelectFormType label, .large-check label { font-size: 20px; }
     .SelectFormType input[type="radio"] , .large-check input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
     </style>
-    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v5')}}">
+    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
 @endpush

@@ -1,7 +1,6 @@
 /* default margin css start */ 
 /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"); */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 .my-5 {
     margin: 5px 0;
 }
@@ -1370,8 +1369,8 @@ html {
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: 'Roboto', Helvetica, 'Open-sans', Arial, Montserrat;
+body { 
+    font-family: 'Roboto', Helvetica, sans-serif, 'Open Sans', Arial;
     font-size: 0.875rem;
     padding: 0;
     margin: 0;
