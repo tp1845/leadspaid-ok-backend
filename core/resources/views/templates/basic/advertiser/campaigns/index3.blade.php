@@ -1030,7 +1030,7 @@
     border-radius: 0!important;
 }
 
-.page-wrapper.default-version, table td, tfoot tr { font-weight: normal;  font-family: Poppins; }
+.page-wrapper.default-version, table td, tfoot tr { font-weight: normal;  }
 #campaign_list_wrapper{  overflow-x: scroll; }
 
     .img_preview_box{ position: relative; display: none;}
