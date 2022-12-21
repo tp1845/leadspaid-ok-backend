@@ -44,7 +44,7 @@
   <link rel="stylesheet" href="{{asset('assets/userpanel/css/lightcase.css')}}">
 
   <!-- dashdoard main css -->
-  <link rel="stylesheet" href="{{asset('assets/userpanel/css/app.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/userpanel/css/app.css?v1')}}">
   <link rel="stylesheet" href="{{asset('assets/additional/bootstrap-fileinput.css')}}">
   <link rel="stylesheet" href="{{asset('assets/additional/intlTelInput.css')}}">
 
