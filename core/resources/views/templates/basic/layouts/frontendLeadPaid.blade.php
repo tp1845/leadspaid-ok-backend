@@ -95,7 +95,7 @@
                     @elseif(Request::get('v') == 17)
                     <img src="{{asset('assets/templates/leadpaid/images/logo-17.png')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 18)
-                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.1.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.2.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 19)
                     <img src="{{asset('assets/templates/leadpaid/images/logo-19.png')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 20)
