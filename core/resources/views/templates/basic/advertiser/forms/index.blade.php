@@ -80,21 +80,23 @@ label {
 }
 table.dataTable thead tr th {
     font-size: 15px;
+    border-right: 1px solid #ffffff36;
 }
-#form_list_length {
-    width: 30%;
-    float: left;
-    padding: 5px 0px 0px 5px;
+#form_list_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 #form_list_info {
-    width: 40%;
-    float: left;
+    flex: auto;
     text-align: right;
 }
-#form_list_paginate {
-    width: 30%;
-    text-align: left;
+#form_list_length {
+    /*width: 30%;
+    float: left;*/
+    padding: 5px 0px 0px 5px;
 }
+
 div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     margin: 2px 0;
     white-space: nowrap;

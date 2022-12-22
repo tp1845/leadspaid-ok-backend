@@ -8,7 +8,7 @@
             <div class=" ">
                 <div class="table-responsive--lg">
 
-                   
+
                     <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                         <thead>
                         <tr>
@@ -119,12 +119,12 @@
                         <div class="w-100">
                         <div class="row align-items-end pb-2">
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1" for="campaign_name_Input">Campaign Name</label>
+                                <label class="form-label text-white mb-1 ar-16" for="campaign_name_Input"><b>Campaign Name</b></label>
                                 <input type="text" class="form-control" id="campaign_name_Input" placeholder="eg. Lead_Gen1" name="campaign_name"   required maxlength="30"></div>
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1" for="company_name_Input">Company/Brand Name</label>
-                                <input type="text" class="form-control" id="company_name_Input" placeholder="Company/Brand Name to Display" name="company_name" required maxlength="30"></div>
-                            <div class="col-lg-3 input-col d-flex  flex-wrap pt-4 align-items-center">
+                                <label class="form-label text-white mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b></label>
+                                <input type="text" class="form-control" id="company_name_Input" placeholder="eg. <{{ auth()->guard('advertiser')->user()->company_name }}>" name="company_name" required maxlength="30"></div>
+                            <div class="col-lg-3 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
                                     <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
                                     <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
@@ -134,11 +134,11 @@
                                     <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
                                 </div>
                             </div>
-                            <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
+                           <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
                         </div>
                         <div class="row border-top py-2">
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1" for="TargetCountryInput">From Which Country</label>
+                                <label class="form-label text-white mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 text-white">from which leads are required</span></label>
                                 <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
                                     <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
                                     @foreach ($countries as $country)
@@ -147,12 +147,12 @@
                                 </select>
                             </div>
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1" for="DailyBudgetInput">Daliy Budget<i>*</i></label>
+                                <label class="form-label text-white mb-1 ar-16" for="DailyBudgetInput"><b>Daliy Budget</b><i>*</i></label>
                                 <div class="us_doller">
                                 <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required></div>
                             </div>
                             <div class="col-lg-3 input-col ">
-                                <label class=" form-label text-white mb-1" for="TargetCostInput">Target Cost Per Lead<i>*</i></label>
+                                <label class=" form-label text-white mb-1 ar-16" for="TargetCostInput"><b>Target Cost Per Lead</b><i>*</i></label>
                                      <div class="us_doller"><input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
                                      </div>
                                     {{-- <small class="form-text text-muted">You will get the leads within this cost on average. However, the cost per lead may vary on different days.</small> --}}
@@ -203,9 +203,9 @@
                             </div>
                             <div  id="CreateNewForm" style="display: none">
                                 <div class="card border h-100">
-                                    <div class="card-header bg-primary pt-0">
+                                    <div class="card-header bg-primary cuxtom_pt_5">
                                         <div class="input-col">
-                                            <label class="col-form-label" for="form_name" style=""><b>Form Name</b></label>
+                                            <label class="col-form-label ar-16" for="form_name" style=""><b>Form Name</b></label>
                                             <input type="text" class="form-control" id="form_name" name="form_name" placeholder="eg.  Zoho_Form_1" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
                                         </div>
                                     </div>
@@ -215,7 +215,7 @@
                                                 <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Product/Service Details</h4>
                                                     <div>
-                                                        <label class="col-form-label" for="FormTitleInput_1"><b>Product/Service/Offer</b> (Add up to 3 variations)</label>
+                                                        <label class="col-form-label ar-16" for="FormTitleInput_1 "><b>Product/Service/Offer</b> <span class="ar-14">(Add up to 3 variations)</span></label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
                                                                 <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="eg. Start a Free 30-day Trial" required="" minlength="3" maxlength="25">
@@ -241,10 +241,10 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label mt-4" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> (Add up to 3 variations)</label>
+                                                    <label class="col-form-label mt-4 ar-16" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> <span class="ar-14">(Add up to 3 variations)</span></label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Over 40k companies run their business with Zoho" required  minlength="3" maxlength="68">
+                                                            <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="40k+ companies run on Zoho" required  minlength="3" maxlength="68">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
                                                             </div>
@@ -267,7 +267,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4" for="FormPunchlineInput"><b>Unique Selling Proposition </b>(Why someone should buy your product or service)</label>
+                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service)</span></label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
@@ -278,8 +278,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="fbox">
-                                                    <h4 class="gray_title"> Add at least 1 creative <small class="title-small">(1 of the creatives will be shown randomly and optimized)</small> </h4>
-                                                    <label class="col-form-label"><b>Youtube Video Url </b>(Add up to 3 variations)  </label>
+                                                    <h4 class="gray_title"> Add At Least 1 Creative <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
+                                                    <label class="col-form-label ar-16"><b>Youtube Video Url </b><span class="ar-14">(Add up to 3 variations) </span> </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
@@ -308,7 +308,7 @@
 
 
                                                     <!-- <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label> -->
-                                                    <label class="col-form-label mt-4" ><b>Images</b></label>
+                                                    <label class="col-form-label mt-4 ar-16" ><b>Images</b></label>
                                                     <div class="custom_image_upload">
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col "  style="width: 88%;">
@@ -380,8 +380,9 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col" width="10px">#</th>
-                                                                    <th scope="col" style="min-width: 76px;" >Required</th>
-                                                                    <th scope="col">Fileds</th>
+                                                                    <th scope="col" style="min-width: 100px;" >
+                                                                        <div class="ar-16">Required</div></th>
+                                                                    <th scope="col"><span class="ar-16">Fileds</span></th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody id="sortable" data-row='3'>
@@ -1035,13 +1036,20 @@
         return urlParams;
         }, {});
     }
-
+  $("#TargetCountryInput").on('change',function(){
+    
+    if($(this).val()==""){
+     $("#TargetCountryInput").css("font-size","16px");
+    }else{
+       $("#TargetCountryInput").css("font-size","20px");
+    }
+  })
     </script>
 @endpush
 @push('style')
 
 <style>
-    .formBlock{ margin-right: 130px}
+    .formBlock{ margin-right: 90px}
     .formBlock.UseExistingCol{ margin-right: 600px}
 
     .leftForm{ width: 416px; min-width: 416px;  max-width: 416px; }
@@ -1055,8 +1063,9 @@
     .fbox{ background-color: #004664;  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
     .fbox .gray_title{  background: #5a97bb; padding: 10px;  color: #fff;  margin: 0 -14px 15px -15px; }
     .fbox.bg-blue .gray_title{ margin-top: -8px; background-color: #5a97bb; color: #fff; }
-    .fbox label.col-form-label{ color: #fff!important; font-size: 14px!important; }
+/*    .fbox label.col-form-label{ color: #fff!important; font-size: 14px!important; }*/
 
+    .fbox label.col-form-label{ color: #fff!important; }
     #campaign_create_modal .small, #campaign_create_modal small { font-size: 80%!important; }
     .btn--primary {  background-color: #1361b2 !important; }
     .btn--primary:hover {  background-color: #093463 !important; }
@@ -1081,7 +1090,7 @@
 #campaign_list_wrapper{  overflow-x: scroll; }
 
     .img_preview_box{ position: relative; display: none;}
-    .img_preview_box .del-preview{ position: absolute; right: 0;  top: 0px; background: #fff;  display: inline-block; padding: 0;  border-radius: 20px; }
+    .img_preview_box .del-preview{ position: absolute; right: 0;  top: 0px; background: #fff;  display: inline-block; padding: 0;  border-radius: 20px; z-index:1; }
     .img_preview_box .del-preview i { display: block;}
     #company_logo_img, #image_1_img, #image_2_img, #image_3_img{  max-height: 54px; width: auto;  max-width: 160px;   padding: 0 5px;  }
 
@@ -1092,7 +1101,7 @@
 
     #campaign_create_modal .PageFormStyle .form-control, #campaign_create_modal .PageFormStyle .custom-select{
         border-radius: 0; background-color:#fff;
-        font-size: 19px!important;
+/*        font-size: 19px!important;*/
 /*        font-weight: 300!important;*/
         color: #212529!important;
         border-radius: 0!important;
@@ -1100,9 +1109,15 @@
         border: 1px solid #94a1b5!important;
         outline: none!important;
         padding: 10px 18px!important;
+        min-height: 52px;
         height: auto;
     }
-
+#campaign_create_modal .PageFormStyle .form-control {
+font-size: 20px!important;
+}
+     #campaign_create_modal .PageFormStyle .custom-select{ 
+        font-size: 16px;
+    }
     #campaign_create_modal .modal-header .btn{
         background-color:#fff;
     }
@@ -1434,30 +1449,30 @@
 
     ::-moz-placeholder {
       /* Mozilla Firefox 19+ */
-      color: gray !important;
-      font-size: 20px;
+      color: #808080 !important;
+      font-size: 16px;
       opacity: 1;
     }
 
     :-ms-input-placeholder {
       /* Internet Explorer 10-11 */
-      color: gray !important;
-      font-size: 20px;
-      font-weight: 300;
+      color: #808080 !important;
+      font-size: 16px;
+      font-weight: 200;
     }
 
     ::-ms-input-placeholder {
       /* Microsoft Edge */
-      color: gray !important;
-      font-size: 20px;
-      font-weight: 300;
+      font-size: 16px;
+      font-weight: 200;
+      color: #808080 !important;
     }
 
     ::placeholder {
         /* Most modern browsers support this now. */
         color: gray !important;
-        font-size: 20px;
-      font-weight: 300;
+        font-size: 16px;
+      font-weight: 200;
     }
     .card.sidbar_preview {
         border: 5px solid #000;
@@ -1553,11 +1568,12 @@
     font-size: 18px;
 }
 table.dataTable thead tr th {
+    border-right: 1px solid #ffffff36;
     font-size: 15px;
 }
 #campaign_list_length {
-    width: 30%;
-    float: left;
+    /*width: 30%;
+    float: left;*/
     padding: 5px 0px 0px 5px;
 }
 #campaign_list_info {
@@ -1575,10 +1591,31 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     justify-content: flex-start !important;
     padding-left: 24px;
 }
-div#campaign_list_paginate {
+/*div#campaign_list_paginate {
     width: 35%;
     text-align: left;
+}*/
+#campaign_list_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
+#campaign_list_info {
+    flex: auto;
+    text-align: right;
+}
+.ar-14 {
+    font-size: 14px !important;
+}
+.ar-16 {
+    font-size: 16px !important;
+}
+.cuxtom_pt_5 {
+padding-top: 5px;
+}
+ #text_white {
+    color: #fff !important;
+ }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
 @endpush

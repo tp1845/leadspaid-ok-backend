@@ -3,6 +3,18 @@
 @section('panel')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 <style>
+    #myTable_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#myTable_info {
+    flex: auto;
+    text-align: right;
+}
+    #tabs-2 .table.style--two thead tr th:first-child, #tabs-2 .card, #tabs-1 .card, #tabs-1 .table.style--two thead tr th:first-child {
+        border-radius: 0;
+    }
     .fs-16{ font-size: 16px!important; }
     .adsrock-list ul li {
         display: flex;
@@ -50,23 +62,26 @@
     float: left;
     width: 30%;
 }
-#myTable_info, #MyPayments_info  {
+/*#myTable_info, #MyPayments_info  {
     width: 35%;
     float: left;
-} 
-#myTable_length, #MyPayments_length {
+} */
+/*#myTable_length, #MyPayments_length {
     width: 30%;
     float: left;
 }
 #myTable_paginate, #MyPayments_paginate {
     width: 35%;
     float: right;
-}
+}*/
 #myTable_info, #MyPayments_info {
    /* width: 30%;
     float: left;*/
     clear: unset;
     text-align: right;
+}
+#myTable_length, #MyPayments_length {
+    width: unset;
 }
 
 #myTable_paginate ul li {
