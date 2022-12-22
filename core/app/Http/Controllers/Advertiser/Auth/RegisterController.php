@@ -46,7 +46,6 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
         $this->middleware('regStatus')->except('registrationNotAllowed');
-
         $this->activeTemplate = activeTemplate();
     }
 
@@ -72,7 +71,7 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
- 
+
         $request->validate([
             'mobile' => 'required|string|unique:advertisers|min:6',
             'email' => 'required|string|email|max:160|unique:advertisers',
@@ -104,11 +103,11 @@ class RegisterController extends Controller
     }
 
     public function varify_adv(Request $request){
-        
+
         $data=$this->decode_arr($request->code_verifiyed);
-    
+
        // $user = $this->guard()->user()->find($data['userid']);
-         // $user = new Advertiser (); 
+         // $user = new Advertiser ();
 
          $user = Advertiser::findOrFail($data['userid']);
         // return $user->id;
@@ -133,16 +132,16 @@ class RegisterController extends Controller
             return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
         }
     }
-    
+
     public function encode_arr($data) {
         return base64_encode(serialize($data));
     }
-    
+
     public  function decode_arr($data) {
         return unserialize(base64_decode($data));
     }
 
-    public function register_advertiser(Request $request){ 
+    public function register_advertiser(Request $request){
 
         event(new Registered($user = $this->create_adv($request->all())));
         $this->guard()->login($user);
@@ -161,25 +160,20 @@ class RegisterController extends Controller
 
     protected function create_adv(array $data)
     {
-
         $gnl = GeneralSetting::first();
-
         $adv = new Advertiser ();
         $adv->name = $data['name'];
-        
         $adv->email = $data['email'];
         $username=strstr($data['email'],'@',true);
         $adv->username = $username;
         $adv->country = $data['country'];
-        
         $adv->company_name = $data['company_name'];
-        
-        
         $mobile = preg_replace('/\D/', '', $data['country_code'].$data['phone']);
         $adv->mobile = $mobile;
         $adv->product_services = $data['product_services'];
         $adv->Website = $data['Website'];
         $adv->Social = $data['Social'];
+        $adv->ad_budget = $data['ad_budget'];
         $adv->country_code = $data['country_code'];
         $adv->password = Hash::make($data['password']);
         $adv->status = 0;
@@ -205,28 +199,19 @@ class RegisterController extends Controller
             $userLogin->country_code = @implode(',',$info['code']);
             $userLogin->country =  @implode(',', $info['country']);
         }
-
         /*$userAgent = osBrowser();
         $userLogin->advertiser_id = $adv->id;
         $userLogin->user_ip =  $ip;
-
         $userLogin->browser = @$userAgent['browser'];
         $userLogin->os = @$userAgent['os_platform'];
         $userLogin->save(); */
-
         return $adv;
     }
 
     public function user_varify(Request $request)
     {
 
-
-
-
     }
-
-
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -235,12 +220,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
         $gnl = GeneralSetting::first();
-
         $adv = new Advertiser ();
         $adv->name = $data['name'];
-        
         $adv->email = $data['email'];
         $adv->username = $data['username'];
         $adv->country = $data['country'];
@@ -252,15 +234,12 @@ class RegisterController extends Controller
         $adv->mobile = $mobile;
         $adv->country_code = $data['country_code'];
         $adv->password = Hash::make($data['password']);
-
         $adv->status = 1;
         $adv->ev = $gnl->ev==0 ? 1 : 0;
         $adv->sv = $gnl->sv==0 ? 1 : 0;
         $adv->ts = 0;
         $adv->tv = 1;
         $adv->save();
-
-
         $ip = $_SERVER["REMOTE_ADDR"];
         $exist = UserLogin::where('user_ip',$ip)->first();
         $userLogin = new UserLogin();
@@ -278,22 +257,17 @@ class RegisterController extends Controller
             $userLogin->country_code = @implode(',',$info['code']);
             $userLogin->country =  @implode(',', $info['country']);
         }
-
         $userAgent = osBrowser();
         $userLogin->advertiser_id = $adv->id;
         $userLogin->user_ip =  $ip;
-
         $userLogin->browser = @$userAgent['browser'];
         $userLogin->os = @$userAgent['os_platform'];
         $userLogin->save();
-
         return $adv;
     }
 
     public function registered()
     {
-
-
         return redirect()->route('advertiser.dashboard');
     }
 
@@ -301,5 +275,4 @@ class RegisterController extends Controller
     {
         return Auth::guard('advertiser');
     }
-
 }
