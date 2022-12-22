@@ -201,11 +201,12 @@
                     <div class="footer_social row">
                         <div class="col-12">
                             <ul>
-                                <li><a href="#"><i class="lab la-twitter"></i></a></li>
+                                {{-- <li><a href="#"><i class="lab la-twitter"></i></a></li>
                                 <li><a href="#"><i class="lab la-facebook"></i></a></li>
                                 <li><a href="#"><i class="lab la-google-plus"></i></a></li>
                                 <li><a href="#"><i class="lab la-instagram"></i></a></li>
-                                <li><a href="#"><i class="lab la-vimeo-square"></i></a></li>
+                                <li><a href="#"><i class="lab la-vimeo-square"></i></a></li> --}}
+                                <li><a href="#"><i class="lab la-linkedin"></i></a></li>
                                 <li><a href="#"><i class="lab la-youtube"></i></a></li>
                             </ul>
                         </div>
