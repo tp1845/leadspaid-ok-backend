@@ -16,7 +16,8 @@ class CampaignsdemoController extends Controller
     public function index($style = 3)
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
-        $campaigns = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
+        $campaigns=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',1)->orderBy('id', 'DESC')->get(); 
+        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->orderBy('id', 'DESC')->get(); 
 
         $last_campaign = campaigns::orderBy('id', 'desc')->first();
         if($last_campaign){
@@ -31,7 +32,7 @@ class CampaignsdemoController extends Controller
         $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
 
-        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message'));
+        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns','campaignspending', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message'));
     }
 
 

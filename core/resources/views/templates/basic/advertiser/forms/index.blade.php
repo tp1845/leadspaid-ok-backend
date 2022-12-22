@@ -50,7 +50,7 @@
 <script>
     'use strict';
     $(document).ready(function () {
-        var MyDatatable =  $('#form_list').DataTable({  columnDefs: [  { targets: 7, searchable: false,  visible: true, orderable: false}, ] });
+        var MyDatatable =  $('#form_list').DataTable({  columnDefs: [  { targets: 7, searchable: false,  visible: true, orderable: false}, ],"sDom": 'Lfrtlip' });
     });
 </script>
 @endpush
@@ -80,6 +80,26 @@ label {
 }
 table.dataTable thead tr th {
     font-size: 15px;
+}
+#form_list_length {
+    width: 30%;
+    float: left;
+    padding: 5px 0px 0px 5px;
+}
+#form_list_info {
+    width: 40%;
+    float: left;
+    text-align: right;
+}
+#form_list_paginate {
+    width: 30%;
+    text-align: left;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-start !important;
+    padding-left: 10px;
 }
 </style>
 @endpush

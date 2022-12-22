@@ -45,21 +45,30 @@
     width: 70px;
 }
 
-#myTable_length {
+#myTable_length , #MyPayments_length{
     padding: 5px 0px 0px 5px;
     float: left;
-    width: 20%;
+    width: 30%;
 }
-#myTable_info {
-    width: 20%;
+#myTable_info, #MyPayments_info  {
+    width: 35%;
     float: left;
-    clear: unset;
-}
-#myTable_info {
-    width: 20%;
+} 
+#myTable_length, #MyPayments_length {
+    width: 30%;
     float: left;
-    clear: unset;
 }
+#myTable_paginate, #MyPayments_paginate {
+    width: 35%;
+    float: right;
+}
+#myTable_info, #MyPayments_info {
+   /* width: 30%;
+    float: left;*/
+    clear: unset;
+    text-align: right;
+}
+
 #myTable_paginate ul li {
     margin-top: 0;
     margin-bottom: 0;
@@ -92,13 +101,17 @@
 #MyPayments_length, #MyPayments_info {
     padding: 5px 0px 0px 5px;
 }
+
 .dataTables_paginate .pagination .page-item.active .page-link {
     background-color: #1361b2;
     border-color: #1361b2;
     box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
 }
 .dataTables_paginate .pagination .page-item {
-    margin: 5px 7px;
+    margin: 0px 7px 7px 7px !important;
+}
+#MyPayments_info {
+    padding-top: 0.85em;
 }
 #myTable_paginate ul li a, #MyPayments_paginate ul li a {
     border-radius: 0px !important;

@@ -7,6 +7,8 @@
         <div class="col-lg-12">
             <div class=" ">
                 <div class="table-responsive--lg">
+
+                   
                     <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                         <thead>
                         <tr>
@@ -30,7 +32,38 @@
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
-                                <td>@if($campaign->approve) <span class="green">Approved  </span> @else
+                                <td>
+                                    
+                                    @if($campaign->approve) <span class="green">Active </span> @else
+                                    <span class="orange">Pending<br/>Approval</span>
+                                   @endif
+                                </td>
+                                <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
+                                <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
+                                <td>{{ $campaign->target_country }} </td>
+                                <td> @if (isset($campaign->campaign_forms))
+                                        {{$campaign->campaign_forms->form_name}}
+                                    @endif</td>
+                                <td>${{ $campaign->daily_budget }}</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
+                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
+                                    {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
+                                </td>
+                            </tr>
+                        @empty
+
+                        @endforelse
+
+                        @forelse($campaignspending as $campaign)
+                            <tr>
+                                <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                                <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
+                                <td>
+                                    
+                                    @if($campaign->approve) <span class="green">Active </span> @else
                                     <span class="orange">Pending<br/>Approval</span>
                                    @endif
                                 </td>
@@ -172,7 +205,7 @@
                                 <div class="card border h-100">
                                     <div class="card-header bg-primary pt-0">
                                         <div class="input-col">
-                                            <label class="col-form-label" for="form_name" style="">Form Name</label>
+                                            <label class="col-form-label" for="form_name" style=""><b>Form Name</b></label>
                                             <input type="text" class="form-control" id="form_name" name="form_name" placeholder="eg.  Zoho_Form_1" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
                                         </div>
                                     </div>
@@ -182,7 +215,7 @@
                                                 <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Product/Service Details</h4>
                                                     <div>
-                                                        <label class="col-form-label" for="FormTitleInput_1">Product/Service/Offer<small> (Add up to 3 variations)</small></label>
+                                                        <label class="col-form-label" for="FormTitleInput_1"><b>Product/Service/Offer</b> (Add up to 3 variations)</label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
                                                                 <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="eg. Start a Free 30-day Trial" required="" minlength="3" maxlength="25">
@@ -208,7 +241,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Product/Service/Offer Description <small> (Add up to 3 variations)</small></label>
+                                                    <label class="col-form-label mt-4" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> (Add up to 3 variations)</label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Over 40k companies run their business with Zoho" required  minlength="3" maxlength="68">
@@ -234,7 +267,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4" for="FormPunchlineInput">Unique Selling Proposition <small>(Why someone should buy your product or service)</small></label>
+                                                    <label class="col-form-label mt-4" for="FormPunchlineInput"><b>Unique Selling Proposition </b>(Why someone should buy your product or service)</label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
@@ -245,8 +278,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="fbox">
-                                                    <h4 class="gray_title"> Add at least 1 creative <br><small class="title-small">(1 of the creatives will be shown randomly and optimized)</small> </h4>
-                                                    <label class="col-form-label">Youtube Video Url <small>(Add up to 3 variations)  </small></label>
+                                                    <h4 class="gray_title"> Add at least 1 creative <small class="title-small">(1 of the creatives will be shown randomly and optimized)</small> </h4>
+                                                    <label class="col-form-label"><b>Youtube Video Url </b>(Add up to 3 variations)  </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
@@ -275,7 +308,7 @@
 
 
                                                     <!-- <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label> -->
-                                                    <label class="col-form-label mt-4" >Images</label>
+                                                    <label class="col-form-label mt-4" ><b>Images</b></label>
                                                     <div class="custom_image_upload">
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col "  style="width: 88%;">
@@ -716,7 +749,7 @@
                     targets: '_all',
                     visible: true
                 }
-                ]
+                ],"sDom": 'Lfrtlip'
             });
             $("#sortable").sortable({
                 handle: ".handle",
@@ -1487,13 +1520,16 @@
     font-size: 14px;
 }
 .custom_image_upload .input-group .input-col .img_preview_box img {
-    padding: 10px 0 0 0 !important;
+    padding: 10px !important;
     max-width: 100% !important;
     max-height: 100% !important;
     margin: 0 !important;
     width: 100% !important;
     object-fit: contain;
     border-radius: 0px 0px 4px 4px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .custom_image_upload .input-group .input-col .img_preview_box {
     position: absolute;
@@ -1502,6 +1538,8 @@
     right: 0;
     bottom: 0;
     height: 100%;
+    background: #ddf5ff;
+    border-radius: 5px;
     width: 100%;
 }
 #campaign_create_modal form input {
@@ -1509,12 +1547,37 @@
 }
 #campaign_create_modal .title-small {
     font-size: 12px !important;
+    display:block;
 }
 .create-campaign-btn {
     font-size: 18px;
 }
 table.dataTable thead tr th {
     font-size: 15px;
+}
+#campaign_list_length {
+    width: 30%;
+    float: left;
+    padding: 5px 0px 0px 5px;
+}
+#campaign_list_info {
+    width: 35%;
+    float: left;
+    text-align: right;
+}
+#MyPayments_paginate {
+    width: 35%;
+    float: right;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-start !important;
+    padding-left: 24px;
+}
+div#campaign_list_paginate {
+    width: 35%;
+    text-align: left;
 }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
