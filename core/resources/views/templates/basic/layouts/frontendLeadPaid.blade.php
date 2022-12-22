@@ -153,7 +153,7 @@
         $policies = getContent('policy.element',false);
         @endphp
 
-        <footer class="pt-4 my-md-5 pt-md-5 border-top" id="MainFooter">
+        <footer id="MainFooter" class="mt-md-5 pt-4 pt-md-5 border-top">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md">

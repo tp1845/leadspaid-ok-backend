@@ -63,8 +63,8 @@
                 <div class="col-lg-5">
                     <ul class="how-its-works-list">
                         <li>
-                            <b><span>1</span> Embed Lead Form</b>
-                            <p>We embed your lead form into popular publishers' leanding pages</p>
+                            <b><span>1</span> AI Embeds Lead Form</b>
+                            <p>Our AI Algorithm embeds your lead form into popular publishers' landing pages</p>
                         </li>
                         <li>
                             <b><span>2</span> Relevant Audience Fill the Form  </b>
