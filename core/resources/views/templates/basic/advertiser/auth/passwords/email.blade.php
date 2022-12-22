@@ -26,7 +26,7 @@
                     @csrf
                     <div class="form-group">
                       <label class="mb-2">@lang('Email Address') <sup class="text-danger">*</sup></label>
-                      <input type="email" name="email" placeholder="@lang('Email Address')" class="form-control  mb-3">
+                      <input type="email" name="email" placeholder="@lang('Email Address')" class="form-control  mb-3" required>
                     </div>
                     <div class="text-center mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
                         <button type="submit" class="cmn-btn ">@lang('Send Password Reset Code')</button>
