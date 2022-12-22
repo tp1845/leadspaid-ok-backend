@@ -5,10 +5,10 @@
 <!-- <link rel="stylesheet" href="https://leadspaid.com/assets/templates/basic/css/all.min.css"> -->
 <section class="Rg_advts">
     <div class="container">
-        
+
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls mb-5">Advertiser Login</p>
+               <p class="Rg_advts_ttls mb-5">ADVERTISER LOGIN</p>
             </div>
         </div>
         <div class="row">
@@ -34,30 +34,30 @@
                 <button type="submit" class="cmn-btn ">@lang('Login Now')</button>
                 </div>
 
-                
+
                 <div class="custom-forgot mt-4 mb-4 mb-sm-5 d-flex justify-content-between align-items-center">
                     <a href="{{route('advertiser.password.reset')}}">@lang('Forgot Password?')</a>
-                    <a href="{{route('register_advertiser')}}">@lang('Don\'t have any account?')</a>
+                    <a href="{{route('register_advertiser')}}">@lang('Don\'t have an Account?')</a>
                 </div>
             </form>
         </div>
-    </div>                 
+    </div>
     </div>
  </section>
-    
 
 
-   
+
+
 @endsection
 
 @push('script-lib')
 <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script> 
+<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
 
-  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script> 
-  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>   
+  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
+  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
 
 @endpush
 
@@ -83,14 +83,14 @@
 
         FormValidation.formValidation(document.querySelector('#login_form'), {
             fields: {
-             
+
                 username: {
                      validators: {
                         notEmpty: {
                             message: 'Please fill Username/Email Address.',
                         },
                     },
-               
+
                 },
                 password: {
                     validators: {
@@ -117,12 +117,12 @@
             document.querySelector('#login_form').submit();
 
         });
-        
+
     });
 </script>
 @endpush
 <style>
-    
+
     .Rg_advts {
         font-family: Poppins !important;
         font-weight: 200;
@@ -138,14 +138,13 @@
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
     }
     .Rg_advts_ttls {
-        color: #1361b2;
+        color: #191f58;
         font-family: Poppins !important;
         font-weight: 600;
         font-size: 38px;
-        letter-spacing: 1px;
     }
      .Rg_advts_ttls_1 {
-        
+
         font-family: Poppins !important;
         font-weight: 600;
         font-size: 63px;
@@ -204,7 +203,7 @@
        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
     border: 1px solid #94a1b5 !important;
         transition: All .2s ease-in-out!important;
-   
+
 }
 .Rg_advts .form-control.is-valid {
     border: 1px solid #94a1b5 !important;
@@ -229,7 +228,7 @@ button.btn.btn-secondary.Rg_advts_my_btn {
         line-height: normal;
 }
 .Rg_advts input::placeholder {
-  
+
 }
 
 .Rg_advts input:-ms-input-placeholder { /* Internet Explorer 10-11 */
@@ -256,7 +255,7 @@ button.btn.btn-secondary.Rg_advts_my_btn {
 button.cmn-btn {
     font-size: 24px;
     font-weight: 500;
-} 
+}
 button.cmn-btn {
     width: 100%;
     max-width: 200px;
