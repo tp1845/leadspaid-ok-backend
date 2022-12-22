@@ -65,8 +65,66 @@
     margin-bottom: 0;
     padding: 0;
 }
-.table.style--two tr th, .table.style--two tr td ,.table.style--two tbody tr td{
-    font-size: 16px;
+.table.style--two tr th {
+    font-size: 15px;
+}
+.table.style--two tr td ,.table.style--two tbody tr td{
+    font-size: .75rem;
+}
+  table.dataTable thead tr, .table.style--two thead tr th {
+    background-color: #1A273A;
+}
+.table.style--two thead tr th {
+    padding: 12px 10px;
+}
+.paymentt_tab input {
+    border-radius: 0;
+    height: calc(1rem + 1rem + 2px);
+    font-size: 0.8125rem !important;
+    border:1px solid #ced4da;
+}
+#MyPayments_wrapper, #myTable_wrapper {
+    overflow-x: scroll;
+}
+#MyPayments_wrapper .custom-select {
+    width: 70px;
+}
+#MyPayments_length, #MyPayments_info {
+    padding: 5px 0px 0px 5px;
+}
+.dataTables_paginate .pagination .page-item.active .page-link {
+    background-color: #1361b2;
+    border-color: #1361b2;
+    box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
+}
+.dataTables_paginate .pagination .page-item {
+    margin: 5px 7px;
+}
+#myTable_paginate ul li a, #MyPayments_paginate ul li a {
+    border-radius: 0px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: 1px solid transparent;
+    background-color: transparent;
+    background: transparent;
+}
+.pagination .page-link:hover {
+    z-index: 2;
+    color: #fff !important;
+    text-decoration: none;
+    background-color: #1361b2;
+    border-color: #1361b2;
+}
+.custom_bg_change_btn button.btn--primary {
+    background: #1361b2 !important;
+    border-radius: 0;
+}
+.custom_bg_change_btn .form-text {
+    color: #5b6e88 !important;
 }
 </style>
 <div class="container-fluid position-relative px-0     5555555">
@@ -431,7 +489,7 @@
 
 
 <!------------------->
-<div class="container-fluid position-relative px-0 mt-3 fs-16">
+<div class="container-fluid position-relative px-0 mt-3 fs-16 custom_bg_change_btn">
 
     <form method="POST" action="{{ route('advertiser.payments.update') }}" enctype="multipart/form-data">
         @csrf
@@ -471,7 +529,7 @@
     </div>
 
 </div>
-<div class="container-fluid position-relative px-0 my-2 fs-16">
+<div class="container-fluid position-relative px-0 my-2 fs-16 custom_bg_change_btn">
     <form method="POST" action="{{ route('advertiser.payments.createsession') }}">
         @csrf
     </form>
@@ -481,7 +539,7 @@
 </div>
 
 
-<div class="container-fluid position-relative px-0  fs-16">
+<div class="container-fluid position-relative px-0  fs-16 custom_bg_change_btn">
 
     <form method="POST" action="{{ route('ipn.current_advertiser_charge') }}">
         @csrf

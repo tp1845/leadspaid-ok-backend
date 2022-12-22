@@ -58,5 +58,28 @@
 <style>
     .table th {   padding: 12px 10px; max-width: 200px; }
     .table td {  text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
+    table.dataTable thead tr {
+    background-color: #1A273A;
+}
+label {
+    color: #000 !important;
+}
+ #form_list_wrapper .dataTables_filter input {
+    border-radius: 0!important;
+}
+#form_list_wrapper {
+    overflow-x: scroll;
+}
+.dataTables_paginate .pagination .page-item.active .page-link {
+    background-color: #1361b2;
+    border-color: #1361b2;
+    box-shadow: 0px 3px 5px rgb(0,0,0,0.125);
+}
+#form_list_wrapper .dataTables_paginate .pagination .page-item .page-link {
+    border-radius: 0!important;
+}
+table.dataTable thead tr th {
+    font-size: 15px;
+}
 </style>
 @endpush
