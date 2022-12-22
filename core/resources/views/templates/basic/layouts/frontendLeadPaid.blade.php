@@ -100,6 +100,10 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.2.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-3')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.3.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-4')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.4.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-5')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.5.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 19)
                     <img src="{{asset('assets/templates/leadpaid/images/logo-19.png')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 20)
