@@ -91,7 +91,7 @@
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1" for="company_name_Input">Company/Brand Name</label>
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="Company/Brand Name to Display" name="company_name" required maxlength="30"></div>
-                            <div class="col-lg-3 input-col d-flex  flex-wrap pt-4">
+                            <div class="col-lg-3 input-col d-flex  flex-wrap pt-4 align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
                                     <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
                                     <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
@@ -170,10 +170,10 @@
                             </div>
                             <div  id="CreateNewForm" style="display: none">
                                 <div class="card border h-100">
-                                    <div class="card-header bg-primary">
+                                    <div class="card-header bg-primary pt-0">
                                         <div class="input-col">
                                             <label class="col-form-label" for="form_name" style="">Form Name</label>
-                                            <input type="text" class="form-control" id="form_name" name="form_name" placeholder="eg. ZohoOffer_form 1" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
+                                            <input type="text" class="form-control" id="form_name" name="form_name" placeholder="eg.  Zoho_Form_1" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
                                         </div>
                                     </div>
                                     <div class="card-body p-0 ">
@@ -182,7 +182,7 @@
                                                 <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Product/Service Details</h4>
                                                     <div>
-                                                        <label class="col-form-label" for="FormTitleInput_1"><b>Product/Service/Offer</b> (Add up to 3 variations)</label>
+                                                        <label class="col-form-label" for="FormTitleInput_1">Product/Service/Offer<small> (Add up to 3 variations)</small></label>
                                                         <div id="form_title_1">
                                                             <div class="input-group input-col">
                                                                 <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="eg. Start a Free 30-day Trial" required="" minlength="3" maxlength="25">
@@ -208,7 +208,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label mt-4" for="form_desc_1_Input"><b>Product/Service/Offer Description</b>  (Add up to 3 variations)</label>
+                                                    <label class="col-form-label mt-4" for="form_desc_1_Input">Product/Service/Offer Description <small> (Add up to 3 variations)</small></label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="Over 40k companies run their business with Zoho" required  minlength="3" maxlength="68">
@@ -234,10 +234,10 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4" for="FormPunchlineInput"><b>Unique Selling Proposition</b> (Why someone should buy your product or service)</label>
+                                                    <label class="col-form-label mt-4" for="FormPunchlineInput">Unique Selling Proposition <small>(Why someone should buy your product or service)</small></label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="23">
+                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text">  </div>
                                                             </div>
@@ -245,8 +245,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="fbox">
-                                                    <h4 class="gray_title"> Add a few relevant creative <small>(Optional)</small> </h4>
-                                                    <label class="col-form-label"><b>Youtube Video Url</b>  (Add up to 3 variations)  </label>
+                                                    <h4 class="gray_title"> Add at least 1 creative <br><small class="title-small">(1 of the creatives will be shown randomly and optimized)</small> </h4>
+                                                    <label class="col-form-label">Youtube Video Url <small>(Add up to 3 variations)  </small></label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
@@ -274,7 +274,8 @@
                                                     </div>
 
 
-                                                    <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label>
+                                                    <!-- <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label> -->
+                                                    <label class="col-form-label mt-4" >Images</label>
                                                     <div class="custom_image_upload">
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col "  style="width: 88%;">
@@ -408,7 +409,7 @@
                                                             </tbody>
                                                         </table>
 
-                                                        <div class="dropdown mt-3">
+                                                        <div class="dropdown  my-3">
                                                             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 + Add question
                                                             </button>
@@ -1059,7 +1060,7 @@
     #campaign_create_modal .PageFormStyle .form-control, #campaign_create_modal .PageFormStyle .custom-select{
         border-radius: 0; background-color:#fff;
         font-size: 19px!important;
-        font-weight: 300!important;
+/*        font-weight: 300!important;*/
         color: #212529!important;
         border-radius: 0!important;
         vertical-align: middle!important;
@@ -1133,7 +1134,7 @@
     #campaign_create_modal .card-header {   font-weight: 500!important; font-size: 1.2rem;}
 
     #campaign_create_modal .card-header.bg-primary{ background-color: #004664!important; color: #fff!important; }
-    #campaign_create_modal .card-header.bg-primary label{  font-size: 0.75rem; font-weight: 400; color: #fff!important; padding-top:0;  }
+    #campaign_create_modal .card-header.bg-primary label{  font-size: 14px; font-weight: 400; color: #fff!important; padding-top:0;  }
 
     #campaign_create_modal table th { font-weight: 500; }
     table th:last-child { text-align: left; }
@@ -1409,23 +1410,29 @@
       /* Internet Explorer 10-11 */
       color: gray !important;
       font-size: 20px;
+      font-weight: 300;
     }
 
     ::-ms-input-placeholder {
       /* Microsoft Edge */
       color: gray !important;
       font-size: 20px;
+      font-weight: 300;
     }
 
     ::placeholder {
         /* Most modern browsers support this now. */
         color: gray !important;
         font-size: 20px;
+      font-weight: 300;
     }
     .card.sidbar_preview {
         border: 5px solid #000;
         padding: 5px !important;
     }
+    #campaign_create_modal .PageFormStyle .us_doller input[aria-invalid="false"], #campaign_create_modal form input[aria-invalid="false"] {
+    font-weight: 400 !important;
+}
     .SelectFormType label, .large-check label { font-size: 20px; }
     .SelectFormType input[type="radio"] , .large-check input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
 
@@ -1485,7 +1492,7 @@
     max-height: 100% !important;
     margin: 0 !important;
     width: 100% !important;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 0px 0px 4px 4px;
 }
 .custom_image_upload .input-group .input-col .img_preview_box {
@@ -1498,7 +1505,16 @@
     width: 100%;
 }
 #campaign_create_modal form input {
-    font-size: 19px !important;
+    font-size: 14px !important;
+}
+#campaign_create_modal .title-small {
+    font-size: 12px !important;
+}
+.create-campaign-btn {
+    font-size: 18px;
+}
+table.dataTable thead tr th {
+    font-size: 15px;
 }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
