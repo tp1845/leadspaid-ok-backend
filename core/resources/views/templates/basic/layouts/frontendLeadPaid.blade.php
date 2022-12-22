@@ -112,6 +112,28 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.8.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-9')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.9.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-10')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.10.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-11')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.11.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-12')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.12.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-13')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.13.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-14')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.14.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-15')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.15.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-16')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.16.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-17')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.17.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-18')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.18.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-19')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.19.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-20')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.20.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 19)
                     <img src="{{asset('assets/templates/leadpaid/images/logo-19.png')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 20)
