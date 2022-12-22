@@ -24,52 +24,27 @@
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <input type="text" id="conact_name" name="name" class="rounded-0 form-control py-2" placeholder="@lang('Full Name')" >
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <input type="text" id="conact_company" name="company" class="rounded-0 form-control py-2" placeholder="@lang('Company Name')" >
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <input type="text" id="conact_email" name="email" class="rounded-0 form-control py-2" placeholder="@lang('Email Address')" >
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group mb-3">
                                     <input type="text" id="conact_phone" name="phone" class="rounded-0 form-control py-2" placeholder="@lang('Phone Number')">
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
                                 </div>
                             </div>
                         <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <textarea id="conact_message"  name="message" placeholder="@lang('Message')" class="form-control contact_msg rounded-0 py-2" rows="4">{{old('message')}}</textarea>
-                                    <small>Error Message</small>
-                                    <div class="custom_msg">
-                                        <i data-field="company_name" class="fv-plugins-icon fa fa-times" aria-hidden="true"></i>
-                                        <i data-field="name" class="fv-plugins-icon fa fa-check" aria-hidden="true"></i>
-                                    </div>
                             </div>
                         </div>
                         <div class="col-md-12 submit-btn">
@@ -85,25 +60,21 @@
                 </div>
                 </div> --}}
             </div>
-            <div class="col-lg-4 contact_section contact_right mb-4">
-                <div class="row">
-                    <div class="col-lg-12 col-sm-6">
-                        <div class="contact_wrap text-left">
-                            <h4 class="title mb-3">Leads Paid Inc.</h4>
-                            <p class="mb-0 d-flex justify-content-start">
-                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
-                                <span>1401 21st Street STE R,<br/> Sacramento, California 95811<br>United States</span>
-                            </p>
-                            <p class="my-3 d-flex justify-content-start">
-                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
-                                <span><a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></span>
-                            </p>
-                            <p class="mb-0 d-flex justify-content-start">
-                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
-                                <span>1401</span>
-                            </p>
-                        </div>
-                    </div>
+            <div class="col-lg-4 contact_section contact_sidebar mb-4">
+                <div class="contact_wrap text-left">
+                    <h4 class="title mb-3">Leads Paid Inc.</h4>
+                    <p class="mb-0 d-flex justify-content-start">
+                        <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
+                        <span>1401 21st Street STE R,<br/> Sacramento, California 95811<br>United States</span>
+                    </p>
+                    <p class="my-3 d-flex justify-content-start">
+                        <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
+                        <span><a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></span>
+                    </p>
+                    <p class="mb-0 d-flex justify-content-start">
+                        <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
+                        <span>1401</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -112,156 +83,127 @@
       <!-- contact section end -->
 @endsection
 @push('script-lib')
-<script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
-  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-
-  <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
-  <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
-
+    <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
+    <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
+    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
+    <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
+    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css">
 @endpush
 @push('script')
 <script>
-const form = document.getElementById('contact_form');
-const conact_name = document.getElementById('conact_name');
-const conact_email = document.getElementById('conact_email');
-const conact_company = document.getElementById('conact_company');
-const conact_phone = document.getElementById('conact_phone');
-const conact_message = document.getElementById('conact_message');
+    document.addEventListener('DOMContentLoaded', function(e) {
+        FormValidation.formValidation(document.querySelector('#contact_form'), {
+            fields: {
 
-//Show input error messages
-function showError(input, message) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control error';
-    const small = formControl.querySelector('small');
-    small.innerText = message;
-}
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Name is required.',
+                        },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Full Name.',
+                        },
+                        regexp: {
+                            regexp: /^[a-z A-Z]+$/,
+                            message: 'Full Name Invalid.',
+                        },
+                    },
+                },
+                company: {
+                    validators: {
+                        // notEmpty: {
+                        //     message: 'company Name is required.',
+                        // },
+                        stringLength: {
+                            min: 3,
+                            message: 'Please fill Full Company Name.',
+                        },
+                        // regexp: {
+                        //     regexp: /^[a-z A-Z]+$/,
+                        //     message: 'Full Name Invalid.',
+                        // },
+                    },
+                },
+                phone: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Phone is required.',
+                        },
+                        stringLength: {
+                            min: 6,
+                            message: 'Please enter valid phone.',
+                        },
+                        callback: {
+                            message: 'Number only please',
+                            callback: function (input) {
+                                const value = input.value;
+                                if (value === '') {  return true; }
+                                return (
+                                     FormValidation.validators.regexp().validate({
+                                        value: value,
+                                        options: {   regexp: '^[0-9]*$' },
+                                    }).valid
+                                );
+                            },
+                        },
+                    },
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter a valid email address',
+                        },
+                        callback: {
+                            message: 'Please enter a valid email address',
+                            callback: function (input) {
+                                const value = input.value;
+                                if (value === '') {  return true; }
 
-//show success colour
-function showSucces(input) {
-    const formControl = input.parentElement;
-    formControl.className = 'form-control success';
-
-}
-
-
-//checkRequired fields
-function checkRequired(inputArr) {
-    inputArr.forEach(function(input){
-
-        if(input.value.trim() === ''){
-
-            var input_names=getFieldName(input);
-
-                if(input_names=='Conact_name')
-                {
-                    showError(input, 'Please fill Full Name.');
+                                // I want the value has to pass both emailAddress and regexp validators
+                                return (
+                                    FormValidation.validators.emailAddress().validate({   value: value,  }).valid &&
+                                    FormValidation.validators.regexp().validate({
+                                        value: value,
+                                        options: {   regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$', },
+                                    }).valid
+                                );
+                            },
+                        },
+                    },
+                },
+                message: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Message is required.',
+                        },
+                        stringLength: {
+                            min: 5,
+                            message: 'Please fill your message in detail',
+                        },
+                    },
                 }
-                else if(input_names=='Conact_email')
-                {
-                    showError(input, 'Please fill valid email address.');
-                }
-                else if(input_names=='Conact_company')
-                {
-                    showError(input, 'Please fill company Name.');
-                }
-                else if(input_names=='Conact_phone')
-                {
-                    showError(input, 'Please fill Phone Number.');
-                }
-                else if(input_names=='Conact_message')
-                {
-                    showError(input, 'Please fill Message.');
-                }else
-                {
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap: new FormValidation.plugins.Bootstrap(),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                icon: new FormValidation.plugins.Icon({
+                    valid: 'fa fa-check',
+                    invalid: 'fa fa-times',
+                    validating: 'fa fa-refresh',
+                }),
+                alias: new FormValidation.plugins.Alias({
+                    checkConfirmation: 'callback'
+                }),
+            },
+        }).on('core.form.valid', function() {
+            document.querySelector('#contact_form').submit();
 
-                }
+        });
 
-        }else {
-
-            showSucces(input);
-
-        }
     });
-}
-
-//check input Length
-function checkLength(input, min ,max) {
-    if(input.value.length < min) {
-        var input_names=getFieldName(input);
-
-          if(input_names=='Conact_name')
-          {
-              showError(input, 'Please fill Full Name.');
-          }
-          else if(input_names=='Conact_email')
-          {
-              showError(input, 'Please fill valid email address.');
-          }
-          else if(input_names=='Conact_company')
-          {
-              showError(input, 'Please fill company Name.');
-          }
-          else if(input_names=='Conact_phone')
-          {
-              showError(input, 'Please fill Phone Number.');
-          }
-          else if(input_names=='Conact_message')
-          {
-              showError(input, 'Please fill Message.');
-          }else
-          {
-
-          }
-
-    }else if(input.value.length > max) {
-        showError(input, `character  must be les than ${max} characters`);
-    }else {
-        showSucces(input);
-
-    }
-}
-//check email is valid
-function checkEmail(input) {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if(re.test(input.value.trim())) {
-        showSucces(input)
-    }else {
-        showError(input,'Please fill valid email address ');
-    }
-}
-
-//get FieldName
-function getFieldName(input) {
-    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
-}
-
-//Event Listeners
-form.addEventListener('submit',function(e) {
-    e.preventDefault();
-    checkRequired([conact_name, conact_email, conact_company, conact_phone, conact_message]);
-
-      checkLength(conact_name,3,15);
-      checkLength(conact_company,3,10);
-      checkEmail(conact_email);
-      checkLength(conact_phone,3,10);
-      checkLength(conact_message,3,15);
-    const name = document.contact_form.name.value;
-    const company =document.contact_form.company.value;
-    const email = document.contact_form.email.value;
-    const phone = document.contact_form.phone.value;
-    const message = document.contact_form.message.value;
-//console.log('name',name);
-
-if (name=="" || company==""  ||  email==""  || phone==""  || message==""){
-  return false;
-}else
-{
-    document.getElementById("contact_form").submit();
-}
-});
-
 </script>
 
 @endpush
@@ -275,206 +217,91 @@ if (name=="" || company==""  ||  email==""  || phone==""  || message==""){
     .contact-3 .title-3:before {
         display:none;
     }
-    .contact_wrap p, .contact_wrap p a, .contact_msg {
-    color: #586167 !important;
-    font-weight:400;
-    font-size:18px;
-}
+    .contact_msg {
+        color: #586167 !important;
+        font-weight:400;
+        font-size:18px;
+    }
     .conpant_icon svg {
         height:24px !important;
     }
 
-.submit-btn button.btn {
-    font-size: 24px;
-    font-weight: 500;
-}
-.input-group {
-    border-color: #94a1b5 !important;
-}
-.contact-3 .form-group {
-    margin-bottom: unset;
-}
-.contact-3 .form-group input {
-    color: #586167;
-    outline: none;
-    display: block;
-    font-size: 19px;
-    height: 63px;
-    border-bottom: none;
-    border: 1px solid #94a1b5 !important;
-    padding: 16px 24px;
-    line-height: normal;
-    /* background: #f2f7ff; */
-    font-weight:300;
-}
-.contact-3 .form-group textarea {
-    border: 1px solid #94a1b5 !important;
-    /* background: #f2f7ff; */
-    font-size: 19px;
-    padding: 16px 24px;
-    line-height: normal;
-    font-weight:300;
-}
+    .submit-btn button.btn {
+        font-size: 24px;
+        font-weight: 500;
+    }
+    .input-group {
+        border-color: #94a1b5 !important;
+    }
+    .contact-3 .form-group {
+        margin-bottom: unset;
+    }
+    .contact-3 .form-group input {
+        color: #586167;
+        outline: none;
+        display: block;
+        font-size: 19px;
+        height: 63px;
+        border-bottom: none;
+        border: 1px solid #94a1b5 !important;
+        padding: 16px 24px;
+        line-height: normal;
+        /* background: #f2f7ff; */
+        font-weight:300;
+    }
+    .contact-3 .form-group textarea {
+        border: 1px solid #94a1b5 !important;
+        /* background: #f2f7ff; */
+        font-size: 19px;
+        padding: 16px 24px;
+        line-height: normal;
+        font-weight:300;
+    }
 
-.contact-3 .form-group .form-control:focus, .contact-3 .contact_msg:focus, .contact-3 .was-validated .form-select:valid, .contact-3 .form-select.is-valid {
-    background-color: #fff;
-    border: 1px solid #94a1b5 !important;
-    box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
-    transition: All .2s ease-in-out!important;
-}
+    .contact-3 .form-group .form-control:focus,
+    .contact-3 .contact_msg:focus,
+    .contact-3 .was-validated
+    .form-select:valid,
+    .contact-3 .form-select.is-valid {
+        background-color: #fff;
+        border: 1px solid #94a1b5 !important;
+        box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
+        transition: All .2s ease-in-out!important;
+    }
 
-.contact-3 .form-group i {
-    top: 10px;
-    right: 10px;
-}
-.contact-3 .theme-card {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-}
+    .contact-3 .form-group i {
+        top: 10px;
+        right: 10px;
+    }
+    .contact-3 .theme-card {
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
 
-.contact-3 .contact_section .contact_wrap {
-    text-align:left !important;
-    -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
-    box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
-}
-.Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
-    background: none !important;
-}
-  .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small, .log-in .form-control.success small {
-    display: none;
-  }
-  .Rg_advts .form-control {
-    position: relative;
-  }
-  .error .custom_msg .fa-times {
-    display: block;
-    position: absolute;
-    top: 25px;
-    right: 22px;
-    color: #e74c3c;
-}
-  .success .custom_msg .fa-check {
-    display: block;
-    position: absolute;
-    top: 23px;
-    right: 22px;
-    color: #2ecc71;
-}
+    .contact_sidebar .contact_wrap {
+        text-align:left !important;
+        -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
+        box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
+        height: auto!important;
+    }
 
-.fa-times::before {
-    content: "\f00d";
-}
-.fa-check::before {
-    content: "\f00c";
-}
-.fa, .far, .fas {
-    font-family: "Font Awesome 5 Free";
-}
-.fa, .fab, .fad, .fal, .far, .fas {
-    font-style: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1;
-}
-.fv-plugins-bootstrap .fv-plugins-icon {
-    height: 38px;
-    line-height: 38px;
-    width: 38px;
-}
-
-.log-in .form-group{
-    position: relative;
-}
-
-.log-in .form-group label{
-    color:#777;
-    display: block;
-    margin-bottom: 5px;
-}
-
-
-.log-in .form-group input:focus{
-    outline: 0;
-    border-color: #777;
-
-}
-.log-in .form-control.success {
-    padding: 0;
-    border: none;
-    margin-bottom: 1rem !important;
-}
-.log-in .form-control.error {
-    border: none;
-    padding: 0;
-    margin-bottom: 10px;
-}
-.log-in .form-control.success small {
-    color:#2ecc71;
-}
-.log-in .form-control.success input {
-    border-color: #2ecc71;
-}
-.Rg_advts_number .form-control.success select, .log-in .form-control.success textarea, .log-in .form-control.success #country_id {
-    border: 1px solid #2ecc71;
-}
-.log-in textarea, .log-in textarea:hover {
-    border:1px solid #94a1b5;
-}
-.log-in textarea:focus-visible {
-    outline: none;
-}
-.log-in .form-control.error input, .log-in .form-control.error textarea, .Rg_advts_bsc .form-control.error select, .Rg_advts_number .form-control.error select {
-    border-color: #e74c3c;
-}
-.log-in .form-control.error small {
-    color: #e74c3c;
-}
-.log-in .form-group small{
-    color: #e74c3c;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    visibility: hidden;
-}
-
-.log-in .form-groupl.error small{
-    visibility: visible;
-}
-.log-in input {
-    display: block;
-    font-size: 19px;
-    padding: 16px 24px;
-    line-height: normal;
-    height:63px;
-}
-.log-in .form-group, .log-in .form-control {
-    position: relative;
-}
-
-
-.contact_wrap p, .contact_wrap p a {
-    color: #586167 !important;
-    font-weight:400;
-    font-size:18px;
-}
-.contact_wrap .title {
-    font-family: Poppins !important;
-    font-weight: 600!important;
-    font-size: 30px!important;
-    margin-bottom: 15px!important;
-    color: #191f58!important;
-}
-.contact_wrap {
-    text-align:left !important;
-    -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
-    box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
-}
-
-section.Rg_advts {
-    margin-top: 50px;
-}
-.contact_wrap {
-    padding: 30px;
-}
+    .contact_sidebar .contact_wrap {
+        text-align:left !important;
+        -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
+        box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
+        padding: 30px;
+    }
+    .contact_sidebar .contact_wrap .title {
+        font-family: Poppins !important;
+        font-weight: 600!important;
+        font-size: 30px!important;
+        margin-bottom: 15px!important;
+        color: #191f58!important;
+    }
+    .contact_sidebar .contact_wrap p, .contact_sidebar .contact_wrap p a {
+        color: #586167 !important;
+        font-weight:400;
+        font-size:18px;
+    }
 </style>
 @endpush
