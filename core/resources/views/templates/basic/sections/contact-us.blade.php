@@ -137,7 +137,7 @@
                 company:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
                 phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', numbersonly:'Please enter valid phone.'},
                 email:{  required : 'email is required.'},
-                message:  { required : 'Daily Budget is required.', minlength:'Daily Budget should be minimum $50', max: 'Daily Budget should not be greater than $1000'}
+                message:  { required : 'Message is required.', minlength:'Please fill your message in detail'}
             }
         });
     </script>
