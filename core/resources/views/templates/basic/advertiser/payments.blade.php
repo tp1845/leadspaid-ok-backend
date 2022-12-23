@@ -727,7 +727,7 @@ $(".nav-item").find(".nav-link").click(function(){
         if (count%2 == 0) {
         setTimeout(function () {
         $("#MyPayments").find("th:nth-child(1)").trigger('click');
-           }, 1000);
+           }, 100);
          }
     })
 
