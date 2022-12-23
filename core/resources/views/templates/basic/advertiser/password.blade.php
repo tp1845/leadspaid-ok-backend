@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h5 class="card-title mb-50 border-bottom pb-2">@lang('Change Password')</h5>
 
-                    <form action="{{ route('advertiser.password.update') }}" method="POST" enctype="multipart/form-data">
+                    <form id="change_password" action="{{ route('advertiser.password.update') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
@@ -53,4 +53,13 @@
 
 @push('breadcrumb-plugins')
     <a href="{{route('advertiser.profile')}}" class="btn btn-sm btn--primary box--shadow1 text--small" ><i class="fa fa-user"></i>@lang('Profile Setting')</a>
+@endpush
+
+@push('style')
+<style type="text/css">
+ #change_password .form-group label {
+        font-size: 16px;
+        color: #1a273a;
+    }
+</style>
 @endpush

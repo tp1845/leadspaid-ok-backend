@@ -481,5 +481,9 @@ $user = auth()->guard('advertiser')->user();
         max-height: 200px;
         overflow-y: auto;
     }
+	 #advertiser_form .card-body .form-group label {
+        font-size: 16px;
+        color: #1a273a;
+    }
 </style>
 @endpush

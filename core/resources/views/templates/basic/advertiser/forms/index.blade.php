@@ -31,8 +31,8 @@
                                 <td>{{$form->field_4['question_text']?? '' }}</td>
                                 <td>{{$form->field_5['question_text']?? '' }}</td>
                                 <td>10</td>
-                                <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">Xlsx</a> |
-                                <a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">Csv</a>
+                                <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">XLSX</a> |
+                                <a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">CSV</a>
                                 {{-- | <a href="#">Google Sheet</a> --}}
                                 </td>
                             </tr>
@@ -60,6 +60,11 @@
     .table td {  text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     table.dataTable thead tr {
     background-color: #1A273A;
+}
+table.dataTable tbody tr td {
+    font-size: 16px;
+    color: #1a273a;
+    font-weight: normal;
 }
 label {
     color: #000 !important;
@@ -102,6 +107,30 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
     white-space: nowrap;
     justify-content: flex-start !important;
     padding-left: 10px;
+}
+table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before {
+    bottom: 50% !important;
+    content: "▲" !important;
+}
+table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, ttable.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
+    position: absolute !important;
+    display: block !important;
+    opacity: .125 !important;
+    right: 10px !important;
+    line-height: 9px !important;
+    font-size: .8em !important;
+}
+table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, tatable.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
+    position: absolute !important;
+    display: block !important;
+    opacity: .125 !important;
+    right: 10px !important;
+    line-height: 9px !important;
+    font-size: .8em !important;
+}
+table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after {
+    top: 50% !important;
+    content: "▼" !important;
 }
 </style>
 @endpush

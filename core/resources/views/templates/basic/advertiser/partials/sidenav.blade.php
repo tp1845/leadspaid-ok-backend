@@ -12,7 +12,7 @@
             <button type="button" class="navbar__expand"></button>
         </div>
 
-        <div class="sidebar__menu-wrapper" id="sidebar__menuWrapper">
+        <div class="sidebar__menu-wrapper custom_side_bar" id="sidebar__menuWrapper">
             <ul class="sidebar__menu">
             @if( $testing  )
                 <li class="sidebar-menu-item {{menuActive('advertiser.dashboard')}}">
@@ -154,11 +154,21 @@
                             <span class="menu-title text-white">@lang('Payments')</span>
                         </a>
                     </li>
-					
-					 <li class="sidebar-menu-item {{menuActive('advertiser.profile')}}">
+                   
+
+            </ul>
+
+            <ul class="sidebar__menu footer-fix">
+               <li class="sidebar-menu-item {{menuActive('advertiser.profile')}}">
                     <a href="{{route('advertiser.profile')}}" class="nav-link">
                         <i class="menu-icon dropdown-menu__icon las la-cog"></i>
                             <span class="menu-title text-white">@lang('Edit Profile')</span>
+                        </a>
+                    </li>
+                     <li class="sidebar-menu-item {{menuActive('advertiser.password')}}">
+                    <a href="{{route('advertiser.password')}}" class="nav-link">
+                        <i class="menu-icon dropdown-menu__icon las la-key"></i>
+                            <span class="menu-title text-white">@lang('Change Password')</span>
                         </a>
                     </li>
 
@@ -168,13 +178,27 @@
                             <span class="menu-title text-white">@lang('logout')</span>
                         </a>
                     </li>
-
             </ul>
         </div>
     </div>
 </div>
+
 <style>
     .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
+.custom_side_bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+}
+.sidebar__menu.footer-fix {
+    margin-bottom: 60px;
+}
+.custom_side_bar ul li a {
+    padding: 5px 13px !important;
+}
+
 
 </style>
 <!-- sidebar end -->

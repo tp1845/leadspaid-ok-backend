@@ -19,8 +19,11 @@
     .adsrock-list ul li {
         display: flex;
     }
-    .adsrock-billing-summary p, .adsrock-detail-list, .adsrock-detail-list, .adsrock-name-list, .adsrock-name-list, .adsrock-bill-list p, .adsrock-bill-list p a, .adsrock-heading p {
+    .adsrock-billing-summary p, .adsrock-detail-list, .adsrock-detail-list, .adsrock-name-list, .adsrock-name-list, .adsrock-bill-list p, .adsrock-bill-list p a {
        font-size: 16px;
+    }
+    .adsrock-heading p {
+        font-size: 14px;
     }
     .adsrock-bill-list h6 {
 /*        font-size: 10px;*/
@@ -101,6 +104,11 @@
 .table.style--two thead tr th {
     padding: 12px 10px;
 }
+table.dataTable tbody tr td {
+    font-size: 16px !important;
+    color: #1a273a !important;
+    font-weight: normal;
+}
 .paymentt_tab input {
     border-radius: 0;
     height: calc(1rem + 1rem + 2px);
@@ -154,6 +162,9 @@
 .custom_bg_change_btn .form-text {
     color: #5b6e88 !important;
 }
+#MyPayments thead tr th:nth-child(1), #MyPayments tbody tr td:nth-child(1) {
+    display: none;
+}
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
@@ -172,7 +183,7 @@
                     <ul>
                         <li>
                             <div class="adsrock-name-list">
-                                Company:
+                                Company Name:
                             </div>
                             <div class="adsrock-detail-list pl-3">
                                 {{ auth()->guard('advertiser')->user()->company_name }}
@@ -180,7 +191,7 @@
                         </li>
                         <li>
                             <div class="adsrock-name-list">
-                                Name:
+                                Full Name:
                             </div>
                             <div class="adsrock-detail-list pl-3">
                                {{auth()->guard('advertiser')->user()->name}}
@@ -226,6 +237,14 @@
                                 {{auth()->guard('advertiser')->user()->email}}
                             </div>
                         </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Phone Number:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                                {{auth()->guard('advertiser')->user()->mobile}}
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -240,10 +259,10 @@
                     <ul>
                         <li>
                             <div class="adsrock-name-list">
-                                Card Type:
+                                Cardholder Name:
                             </div>
                             <div class="adsrock-detail-list pl-3">
-                                {{auth()->guard('advertiser')->user()->username}}
+                                Test
                             </div>
                         </li>
                         <li>
@@ -264,39 +283,7 @@
                         </li>
                         <li>
                             <div class="adsrock-name-list">
-                                Cardholder Name:
-                            </div>
-                            <div class="adsrock-detail-list pl-3">
-                                Test
-                            </div>
-                        </li>
-                        <li>
-                            <div class="adsrock-name-list">
-                                Address:
-                            </div>
-                            <div class="adsrock-detail-list pl-3">
-                                Test
-                            </div>
-                        </li>
-                        <li>
-                            <div class="adsrock-name-list">
-                                City:
-                            </div>
-                            <div class="adsrock-detail-list pl-3">
-                                Test
-                            </div>
-                        </li>
-                        <li>
-                            <div class="adsrock-name-list">
-                                Country:
-                            </div>
-                            <div class="adsrock-detail-list pl-3">
-                                Test
-                            </div>
-                        </li>
-                        <li>
-                            <div class="adsrock-name-list">
-                                ZIP/Postal Code:
+                                CVC:
                             </div>
                             <div class="adsrock-detail-list pl-3">
                                 Test
@@ -374,13 +361,13 @@
 
 <div class="row">
     <div class="col-lg-12 d d-flex justify-content-between align-items-end">
-        <div class="adsrock-invoice my-2">
+        <div class="adsrock-invoice mt-2">
             <ul class="nav nav-tabs" role="tablist">
                 <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#tabs-2" role="tab">Invoices</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " data-toggle="tab" href="#tabs-1" role="tab">Payments</a>
+                    <a class="nav-link " data-toggle="tab" href="#tabs-1" role="tab">Transactions</a>
                 </li>
 
             </ul><!-- Tab panes -->
@@ -659,8 +646,8 @@
     });
 
     $(document).ready( function () {
-        $('#myTable').DataTable({searching: false,"order": [[ 1, "desc" ]],"sDom": 'Lfrtlip'    });
-        $('#MyPayments').DataTable({searching: false,"order": [[ 1, "desc" ]],"sDom": 'Lfrtlip'    });
+        $('#myTable').DataTable({searching: false,"order": [[ 1, "ASC" ]],"sDom": 'Lfrtlip'    });
+        $('#MyPayments').DataTable({searching: false,"order": [[ 0, "asc" ]],"sDom": 'Lfrtlip'    });
 } );
 
 $(".nav-item").find(".nav-link").click(function(){
@@ -722,6 +709,18 @@ $(".nav-item").find(".nav-link").click(function(){
             // site first to authorize the payment, then redirected to the `return_url`.
         }
     });
+    var count = 0;
+    $("#MyPayments").find("th:nth-child(2)").click(function(){
+        count += 1;
+        if (count%2 == 0) {
+        setTimeout(function () {
+        $("#MyPayments").find("th:nth-child(1)").trigger('click');
+           }, 50);
+         }
+    })
+
+
+
 </script>
 @endpush
 

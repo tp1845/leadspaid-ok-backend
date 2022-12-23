@@ -135,7 +135,7 @@ class LoginController extends Controller
     {
         $this->guard('advertiser')->logout();
         $request->session()->invalidate();
-        return $this->loggedOut($request) ?: redirect('/login');
+        return $this->loggedOut($request) ?: redirect('/login-advertiser');
     }
 
     public function resetPassword()
