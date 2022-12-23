@@ -192,7 +192,7 @@ table.dataTable tbody tr td {
     content: "▼" !important;
 }
 
-
+.ar-12{font-size: 12px !important;}
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
@@ -334,8 +334,8 @@ table.dataTable tbody tr td {
                  <hr>
                  <div class="adsrock-bill-list">
                      <h6>Next Bill:</h6>
-                     <h3>
-                        <
+                      <h3>
+                        
                      @php 
                        $currentTime = time() + 3600;
                        if (((int) date('H', $currentTime)) >= 10) {
@@ -343,11 +343,13 @@ table.dataTable tbody tr td {
                            echo  date('M d, Y', strtotime(' +1 day')) ;   
                                 }
 
-                     @endphp   > , 10:00 AM
-                     Everyday at 10:00 AM, <br/>
-                     </h3>
-                     <p>or when your campaign reaches $1,000</p>
-                     <p><a href="javascript:void(0);">threshold Payments</a></p>
+                     @endphp   , 10:00 AM
+                      
+                     </h3><br>
+                     <p class="ar-12">Everyday at 10:00 AM,</p>
+                     <p class="ar-12">
+1) The Amount spent yesterday will be deducted from the Wallet<br/>
+2) The Total Campaign Budget (that you intend to spend for the next day) - Wallet Balance will be charged from the credit card</p>
                  </div>
             </div>
         </div>
