@@ -720,13 +720,14 @@ $(".nav-item").find(".nav-link").click(function(){
             // site first to authorize the payment, then redirected to the `return_url`.
         }
     });
+    
     var count = 0;
     $("#MyPayments").find("th:nth-child(2)").click(function(){
         count += 1;
         if (count%2 == 0) {
         setTimeout(function () {
         $("#MyPayments").find("th:nth-child(1)").trigger('click');
-           }, 100);
+           }, 1000);
          }
     })
 
