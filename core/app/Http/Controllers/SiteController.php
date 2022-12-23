@@ -66,7 +66,7 @@ class SiteController extends Controller
             $name    = $request->name;
             $email   = $request->email;
             $company   = $request->company;
-            $phone     = $request->phone;
+            $phone     = $request->country_code . '-' . $request->phone;
             $message     = $request->message;
             send_email_contact_admin($name,'EVER_CODE',$email,$company,$phone,$message);
             $page_title = "Thanks email";

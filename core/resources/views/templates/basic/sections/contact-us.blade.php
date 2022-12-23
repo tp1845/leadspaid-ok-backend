@@ -19,29 +19,31 @@
                     <div class="title-3 text-start">
                         <h2>CONTACT US</h2>
                     </div>
-                        <form method="POST" name="contact_form" id="contact_form" action="{{route('contact.send')}}" class="row form gx-3 get-in-touch">
-                            @csrf
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <input type="text" id="conact_name" name="name" class="rounded-0 form-control py-2" placeholder="@lang('Full Name')" >
-                                </div>
+                    <form method="POST" name="contact_form" id="contact_form" action="{{route('contact.send')}}" class="row form gx-3 get-in-touch">
+                        @csrf
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <input type="text" id="conact_name" name="name" class="rounded-0 form-control py-2" placeholder="@lang('Full Name')" >
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <input type="text" id="conact_company" name="company" class="rounded-0 form-control py-2" placeholder="@lang('Company Name')" >
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <input type="text" id="conact_company" name="company" class="rounded-0 form-control py-2" placeholder="@lang('Company Name')" >
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <input type="text" id="conact_email" name="email" class="rounded-0 form-control py-2" placeholder="@lang('Email Address')" >
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <input type="text" id="conact_email" name="email" class="rounded-0 form-control py-2" placeholder="@lang('Email Address')" >
                             </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group mb-3">
-                                    <input type="text" id="conact_phone" name="phone" class="rounded-0 form-control py-2" placeholder="@lang('Phone Number')">
-                                </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group  input-group  mb-3">
+                                <select name="country_code" class="country_code form-select form-control  rounded-0">
+                                    @include('partials.country_code')
+                                </select>
+                                <input type="text" id="conact_phone" name="phone" class="rounded-0 form-control py-2" placeholder="@lang('Phone Number')">
                             </div>
+                        </div>
                         <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <textarea id="conact_message"  name="message" placeholder="@lang('Message')" class="form-control contact_msg rounded-0 py-2" rows="4">{{old('message')}}</textarea>
@@ -53,11 +55,11 @@
                     </form>
                 </div>
                 {{-- <div class="theme-card">
-                <div class="contact-bottom">
-                    <div class="contact-map">
-                        <iframe title="contact location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1583091352!2d-74.11976373946229!3d40.69766374859258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1563449626439!5m2!1sen!2sin" allowfullscreen=""></iframe>
+                    <div class="contact-bottom">
+                        <div class="contact-map">
+                            <iframe title="contact location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.1583091352!2d-74.11976373946229!3d40.69766374859258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1563449626439!5m2!1sen!2sin" allowfullscreen=""></iframe>
+                        </div>
                     </div>
-                </div>
                 </div> --}}
             </div>
             <div class="col-lg-4 contact_section contact_sidebar mb-4">
@@ -85,126 +87,60 @@
 @push('script-lib')
     <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
     <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
-    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
-    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 @endpush
 @push('script')
-<script>
-    document.addEventListener('DOMContentLoaded', function(e) {
-        FormValidation.formValidation(document.querySelector('#contact_form'), {
-            fields: {
 
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Name is required.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Name.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'Full Name Invalid.',
-                        },
-                    },
-                },
-                company: {
-                    validators: {
-                        // notEmpty: {
-                        //     message: 'company Name is required.',
-                        // },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Company Name.',
-                        },
-                        // regexp: {
-                        //     regexp: /^[a-z A-Z]+$/,
-                        //     message: 'Full Name Invalid.',
-                        // },
-                    },
-                },
-                phone: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Phone is required.',
-                        },
-                        stringLength: {
-                            min: 6,
-                            message: 'Please enter valid phone.',
-                        },
-                        callback: {
-                            message: 'Number only please',
-                            callback: function (input) {
-                                const value = input.value;
-                                if (value === '') {  return true; }
-                                return (
-                                     FormValidation.validators.regexp().validate({
-                                        value: value,
-                                        options: {   regexp: '^[0-9]*$' },
-                                    }).valid
-                                );
-                            },
-                        },
-                    },
-                },
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter a valid email address',
-                        },
-                        callback: {
-                            message: 'Please enter a valid email address',
-                            callback: function (input) {
-                                const value = input.value;
-                                if (value === '') {  return true; }
-
-                                // I want the value has to pass both emailAddress and regexp validators
-                                return (
-                                    FormValidation.validators.emailAddress().validate({   value: value,  }).valid &&
-                                    FormValidation.validators.regexp().validate({
-                                        value: value,
-                                        options: {   regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$', },
-                                    }).valid
-                                );
-                            },
-                        },
-                    },
-                },
-                message: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Message is required.',
-                        },
-                        stringLength: {
-                            min: 5,
-                            message: 'Please fill your message in detail',
-                        },
-                    },
-                }
+    <script>
+        $.validator.setDefaults({
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
             },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap: new FormValidation.plugins.Bootstrap(),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                icon: new FormValidation.plugins.Icon({
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh',
-                }),
-                alias: new FormValidation.plugins.Alias({
-                    checkConfirmation: 'callback'
-                }),
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
             },
-        }).on('core.form.valid', function() {
-            document.querySelector('#contact_form').submit();
-
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
         });
+        $.validator.addMethod(
+            "money",
+            function(value, element) {
+                var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
+                return this.optional(element) || isValidMoney;
+            },
+            "Enter Correct value."
+        );
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+        return this.optional(element) || /^[a-z]+$/i.test(value);
+        }, "Letters only please");
+        jQuery.validator.addMethod("numbersonly", function(value, element) {
+        return this.optional(element) || /^[0-9]*$/i.test(value);
+        }, "Number only please");
+        jQuery.validator.addMethod("valid_email", function(value, element) {
+        return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+        }, "Please enter a valid email address");
 
-    });
-</script>
+
+        $("#contact_form").validate({
+            rules: {
+                name: { required: true,minlength: 3, lettersonly: true },
+                company: { required: false, minlength: 3},
+                email: { required: true,  valid_email:true  },
+                phone: { required: true, minlength: 6, numbersonly: true },
+                message: { required: true, minlength: 15 }
+            },messages: {
+                name:{  required : 'Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
+                company:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
+                phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', numbersonly:'Please enter valid phone.'},
+                email:{  required : 'email is required.'},
+                message:  { required : 'Daily Budget is required.', minlength:'Daily Budget should be minimum $50', max: 'Daily Budget should not be greater than $1000'}
+            }
+        });
+    </script>
 
 @endpush
 @push('style')
@@ -257,7 +193,17 @@
         line-height: normal;
         font-weight:300;
     }
-
+    .country_code.form-select{
+        border: 1px solid #94a1b5;
+        background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+        flex: 0 0 25%;
+        width: 25%;
+        font-weight: 300;
+        font-size: 19px;
+        padding: 16px 24px;
+        border-radius: 0;
+        line-height: normal;
+    }
     .contact-3 .form-group .form-control:focus,
     .contact-3 .contact_msg:focus,
     .contact-3 .was-validated
@@ -266,7 +212,7 @@
         background-color: #fff;
         border: 1px solid #94a1b5 !important;
         box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
-        transition: All .2s ease-in-out!important;
+
     }
 
     .contact-3 .form-group i {
@@ -287,8 +233,8 @@
 
     .contact_sidebar .contact_wrap {
         text-align:left !important;
-        -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
-        box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 7%);
+        -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 30%);
+        box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 30%);
         padding: 30px;
     }
     .contact_sidebar .contact_wrap .title {
@@ -303,5 +249,6 @@
         font-weight:400;
         font-size:18px;
     }
+    .fv-plugins-message-container{ width: 100%; }
 </style>
 @endpush
