@@ -741,7 +741,7 @@ $(".nav-item").find(".nav-link").click(function(){
     .modal.fade:not(.in).right .modal-dialog {
         -webkit-transform: translate3d(0%, 0, 0);
         transform: translate3d(0%, 0, 0);
-    }
+    } 
 </style>
 <style>
 
