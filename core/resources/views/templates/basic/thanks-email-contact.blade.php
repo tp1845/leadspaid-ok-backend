@@ -13,8 +13,8 @@
             <div class="col-lg-8 pt-4 d-flex justify-content-start align-items-center">
                 <img src="{{asset('assets/images/frontend')}}/robot-arm.png" width="150px" alt="" >
                 <div class="ps-5">
-                    <p class="Rg_advts_ttls-1">Thanks for contacting us.</p>
-                    <p class="Rg_advts_ttls-1 mb-0"> We will contact you soon.</p>
+                    <p class="Rg_advts_ttls-1">Thank you for contacting us!</p>
+                    <p class="Rg_advts_sub_title mb-0"> We will get back to you soon.</p>
                 </div>
 
             </div>
@@ -47,7 +47,7 @@
 @endpush
 @push('style')
 <style>
-    .Rg_advts_ttls-1, .Rg_advts_ttls__1 {
+    .Rg_advts_ttls-1, .Rg_advts_ttls__1, .Rg_advts_sub_title {
     color: #191f58;
     font-family: Poppins !important;
     font-weight: 600;
@@ -55,6 +55,7 @@
     letter-spacing: 1px;
     margin-bottom: 10px;
     }
+    .Rg_advts_sub_title{ font-weight: 400!important; }
     .contact-banner{
         position: relative;
       filter: invert(10%) ;
