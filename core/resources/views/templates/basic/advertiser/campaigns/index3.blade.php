@@ -1462,13 +1462,13 @@ font-size: 20px!important;
       /* Internet Explorer 10-11 */
       color: #808080 !important;
       font-size: 16px;
-      font-weight: 200;
+      font-weight: 400;
     }
 
     ::-ms-input-placeholder {
       /* Microsoft Edge */
       font-size: 16px;
-      font-weight: 200;
+      font-weight: 400;
       color: #808080 !important;
     }
 
@@ -1476,7 +1476,7 @@ font-size: 20px!important;
         /* Most modern browsers support this now. */
         color: gray !important;
         font-size: 16px;
-      font-weight: 200;
+      font-weight: 400;
     }
     .card.sidbar_preview {
         border: 5px solid #000;
