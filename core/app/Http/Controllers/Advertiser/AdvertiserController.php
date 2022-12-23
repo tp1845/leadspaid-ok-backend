@@ -232,8 +232,8 @@ class AdvertiserController extends Controller
         );
 
         $page_title = 'Payments';
-        $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->get();
-        $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->orderBy('id', 'DESC')->get();
+        $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('trx_date', 'DESC')->get();
+        $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->orderBy('trx_date', 'DESC')->get();
         if (isset($request->startDate)){
             $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
             $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
