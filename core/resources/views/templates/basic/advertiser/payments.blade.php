@@ -658,7 +658,10 @@ table.dataTable tbody tr td {
 
     $(document).ready( function () {
         $('#myTable').DataTable({searching: false,"order": [[ 1, "ASC" ]],"sDom": 'Lfrtlip'    });
-        $('#MyPayments').DataTable({searching: false,"order": [[ 0, "asc" ]],"sDom": 'Lfrtlip'    });
+        $('#MyPayments').DataTable({searching: false,"order": [[ 0, "asc" ]],"sDom": 'Lfrtlip','columnDefs': [ {
+        'targets': [1], // column index (start from 0)
+        'orderable': false, // set orderable false for selected columns
+     }]    });
 } );
 
 $(".nav-item").find(".nav-link").click(function(){
@@ -721,14 +724,10 @@ $(".nav-item").find(".nav-link").click(function(){
         }
     });
     
-    var count = 0;
-    $("#MyPayments").find("th:nth-child(2)").click(function(){
-        count += 1;
-         setTimeout(function () {
-        $("#MyPayments").find("th:nth-child(1)").trigger('click');
-           }, 100);
+     $("#MyPayments").find("th:nth-child(2)").click(function(){
         
-      })
+        $("#MyPayments").find("th:nth-child(1)").trigger('click');
+    }) 
  
 
 
