@@ -106,12 +106,16 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.5.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-brainthick')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-brainthick.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6-2')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-2.png?v3')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6-3')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-3.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6-4')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-4.png?v2')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-5')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-5.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-7')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.7.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-8')
