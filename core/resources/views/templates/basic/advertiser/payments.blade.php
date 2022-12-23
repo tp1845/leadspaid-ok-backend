@@ -724,11 +724,7 @@ $(".nav-item").find(".nav-link").click(function(){
     var count = 0;
     $("#MyPayments").find("th:nth-child(2)").click(function(){
         count += 1;
-        if (count%2 == 0) {
-        setTimeout(function () {
-        $("#MyPayments").find("th:nth-child(1)").trigger('click');
-           }, 100);
-         }
+          $("#MyPayments").find("th:nth-child(1)").trigger('click');
     })
 
 
