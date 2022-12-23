@@ -8,7 +8,7 @@
 
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-               <p class="Rg_advts_ttls mb-5">ADVERTISER LOGIN</p>
+               <p class="Page_title mb-5">ADVERTISER LOGIN</p>
             </div>
         </div>
         <div class="row">
@@ -137,20 +137,14 @@
     .Rg_advts_number .form-select, .Rg_advts_form .form-select {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
     }
-    .Rg_advts_ttls {
+    .Page_title {
         color: #191f58;
         font-family: Poppins !important;
         font-weight: 600;
         font-size: 38px;
+        margin-top: 50px;
     }
-     .Rg_advts_ttls_1 {
 
-        font-family: Poppins !important;
-        font-weight: 600;
-        font-size: 63px;
-        letter-spacing: 1px;
-        color: #cccdcc;
-    }
     .user_info_Rg_advts h4,
     .Rg_advts_bsc .Rg_advts_bsc_ttls{
         font-size: 20px;

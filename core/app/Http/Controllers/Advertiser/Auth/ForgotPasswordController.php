@@ -43,7 +43,7 @@ class ForgotPasswordController extends Controller
      */
     public function showLinkRequestForm()
     {
-        
+
         $page_title = 'Account Recovery';
         return view(activeTemplate().'advertiser.auth.passwords.email', compact('page_title'));
     }
@@ -64,11 +64,9 @@ class ForgotPasswordController extends Controller
             'email' => 'required|email',
         ]);
 
-
-
         $user = Advertiser::where('email', $request->email)->first();
         if ($user == null) {
-            return back()->withErrors(['Email Not Available']);
+            return back()->withErrors(['No such advertiser with this email id ' . $request->email]);
         }
 
         $code = verificationCode(6);

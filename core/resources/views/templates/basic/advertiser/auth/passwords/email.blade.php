@@ -26,9 +26,12 @@
                     @csrf
                     <div class="form-group">
                       <label class="mb-2">@lang('Email Address') <sup class="text-danger">*</sup></label>
-                      <input type="email" name="email" placeholder="@lang('Email Address')" class="form-control  mb-3" required>
+                      <input type="email" name="email" placeholder="@lang('Email Address')" class="form-control" required>
+                        @foreach ($errors->all() as $error)
+                            <div class="invalid-feedback d-block">{{ $error }}</div>
+                        @endforeach
                     </div>
-                    <div class="text-center mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
+                    <div class="text-center mt-5 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
                         <button type="submit" class="cmn-btn ">@lang('Send Password Reset Code')</button>
                     </div>
 
@@ -51,6 +54,7 @@
         font-family: Poppins !important;
         font-weight: 600;
         font-size: 38px;
+        margin-top: 50px;
     }
     .form-group label {
         font-size: 20px;
