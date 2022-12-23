@@ -78,10 +78,13 @@ color: #fff;
                         <td><h3>Leads Paids inc.</h3></td>
                     </tr>
                     <tr>
-                        <td>511 6<span>th</span> Avenue, #112</td>
+                        <td>1401 21st Street STE R</td>
                     </tr>
                     <tr>
-                        <td>New York NY 10011</td>
+                        <td>Sacramento, California 95811</td>
+                    </tr>
+                     <tr>
+                        <td>United States</td>
                     </tr>
                     <tr>
                         <td style="padding-top: 20px;">Federal Tax ID:20-5381629</td>
