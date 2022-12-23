@@ -373,23 +373,24 @@ button.btn.btn-secondary.Rg_advts_my_btn {
     line-height: normal;
 }
 
-.us_doller input {
-    padding-left: 70px !important;
-}
-.us_doller:after {
-    content: 'US$';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: rgb(33 37 41 / 80%);
-    left: 0;
-    background: #f1f1f2;
-    font-size: 19px;
-    height: 100%;
-    line-height: 2.1;
-    border: 1px solid #94a1b5;
-    padding: 10px;
-}
+    .us_doller {  position: relative; }
+    .us_doller input {
+        padding-left: 70px !important;
+    }
+    .us_doller:after {
+        content: 'US$';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgb(33 37 41 / 80%);
+        left: 0;
+        background: #f1f1f2;
+        font-size: 19px;
+        height: 100%;
+        line-height: 2.1;
+        border: 1px solid #94a1b5;
+        padding: 10px;
+    }
 
 .fv-plugins-bootstrap .fv-help-block {
     font-size: 14px;
