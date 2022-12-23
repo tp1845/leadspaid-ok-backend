@@ -3,12 +3,12 @@
 @section('panel')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
 <style>
-    #myTable_wrapper {
+    #myTable_wrapper, #MyPayments_wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-#myTable_info {
+#myTable_info, #MyPayments_info {
     flex: auto;
     text-align: right;
 }
@@ -405,6 +405,7 @@
                                 <table class="table style--two" id="MyPayments">
                                     <thead>
                                         <tr>
+                                               <th scope="col">@lang('ID')</th>
                                             <th scope="col">@lang('Transaction Date')</th>
                                             <th scope="col">@lang('Inital Wallet Balance')</th>
                                             <th scope="col">@lang('Total Campaign Budget')</th>
@@ -414,8 +415,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @php 
+                                            $i=1;
+                                        @endphp
                                         @forelse($trxs as $trx)
                                             <tr>
+                                                <td data-label="@lang('ID')">{{ $i++ }}</td> 
                                                 <td data-label="@lang('Transaction Date')">{{  \Carbon\Carbon::parse($trx->trx_date)->isoFormat("DD-MMM 'YY | hh:mm A")  }}</td>
                                                 <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->init_blance)  }}</td>
                                                 <td data-label="@lang('Total Campaign Budget')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->total_budget) }} </td>
@@ -480,6 +485,7 @@
                     <table class="table style--two">
                         <thead>
                             <tr>
+                                 <th scope="col">@lang('ID')</th>
                                 <th scope="col">@lang('Transaction Date')</th>
                                 <th scope="col">@lang('Inital Wallet Balance')</th>
                                 <th scope="col">@lang('Total Campaign Budget')</th>
@@ -489,8 +495,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                               $i=1;
+                            @endphp
                             @forelse($trxs as $trx)
                             <tr>
+                                 <td data-label="@lang('Transaction Date')">{{ $i++ }}</td>
                                 <td data-label="@lang('Transaction Date')">{{  \Carbon\Carbon::parse($trx->trx_date)->isoFormat("DD-MMM 'YY | hh:mm A")  }}</td>
                                 <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->init_blance)  }}</td>
                                 <td data-label="@lang('Total Campaign Budget')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->total_budget) }} </td>
