@@ -193,6 +193,9 @@ table.dataTable tbody tr td {
 }
 
 .ar-12{font-size: 12px !important;}
+table.dataTable {
+    width: 100% !important;
+}
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
