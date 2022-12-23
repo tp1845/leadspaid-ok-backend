@@ -69,7 +69,9 @@
                                         <input type="text" name="Social" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="text" name="ad_budget" class="form-control Rg_advts_name rounded-0" placeholder="Ad Budget Per Month">
+                                        <div class="us_doller">
+                                            <input type="text" name="ad_budget" class="form-control Rg_advts_name rounded-0" placeholder="Ad Budget Per Month">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -119,166 +121,69 @@
 @push('script-lib')
     <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
     <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
-    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-    <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
-    <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://formvalidation.io/vendors/formvalidation/dist/css/formValidation.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 @endpush
-
 @push('script')
+
 <script>
-document.addEventListener('DOMContentLoaded', function(e) {
-        FormValidation.formValidation(document.querySelector('#form'), {
-            fields: {
+    $.validator.setDefaults({
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    $.validator.addMethod(
+        "money",
+        function(value, element) {
+            var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
+            return this.optional(element) || isValidMoney;
+        },
+        "Enter Correct value."
+    );
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z]+$/i.test(value);
+    }, "Letters only please");
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9]*$/i.test(value);
+    }, "Number only please");
+    jQuery.validator.addMethod("valid_email", function(value, element) {
+    return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+    }, "Please enter a valid email address");
 
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Full Name is required.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Name.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'Full Name Invalid.',
-                        },
-                    },
-                },
-                company_name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Company Name is required.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Company Name.',
-                        },
-                        // regexp: {
-                        //     regexp: /^[a-z A-Z]+$/,
-                        //     message: 'Full Name Invalid.',
-                        // },
-                    },
-                },
-                phone: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Phone is required.',
-                        },
-                        stringLength: {
-                            min: 6,
-                            message: 'Please enter valid phone.',
-                        },
-                        callback: {
-                            message: 'Number only please',
-                            callback: function (input) {
-                                const value = input.value;
-                                if (value === '') {  return true; }
-                                return (
-                                     FormValidation.validators.regexp().validate({
-                                        value: value,
-                                        options: {   regexp: '^[0-9]*$' },
-                                    }).valid
-                                );
-                            },
-                        },
-                    },
-                },
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please enter a valid email address',
-                        },
-                        callback: {
-                            message: 'Please enter a valid email address',
-                            callback: function (input) {
-                                const value = input.value;
-                                if (value === '') {  return true; }
-                                // I want the value has to pass both emailAddress and regexp validators
-                                return (
-                                    FormValidation.validators.emailAddress().validate({   value: value,  }).valid &&
-                                    FormValidation.validators.regexp().validate({
-                                        value: value,
-                                        options: {   regexp: '^[^@\\s]+@([^@\\s]+\\.)+[^@\\s]+$', },
-                                    }).valid
-                                );
-                            },
-                        },
-                    },
-                },
-                message: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Message is required.',
-                        },
-                        stringLength: {
-                            min: 5,
-                            message: 'Please fill your message in detail',
-                        },
-                    },
-                },
-                product_services: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Lead Generation Information is required.',
-                        },
-                        stringLength: {
-                            min: 5,
-                            message: 'Please fill your Lead Generation Information in detail',
-                        },
-                    },
-                },
-                country: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please Select Country.',
-                        }
-                    },
-                },
-                password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill a stronger password.',
-                        },
-                        stringLength: {
-                            min: 5,
-                            message: 'Please fill a stronger password.',
-                        },
-                    },
-                },
-                password_confirmation: {
-                    validators: {
 
-                        identical: {
-                            compare: function () {
-                                return form.querySelector('[name="password"]').value;
-                            },
-                            message: 'The password and its confirm are not the same',
-                        },
-                    },
-                },
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap: new FormValidation.plugins.Bootstrap(),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                icon: new FormValidation.plugins.Icon({
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh',
-                }),
-                alias: new FormValidation.plugins.Alias({
-                    checkConfirmation: 'callback'
-                }),
-            },
-        }).on('core.form.valid', function() {
-            document.querySelector('#form').submit();
+    $("#form").validate({
+        rules: {
+            name: { required: true,minlength: 3, lettersonly: true },
+            company_name: { required: true, minlength: 3},
+            country: { required: true},
+            phone: { required: true, minlength: 6, numbersonly: true },
+            email: { required: true,  valid_email:true  },
+            product_services: { required: true},
+            ad_budget: { required: true,  numbersonly: true },
+            password: { required: true, minlength: 5,    },
+            password_confirmation: { equalTo: "#password" }
+        },messages: {
+            name:{  required : 'Full Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
+            company_name:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
+            phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', numbersonly:'Please enter valid phone.'},
+            email:{  required : 'email is required.'},
+            product_services:{  required : 'Lead Generation Information is required.', minlength:'Please fill your Lead Generation Information in detail.', },
+            ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.' },
+            password:{  required : 'Please fill a stronger password.',  minlength : 'Please fill a stronger password.',  },
+            password_confirmation:{  required : 'The password and its confirm are not the same.', equalTo: 'The password and its confirm are not the same.'}
 
-        });
-
+        }
     });
 </script>
+
 @endpush
 @push('style')
 <style>
@@ -335,7 +240,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
 }
     .Rg_advts {
         font-family: Poppins !important;
-        font-weight: 200;
     }
     .Rg_advts .form-control:focus {
     border-color: #16C79A !important;
@@ -422,9 +326,8 @@ document.addEventListener('DOMContentLoaded', function(e) {
     /* background: #f2f7ff; */
 }
 .Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
-       box-shadow: 0 0 20px rgb(0 0 0 / 16%);
+    box-shadow: 0 0 20px rgb(0 0 0 / 16%);
     border: 1px solid #94a1b5 !important;
-        transition: All .2s ease-in-out!important;
 
 }
 .Rg_advts .form-control.is-valid {
@@ -468,6 +371,24 @@ button.btn.btn-secondary.Rg_advts_my_btn {
     padding: 16px 24px;
     border-radius: 0;
     line-height: normal;
+}
+
+.us_doller input {
+    padding-left: 70px !important;
+}
+.us_doller:after {
+    content: 'US$';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(33 37 41 / 80%);
+    left: 0;
+    background: #f1f1f2;
+    font-size: 19px;
+    height: 100%;
+    line-height: 2.1;
+    border: 1px solid #94a1b5;
+    padding: 10px;
 }
 
 .fv-plugins-bootstrap .fv-help-block {
