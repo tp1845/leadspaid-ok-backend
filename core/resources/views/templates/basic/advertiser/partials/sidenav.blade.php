@@ -154,6 +154,13 @@
                             <span class="menu-title text-white">@lang('Payments')</span>
                         </a>
                     </li>
+					
+					 <li class="sidebar-menu-item {{menuActive('advertiser.profile')}}">
+                    <a href="{{route('advertiser.profile')}}" class="nav-link">
+                        <i class="menu-icon dropdown-menu__icon las la-cog"></i>
+                            <span class="menu-title text-white">@lang('Edit Profile')</span>
+                        </a>
+                    </li>
 
                     <li class="sidebar-menu-item {{menuActive('advertiser.logout')}}">
                     <a href="{{route('advertiser.logout')}}" class="nav-link">
