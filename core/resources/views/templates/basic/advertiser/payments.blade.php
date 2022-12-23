@@ -165,6 +165,34 @@ table.dataTable tbody tr td {
 #MyPayments thead tr th:nth-child(1), #MyPayments tbody tr td:nth-child(1) {
     display: none;
 }
+
+#MyPayments_wrapper thead tr th {
+    position: relative;
+    cursor: pointer;
+}
+#MyPayments_wrapper thead tr th:nth-child(2):after {
+    bottom: 50% !important;
+    content: "▲" !important;
+    position: absolute !important;
+    display: block !important;
+    opacity: .125 !important;
+    right: 10px !important;
+    line-height: 9px !important;
+    font-size: .8em !important;
+}
+
+#MyPayments_wrapper thead tr th:nth-child(2):before {
+    position: absolute !important;
+    display: block !important;
+    opacity: .125 !important;
+    right: 10px !important;
+    line-height: 9px !important;
+    font-size: .8em !important;
+    top: 50% !important;
+    content: "▼" !important;
+}
+
+
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
