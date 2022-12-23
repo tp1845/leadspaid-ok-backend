@@ -86,9 +86,7 @@ color: #fff;
                      <tr>
                         <td>United States</td>
                     </tr>
-                    <tr>
-                        <td style="padding-top: 20px;">Federal Tax ID:20-5381629</td>
-                    </tr>                    
+                                       
                 </tbody>
             </table><!-- table end -->
             <table class="table table-1 style--two" style="width:50%; float:left;font-family: 'Poppins', sans-serif;">
