@@ -306,7 +306,18 @@ table.dataTable tbody tr td {
                  <hr>
                  <div class="adsrock-bill-list">
                      <h6>Next Bill:</h6>
-                     <h3>November 30, 2022</h3>
+                     <h3>
+                        <
+                     @php 
+                       $currentTime = time() + 3600;
+                       if (((int) date('H', $currentTime)) >= 10) {
+  
+                           echo  date('M d, Y', strtotime(' +1 day')) ;   
+                                }
+
+                     @endphp   > , 10:00 AM
+                     Everyday at 10:00 AM, <br/>
+                     </h3>
                      <p>or when your campaign reaches $1,000</p>
                      <p><a href="javascript:void(0);">threshold Payments</a></p>
                  </div>
@@ -715,7 +726,7 @@ $(".nav-item").find(".nav-link").click(function(){
         if (count%2 == 0) {
         setTimeout(function () {
         $("#MyPayments").find("th:nth-child(1)").trigger('click');
-           }, 50);
+           }, 100);
          }
     })
 
