@@ -58,7 +58,7 @@
             </div>
             <div class="row align-item-center justify-content-center">
                 <div class="col-lg-5 text-center ">
-                    <div class="media-wrapper">
+                    <div class="media-wrapper mb-0 mb-lg-0">
                         <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
                             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" type="video/mp4">
                             <track srclang="en" kind="subtitles" src="mediaelement.vtt">
