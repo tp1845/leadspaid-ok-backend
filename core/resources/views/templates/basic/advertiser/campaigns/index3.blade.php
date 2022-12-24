@@ -123,7 +123,7 @@
                                 <input type="text" class="form-control" id="campaign_name_Input" placeholder="eg. Lead_Gen1" name="campaign_name"   required maxlength="30"></div>
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b></label>
-                                <input type="text" class="form-control" id="company_name_Input" placeholder="eg. <{{ auth()->guard('advertiser')->user()->company_name }}>" name="company_name" required maxlength="30"></div>
+                                <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name" required maxlength="30"></div>
                             <div class="col-lg-3 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
                                     <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
@@ -138,7 +138,7 @@
                         </div>
                         <div class="row border-top py-2">
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 text-white">from which leads are required</span></label>
+                                <label class="form-label text-white mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 text-white">(from which leads are required)</span></label>
                                 <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
                                     <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
                                     @foreach ($countries as $country)
@@ -267,7 +267,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service)</span></label>
+                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / Offer Validity </span></label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
@@ -278,7 +278,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="fbox">
-                                                    <h4 class="gray_title"> Add At Least 1 Creative <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
+                                                    <h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
                                                     <label class="col-form-label ar-16"><b>Youtube Video Url </b><span class="ar-14">(Add up to 3 variations) </span> </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
@@ -372,7 +372,7 @@
                                             <div class="col rightForm">
                                                 <div class="row">
                                                     <div class="col-12 padding">
-                                                        <h5 class="my-2">Lead Form Fields <small>(Add Up to 5 Fields) </small></h5>
+                                                        <h5 class="my-2">Lead Form Fields <small class="title-small2">(Add Up to 5 Fields) </small></h5>
                                                         <div class="input-col">
                                                             <input type="text"  name="min_row_validation" style=" border: none; height: 1px;  padding: 0; display: block; opacity: 0;"  >
                                                         </div>
@@ -473,7 +473,7 @@
                                                 <form id="LeadForm" action="#">
                                                     <div>
                                                     <div id="loadData">
-                                                        <div class="video" id="preview_media"> </div>
+                                                        <div class="video custom_after_text" id="preview_media"> </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
                                                         <p id="preview_form_sub_title"class="form-subtitle"> </p>
                                                         <p id="preview_Punchline"class="form-punchline"> </p>
@@ -1197,6 +1197,14 @@ font-size: 20px!important;
     #campaign_create_modal  .input-group-text {  width: 35px; }
     #formPreview{ width: 336px; max-width: 336px; }
     #formPreview .formPreview_title{ text-align: center; text-transform: uppercase; font-weight: bold; }
+	.custom_after_text:after {
+    content: 'Creative will appear here';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+}
     </style>
     <style>
     .card.sidbar_preview {
@@ -1267,7 +1275,7 @@ font-size: 20px!important;
             transform: translate3d(0%, 0, 0);
             max-width: 104.5rem !important;
         }
-        .modal-header span{ color: #000!important; }
+        .modal-header span{ color: #000!important;font-weight:500;}
         .modal-header .error.invalid-feedback,
         .bg-primary .error.invalid-feedback
         { color: #ff9e9e!important; font-size: 13px!important; }
@@ -1565,8 +1573,11 @@ font-size: 20px!important;
     font-size: 14px !important;
 }
 #campaign_create_modal .title-small {
-    font-size: 12px !important;
+    font-size: 14px !important;
     display:block;
+}
+.title-small2{
+	font-size: 14px !important;
 }
 .create-campaign-btn {
     font-size: 18px;

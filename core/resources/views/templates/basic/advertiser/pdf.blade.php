@@ -183,7 +183,7 @@ color: #fff;
                         
                         <td data-label="Total Campaign Budget" class="budget"> $ {{ number_format((float)$ta->spent_previous_day, 2, '.', '')}}</td>
                         
-                        <td data-label="Amount Deducted From Card" class="budget"> $ {{  number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
+                        <td data-label="Amount Deducted From Card" class="budget" style="vertical-align: bottom;padding-top: 40px;"> $ {{  number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
                         <td data-label="Final Wallet Balance" class="budget">
                          $ {{ number_format((float)$ga, 2, '.', '')}}</td>
                     </tr>

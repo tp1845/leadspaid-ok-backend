@@ -194,8 +194,9 @@ table.dataTable tbody tr td {
 
 .ar-12{font-size: 12px !important;}
 table.dataTable {
-    width: 100% !important;
+    width: 100% !important; 
 }
+.text-green {    color: #008000;}
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
@@ -332,7 +333,7 @@ table.dataTable {
                  <h4>Billing Summary</h4>
                  <div class="adsrock-billing-summary">
                      <p>Current Wallet Balance:</p>
-                     <h5>$ {{ Auth::guard('advertiser')->user()->wallet_deposit }}</h5>
+                     <h5 class="text-green">$ {{ Auth::guard('advertiser')->user()->wallet_deposit }}</h5>
                  </div>
                  <hr>
                  <div class="adsrock-bill-list">
