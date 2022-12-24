@@ -288,7 +288,12 @@
             font-weight: 500;
             display: inline-block;
             padding: 3px 15px;
-
+        }
+        @media only screen and (min-width: 568px) {
+            .MainBanner-Home .sub_title{
+                font-size: 19px;
+                padding: 3px 12px;
+            }
         }
         /* Hero */
         .hero-box{ border: 3px solid #fff; width: 100%; padding: 30px; text-align: center; height: 100%;; display: flex; flex-direction: column;  align-items: center; justify-content: center; }
