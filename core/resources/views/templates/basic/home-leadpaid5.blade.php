@@ -332,7 +332,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="{{url('/')}}/assets/font/fonts.css" rel="stylesheet">
     <style>
-          .media-wrapper{ overflow: hidden; }
+          .media-wrapper{ overflow: hidden; border: 5px solid #ccc; box-shadow: 2px 2px 2px #666; }
         .mejs__overlay-button {
             background-image: url("{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mejs-controls.svg")!important;
             border: 0!important;
