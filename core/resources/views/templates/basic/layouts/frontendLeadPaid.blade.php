@@ -124,6 +124,10 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-1.png?v3')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6-7-2')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-2.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-4')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-4.png?v3')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-7')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.7.png?v2')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-8')

@@ -93,6 +93,7 @@
 @push('script')
 
     <script>
+
         $.validator.setDefaults({
             errorElement: 'span',
             errorPlacement: function (error, element) {
@@ -163,7 +164,8 @@
     }
 
     .submit-btn button.btn {
-        font-size: 24px;
+        font-size: 28px;
+        line-height: 1.7;
         font-weight: 500;
     }
     .input-group {
