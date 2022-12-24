@@ -289,7 +289,7 @@
             display: inline-block;
             padding: 3px 15px;
         }
-        @media only screen and (min-width: 568px) {
+        @media only screen and (max-width: 568px) {
             .MainBanner-Home .sub_title{
                 font-size: 19px;
                 padding: 3px 12px;
