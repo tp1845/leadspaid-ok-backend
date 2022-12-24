@@ -58,7 +58,7 @@
             </div>
             <div class="row align-item-center justify-content-center">
                 <div class="col-lg-5 text-center ">
-                    <div class="media-wrapper mb-0 mb-lg-0">
+                    <div class="media-wrapper mb-3 mb-lg-0">
                         <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
                             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" type="video/mp4">
                             <track srclang="en" kind="subtitles" src="mediaelement.vtt">
@@ -332,7 +332,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="{{url('/')}}/assets/font/fonts.css" rel="stylesheet">
     <style>
-        .media-wrapper{ overflow: hidden; }
+          .media-wrapper{ overflow: hidden; }
         .mejs__overlay-button {
             background-image: url("{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mejs-controls.svg")!important;
             border: 0!important;
@@ -445,10 +445,13 @@
         box-shadow: 0px 3px 2px #00000008;
         list-style: none;
         position: relative;
+        border: 5px solid #ccc;
+        box-shadow: 2px 2px 2px #666;
         }
         @media only screen and (min-width: 1024px) {
-        .how-its-works-list li:first-child{ left: 50px; }
-        .how-its-works-list li:last-child{ left: 100px; }
+            .how-its-works-list li { margin-bottom: -15px }
+            .how-its-works-list li:first-child{ left: 50px; }
+            .how-its-works-list li:last-child{ left: 100px; margin-bottom: 0; }
         }
         .how-its-works-list li b span{
         display: inline-block;
