@@ -53,12 +53,19 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="title mb-5">How Its Works</h2>
+                    <h2 class="title mb-5">How It Works</h2>
                 </div>
             </div>
             <div class="row align-item-center justify-content-center">
                 <div class="col-lg-5 text-center ">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/X1QJGzvyoZI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="media-wrapper">
+                        <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" type="video/mp4">
+                            <track srclang="en" kind="subtitles" src="mediaelement.vtt">
+                            <track srclang="en" kind="chapters" src="chapters.vtt">
+                        </video>
+                    </div>
+
                 </div>
                 <div class="col-lg-5">
                     <ul class="how-its-works-list">
@@ -72,7 +79,7 @@
                         </li>
                         <li>
                             <b><span>3</span> Downlead Leads </b>
-                            <p>Advertiser simply download the leads  </p>
+                            <p>Advertisers can simply download your leads instantly</p>
                         </li>
                     </ul>
 
@@ -88,7 +95,7 @@
                 <h2 class="title mb-5">What's Unique</h2>
                 </div>
             </div>
-            <div class="row pt-5 pb-5 ">
+            <div class="row pt-lg-5 pb-5 ">
                 <div class="col-lg-4">
                     @if(Request::get('v') == 1 )
                         <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-01.png?v1" class="img-fluid" alt="leadsPaid">
@@ -129,43 +136,135 @@
                 <h2 class="title   pb-5">Advertisers Using LeadsPaid</h2>
                 </div>
             </div>
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
+
+            <div class="logoSlider d-block d-lg-none">
+                {{-- 1 --}}
+                <div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" width="100%" >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" width="100%" >
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
+                {{--  --}}
+                  {{-- 2 --}}
+                  <div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" width="100%" >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" width="100%" >
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%"   >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" width="100%" style="max-width: 220px" >
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
+                {{--  --}}
+                  {{-- 3 --}}
+                  <div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
+                        </div>
+                        <div class="col-6 text-center">
+                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
-                </div>
-            </div>
-            <div class="row gx-lg-5  py-3 align-items-center justify-content-center">
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" width="100%" >
-                </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" width="100%" >
-                </div>
+                {{--  --}}
 
             </div>
-            <div class="row g-5 align-items-center justify-content-center">
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" width="100%"  style="max-width: 180px" >
+            <div class="d-none d-lg-block">
+                <div class="row g-5 align-items-center">
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" width="100%"  style="max-width: 280px" >
+
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
+                    </div>
                 </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" width="100%"  style="max-width: 280px" >
+                <div class="row gx-lg-5  py-3 align-items-center justify-content-center">
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" width="100%" >
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" width="100%" >
+                    </div>
+
                 </div>
-                <div class="col-lg-3 text-center">
-                    <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" width="100%"  style="max-width: 220px" >
+                <div class="row g-5 align-items-center justify-content-center">
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" width="100%"  style="max-width: 180px" >
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
+                    </div>
+                    <div class="col-lg-3 text-center">
+                        <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" width="100%"  style="max-width: 220px" >
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -192,9 +291,7 @@
                     <p>From High Ranking/ Popular/ Authority Sites & Apps</p>
                     <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2 button-large">Join As Advertiser</a>
                 </div>
-
             </div>
-
         </div>
     </section>
 @endpush
@@ -204,15 +301,51 @@
 
         <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
         <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
-     @endpush
+
+        <script type="text/javascript" src="{{asset('assets/templates/basic')}}/js/vendor/slick.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{{asset('assets/templates/basic')}}/css/vendor/slick.css"/>
+        <link rel="stylesheet" href="{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mediaelementplayer.min.css">
+        <script src="{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mediaelement-and-player.js"></script>
+        @endpush
 
     @push('script')
+        <script>
+            $(document).ready(function(){
+                $('video, audio').mediaelementplayer({
+                    // Do not forget to put a final slash (/)
+                    pluginPath: 'https://cdnjs.com/libraries/mediaelement/',
+                    // this will allow the CDN to use Flash without restrictions
+                    // (by default, this is set as `sameDomain`)
+                    shimScriptAccess: 'always'
+                    // more configuration
+                });
+                $('.logoSlider').slick({
+                    prevArrow:'<button type="button" class="slick-prev"><i class="las la-chevron-circle-left"></i></button>',
+                    nextArrow:'<button type="button" class="slick-next"><i class="las la-chevron-circle-right"></i></button>',
 
+                });
+            });
+        </script>
     @endpush
 
     @push('style')
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="{{url('/')}}/assets/font/fonts.css" rel="stylesheet">
+    <style>
+        .mejs__overlay-button {
+            background-image: url("{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mejs-controls.svg")!important;
+            border: 0!important;
+        }
+        .mejs__overlay-loading-bg-img {
+            background-image: url("{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mejs-controls.svg")!important;
+        }
+        .mejs__button > button {
+            background-image: url("{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mejs-controls.svg")!important;
+        }
+        .mejs__button svg {
+            fill: #000;
+        }
+        </style>
     <style>
         body {
         background-color: #fff;
@@ -301,7 +434,7 @@
         .hero-box h5{ font-size: 26px; font-weight: normal;  color: #1361b2 }
         /* === */
 
-        .how-its-works-list{ padding: 0; margin: 0; }
+        .how-its-works-list{ padding: 0; margin: 0; position: relative; }
         .how-its-works-list li{
         font-size: 22px;
         margin-bottom: 15px;
@@ -310,6 +443,11 @@
         border-radius: 3px;
         box-shadow: 0px 3px 2px #00000008;
         list-style: none;
+        position: relative;
+        }
+        @media only screen and (min-width: 1024px) {
+        .how-its-works-list li:first-child{ left: 50px; }
+        .how-its-works-list li:last-child{ left: 100px; }
         }
         .how-its-works-list li b span{
         display: inline-block;
@@ -399,6 +537,50 @@
             text-shadow: 3px 7px 5px #000000;
             font-weight: 400;
         }
+
+        .logoSlider img{
+            display: inline-block!important;
+        }
+        .logoSlider .row > *{
+            padding: 20px;
+        }
+        /* slick-slider */
+
+        .slick-slider {
+            padding: 0 20px;
+            position: relative;
+            display: block;
+            box-sizing: border-box;
+            user-select: none;
+            touch-action: pan-y;
+        }
+
+        .slick-prev, .slick-next {
+            font-size: 34px;
+            position: absolute;
+            top: 50%;
+            display: block;
+            width: 33px;
+            height: 45px;
+            padding: 0;
+            transform: translate(0, -50%);
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: transparent;
+        }
+
+        .slick-prev {
+            left: -15px;
+        }
+
+
+        .slick-next {
+            right: -15px;
+        }
+
+
+        /* slick-slider */
         @media only screen and (min-width: 768px) {
         .MainBanner-Home .hero_title {
             font-size: 81px !important;
