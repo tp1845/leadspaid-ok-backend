@@ -1327,8 +1327,21 @@ font-size: 20px!important;
     .video {
       margin-bottom: 5px;
       padding: 0 5px;
+	  height: 100%;
+    max-height: 160px;
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
     }
-
+#preview_media .video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#preview_media .video, #preview_media .video iframe {
+    position: relative;
+    z-index: 999999;
+}
     .video iframe {
       border: 1px solid #000;
     }
