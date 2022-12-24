@@ -115,7 +115,7 @@
             "Enter Correct value."
         );
         jQuery.validator.addMethod("lettersonly", function(value, element) {
-        return this.optional(element) || /^[a-z]+$/i.test(value);
+        return this.optional(element) || /^[a-z ]+$/i.test(value);
         }, "Letters only please");
         jQuery.validator.addMethod("numbersonly", function(value, element) {
         return this.optional(element) || /^[0-9]*$/i.test(value);
@@ -195,7 +195,7 @@
     }
     .country_code.form-select{
         border: 1px solid #94a1b5;
-        background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+        background: #f1f1f2 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
         flex: 0 0 25%;
         width: 25%;
         font-weight: 300;
@@ -203,6 +203,7 @@
         padding: 16px 24px;
         border-radius: 0;
         line-height: normal;
+
     }
     .contact-3 .form-group .form-control:focus,
     .contact-3 .contact_msg:focus,

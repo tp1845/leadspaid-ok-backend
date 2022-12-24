@@ -149,7 +149,7 @@
         "Enter Correct value."
     );
     jQuery.validator.addMethod("lettersonly", function(value, element) {
-    return this.optional(element) || /^[a-z]+$/i.test(value);
+    return this.optional(element) || /^[a-z ]+$/i.test(value);
     }, "Letters only please");
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]*$/i.test(value);
