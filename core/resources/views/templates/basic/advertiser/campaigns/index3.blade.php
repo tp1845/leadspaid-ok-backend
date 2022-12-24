@@ -279,7 +279,7 @@
                                                 </div>
                                                 <div class="fbox">
                                                     <h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
-                                                    <label class="col-form-label ar-16"><b>Youtube Video Url </b><span class="ar-14">(Add up to 3 variations) </span> </label>
+                                                    <label class="col-form-label ar-16"><b>Youtube Videos  </b><span class="ar-14"> </span> </label>
                                                     <div id="Youtube_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
