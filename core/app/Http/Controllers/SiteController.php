@@ -13,7 +13,7 @@ use App\SupportTicket;
 use App\SupportMessage;
 use App\SupportAttachment;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
@@ -52,17 +52,13 @@ class SiteController extends Controller
     public function contactPage()
     {
         $page_title = 'Contact';
-
         return view($this->activeTemplate . 'sections.contact-us', compact('page_title'));
     }
 
-
     public function contactSubmit(Request $request)
     {
-
          if($request->email)
          {
-
             $name    = $request->name;
             $email   = $request->email;
             $company   = $request->company;
@@ -72,10 +68,7 @@ class SiteController extends Controller
             $page_title = "Thanks email";
             $useremail = $request->email;
             return view($this->activeTemplate . 'thanks-email-contact', compact('page_title','useremail'));
-
-
          }
-
     }
 
     public function viewTicket($ticket)
@@ -131,7 +124,6 @@ class SiteController extends Controller
         $info         = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
         $countries    = Country::all();
-
         return view($this->activeTemplate . 'register', compact('page_title', 'country_code', 'countries'));
     }
 
@@ -250,7 +242,6 @@ class SiteController extends Controller
         return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
     }
 
-
     public function privacy_policy()
     {
         $id = 127;
@@ -260,6 +251,8 @@ class SiteController extends Controller
     }
 
    public function register_advertiser(){
+        $user = Auth::guard('advertiser')->user();
+        if($user){  $notify[] = ['success', 'Your are already registered.'];  return redirect()->route('advertiser.dashboard')->withNotify($notify); }
         $data['page_title'] = 'Home';
         $page_title="Sign Up";
         $info         = json_decode(json_encode(getIpInfo()), true);
@@ -269,10 +262,11 @@ class SiteController extends Controller
    }
 
    public function login_advertiser(){
-
-    $data['page_title'] = 'Home';
-    $page_title="Login";
-     return view($this->activeTemplate . 'advertiser/login-advertiser',compact('data','page_title'));
+        $user = Auth::guard('advertiser')->user();
+        if($user){  $notify[] = ['success', 'Your are already login.'];  return redirect()->route('advertiser.dashboard')->withNotify($notify); }
+        $data['page_title'] = 'Home';
+        $page_title="Login";
+        return view($this->activeTemplate . 'advertiser/login-advertiser',compact('data','page_title'));
    }
 
    public function home2()
