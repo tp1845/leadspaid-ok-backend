@@ -170,6 +170,10 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-19.png')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == 20)
                     <img src="{{asset('assets/templates/leadpaid/images/logo-20.png')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == 'hand-1')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-hand-1.png')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == 'hand-2')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-hand-2.png')}}" style="max-width: 250px" alt="site-logo">
                     @else
                     <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}?v1" style="max-width: 250px" alt="site-logo">
                     @endif
