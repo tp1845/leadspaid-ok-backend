@@ -1,5 +1,4 @@
 @extends($activeTemplate.'layouts.frontendLeadPaid')
-
 @section('content')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://leadspaid.com/assets/templates/basic/css/all.min.css">
@@ -15,14 +14,10 @@
 
     </div>
  </section>
-
-
 @endsection
-
 @push('script-lib')
 <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
 <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
-
 @endpush
 <style>
     .Rg_advts{ padding-top: 30px; }

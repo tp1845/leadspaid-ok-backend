@@ -94,7 +94,7 @@
 
     <script>
 
-       $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^1-9-\.]/g,'');});
+       $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
 
         $.validator.setDefaults({
             errorElement: 'span',

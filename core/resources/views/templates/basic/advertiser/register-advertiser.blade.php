@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="Rg_advts_number">
                                     <div class="form-group mb-3">
-                                        <select name="country_code" class="form-select rounded-0">
+                                        <select name="country_code" class="form-select country_code rounded-0">
                                             @include('partials.country_code')
                                         </select>
                                         <input type="text" name="phone" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
@@ -127,7 +127,7 @@
 @push('script')
 
 <script>
-     $('#your_phone').keyup(function(){  this.value = this.value.replace(/[^1-9-\.]/g,'');});
+     $('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
     $.validator.setDefaults({
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -255,6 +255,10 @@
         border: 1px solid #94a1b5;
         background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
     }
+    .form-select.country_code {
+        background: #f1f1f2 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+    }
+
     .Rg_advts_ttls {
         color: #1a273a;
         font-weight: bold;
@@ -345,8 +349,8 @@
     min-height: 140px;
 }
 button.btn.btn-secondary.Rg_advts_my_btn {
-    font-size: 24px;
-    font-weight: 500;
+    font-size: 28px;
+    font-weight: 700;
     display: inline-block;
 }
 .Rg_advts_my_btn {
@@ -379,9 +383,11 @@ button.btn.btn-secondary.Rg_advts_my_btn {
 
     .us_doller {  position: relative; }
     .us_doller input {
-        padding-left: 70px !important;
+        padding-left: 27% !important;
     }
     .us_doller:after {
+        width: 25%;
+        text-align: center;
         content: 'US$';
         position: absolute;
         top: 50%;

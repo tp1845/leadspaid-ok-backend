@@ -247,7 +247,6 @@ class SiteController extends Controller
     {
         $policy     = Frontend::findOrFail($id);
         $page_title = $policy->data_values->heading;
-
         return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
     }
 
@@ -257,58 +256,41 @@ class SiteController extends Controller
         $id = 127;
         $policy     = Frontend::findOrFail($id);
         $page_title = $policy->data_values->heading;
-
         return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
     }
 
    public function register_advertiser(){
-
-    $data['page_title'] = 'Home';
-    $page_title="Sign Up";
-
-
+        $data['page_title'] = 'Home';
+        $page_title="Sign Up";
         $info         = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
         $countries    = Country::all();
-
-     return view($this->activeTemplate . 'register-advertiser',compact('data','page_title','country_code','countries'));
+        return view($this->activeTemplate . 'advertiser/register-advertiser',compact('data','page_title','country_code','countries'));
    }
 
    public function login_advertiser(){
 
     $data['page_title'] = 'Home';
     $page_title="Login";
-
-     return view($this->activeTemplate . 'login-advertiser',compact('data','page_title'));
+     return view($this->activeTemplate . 'advertiser/login-advertiser',compact('data','page_title'));
    }
 
    public function home2()
     {
-
-
         $data['page_title'] = 'New Home';
-
-
         return view($this->activeTemplate . 'home-leadpaid2', $data);
     }
 
     public function home3()
     {
-
-
         $data['page_title'] = 'New Home 3';
-
         return view($this->activeTemplate . 'home-leadpaid3', $data);
-
     }
 
     public function home4()
     {
-
         $data['page_title'] = 'New Home 4';
-
         return view($this->activeTemplate . 'home-leadpaid4', $data);
-
     }
     public function home5()
     {
