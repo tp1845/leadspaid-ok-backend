@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 
 class RegisterController extends Controller
@@ -111,25 +112,35 @@ class RegisterController extends Controller
 
          $user = Advertiser::findOrFail($data['userid']);
         // return $user->id;
-        if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
-            $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
-            $delay = $target_time - time();
-            throw ValidationException::withMessages(['resend' => 'Please Try after ' . $delay . ' Seconds']);
-        }
+        // if ($this->checkValidCode_adv($user, $user->ver_code, 2)) {
+        //     $target_time = $user->ver_code_send_at->addMinutes(2)->timestamp;
+        //     $delay = $target_time - time();
+        //     $page_title = "user activate Error";
+        //     $title='Please Try after ' . $delay . ' Seconds';
+        //     $sub_title='';
+        //    // return view($this->activeTemplate . 'email-verifyed', compact('page_title', 'title', 'sub_title'));
+        //     //throw ValidationException::withMessages(['resend' => 'Please Try after ' . $delay . ' Seconds']);
+        // }
         if (!$this->checkValidCode_adv($user, $user->ver_code)) {
+            // First Time
+            $page_title = "User Activation";
+            $title='Thank you for verifying your account.';
+            $sub_title='Your account is pending approval. <br> You will receive an email once it is activated.';
             $user->ver_code = $data['code'];
             $user->ver_code_send_at = Carbon::now();
             $user->status = 0;
             $user->save();
             send_email_adv_admin($user, 'EVER_CODE',$user->username);
-            $page_title = "user activate";
-            return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
+            return view($this->activeTemplate . 'email-verifyed', compact('page_title', 'title', 'sub_title'));
         } else {
-            $user->ver_code = $user->ver_code;
-            $user->ver_code_send_at = Carbon::now();
-            $user->status = 0;
-            $user->save();
-            return view($this->activeTemplate . 'email-verifyed', compact('page_title'));
+            $page_title = "User Already Activated";
+            $title='Your email is already verified.';
+            $sub_title='Your account is pending approval. <br>You will receive an email once it is activated.';
+            // $user->ver_code = $user->ver_code;
+            // $user->ver_code_send_at = Carbon::now();
+            // $user->status = 0;
+            // $user->save();
+            return view($this->activeTemplate . 'email-verifyed', compact('page_title', 'title', 'sub_title'));
         }
     }
 

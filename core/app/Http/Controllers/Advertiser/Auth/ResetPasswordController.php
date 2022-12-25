@@ -81,7 +81,7 @@ class ResetPasswordController extends Controller
         $user = Advertiser::where('email', $reset->email)->first();
         if ($reset->status == 1) {
             $notify[] = ['error', 'Invalid code'];
-            return redirect()->route('advertiser.login')->withNotify($notify);
+            return redirect()->route('login_advertiser')->withNotify($notify);
         }
 
         $user->password = bcrypt($request->password);
@@ -98,7 +98,7 @@ class ResetPasswordController extends Controller
         ]);
 
         $notify[] = ['success', 'Password Changed'];
-        return redirect()->route('advertiser.login')->withNotify($notify);
+        return redirect()->route('login_advertiser')->withNotify($notify);
     }
 
     /**

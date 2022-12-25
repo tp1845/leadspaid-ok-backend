@@ -537,7 +537,7 @@ function send_sms($user, $type, $shortCodes = [])
 function send_email($user, $type = null, $shortCodes = [])
 {
     $general = GeneralSetting::first();
-    
+
     $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) {
         return;
@@ -573,7 +573,7 @@ function send_email_adv($user, $type = null, $link)
     if ($general->en != 1 || !$email_template) {
         return;
     }
-    
+
         $message ='
         <html>
         <head>
@@ -581,10 +581,10 @@ function send_email_adv($user, $type = null, $link)
         </head>
         <body>
           <p>Please verify your account on this link  <a href='.$link.'>Click here</a></p>
-           
+
         </body>
         </html>
-        ';    
+        ';
 
     $config = $general->mail_config;
 
@@ -606,18 +606,18 @@ function send_email_adv_activated($user, $type = null, $name)
     if ($general->en != 1 || !$email_template) {
         return;
     }
-    
+
         $message ='
         <html>
         <head>
           <title>email varification</title>
         </head>
         <body>
-          <p> '.$name.' Your Account has been activated!<br/>
-          Please login to www.leadspaid.com to create your first lead generation campaign</p>
+            <p> Your '.$name.' account has been activated!<br/>
+            Please login to www.leadspaid.com to create your first lead generation campaign</p>
         </body>
         </html>
-        ';    
+        ';
 
     $config = $general->mail_config;
     $email_sub='Your LeadsPaid.com Account has been activated.';
@@ -641,7 +641,7 @@ function send_email_adv_admin($user, $type = null, $username)
     if ($general->en != 1 || !$email_template) {
         return;
     }
-    
+
         $message ='
         <html>
         <head>
@@ -651,7 +651,7 @@ function send_email_adv_admin($user, $type = null, $username)
           <p> User '.$username.' verifyed. Please activate user from admin pannel</p>
         </body>
         </html>
-        ';    
+        ';
 
     $config = $general->mail_config;
     $admin_email='contact@leadspaid.com';
@@ -673,7 +673,7 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
     if ($general->en != 1 || !$email_template) {
         return;
     }
-    
+
         $message ='
         <html>
         <head>
@@ -685,10 +685,10 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
             <p><b>Company : </b> '.$company.'</p><br/>
             <p><b>Phone : </b> '.$phone.'</p><br/>
             <p><b>Message : </b> '.$message.'</p>
-        
+
         </body>
         </html>
-        ';   
+        ';
 
         $admin_email='contact@leadspaid.com';
         $subj="contact us email";

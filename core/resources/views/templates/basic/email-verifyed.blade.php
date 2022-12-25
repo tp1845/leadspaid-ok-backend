@@ -7,8 +7,8 @@
 
         <div class="row text-center">
             <div class="col-lg-12 pt-4">
-                <p class="Rg_advts_ttls-1 mb-5">Thank you for verifying your account.</p>
-                <p class="Rg_advts_ttls-1 mb-5">Your account is pending approval. <br>You will receive an email once it is activated.</p>
+                <p class="Rg_advts_ttls-1 mb-5">{!! $title !!}</p>
+                <p class="Rg_advts_ttls-1 mb-5">{!! $sub_title !!}</p>
             </div>
         </div>
 
@@ -20,7 +20,7 @@
 <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
 @endpush
 <style>
-    .Rg_advts{ padding-top: 30px; }
+    .Rg_advts{ padding-top: 60px; }
     .Rg_advts_ttls-1 {
     color: #191f58;
     font-family: Poppins !important;
