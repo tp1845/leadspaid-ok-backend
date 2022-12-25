@@ -68,7 +68,7 @@
                                                 <button class="cmn-btn w-100" type="submit">@lang('Verify Your Code')</button>
                                             </div>
                                             <div class="form-group text-center my-4">
-                                                <small class="text-center"> @lang('Please check including your Junk/Spam Folder.If you do not find')</small>
+                                                <small class="text-center">  <small class="text-center"> Enter the reset password which has been sent to your email. <br>If you haven't received an email, please check your Junk/Spam Folder as well, otherwise, <a href="{{ route('home.contact') }}">contact us</a> </small> </small>
                                             </div>
                                             <div class="form-group text-center">
                                                 <a class="text-primary font-weight-bold " href="{{ route('advertiser.password.reset') }}">@lang('Try again')</a>

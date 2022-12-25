@@ -13,7 +13,7 @@
       <div class="account-area">
         <div class="row justify-content-center">
             <div class="col-12">
-                <p class="page_title mb-5">Account Recovery</p>
+                <p class="page_title mb-5">Password Reset</p>
             </div>
           <div class="col-lg-6">
             <div class="account-wrapper">

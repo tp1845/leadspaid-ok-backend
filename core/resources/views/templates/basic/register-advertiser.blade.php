@@ -127,6 +127,7 @@
 @push('script')
 
 <script>
+     $('#your_phone').keyup(function(){  this.value = this.value.replace(/[^1-9-\.]/g,'');});
     $.validator.setDefaults({
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -154,6 +155,9 @@
     jQuery.validator.addMethod("numbersonly", function(value, element) {
     return this.optional(element) || /^[0-9]*$/i.test(value);
     }, "Number only please");
+    jQuery.validator.addMethod("phoneonly", function(value, element) {
+        return this.optional(element) || /^[0-9.-]*$/i.test(value);
+        }, "Number only please");
     jQuery.validator.addMethod("valid_email", function(value, element) {
     return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter a valid email address");
@@ -164,7 +168,7 @@
             name: { required: true,minlength: 3, lettersonly: true },
             company_name: { required: true, minlength: 3},
             country: { required: true},
-            phone: { required: true, minlength: 6, numbersonly: true },
+            phone: { required: true, minlength: 6, phoneonly: true },
             email: { required: true,  valid_email:true  },
             product_services: { required: true},
             ad_budget: { required: true,  numbersonly: true },
@@ -173,7 +177,7 @@
         },messages: {
             name:{  required : 'Full Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
             company_name:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
-            phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', numbersonly:'Please enter valid phone.'},
+            phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
             email:{  required : 'email is required.'},
             product_services:{  required : 'Lead Generation Information is required.', minlength:'Please fill your Lead Generation Information in detail.', },
             ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.' },
@@ -249,7 +253,7 @@
     }
     .Rg_advts_bsc select, .Rg_advts_number select {
         border: 1px solid #94a1b5;
-        background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+        background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
     }
     .Rg_advts_ttls {
         color: #1a273a;

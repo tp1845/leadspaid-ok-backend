@@ -79,7 +79,7 @@
                         </li>
                         <li>
                             <b><span>3</span> Downlead Leads </b>
-                            <p>Advertisers can simply download your leads instantly</p>
+                            <p>Advertisers can simply download their leads instantly</p>
                         </li>
                     </ul>
 
@@ -608,6 +608,9 @@
             font-size: 30px !important;
             padding-right: 15px;
             padding-left: 15px;
+        }
+        .MainBanner-bottom h3, .MainBanner-bottom .h3 {
+            line-height: 1.6;
         }
         }
     </style>
