@@ -10,9 +10,9 @@
 <section class="small-section contact-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 pt-4 d-flex justify-content-start align-items-center">
+            <div class="col-lg-8 pt-4 d-flex justify-content-start align-items-start">
                 <img src="{{asset('assets/images/frontend')}}/robot-arm.png" width="150px" alt="" >
-                <div class="ps-5">
+                <div class="ps-5 pt-lg-3">
                     <p class="Rg_advts_ttls-1">Thank you for contacting us!</p>
                     <p class="Rg_advts_sub_title mb-0"> We will get back to you soon.</p>
                 </div>
