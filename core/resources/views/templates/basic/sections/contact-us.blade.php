@@ -94,6 +94,8 @@
 
     <script>
 
+       $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^1-9-\.]/g,'');});
+
         $.validator.setDefaults({
             errorElement: 'span',
             errorPlacement: function (error, element) {
@@ -121,6 +123,9 @@
         jQuery.validator.addMethod("numbersonly", function(value, element) {
         return this.optional(element) || /^[0-9]*$/i.test(value);
         }, "Number only please");
+         jQuery.validator.addMethod("phoneonly", function(value, element) {
+        return this.optional(element) || /^[0-9.-]*$/i.test(value);
+        }, "Number only please");
         jQuery.validator.addMethod("valid_email", function(value, element) {
         return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
         }, "Please enter a valid email address");
@@ -131,12 +136,12 @@
                 name: { required: true,minlength: 3, lettersonly: true },
                 company: { required: false, minlength: 3},
                 email: { required: true,  valid_email:true  },
-                phone: { required: true, minlength: 6, numbersonly: true },
+                phone: { required: true, minlength: 6, phoneonly: true },
                 message: { required: true, minlength: 15 }
             },messages: {
                 name:{  required : 'Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
                 company:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
-                phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', numbersonly:'Please enter valid phone.'},
+                phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
                 email:{  required : 'email is required.'},
                 message:  { required : 'Message is required.', minlength:'Please fill your message in detail'}
             }
