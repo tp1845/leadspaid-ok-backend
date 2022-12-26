@@ -215,9 +215,9 @@
                     @elseif(Request::get('v') == '18-b')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.b.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-1')
-                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.b-1.png?v4')}}" style="max-width: 250px" alt="site-logo">
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-1.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-noborder')
-                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.b-noborder.png?v4')}}" style="max-width: 250px" alt="site-logo">
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-noborder.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @else
                     <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}?v1" style="max-width: 250px" alt="site-logo">
                     @endif
