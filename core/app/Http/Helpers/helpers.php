@@ -664,12 +664,11 @@ function send_email_adv_admin($user, $type = null, $username)
     }
 }
 
-
 function send_email_contact_admin($name,$type = null,$email,$company,$phone,$messages){
     $general = GeneralSetting::first();
     $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) { return; }
-    $sendto_email='tejinder.animator@gmail.com';
+    $sendto_email='arun.saba@leadspaid.com';
     $receiver_name = '';
     $subject="Contact Us Email";
     $message = '<p><b>Name : </b> '.$name.'</p>';
@@ -678,41 +677,6 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
     $message .= '<p><b>Phone : </b> '.$phone.'</p>';
     $message .= '<p><b>Message : </b> '.$messages.'</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
-}
-function send_email_contact_admin_Na($name,$type = null,$email,$company,$phone,$message)
-{
-    $general = GeneralSetting::first();
-    $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
-    if ($general->en != 1 || !$email_template) {
-        return;
-    }
-
-        $message ='
-        <html>
-        <head>
-          <title>contact email</title>
-        </head>
-        <body>
-            <p><b>Name : </b> '.$name.'</p><br/>
-            <p><b>Email : </b> '.$email.'</p><br/>
-            <p><b>Company : </b> '.$company.'</p><br/>
-            <p><b>Phone : </b> '.$phone.'</p><br/>
-            <p><b>Message : </b> '.$message.'</p>
-        </body>
-        </html>';
-
-        $admin_email='contact@leadspaid.com';
-        $subj="contact us email";
-    $config = $general->mail_config;
-    if ($config->name == 'php') {
-        send_php_mail($admin_email, $name, $general->email_from, $subj, $message);
-    } else if ($config->name == 'smtp') {
-        send_smtp_mail($config,$admin_email, $name, $general->email_from, $general->sitetitle, $subj, $message);
-    } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config,$admin_email,$name, $general->email_from, $general->sitetitle, $subj, $message);
-    } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, $admin_email, $name, $general->email_from, $general->sitetitle, $subj, $message);
-    }
 }
 
 function send_php_mail($receiver_email, $receiver_name, $sender_email, $subject, $message)
@@ -724,7 +688,6 @@ function send_php_mail($receiver_email, $receiver_name, $sender_email, $subject,
     $headers .= "Content-Type: text/html; charset=utf-8\r\n";
     @mail($receiver_email, $subject, $message, $headers);
 }
-
 
 function send_smtp_mail($config, $receiver_email, $receiver_name, $sender_email, $sender_name, $subject, $message)
 {
@@ -758,7 +721,6 @@ function send_smtp_mail($config, $receiver_email, $receiver_name, $sender_email,
     }
 }
 
-
 function send_sendGrid_mail($config, $receiver_email, $receiver_name, $sender_email, $sender_name, $subject, $message)
 {
     $sendgridMail = new \SendGrid\Mail\Mail();
@@ -773,7 +735,6 @@ function send_sendGrid_mail($config, $receiver_email, $receiver_name, $sender_em
         // echo 'Caught exception: '. $e->getMessage() ."\n";
     }
 }
-
 
 function send_mailjet_mail($config, $receiver_email, $receiver_name, $sender_email, $sender_name, $subject, $message)
 {
@@ -800,12 +761,10 @@ function send_mailjet_mail($config, $receiver_email, $receiver_name, $sender_ema
     $response = $mj->post(\Mailjet\Resources::$Email, ['body' => $body]);
 }
 
-
 function getPaginate($paginate = 20)
 {
     return $paginate;
 }
-
 
 function menuActive($routeName, $type = null)
 {
@@ -841,8 +800,6 @@ function get_image($image, $clean = '')
 {
     return file_exists($image) && is_file($image) ? asset($image) . $clean : asset('assets/images/default.png');
 }
-
-
 
 function imagePath()
 {
@@ -958,7 +915,6 @@ function getContent($data_keys, $singleQuery = false, $limit = null, $orderById 
     return $content;
 }
 
-
 function gatewayRedirectUrl()
 {
     return 'user.deposit';
@@ -996,7 +952,6 @@ function number_format_short($n, $precision = 1)
     return $n_format . $suffix;
 }
 
-
 function returnUrl()
 {
     if (session('pricePlan')) {
@@ -1025,7 +980,6 @@ function urlToDomain($url)
     $domain = str_replace("www.", "", $domain);
     return $domain;
 }
-
 
 function countDigits($MyNum){
   $MyNum = (int)$MyNum;
