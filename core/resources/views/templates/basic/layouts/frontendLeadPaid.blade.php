@@ -216,6 +216,10 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.b.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-rectangle')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.b-rectangle.png?v4')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-b-rectangle-40')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.b-rectangle-40.png?v4')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-b-rectangle-80')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.b-rectangle-80.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-1')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-1.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-noborder')
