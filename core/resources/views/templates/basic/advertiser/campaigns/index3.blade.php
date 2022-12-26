@@ -267,7 +267,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / Offer Validity </span></label>
+                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / Offer Validity</span></label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
@@ -279,8 +279,37 @@
                                                 </div>
                                                 <div class="fbox">
                                                     <h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
-                                                    <label class="col-form-label ar-16"><b>Youtube Videos  </b><span class="ar-14"> </span> </label>
-                                                    <div id="Youtube_1">
+                                                    <label class="col-form-label ar-16"><b>Youtube Videos </b><span class="ar-14"> </span> </label>
+                                                   <div class="custom_image_video"> 
+                                                    <div class="input-group input-col" id="video_image_1">
+                                                        <div class="input-col "  style="width: 88%;">
+                                                            <div class="video_1 add_video upload-box grey image" data-id="1">
+                                                                
+                                                                <label>
+                                                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group input-col" id="video_image_2">
+                                                        <div class="input-col "  style="width: 88%;">
+                                                            <div class="video_2 add_video upload-box grey image" data-id="2">
+                                                                
+                                                                <label>
+                                                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="input-group input-col" id="video_image_3">
+                                                        <div class="input-col "  style="width: 88%;">
+                                                            <div class="video_3 add_video upload-box grey image" data-id="3">
+                                                                
+                                                                <label>
+                                                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    <div id="Youtube_1" style="display:none;">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
                                                             <div class="input-group-append bg-none">
@@ -473,7 +502,9 @@
                                                 <form id="LeadForm" action="#">
                                                     <div>
                                                     <div id="loadData">
-                                                        <div class="video custom_after_text" id="preview_media"> </div>
+                                                        <div class="video custom_after_text" id="preview_media"> 
+                                                            <div class="">Add Creative</div>
+                                                        </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
                                                         <p id="preview_form_sub_title"class="form-subtitle"> </p>
                                                         <p id="preview_Punchline"class="form-punchline"> </p>
@@ -517,6 +548,34 @@
             </form>
         </div>
     </div>
+
+
+   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <button type="button" class="close close_youtube" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <label>Add Youtube video link</label>
+         <input type="text" name="video" data-video="" class="form-control youtube_video" >
+         </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary close_youtube" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary save_youtube">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
     {{-- End Create campaign_create MODAL --}}
  @endsection
 @push('breadcrumb-plugins')
@@ -583,8 +642,8 @@
 
         form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; updateformpreview(); }}
         image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block"; updateformpreview();  }}
-        image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block";  }}
-        image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block";  }}
+        image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block"; updateformpreview(); }}
+        image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block"; updateformpreview(); }}
         $('.del-preview').on('click', function(){
             $(this).next('img').attr('src' , '');
             $(this).parent().hide();
@@ -908,9 +967,9 @@
         function updateformpreview(data = false) {
             resetformpreview();
             if(data == false){
-            var youtube_1 = $('#Youtube_URL_1_Input').val();
-            var youtube_2 = $('#Youtube_URL_2_Input').val();
-            var youtube_3 = $('#Youtube_URL_3_Input').val();
+            var youtube_1 = $('.video_1').find('iframe').attr('src');
+            var youtube_2 = $('.video_2').find('iframe').attr('src');
+            var youtube_3 = $('.video_3').find('iframe').attr('src');
             var image_1_img = $('#image_1_img').attr('src');
             var image_2_img = $('#image_2_img').attr('src');
             var image_3_img = $('#image_3_img').attr('src');
@@ -946,16 +1005,47 @@
             $('#preview_form_sub_title').html(sub_title_1);
             $('#preview_Punchline').html(Punchline);
            $('#preview_company_name').html(company_name);
-
+             
             if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
+    
+           var image_vide='<ul>';
 
             if(youtube_1){
-                const videoId = getVideoId(youtube_1);
-                const iframeMarkup = '<iframe src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" width="100%" allowfullscreen></iframe>';
-                $('#preview_media').html('<div class="video">'+ iframeMarkup +'</div>');
-            }else if(image_1_img !== '#'){
-                $('#preview_media').html('<div class="video image"><img src="'+ image_1_img +'" alt="" width="100%" /></div>');
+               
+                const iframeMarkup = '<iframe src="'+youtube_1+'" frameborder="0" width="100%" allowfullscreen></iframe>';
+                
+                image_vide +='<li>'+iframeMarkup+'</li>';
             }
+
+             if(youtube_2){
+                
+                 const iframeMarkup = '<iframe src="'+youtube_2+'" frameborder="0" width="100%" allowfullscreen></iframe>';
+                 image_vide +='<li>'+iframeMarkup+'</li>';
+            }
+
+             if(youtube_3){
+                
+                 const iframeMarkup = '<iframe src="'+youtube_3+'" frameborder="0" width="100%" allowfullscreen></iframe>';
+                 image_vide +='<li>'+iframeMarkup+'</li>';
+            }
+
+
+             if(image_1_img !== '#'){
+                
+                 image_vide +='<li><img src="'+ image_1_img +'" alt="" width="100%" /></li>';
+            }
+             if(image_2_img !== '#'){
+               
+                 image_vide +='<li><img src="'+ image_2_img +'" alt="" width="100%" /></li>';
+            }
+
+             if(image_3_img !== '#'){
+                
+                 image_vide +='<li><img src="'+ image_3_img +'" alt="" width="100%" /></li>';
+            }
+          
+            image_vide +='</ul>';
+            $('#preview_media').html(image_vide);
             for ($i = 1; $i < 6; $i++){
                 if(data == false){
                 question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
@@ -1043,8 +1133,72 @@
     }else{
        $("#TargetCountryInput").css("font-size","20px");
     }
-  })
+  });
+
+$(".add_video").click(function(){
+    if($(this).hasClass('disabled')){
+
+    }else{
+    var vid=$(this).data('id');
+   $(".youtube_video").attr('data-video',vid);
+    $(".youtube_video").val('');
+
+    $("#exampleModal").modal("show");
+    }
+    });
+
+$(".save_youtube").click(function(){
+
+var youtube_url=$(".youtube_video").val();
+var vidd=$(".youtube_video").attr('data-video');
+  $(".video_"+vidd).find('label').hide();
+  $(".video_"+vidd).addClass("disabled");
+  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+youtube_url+'"></iframe></div>';
+  $(".video_"+vidd).find('.youtube_iframe').remove(); 
+  $(".video_"+vidd).find('label').after(html);
+  custom_edit_vide();
+$("#exampleModal").modal("hide");
+setTimeout(function() {
+$('body').addClass('modal-open');
+updateformpreview();
+}, 500);
+});
+
+$(".close_youtube").click(function(){
+    $("#exampleModal").modal("hide");
+setTimeout(function() {
+$('body').addClass('modal-open');
+}, 500);
+});
+
+function custom_edit_vide(){
+$(".edit_video").click(function(){
+ var iddd=$(this).data('id');
+ $(".video_"+iddd).removeClass("disabled");
+  var src =$(".video_"+iddd).find("iframe").attr('src');
+  
+  
+ $(".video_"+iddd).trigger("click");
+ setTimeout(function() {
+$(".youtube_video").val(src);
+updateformpreview();
+    }, 500);
+});
+
+$(".remove_video").unbind().click(function(){
+ var iddd=$(this).data('id');
+ if(confirm('Are you sure?')){
+  $(".video_"+iddd).find(".youtube_iframe").remove();
+   $(".video_"+iddd).removeClass('disabled');
+   updateformpreview();
+  return false;
+}
+
+});
+
+}
     </script>
+}
 @endpush
 @push('style')
 
@@ -1197,14 +1351,6 @@ font-size: 20px!important;
     #campaign_create_modal  .input-group-text {  width: 35px; }
     #formPreview{ width: 336px; max-width: 336px; }
     #formPreview .formPreview_title{ text-align: center; text-transform: uppercase; font-weight: bold; }
-	.custom_after_text:after {
-    content: 'Creative will appear here';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    z-index: 0;
-    transform: translate(-50%, -50%);
-}
     </style>
     <style>
     .card.sidbar_preview {
@@ -1275,7 +1421,7 @@ font-size: 20px!important;
             transform: translate3d(0%, 0, 0);
             max-width: 104.5rem !important;
         }
-        .modal-header span{ color: #000!important;font-weight:500;}
+        .modal-header span{ color: #000!important; font-weight:500; }
         .modal-header .error.invalid-feedback,
         .bg-primary .error.invalid-feedback
         { color: #ff9e9e!important; font-size: 13px!important; }
@@ -1323,16 +1469,23 @@ font-size: 20px!important;
       width: 300px;
       margin: 10px auto;
     }
-
-    .video {
-      margin-bottom: 5px;
-      padding: 0 5px;
-	  height: 100%;
+.custom_after_text:after {
+    content: 'Creative will appear here';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%);
+}
+   .video {
+    margin-bottom: 5px;
+    padding: 0 5px;
+    height: 100%;
     max-height: 160px;
     min-height: 160px;
     position: relative;
     overflow: hidden;
-    }
+}
 #preview_media .video img {
     width: 100%;
     height: 100%;
@@ -1342,6 +1495,7 @@ font-size: 20px!important;
     position: relative;
     z-index: 999999;
 }
+
     .video iframe {
       border: 1px solid #000;
     }
@@ -1483,13 +1637,13 @@ font-size: 20px!important;
       /* Internet Explorer 10-11 */
       color: #808080 !important;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 200;
     }
 
     ::-ms-input-placeholder {
       /* Microsoft Edge */
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 200;
       color: #808080 !important;
     }
 
@@ -1497,7 +1651,7 @@ font-size: 20px!important;
         /* Most modern browsers support this now. */
         color: gray !important;
         font-size: 16px;
-      font-weight: 400;
+      font-weight: 200;
     }
     .card.sidbar_preview {
         border: 5px solid #000;
@@ -1531,15 +1685,99 @@ font-size: 20px!important;
 .custom_image_upload .input-group .input-col .upload-box.grey.image {
     min-width: unset !important;
 }
-.custom_image_upload .input-group .input-col {
+.custom_image_video .upload-box {
+    min-width: unset !important;
+    position: relative;
+}
+.custom_image_video .upload-box .youtube_iframe iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+.custom_image_video .upload-box .youtube_iframe ul {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+.custom_image_video .upload-box .youtube_iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px;
+}
+.custom_image_video .upload-box .youtube_iframe ul span, .custom_image_video .upload-box .youtube_iframe ul span i {
+    color: #000;
+    font-weight: 600;
+    font-size: 12px;
+}
+.remove_video i {
+    color: #dc3545!important;
+    margin-right: 5px;
+}
+.remove_video, .edit_video {
+    cursor: pointer;
+}
+.custom_after_text ul {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+/*    display: flex;*/
+    width: 100%;
+  /*  justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;*/
+}
+.custom_after_text ul li img {
+    max-height: 160px;
+    object-fit: cover;
+    width: 100%;
+}
+.custom_image_video .upload-box .youtube_iframe ul span.edit_video {
+    width: 18px;
+    height: 18px;
+    margin-left: 5px;
+    line-height: 18px;
+    display: block;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.custom_image_video .upload-box label svg {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+.custom_image_video .upload-box label {
+    height: 100%;
+    min-height: 100px;
+    border-radius: 5px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding:0.8rem 1.25rem;
+    background-color: #ddf5ff;
+    flex-direction: column;
+    cursor: pointer;
+}
+.custom_image_video .upload-box label span {
+    font-size: 14px;
+        white-space: nowrap;
+        font-weight: 200;
+}
+.custom_image_upload .input-group .input-col, .custom_image_video .input-group .input-col {
     width: 100% !important;
     position: relative;
 }
-.custom_image_upload .input-group {
+.custom_image_upload .input-group, .custom_image_video .input-group {
     flex: 0 0 30%;
     width: 30%;
 }
-.custom_image_upload {
+.custom_image_upload, .custom_image_video {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -1576,8 +1814,9 @@ font-size: 20px!important;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+/*    bottom: 0;*/
     height: 100%;
+    max-height: 100px;
     background: #ddf5ff;
     border-radius: 5px;
     width: 100%;
@@ -1589,8 +1828,9 @@ font-size: 20px!important;
     font-size: 14px !important;
     display:block;
 }
-.title-small2{
-	font-size: 14px !important;
+ .title-small2 {
+    font-size: 14px !important;
+    
 }
 .create-campaign-btn {
     font-size: 18px;
@@ -1644,6 +1884,9 @@ padding-top: 5px;
  #text_white {
     color: #fff !important;
  }
+ .custom_image_video .upload-box label:hover {
+    background-color: #75a4b8;
+}
  table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before {
     bottom: 50% !important;
     content: "▲" !important;
@@ -1667,6 +1910,40 @@ table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:
 table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after {
     top: 50% !important;
     content: "▼" !important;
+}
+
+#formPreviewBLock  .container {
+    width: 306px;
+    margin: 10px auto;
+    background-color: #f4f4f4;
+    max-width: 306px;
+    height: 606px;
+    overflow-y: auto;
+    border: 3px solid #113399;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 6px 11px #45535a52;
+}
+.modal-open .modal.show {
+    background: rgb(0 0 0 / 50%);
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+.modal-open #exampleModal .modal-dialog {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    margin: 0;
 }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
