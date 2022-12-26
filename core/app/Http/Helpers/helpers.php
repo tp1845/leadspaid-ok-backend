@@ -572,7 +572,7 @@ function send_email_adv($user, $type = null, $link)
     $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) { return; }
     $sendto_email=$user->email;
-    $receiver_name = $user->username;
+    $receiver_name = $user->name;
     $subject= $email_template->subj;
     $message = '<p>Please verify your account on this link  <a href='.$link.'>Click here</a></p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
@@ -581,65 +581,25 @@ function send_email_adv($user, $type = null, $link)
 function send_email_adv_activated($user, $type = null, $name)
 {
     $general = GeneralSetting::first();
-    $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
-    if ($general->en != 1 || !$email_template) {
-        return;
-    }
-
-        $message ='
-        <html>
-        <head>
-          <title>email varification</title>
-        </head>
-        <body>
-            <p> Your '.$name.' account has been activated!<br/>
-            Please login to www.leadspaid.com to create your first lead generation campaign</p>
-        </body>
-        </html>';
-
-    $config = $general->mail_config;
-    $email_sub='Your LeadsPaid.com Account has been activated.';
-
-    if ($config->name == 'php') {
-        send_php_mail($user->email, $user->username, $general->email_from,$email_sub, $message);
-    } else if ($config->name == 'smtp') {
-        send_smtp_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_sub, $message);
-    } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_sub, $message);
-    } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, $user->email, $user->username, $general->email_from, $general->sitetitle, $email_sub, $message);
-    }
+    $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
+    if ($general->en != 1 || !$email_template) { return; }
+    $sendto_email=$user->email;
+    $receiver_name = $user->name;
+    $subject= 'Your LeadsPaid.com Account has been activated.';;
+    $message = ' <p> Your LeadsPaid.com account has been activated! <br/> Please login to www.leadspaid.com/register-advertiser to create your first lead generation campaign</p>';
+    send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
 function send_email_adv_admin($user, $type = null, $username)
 {
     $general = GeneralSetting::first();
-    $email_template = \App\EmailTemplate::where('act', $type)->where('email_status', 1)->first();
-    if ($general->en != 1 || !$email_template) {
-        return;
-    }
-
-    $message ='
-    <html>
-    <head>
-        <title>email varified</title>
-    </head>
-    <body>
-        <p> User '.$username.' verifyed. Please activate user from admin pannel</p>
-    </body>
-    </html>';
-
-    $config = $general->mail_config;
-    $admin_email='contact@leadspaid.com';
-    if ($config->name == 'php') {
-        send_php_mail($admin_email, $user->username, $general->email_from, $email_template->subj, $message);
-    } else if ($config->name == 'smtp') {
-        send_smtp_mail($config, $admin_email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
-    } else if ($config->name == 'sendgrid') {
-        send_sendGrid_mail($config, $admin_email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
-    } else if ($config->name == 'mailjet') {
-        send_mailjet_mail($config, $admin_email, $user->username, $general->email_from, $general->sitetitle, $email_template->subj, $message);
-    }
+    $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
+    if ($general->en != 1 || !$email_template) { return; }
+    $sendto_email= 'arun.saba@leadspaid.con';
+    $receiver_name = 'Admin';
+    $subject= $email_template->subj;
+    $message = ' <p> User '.$username.' verifyed. Please activate user from admin pannel</p>';
+    send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
 function send_email_contact_admin($name,$type = null,$email,$company,$phone,$messages){
