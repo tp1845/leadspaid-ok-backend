@@ -214,11 +214,10 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-hand-2.png')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.b.png?v4')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18.b-rectangle')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.b-rectangle.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-1')
-                    @elseif(Request::get('v') == '18-b')
-                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.b.png?v4')}}" style="max-width: 250px" alt="site-logo">
-                    @elseif(Request::get('v') == '18-b-1-rectangle')
-                    <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-1-rectangle.png?v4')}}" style="max-width: 250px" alt="site-logo">
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-1.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-noborder')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-noborder.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @else
