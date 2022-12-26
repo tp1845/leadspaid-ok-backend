@@ -55,7 +55,7 @@
 
    
 </style>
-<div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/1.jpg')}}')">
+<div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/2.jfif')}}')">
     <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
     <button class="sidebar__expand"><i class="las la-plus"></i></button>
     <div class="sidebar__inner">
