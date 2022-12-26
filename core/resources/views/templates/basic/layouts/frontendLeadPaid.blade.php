@@ -126,6 +126,22 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-2.png?v3')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6-7-3')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-1')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-1.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-2')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-2.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-3')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-3.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-4')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-4.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-5')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-5.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-6')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-6.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-7')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-7.png?v3')}}" style="max-width: 250px" alt="site-logo">
+                    @elseif(Request::get('v') == '18-6-7-3-8')
+                    <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-3-8.png?v3')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6-7-4')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.6-7-4.png?v3')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-6-7-5')
