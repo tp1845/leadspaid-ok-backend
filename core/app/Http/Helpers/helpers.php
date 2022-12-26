@@ -672,11 +672,11 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
     $email='tejinder.animator@gmail.com';
     $receiver_name = '';
     $subject="contact us email";
-    $message = '<p><b>Name : </b> '.$name.'</p><br/>
-                <p><b>Email : </b> '.$email.'</p><br/>
-                <p><b>Company : </b> '.$company.'</p><br/>
-                <p><b>Phone : </b> '.$phone.'</p><br/>
-                <p><b>Message : </b> '.$message.'</p>';
+    $message = '<p><b>Name : </b> '.$name.'</p>';
+    $message .= '<p><b>Email : </b> '.$email.'</p>';
+    $message .= '<p><b>Company : </b> '.$company.'</p>';
+    $message .= '<p><b>Phone : </b> '.$phone.'</p>';
+    $message .= '<p><b>Message : </b> '.$message.'</p>';
 
     send_general_email($email, $subject, $message, $receiver_name);
 }
