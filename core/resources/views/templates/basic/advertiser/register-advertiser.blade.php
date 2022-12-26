@@ -127,9 +127,24 @@
 @push('script')
 
 <script>
-
+jQuery.fn.capitalize = function() {
+    $(this[0]).keyup(function(event) {
+        var box = event.target;
+        var txt = $(this).val();
+        var stringStart = box.selectionStart;
+        var stringEnd = box.selectionEnd;
+        $(this).val(txt.replace(/^(.)|(\s|\-)(.)/g, function($word) {
+            return $word.toUpperCase();
+        }));
+        box.setSelectionRange(stringStart , stringEnd);
+    });
+   return this;
+}
 $('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
 $('#ad_budget').keyup(function(){  this.value = this.value.replace(/[^0-9]/g,'');});
+$("#company_name").capitalize();
+$("#full_name").capitalize();
+
     $.validator.setDefaults({
         errorElement: 'span',
         errorPlacement: function (error, element) {
