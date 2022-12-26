@@ -640,16 +640,15 @@ function send_email_adv_admin($user, $type = null, $username)
         return;
     }
 
-        $message ='
-        <html>
-        <head>
-          <title>email varified</title>
-        </head>
-        <body>
-          <p> User '.$username.' verifyed. Please activate user from admin pannel</p>
-        </body>
-        </html>
-        ';
+    $message ='
+    <html>
+    <head>
+        <title>email varified</title>
+    </head>
+    <body>
+        <p> User '.$username.' verifyed. Please activate user from admin pannel</p>
+    </body>
+    </html>';
 
     $config = $general->mail_config;
     $admin_email='contact@leadspaid.com';

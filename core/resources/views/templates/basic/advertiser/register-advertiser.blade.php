@@ -70,7 +70,7 @@
                                     </div>
                                     <div class="form-group mb-3">
                                         <div class="us_doller">
-                                            <input type="text" name="ad_budget" class="form-control Rg_advts_name rounded-0" placeholder="Ad Budget Per Month">
+                                            <input type="text" name="ad_budget" id="ad_budget" class="form-control Rg_advts_name rounded-0" placeholder="Ad Budget Per Month">
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,9 @@
 @push('script')
 
 <script>
-     $('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
+
+$('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
+$('#ad_budget').keyup(function(){  this.value = this.value.replace(/[^0-9]/g,'');});
     $.validator.setDefaults({
         errorElement: 'span',
         errorPlacement: function (error, element) {
@@ -171,7 +173,7 @@
             phone: { required: true, minlength: 6, phoneonly: true },
             email: { required: true,  valid_email:true  },
             product_services: { required: true},
-            ad_budget: { required: true,  numbersonly: true },
+            ad_budget: { required: true,  numbersonly: true, min:100 },
             password: { required: true, minlength: 5,    },
             password_confirmation: { equalTo: "#password" }
         },messages: {
@@ -180,7 +182,7 @@
             phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
             email:{  required : 'email is required.'},
             product_services:{  required : 'Lead Generation Information is required.', minlength:'Please fill your Lead Generation Information in detail.', },
-            ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.' },
+            ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.', min: 'Ad Budget Should be greater than $100.' },
             password:{  required : 'Please fill a stronger password.',  minlength : 'Please fill a stronger password.',  },
             password_confirmation:{  required : 'The password and its confirm are not the same.', equalTo: 'The password and its confirm are not the same.'}
 
