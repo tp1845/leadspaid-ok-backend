@@ -665,20 +665,19 @@ function send_email_adv_admin($user, $type = null, $username)
 }
 
 
-function send_email_contact_admin($name,$type = null,$email,$company,$phone,$message){
+function send_email_contact_admin($name,$type = null,$email,$company,$phone,$messages){
     $general = GeneralSetting::first();
     $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) { return; }
-    $email='tejinder.animator@gmail.com';
+    $sendto_email='tejinder.animator@gmail.com';
     $receiver_name = '';
-    $subject="contact us email";
+    $subject="Contact Us Email";
     $message = '<p><b>Name : </b> '.$name.'</p>';
     $message .= '<p><b>Email : </b> '.$email.'</p>';
     $message .= '<p><b>Company : </b> '.$company.'</p>';
     $message .= '<p><b>Phone : </b> '.$phone.'</p>';
-    $message .= '<p><b>Message : </b> '.$message.'</p>';
-
-    send_general_email($email, $subject, $message, $receiver_name);
+    $message .= '<p><b>Message : </b> '.$messages.'</p>';
+    send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 function send_email_contact_admin_Na($name,$type = null,$email,$company,$phone,$message)
 {
