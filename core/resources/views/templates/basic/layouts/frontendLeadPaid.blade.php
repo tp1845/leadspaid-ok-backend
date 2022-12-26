@@ -214,7 +214,7 @@
                     <img src="{{asset('assets/templates/leadpaid/images/logo-hand-2.png')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.b.png?v4')}}" style="max-width: 250px" alt="site-logo">
-                    @elseif(Request::get('v') == '18.b-rectangle')
+                    @elseif(Request::get('v') == '18-b-rectangle')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18.b-rectangle.png?v4')}}" style="max-width: 250px" alt="site-logo">
                     @elseif(Request::get('v') == '18-b-1')
                     <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-1.png?v4')}}" style="max-width: 250px" alt="site-logo">
