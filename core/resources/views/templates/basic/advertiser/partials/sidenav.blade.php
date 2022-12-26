@@ -1,7 +1,60 @@
 @php
   $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
 @endphp
+<style>
+ .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
+.custom_side_bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: space-between;
+}
+.sidebar__menu.footer-fix {
+    margin-bottom: 60px;
+}
+.custom_side_bar ul li a {
+    padding: 5px 13px !important;
+}
 
+
+
+    .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
+.custom_side_bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: space-between;
+    transition: none;
+    height: 100% !important;
+    transition:unset;
+    position: relative;
+}
+.sidebar, .slimScrollDiv {
+    transition:unset;
+}
+.sidebar__menu {
+    margin-bottom: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+}
+.sidebar__menu.footer-fix {
+    margin-bottom: 60px;
+    position: absolute;
+    left: 0;
+    top: auto;
+    bottom: 0;
+}
+.custom_side_bar ul li a {
+    padding: 5px 13px !important;
+}
+
+
+
+   
+</style>
 <div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/1.jpg')}}')">
     <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
     <button class="sidebar__expand"><i class="las la-plus"></i></button>
@@ -183,24 +236,7 @@
     </div>
 </div>
 
-<style>
-    .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
-.custom_side_bar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-content: space-between;
-}
-.sidebar__menu.footer-fix {
-    margin-bottom: 60px;
-}
-.custom_side_bar ul li a {
-    padding: 5px 13px !important;
-}
 
-
-</style>
 <!-- sidebar end -->
 
 <!-- Button trigger modal -->

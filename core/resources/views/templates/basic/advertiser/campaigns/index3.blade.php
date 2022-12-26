@@ -267,7 +267,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / Offer Validity</span></label>
+                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / </span><b>Offer Validity</b></label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
@@ -500,7 +500,7 @@
                                         <div id="formPreviewBLock">
                                             <div class="container w-100" >
                                                 <form id="LeadForm" action="#">
-                                                    <div>
+                                                   <div>
                                                     <div id="loadData">
                                                         <div class="video custom_after_text" id="preview_media"> 
                                                             <div class="">Add Creative</div>
@@ -567,7 +567,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary close_youtube" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary save_youtube">Save changes</button>
+        <button type="button" class="btn btn-primary save_youtube">Add Video</button>
       </div>
     </div>
   </div>
@@ -843,7 +843,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 
+<!-- owl slider ---->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<!-- owl slider ---->
     <script>
+   
+
         $.validator.setDefaults({
             errorElement: 'span',
             errorPlacement: function (error, element) {
@@ -1008,43 +1020,43 @@
              
             if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
     
-           var image_vide='<ul>';
+           var image_vide='<div class="owl-carousel owl-theme ">';
 
             if(youtube_1){
                
                 const iframeMarkup = '<iframe src="'+youtube_1+'" frameborder="0" width="100%" allowfullscreen></iframe>';
                 
-                image_vide +='<li>'+iframeMarkup+'</li>';
+                image_vide +='<div class="item">'+iframeMarkup+'</div>';
             }
 
              if(youtube_2){
                 
                  const iframeMarkup = '<iframe src="'+youtube_2+'" frameborder="0" width="100%" allowfullscreen></iframe>';
-                 image_vide +='<li>'+iframeMarkup+'</li>';
+                 image_vide +='<div class="item">'+iframeMarkup+'</div>';
             }
 
              if(youtube_3){
                 
                  const iframeMarkup = '<iframe src="'+youtube_3+'" frameborder="0" width="100%" allowfullscreen></iframe>';
-                 image_vide +='<li>'+iframeMarkup+'</li>';
+                 image_vide +='<div class="item">'+iframeMarkup+'</div>';
             }
 
 
              if(image_1_img !== '#'){
                 
-                 image_vide +='<li><img src="'+ image_1_img +'" alt="" width="100%" /></li>';
+                 image_vide +='<div class="item"><img src="'+ image_1_img +'" alt="" width="100%" /></div>';
             }
              if(image_2_img !== '#'){
                
-                 image_vide +='<li><img src="'+ image_2_img +'" alt="" width="100%" /></li>';
+                 image_vide +='<div class="item"><img src="'+ image_2_img +'" alt="" width="100%" /></div>';
             }
 
              if(image_3_img !== '#'){
                 
-                 image_vide +='<li><img src="'+ image_3_img +'" alt="" width="100%" /></li>';
+                 image_vide +='<div class="item"><img src="'+ image_3_img +'" alt="" width="100%" /></div>';
             }
           
-            image_vide +='</ul>';
+            image_vide +='</div>';
             $('#preview_media').html(image_vide);
             for ($i = 1; $i < 6; $i++){
                 if(data == false){
@@ -1093,6 +1105,23 @@
                 }
                 if(t!==''){ $('#preview_filed_'+$i).html(t); }else{ $('#preview_filed_'+$i).html(t); }
             }
+
+          $(function() {
+              // Owl Carousel
+              var owl = $(".owl-carousel");
+              owl.owlCarousel({
+                items: 1,
+                margin: 10,
+                loop: false,
+                dots:false,
+                autoWidth:false,
+                nav: true,
+                navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"]
+              });
+            });
+
+     
+
         }
         updateformpreview();
         $('.PageFormStyle').on('input', function() { updateformpreview(); });
@@ -1151,9 +1180,22 @@ $(".save_youtube").click(function(){
 
 var youtube_url=$(".youtube_video").val();
 var vidd=$(".youtube_video").attr('data-video');
+if(youtube_url !==''){
+  var vid='';
+  var str2='https://www.youtube.com/watch?v=';
+  var str3='https://www.youtube.com/embed/';
+    
+
+    var tt=youtube_url.replace(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g, '<iframe src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
+  tt=tt.replace('https://','');
+
+   var y_url=validateYouTubeUrl(youtube_url);
+ 
+
+
   $(".video_"+vidd).find('label').hide();
   $(".video_"+vidd).addClass("disabled");
-  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+youtube_url+'"></iframe></div>';
+  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+y_url+'" frameborder="0" allowfullscreen></iframe></div>';
   $(".video_"+vidd).find('.youtube_iframe').remove(); 
   $(".video_"+vidd).find('label').after(html);
   custom_edit_vide();
@@ -1162,6 +1204,7 @@ setTimeout(function() {
 $('body').addClass('modal-open');
 updateformpreview();
 }, 500);
+}
 });
 
 $(".close_youtube").click(function(){
@@ -1197,12 +1240,34 @@ $(".remove_video").unbind().click(function(){
 });
 
 }
+
+
+function validateYouTubeUrl(url)
+{
+    
+        if (url != undefined || url != '') {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+            if (match && match[2].length == 11) {
+               
+              return 'https://www.youtube.com/embed/' + match[2];
+            }
+            else {
+                return url;
+            }
+        }
+}
+
+
     </script>
 }
 @endpush
 @push('style')
 
 <style>
+
+
+
     .formBlock{ margin-right: 90px}
     .formBlock.UseExistingCol{ margin-right: 600px}
 
@@ -1421,7 +1486,7 @@ font-size: 20px!important;
             transform: translate3d(0%, 0, 0);
             max-width: 104.5rem !important;
         }
-        .modal-header span{ color: #000!important; font-weight:500; }
+        .modal-header span{ color: #000!important; font-weight:400; }
         .modal-header .error.invalid-feedback,
         .bg-primary .error.invalid-feedback
         { color: #ff9e9e!important; font-size: 13px!important; }
@@ -1476,15 +1541,16 @@ font-size: 20px!important;
     left: 50%;
     z-index: 0;
     transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
 }
-   .video {
+.video {
     margin-bottom: 5px;
     padding: 0 5px;
     height: 100%;
-    max-height: 160px;
-    min-height: 160px;
     position: relative;
     overflow: hidden;
+    min-height: 160px;
 }
 #preview_media .video img {
     width: 100%;
@@ -1590,6 +1656,7 @@ font-size: 20px!important;
       color: #666;
       text-align: center;
       width: 100%;
+    letter-spacing: 0px;
     }
     .logo{
       text-align: center;
@@ -1944,6 +2011,53 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     transform: translate(-50%, -50%);
     width: 100%;
     margin: 0;
+}
+.modal-open #exampleModal .modal-dialog .form-group label {
+    font-size: 16px;
+    font-weight: 600;
+}
+#preview_media {
+    max-width: 280px;
+    width: 100%;
+}
+#preview_media .owl-carousel .owl-item img {
+    max-width: 280px;
+    width: 100%;
+    max-height: 160px;
+    margin: auto;
+    object-fit: contain;
+}
+#preview_media .owl-theme .owl-nav {
+    font-size: 18px;
+    line-height: 1;
+    font-family: 'Poppins';
+    font-weight: 500;
+}
+#preview_media .prev-slide:after {
+    content: "<";
+}
+#preview_media .next-slide:after {
+    content: ">";
+}
+#preview_media .owl-carousel .owl-stage {
+    margin: auto;
+    min-width: 150px;
+}
+#preview_media .owl-theme .owl-nav button {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 7px #00000038;
+}
+
+#preview_media .owl-theme .owl-nav .owl-next {right: 0;left: unset;color: #000;}
+#preview_media .owl-theme .owl-nav button:hover {
+    color: #000;
 }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
