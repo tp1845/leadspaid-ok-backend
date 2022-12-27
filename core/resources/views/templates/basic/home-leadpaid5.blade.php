@@ -133,7 +133,7 @@
         <div class="container my-4">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                <h2 class="title   pb-5">Advertisers Using LeadsPaid</h2>
+                <h2 class="title pb-5" style="margin-bottom: 20px!important">Advertisers Using LeadsPaid</h2>
                 </div>
             </div>
 
