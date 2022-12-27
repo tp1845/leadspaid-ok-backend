@@ -1521,7 +1521,9 @@ font-size: 20px!important;
         .select2-container .select2-search--inline .select2-search__field {
             margin-top: 9px !important;
         }
-
+        #preview_media > div {
+            background: #fff;
+        }
         .bootstrap-tagsinput {
             width: 100% !important;
             padding: 8px 6px !important;
@@ -1562,6 +1564,9 @@ font-size: 20px!important;
     z-index: 999999;
 }
 
+#formPreviewBLock .container .nav-btn {
+    font-family: cursive;
+}
     .video iframe {
       border: 1px solid #000;
     }
