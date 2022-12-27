@@ -4,7 +4,7 @@
 @endphp
 @section('content')
     {{-- @include($activeTemplate.'partials.breadcrumb') --}}
-    <section class="py-4">
+    <section class="page_middle py-4">
             <div class="container">
                 <div class="account-area">
                     <div class="row justify-content-center">
@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="form-group text-center my-4">
 
-                                                <small class="text-center">   <b>Enter the reset password which has been sent to your email.</b> <br>If you haven't received an email, please check your Junk/Spam Folder as well, otherwise, <a href="{{ route('home.contact') }}">contact us</a> </small>
+                                                <small class="text-center">   <b>Enter the reset password which has been sent to your email.</b> <br>If you haven't received an email, please check your Junk/Spam Folder as well, otherwise, <a href="{{ route('home.contact') }}" class="text-underline"><u>contact us</u></a> </small>
 
                                             </div>
                                             <div class="form-group text-center">
@@ -91,6 +91,7 @@
 @endpush
 @push('style')
 <style>
+    .page_middle{ border-top: 3px solid #1361b2; }
     .page_title{
         text-align: center;
         color: #191f58;
@@ -144,6 +145,7 @@
     #phoneInput .letter + .letter { }
 
     small b{ font-size: 15px; font-weight: 500; }
+
 
     @media (max-width: 480px) {
         #phoneInput .field-wrapper {

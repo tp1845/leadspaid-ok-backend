@@ -3,7 +3,7 @@
 @section('content')
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <!-- <link rel="stylesheet" href="https://leadspaid.com/assets/templates/basic/css/all.min.css"> -->
-<section class="Rg_advts">
+<section class="page_middle Rg_advts">
     <div class="container">
 
         <div class="row text-center">
@@ -122,7 +122,7 @@
 </script>
 @endpush
 <style>
-
+.page_middle{ border-top: 3px solid #1361b2; }
     .Rg_advts {
         font-family: Poppins !important;
         font-weight: 200;

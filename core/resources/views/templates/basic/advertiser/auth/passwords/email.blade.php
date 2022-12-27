@@ -5,7 +5,7 @@
 @section('content')
 {{-- @include($activeTemplate.'partials.breadcrumb') --}}
 
-<section class="pt-100 pb-100">
+<section class="page_middle pt-100 pb-100">
     <div class="container">
       <div class="account-area py-4">
         <div class="row justify-content-center">
@@ -48,6 +48,7 @@
 @endsection
 @push('style')
 <style>
+    .page_middle{ border-top: 3px solid #1361b2; }
     .page_title{
         text-align: center;
         color: #191f58;
