@@ -280,6 +280,9 @@
                                                 <div class="fbox">
                                                     <h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
                                                     <label class="col-form-label ar-16"><b>Youtube Videos </b><span class="ar-14"> </span> </label>
+
+                                                   
+
                                                    <div class="custom_image_video"> 
                                                     <div class="input-group input-col" id="video_image_1">
                                                         <div class="input-col "  style="width: 88%;">
@@ -394,8 +397,20 @@
                                                         <div class="input-group-append bg-none">
                                                             <div class="input-group-text">  </div>
                                                         </div>
+
+
+                                                      
+
                                                     </div>
+
+
                                                 </div>
+                                                 <div class="input-group input-col create_qty_error">
+                                                    <input type="text" name="create_qty" class="form-control create_qty">
+                                                </div>
+
+
+
                                                 </div>
                                             </div>
                                             <div class="col rightForm">
@@ -644,12 +659,17 @@
         image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block"; updateformpreview();  }}
         image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block"; updateformpreview(); }}
         image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block"; updateformpreview(); }}
+        
         $('.del-preview').on('click', function(){
-            $(this).next('img').attr('src' , '');
+            $(this).next('img').attr('src' , '#');
             $(this).parent().hide();
             var upload_box = $(this).parent().prev('.upload-box');
             $('.inputfile', upload_box).val("");
+           setTimeout(function() {
+
             updateformpreview();
+            
+            }, 500);
         });
 
         function show_next(id , event){
@@ -919,7 +939,8 @@
                 company_logo: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-                image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 }
+                image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
+                create_qty:{ required: true}
 
             },messages: {
                 campaign_name:{  required : 'Campaign Name is required.' },
@@ -947,6 +968,7 @@
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
+                create_qty: "Please add atleast one creative", 
             }
         });
     </script>
@@ -978,6 +1000,7 @@
 
         function updateformpreview(data = false) {
             resetformpreview();
+
             if(data == false){
             var youtube_1 = $('.video_1').find('iframe').attr('src');
             var youtube_2 = $('.video_2').find('iframe').attr('src');
@@ -1012,52 +1035,69 @@
             var company_logo = image_src +  data.company_logo;
             var Punchline = data.punchline;
             }
-
+           
             $('#preview_form_title').html(title_1);
             $('#preview_form_sub_title').html(sub_title_1);
             $('#preview_Punchline').html(Punchline);
            $('#preview_company_name').html(company_name);
-             
+              
             if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
     
            var image_vide='<div class="owl-carousel owl-theme ">';
-
+             var creative_status='';
             if(youtube_1){
                
                 const iframeMarkup = '<iframe src="'+youtube_1+'" frameborder="0" width="100%" allowfullscreen></iframe>';
                 
                 image_vide +='<div class="item">'+iframeMarkup+'</div>';
+                creative_status =1;
             }
 
              if(youtube_2){
                 
                  const iframeMarkup = '<iframe src="'+youtube_2+'" frameborder="0" width="100%" allowfullscreen></iframe>';
                  image_vide +='<div class="item">'+iframeMarkup+'</div>';
+                  creative_status =1;
             }
 
              if(youtube_3){
                 
                  const iframeMarkup = '<iframe src="'+youtube_3+'" frameborder="0" width="100%" allowfullscreen></iframe>';
                  image_vide +='<div class="item">'+iframeMarkup+'</div>';
+                  creative_status =1;
             }
 
 
              if(image_1_img !== '#'){
                 
                  image_vide +='<div class="item"><img src="'+ image_1_img +'" alt="" width="100%" /></div>';
+                  creative_status =1;
             }
              if(image_2_img !== '#'){
                
                  image_vide +='<div class="item"><img src="'+ image_2_img +'" alt="" width="100%" /></div>';
+                  creative_status =1;
             }
 
              if(image_3_img !== '#'){
                 
                  image_vide +='<div class="item"><img src="'+ image_3_img +'" alt="" width="100%" /></div>';
+                  creative_status =1;
             }
           
             image_vide +='</div>';
             $('#preview_media').html(image_vide);
+            if(creative_status==1){
+                $(".create_qty").val(creative_status);
+                $(".create_qty").attr('data-status',1);
+            }else{
+                 $(".create_qty").val('');
+                  $(".create_qty").attr('data-status',0);
+            }
+
+             
+
+            
             for ($i = 1; $i < 6; $i++){
                 if(data == false){
                 question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
@@ -2063,6 +2103,16 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 #preview_media .owl-theme .owl-nav .owl-next {right: 0;left: unset;color: #000;}
 #preview_media .owl-theme .owl-nav button:hover {
     color: #000;
+}
+.dataTables_wrapper .dataTables_filter {
+    width: 100%;
+}
+.create_qty {
+    min-height: 0 !important;
+    visibility: hidden;
+    padding: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
 }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
