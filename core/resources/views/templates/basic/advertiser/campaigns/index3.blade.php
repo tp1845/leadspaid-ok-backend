@@ -968,7 +968,7 @@
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
-                create_qty: "Please add atleast one creative", 
+                create_qty: "Add at least 1 creative", 
             }
         });
     </script>
