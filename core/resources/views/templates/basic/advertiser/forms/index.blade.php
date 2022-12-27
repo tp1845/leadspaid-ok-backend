@@ -132,5 +132,16 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     top: 50% !important;
     content: "▼" !important;
 }
+@media (min-width: 768px){
+.form-list-wrapper-new{
+    position: relative;
+}
+#form_list_wrapper #form_list_filter {
+    position: absolute;
+    right: 0;
+    top: -45px;
+    text-align: right;
+}
+}
 </style>
 @endpush
