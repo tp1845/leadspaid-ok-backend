@@ -415,8 +415,8 @@
         }
 
         .MainBanner-Home .sub_title{
-            background-color: #00000099;
-            box-shadow: 5px 5px 0 #1361b2;
+            background-color: #000000aa;
+            /* box-shadow: 5px 5px 0 #1361b2; */
             color: #fff;
             font-size: 28px;
             font-weight: 500;
