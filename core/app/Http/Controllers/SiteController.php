@@ -244,6 +244,13 @@ class SiteController extends Controller
 
     public function privacy_policy()
     {
+        $id = 137;
+        $policy     = Frontend::findOrFail($id);
+        $page_title = $policy->data_values->heading;
+        return view($this->activeTemplate . 'sections.policy', compact('policy', 'page_title'));
+    }
+    public function privacy_policy_old()
+    {
         $id = 127;
         $policy     = Frontend::findOrFail($id);
         $page_title = $policy->data_values->heading;

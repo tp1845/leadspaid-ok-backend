@@ -573,6 +573,7 @@ Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details
 Route::get('/ads/{publisher}/{type}/{current}', 'VisitorController@getAdvertise')->name('adsUrl');
 Route::get('/ad-clicked/{publisher}/{track_id}', 'VisitorController@adClicked')->name('adClicked');
 Route::get('company/plicy/{id}/{slug}', 'SiteController@policy')->name('policy');
+Route::get('privacy-policy-old', 'SiteController@privacy_policy_old')->name('privacy_policy_old');
 Route::get('privacy-policy', 'SiteController@privacy_policy')->name('privacy_policy');
 Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_condition');
 
