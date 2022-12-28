@@ -1773,15 +1773,15 @@ font-size: 20px!important;
       padding: 0;
     }
     #loadData > * {
-        padding: 0 5px;
+        padding: 0 5px !important;
     }
     .form-row {
-        width: 100%;
-        padding: 0 5px;
-        margin: 8px 0 0 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
+        width: 100% !important;
+        padding: 0 5px !important;
+        margin: 8px 0 0 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
     }
 
     .form-row.form-check {
@@ -2274,6 +2274,25 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 #formPreviewBLock  .video {
     margin: 0 !important;
 }
+#formPreviewBLock .form-row input:-moz-placeholder {
+      font-weight: 500;
+    }
+
+    #formPreviewBLock .form-row input::-moz-placeholder {
+      font-weight: 500;
+    }
+
+    #formPreviewBLock .form-row input:-ms-input-placeholder {
+      font-weight: 500;
+    }
+
+    #formPreviewBLock .form-row input::-ms-input-placeholder {
+      font-weight: 500;
+    }
+
+    #formPreviewBLock .form-row input::placeholder {
+      font-weight: 500;
+    }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
 @endpush
