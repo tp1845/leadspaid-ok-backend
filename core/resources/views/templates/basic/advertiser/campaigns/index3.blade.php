@@ -924,7 +924,7 @@
             function(value, element) {
               var  $result =$.map(campaigns, function(item,i){ name =item.campaign_forms.form_name;
 			  console.log(name.toLowerCase());
-			  console.log(value.toLowerCase());
+			  
 			  if(name.toLowerCase() == value.toLowerCase())
 			  {
 				 return 'exits'; 
