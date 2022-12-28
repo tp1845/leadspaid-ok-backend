@@ -1342,7 +1342,7 @@ $('body').addClass('modal-open');
 updateformpreview();
   }, 500);
     }else{
-   alert("invlaid url")
+   alert("invalid  url")
   }
 }
 });
