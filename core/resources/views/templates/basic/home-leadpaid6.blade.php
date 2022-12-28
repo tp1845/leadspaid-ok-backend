@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3> Get High Quality Leads & Boost your Revenue.</h3>
+                   <h3> Great Leads · Great Sales!!!</h3>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
             </div><!-- /.row -->
         </div>
     </div>
-    <section class="bg-light p-1 py-5 py-lg-5 " >
+    <section id="section_advertisers" class="bg-light p-1 py-5 py-lg-5 " >
         <div class="container my-4">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -355,6 +355,7 @@
 
         .bg-gray{ background-color: #e0e0e0 !important; }
         .bg-light{ background-color: #e9e9e9 !important; }
+        #section_advertisers{  background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}gray_wave_bg.jpg") no-repeat cover center!important; }
         .title{ color: #1a273a; font-size: 3rem; }
 
         #MainHeroHeader{

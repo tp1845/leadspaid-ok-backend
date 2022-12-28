@@ -160,7 +160,7 @@ class RegisterController extends Controller
           ], [
             'email.required' => 'A email is required',
             'email.email' => 'Please specify a real email',
-            'email.unique' => 'An Advertiser with email id ('.$request->email.') already exists.<br/> Please <a href ="https://leadspaid.com/login-advertiser"><u> Click here </u></a> to login or use a different email address to register.',
+            'email.unique' => 'An Advertiser with email id ('.$request->email.') already exist.<br/> Please <a href ="https://leadspaid.com/login-advertiser"><u> Click here</u></a> to login or use a different email address to register.',
             'password.required' => 'Password is required.',
           ]);
 
