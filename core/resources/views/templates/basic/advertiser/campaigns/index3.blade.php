@@ -1318,6 +1318,7 @@ $(".save_youtube").click(function(){
 
 var youtube_url=$(".youtube_video").val();
 var vidd=$(".youtube_video").attr('data-video');
+$('.video_error').remove();
 if(youtube_url !==''){
   var vid='';
   var str2='https://www.youtube.com/watch?v=';
@@ -1342,8 +1343,10 @@ $('body').addClass('modal-open');
 updateformpreview();
   }, 500);
     }else{
-   alert("invlaid url")
+    $(".youtube_video").after('<p class="video_error" style="color:red;">Fill a valid youtube url to embed in the following formats only eg.""https://www.youtube.com/embed/VPRTIMer5xM OR <br/>https://www.youtube.com/watch?v=VPRTIMer5xM</p>');
   }
+}else{
+    $(".youtube_video").after('<p class="video_error" style="color:red;"> Field is required</p>');
 }
 });
 
@@ -2269,7 +2272,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 #formPreviewBLock .container {
     overflow: hidden;
     padding: 0 !important;
-    margin: 10px auto !important; 
+    margin: 10px auto !important;
 }
 #formPreviewBLock  .video {
     margin: 0 !important;
