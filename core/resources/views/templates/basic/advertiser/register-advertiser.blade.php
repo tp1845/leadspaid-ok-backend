@@ -34,10 +34,10 @@
                             <div class="Rg_advts_bsc" id="publisher___form">
                                 <h4 class="Rg_advts_bsc_ttls mb-4">Basic Information</h4>
                                 <div class="form-group mb-3">
-                                    <input type="text" id="company_name"  name="company_name" class="form-control Rg_advts_name rounded-0" placeholder="Company Name" >
+                                    <input type="text" id="company_name"  name="company_name" value="{{old('company_name')}}" class="form-control Rg_advts_name rounded-0"  placeholder="Company Name" >
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input type="text" id="full_name" name="name" name="text" class="form-control Rg_advts_name rounded-0" placeholder="Full Name">
+                                    <input type="text" id="full_name" name="name" value="{{old('name')}}" class="form-control Rg_advts_name rounded-0" placeholder="Full Name">
                                 </div>
                                 <div class="form-group mb-3 custom-state">
                                     <select name="country" class="form-select rounded-0" id="country_id">
@@ -50,7 +50,7 @@
                                         <select name="country_code" class="form-select country_code rounded-0">
                                             @include('partials.country_code')
                                         </select>
-                                        <input type="text" name="phone" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
+                                        <input type="text" name="phone" value="{{old('phone')}}" id="your_phone" class="form-control Rg_advts_name rounded-0" placeholder="@lang('Your Phone Number')">
                                     </div>
                                 </div>
                             </div>
@@ -60,17 +60,17 @@
                                 <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
                                 <div class="Rg_advts_form">
                                     <div class="form-group mb-3">
-                                        <textarea name="product_services" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea"></textarea>
+                                        <textarea name="product_services" value="{{old('product_services')}}" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea"></textarea>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="text" name="Website" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
+                                        <input type="text" name="Website" value="{{old('Website')}}" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="text" name="Social" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
+                                        <input type="text" name="Social" value="{{old('Social')}}" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
                                     </div>
                                     <div class="form-group mb-3">
                                         <div class="us_doller">
-                                            <input type="text" name="ad_budget" id="ad_budget" class="form-control Rg_advts_name rounded-0" placeholder="Ad Budget Per Month">
+                                            <input type="text" name="ad_budget" value="{{old('ad_budget')}}" id="ad_budget" class="form-control Rg_advts_name rounded-0" placeholder="Ad Budget Per Month">
                                         </div>
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group mb-3">
-                                                <input type="text" name="email" id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
+                                                <input type="text" name="email" value="{{old('email')}}"  id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
                                             </div>
                                         </div>
                                     </div>
@@ -95,7 +95,6 @@
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
                                                 <input type="password" name="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password">
-
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -231,13 +230,11 @@ $("#full_name").capitalize();
     margin-bottom: 5px;
 }
 
-
 .Rg_advts .form-group input:focus{
     outline: 0;
     border-color: #777;
 
 }
-
 
 .Rg_advts textarea, .Rg_advts textarea:hover {
     border:1px solid #94a1b5;

@@ -97,7 +97,7 @@ class ResetPasswordController extends Controller
             'time' => $userAgent['time']
         ]);
 
-        $notify[] = ['success', 'Password Changed'];
+        $notify[] = ['success', 'Your password has been changed. Login now.'];
         return redirect()->route('login_advertiser')->withNotify($notify);
     }
 

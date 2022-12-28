@@ -153,6 +153,10 @@ class RegisterController extends Controller
     }
 
     public function register_advertiser(Request $request){
+        $request->validate([
+            'email' => 'required|string|email|max:160|unique:advertisers',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
 
         event(new Registered($user = $this->create_adv($request->all())));
         $this->guard()->login($user);
