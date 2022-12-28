@@ -60,7 +60,7 @@
                                 <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
                                 <div class="Rg_advts_form">
                                     <div class="form-group mb-3">
-                                        <textarea name="product_services" value="{{old('product_services')}}" placeholder="Products or Services for which you want to generate leads" id="floatingTextarea"></textarea>
+                                        <textarea name="product_services"  placeholder="Products or Services for which you want to generate leads" id="floatingTextarea">{{old('product_services')}}</textarea>
                                     </div>
                                     <div class="form-group mb-3">
                                         <input type="text" name="Website" value="{{old('Website')}}" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">

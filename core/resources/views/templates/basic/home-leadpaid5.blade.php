@@ -75,7 +75,7 @@
                         </li>
                         <li>
                             <b><span>2</span> Relevant Audience Fill the Form  </b>
-                            <p>Highly relevant audiences visit these pages & fill your lead form </p>
+                            <p>Highly relevant audiences visit these pages and fill your lead form</p>
                         </li>
                         <li>
                             <b><span>3</span> Downlead Leads </b>
@@ -117,7 +117,7 @@
             <div class="row pt-5  align-items-center  ">
                 <div class="col-lg-8  ">
                 <div class="fw-normal-side"  >
-                        <h3 class="fw-normal mb-5 w-100">A New Leads Generation Platform  <br>
+                        <h3 class="fw-normal mb-5 w-100">A New Lead Generation Platform  <br>
                         <span>To Generate Leads Through Popular Publishers</span></h3>
                         <p class=" h2 p-0 text-muted"><i class="fas fa-quote-left"></i></p>
                         <p class="text2">You don't need to own a website or social media to generate leads </p>
