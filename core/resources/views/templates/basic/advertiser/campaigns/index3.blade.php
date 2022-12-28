@@ -1397,7 +1397,7 @@ function validateYouTubeUrl(url)
                 return url;
             }
             }else{
-                alert("invlide url");
+                
                 return '';
             }
 
