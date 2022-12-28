@@ -2,26 +2,9 @@
   $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
 @endphp
 <style>
- .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
+   .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
 .custom_side_bar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    align-content: space-between;
-}
-.sidebar__menu.footer-fix {
-    margin-bottom: 60px;
-}
-.custom_side_bar ul li a {
-    padding: 5px 13px !important;
-}
-
-
-
-    .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
-.custom_side_bar {
-    display: flex;
+/*    display: flex;*/
     flex-wrap: wrap;
     align-items: center;
     align-content: space-between;
@@ -30,27 +13,46 @@
     transition:unset;
     position: relative;
 }
+.sidebar__menu {
+    margin-bottom: 35vh;
+}
 .sidebar, .slimScrollDiv {
     transition:unset;
 }
-.sidebar__menu {
+.sidebar__menu.footer-fix {
+    margin-bottom: 0 !important;
+    border-top: 1px solid #626262;
+}
+
+/*.sidebar__menu {
     margin-bottom: 0;
     position: absolute;
     left: 0;
     top: 0;
 
-}
-.sidebar__menu.footer-fix {
+}*/
+/*.sidebar__menu.footer-fix {
     margin-bottom: 60px;
     position: absolute;
     left: 0;
     top: auto;
     bottom: 0;
-}
+}*/
 .custom_side_bar ul li a {
     padding: 5px 13px !important;
 }
-
+.input-col .invalid-feedback {
+    width: 100%;
+    color: #ff9e9e;
+}
+#campaign_create_modal .PageFormStyle .form-control::placeholder {
+    font-weight: 400;
+}
+@media (min-width:1441px){
+    .sidebar__menu {
+        margin-bottom: 55vh;
+    }
+}
 
 
    
