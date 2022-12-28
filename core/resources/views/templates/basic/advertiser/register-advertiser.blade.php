@@ -20,9 +20,10 @@
 <section class="Rg_advts">
     <div class="container">
         <div class="row text-center">
-            <div class="col-lg-12">
+            <div class="col-lg-12 mb-5" >
                 <p class="Rg_advts_ttls_1 pt-5">Generate Leads Now!</p>
-                <p class="Rg_advts_ttls mb-5">REGISTER AS ADVERTISER</p>
+                <p class="Rg_advts_ttls">REGISTER AS ADVERTISER</p>
+                <div class="w-75 m-auto" id="errors_message"></div>
             </div>
         </div>
         <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
@@ -124,7 +125,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 @endpush
 @push('script')
-
+@include('templates.basic.partials.show-errors');
 <script>
 jQuery.fn.capitalize = function() {
     $(this[0]).keyup(function(event) {
@@ -196,7 +197,7 @@ $("#full_name").capitalize();
             phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
             email:{  required : 'email is required.'},
             product_services:{  required : 'Lead Generation Information is required.', minlength:'Please fill your Lead Generation Information in detail.', },
-            ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.', min: 'Ad Budget Should be greater than $1000.' },
+            ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.', min: 'Ad Budget per month should be at least $1000.' },
             password:{  required : 'Please fill a stronger password.',  minlength : 'Please fill a stronger password.',  },
             password_confirmation:{  required : 'The password and its confirm are not the same.', equalTo: 'The password and its confirm are not the same.'}
 

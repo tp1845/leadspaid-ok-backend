@@ -2,9 +2,9 @@
 <script src="{{ asset('assets/admin/js/iziToast.min.js') }}"></script>
 @if(session()->has('notify'))
     @foreach(session('notify') as $msg)
-        <script> 
+        <script>
             "use strict";
-            iziToast.{{ $msg[0] }}({message:"{{ __($msg[1]) }}", position: "topRight"}); 
+            iziToast.{{ $msg[0] }}({message:"{{ __($msg[1]) }}", position: "topRight"});
         </script>
     @endforeach
 @endif
@@ -19,7 +19,7 @@
         "use strict";
         @foreach ($errors as $error)
         iziToast.error({
-            message: '{{ __($error) }}',
+            message: '{!! $error !!}',
             position: "topRight"
         });
         @endforeach

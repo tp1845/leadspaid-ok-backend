@@ -153,10 +153,17 @@ class RegisterController extends Controller
     }
 
     public function register_advertiser(Request $request){
+
         $request->validate([
             'email' => 'required|string|email|max:160|unique:advertisers',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+          ], [
+            'email.required' => 'A email is required',
+            'email.email' => 'Please specify a real email',
+            'email.unique' => 'Email id ('.$request->email.') already exists. Please <a href ="https://leadspaid.com/login-advertiser"> Click here</a> to login or use a different email id.',
+            'password.required' => 'Password is required.',
+          ]);
+
 
         event(new Registered($user = $this->create_adv($request->all())));
         $this->guard()->login($user);

@@ -21,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-    <link href="{{asset('assets/templates/leadpaid/css/blue/styles.min.css')}}" rel="stylesheet" >
+    <link href="{{asset('assets/templates/leadpaid/css/blue/styles.min.css?v1')}}" rel="stylesheet" >
     <link rel="stylesheet" href="{{asset('assets/templates/basic/css/line-awesome.min.css')}}">
     @stack('style-lib')
     @stack('style')
@@ -348,8 +348,7 @@
         @stack('script-lib')
         @stack('script')
         <style>
-            @media screen and (max-width: 992px){ #MainNav .logo img{ max-width: 240px!important;}  }
-            .navbar-toggler-icon {  width: 1.3em;  height: 1.3em;  }
+            @media screen and (max-width: 992px){ #MainNav .logo img{ max-width: 189px!important;}  }
         </style>
         </body>
     </html>

@@ -45,18 +45,15 @@ function getLatestVersion()
     }
 }
 
-
 function slug($string)
 {
     return Illuminate\Support\Str::slug($string);
 }
 
-
 function shortDescription($string, $length = 120)
 {
     return Illuminate\Support\Str::limit($string, $length);
 }
-
 
 function shortCodeReplacer($shortCode, $replace_with, $template_string)
 {
@@ -574,7 +571,7 @@ function send_email_adv($user, $type = null, $link)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= $email_template->subj;
-    $message = '<p>Please verify your account on this link</p>';
+    $message = '<p>Please verify your <a href="https://leadspaid.com/">LeadsPaid.com</a> account by clicking this link</p>';
     $message .= '<p><a href='.$link.'>'.$link.'</a></p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
@@ -586,8 +583,8 @@ function send_email_adv_activated($user, $type = null, $name)
     if ($general->en != 1 || !$email_template) { return; }
     $sendto_email=$user->email;
     $receiver_name = $user->name;
-    $subject= 'Your LeadsPaid.com Account has been activated.';;
-    $message = ' <p> Your LeadsPaid.com account has been activated! <br/> Please login to www.leadspaid.com/register-advertiser to create your first lead generation campaign.</p>';
+    $subject= 'Your LeadsPaid.com Account has been activated. Create Campaign Now';
+    $message = ' <p> Your LeadsPaid.com account has been activated! <br/>  Please login to https://www.leadspaid.com/login-advertiser to create your first lead generation campaign.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -598,8 +595,8 @@ function send_email_adv_admin($user, $type = null, $username)
     if ($general->en != 1 || !$email_template) { return; }
     $sendto_email= 'arun.saba@leadspaid.com';
     $receiver_name = 'Admin';
-    $subject= $email_template->subj;
-    $message = ' <p>A new Advertiser ('. $user->company_name .') has registered for an Advertiser account.<br/> Approve it in admin panel.</p>';
+    $subject= 'New Advertiser registered - Approve Now';
+    $message = '<p>A new Advertiser ('. $user->company_name .') has registered for an Advertiser account.<br/> <a href="https://www.leadspaid.com/admin">Approve it in admin panel</a>.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 

@@ -7,8 +7,15 @@
     <div class="container">
 
         <div class="row text-center">
-            <div class="col-lg-12 pt-4">
-               <p class="Page_title mb-5">ADVERTISER LOGIN</p>
+            <div class="col-lg-12 pt-4 mb-5">
+               <p class="Page_title">ADVERTISER LOGIN</p>
+               <div class="col-md-6 m-auto" id="errors_message">
+                    @if(session()->has('notify'))
+                        @foreach(session('notify') as $msg)
+                        <div class="alert alert-danger" role="alert">  {!! $msg[1] !!} </div>
+                        @endforeach
+                    @endif
+                </div>
             </div>
         </div>
         <div class="row">
@@ -122,7 +129,7 @@
 </script>
 @endpush
 <style>
-.page_middle{ border-top: 3px solid #1361b2; }
+.page_middle{ border-top: 5px solid #1361b2; }
     .Rg_advts {
         font-family: Poppins !important;
         font-weight: 200;

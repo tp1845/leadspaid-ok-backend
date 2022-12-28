@@ -91,7 +91,7 @@
 @endpush
 @push('style')
 <style>
-    .page_middle{ border-top: 3px solid #1361b2; }
+    .page_middle{ border-top: 5px solid #1361b2; }
     .page_title{
         text-align: center;
         color: #191f58;
