@@ -574,7 +574,8 @@ function send_email_adv($user, $type = null, $link)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= $email_template->subj;
-    $message = '<p>Please verify your account on this link  <a href='.$link.'>Click here</a></p>';
+    $message = '<p>Please verify your account on this link</p>';
+    $message .= '<p><a href='.$link.'>'.$link.'</a></p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -586,7 +587,7 @@ function send_email_adv_activated($user, $type = null, $name)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= 'Your LeadsPaid.com Account has been activated.';;
-    $message = ' <p> Your LeadsPaid.com account has been activated! <br/> Please login to www.leadspaid.com/register-advertiser to create your first lead generation campaign</p>';
+    $message = ' <p> Your LeadsPaid.com account has been activated! <br/> Please login to www.leadspaid.com/register-advertiser to create your first lead generation campaign.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -598,7 +599,7 @@ function send_email_adv_admin($user, $type = null, $username)
     $sendto_email= 'arun.saba@leadspaid.con';
     $receiver_name = 'Admin';
     $subject= $email_template->subj;
-    $message = ' <p> User '.$username.' verifyed. Please activate user from admin pannel</p>';
+    $message = ' <p>A new Advertiser ('. $user->company_name .') has registered for an Advertiser account.<br/> Approve it in admin panel.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
