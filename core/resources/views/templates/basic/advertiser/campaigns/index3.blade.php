@@ -1332,7 +1332,7 @@ if(y_url !== ""){
 
   $(".video_"+vidd).find('label').hide();
   $(".video_"+vidd).addClass("disabled");
-  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+y_url+' & modestbranding=1" frameborder="0" allowfullscreen></iframe></div>';
+  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+y_url+'" frameborder="0" allowfullscreen></iframe></div>';
   $(".video_"+vidd).find('.youtube_iframe').remove(); 
   $(".video_"+vidd).find('label').after(html);
   custom_edit_vide();
@@ -2028,7 +2028,7 @@ font-size: 20px!important;
 .custom_image_video .upload-box label span {
     font-size: 14px;
         white-space: nowrap;
-        font-weight: 200;
+        font-weight: 300;
 }
 .custom_image_upload .input-group .input-col, .custom_image_video .input-group .input-col {
     width: 100% !important;
@@ -2275,23 +2275,23 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     margin: 0 !important;
 }
 #formPreviewBLock .form-row input:-moz-placeholder {
-      font-weight: 500;
+      font-weight: 400;
     }
 
     #formPreviewBLock .form-row input::-moz-placeholder {
-      font-weight: 500;
+      font-weight: 400;
     }
 
     #formPreviewBLock .form-row input:-ms-input-placeholder {
-      font-weight: 500;
+      font-weight: 400;
     }
 
     #formPreviewBLock .form-row input::-ms-input-placeholder {
-      font-weight: 500;
+      font-weight: 400;
     }
 
     #formPreviewBLock .form-row input::placeholder {
-      font-weight: 500;
+      font-weight: 400;
     }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
