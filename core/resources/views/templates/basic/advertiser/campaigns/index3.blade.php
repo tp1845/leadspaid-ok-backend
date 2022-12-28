@@ -2102,8 +2102,8 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     width: 100%;
 }
 #preview_media .owl-carousel .owl-item img {
-    max-width: 300px;
-    width: 100%;
+    max-width: unset;
+    width: unset;
     max-height: 160px;
     margin: auto;
     object-fit: contain;
