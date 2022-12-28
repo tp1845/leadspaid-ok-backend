@@ -119,7 +119,7 @@ class ProcessController extends Controller
             $newDateTime = date('h A', strtotime($currentDateTime));
             $expectedDateTime = \Carbon\Carbon::parse($this->TimezoneFromName($user->country));
             $notify[] = ['success', 'Successfully charged ' .  $currentDateTime];
-            if ($newDateTime === "06 AM") {
+            if ($newDateTime === "10 AM") {
                 $previous_deposit = $user->wallet_deposit;
                 $new_deposit =  $previous_deposit - $user->amount_used;
                 $amount =  $user->total_budget - $new_deposit;
