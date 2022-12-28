@@ -1708,8 +1708,8 @@ font-size: 20px!important;
             /*background: #fff;*/
             min-height: 160px;
             line-height: 160px;
-            display: flex;
-            align-items: center;
+            /*display: flex;
+            align-items: center;*/
         }
         .bootstrap-tagsinput {
             width: 100% !important;
