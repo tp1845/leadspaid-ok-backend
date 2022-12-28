@@ -1299,6 +1299,16 @@ function validateYouTubeUrl(url)
 }
 
 
+function validateYouTubeUrl2(urlToParse){
+                if (urlToParse) {
+                    var regExp = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+                    if (url.match(regExp)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
     </script>
 }
 @endpush
@@ -1625,14 +1635,16 @@ font-size: 20px!important;
       margin: 0 0 10px 0;
       padding: 0;
     }
-
+    #loadData > * {
+        padding: 0 5px;
+    }
     .form-row {
-      width: 100%;
-      margin-bottom: 8px;
-      padding: 0 5px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+        width: 100%;
+        padding: 0 5px;
+        margin: 8px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .form-row.form-check {
@@ -1701,7 +1713,7 @@ font-size: 20px!important;
       color: #666;
       text-align: center;
       width: 100%;
-    letter-spacing: 0px;
+      letter-spacing: 0px;
     }
     .logo{
       text-align: center;
@@ -2025,18 +2037,19 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 
 #formPreviewBLock  .container {
-    width: 306px;
+    width: 100%;
     margin: 10px auto;
     background-color: #f4f4f4;
-    max-width: 306px;
+    max-width: 330px;
     height: 606px;
     overflow-y: auto;
     border: 3px solid #113399;
-    padding-left: 10px;
-    padding-right: 10px;
+/*    padding-left: 10px;
+    padding-right: 10px;*/
     padding-top: 10px;
     padding-bottom: 2px;
     display: flex;
+    padding: 0;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
@@ -2062,11 +2075,11 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     font-weight: 600;
 }
 #preview_media {
-    max-width: 280px;
+    max-width: 300px;
     width: 100%;
 }
 #preview_media .owl-carousel .owl-item img {
-    max-width: 280px;
+    max-width: 300px;
     width: 100%;
     max-height: 160px;
     margin: auto;
