@@ -355,7 +355,7 @@
 
         .bg-gray{ background-color: #e0e0e0 !important; }
         .bg-light{ background-color: #e9e9e9 !important; }
-        #section_advertisers{  background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}gray_wave_bg.jpg") no-repeat cover center!important; }
+        #section_advertisers{  background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}/gray_wave_bg.jpg") no-repeat center!important; background-size: cover; }
         .title{ color: #1a273a; font-size: 3rem; }
 
         #MainHeroHeader{
