@@ -583,7 +583,7 @@ function send_email_adv_activated($user, $type = null, $name)
     if ($general->en != 1 || !$email_template) { return; }
     $sendto_email=$user->email;
     $receiver_name = $user->name;
-    $subject= 'Your LeadsPaid.com Account has been activated. Create Campaign Now';
+    $subject= 'Your LeadsPaid.com Account has been activated. Create Campaign Now »';
     $message = ' <p> Your LeadsPaid.com account has been activated! <br/>  Please login to https://www.leadspaid.com/login-advertiser to create your first lead generation campaign.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }

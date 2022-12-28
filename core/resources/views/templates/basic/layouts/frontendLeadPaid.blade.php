@@ -288,7 +288,7 @@
                             @if(Request::get('v') == 2 )
                             <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 250px" alt="site-logo">
                            @else
-                            <img src="{{asset('assets/templates/leadpaid/images/logo.png')}}" style="max-width: 250px" alt="site-logo">
+                            <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60.png?v4')}}" style="max-width: 250px" alt="site-logo">
                            @endif
                         </a>
                         <p class="text-light mt-3" style="font-size: 18px"> 1401 21st Street STE R,<br/> Sacramento,  California 95811<br/> United States. </p>
@@ -347,8 +347,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
         @stack('script-lib')
         @stack('script')
-        <style>
-            @media screen and (max-width: 992px){ #MainNav .logo img{ max-width: 189px!important;}  }
-        </style>
+            <style> @media screen and (max-width: 992px){ #MainNav .logo{ margin: auto; } #MainNav .logo img{ max-width: 216px!important;} } </style>
         </body>
     </html>
