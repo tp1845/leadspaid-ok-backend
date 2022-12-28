@@ -655,7 +655,7 @@
         });
 
 
-        form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; updateformpreview(); }}
+        form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; updateformpreviewtext(); }}
         image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block"; updateformpreview();  }}
         image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block"; updateformpreview(); }}
         image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block"; updateformpreview(); }}
@@ -829,7 +829,9 @@
                     targets: '_all',
                     visible: true
                 }
-                ],"sDom": 'Lfrtlip'
+                ],"sDom": 'Lfrtlip',"language": {
+      "lengthMenu": "Show rows  _MENU_"
+   } 
             });
             $("#sortable").sortable({
                 handle: ".handle",
@@ -910,6 +912,7 @@
             },
             "Minimum 3 fileds are requried"
         );
+
         var campaigns =  @json($campaignsval);
         $.validator.addMethod(
             "unique_campaign_name",
@@ -923,13 +926,13 @@
             "unique_form_name",
             function(value, element) {
               var  $result =$.map(campaigns, function(item,i){ name =item.campaign_forms.form_name;
-			  
-			  if(name.toLowerCase() == value.toLowerCase())
-			  {
-				 return 'exits'; 
-		      }  
-			  })[0];
-			  
+                
+              if(name.toLowerCase() == value.toLowerCase())
+              {
+                  
+                  return 'exits'; 
+              }  
+              })[0];
               return $result == 'exits'?false:true;
             },
             "Use a different Form name (Same Form Name already exist)"
@@ -1167,11 +1170,99 @@
               });
             });
 
+     console.log("test");
+
+        }
+
+function updateformpreviewtext(data = false) {
+           
+
+            if(data == false){
+         
+            var title_1 = $('#FormTitleInput_1').val();
+            var title_2 = $('#FormTitleInput_2').val();
+            var title_3 = $('#FormTitleInput_3').val();
+            var sub_title_1 = $('#form_desc_1_Input').val();
+            var sub_title_2 = $('#form_desc_2_Input').val();
+            var sub_title_3 = $('#form_desc_3_Input').val();
+            var company_name = $('#company_name_Input').val();
+            var company_logo = $('#company_logo_img').attr('src');
+            var Punchline = $('#FormPunchlineInput').val();
+            }else{
+            
+            var title_1 = data.title[1];;
+            var title_2 = data.title[2];
+            var title_3 = data.title[3];
+            var sub_title_1 = data.form_desc[1];
+            var sub_title_2 = data.form_desc[1];
+            var sub_title_3 = data.form_desc[1];
+            var company_name =  data.company_name;
+            var company_logo = image_src +  data.company_logo;
+            var Punchline = data.punchline;
+            }
+           
+            $('#preview_form_title').html(title_1);
+            $('#preview_form_sub_title').html(sub_title_1);
+            $('#preview_Punchline').html(Punchline);
+           $('#preview_company_name').html(company_name);
+              
+            if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
+    for ($i = 1; $i < 6; $i++){
+                if(data == false){
+                question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
+                question_text =  $('input[name="field_'+$i+'[question_text]"]').val();
+                question_required =  $('input[name="field_'+$i+'[required]"]').prop('checked')?'*':'';
+                }else{
+                    question_type = null;
+                    question_text =  null;
+                    question_required =  null;
+                    options=  [];
+                    var fd = data['field_'+$i];
+                    if( fd ){
+                        question_type = fd['question_type'];
+                        question_text = fd['question_text'];
+                        if(fd['required']){ question_required =  fd['required']?'*':''; }else{ question_required = '';  }
+                        if(question_type == 'MultipleChoice'){
+                            if(fd['option_1']){ options[0]= fd['option_1'] ; }
+                            if(fd['option_2']){ options[1]= fd['option_2'] ; }
+                            if(fd['option_3']){ options[2]= fd['option_3'] ; }
+                            if(fd['option_4']){ options[3]= fd['option_4'] ; }
+                            if(fd['option_5']){ options[4]= fd['option_5'] ; }
+                            if(fd['option_6']){ options[5]= fd['option_6'] ; }
+                        }
+                    }
+                }
+                t ='';
+                if(question_type === 'MultipleChoice'){
+                    t +='<select class="form-select" id="Input_field_'+$i+'"';
+                    t +='>';
+                        if(question_text){  t +='<option selected value="" class="holder"> '+question_text+ question_required +' </option>'; }
+                        if(data == false){
+                            for ($j = 1; $j < 7; $j++){
+                                op =  $('input[name="field_'+$i+'[option_'+$j+']"]').val();
+                                if(op){ t +='<option value="'+ op+'">'+ op+'</option>'; }
+                            }
+                        }else{
+                            $.each(options, function (key, val) {
+                                t +='<option value="'+ val+'">'+ val+'</option>';
+                            });
+                        }
+                        t +='</select>';
+                }else if(question_type === 'ShortAnswer'){
+                    t +='<input type="text" class="form-control" id="Input_field_'+$i+'" placeholder="'+question_text+ question_required +'" ';
+                    t +='>';
+                }
+                if(t!==''){ $('#preview_filed_'+$i).html(t); }else{ $('#preview_filed_'+$i).html(t); }
+            }
+
+         
      
 
         }
-        updateformpreview();
-        $('.PageFormStyle').on('input', function() { updateformpreview(); });
+
+       // updateformpreview();
+        $('.PageFormStyle').on('input', function() { updateformpreviewtext(); 
+        });
 
     function getVideoId(url) {
         const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -1233,16 +1324,15 @@ if(youtube_url !==''){
   var str3='https://www.youtube.com/embed/';
     
 
-    var tt=youtube_url.replace(/(?:http:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=)?(.+)/g, '<iframe src="http://www.youtube.com/embed/$1" frameborder="0" allowfullscreen></iframe>');
-  tt=tt.replace('https://','');
+    
 
    var y_url=validateYouTubeUrl(youtube_url);
  
-
+if(y_url !== ""){
 
   $(".video_"+vidd).find('label').hide();
   $(".video_"+vidd).addClass("disabled");
-  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+y_url+'" frameborder="0" allowfullscreen></iframe></div>';
+  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+y_url+' & modestbranding=1" frameborder="0" allowfullscreen></iframe></div>';
   $(".video_"+vidd).find('.youtube_iframe').remove(); 
   $(".video_"+vidd).find('label').after(html);
   custom_edit_vide();
@@ -1250,7 +1340,10 @@ $("#exampleModal").modal("hide");
 setTimeout(function() {
 $('body').addClass('modal-open');
 updateformpreview();
-}, 500);
+  }, 500);
+    }else{
+   alert("invlaid url")
+  }
 }
 });
 
@@ -1291,9 +1384,10 @@ $(".remove_video").unbind().click(function(){
 
 function validateYouTubeUrl(url)
 {
-    
+
         if (url != undefined || url != '') {
-            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
+            if(validateYouTubeUrl2(url)){
+             var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
             var match = url.match(regExp);
             if (match && match[2].length == 11) {
                
@@ -1302,15 +1396,26 @@ function validateYouTubeUrl(url)
             else {
                 return url;
             }
+            }else{
+                alert("invlide url");
+                return '';
+            }
+
+            
         }
+     
 }
 
 
-function validateYouTubeUrl2(urlToParse){
-                if (urlToParse) {
+function validateYouTubeUrl2(url){
+                if (url) {
                     var regExp = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
                     if (url.match(regExp)) {
+
                         return true;
+                    }else{
+                        
+                        return false;
                     }
                 }
                 return false;
@@ -1578,7 +1683,7 @@ font-size: 20px!important;
         .select2-container .select2-search--inline .select2-search__field {
             margin-top: 9px !important;
         }
-        #preview_media > div .owl-item, #preview_media > div .owl-item .item {
+         #preview_media > div .owl-item, #preview_media > div .owl-item .item {
             min-height: 160px;
             line-height: 160px;
             justify-content: center;
@@ -2149,6 +2254,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     padding: 0 !important;
     height: 0 !important;
     position: absolute !important;
+}
+#formPreviewBLock .container {
+    overflow: hidden;
 }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
