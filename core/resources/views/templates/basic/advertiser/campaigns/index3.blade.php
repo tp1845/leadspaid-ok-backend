@@ -1578,8 +1578,23 @@ font-size: 20px!important;
         .select2-container .select2-search--inline .select2-search__field {
             margin-top: 9px !important;
         }
+        #preview_media > div .owl-item, #preview_media > div .owl-item .item {
+            min-height: 160px;
+            line-height: 160px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+        }
+        #preview_media > div .owl-item.active {
+            background: #fff;
+            z-index: 1;
+        }
         #preview_media > div {
             background: #fff;
+            min-height: 160px;
+            line-height: 160px;
+            display: flex;
+            align-items: center;
         }
         .bootstrap-tagsinput {
             width: 100% !important;
@@ -1932,13 +1947,14 @@ font-size: 20px!important;
     padding: 10px !important;
     max-width: 100% !important;
     max-height: 100% !important;
-    margin: 0 !important;
-    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center;
     object-fit: contain;
     border-radius: 0px 0px 4px 4px;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .custom_image_upload .input-group .input-col .img_preview_box {
     position: absolute;
