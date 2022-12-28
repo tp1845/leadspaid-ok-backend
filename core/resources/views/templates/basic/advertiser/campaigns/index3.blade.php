@@ -923,13 +923,14 @@
             "unique_form_name",
             function(value, element) {
               var  $result =$.map(campaigns, function(item,i){ name =item.campaign_forms.form_name;
-			  
+			  console.log(name.toLowerCase());
+			  console.log(value.toLowerCase());
 			  if(name.toLowerCase() == value.toLowerCase())
 			  {
 				 return 'exits'; 
 		      }  
 			  })[0];
-			  alert($result);
+			  console.log($result);
               return $result == 'exits'?false:true;
             },
             "Use a different Form name (Same Form Name already exist)"
