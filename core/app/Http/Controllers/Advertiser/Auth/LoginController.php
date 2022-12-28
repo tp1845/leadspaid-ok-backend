@@ -185,7 +185,7 @@ class LoginController extends Controller
         $userLogin->os = @$userAgent['os_platform'];
         $userLogin->save();
 
-        return redirect()->route('advertiser.dashboard');
+         return redirect('/advertiser/campaigns');
     }
 
 }
