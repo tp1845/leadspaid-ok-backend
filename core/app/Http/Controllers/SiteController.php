@@ -298,4 +298,9 @@ class SiteController extends Controller
         $data['page_title'] = 'New Home 5';
         return view($this->activeTemplate . 'home-leadpaid5', $data);
     }
+    public function home6()
+    {
+        $data['page_title'] = 'New Home 6';
+        return view($this->activeTemplate . 'home-leadpaid6', $data);
+    }
 }
