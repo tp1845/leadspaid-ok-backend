@@ -112,8 +112,14 @@ table.dataTable tbody tr td {
 .paymentt_tab input {
     border-radius: 0;
     height: calc(1rem + 1rem + 2px);
-    font-size: 0.8125rem !important;
-    border:1px solid #ced4da;
+    font-size: 15px !important;
+    border: 1px solid #ced4da;
+}
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td{
+    font-size: 15px;
+}
+.daterangepicker .ranges li {
+    font-size: 15px;
 }
 #MyPayments_wrapper, #myTable_wrapper {
     overflow-x: scroll;
@@ -124,7 +130,9 @@ table.dataTable tbody tr td {
 #MyPayments_length, #MyPayments_info {
     padding: 5px 0px 0px 5px;
 }
-
+table.dataTable {
+    width: 100% !important;
+}
 .dataTables_paginate .pagination .page-item.active .page-link {
     background-color: #1361b2;
     border-color: #1361b2;
@@ -165,7 +173,6 @@ table.dataTable tbody tr td {
 #MyPayments thead tr th:nth-child(1), #MyPayments tbody tr td:nth-child(1) {
     display: none;
 }
-
 #MyPayments_wrapper thead tr th {
     position: relative;
     cursor: pointer;
@@ -193,24 +200,7 @@ table.dataTable tbody tr td {
 }
 
 .ar-12{font-size: 12px !important;}
-table.dataTable {
-    width: 100% !important; 
-}
-.text-green {    color: #008000;}
-
-.paymentt_tab input {
-    border-radius: 0;
-    height: calc(1rem + 1rem + 2px);
-    font-size: 15px !important;
-    border: 1px solid #ced4da;
-}
-.daterangepicker .calendar-table th, .daterangepicker .calendar-table td{
-    font-size: 15px;
-}
-.daterangepicker .ranges li {
-    font-size: 15px;
-}
-
+.text-green{color:#008000;}
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
@@ -352,7 +342,7 @@ table.dataTable {
                  <hr>
                  <div class="adsrock-bill-list">
                      <h6>Next Bill:</h6>
-                      <h3>
+                     <h3>
                         
                      @php 
                        $currentTime = time() + 3600;
@@ -366,8 +356,13 @@ table.dataTable {
                      </h3><br>
                      <p class="ar-12">Everyday at 10:00 AM,</p>
                      <p class="ar-12">
-1) The Amount spent yesterday will be deducted from the Wallet<br/>
-2) The Total Campaign Budget (that you intend to spend for the next day) - Wallet Balance will be charged from the credit card</p>
+
+
+1) This Amount will be deducted from your Pre-Paid Wallet
+=Lead Generation Cost spent during 10 am yesterday till 10 am today.<br>
+2) This Amount will be charged from your payment method
+=Next day Campaign Budget - Wallet Balance</p>
+                     
                  </div>
             </div>
         </div>
@@ -705,11 +700,15 @@ table.dataTable {
     });
 
     $(document).ready( function () {
-        $('#myTable').DataTable({searching: false,"order": [[ 1, "ASC" ]],"sDom": 'Lfrtlip'    });
-        $('#MyPayments').DataTable({searching: false,"order": [[ 0, "asc" ]],"sDom": 'Lfrtlip','columnDefs': [ {
+        $('#myTable').DataTable({searching: false,"order": [[ 1, "ASC" ]],"sDom": 'Lfrtlip' ,"language": {
+      "lengthMenu": "Show rows  _MENU_"
+   }   });
+        $('#MyPayments').DataTable({searching: false,"order": [[ 0, "asc" ]],"sDom": 'Lfrtlip', 'columnDefs': [ {
         'targets': [1], // column index (start from 0)
         'orderable': false, // set orderable false for selected columns
-     }]    });
+     }] ,"language": {
+      "lengthMenu": "Show rows  _MENU_"
+   }    });
 } );
 
 $(".nav-item").find(".nav-link").click(function(){
@@ -772,11 +771,11 @@ $(".nav-item").find(".nav-link").click(function(){
         }
     });
     
-     $("#MyPayments").find("th:nth-child(2)").click(function(){
+    $("#MyPayments").find("th:nth-child(2)").click(function(){
         
         $("#MyPayments").find("th:nth-child(1)").trigger('click');
     }) 
- 
+
 
 
 </script>
@@ -788,7 +787,7 @@ $(".nav-item").find(".nav-link").click(function(){
     .modal.fade:not(.in).right .modal-dialog {
         -webkit-transform: translate3d(0%, 0, 0);
         transform: translate3d(0%, 0, 0);
-    } 
+    }
 </style>
 <style>
 
