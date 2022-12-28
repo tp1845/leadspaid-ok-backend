@@ -2268,6 +2268,11 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #formPreviewBLock .container {
     overflow: hidden;
+    padding: 0 !important;
+    margin: 10px auto !important;
+}
+#formPreviewBLock  .video {
+    margin: 0 !important;
 }
     </style>
     <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
