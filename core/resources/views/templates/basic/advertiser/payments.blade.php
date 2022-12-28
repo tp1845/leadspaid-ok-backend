@@ -197,6 +197,20 @@ table.dataTable {
     width: 100% !important; 
 }
 .text-green {    color: #008000;}
+
+.paymentt_tab input {
+    border-radius: 0;
+    height: calc(1rem + 1rem + 2px);
+    font-size: 15px !important;
+    border: 1px solid #ced4da;
+}
+.daterangepicker .calendar-table th, .daterangepicker .calendar-table td{
+    font-size: 15px;
+}
+.daterangepicker .ranges li {
+    font-size: 15px;
+}
+
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
