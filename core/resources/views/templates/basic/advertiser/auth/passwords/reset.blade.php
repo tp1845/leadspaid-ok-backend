@@ -99,7 +99,7 @@
     });
     $("#form").validate({
         rules: {
-            password: { required: true, minlength: 5,    },
+            password: { required: true, minlength: 6,    },
             password_confirmation: { equalTo: "#password" }
         },messages: {
             password:{  required : 'Please fill a stronger password.',  minlength : 'Please fill a stronger password.',  },

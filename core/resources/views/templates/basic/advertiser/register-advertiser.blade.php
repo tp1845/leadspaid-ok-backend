@@ -188,7 +188,7 @@ $("#full_name").capitalize();
             email: { required: true,  valid_email:true  },
             product_services: { required: true},
             ad_budget: { required: true,  numbersonly: true, min:1000 },
-            password: { required: true, minlength: 5,    },
+            password: { required: true, minlength: 6,    },
             password_confirmation: { equalTo: "#password" }
         },messages: {
             name:{  required : 'Full Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
