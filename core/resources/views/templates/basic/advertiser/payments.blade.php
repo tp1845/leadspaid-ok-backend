@@ -357,10 +357,9 @@ table.dataTable {
                      <p class="ar-12">Everyday at 10:00 AM,</p>
                      <p class="ar-12">
 
-
-1) This Amount will be deducted from your Pre-Paid Wallet
-=Lead Generation Cost spent during 10 am yesterday till 10 am today.<br>
-2) This Amount will be charged from your payment method
+1) <b>This Amount will be deducted from your Prepaid Wallet</b><br/>
+=Lead Generation Cost spent during 10 AM yesterday till 10 AM today.<br/>
+2) <b>This Amount will be charged from your payment method</b><br/>
 =Next day Campaign Budget - Wallet Balance</p>
                      
                  </div>
