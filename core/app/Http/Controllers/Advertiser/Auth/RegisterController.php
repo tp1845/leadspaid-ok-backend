@@ -166,7 +166,7 @@ class RegisterController extends Controller
 
 
         event(new Registered($user = $this->create_adv($request->all())));
-        $this->guard()->login($user);
+        // $this->guard()->login($user);
         $code=[
             'code' =>verificationCode(6),
             'userid'=>$user->id
