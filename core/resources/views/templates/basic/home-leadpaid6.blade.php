@@ -275,10 +275,13 @@
         </div>
     </section>
 
-    <section class="bg-secondary p-1 py-5 p-lg-5" >
+    <section id="JoinAsAdvertiser_section" class=" p-1 py-5 p-lg-5" >
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-3">
+                    <img src="{{url('/')}}/assets/templates/leadpaid/images/robot.png" alt="" width="100%" />
+                </div>
+                <div class="col-lg-8 text-center">
                     <h2 class="title mb-4 text-white">Start Generating Leads</h2>
                     <a href="{{route('register_advertiser')}}" class="btn btn-primary btn-lg my-2 button-large  ">Join As Advertiser</a>
                 </div>
@@ -540,6 +543,9 @@
         text-align: center;
         box-shadow: 0px 3px 10px 0px #000;
         }
+
+
+        #JoinAsAdvertiser_section{ background-color: #11baf3;  }
 
         #MainFooter {
         margin-top: 0 !important;
