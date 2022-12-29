@@ -67,7 +67,7 @@
                     </div>
                     <div class="media_text mt-5">
                         <h2 class="title">RESULT</h2>
-                        <p class="media_btn">Great Leads : Great Sales!!!</p>
+                        <p class="media_btn">GREAT LEADS<br/>GREAT SALES</p>
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -279,8 +279,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                <h2 class="title mb-4 text-white">Start Generating Leads</h2>
-                <a href="{{route('register_advertiser')}}" class="btn btn-primary btn-lg my-2 button-large  ">Join As Advertiser</a>
+                    <h2 class="title mb-4 text-white">Start Generating Leads</h2>
+                    <a href="{{route('register_advertiser')}}" class="btn btn-primary btn-lg my-2 button-large  ">Join As Advertiser</a>
                 </div>
             </div>
         </div>
@@ -484,7 +484,7 @@
 
         }
         .media_text .title{ font-size: 2.5rem; }
-        .media_text .media_btn{ font-size: 1.5rem; font-weight: bold; color: #fff; background: #11baf3; border: #000 3px solid; padding: 15px; }
+        .media_text .media_btn{ font-size: 50px; font-weight: bold; color: #fff; background: #11baf3; border: #000 3px solid; padding: 20px; }
 
         .fv-plugins-icon-container {
         position: relative;
