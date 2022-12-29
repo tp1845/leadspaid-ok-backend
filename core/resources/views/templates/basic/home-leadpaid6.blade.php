@@ -440,6 +440,7 @@
             }
         }
 
+
         /* Hero */
         .hero-box{ border: 0 solid #fff; width: 100%; padding: 30px; text-align: center; height: 100%;; display: flex; flex-direction: column;  align-items: center; justify-content: center; }
         .hero-box h4{ font-size: 46px; font-weight: bold; color: #1361b2 }
@@ -590,15 +591,8 @@
             background: transparent;
         }
 
-        .slick-prev {
-            left: -15px;
-        }
-
-
-        .slick-next {
-            right: -15px;
-        }
-
+        .slick-prev { left: -15px;  }
+        .slick-next { right: -15px; }
 
         /* slick-slider */
         @media only screen and (min-width: 768px) {
@@ -620,14 +614,19 @@
         }
         }
         @media only screen and (max-width: 768px) {
-        .MainBanner-Home .btn, .button-large {
-            font-size: 30px !important;
-            padding-right: 15px;
-            padding-left: 15px;
+            .MainBanner-Home .btn, .button-large {
+                font-size: 30px !important;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+            .MainBanner-bottom h3, .MainBanner-bottom .h3 {
+                line-height: 1.6;
+            }
         }
-        .MainBanner-bottom h3, .MainBanner-bottom .h3 {
-            line-height: 1.6;
-        }
+
+        @media only screen and (max-width: 366px) {
+            .MainBanner-Home .btn, .button-large {  padding-right: 11px;  padding-left: 11px;  }
+            .MainBanner-Home .sub_title{ padding: 3px 9px; }
         }
     </style>
 @endpush
