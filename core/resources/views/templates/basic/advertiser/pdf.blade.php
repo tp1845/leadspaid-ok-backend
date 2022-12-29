@@ -1,10 +1,8 @@
-
 <style>
-    
     .pdf-main-full, .pdf-main-full .pdf-row, .table-3 {
         width: 100%;
         clear: both;
-    font-family: 'poppinsmedium';
+    font-family: 'Roboto', Helvetica, sans-serif, 'Open Sans', Arial;
     }
   .pdf-main {
     width: 100%;
@@ -23,12 +21,12 @@
   padding: 1rem;
 }
 .table-3 thead > tr > th {
-  border: 1px solid #1c273b;
-color: #fff;
+  border: 1px solid #fff;
+  color: #fff;
 }
 
 .table-3 thead > tr > th {
-    background-color: #1c273b;
+    background-color: #4150eb;
 }
 .table-2 tbody {
   border: 5px solid #ddd;
@@ -60,20 +58,25 @@ color: #fff;
     width: 40%;
     float: right;
 }
+.custom-invoice-table {
+    max-width: 60%;
+
+}
 </style>
 
 <div class="pdf-main">
     <div class="pdf-row">
         <div class="table-responsive--lg">
-            <table class="table style--two" style="font-family: 'Poppins', sans-serif;">
+            <table class="table style--two" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
                 <thead>
                     <tr>
-                        <th style=" font-size: 40px; font-family: 'Poppins', sans-serif; text-align: left;">
-                            <span style="color:#1c273b;">Leads</span>Paid.com
+                        <th style=" font-size: 40px;font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial'; text-align: left;">
+                            <!-- <span style="color:#1c273b;">Leads</span>Paid.com -->
+                            <img src="https://leadspaid.com/assets/images/logoIcon/logo.png" width="200px">
                         </th>
                     </tr>
                 </thead>
-                <tbody style="border:2px solid #1c273b;border-radius: 5px !important; font-family: 'Poppins', sans-serif;">
+                <tbody style="border:none;border-radius: 5px !important; font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
                     <tr>
                         <td><h3>Leads Paids inc.</h3></td>
                     </tr>
@@ -84,31 +87,36 @@ color: #fff;
                         <td>Sacramento, California 95811</td>
                     </tr>
                      <tr>
-                        <td>United States</td>
+                        <td>United States.</td>
                     </tr>
-                                       
+                    <tr>
+                        <td>Federal Tax ID: </td>
+                    </tr>
+                                        
                 </tbody>
             </table><!-- table end -->
-            <table class="table table-1 style--two" style="width:50%; float:left;font-family: 'Poppins', sans-serif;">
+            <table class="table table-1 style--two custom-invoice-table" style="width:30%;padding-left: 40px; float:left; font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
                 <thead>
                     <tr>
-                        <th style="text-align:left; font-size:25px; padding-top: 15px; padding-left: 1rem;">Invoice</th>
+                        <th style="text-align:left; font-size:25px; padding-top: 55px; padding-left: 1rem;">Invoice</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                    <!-- <tr>
+                        <td><h3>Invoice</h3></td>
+                    </tr> -->
                     <tr>
                     
                        
-                        <td>Date</td>
+                        <td><b>Date</b></td>
                         <td>{{ date('Y-m-d',strtotime($ta->trx_date))}}</td>
                     </tr>  
                     <tr>
-                        <td>Invoice#</td>
+                        <td><b>Invoice#</b></td>
                         <td> {{ get_invoice_format($ta->id)  }} </td>
                     </tr>  
                     <tr>
-                        <td>Currency</td>
+                        <td><b>Currency</b></td>
                         <td>USD</td>
                     </tr>  
                                     
@@ -118,7 +126,7 @@ color: #fff;
     </div>
 </div>
 
-<div class="pdf-main" style="font-family: 'Poppins', sans-serif;">
+<div class="pdf-main" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
     <div class="pdf-row">
         <div class="table-responsive--lg">
             <table class="table table-2 style--two">
@@ -150,7 +158,7 @@ color: #fff;
     </div>
 </div>
 
-<div class="pdf-main-full" style="font-family: 'Poppins', sans-serif;">
+<div class="pdf-main-full" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
     <div class="pdf-row">
         <div class="table-responsive--lg">
                     @php 
@@ -162,30 +170,32 @@ color: #fff;
             <table class="table-3 style--two">
                 <thead>
                     <tr>
-                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Date</th>
-                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Description</th>
+                        <th scope="col"style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Date</th>
+                        <th scope="col"style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Description</th>
                         
-                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Amount</th>
+                        <th scope="col"style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Amount</th>
                        
-                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Card Service <br>Charge </th>
-                        <th scope="col"style="font-family: 'Poppins', sans-serif;">Gross Amount</th>
+                        <th scope="col"style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Card Service <br>Charge </th>
+                        <th scope="col"style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Gross Amount</th>
                     </tr>
                 </thead>
-                <tbody>   
-                          
-
-
-
-
-                    <tr style="font-family: 'Poppins', sans-serif;">
+                <tbody>                  
+                    <tr style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
                         <td data-label="Inital Wallet Balance" class="budget">{{ date('Y-m-d',strtotime($ta->trx_date))}}</td>
                         <td data-label="Transaction Date">Lead Generation Charges</td>
                         
                         <td data-label="Total Campaign Budget" class="budget"> $ {{ number_format((float)$ta->spent_previous_day, 2, '.', '')}}</td>
                         
-                        <td data-label="Amount Deducted From Card" class="budget" style="vertical-align: bottom;padding-top: 40px;"> $ {{  number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
+                        <td data-label="Amount Deducted From Card" class="budget" style="vertical-align: bottom;;padding-top: 40px;"> $ {{  number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
                         <td data-label="Final Wallet Balance" class="budget">
                          $ {{ number_format((float)$ga, 2, '.', '')}}</td>
+                    </tr>
+                    <tr style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
+                        <td style="border: none;"></td>
+                        <td style="border: none;"></td>
+                        <td style="border: none;"></td>
+                        <td><b>Total</b></td>
+                        <td>$ {{ number_format((float)$ga, 2, '.', '')}}</td>
                     </tr>
                 
                 </tbody>
