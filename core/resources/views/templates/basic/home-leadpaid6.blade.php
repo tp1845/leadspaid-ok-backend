@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3>Pay Only For Leads. Not for Clicks or Impressions.</h3>
+                   <h3>Pay Only For Leads. Not for Clicks Or Impressions.</h3>
                 </div>
             </div>
         </div>
@@ -115,7 +115,7 @@
                         <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
                         <span>Distinct from Search, Display & Programmatic Ads</span></h3>
                         <p class="h2 p-0 text-muted"><i class="fas fa-quote-left"></i></p>
-                        <p class="text2">Pay Only For Leads. Not for Clicks or Impressions.</p>
+                        <p class="text2">Pay Only For Leads. Not for Clicks Or Impressions.</p>
                         <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
                 </div>
                 </div><!-- /.col-lg-8 -->
