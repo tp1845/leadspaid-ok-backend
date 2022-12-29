@@ -113,13 +113,12 @@
    
 </style>
 <div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/2.jfif')}}')">
-    <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
-    <button class="sidebar__expand"><i class="las la-plus"></i></button>
+    
     <div class="sidebar__inner">
         <div class="sidebar__logo">
             <a href="{{route('advertiser.dashboard')}}" class="sidebar__main-logo"><img
                     src="{{getImage(imagePath()['logoIcon']['path'] .'/LeadsPaid-logo-rectangle.png')}}" alt="image"></a>
-            <button type="button" class="navbar__expand"></button>
+         
         </div>
 
         <div class="sidebar__menu-wrapper custom_side_bar" id="sidebar__menuWrapper">
