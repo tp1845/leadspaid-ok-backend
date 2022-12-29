@@ -67,7 +67,7 @@
                     </div>
                     <div class="media_text mt-5">
                         <h2 class="title">RESULT</h2>
-                        <p class="media_btn">GREAT LEADS<br/>GREAT SALES</p>
+                        <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
                     </div>
                 </div>
                 <div class="col-lg-5">
