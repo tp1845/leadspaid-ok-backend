@@ -117,14 +117,19 @@
                 <div class="modal-content h-100 ">
                     <div class="modal-header bg-primary m-0 PageFormStyle py-0">
                         <div class="w-100">
-                        <div class="row align-items-end pb-2">
+                        <div class="row align-items-end justify-content-between pb-2">
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1 ar-16" for="campaign_name_Input"><b>Campaign Name</b></label>
+                                <label class="form-label text-white mb-1 ar-16 ls-mt-2" for="campaign_name_Input"><b>Campaign Name</b></label>
                                 <input type="text" class="form-control" id="campaign_name_Input" placeholder="eg. Lead_Gen1" name="campaign_name"   required maxlength="30"></div>
+                           <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
+                        </div>
+
+                        <div class="row border-top align-items-end py-2">
+                            
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b></label>
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name" required maxlength="30"></div>
-                            <div class="col-lg-3 input-col d-flex  flex-wrap align-items-center">
+                            <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
                                     <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
                                     <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
@@ -134,8 +139,9 @@
                                     <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
                                 </div>
                             </div>
-                           <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
+
                         </div>
+
                         <div class="row border-top py-2">
                             <div class="col-lg-3 input-col">
                                 <label class="form-label text-white mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 text-white">(from which leads are required)</span></label>
@@ -159,6 +165,12 @@
                             </div>
 
                         </div>
+
+
+
+
+
+
                     </div>
                     </div>
                     <div class="modal-body h-100" style="overflow-y: scroll">
@@ -517,7 +529,7 @@
                                                 <form id="LeadForm" action="#">
                                                    <div>
                                                     <div id="loadData">
-                                                        <div class="video custom_after_text" id="preview_media"> 
+                                                        <div class="video custom_after_text border-bottom shadow-sm" id="preview_media"> 
                                                             <div class="">Add Creative</div>
                                                         </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
@@ -531,7 +543,7 @@
                                                         <div class="form-row" id="preview_filed_5"> </div>
                                                         <div class="form-row" id="preview_filed_6"> </div>
                                                     </div>
-                                                    <div class="form-row">
+                                                    <div class="form-row mt-3">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
                                                         <p class="policy">I agree to your privacy policy by submitting the form</p>
 
@@ -1697,8 +1709,8 @@ font-size: 20px!important;
             margin-top: 9px !important;
         }
          #preview_media > div .owl-item, #preview_media > div .owl-item .item {
-            min-height: 160px;
-            line-height: 160px;
+            min-height: 150px;
+            line-height: 150px;
             justify-content: center;
             display: flex;
             align-items: center;
@@ -1709,8 +1721,8 @@ font-size: 20px!important;
         }
         #preview_media > div {
             /*background: #fff;*/
-            min-height: 160px;
-            line-height: 160px;
+            min-height: 150px;
+            line-height: 150px;
             /*display: flex;
             align-items: center;*/
         }
@@ -1735,6 +1747,7 @@ font-size: 20px!important;
     transform: translate(-50%, -50%);
     width: 100%;
     text-align: center;
+    font-size: 15px;
 }
 .video {
     margin-bottom: 5px;
@@ -1742,7 +1755,7 @@ font-size: 20px!important;
     height: 100%;
     position: relative;
     overflow: hidden;
-    min-height: 160px;
+    min-height: 150px;
 }
 #preview_media .video img {
     width: 100%;
@@ -1776,12 +1789,18 @@ font-size: 20px!important;
       padding: 0;
     }
     #loadData > * {
-        padding: 0 5px !important;
+        padding: 0 11px !important;
+    }
+    #loadData ~ .form-row {
+        margin-top: 5px !important;
+    }
+    #loadData .form-row input {
+        margin: 5px 0;
     }
     .form-row {
         width: 100% !important;
-        padding: 0 5px !important;
-        margin: 8px 0 0 0 !important;
+        padding: 0 11px !important;
+        margin: 0 !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -1928,7 +1947,7 @@ font-size: 20px!important;
     .SelectFormType input[type="radio"] , .large-check input[type="radio"] { transform: scale(1.3); margin-top: 0.5rem; }
 
 #campaign_create_modal .PageFormStyle .us_doller input {
-    padding-left: 70px !important;
+    padding-left: 90px !important;
 }
 .us_doller:after {
     content: 'US$';
@@ -1941,7 +1960,7 @@ font-size: 20px!important;
     font-size: 19px;
     height: 100%;
     border: 1px solid #94a1b5;
-    padding: 10px;
+    padding: 10px 20px;
 }
 .us_doller {
     position: relative;
@@ -2218,12 +2237,12 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 #preview_media {
     max-width: 300px;
     width: 100%;
-    padding: 0;
+    padding: 0 !important;
 }
 #preview_media .owl-carousel .owl-item img {
     max-width: unset;
     width: unset;
-    max-height: 160px;
+    max-height: 150px;
     margin: auto;
     object-fit: contain;
 }
@@ -2232,6 +2251,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     line-height: 1;
     font-family: 'Poppins';
     font-weight: 500;
+    margin-top: 0;
 }
 #preview_media .prev-slide:after {
     content: "<";
@@ -2273,29 +2293,36 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     overflow: hidden;
     padding: 0 !important;
     margin: 10px auto !important;
+    height: 600px !important;
 }
 #formPreviewBLock  .video {
     margin: 0 !important;
 }
 #formPreviewBLock .form-row input:-moz-placeholder {
-      font-weight: 400;
-    }
+  font-weight: 400;
+}
 
-    #formPreviewBLock .form-row input::-moz-placeholder {
-      font-weight: 400;
-    }
+#formPreviewBLock .form-row input::-moz-placeholder {
+  font-weight: 400;
+}
 
-    #formPreviewBLock .form-row input:-ms-input-placeholder {
-      font-weight: 400;
-    }
+#formPreviewBLock .form-row input:-ms-input-placeholder {
+  font-weight: 400;
+}
 
-    #formPreviewBLock .form-row input::-ms-input-placeholder {
-      font-weight: 400;
-    }
+#formPreviewBLock .form-row input::-ms-input-placeholder {
+  font-weight: 400;
+}
 
-    #formPreviewBLock .form-row input::placeholder {
-      font-weight: 400;
-    }
-    </style>
-    <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
+#formPreviewBLock .form-row input::placeholder {
+  font-weight: 400;
+}
+.ls-mt-2 {
+    margin-top: 2px;
+}
+#preview_company_logo {
+    margin-bottom: 5px;
+}
+</style>
+<link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
 @endpush

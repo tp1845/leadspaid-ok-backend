@@ -2,7 +2,7 @@
   $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
 @endphp
 <style>
-   .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
+  .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
 .custom_side_bar {
 /*    display: flex;*/
     flex-wrap: wrap;
@@ -14,7 +14,7 @@
     position: relative;
 }
 .sidebar__menu {
-    margin-bottom: 35vh;
+    margin-bottom: 30vh;
 }
 .sidebar, .slimScrollDiv {
     transition:unset;
@@ -48,12 +48,67 @@
 #campaign_create_modal .PageFormStyle .form-control::placeholder {
     font-weight: 400;
 }
+.custom_nav_btn .navbar__expand {
+    margin: 0;
+    width: 100%;
+    height: unset;
+    font-size: 20px;
+    background: transparent;
+    min-width: 40px;
+}
+.custom_nav_btn {
+    padding: 5px 13px !important;
+    line-height: 1.5;
+}
+.custom_nav_btn .sidebar__expand {
+    position: unset;
+}
+.sidebar__menu .sidebar-menu-item.active::before {
+    width: 20px;
+    top: -50px;
+}
+
+.sidebar.active .sidebar__menu {
+    margin-bottom: 48vh;
+}
+.sidebar.active .sidebar__menu .sidebar-menu-item > a {
+    justify-content: flex-start;
+}
+.sidebar.active ul li .custom_nav_btn .sidebar__expand {
+    padding-left: 2px;
+    color: #000;
+    font-size: 20px;
+    width: 100%;
+    min-width: 40px;
+}
+.sidebar.active .sidebar__menu .sidebar-menu-item.active > a .menu-icon {
+    color: #fff !important;
+}
+.custom_nav_btn {
+    position: absolute;
+    right: 0;
+    width: 40px;
+    display: flex;
+    height: 35px;
+    background: #f3f5f7;
+    border-radius: 5px 0px 0px 5px;
+    align-items: center;
+    justify-content: center;
+}
+.navbar__expand:before {
+    display: none;
+}
+.sidebar .sidebar__inner .sidebar__logo {
+    padding: 0;
+}
+.sidebar .sidebar__inner .sidebar__logo .sidebar__main-logo {
+    width: 100%;
+}
 @media (min-width:1441px){
     .sidebar__menu {
         margin-bottom: 55vh;
     }
 }
-
 
    
 </style>
@@ -63,7 +118,7 @@
     <div class="sidebar__inner">
         <div class="sidebar__logo">
             <a href="{{route('advertiser.dashboard')}}" class="sidebar__main-logo"><img
-                    src="{{getImage(imagePath()['logoIcon']['path'] .'/logo.png')}}" alt="image"></a>
+                    src="{{getImage(imagePath()['logoIcon']['path'] .'/LeadsPaid-logo-rectangle.png')}}" alt="image"></a>
             <button type="button" class="navbar__expand"></button>
         </div>
 
@@ -233,6 +288,13 @@
                             <span class="menu-title text-white">@lang('logout')</span>
                         </a>
                     </li>
+					 <li class="sidebar-menu-item ">
+                        <div class="custom_nav_btn">
+                            <button type="button" class="navbar__expand"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+                            <button class="sidebar__expand"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
+                        </div>
+                    </li>
+					
             </ul>
         </div>
     </div>
