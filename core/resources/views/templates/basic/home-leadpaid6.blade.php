@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3> GREAT LEADS · GREAT SALES!!!</h3>
+                   <h3>Pay Only For Leads. Not for Clicks or Impressions.</h3>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
             </div>
         </div>
     </section>
-    <section class="bg-gray p-1 py-5 p-lg-5" >
+    <section id="how_it_works" class="p-1 py-5 p-lg-5" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -65,7 +65,10 @@
                             <track srclang="en" kind="chapters" src="chapters.vtt">
                         </video>
                     </div>
-
+                    <div class="media_text mt-5">
+                        <h2 class="title">RESULT</h2>
+                        <p class="media_btn">Great Leads : Great Sales!!!</p>
+                    </div>
                 </div>
                 <div class="col-lg-5">
                     <ul class="how-its-works-list">
@@ -80,6 +83,10 @@
                         <li>
                             <b><span>3</span> Downlead Leads </b>
                             <p>Advertisers can simply download their leads instantly</p>
+                        </li>
+                        <li>
+                            <b><span>4</span> Deep Learning Optimizer </b>
+                            <p>Our Deep learning Optimizer steadily improves your sales lead quality score up to 100% efficiency</p>
                         </li>
                     </ul>
 
@@ -353,10 +360,11 @@
         font-family: Poppins !important;
         }
 
-        .bg-gray{ background-color: #e0e0e0 !important; }
+
+        .bg-gray{ background-color: #f5f7f8 !important; }
         .bg-light{ background-color: #e9e9e9 !important; }
         #section_advertisers{  background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}/gray_wave_bg.jpg") no-repeat center!important; background-size: cover; }
-        .title{ color: #1a273a; font-size: 3rem; }
+        .title{ color: #003561; font-size: 3rem; }
 
         #MainHeroHeader{
             background-color: #1a273a;
@@ -399,7 +407,7 @@
 
         #MainHeroHeader  #MainNav, #MainHeroHeader   .MainBanner-Home { position: relative; z-index: 10; }
 
-        #MainNav{ background-color: transparent!important; }
+        #MainNav{ background-color: transparent!important; border-bottom: 0!important; box-shadow: 1px 1px 46px #ffffff; }
         .MainBanner-Home {
         font-family: Poppins !important;
         background-color: transparent;
@@ -431,12 +439,16 @@
                 padding: 3px 12px;
             }
         }
+
         /* Hero */
-        .hero-box{ border: 3px solid #fff; width: 100%; padding: 30px; text-align: center; height: 100%;; display: flex; flex-direction: column;  align-items: center; justify-content: center; }
+        .hero-box{ border: 0 solid #fff; width: 100%; padding: 30px; text-align: center; height: 100%;; display: flex; flex-direction: column;  align-items: center; justify-content: center; }
         .hero-box h4{ font-size: 46px; font-weight: bold; color: #1361b2 }
         .hero-box h5{ font-size: 26px; font-weight: normal;  color: #1361b2 }
         /* === */
 
+        .MainBanner-bottom{box-shadow: 0px 2px 67px #1361b2;}
+
+        #how_it_works{ background-color: #f5f7f8 !important;  box-shadow: 0px 6px 12px #dfeaef!important; }
         .how-its-works-list{ padding: 0; margin: 0; position: relative; }
         .how-its-works-list li{
         font-size: 22px;
@@ -452,8 +464,9 @@
         }
         @media only screen and (min-width: 1024px) {
             .how-its-works-list li { margin-bottom: -15px }
-            .how-its-works-list li:first-child{ left: 50px; }
-            .how-its-works-list li:last-child{ left: 100px; margin-bottom: 0; }
+            .how-its-works-list li:last-child { margin-bottom: 0 }
+            .how-its-works-list li:nth-child(odd){ left: 50px; }
+            .how-its-works-list li:nth-child(even){ left: 100px;}
         }
         .how-its-works-list li b span{
         display: inline-block;
@@ -469,7 +482,8 @@
         margin-right: 3px;
 
         }
-
+        .media_text .title{ font-size: 2.5rem; }
+        .media_text .media_btn{ font-size: 1.5rem; font-weight: bold; color: #fff; background: #11baf3; border: #000 3px solid; padding: 15px; }
 
         .fv-plugins-icon-container {
         position: relative;
