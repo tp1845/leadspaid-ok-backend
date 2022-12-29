@@ -571,8 +571,8 @@ function send_email_adv($user, $type = null, $link)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= $email_template->subj;
-    $message = '<p>Please verify your <a href="https://leadspaid.com/">LeadsPaid.com</a> account by clicking this link</p>';
-    $message .= '<p><a href='.$link.'>'.$link.'</a></p>';
+    $message = '<p style="color: rgb(193,205,220);">Please verify your <a href="https://leadspaid.com/">LeadsPaid.com</a> account by clicking this link</p>';
+    $message .= '<p style="color: rgb(193,205,220);"><a href='.$link.'>'.$link.'</a></p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -584,7 +584,7 @@ function send_email_adv_activated($user, $type = null, $name)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= 'Your LeadsPaid.com Account has been activated. Create Campaign Now »';
-    $message = ' <p> Your LeadsPaid.com account has been activated! <br/>  Please login to https://www.leadspaid.com/login-advertiser to create your first lead generation campaign.</p>';
+    $message = ' <p style="color: rgb(193,205,220);"> Your LeadsPaid.com account has been activated! <br/>  Please login to https://www.leadspaid.com/login-advertiser to create your first lead generation campaign.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -596,7 +596,7 @@ function send_email_adv_admin($user, $type = null, $username)
     $sendto_email= 'arun.saba@leadspaid.com';
     $receiver_name = 'Admin';
     $subject= 'New Advertiser registered - Approve Now';
-    $message = '<p>A new Advertiser ('. $user->company_name .') has registered for an Advertiser account.<br/> <a href="https://www.leadspaid.com/admin">Approve it in admin panel</a>.</p>';
+    $message = '<p style="color: rgb(193,205,220);">A new Advertiser ('. $user->company_name .') has registered for an Advertiser account.<br/> <a href="https://www.leadspaid.com/admin">Approve it in admin panel</a>.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -607,11 +607,11 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
     $sendto_email='arun.saba@leadspaid.com';
     $receiver_name = '';
     $subject="Contact Us Email";
-    $message = '<p><b>Name : </b> '.$name.'</p>';
-    $message .= '<p><b>Email : </b> '.$email.'</p>';
-    $message .= '<p><b>Company : </b> '.$company.'</p>';
-    $message .= '<p><b>Phone : </b> '.$phone.'</p>';
-    $message .= '<p><b>Message : </b> '.$messages.'</p>';
+    $message = '<p style="color: rgb(193,205,220);"><b>Name : </b> '.$name.'</p>';
+    $message .= '<p style="color: rgb(193,205,220);"><b>Email : </b> '.$email.'</p>';
+    $message .= '<p style="color: rgb(193,205,220);"><b>Company : </b> '.$company.'</p>';
+    $message .= '<p style="color: rgb(193,205,220);"><b>Phone : </b> '.$phone.'</p>';
+    $message .= '<p style="color: rgb(193,205,220);"><b>Message : </b> '.$messages.'</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
