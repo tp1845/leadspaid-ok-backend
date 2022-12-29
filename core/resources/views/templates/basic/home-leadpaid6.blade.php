@@ -486,7 +486,7 @@
         margin-right: 3px;
 
         }
-        .media_text .title{ font-size: 2.5rem; }
+        .media_text .title{ font-size: 50px; }
         .media_text .media_btn{ font-size: 50px; font-weight: bold; color: #fff; background: #11baf3; border: #000 3px solid; padding: 20px; }
 
         .fv-plugins-icon-container {
@@ -546,6 +546,8 @@
 
 
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
+        #JoinAsAdvertiser_section .title{ font-size: 63px }
+        #JoinAsAdvertiser_section .button-large{ font-size: 39px }
 
         #MainFooter {
         margin-top: 0 !important;
