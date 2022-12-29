@@ -32,7 +32,7 @@
     text-transform: capitalize;
     font-weight: 400;
 }
-#navbarSupportedContent li:nth-child(2),#navbarSupportedContent li:nth-child(3) {
+#navbarSupportedContent li:nth-child(3) {
     border: 2px solid #fff;
     margin: 0px 10px;
 }
