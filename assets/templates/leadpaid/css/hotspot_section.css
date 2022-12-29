@@ -1,0 +1,216 @@
+#hotspot_section{ position: relative;  min-height: 500px; padding: 150px 0;}                        
+#hotspot_section .title{ font-size: 34px;}                        
+ 
+ .testimonial_block{
+    background-color: #fff;
+    padding: 25px;
+ }
+
+                                  
+.headshot {
+    position: static;
+    z-index: 1;
+    width: 96px;
+    height: 96px
+}
+
+.headshot.headshot-1 {
+    position: absolute;
+    left: 2%;
+    top: 3%;
+    right: auto;
+    bottom: auto
+}
+
+.headshot.headshot-2 {
+    position: absolute;
+    left: auto;
+    top: 28%;
+    right: 80%;
+    bottom: auto
+}
+
+.headshot.headshot-3 {
+    position: absolute;
+    left: 6%;
+    top: auto;
+    right: auto;
+    bottom: 16%
+}
+
+.headshot.headshot-4 {
+    position: absolute;
+    left: 20%;
+    top: auto;
+    right: auto;
+    bottom: 2%
+}
+
+.headshot.headshot-5 {
+    position: absolute;
+    left: 28%;
+    top: 1%;
+    right: auto;
+    bottom: auto
+}
+
+.headshot.headshot-6 {
+    position: absolute;
+    left: auto;
+    top: 3%;
+    right: 4%;
+    bottom: auto
+}
+
+.headshot.headshot-7 {
+    position: absolute;
+    left: auto;
+    top: 44%;
+    right: 11%;
+    bottom: auto
+}
+
+.headshot.headshot-8 {
+    position: absolute;
+    left: auto;
+    top: auto;
+    right: 2%;
+    bottom: 0
+}
+
+.headshot.headshot-9 {
+    position: absolute;
+    left: auto;
+    top: auto;
+    right: 25%;
+    bottom: 1%
+}
+
+ 
+.headshot-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0
+}
+
+.headshot-quote-container {
+    position: absolute;
+    left: auto;
+    top: 6%;
+    right: 18%;
+    bottom: auto
+}                       
+
+@media screen and (min-width:1280px) {
+   
+    
+    .headshot.headshot-9 {
+        right: 29%
+    }
+ 
+    .headshot-quote-container {
+        right: 23%
+    }
+ 
+}
+
+@media screen and (max-width:991px) {
+    #hotspot_section { 
+        padding: 150px 0;
+    }
+    #hotspot_section .title {
+        font-size: 28px;
+    }
+    .headshot {
+        width: 80px;
+        height: 80px
+    }
+
+    .headshot.headshot-2 {
+        right: 86%
+    }
+    .headshot.headshot-3 { left: 2%; }
+    .headshot.headshot-7 { right: 1%;   }
+
+    
+}
+
+@media screen and (max-width:767px) { 
+    #hotspot_section { padding: 120px 0; }
+    .headshot {
+        width: 60px;
+        height: 60px
+    }
+
+    .headshot.headshot-2 {
+        display: none
+    }
+
+    .headshot.headshot-3 {
+        bottom: 8%
+    }
+
+    .headshot.headshot-4 {
+        left: 27%;
+        bottom: 1%
+    }
+
+    .headshot.headshot-5 {
+        top: 1%
+    }
+
+    .headshot.headshot-7 {
+        display: none
+    }
+      
+}
+
+@media screen and (max-width:479px) {
+    #hotspot_section { 
+        padding: 89px 0px;
+    }
+
+    .headshot.headshot-1 {
+        left: -6%
+    }
+
+    .headshot.headshot-3 {
+        left: -4%;
+        bottom: 4%
+    }
+
+    .headshot.headshot-6 {
+        top: 1%;
+        right: -4%
+    }
+
+    .headshot.headshot-8 {
+        right: -2%;
+        bottom: 2%
+    }
+
+    .headshot.headshot-9 {
+        bottom: 1%
+    }
+
+    .headshot-container {
+        opacity: 1
+    }
+
+    .headshot-quote {
+        width: 200px
+    }
+
+    .headshot-quote-container {
+        left: 35%;
+        top: 1%;
+        right: 0;
+        bottom: auto;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center
+    } 
+}
+  

@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3>Pay Only For Leads. Not for Clicks Or Impressions.</h3>
+                   <h3>Pay Only For Leads. Not For Clicks Or Impressions.</h3>
                 </div>
             </div>
         </div>
@@ -102,41 +102,28 @@
                 <h2 class="title mb-5">What's Unique</h2>
                 </div>
             </div>
-            <div class="row pt-lg-5 pb-5 ">
-                <div class="col-lg-4">
-                    @if(Request::get('v') == 1 )
-                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-01.png?v1" class="img-fluid" alt="leadsPaid">
-                    @else
-                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
-                    @endif
-                </div>
-                <div class="col-lg-8">
-                <div class="fw-normal-side">
-                        <h3 class="fw-normal mb-5">An Alternative Lead Source <br>
+            <div class="row g-xl-5 pt-lg-5 pb-5 ">
+                <div class="col-lg-6 text-center">
+                    <div class="marketing_block">
+                        <h3>An Alternative Lead Source <br>
                         <span>Distinct from Search, Display & Programmatic Ads</span></h3>
-                        <p class="h2 p-0 text-muted"><i class="fas fa-quote-left"></i></p>
-                        <p class="text2">Pay Only For Leads. Not for Clicks Or Impressions.</p>
-                        <!-- <p class="text2">LeadsPaid.com <a href="">generate leads</a> compared to <br>buying traffic</p> -->
+                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
+                        <p>Pay Only For Leads. Not for Clicks Or Impressions.</p>
+                    </div>
                 </div>
-                </div><!-- /.col-lg-8 -->
-            </div><!-- /.row -->
-            <hr>
-            <div class="row pt-5  align-items-center  ">
-                <div class="col-lg-8  ">
-                <div class="fw-normal-side"  >
-                        <h3 class="fw-normal mb-5 w-100">A New Lead Generation Platform  <br>
+                <div class="col-lg-6 text-center">
+                    <div class="marketing_block"  >
+                        <h3>A New Lead Generation Platform  <br>
                         <span>To Generate Leads Through Popular Publishers</span></h3>
-                        <p class=" h2 p-0 text-muted"><i class="fas fa-quote-left"></i></p>
-                        <p class="text2">You don't need to own a website or social media to generate leads </p>
-                </div>
-                </div><!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <img src="{{url('/')}}/assets/images/homepage/leadgeneration.webp" class="img-fluid" alt="leadsPaid">
+                        <img src="{{url('/')}}/assets/images/homepage/leadgeneration.webp" class="img-fluid" alt="leadsPaid">
+                        <p>You don't need to own a website or social media to generate leads </p>
+                    </div>
                 </div>
             </div><!-- /.row -->
+
         </div>
     </div>
-    <section id="section_advertisers" class="bg-light p-1 py-5 py-lg-5 " >
+    <section id="section_advertisers" class="bg-light p-1 py-3 py-lg-4 " >
         <div class="container my-4">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -144,94 +131,63 @@
                 </div>
             </div>
 
-            <div class="logoSlider d-block d-lg-none">
-                {{-- 1 --}}
+            <div class="logoSlider d-block d-lg-block">
                 <div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" width="100%" >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
-                        </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
-                        </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" width="100%" >
-                        </div>
-                    </div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" >
                 </div>
-                {{--  --}}
-                  {{-- 2 --}}
-                  <div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" width="100%" >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" width="100%" >
-                        </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%"   >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" width="100%" style="max-width: 220px" >
-                        </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
-                        </div>
-                    </div>
-                </div>
-                {{--  --}}
-                  {{-- 3 --}}
-                  <div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
-                        </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
-                        </div>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
-                        </div>
-                        <div class="col-6 text-center">
-                            <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
-                        </div>
-                    </div>
-                </div>
-                {{--  --}}
-
+                <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
             </div>
-            <div class="d-none d-lg-block">
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
+            </div>
+            <div>
+                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
+            </div>
+            </div>
+            <div class="d-none">
                 <div class="row g-5 align-items-center">
                     <div class="col-lg-3 text-center">
                         <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" width="100%"  style="max-width: 280px" >
@@ -274,6 +230,38 @@
 
         </div>
     </section>
+    {{-- Hotspot --}}
+    <div id="hotspot_section" class="section bg-gray d-flex justify-content-center align-items-center">
+            <div class="container  ">
+                <div class="row justify-content-center align-items-center" >
+                    <div class="col-12 mb-5">
+                        <h2 class="title text-center"><strong>What Leading Companies Say About Us?</strong></h2>
+                    </div>
+                    <div class="col-lg-8 col-xl-8 ">
+                        <div class="testimonial_block">
+                            <p class=" h2 p-0 text-muted"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
+                            <p class="text2">You don't need to own a website or social media to generate leads </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="headshot-container">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-1.png" loading="lazy" alt="spot image" class="headshot headshot-1">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-2.png" loading="lazy" alt="spot image" class="headshot headshot-2">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-3.png" loading="lazy" alt="spot image" class="headshot headshot-3">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-4.png" loading="lazy" alt="spot image" class="headshot headshot-4">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-5.png" loading="lazy" alt="spot image" class="headshot headshot-5">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-6.png" loading="lazy" alt="spot image" class="headshot headshot-6">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-7.png" loading="lazy" alt="spot image" class="headshot headshot-7">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-8.png" loading="lazy" alt="spot image" class="headshot headshot-8">
+            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-9.png" loading="lazy" alt="spot image" class="headshot headshot-9">
+            <div class="headshot-quote-container">
+                <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-10.png" loading="lazy" alt="spot image" class="headshot">
+            </div>
+        </div>
+    </div>
+    {{-- end Hotspot --}}
 
     <section id="JoinAsAdvertiser_section" class=" p-1 py-5 p-lg-5" >
         <div class="container">
@@ -330,6 +318,14 @@
                     // more configuration
                 });
                 $('.logoSlider').slick({
+                    dots:false,
+                    arrows:false,
+                    slidesPerRow:4,
+                    slidesToShow:5,
+                    useTransform:false,
+                    speed:6000,
+                    autoplay:true,
+                    autoplaySpeed:0,
                     prevArrow:'<button type="button" class="slick-prev"><i class="las la-chevron-circle-left"></i></button>',
                     nextArrow:'<button type="button" class="slick-next"><i class="las la-chevron-circle-right"></i></button>',
 
@@ -341,6 +337,7 @@
     @push('style')
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="{{url('/')}}/assets/font/fonts.css" rel="stylesheet">
+    <link href="{{url('/')}}/assets/templates/leadpaid/css/hotspot_section.css" rel="stylesheet">
     <style>
           .media-wrapper{ overflow: hidden; border: 5px solid #ccc; box-shadow: 2px 2px 2px #666; }
         .mejs__overlay-button {
@@ -366,7 +363,10 @@
 
         .bg-gray{ background-color: #f5f7f8 !important; }
         .bg-light{ background-color: #e9e9e9 !important; }
-        #section_advertisers{  background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}/gray_wave_bg.jpg") no-repeat center!important; background-size: cover; }
+        #section_advertisers{
+            background: #a1c0e0!important;
+            /* background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}/gray_wave_bg.jpg") no-repeat center!important; background-size: cover; */
+        }
         .title{ color: #003561; font-size: 3rem; }
 
         #MainHeroHeader{
@@ -508,23 +508,39 @@
         color: #1361b2;
         }
 
-        .fw-normal-side {
+        .marketing_block {
         display: flex;
         flex-wrap: wrap;
-        /* justify-content: center;*/
+        justify-content: center;
         height: 100%;
         align-items: stretch;
         align-content: space-around;
         }
+        .marketing_block img { display: inline-block;}
 
-        .marketing  h3.fw-normal.mb-5 {
-        font-size: 47px;
+        .marketing_block .text2 { text-align: center; }
+
+
+        .marketing_block  h3 {
+        font-size: 36px;
         font-weight: 500 !important;
         }
-        .text2 a:hover {
+        .marketing_block h3 span {
+            font-size: 28px;
+            color: #1a273a;
+            font-weight: 600;
+            padding-top: 10px;
+        }
+        .marketing_block p {
+            text-align: center;
+            font-size: 22px;
+            color: #6c6c6c;
+        }
+
+        .text2 a {
         color: #6c6c6c;
         }
-        .text2 a {
+        .text2 a:hover {
         color: #6c6c6c;
         }
         .text2 {
@@ -569,6 +585,9 @@
 
         .logoSlider img{
             display: inline-block!important;
+            max-width: 200px;
+            width: auto;
+            max-height: 100px;
         }
         .logoSlider .row > *{
             padding: 20px;
