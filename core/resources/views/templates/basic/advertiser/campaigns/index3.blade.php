@@ -2256,7 +2256,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     margin: auto;
     object-fit: contain;
 }
-
+#preview_media > div .owl-item .item iframe {
+	    border-bottom: 1px solid #000000;
+}
 #preview_media .owl-theme .owl-nav {
     font-size: 18px;
     line-height: 1;
