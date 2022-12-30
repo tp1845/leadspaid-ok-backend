@@ -65,7 +65,7 @@
                             <track srclang="en" kind="chapters" src="chapters.vtt">
                         </video>
                     </div>
-                    <div class="media_text mt-5">
+                    <div class="media_text mt-5  d-none d-lg-block">
                         <h2 class="title">RESULT</h2>
                         <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
                     </div>
@@ -89,6 +89,10 @@
                             <p>Our Deep learning Optimizer steadily improves your sales lead quality score up to 100% efficiency</p>
                         </li>
                     </ul>
+                    <div class="media_text mt-5 text-center d-block d-lg-none">
+                        <h2 class="title">RESULT</h2>
+                        <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
+                    </div>
 
                 </div>
             </div>
@@ -102,21 +106,21 @@
                 <h2 class="title mb-5">What's Unique</h2>
                 </div>
             </div>
-            <div class="row g-xl-5 pt-lg-5 pb-5 ">
+            <div class="row g-xl-1 pt-lg-3 pb-5 ">
                 <div class="col-lg-6 text-center">
-                    <div class="marketing_block">
+                    <div class="marketing_block one">
                         <h3>An Alternative Lead Source <br>
-                        <span>Distinct from Search, Display & Programmatic Ads</span></h3>
-                        <img src="{{url('/')}}/assets/templates/leadpaid/images/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
-                        <p>Pay Only For Leads. Not for Clicks Or Impressions.</p>
+                        <span>Distinct from Search, Display &<br> Programmatic Ads</span></h3>
+                        <img src="{{url('/')}}/assets/images/homepage/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
+                        <p>Get leads instead of buying website traffic <br/>through ppc, video or banner ads.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center">
-                    <div class="marketing_block"  >
-                        <h3>A New Lead Generation Platform  <br>
-                        <span>To Generate Leads Through Popular Publishers</span></h3>
-                        <img src="{{url('/')}}/assets/images/homepage/leadgeneration.webp" class="img-fluid" alt="leadsPaid">
-                        <p>You don't need to own a website or social media to generate leads </p>
+                    <div class="marketing_block two"  >
+                        <h3>High Quality Lead Gen Platform<br>
+                        <span>To generate leads without a website or <br>social media</span></h3>
+                        <img src="{{url('/')}}/assets/images/homepage/leadgeneration.png" class="img-fluid" alt="leadsPaid">
+                        <p>Generate leads from popular high traffic <br>  and targetted websites</p>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -124,12 +128,9 @@
         </div>
     </div>
     <section id="section_advertisers" class="bg-light p-1 py-3 py-lg-4 " >
-        <div class="container my-4">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                <h2 class="title pb-5" style="margin-bottom: 20px!important">Advertisers Using LeadsPaid</h2>
-                </div>
-            </div>
+        <div class="container-fluidss my-4">
+
+                <h2 class="title pb-3 pb-lg-5 text-center" style="margin-bottom: 20px!important">OVER 100,000 LEADS GENERATED FOR COMPANIES INCLUDING...</h2>
 
             <div class="logoSlider d-block d-lg-block">
                 <div>
@@ -247,17 +248,17 @@
             </div>
 
         <div class="headshot-container">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-1.png" loading="lazy" alt="spot image" class="headshot headshot-1">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-2.png" loading="lazy" alt="spot image" class="headshot headshot-2">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-3.png" loading="lazy" alt="spot image" class="headshot headshot-3">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-4.png" loading="lazy" alt="spot image" class="headshot headshot-4">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-5.png" loading="lazy" alt="spot image" class="headshot headshot-5">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-6.png" loading="lazy" alt="spot image" class="headshot headshot-6">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-7.png" loading="lazy" alt="spot image" class="headshot headshot-7">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-8.png" loading="lazy" alt="spot image" class="headshot headshot-8">
-            <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-9.png" loading="lazy" alt="spot image" class="headshot headshot-9">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-1.png" loading="lazy" alt="spot image" class="headshot headshot-1">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-2.png" loading="lazy" alt="spot image" class="headshot headshot-2">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-3.png" loading="lazy" alt="spot image" class="headshot headshot-3">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-4.png" loading="lazy" alt="spot image" class="headshot headshot-4">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-5.png" loading="lazy" alt="spot image" class="headshot headshot-5">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-6.png" loading="lazy" alt="spot image" class="headshot headshot-6">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-7.png" loading="lazy" alt="spot image" class="headshot headshot-7">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-8.png" loading="lazy" alt="spot image" class="headshot headshot-8">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-9.png" loading="lazy" alt="spot image" class="headshot headshot-9">
             <div class="headshot-quote-container">
-                <img src="{{url('/')}}/assets/templates/leadpaid/images/hotspot/img-10.png" loading="lazy" alt="spot image" class="headshot">
+                <img src="{{url('/')}}/assets/images/homepage/hotspot/img-10.png" loading="lazy" alt="spot image" class="headshot">
             </div>
         </div>
     </div>
@@ -267,7 +268,7 @@
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-3">
-                    <img src="{{url('/')}}/assets/templates/leadpaid/images/robot.png" alt="" width="100%" />
+                    <img src="{{url('/')}}/assets/images/homepage/robot.png" alt="" width="100%" />
                 </div>
                 <div class="col-lg-8 text-center">
                     <h2 class="title mb-4 text-white">Start Generating Leads</h2>
@@ -328,7 +329,22 @@
                     autoplaySpeed:0,
                     prevArrow:'<button type="button" class="slick-prev"><i class="las la-chevron-circle-left"></i></button>',
                     nextArrow:'<button type="button" class="slick-next"><i class="las la-chevron-circle-right"></i></button>',
-
+                    responsive: [
+                    {
+                        breakpoint: 980, // tablet breakpoint
+                        settings: {
+                            slidesToShow: 3,
+                            slidesToScroll: 3
+                        }
+                    },
+                    {
+                        breakpoint: 480, // mobile breakpoint
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    }
+                ]
                 });
             });
         </script>
@@ -367,6 +383,8 @@
             background: #a1c0e0!important;
             /* background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}/gray_wave_bg.jpg") no-repeat center!important; background-size: cover; */
         }
+        #section_advertisers .title{ font-size: 21px!important;  }
+        #section_advertisers  .slick-slider{ padding: 0}
         .title{ color: #003561; font-size: 3rem; }
 
         #MainHeroHeader{
@@ -488,6 +506,8 @@
         }
         .media_text .title{ font-size: 50px; }
         .media_text .media_btn{ font-size: 50px; font-weight: bold; color: #fff; background: #11baf3; border: #000 3px solid; padding: 20px; }
+        @media only screen and (max-width: 668px) {  .media_text .media_btn{ font-size: 36px;  }   }
+        @media only screen and (max-width: 380px) {  .media_text .media_btn{ font-size: 28px;  }   }
 
         .fv-plugins-icon-container {
         position: relative;
@@ -515,18 +535,22 @@
         height: 100%;
         align-items: stretch;
         align-content: space-around;
+        padding: 30px;
         }
-        .marketing_block img { display: inline-block;}
+
+        .marketing_block.one { background: #f4fbff; }
+        .marketing_block.two { background: #f4f5fd; }
+        .marketing_block img { display: inline-block; margin: 30px 0; max-height: 371px; height: 100%; }
 
         .marketing_block .text2 { text-align: center; }
 
 
         .marketing_block  h3 {
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 500 !important;
         }
         .marketing_block h3 span {
-            font-size: 28px;
+            font-size: 24px;
             color: #1a273a;
             font-weight: 600;
             padding-top: 10px;
@@ -564,6 +588,8 @@
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
         #JoinAsAdvertiser_section .button-large{ font-size: 39px }
+        @media only screen and (max-width: 668px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
+        @media only screen and (max-width: 380px) {   #JoinAsAdvertiser_section .title{ font-size: 45px }  }
 
         #MainFooter {
         margin-top: 0 !important;
@@ -586,7 +612,9 @@
         .logoSlider img{
             display: inline-block!important;
             max-width: 200px;
-            width: auto;
+            width: 100%;
+            padding: 0 15px;
+
             max-height: 100px;
         }
         .logoSlider .row > *{
