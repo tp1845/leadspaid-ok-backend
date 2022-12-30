@@ -1092,18 +1092,18 @@
 
              if(image_1_img !== '#'){
                 
-                 image_vide +='<div class="item"><img src="'+ image_1_img +'" alt="" width="100%" /></div>';
+                 image_vide +='<div class="item"><div class="image-wapperr"><img src="'+ image_1_img +'" alt="" width="100%" /></div></div>';
                   creative_status =1;
             }
              if(image_2_img !== '#'){
                
-                 image_vide +='<div class="item"><img src="'+ image_2_img +'" alt="" width="100%" /></div>';
+                 image_vide +='<div class="item"><div class="image-wapperr"><img src="'+ image_2_img +'" alt="" width="100%" /></div></div>';
                   creative_status =1;
             }
 
              if(image_3_img !== '#'){
                 
-                 image_vide +='<div class="item"><img src="'+ image_3_img +'" alt="" width="100%" /></div>';
+                 image_vide +='<div class="item"><div class="image-wapperr"><img src="'+ image_3_img +'" alt="" width="100%" /></div></div>';
                   creative_status =1;
             }
           
