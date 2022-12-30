@@ -181,17 +181,17 @@
             </div>
 
         <div class="headshot-container">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-1.png" loading="lazy" alt="spot image" class="headshot headshot-1">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-2.png" loading="lazy" alt="spot image" class="headshot headshot-2">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-3.png" loading="lazy" alt="spot image" class="headshot headshot-3">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-4.png" loading="lazy" alt="spot image" class="headshot headshot-4">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-5.png" loading="lazy" alt="spot image" class="headshot headshot-5">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-6.png" loading="lazy" alt="spot image" class="headshot headshot-6">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-7.png" loading="lazy" alt="spot image" class="headshot headshot-7">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-8.png" loading="lazy" alt="spot image" class="headshot headshot-8">
-            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-9.png" loading="lazy" alt="spot image" class="headshot headshot-9">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-1.png?v1" loading="lazy" alt="spot image" class="headshot headshot-1">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-2.png?v1" loading="lazy" alt="spot image" class="headshot headshot-2">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-3.png?v1" loading="lazy" alt="spot image" class="headshot headshot-3">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-4.png?v1" loading="lazy" alt="spot image" class="headshot headshot-4">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-5.png?v1" loading="lazy" alt="spot image" class="headshot headshot-5">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-6.png?v1" loading="lazy" alt="spot image" class="headshot headshot-6">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-7.png?v1" loading="lazy" alt="spot image" class="headshot headshot-7">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-8.png?v1" loading="lazy" alt="spot image" class="headshot headshot-8">
+            <img src="{{url('/')}}/assets/images/homepage/hotspot/img-9.png?v1" loading="lazy" alt="spot image" class="headshot headshot-9">
             <div class="headshot-quote-container">
-                <img src="{{url('/')}}/assets/images/homepage/hotspot/img-10.png" loading="lazy" alt="spot image" class="headshot">
+                <img src="{{url('/')}}/assets/images/homepage/hotspot/img-10.png?v1" loading="lazy" alt="spot image" class="headshot">
             </div>
         </div>
     </div>
