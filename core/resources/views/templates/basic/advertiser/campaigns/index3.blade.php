@@ -529,7 +529,7 @@
                                                 <form id="LeadForm" action="#">
                                                    <div>
                                                     <div id="loadData">
-                                                        <div class="video custom_after_text border-bottom shadow-sm" id="preview_media"> 
+                                                        <div class="video custom_after_text border-bottom shadow" id="preview_media"> 
                                                             <div class="">Add Creative</div>
                                                         </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
