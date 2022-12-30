@@ -86,7 +86,7 @@ label {
     border-radius: 0!important;
 }
 table.dataTable thead tr th {
-    font-size: 15px;
+    font-size: 17px;
     border-right: 1px solid #ffffff36;
 }
 #form_list_wrapper {
