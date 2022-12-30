@@ -405,11 +405,14 @@
 
         #how_it_works{ background-color: #f5f7f8 !important;  box-shadow: 0px 6px 12px #dfeaef!important; }
         .how-its-works-list{ padding: 0; margin: 0; position: relative;
+
+        }
+        @media only screen and (min-width: 991px) { .how-its-works-list{
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-        }
+            justify-content: space-around; } }
+
         .how-its-works-list li{
             font-size: 22px;
             margin-bottom: 15px;
@@ -525,7 +528,7 @@
 
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
-        #JoinAsAdvertiser_section .button-large{ font-size: 39px }
+        #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 0px 0px 10px #fff; }
         @media only screen and (max-width: 668px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
         @media only screen and (max-width: 380px) {   #JoinAsAdvertiser_section .title{ font-size: 45px }  }
 
