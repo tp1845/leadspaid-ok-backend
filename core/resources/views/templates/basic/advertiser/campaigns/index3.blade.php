@@ -1715,6 +1715,9 @@ font-size: 20px!important;
             display: flex;
             align-items: center;
         }
+		#preview_media > div .owl-item iframe {
+			min-width:300px !important;
+		}
 		#preview_media > div .owl-item {			
 			 margin-right: 0 !important;
 		}
