@@ -182,7 +182,7 @@
                             <p class="text2">270,000 - 1st month sales | 357,000 - 2nd month sales | 590,000 - 6th month sales. Achieved our Target Growth in 6 months. Great support from LeadsPaid team. Thank you!</p>
                             </div>
                             <div>
-                            <p class="text2">Created lead generation campaign myself easily. Everyday getting about 20 to 30 leads consistently. I recommend leadspaid.com </p>
+                            <p class="text2">Created lead generation campaigns myself easily. Every day, get about 20 to 30 leads consistently. I recommend leadspaid.com.</p>
                             </div>
                         </div>
                     </div>
