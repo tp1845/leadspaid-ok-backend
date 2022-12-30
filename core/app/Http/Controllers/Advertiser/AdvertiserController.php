@@ -31,6 +31,7 @@ class AdvertiserController extends Controller
 
     public function dashboard()
     {
+		return redirect('/advertiser/campaigns');
         $page_title = 'Advertiser Dashboard';
         $trxs = Transaction::all();
 
