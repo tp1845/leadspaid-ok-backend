@@ -89,7 +89,7 @@
                             <track srclang="en" kind="chapters" src="chapters.vtt">
                         </video>
                     </div>
-                    <div class="media_text mt-5  d-none d-lg-block">
+                    <div class="media_text mt-5 d-none d-lg-block">
                         <h2 class="title">RESULT</h2>
                         <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
                     </div>
@@ -106,8 +106,8 @@
                 <h2 class="title mb-5">What's Unique</h2>
                 </div>
             </div>
-            <div class="row g-xl-1 pt-lg-3 pb-5 ">
-                <div class="col-lg-6 text-center">
+            <div class="row g-xl-1 pt-lg-3 pb-0 pb-lg-5  ">
+                <div class="col-lg-6 text-center  mb-2 mb-lg-0">
                     <div class="marketing_block one">
                         <h3>An Alternative Lead Source <br>
                         <span>Distinct from Search, Display &<br> Programmatic Ads</span></h3>
