@@ -1715,10 +1715,12 @@ font-size: 20px!important;
             display: flex;
             align-items: center;
         }
+		#preview_media > div .owl-item {			
+			 margin-right: 0 !important;
+		}
         #preview_media > div .owl-item.active {
             background: #fff;
             z-index: 1;
-			 margin-right: 0 !important;
         }
         #preview_media > div {
             /*background: #fff;*/
