@@ -405,11 +405,14 @@
 
         #how_it_works{ background-color: #f5f7f8 !important;  box-shadow: 0px 6px 12px #dfeaef!important; }
         .how-its-works-list{ padding: 0; margin: 0; position: relative;
+
+        }
+        @media only screen and (min-width: 991px) { .how-its-works-list{
             height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
-        }
+            justify-content: space-around; } }
+
         .how-its-works-list li{
             font-size: 22px;
             margin-bottom: 15px;
