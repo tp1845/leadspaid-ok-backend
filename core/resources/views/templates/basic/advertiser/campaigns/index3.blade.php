@@ -1807,7 +1807,7 @@ font-size: 20px!important;
     #loadData ~ .form-row {
         margin-top: 10px !important;
     }
-    #loadData .form-row input, #loadData .form-row select {
+    #loadData .form-row input, #loadData .form-row select { 
         margin: 5px 0;
     }
     .form-row {
