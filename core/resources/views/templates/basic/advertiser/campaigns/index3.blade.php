@@ -802,7 +802,7 @@
                 html +='</tr>';
                 table.append(html).attr('data-row', row);
                 update_field();
-                updateformpreview();
+                updateformpreviewtext();
             }else{
                 Toast('red', "Only 5 fields allowed");
             }
@@ -1803,7 +1803,7 @@ font-size: 20px!important;
         padding: 0 11px !important;
     }
     #loadData ~ .form-row {
-        margin-top: 5px !important;
+        margin-top: 10px !important;
     }
     #loadData .form-row input {
         margin: 5px 0;
