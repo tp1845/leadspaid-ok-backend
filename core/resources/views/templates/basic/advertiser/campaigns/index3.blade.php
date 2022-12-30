@@ -1173,7 +1173,7 @@
               var owl = $(".owl-carousel");
               owl.owlCarousel({
                 items: 1,
-                margin: 10,
+                margin: 0,
                 loop: false,
                 dots:false,
                 autoWidth:false,
