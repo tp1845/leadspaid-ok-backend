@@ -65,7 +65,7 @@
                         </li>
                         <li>
                             <b><span>2</span> Relevant Audience Fill the Form  </b>
-                            <p>Highly relevant audiences visit these pages and fill your lead form</p>
+                            <p>Website visitors having strong interest in topics related to your lead gen campaign fill out your lead form</p>
                         </li>
                         <li>
                             <b><span>3</span> Downlead Leads </b>
@@ -166,20 +166,29 @@
     </section>
     {{-- Hotspot --}}
     <div id="hotspot_section" class="section bg-gray d-flex justify-content-center align-items-center">
-            <div class="container  ">
-                <div class="row justify-content-center align-items-center" >
-                    <div class="col-12 mb-5">
-                        <h2 class="title text-center"><strong>What Leading Companies Say About Us?</strong></h2>
-                    </div>
-                    <div class="col-lg-8 col-xl-8 ">
-                        <div class="testimonial_block">
-                            <p class=" h2 p-0 text-muted"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
-                            <p class="text2">You don't need to own a website or social media to generate leads </p>
+        <div class="container" style="position: relative; z-index: 10;" >
+            <div class="row justify-content-center align-items-center" >
+                <div class="col-12 mb-5">
+                    <h2 class="title text-center"><strong>What Leading Companies Say About Us?</strong></h2>
+                </div>
+                <div class="col-lg-8 col-xl-8 ">
+                    <div class="testimonial_block">
+                        <p class=" h2 p-0 text-muted"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
+                        <div class="testimonial_slider">
+                            <div>
+                            <p class="text2">Started increasing slowly but steadily. I'd say the AI is marvelous. It worked!</p>
+                            </div>
+                            <div>
+                            <p class="text2">270,000 - 1st month sales | 357,000 - 2nd month sales | 590,000 - 5th month sales. Achieved our Target growth in 6 months. Great support from LeadsPaid team. Thank you</p>
+                            </div>
+                            <div>
+                            <p class="text2">Created lead generation campaign myself easily. Everyday getting about 20 to 30 leads consistently. I recommend leadspaid.com </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
+        </div>
         <div class="headshot-container">
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-1.png?v1" loading="lazy" alt="spot image" class="headshot headshot-1">
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-2.png?v1" loading="lazy" alt="spot image" class="headshot headshot-2">
@@ -190,9 +199,7 @@
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-7.png?v1" loading="lazy" alt="spot image" class="headshot headshot-7">
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-8.png?v1" loading="lazy" alt="spot image" class="headshot headshot-8">
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-9.png?v1" loading="lazy" alt="spot image" class="headshot headshot-9">
-            <div class="headshot-quote-container">
-                <img src="{{url('/')}}/assets/images/homepage/hotspot/img-10.png?v1" loading="lazy" alt="spot image" class="headshot">
-            </div>
+            <div class="headshot-quote-container"> <img src="{{url('/')}}/assets/images/homepage/hotspot/img-10.png?v1" loading="lazy" alt="spot image" class="headshot"> </div>
         </div>
     </div>
     {{-- end Hotspot --}}
@@ -251,11 +258,22 @@
                     shimScriptAccess: 'always'
                     // more configuration
                 });
+
+                $('.testimonial_slider').slick({
+                    dots:false,
+                    arrows:true,
+                    slidesPerRow:1,
+                    slidesToShow:1,
+                    autoplay:false,
+                    prevArrow:'<button type="button" class="slick-prev"><i class="las la-chevron-circle-left"></i></button>',
+                    nextArrow:'<button type="button" class="slick-next"><i class="las la-chevron-circle-right"></i></button>',
+                });
+
                 $('.logoSlider').slick({
                     dots:false,
                     arrows:false,
-                    slidesPerRow:6,
-                    slidesToShow:6,
+                    slidesPerRow:9,
+                    slidesToShow:9,
                     useTransform:false,
                     speed:6000,
                     autoplay:true,
@@ -449,7 +467,6 @@
         .media_text .title{ font-size: 50px; }
         .media_text .media_btn{ font-size: 50px; font-weight: bold; color: #fff; background: #11baf3; border: #000 3px solid; padding: 20px; }
         @media only screen and (max-width: 991px) { .media_text .title, .media_text .media_btn{ font-size: 36px;  } }
-        @media only screen and (max-width: 380px) { .media_text .title, .media_text .media_btn{ font-size: 28px;  } }
 
         .fv-plugins-icon-container {
         position: relative;
@@ -457,7 +474,6 @@
         p, h1, h2, h3, h4, h5, h5, h6, .btn {
         font-family: Poppins !important
         }
-
 
         .fw-normal span {
         font-size: 34px;
@@ -502,38 +518,32 @@
             font-size: 22px;
         }
 
-        .text2 a {
-        color: #6c6c6c;
-        }
-        .text2 a:hover {
-        color: #6c6c6c;
-        }
+        .text2 a { color: #6c6c6c; }
+        .text2 a:hover { color: #6c6c6c; }
         .text2 {
-        text-align: left;
-        font-size: 26px;
-        color: #6c6c6c;
+            text-align: left;
+            font-size: 26px;
+            color: #6c6c6c;
         }
 
         .MainBanner-Home .btn, .button-large {
-        max-width: unset !important;
-        width: unset !important;
-        font-size: 48px !important;
-        margin-top: 30px !important;
-        font-weight: bold;
-        text-transform: uppercase;
-        text-align: center;
-        box-shadow: 0px 3px 10px 0px #000;
+            max-width: unset !important;
+            width: unset !important;
+            font-size: 48px !important;
+            margin-top: 30px !important;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+            box-shadow: 0px 3px 10px 0px #000;
         }
-
 
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
         #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 0px 0px 10px #fff; }
         @media only screen and (max-width: 991px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
-        @media only screen and (max-width: 380px) {   #JoinAsAdvertiser_section .title{ font-size: 45px }  }
 
         #MainFooter {
-        margin-top: 0 !important;
+            margin-top: 0 !important;
         }
         .MainBanner-bottom h3, .MainBanner-bottom .h3 {
             font-size: 30px;
@@ -575,7 +585,7 @@
         .slick-prev, .slick-next {
             font-size: 34px;
             position: absolute;
-            top: 50%;
+            top: 40%;
             display: block;
             width: 33px;
             height: 45px;
@@ -587,8 +597,8 @@
             background: transparent;
         }
 
-        .slick-prev { left: -15px;  }
-        .slick-next { right: -15px; }
+        .slick-prev { left: -22px;  }
+        .slick-next { right: -22px; }
 
         /* slick-slider */
         @media only screen and (min-width: 768px) {
