@@ -1718,6 +1718,7 @@ font-size: 20px!important;
         #preview_media > div .owl-item.active {
             background: #fff;
             z-index: 1;
+			 margin-right: 0 !important;
         }
         #preview_media > div {
             /*background: #fff;*/
@@ -2293,7 +2294,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     overflow: hidden;
     padding: 0 !important;
     margin: 10px auto !important;
-    height: 600px !important;
+    
 }
 #formPreviewBLock  .video {
     margin: 0 !important;
