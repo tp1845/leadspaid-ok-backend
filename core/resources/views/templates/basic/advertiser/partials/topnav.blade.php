@@ -7,7 +7,9 @@
     background-color: #4500dd!important;
     border-radius: 0;
 }
-  
+  .create-campaign-btn {
+    font-size: 18px !important;
+}
 </style>
 
 <nav class="navbar-wrapper active">
@@ -64,10 +66,12 @@
     </div>
     <div class="navbar__right">
 	
-	  <a href="{{ url('/')}}/advertiser/campaigns/?action=create_campiagin"class="btn btn--primary create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</a>
 	
       <ul class="main-menu d-flex flex-wrap align-items-center">
 
+        <li>          
+          <a href="{{ url('/')}}/advertiser/campaigns/?action=create_campiagin"class="btn btn--primary text-white create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</a>
+        </li>
         <li class="dropdown">
           <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             <span class="navbar-user">
