@@ -1,5 +1,5 @@
 #hotspot_section{ position: relative;  min-height: 500px; padding: 150px 0;}                        
-#hotspot_section .title{ font-size: 34px;}                        
+/* #hotspot_section .title{ font-size: 34px;}                         */
  
  .testimonial_block{
     background-color: #fff;
@@ -25,7 +25,7 @@
 .headshot.headshot-2 {
     position: absolute;
     left: auto;
-    top: 28%;
+    top: 32%;
     right: 80%;
     bottom: auto
 }

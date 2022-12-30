@@ -286,7 +286,7 @@
     @push('style')
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="{{url('/')}}/assets/font/fonts.css" rel="stylesheet">
-    <link href="{{url('/')}}/assets/templates/leadpaid/css/hotspot_section.css" rel="stylesheet">
+    <link href="{{url('/')}}/assets/templates/leadpaid/css/hotspot_section.css?v1" rel="stylesheet">
     <style>
           .media-wrapper{ overflow: hidden; border: 5px solid #ccc; box-shadow: 2px 2px 2px #666; }
         .mejs__overlay-button {
