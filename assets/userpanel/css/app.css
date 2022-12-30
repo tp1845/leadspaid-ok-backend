@@ -3141,6 +3141,8 @@ p {
     background: linear-gradient(to right, #636f8e 0%, #acb8da 100%);
 }
 
+.btn-success{background-color: #11b6f3 !important;}
+
 .btn--success.btn--gradi, .btn-success.btn--gradi {
     background: #0064fa;
     background-image: linear-gradient(30deg, #28c76f, rgba(40, 199, 111, 0.6)) !important;
