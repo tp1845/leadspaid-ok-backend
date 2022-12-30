@@ -1348,6 +1348,7 @@ if(y_url !== ""){
   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+y_url+'" frameborder="0" allowfullscreen></iframe></div>';
   $(".video_"+vidd).find('.youtube_iframe').remove(); 
   $(".video_"+vidd).find('label').after(html);
+  $("#Youtube_"+vidd).find('input').val(y_url);
   custom_edit_vide();
 $("#exampleModal").modal("hide");
 setTimeout(function() {
@@ -1388,6 +1389,7 @@ $(".remove_video").unbind().click(function(){
  if(confirm('Are you sure?')){
   $(".video_"+iddd).find(".youtube_iframe").remove();
    $(".video_"+iddd).removeClass('disabled');
+   $("#Youtube_"+vidd).find('input').val('');
    updateformpreview();
   return false;
 }
