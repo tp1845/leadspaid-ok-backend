@@ -759,7 +759,7 @@
                 update_options(options_section);
                 i++;
             });
-            updateformpreview();
+            updateformpreviewtext();
         }
 
         function add_form_field(type = 'single'){
