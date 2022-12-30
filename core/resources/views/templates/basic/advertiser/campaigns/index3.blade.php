@@ -2348,7 +2348,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     justify-content: center;
 }
 #preview_form_title.form-title {
-	margin-top:10px;
+	margin-top:10px !important;
 }
 </style>
 <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
