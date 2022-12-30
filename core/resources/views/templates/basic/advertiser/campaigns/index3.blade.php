@@ -1746,7 +1746,7 @@ font-size: 20px!important;
             border: 1px solid #ced4da !important;
         }
 .green{    color:green;}
-.orange{color:orange;}
+.orange{color:#ff5722;}
  .container {
       width: 300px;
       margin: 10px auto;
