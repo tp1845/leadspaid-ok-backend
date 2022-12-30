@@ -57,19 +57,6 @@
                 </div>
             </div>
             <div class="row align-item-center justify-content-center">
-                <div class="col-lg-5 text-center ">
-                    <div class="media-wrapper mb-3 mb-lg-0">
-                        <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
-                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" type="video/mp4">
-                            <track srclang="en" kind="subtitles" src="mediaelement.vtt">
-                            <track srclang="en" kind="chapters" src="chapters.vtt">
-                        </video>
-                    </div>
-                    <div class="media_text mt-5  d-none d-lg-block">
-                        <h2 class="title">RESULT</h2>
-                        <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
-                    </div>
-                </div>
                 <div class="col-lg-5">
                     <ul class="how-its-works-list">
                         <li>
@@ -93,8 +80,21 @@
                         <h2 class="title">RESULT</h2>
                         <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
                     </div>
-
                 </div>
+                <div class="col-lg-5 text-center ">
+                    <div class="media-wrapper mb-3 mb-lg-0">
+                        <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
+                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" type="video/mp4">
+                            <track srclang="en" kind="subtitles" src="mediaelement.vtt">
+                            <track srclang="en" kind="chapters" src="chapters.vtt">
+                        </video>
+                    </div>
+                    <div class="media_text mt-5  d-none d-lg-block">
+                        <h2 class="title">RESULT</h2>
+                        <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -404,24 +404,30 @@
         .MainBanner-bottom{box-shadow: 0px 2px 67px #1361b2;}
 
         #how_it_works{ background-color: #f5f7f8 !important;  box-shadow: 0px 6px 12px #dfeaef!important; }
-        .how-its-works-list{ padding: 0; margin: 0; position: relative; }
+        .how-its-works-list{ padding: 0; margin: 0; position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
         .how-its-works-list li{
-        font-size: 22px;
-        margin-bottom: 15px;
-        background: #fff;
-        padding: 15px;
-        border-radius: 3px;
-        box-shadow: 0px 3px 2px #00000008;
-        list-style: none;
-        position: relative;
-        border: 5px solid #ccc;
-        box-shadow: 2px 2px 2px #666;
+            font-size: 22px;
+            margin-bottom: 15px;
+            /* background: #fff;
+            padding: 15px; */
+            /* border-radius: 3px;
+            box-shadow: 0px 3px 2px #00000008;
+            box-shadow: 2px 2px 2px #666;
+            border: 5px solid #ccc;
+            */
+            list-style: none;
+            position: relative;
         }
         @media only screen and (min-width: 1024px) {
-            .how-its-works-list li { margin-bottom: -15px }
+            /* .how-its-works-list li { margin-bottom: -15px }
             .how-its-works-list li:last-child { margin-bottom: 0 }
             .how-its-works-list li:nth-child(odd){ left: 50px; }
-            .how-its-works-list li:nth-child(even){ left: 100px;}
+            .how-its-works-list li:nth-child(even){ left: 100px;} */
         }
         .how-its-works-list li b span{
         display: inline-block;
