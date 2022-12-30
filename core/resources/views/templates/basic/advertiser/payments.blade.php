@@ -349,6 +349,8 @@ table.dataTable {
                        if (((int) date('H', $currentTime)) >= 10) {
   
                            echo  date('M d, Y', strtotime(' +1 day')) ;   
+                                }else{
+                                   echo  date('M d, Y') ; 
                                 }
 
                      @endphp   , 10:00 AM
