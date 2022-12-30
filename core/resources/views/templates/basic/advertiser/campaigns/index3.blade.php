@@ -695,7 +695,7 @@
             row = --row;
             table.attr('data-row', row);
             $(this).closest('tr').remove();
-            update_field();
+           update_field();
         })
 
         $('table').on('click', '.del-option', function(e){
@@ -736,7 +736,7 @@
                 i++;
             });
             btn_add_option.attr('data-option', i);
-            updateformpreview();
+            updateformpreviewtext();
         }
 
 
@@ -1709,23 +1709,23 @@ font-size: 20px!important;
             margin-top: 9px !important;
         }
          #preview_media > div .owl-item, #preview_media > div .owl-item .item {
-			min-height: 150px;
-			line-height: 150px;
-			justify-content: center;
-			display: flex;
-			align-items: center;
-			
-		}
-		#preview_media .owl-carousel .owl-stage {
-			margin: auto;
-			min-width: 300px;
-		}
-		#preview_media > div .owl-item iframe {
-			min-width:300px !important;
-		}
-		#preview_media > div .owl-item {			
-			 margin-right: 0 !important;
-		}
+            min-height: 150px;
+            line-height: 150px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            
+        }
+        #preview_media .owl-carousel .owl-stage {
+            margin: auto;
+            min-width: 300px;
+        }
+        #preview_media > div .owl-item iframe {
+            min-width:300px !important;
+        }
+        #preview_media > div .owl-item {            
+             margin-right: 0 !important;
+        }
         #preview_media > div .owl-item.active {
             background: #fff;
             z-index: 1;
@@ -2257,7 +2257,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     object-fit: contain;
 }
 #preview_media > div .owl-item .item iframe {
-	    border-bottom: 1px solid #000000;
+        border-bottom: 1px solid #000000;
 }
 #preview_media .owl-theme .owl-nav {
     font-size: 18px;
