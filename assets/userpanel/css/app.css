@@ -5714,7 +5714,7 @@ table.table--light thead th {
     position: relative;
 }
 .sidebar:not(.active) .sidebar__menu .sidebar-menu-item.active {
-    background-color: #ffffff14;
+    background-color: #cccccc66;
 }
 
 .sidebar__menu .sidebar-menu-item.active::before {

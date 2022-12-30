@@ -1482,7 +1482,7 @@ function ValidURLnew(str) {
     .dataTables_paginate .pagination .page-item.active .page-link{ background-color: #1361b2; border-color: #1361b2; box-shadow: 0px 3px 5px rgb(0,0,0,0.125); }
 #UseExistingForm label{ font-size: 16px }
 #UseExistingForm  .form-check{ margin-bottom: 10px; }
-.btn--primary.create-campaign-btn{ background-color: #1361b2!important; border-radius: 0; }
+.btn--primary.create-campaign-btn{ background-color: #4500dd!important; border-radius: 0; }
 #campaign_list td{ font-size: 16px; color: #1a273a;  }
 #campaign_list td:nth-child(3){  font-size: 14px; }
 #campaign_list a.create-campaign-btn { font-size: 12px; }
