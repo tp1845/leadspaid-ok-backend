@@ -448,8 +448,8 @@
         }
         .media_text .title{ font-size: 50px; }
         .media_text .media_btn{ font-size: 50px; font-weight: bold; color: #fff; background: #11baf3; border: #000 3px solid; padding: 20px; }
-        @media only screen and (max-width: 668px) {  .media_text .media_btn{ font-size: 36px;  }   }
-        @media only screen and (max-width: 380px) {  .media_text .media_btn{ font-size: 28px;  }   }
+        @media only screen and (max-width: 991px) { .media_text .title, .media_text .media_btn{ font-size: 36px;  } }
+        @media only screen and (max-width: 380px) { .media_text .title, .media_text .media_btn{ font-size: 28px;  } }
 
         .fv-plugins-icon-container {
         position: relative;
@@ -529,7 +529,7 @@
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
         #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 0px 0px 10px #fff; }
-        @media only screen and (max-width: 668px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
+        @media only screen and (max-width: 991px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
         @media only screen and (max-width: 380px) {   #JoinAsAdvertiser_section .title{ font-size: 45px }  }
 
         #MainFooter {
