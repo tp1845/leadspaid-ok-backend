@@ -176,10 +176,10 @@
                         <p class=" h2 p-0 text-muted"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
                         <div class="testimonial_slider">
                             <div>
-                            <p class="text2">Started increasing slowly but steadily. I'd say the AI is marvelous. It worked!</p>
+                            <p class="text2">Leads started increasing slowly but steadily. I'd say, the AI is marvelous. It worked!</p>
                             </div>
                             <div>
-                            <p class="text2">270,000 - 1st month sales | 357,000 - 2nd month sales | 590,000 - 5th month sales. Achieved our Target growth in 6 months. Great support from LeadsPaid team. Thank you</p>
+                            <p class="text2">270,000 - 1st month sales | 357,000 - 2nd month sales | 590,000 - 6th month sales. Achieved our Target Growth in 6 months. Great support from LeadsPaid team. Thank you!</p>
                             </div>
                             <div>
                             <p class="text2">Created lead generation campaign myself easily. Everyday getting about 20 to 30 leads consistently. I recommend leadspaid.com </p>
@@ -560,14 +560,13 @@
             text-shadow: 3px 7px 5px #000000;
             font-weight: 400;
         }
-
+        .logoSlider .slick-slide{ text-align: center; }
         .logoSlider img{
             display: inline-block!important;
             max-width: 200px;
-            width: 100%;
+            width: auto;
             padding: 0 15px;
-
-            max-height: 100px;
+            max-height: 60px;
         }
         .logoSlider .row > *{
             padding: 20px;
