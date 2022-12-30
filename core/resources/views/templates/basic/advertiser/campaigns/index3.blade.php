@@ -606,7 +606,7 @@
     {{-- End Create campaign_create MODAL --}}
  @endsection
 @push('breadcrumb-plugins')
-    <button class="btn btn--primary create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</button>
+    <!--button class="btn btn--primary create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</button-->
 @endpush
 @push('script')
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
