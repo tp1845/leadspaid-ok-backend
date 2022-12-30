@@ -2256,9 +2256,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     margin: auto;
     object-fit: contain;
 }
-#preview_media .owl-carousel .owl-item img {
-    width: 300px;
-}
+
 #preview_media .owl-theme .owl-nav {
     font-size: 18px;
     line-height: 1;
@@ -2334,6 +2332,16 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #preview_company_logo {
     margin-bottom: 5px;
+}
+#preview_media > div .owl-item .item .image-wapperr img {
+    width: unset;
+}
+#preview_media > div .owl-item .item .image-wapperr {
+    width: 300px;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 </style>
 <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
