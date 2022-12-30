@@ -1708,12 +1708,16 @@ font-size: 20px!important;
         .select2-container .select2-search--inline .select2-search__field {
             margin-top: 9px !important;
         }
-         #preview_media > div .owl-item, #preview_media > div .owl-item .item {
+         #preview_media > div .owl-item {
             min-height: 150px;
             line-height: 150px;
             justify-content: center;
             display: flex;
             align-items: center;
+        }
+		#preview_media > div .owl-item .item {
+            min-height: 150px;
+            line-height: 150px;
         }
 		#preview_media > div .owl-item iframe {
 			min-width:300px !important;
