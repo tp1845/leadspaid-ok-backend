@@ -499,7 +499,10 @@
         .marketing_block.one { background: #f4fbff; }
         .marketing_block.two { background: #f4f5fd; }
         .marketing_block img { display: inline-block; margin: 30px 0;   }
-        @media only screen and (min-width: 992px) { .marketing_block img {   max-height: 371px; height: 100%; } }
+        @media only screen and (min-width: 992px) {
+            .marketing_block { display: flex;  flex-wrap: wrap; justify-content: center;  height: 100%; align-items: stretch; align-content: space-around;}
+            .marketing_block img {   max-height: 371px; height: 100%; }
+        }
         .marketing_block .text2 { text-align: center; }
         .marketing_block  h3 {
         font-size: 32px;
