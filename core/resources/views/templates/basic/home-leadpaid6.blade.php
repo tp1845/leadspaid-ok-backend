@@ -165,7 +165,7 @@
         </div>
     </section>
     {{-- Hotspot --}}
-    <div id="hotspot_section" class="section bg-gray d-flex justify-content-center align-items-center">
+    <div id="hotspot_section" class="section bg-gray d-flex justify-content-center align-items-center" style="overflow: hidden">
         <div class="container" style="position: relative; z-index: 10;" >
             <div class="row justify-content-center align-items-center" >
                 <div class="col-12 mb-5">
@@ -189,7 +189,7 @@
                 </div>
             </div>
         </div>
-        <div class="headshot-container">
+        <div class="headshot-container" >
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-1.png?v1" loading="lazy" alt="spot image" class="headshot headshot-1">
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-2.png?v1" loading="lazy" alt="spot image" class="headshot headshot-2">
             <img src="{{url('/')}}/assets/images/homepage/hotspot/img-3.png?v1" loading="lazy" alt="spot image" class="headshot headshot-3">
