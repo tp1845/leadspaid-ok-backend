@@ -129,106 +129,39 @@
     </div>
     <section id="section_advertisers" class="bg-light p-1 py-3 py-lg-4 " >
         <div class="container-fluidss my-4">
-
-                <h2 class="title pb-3 pb-lg-5 text-center" style="margin-bottom: 20px!important">OVER 100,000 LEADS GENERATED FOR COMPANIES INCLUDING...</h2>
-
+            <h2 class="title pb-3 pb-lg-5 text-center" style="margin-bottom: 20px!important">OVER 100,000 LEADS GENERATED FOR COMPANIES INCLUDING...</h2>
             <div class="logoSlider d-block d-lg-block">
                 <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" >
                 </div>
                 <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
-            </div>
-            <div>
-                <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
-            </div>
-            </div>
-            <div class="d-none">
-                <div class="row g-5 align-items-center">
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" width="100%"  style="max-width: 280px" >
-
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" width="100%" >
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" width="100%"  style="max-width: 150px"  >
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" width="100%" style="max-width: 100px" >
-                    </div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
                 </div>
-                <div class="row gx-lg-5  py-3 align-items-center justify-content-center">
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" width="100%" >
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" width="100%" >
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" width="100%" >
-                    </div>
-
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" >
                 </div>
-                <div class="row g-5 align-items-center justify-content-center">
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" width="100%"  style="max-width: 180px" >
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" width="100%" >
-                    </div>
-                    <div class="col-lg-3 text-center">
-                        <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" width="100%"  style="max-width: 220px" >
-                    </div>
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" >
+                </div>
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" >
+                </div>
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/landserv.webp" alt="" >
+                </div>
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/buydomains.png" alt="" >
+                </div>
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/OjoSantaFe.png" alt="" >
+                </div>
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/erconly.png" alt="" >
+                </div>
+                <div>
+                    <img src="{{url('/')}}/assets/images/homepage/brands/Humana.png" alt="" >
                 </div>
             </div>
-
         </div>
     </section>
     {{-- Hotspot --}}
@@ -558,7 +491,6 @@
         .marketing_block p {
             text-align: center;
             font-size: 22px;
-            color: #6c6c6c;
         }
 
         .text2 a {
