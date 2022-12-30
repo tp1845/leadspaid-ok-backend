@@ -120,7 +120,7 @@
                         <h3>High Quality Lead Gen Platform<br>
                         <span>To generate leads without a website or <br>social media</span></h3>
                         <img src="{{url('/')}}/assets/images/homepage/leadgeneration.png" class="img-fluid" alt="leadsPaid">
-                        <p>Generate leads from popular high traffic <br>  and targetted websites</p>
+                        <p>Generate leads through popular high traffic  <br>  and targetted websites/Apps.</p>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -129,7 +129,7 @@
     </div>
     <section id="section_advertisers" class="bg-light p-1 py-3 py-lg-4 " >
         <div class="container-fluidss my-4">
-            <h2 class="title pb-3 pb-lg-5 text-center" style="margin-bottom: 20px!important">OVER 100,000 LEADS GENERATED FOR COMPANIES INCLUDING...</h2>
+            <h2 class="title pb-3 pb-lg-5 text-center" style="margin-bottom: 20px!important">OVER 200,000 LEADS GENERATED FOR COMPANIES INCLUDING...</h2>
             <div class="logoSlider d-block d-lg-block">
                 <div>
                     <img src="{{url('/')}}/assets/images/homepage/brands/TripAdvisor.png" alt="" >
@@ -254,8 +254,8 @@
                 $('.logoSlider').slick({
                     dots:false,
                     arrows:false,
-                    slidesPerRow:4,
-                    slidesToShow:5,
+                    slidesPerRow:6,
+                    slidesToShow:6,
                     useTransform:false,
                     speed:6000,
                     autoplay:true,
