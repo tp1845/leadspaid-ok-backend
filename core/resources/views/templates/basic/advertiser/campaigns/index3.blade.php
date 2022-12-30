@@ -1022,7 +1022,7 @@
 
         function updateformpreview(data = false) {
             resetformpreview();
-            var image_1_img= image_2_img= image_3_img ="";  
+            var image_1_img= image_2_img= image_3_img ="#";  
             if(data == false){
             var youtube_1 = $('.video_1').find('iframe').attr('src');
             var youtube_2 = $('.video_2').find('iframe').attr('src');
@@ -1044,14 +1044,14 @@
             var youtube_1 = data.youtube_1;
             var youtube_2 = data.youtube_2;
             var youtube_3 = data.youtube_3;;
-             if(data.image_1 != null){
+             if(data.image_1 !== null){
                 var image_1_img = image_src + data.image_1;
             }
-            if(data.image_2 != null){
+            if(data.image_2 !== null){
                var image_2_img = image_src +  data.image_2;
             }
 
-            if(data.image_3 != null){
+            if(data.image_3 !== null){
                var image_3_img = image_src + data.image_3;
             }
             var title_1 = data.title[1];;
