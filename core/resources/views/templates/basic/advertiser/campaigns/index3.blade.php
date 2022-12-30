@@ -1176,7 +1176,7 @@
                 margin: 0,
                 loop: false,
                 dots:false,
-                autoWidth:false,
+                autoWidth:true,
                 nav: true,
                 navText:["<div class='nav-btn prev-slide'></div>","<div class='nav-btn next-slide'></div>"]
               });
