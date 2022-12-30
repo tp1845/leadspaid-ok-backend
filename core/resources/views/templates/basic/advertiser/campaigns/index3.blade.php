@@ -2134,7 +2134,7 @@ font-size: 20px!important;
 }
 table.dataTable thead tr th {
     border-right: 1px solid #ffffff36;
-    font-size: 15px;
+    font-size: 17px;
 }
 #campaign_list_length {
     /*width: 30%;
