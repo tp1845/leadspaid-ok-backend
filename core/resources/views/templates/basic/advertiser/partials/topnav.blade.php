@@ -1,6 +1,15 @@
 @php
   $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
 @endphp
+
+<style>
+  .btn--primary.create-campaign-btn {
+    background-color: #4500dd!important;
+    border-radius: 0;
+}
+  
+</style>
+
 <nav class="navbar-wrapper active">
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
     <form class="navbar-search">
@@ -54,6 +63,9 @@
       @endif
     </div>
     <div class="navbar__right">
+	
+	  <a href="{{ url('/')}}/advertiser/campaigns/?action=create_campiagin"class="btn btn--primary create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</a>
+	
       <ul class="main-menu d-flex flex-wrap align-items-center">
 
         <li class="dropdown">
