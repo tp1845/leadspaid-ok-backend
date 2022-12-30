@@ -660,7 +660,8 @@
 
         var campaign_create_modal = $('#campaign_create_modal');
         campaign_create_modal.on('hidden.bs.modal', function (event) { reset_campaign_create_form(); updateformpreview(); })
-        $('.create-campaign-btn').on('click', function () {
+        $('.create-campaign-btn').on('click', function (e) {
+            e.preventDefault();
             updateformpreview();
             campaign_create_modal.modal('show');
             $("#campaign_form").find("#submit").text('Create Campaign');
@@ -1458,7 +1459,7 @@ function ValidURLnew(str) {
     </script>
 
     @php
-
+ 
   if(isset($_GET['action'])){
     if($_GET['action']=="create_campiagin"){
      @endphp
@@ -1470,6 +1471,7 @@ function ValidURLnew(str) {
   @php
     }
   }
+
 
     @endphp
 }
