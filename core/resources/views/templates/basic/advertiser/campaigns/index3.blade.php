@@ -1709,13 +1709,17 @@ font-size: 20px!important;
             margin-top: 9px !important;
         }
          #preview_media > div .owl-item, #preview_media > div .owl-item .item {
-            min-height: 150px;
-            line-height: 150px;
-            justify-content: center;
-            display: flex;
-            align-items: center;
-        }
+			min-height: 150px;
+			line-height: 150px;
+			justify-content: center;
+			display: flex;
+			align-items: center;
 			
+		}
+		#preview_media .owl-carousel .owl-stage {
+			margin: auto;
+			min-width: 300px;
+		}
 		#preview_media > div .owl-item iframe {
 			min-width:300px !important;
 		}
@@ -2268,7 +2272,6 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #preview_media .owl-carousel .owl-stage {
     margin: auto;
-    min-width: 150px;
 }
 #preview_media .owl-theme .owl-nav button {
     position: absolute;
