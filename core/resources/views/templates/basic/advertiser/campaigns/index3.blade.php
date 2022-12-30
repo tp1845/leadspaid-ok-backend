@@ -2252,10 +2252,12 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #preview_media .owl-carousel .owl-item img {
     max-width: unset;
-    width: unset;
     max-height: 150px;
     margin: auto;
     object-fit: contain;
+}
+#preview_media .owl-carousel .owl-item img {
+    width: 300px;
 }
 #preview_media .owl-theme .owl-nav {
     font-size: 18px;
