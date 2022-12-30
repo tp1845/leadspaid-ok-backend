@@ -1456,6 +1456,22 @@ function ValidURLnew(str) {
         }
 
     </script>
+
+    @php
+
+  if(isset($_GET['action'])){
+    if($_GET['action']=="create_campiagin"){
+     @endphp
+
+     <script>
+         $(".create-campaign-btn").trigger("click");
+
+     </script>
+  @php
+    }
+  }
+
+    @endphp
 }
 @endpush
 @push('style')
@@ -1816,7 +1832,7 @@ font-size: 20px!important;
     }
     #loadData .form-row input, #loadData .form-row select { 
         margin: 5px 0;
-		height:40px;
+        height:40px;
     }
     .form-row {
         width: 100% !important;
@@ -2356,7 +2372,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     justify-content: center;
 }
 #preview_form_title.form-title {
-	margin-top:10px !important;
+    margin-top:10px !important;
 }
 .btn-success{background-color: #11b6f3 !important;}
 </style>
