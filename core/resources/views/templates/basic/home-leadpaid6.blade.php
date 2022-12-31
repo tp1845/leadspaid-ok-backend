@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>Pay Only For Leads. Not For Clicks Or Impressions.</h3>
+                    <h3>Pay Only For Leads, Not For Clicks Or Impressions.</h3>
                 </div>
             </div>
         </div>
@@ -61,19 +61,19 @@
                     <ul class="how-its-works-list">
                         <li>
                             <b><span>1</span> AI Embeds Lead Form</b>
-                            <p>Our AI Algorithm embeds your lead form into popular publishers' landing pages</p>
+                            <p>Our AI algorithm embeds your lead form into some popular publishers' landing pages.</p>
                         </li>
                         <li>
-                            <b><span>2</span> Relevant Audience Fill the Form  </b>
-                            <p>Website visitors having strong interest in topics related to your lead gen campaign fill out your lead form</p>
+                            <b><span>2</span> Relevant Audience Fill Out The Form</b>
+                            <p>Visitors who have a strong interest in topics related to your lead generation campaigns fill out your lead form on these landing pages.</p>
                         </li>
                         <li>
                             <b><span>3</span> Downlead Leads </b>
-                            <p>Advertisers can simply download their leads instantly</p>
+                            <p>Advertisers can simply download their leads instantly.</p>
                         </li>
                         <li>
                             <b><span>4</span> Deep Learning Optimizer </b>
-                            <p>Our Deep learning Optimizer steadily improves your sales lead quality score up to 100% efficiency</p>
+                            <p>Our deep learning optimizer steadily improves your sales lead quality score up to 100% efficiency.</p>
                         </li>
                     </ul>
                     <div class="media_text mt-5 text-center d-block d-lg-none">
@@ -110,7 +110,7 @@
                 <div class="col-lg-6 text-center  mb-2 mb-lg-0">
                     <div class="marketing_block one">
                         <h3>An Alternative Lead Source <br>
-                        <span>Distinct from Search, Display &<br> Programmatic Ads</span></h3>
+                        <span>Distinct from Search, Display, and <br> Programmatic Ads</span></h3>
                         <img src="{{url('/')}}/assets/images/homepage/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
                         <p>Get leads instead of buying website traffic <br/>through ppc, video or banner ads.</p>
                     </div>
@@ -547,7 +547,25 @@
 
         #MainFooter {
             margin-top: 0 !important;
+            position: relative;
         }
+        #MainFooter:before{
+            background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg.jpg");
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            background-color: #1a273a;
+            opacity: .05;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            content: "";
+            z-index: 1;
+        }
+        #MainFooter .container, .footer_copywrite { position: relative; z-index: 10;}
         .MainBanner-bottom h3, .MainBanner-bottom .h3 {
             font-size: 30px;
         }
