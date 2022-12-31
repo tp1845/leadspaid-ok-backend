@@ -16,15 +16,15 @@
     }
 @endphp
 @section('content')
-     <section class="bg-secondary text-center text-white p-4 MainBanner-bottom" >
+    <section class="bg-secondary text-center text-white p-4 MainBanner-bottom" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                   <h3>Pay Only For Leads. Not For Clicks Or Impressions.</h3>
+                    <h3>Pay Only For Leads. Not For Clicks Or Impressions.</h3>
                 </div>
             </div>
         </div>
-     </section>
+    </section>
     <section>
         <div class="container">
             <div class="row align-item-center justify-content-center py-2">
@@ -353,6 +353,8 @@
             background-size: cover;
             position: relative;
         }
+        @media only screen and (max-width: 1200px) {  #MainHeroHeader{background-position: center left; }  }
+        @media only screen and (max-width: 600px) {  #MainHeroHeader{ background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v1-mobile.jpg"); background-position: center right;  }  }
         #MainHeroHeader:before{
             background-color: #1a273a;
             @if(Request::get('bg'))
