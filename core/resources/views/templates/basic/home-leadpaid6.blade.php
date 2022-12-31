@@ -227,7 +227,19 @@
                         <h4 class="sub_title">An AI-Powered Leads Ad Network</h4>
                     @endif
                     <h1 class="h1 hero_title">Generate Leads Directly</h1>
-                    <p>From High Ranking/ Popular/ Authority Sites & Apps</p>
+                    {{-- <p>From High Ranking/ Popular/ Authority Sites & Apps</p> --}}
+                    <div class="d-block text-center">
+                        <p class="verticalFlip">
+                            <span>From High Ranking/ Popular/ Authority Sites & Apps.</span>
+                            <span>No Website or Social Media Needed!</span>
+                            <span>From High Ranking/ Popular/ Authority Sites & Apps.</span>
+                            <span>No Website or Social Media Needed!</span>
+                            {{-- <span>Horrible.</span>
+                            <span>Magnificent.</span>
+                            <span>Adorable.</span> --}}
+                        </p>
+                    </div>
+
                     <a href="{{route('register_advertiser')}}" class="btn btn-secondary btn-lg my-2 button-large">Join As Advertiser</a>
                 </div>
             </div>
@@ -237,10 +249,8 @@
      @push('script-lib')
         <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
         <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
-
         <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
         <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
-
         <script type="text/javascript" src="{{asset('assets/templates/basic')}}/js/vendor/slick.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/templates/basic')}}/css/vendor/slick.css"/>
         <link rel="stylesheet" href="{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mediaelementplayer.min.css">
@@ -322,7 +332,83 @@
         }
 
         .testimonial_slider .slick-arrow{ color: #003561; }
-        </style>
+
+
+        /*Vertical Flip*/
+        .verticalFlip{
+            display: inline-block;
+            text-indent: 8px;
+            text-align: center;
+            height: 75px;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .verticalFlip span{
+            animation: vertical 8s linear infinite 0s;
+            -ms-animation: vertical 8s linear infinite 0s;
+            -webkit-animation: vertical 8s linear infinite 0s;
+            color: #fff;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 0;
+            left: 0;
+        }
+        .verticalFlip span:nth-child(2){
+            animation-delay: 2s;
+            -ms-animation-delay: 2s;
+            -webkit-animation-delay: 2s;
+        }
+         .verticalFlip span:nth-child(3){
+            animation-delay: 4s;
+            -ms-animation-delay: 4s;
+            -webkit-animation-delay: 4s;
+        }
+        .verticalFlip span:nth-child(4){
+            animation-delay: 6s;
+            -ms-animation-delay: 6s;
+            -webkit-animation-delay: 6s;
+        }
+        /*.verticalFlip span:nth-child(5){
+            animation-delay: 10s;
+            -ms-animation-delay: 10s;
+            -webkit-animation-delay: 10s;
+        } */
+
+        /*Vertical Flip Animation*/
+        /* @-moz-keyframes vertical{
+            0% {  opacity: 0; }
+            5% {  opacity: 0; -moz-transform: rotateX(180deg); }
+            10% { opacity: 1; -moz-transform: translateY(0px); }
+            25% { opacity: 1; -moz-transform: translateY(0px); }
+            30% { opacity: 0; -moz-transform: translateY(0px); }
+            80% { opacity: 0; }
+            100% { opacity: 0;}
+        } */
+        @-webkit-keyframes vertical{
+
+           0% {  opacity: 0;  -webkit-transform: translateY(100px); }
+            10% { opacity: 1; -webkit-transform: translateY(0px); }
+            25% { opacity: 1; -webkit-transform: translateY(0px); }
+            30% { opacity: 0; -webkit-transform: translateY(-100px); }
+            80% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+        /* @-ms-keyframes vertical{
+            0% { opacity: 0; }
+            5% { opacity: 0; -ms-transform: rotateX(180deg); }
+            10% { opacity: 1; -ms-transform: translateY(0px); }
+            25% { opacity: 1; -ms-transform: translateY(0px); }
+            30% { opacity: 0; -ms-transform: translateY(0px); }
+            80% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+ */
+
+    </style>
     <style>
         body {
         background-color: #fff;
