@@ -336,7 +336,7 @@
                     </div>
             </div>
             <div class="footer_copywrite text-center text-light">
-                © COPYRIGHT 2022 LEADS PAID INC. ALL RIGHTS RESERVED.
+                © Copyright 2023 LEADS PAID INC. All rights reserved.
             </div>
           </footer>
 
