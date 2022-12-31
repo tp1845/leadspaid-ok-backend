@@ -56,22 +56,23 @@
                     <h2 class="title mb-5">How It Works</h2>
                 </div>
             </div>
+
             <div class="row align-item-center justify-content-center">
                 <div class="col-lg-5">
                     <ul class="how-its-works-list">
-                        <li>
+                        <li class="onload">
                             <b><span>1</span> AI Embeds Lead Form</b>
                             <p>Our AI algorithm embeds your lead form into some popular publishers' landing pages.</p>
                         </li>
-                        <li>
+                        <li class="onload">
                             <b><span>2</span> Relevant Audience Fill Out The Form</b>
                             <p>Visitors who have a strong interest in topics related to your lead generation campaigns fill out your lead form on these landing pages.</p>
                         </li>
-                        <li>
+                        <li class="onload">
                             <b><span>3</span> Downlead Leads </b>
                             <p>Advertisers can simply download their leads instantly.</p>
                         </li>
-                        <li>
+                        <li class="onload">
                             <b><span>4</span> Deep Learning Optimizer </b>
                             <p>Our deep learning optimizer steadily improves your sales lead quality score up to 100% efficiency.</p>
                         </li>
@@ -315,6 +316,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="{{url('/')}}/assets/font/fonts.css" rel="stylesheet">
     <link href="{{url('/')}}/assets/templates/leadpaid/css/hotspot_section.css?v1" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"  />
     <style>
           .media-wrapper{ overflow: hidden; border: 5px solid #ccc; box-shadow: 2px 2px 2px #666; }
         .mejs__overlay-button {
@@ -533,6 +535,12 @@
             */
             list-style: none;
             position: relative;
+        }
+
+        .how-its-works-list li.onload.start {
+            display: inline-block;
+            animation: slideInUp; /* referring directly to the animation's @keyframe declaration */
+            animation-duration: 2s; /* don't forget to set a duration! */
         }
         @media only screen and (min-width: 1024px) {
             /* .how-its-works-list li { margin-bottom: -15px }
