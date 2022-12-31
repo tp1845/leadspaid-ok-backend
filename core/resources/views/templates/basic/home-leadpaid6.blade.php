@@ -16,7 +16,7 @@
     }
 @endphp
 @section('content')
-    <section class="bg-secondary text-center text-white p-4 MainBanner-bottom" >
+    <section class="bg-secondary text-center text-white p-4 MainBanner-bottom onload" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -25,7 +25,7 @@
             </div>
         </div>
     </section>
-    <section>
+    <section class="onload">
         <div class="container">
             <div class="row align-item-center justify-content-center py-2">
                 <div class="col-lg-4">
@@ -49,8 +49,8 @@
             </div>
         </div>
     </section>
-    <section id="how_it_works" class="p-1 py-5 p-lg-5" >
-        <div class="container">
+    <section id="how_it_works" class="p-1 py-5 p-lg-5 onload" >
+        <div class="container ">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="title mb-5">How It Works</h2>
@@ -99,7 +99,7 @@
         </div>
     </section>
 
-    <div class="marketing">
+    <div class="marketing onload">
         <div class="container py-5 text-left">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -127,7 +127,7 @@
 
         </div>
     </div>
-    <section id="section_advertisers" class="bg-light p-1 pt-3 pt-lg-4 pb-4 pb-lg-5 " >
+    <section id="section_advertisers" class="bg-light p-1 pt-3 pt-lg-4 pb-4 pb-lg-5 onload" >
         <div class="container-fluidss my-4">
             <h2 class="title pb-3 pb-lg-5 text-center" style="margin-bottom: 20px!important">OVER 200,000 LEADS GENERATED FOR COMPANIES INCLUDING...</h2>
             <div class="logoSlider d-block d-lg-block">
@@ -165,7 +165,7 @@
         </div>
     </section>
     {{-- Hotspot --}}
-    <div id="hotspot_section" class="section bg-gray d-flex justify-content-center align-items-center" style="overflow: hidden">
+    <div id="hotspot_section" class="onload section bg-gray d-flex justify-content-center align-items-center" style="overflow: hidden">
         <div class="container" style="position: relative; z-index: 10;" >
             <div class="row justify-content-center align-items-center" >
                 <div class="col-12 mb-5">
@@ -204,7 +204,7 @@
     </div>
     {{-- end Hotspot --}}
 
-    <section id="JoinAsAdvertiser_section" class=" p-1 py-5 p-lg-5" >
+    <section id="JoinAsAdvertiser_section" class="onload p-1 py-5 p-lg-5" >
         <div class="container">
             <div class="row justify-content-center align-items-center">
                 <div class="col-lg-3">
@@ -219,7 +219,7 @@
     </section>
 @endsection
 @push('hero')
-    <section class="MainBanner-Home">
+    <section class="MainBanner-Home onload">
         <div class="container">
             <div class="row align-item-center justify-content-center align-items-center">
                 <div class="col-lg-12">
@@ -320,6 +320,8 @@
         .mejs__button svg {
             fill: #000;
         }
+
+        .testimonial_slider .slick-arrow{ color: #003561; }
         </style>
     <style>
         body {
