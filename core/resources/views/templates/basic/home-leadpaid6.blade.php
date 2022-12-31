@@ -586,7 +586,7 @@
         .logoSlider img{
             display: inline-block!important;
             max-width: 200px;
-            width: auto;
+            width: 100%;
             padding: 0 15px;
             max-height: 60px;
         }
