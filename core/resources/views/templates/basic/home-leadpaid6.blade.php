@@ -20,7 +20,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>Pay Only For Leads, Not For Clicks Or Impressions.</h3>
+                    <h3>Pay Only For Leads, Not Clicks Or Impressions.</h3>
                 </div>
             </div>
         </div>
@@ -62,7 +62,7 @@
                     <ul class="how-its-works-list">
                         <li class="onload">
                             <b><span>1</span> AI Embeds Lead Form</b>
-                            <p>Our AI algorithm embeds your lead form into some popular publishers' landing pages.</p>
+                            <p>Our AI algorithm embeds your lead form into popular publishers' landing pages.</p>
                         </li>
                         <li class="onload">
                             <b><span>2</span> Relevant Audience Fill Out The Form</b>
