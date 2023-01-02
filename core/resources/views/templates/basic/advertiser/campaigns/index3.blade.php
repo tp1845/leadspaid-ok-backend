@@ -1125,6 +1125,13 @@
                   $(".create_qty").attr('data-status',0);
             }
 
+
+           $('#preview_media').find("iframe").hide();
+            $('#preview_media').find("iframe").after("<div class='youtubvre_loadingg' style='min-width:300px;text-align:center'>loading from youtube..</div>");
+               $('#preview_media').find("iframe").on("load", function() {
+                $('#preview_media').find("iframe").show();
+                   $('#preview_media').find(".youtubvre_loadingg").remove();
+                });
              
 
             
@@ -1808,9 +1815,7 @@ font-size: 20px!important;
 #formPreviewBLock .container .nav-btn {
     font-family: cursive;
 }
-    .video iframe {
-      border: 1px solid #000;
-    }
+    
 
     .form-title {
       text-align: center;
@@ -2377,6 +2382,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     margin-top:10px !important;
 }
 .btn-success{background-color: #11b6f3 !important;}
+#campaign_create_modal {
+    padding-right: 0 !important;
+}
 </style>
 <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
 @endpush
