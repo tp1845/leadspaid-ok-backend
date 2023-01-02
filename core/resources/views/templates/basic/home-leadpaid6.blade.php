@@ -60,19 +60,20 @@
             <div class="row align-item-center justify-content-center">
                 <div class="col-lg-5">
                     <ul class="how-its-works-list">
-                        <li class="onload">
+
+                        <li class="onload slow">
                             <b><span>1</span> AI Embeds Lead Form</b>
                             <p>Our AI algorithm embeds your lead form into popular publishers' landing pages.</p>
                         </li>
-                        <li class="onload">
+                        <li class="onload slow">
                             <b><span>2</span> Relevant Audience Fill Out The Form</b>
                             <p>Visitors who have a strong interest in topics related to your lead generation campaigns fill out your lead form on these landing pages.</p>
                         </li>
-                        <li class="onload">
+                        <li class="onload slow">
                             <b><span>3</span> Downlead Leads </b>
                             <p>Advertisers can simply download their leads instantly.</p>
                         </li>
-                        <li class="onload">
+                        <li class="onload slow">
                             <b><span>4</span> Deep Learning Optimizer </b>
                             <p>Our deep learning optimizer steadily improves your sales lead quality score up to 100% efficiency.</p>
                         </li>
@@ -347,9 +348,9 @@
             overflow: hidden;
         }
         .verticalFlip span{
-            animation: vertical 8s linear infinite 0s;
-            -ms-animation: vertical 8s linear infinite 0s;
-            -webkit-animation: vertical 8s linear infinite 0s;
+            animation: vertical 12s linear infinite 0s;
+            -ms-animation: vertical 12s linear infinite 0s;
+            -webkit-animation: vertical 12s linear infinite 0s;
             color: #fff;
             opacity: 0;
             overflow: hidden;
@@ -360,19 +361,19 @@
             left: 0;
         }
         .verticalFlip span:nth-child(2){
-            animation-delay: 2s;
-            -ms-animation-delay: 2s;
-            -webkit-animation-delay: 2s;
+            animation-delay: 3s;
+            -ms-animation-delay: 3s;
+            -webkit-animation-delay: 3s;
         }
          .verticalFlip span:nth-child(3){
-            animation-delay: 4s;
-            -ms-animation-delay: 4s;
-            -webkit-animation-delay: 4s;
-        }
-        .verticalFlip span:nth-child(4){
             animation-delay: 6s;
             -ms-animation-delay: 6s;
             -webkit-animation-delay: 6s;
+        }
+        .verticalFlip span:nth-child(4){
+            animation-delay: 9s;
+            -ms-animation-delay: 9s;
+            -webkit-animation-delay: 9s;
         }
         /*.verticalFlip span:nth-child(5){
             animation-delay: 10s;
@@ -469,7 +470,7 @@
         }
         @endif
 
-        #MainHeroHeader  #MainNav, #MainHeroHeader   .MainBanner-Home { position: relative; z-index: 10; }
+        #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
         #MainNav{ background-color: transparent!important; border-bottom: 0!important; box-shadow: 1px 1px 46px #ffffff; }
         .MainBanner-Home {
@@ -594,8 +595,8 @@
         padding: 30px;
         }
 
-        .marketing_block.one { background: #f4fbff; }
-        .marketing_block.two { background: #f4f5fd; }
+        .marketing_block.one { background: #f4f5fd; }
+        .marketing_block.two { background: #f4fbff; }
         .marketing_block img { display: inline-block; margin: 30px 0;   }
         @media only screen and (min-width: 992px) {
             .marketing_block { display: flex;  flex-wrap: wrap; justify-content: center;  height: 100%; align-items: stretch; align-content: space-around;}
