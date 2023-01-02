@@ -58,7 +58,7 @@
             </div>
 
             <div class="row align-item-center justify-content-center">
-                <div class="col-lg-5">
+                <div class="col-lg-5 order-1 order-lg-0">
                     <ul class="how-its-works-list">
 
                         <li class="onload slow">
@@ -78,13 +78,13 @@
                             <p>Our deep learning optimizer steadily improves your sales lead quality score up to 100% efficiency.</p>
                         </li>
                     </ul>
-                    <div class="media_text mt-5 text-center d-block d-lg-none">
+                    <div class="media_text mt-2 mt-lg-5 text-center d-block d-lg-none">
                         <h2 class="title">RESULT</h2>
                         <p class="media_btn">GREAT LEADS<br/>GREAT SALES!!!</p>
                     </div>
                 </div>
-                <div class="col-lg-5 text-center ">
-                    <div class="media-wrapper mb-3 mb-lg-0">
+                <div class="col-lg-5 text-center order-0 order-lg-1 ">
+                    <div class="media-wrapper mb-5 mb-lg-0">
                         <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
                             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" type="video/mp4">
                             <track srclang="en" kind="subtitles" src="mediaelement.vtt">
