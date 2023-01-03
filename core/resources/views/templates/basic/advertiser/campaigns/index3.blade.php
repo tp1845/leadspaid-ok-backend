@@ -4,8 +4,17 @@
 @endphp
 @section('panel')
     <div class="row">
+
         <div class="col-lg-12">
-            <div class=" ">
+            <div id="campaigns_date_table">
+                <div class="paymentt_tab">
+                <input type="text" id="daterange" name="daterange" value="Today">
+                <form method="GET" id="RangeForm" hidden>
+                <input id="startDate" name="startDate" />
+                <input id="endDate" name="endDate" />
+                </form>
+                <!-- <button type="button" class="btn btn-danger rounded-0 ml-2 adsrock-download-pd">Download Invoice</button> -->
+            </div>
                 <div class="table-responsive--lg">
                  <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                         <thead>
@@ -628,6 +637,37 @@
     <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
     <script>
         'use strict';
+        $(function() {
+        $(document).ready(function() {
+            //Date Range
+            var isSearched = new URLSearchParams(window.location.search).get('startDate') == null ? false: true;
+            var datee =  new Date ((new URLSearchParams(window.location.search)).get('startDate'));
+            var startDate =  ( Number(datee.getMonth())+1 )+   "/" + datee.getDate() +"/" + datee.getFullYear()
+            var datee =  new Date ((new URLSearchParams(window.location.search)).get('endDate'));
+            var endDate =  ( Number(datee.getMonth())+1 )+   "/" + datee.getDate() +"/" + datee.getFullYear()
+            $('#daterange').daterangepicker({
+                ranges: {
+                    'Today': [moment(), moment().add(1, 'days')],
+                    'Yesterday': [moment().subtract(1, 'days'), moment()],
+                    'Last 7 Days': [moment().subtract(6, 'days'), moment().add(1, 'days')],
+                    'Last 30 Days': [moment().subtract(30, 'days'), moment().add(1, 'days')],
+                    'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                },
+                "alwaysShowCalendars": true,
+                "startDate": isSearched? startDate:moment().subtract(6, 'days'),
+                "endDate": isSearched?endDate:moment().add(1, 'days'),
+                "opens": "left",
+                "drops": "auto"
+            }, function(start, end, label) {
+                $('#startDate').val(start.format('YYYY-MM-DD'));
+                $('#endDate').val(end.format('YYYY-MM-DD'));
+                $('#RangeForm').submit();
+                console.log('New date range selected: ' +  + ' to ' + end.format('MM-DD-YYYY') + ' (predefined range: ' + label + ')');
+            });
+        });
+
+    });
         $('input[type=radio][name=SelectFormType]').on('change', function() {
             var type = $(this).val() ;
             if ( type === 'CreateNewForm' ) {
@@ -2433,6 +2473,33 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #CreateNewForm .fbox, #CreateNewForm .fbox .gray_title {
     margin: 0 -15px 0px -15px;
+}
+#campaigns_date_table #campaign_list_filter {
+    width: calc(100% - 250px);
+    position: relative;
+}
+#campaigns_date_table .paymentt_tab {
+    position: absolute;
+    right: 15px;
+    top: 0px;
+}
+.paymentt_tab input {
+    border-radius: 0;
+    height: calc(1rem + 1rem + 2px);
+    font-size: 15px !important;
+    border: 1px solid #ced4da;
+}
+#campaigns_date_table #campaign_list_filter:after {
+    content: 'All Campaigns';
+    position: absolute;
+    left: 0;
+    font-size: 1.125rem;
+    color: #34495e;
+    display: inline-block;
+    font-weight: 500;
+}
+.bodywrapper__inner .row.align-items-center.mb-15.justify-content-between {
+    display: none;
 }
 </style>
 
