@@ -61,14 +61,13 @@
         <header>
             <div id="MainNav-container">
                 <div id="MainNav">
-                    <nav class="navbar navbar-expand-lg bg-primary no-fixed" >
+                    <nav class="navbar navbar-expand-lg no-fixed" >
                         @include('templates.basic.partials.main-nav');
                     </nav>
-                    <nav class="navbar navbar-expand-lg bg-primary fixed" style="top: -100px; position: fixed;"  >
-                        @include('templates.basic.partials.main-nav');
+                    <nav class="navbar navbar-expand-lg fixed" style="top: -100px; position: fixed;"  >
+                        @include('templates.basic.partials.main-nav')
                     </nav>
                 </div>
-
             </div>
         </header>
         <!-- header-section end  -->
@@ -144,7 +143,6 @@
                 © Copyright 2023 LEADS PAID INC. All rights reserved.
             </div>
           </footer>
-
           <!-- footer section end -->
         </div> <!-- page-wrapper end -->
         @include('admin.partials.notify');
@@ -190,8 +188,11 @@
                     transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
                     transform-style: preserve-3d;
                 }
+
+
+
                 #MainNav{ z-index: 9999!important; }
-                #MainNav .navbar{   }
+                #MainNav .navbar.no-fixed{ background-color: #000011cc!important;   }
                 #MainNav .navbar.fixed{
                     position: fixed;
                     overflow: hidden;
@@ -200,12 +201,23 @@
                     top: -100px;
                     left: 0;
                     transition:all .5s ease;
+                    background-color: #fff!important;
+                    box-shadow: 0 5px 15px rgb(0 0 0 / 10%)!important;
                 }
+
                 #MainNav-container.f-nav #MainNav .navbar.fixed{ top: 0!important; }
                 @media screen and (max-width: 992px){
-                    #MainNav .logo{ margin: auto; } #MainNav .logo img{ max-width: 216px!important;}
+                    /* #MainNav .logo{ margin: auto; } */
+                     #MainNav .logo img{ max-width: 175px!important;}
                     #MainNav-container:not(.f-nav) .navbar.fixed .navbar-collapse { display: none!important; opacity: 0;}
                 }
+
+                #MainNav .navbar.fixed  a.nav-link {
+                    color: #000;
+                }
+                #MainNav .navbar.fixed li:nth-child(3) { border: 2px solid #000; }
+
+                #MainNav .navbar.fixed .navbar-toggler .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")!important;'' }
             </style>
         </body>
     </html>
