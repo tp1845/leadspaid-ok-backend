@@ -2429,7 +2429,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     color: #666;
 }
 #formPreviewBLock .policy {
-    margin-top: 7px !important;
+    margin-top: 2px !important;
 }
 #CreateNewForm .fbox, #CreateNewForm .fbox .gray_title {
     margin: 0 -15px 0px -15px;
