@@ -85,7 +85,7 @@
                 </div>
                 <div class="col-lg-5 text-center order-0 order-lg-1 ">
                     <div class="media-wrapper mb-5 mb-lg-0">
-                        <video id="player1" width="640" height="360" style="max-width:100%;" poster="{{url('/')}}/assets/images/video/how-its-works-thumb.png" preload="none" controls playsinline webkit-playsinline>
+                        <video id="player1" width="640" height="360" style="max-width:100%;" poster="{{url('/')}}/assets/images/video/how-its-works-thumb.jpg" preload="none" controls playsinline webkit-playsinline>
                             <source src="{{url('/')}}/assets/images/video/how-its-works-video.mp4" type="video/mp4">
                         </video>
                     </div>
