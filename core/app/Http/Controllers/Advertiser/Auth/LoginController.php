@@ -158,12 +158,11 @@ class LoginController extends Controller
 
         if ($user->status == 0) {
             $this->guard()->logout();
-            return redirect()->route('advertiser.login')->withErrors(['Your account has been banned by admin']);
+            return redirect()->route('login_advertiser')->withErrors(['Your account has been banned by admin']);
         }
 
         $user->tv = $user->ts == 1 ? 0 : 1;
         $user->save();
-
 
         $user->tv = $user->ts == 1 ? 0 : 1;
         $user->save();
