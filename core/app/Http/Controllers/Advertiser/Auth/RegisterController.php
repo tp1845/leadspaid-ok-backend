@@ -128,7 +128,7 @@ class RegisterController extends Controller
             $sub_title='Your account is pending approval. <br> You will receive an email once it is activated.';
             $user->ver_code = $data['code'];
             $user->ver_code_send_at = Carbon::now();
-            if($user->ev = 0){
+            if($user->ev == 0){
                 $user->ev = 1;
                 $user->status = 0;
                 $user->save();
