@@ -205,7 +205,7 @@ table.dataTable {
 <div class="container-fluid position-relative px-0     5555555">
 
   <div class="row">
-     <div class="col-md-9 col-xl-10 col-lg-10 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
+     <div class="col-md-9 col-xl-9 col-lg-9 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
         <div class="row">
             <div  class="col-md-6 mb-xl-0 mb-lg-0 mb-md-4 mb-sm-4 mb-4 px-0">
                 <div class="border px-3">
@@ -335,7 +335,7 @@ table.dataTable {
             </div>			
         </div>
      </div>
-    <div class="col-md-3 col-xl-2 col-lg-2 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
+    <div class="col-md-3 col-xl-3 col-lg-3 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
         <div class="row h-100">
             <div class="col-12 border p-3">
                  <h4>Billing Summary</h4>
