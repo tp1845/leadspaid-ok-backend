@@ -274,10 +274,11 @@
                 $('.testimonial_slider').slick({
                     dots:false,
                     arrows:true,
-                    speed: 500,
+                    speed: 300,
                     slidesPerRow:1,
                     slidesToShow:1,
-                    autoplay:false,
+                    autoplay:true,
+                    autoplaySpeed:5000,
                     prevArrow:'<button type="button" class="slick-prev"><i class="las la-chevron-circle-left"></i></button>',
                     nextArrow:'<button type="button" class="slick-next"><i class="las la-chevron-circle-right"></i></button>',
                 });
