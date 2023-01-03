@@ -42,7 +42,11 @@
             type: 'POST',
             success: function ( data ) {
                 console.log(data)
-                alert('Please check your email and verify. '  );
+                if(data.success){
+                    alert('Please check your email and verify. ');
+                }else{
+                    alert('Please Try after sometime!');
+                }
             }
         });
     });

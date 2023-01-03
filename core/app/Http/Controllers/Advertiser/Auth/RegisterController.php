@@ -154,15 +154,14 @@ class RegisterController extends Controller
 
     public function resend_verification_code(Request $request){
         $user = Advertiser::findOrFail($request['id']);
-        if(!$user){ $notify[] = ['error', "user not found"]; return back()->withNotify($notify); }
+        if(!$user){ return response()->json(['success'=>false]); }
         $code=[ 'code' =>verificationCode(6), 'userid'=>$user->id ];
         $useremail=$user->email;
         $urll= url('');
         $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
         // custom code email send
         send_email_adv($user, 'EVER_CODE',$link);
-        $notify[] = ['success', "email sent"];
-        return back()->withNotify($notify);
+        return response()->json(['success'=>true]);
     }
 
     public function register_advertiser(Request $request){
