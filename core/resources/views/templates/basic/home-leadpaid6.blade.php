@@ -179,7 +179,7 @@
                             <p class="text2">Leads started increasing slowly but steadily. I'd say, the AI is marvelous. It worked!</p>
                             </div>
                             <div>
-                            <p class="text2">270,000 - 1st month sales | 357,000 - 2nd month sales | 590,000 - 6th month sales. Achieved our Target Growth in 6 months. Great support from LeadsPaid team. Thank you!</p>
+                            <p class="text2">270k - 1st month sales | 357k - 2nd month sales | 590k - 6th month sales. Achieved our growth target in 6 months :) </p>
                             </div>
                             <div>
                             <p class="text2">Created lead generation campaigns myself easily. Every day, get about 20 to 30 leads consistently. I recommend leadspaid.com.</p>
@@ -335,6 +335,7 @@
         }
 
         .testimonial_slider .slick-arrow{ color: #003561; }
+        .testimonial_slider p{  font-size: 20px!important;  }
 
 
         /*Vertical Flip*/
