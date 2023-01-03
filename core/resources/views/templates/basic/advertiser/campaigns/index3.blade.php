@@ -7,9 +7,7 @@
         <div class="col-lg-12">
             <div class=" ">
                 <div class="table-responsive--lg">
-
-
-                    <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
+                 <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                         <thead>
                         <tr>
                             <th>Off/On</th>
@@ -127,12 +125,12 @@
                         <div class="row border-top align-items-end py-2">
                             
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b></label>
-                                <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name" required maxlength="30"></div>
+                                <label class="form-label text-white mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name (Optional)</b></label>
+                                <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
                             <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
                                     <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
-                                    <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo</span></label>
+                                    <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo*</span></label>
                                 </div>
                                 <div id="company_logo_preview" class="img_preview_box">
                                     <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
@@ -615,6 +613,11 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{asset('assets/admin/js/vendor/datepicker.min.js')}}"></script>
     <script src="{{asset('assets/admin/js/vendor/datepicker.en.js')}}"></script>
+    
+    <!-- loading Jquery Start-->    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easy-loading/1.3.0/jquery.loading.min.js"></script>
+    <!-- Loading Jquery End-->
 
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -883,6 +886,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
 
 
+<link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
 
 
 
@@ -967,7 +971,7 @@
 
             },messages: {
                 campaign_name:{  required : 'Campaign Name is required.' },
-                company_name:{  required : 'Company Name is required.' },
+             
                 company_logo:{  required : 'Company Logo is required.' },
                 target_country:{  required : 'Country is required.' },
 
@@ -1125,16 +1129,14 @@
                   $(".create_qty").attr('data-status',0);
             }
 
-
-           $('#preview_media').find("iframe").hide();
+            // $("#preview_media").loading();
+            $('#preview_media').find("iframe").hide();
             $('#preview_media').find("iframe").after("<div class='youtubvre_loadingg' style='min-width:300px;text-align:center'>loading from youtube..</div>");
                $('#preview_media').find("iframe").on("load", function() {
                 $('#preview_media').find("iframe").show();
                    $('#preview_media').find(".youtubvre_loadingg").remove();
                 });
-             
-
-            
+                            
             for ($i = 1; $i < 6; $i++){
                 if(data == false){
                 question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
@@ -1483,6 +1485,10 @@ function ValidURLnew(str) {
     @endphp
 }
 @endpush
+
+
+
+
 @push('style')
 
 <style>
@@ -1815,7 +1821,9 @@ font-size: 20px!important;
 #formPreviewBLock .container .nav-btn {
     font-family: cursive;
 }
-    
+    /*.video iframe {
+      border: 1px solid #000;
+    }*/
 
     .form-title {
       text-align: center;
@@ -2382,9 +2390,13 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     margin-top:10px !important;
 }
 .btn-success{background-color: #11b6f3 !important;}
-#campaign_create_modal {
-    padding-right: 0 !important;
+#formPreviewBLock .container div {
+    width: 100%;
+}
+#formPreviewBLock  .video {
+    padding: 0!important;
+    width: auto!important;
 }
 </style>
-<link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
+
 @endpush
