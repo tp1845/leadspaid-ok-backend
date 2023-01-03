@@ -795,7 +795,7 @@
                     html +='<div class="pl-5 options-block">';
                     html +='<div class="input-group option"><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_'+row+'[option_1]" required maxlength="30"><div class="input-group-text ">  </div></div>';
                     html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_'+row+'[option_2]" required  maxlength="30"><div class="input-group-text">  </div></div>';
-                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]" required  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+                    html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]"  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
                     html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 4" name="field_'+row+'[option_4]"  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
                     html +='</div>';
                     html +='<div class="pl-5"><a class="btn-add-option btn"  data-row="'+row+'" data-option="5">+ Add Option</a></div>';
@@ -980,8 +980,8 @@
                 target_cost:  { required : 'Target Cost is required.', min:'Target Cost should be minimum $10', max: 'Target Cost should not be greater than $1000'} ,
                 SelectFormType:{  required : 'Form is required.' },
                 form_name:{  required : 'Form Name is required.' },
-                'form_title[1]':{  required : 'Form Title is required.' },
-                'form_desc[1]':{  required : 'Form Description is required.' },
+                'form_title[1]':{  required : '"Product/Service/Offer" is required.' },
+                'form_desc[1]':{  required : '"Product/Service/Offer Description" is required.' },
                 'field_1[question_text]':{  required : 'Question is required.' },
                 'field_2[question_text]':{  required : 'Question is required.' },
                 'field_3[question_text]':{  required : 'Question is required.' },
