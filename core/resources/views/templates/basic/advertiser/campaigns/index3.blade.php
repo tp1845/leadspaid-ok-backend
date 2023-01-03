@@ -125,7 +125,9 @@
                         <div class="row align-items-end py-2">
                             
                             <div class="col-lg-3 input-col">
-                                <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name (Optional)</b></label>
+                                <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
+                                    <span id="text_white" class="ar-14 lp-dark">(Optional)</span>
+                                </label>
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
                             <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
@@ -543,7 +545,7 @@
                                                     </div>
                                                     <div class="form-row mt-3">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
-                                                        <p class="policy">I agree to your privacy policy by submitting this form.</p>
+                                                        <p class="policy">I agree to your <a href="https://www.leadspaid.com/privacy-policy" class="privcy-polcy" rel="noindex, nofollow"> privacy policy </a> by submitting this form.</p>
 
                                                     </div>
                                                     </div>
@@ -726,7 +728,7 @@
             $(options_block).append(html);
             update_options(options_section);
             }else{
-                Toast('red', 'Only 6 Option Allowed') ;
+                Toast('red', 'Only 6 Options Allowed') ;
             }
 
         });
@@ -2422,6 +2424,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 #form_name-error{
     color: #ffcbcb!important;
     font-size: 18px!important;
+}
+.privcy-polcy {
+    color: #666;
 }
 </style>
 
