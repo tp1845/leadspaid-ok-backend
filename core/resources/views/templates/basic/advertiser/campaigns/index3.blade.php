@@ -545,7 +545,7 @@
                                                     </div>
                                                     <div class="form-row mt-3">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
-                                                        <p class="policy">I agree to your <a href="https://www.leadspaid.com/privacy-policy" class="privcy-polcy" rel="noindex, nofollow"> privacy policy </a> by submitting this form.</p>
+                                                        <p class="policy">I agree to your <a href="https://www.leadspaid.com/privacy-policy" class="privcy-polcy" rel="noindex, nofollow" target="_blank"> privacy policy </a> by submitting this form.</p>
 
                                                     </div>
                                                     </div>
@@ -1847,10 +1847,10 @@ font-size: 20px!important;
         padding: 0 11px !important;
     }
     #loadData ~ .form-row {
-        margin-top: 10px !important;
+        margin-top: 8px !important;
     }
     #loadData .form-row input, #loadData .form-row select { 
-        margin: 5px 0;
+        margin: 4px 0;
         height:40px;
     }
     .form-row {
@@ -2392,7 +2392,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     justify-content: center;
 }
 #preview_form_title.form-title {
-    margin-top:10px !important;
+    margin-top:7px !important;
 }
 .btn-success{background-color: #11b6f3 !important;}
 #formPreviewBLock .container div {
@@ -2427,6 +2427,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 .privcy-polcy {
     color: #666;
+}
+#formPreviewBLock .policy {
+    margin-top: 7px !important;
 }
 </style>
 
