@@ -641,7 +641,7 @@
         .MainBanner-Home .btn{ background-color: #4833e6!important; }
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
-        #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 0px 0px 10px #fff; }
+        #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 7px 7px 10px #1a273a }
         @media only screen and (max-width: 991px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
 
         #MainFooter {
