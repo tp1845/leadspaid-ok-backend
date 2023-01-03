@@ -34,7 +34,7 @@
     $("a").click(function(e) {
         e.preventDefault();
         var getFormURL = "{{route('resend_advertiser_verification')}}";
-        const getformData = { "_token": "{{ csrf_token() }}", "id": $user->id };
+        const getformData = { "_token": "{{ csrf_token() }}", "id": {{$user->id}} };
         $.ajax({
             url: getFormURL,
             data: getformData,

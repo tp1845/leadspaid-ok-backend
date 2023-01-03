@@ -567,7 +567,7 @@ Route::get('/login','SiteController@showLoginForm')->name('login');
 Route::get('/register','SiteController@showRegisterForm')->name('register');
 Route::get('register-advertiser','SiteController@register_advertiser')->name('register_advertiser');
 Route::get('login-advertiser','SiteController@login_advertiser')->name('login_advertiser');
-Route::post('resend-advertiser-verification','Advertiser\RegisterController@resend_verification_code')->name('resend_advertiser_verification');
+Route::post('resend-advertiser-verification','Advertiser\Auth\RegisterController@resend_verification_code')->name('resend_advertiser_verification');
 Route::get('/blog', 'SiteController@blogs')->name('blog');
 Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details');
 

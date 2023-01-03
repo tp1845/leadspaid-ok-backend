@@ -154,6 +154,7 @@ class RegisterController extends Controller
 
     public function resend_verification_code(Request $request){
         $user = Advertiser::findOrFail($request['id']);
+        if(!$user){ $notify[] = ['error', "user not found"]; return back()->withNotify($notify); }
         $code=[ 'code' =>verificationCode(6), 'userid'=>$user->id ];
         $useremail=$user->email;
         $urll= url('');
