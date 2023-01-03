@@ -1722,7 +1722,7 @@ font-size: 20px!important;
         #CreateFormModal {
             background-color: #00000080;
         }
-        
+
         label {
             color: #000 !important
         }
@@ -2417,6 +2417,11 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #campaign_form .modal-content {
     border-radius: 0;
+}
+
+#form_name-error{
+    color: #ffcbcb!important;
+    font-size: 18px!important;
 }
 </style>
 
