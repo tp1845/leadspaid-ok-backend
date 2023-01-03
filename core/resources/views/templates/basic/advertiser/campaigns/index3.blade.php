@@ -223,7 +223,7 @@
                                     </div>
                                     <div class="card-body p-0 ">
                                         <div class="row m-0">
-                                            <div class="col-4 pt-2  h-100 leftForm lp-border-right">
+                                            <div class="col-4 pt-0  h-100 leftForm lp-border-right">
                                                 <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Product/Service Details</h4>
                                                     <div>
@@ -2430,6 +2430,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #formPreviewBLock .policy {
     margin-top: 7px !important;
+}
+#CreateNewForm .fbox, #CreateNewForm .fbox .gray_title {
+    margin: 0 -15px 0px -15px;
 }
 </style>
 
