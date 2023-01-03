@@ -85,10 +85,8 @@
                 </div>
                 <div class="col-lg-5 text-center order-0 order-lg-1 ">
                     <div class="media-wrapper mb-5 mb-lg-0">
-                        <video id="player1" width="640" height="360" style="max-width:100%;" poster="http://www.mediaelementjs.com/images/big_buck_bunny.jpg" preload="none" controls playsinline webkit-playsinline>
-                            <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/CastVideos/mp4/BigBuckBunny.mp4" type="video/mp4">
-                            <track srclang="en" kind="subtitles" src="mediaelement.vtt">
-                            <track srclang="en" kind="chapters" src="chapters.vtt">
+                        <video id="player1" width="640" height="360" style="max-width:100%;" poster="{{url('/')}}/assets/images/video/how-its-works-thumb.png" preload="none" controls playsinline webkit-playsinline>
+                            <source src="{{url('/')}}/assets/images/video/how-its-works-video.mp4" type="video/mp4">
                         </video>
                     </div>
                     <div class="media_text mt-5 d-none d-lg-block">
@@ -462,15 +460,7 @@
             content: "";
             z-index: 1;
         }
-        @if(Request::get('bg') == 1 )
-        #MainHeroHeader #MainNav{
-            background-color: #000011cc!important;
-            border-bottom: 1px solid #000055;
-        }
-        #MainHeroHeader .MainBanner-Home{
-            /* background-color: #000011bc; */
-        }
-        @endif
+
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
