@@ -274,6 +274,7 @@
                 $('.testimonial_slider').slick({
                     dots:false,
                     arrows:true,
+                    speed: 500,
                     slidesPerRow:1,
                     slidesToShow:1,
                     autoplay:false,
@@ -472,7 +473,7 @@
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
-        #MainNav{ background-color: transparent!important; border-bottom: 0!important; box-shadow: 1px 1px 46px #ffffff; }
+        #MainNav{ background-color: transparent!important; border-bottom: 0!important; box-shadow: 1px 1px 100px #ffffff; }
         .MainBanner-Home {
         font-family: Poppins !important;
         background-color: transparent;
