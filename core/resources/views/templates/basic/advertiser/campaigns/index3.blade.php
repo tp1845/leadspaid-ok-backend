@@ -117,15 +117,15 @@
                         <div class="w-100">
                         <div class="row align-items-end justify-content-between pb-2">
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1 ar-16 ls-mt-2" for="campaign_name_Input"><b>Campaign Name</b></label>
+                                <label class="form-label lp-dark mb-1 ar-16 ls-mt-2" for="campaign_name_Input"><b>Campaign Name</b></label>
                                 <input type="text" class="form-control" id="campaign_name_Input" placeholder="eg. Lead_Gen1" name="campaign_name"   required maxlength="30"></div>
                            <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
                         </div>
 
-                        <div class="row border-top align-items-end py-2">
+                        <div class="row align-items-end py-2">
                             
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name (Optional)</b></label>
+                                <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name (Optional)</b></label>
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
                             <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
@@ -140,9 +140,9 @@
 
                         </div>
 
-                        <div class="row border-top py-2">
+                        <div class="row py-2">
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 text-white">(from which leads are required)</span></label>
+                                <label class="form-label lp-dark mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 lp-dark">(from which leads are required)</span></label>
                                 <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
                                     <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
                                     @foreach ($countries as $country)
@@ -151,12 +151,12 @@
                                 </select>
                             </div>
                             <div class="col-lg-3 input-col">
-                                <label class="form-label text-white mb-1 ar-16" for="DailyBudgetInput"><b>Daliy Budget</b><i>*</i></label>
+                                <label class="form-label lp-dark mb-1 ar-16" for="DailyBudgetInput"><b>Daliy Budget</b><i>*</i></label>
                                 <div class="us_doller">
                                 <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required></div>
                             </div>
                             <div class="col-lg-3 input-col ">
-                                <label class=" form-label text-white mb-1 ar-16" for="TargetCostInput"><b>Target Cost Per Lead</b><i>*</i></label>
+                                <label class=" form-label lp-dark mb-1 ar-16" for="TargetCostInput"><b>Target Cost Per Lead</b><i>*</i></label>
                                      <div class="us_doller"><input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
                                      </div>
                                     {{-- <small class="form-text text-muted">You will get the leads within this cost on average. However, the cost per lead may vary on different days.</small> --}}
@@ -212,7 +212,7 @@
                                 </div>
                             </div>
                             <div  id="CreateNewForm" style="display: none">
-                                <div class="card border h-100">
+                                <div class="card lp-border h-100">
                                     <div class="card-header bg-primary cuxtom_pt_5">
                                         <div class="input-col">
                                             <label class="col-form-label ar-16" for="form_name" style=""><b>Form Name</b></label>
@@ -221,7 +221,7 @@
                                     </div>
                                     <div class="card-body p-0 ">
                                         <div class="row m-0">
-                                            <div class="col-4 pt-2  h-100 leftForm">
+                                            <div class="col-4 pt-2  h-100 leftForm lp-border-right">
                                                 <div class="fbox bg-blue">
                                                     <h4 class="gray_title top"> Add Product/Service Details</h4>
                                                     <div>
@@ -1506,12 +1506,12 @@ function ValidURLnew(str) {
     }
     .icon-Aa:before {  opacity: 0; }
 
-    .fbox{ background-color: #004664;  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
+    .fbox{ background-color: #f4f4f4;  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
     .fbox .gray_title{  background: #5a97bb; padding: 10px;  color: #fff;  margin: 0 -14px 15px -15px; }
     .fbox.bg-blue .gray_title{ margin-top: -8px; background-color: #5a97bb; color: #fff; }
 /*    .fbox label.col-form-label{ color: #fff!important; font-size: 14px!important; }*/
 
-    .fbox label.col-form-label{ color: #fff!important; }
+    .fbox label.col-form-label{ color: #23231b !important; }
     #campaign_create_modal .small, #campaign_create_modal small { font-size: 80%!important; }
     .btn--primary {  background-color: #1361b2 !important; }
     .btn--primary:hover {  background-color: #093463 !important; }
@@ -1523,7 +1523,7 @@ function ValidURLnew(str) {
 .btn--primary.create-campaign-btn{ background-color: #4500dd!important; border-radius: 0; }
 #campaign_list td{ font-size: 16px; color: #1a273a;  }
 #campaign_list td:nth-child(3){  font-size: 14px; }
-#campaign_list a.create-campaign-btn { font-size: 12px; }
+#campaign_list a.create-campaign-btn { font-size: 12px !important; }
 
 
 #campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
@@ -1568,9 +1568,10 @@ font-size: 20px!important;
      #campaign_create_modal .PageFormStyle .custom-select{ 
         font-size: 16px;
     }
-    #campaign_create_modal .modal-header .btn{
-        background-color:#fff;
-    }
+  #campaign_create_modal .modal-header .btn {
+    background-color: #1361b2;
+    color: #fff;
+}
     #campaign_create_modal .btn-xl{
         border-radius: 0;
         font-size: 20px!important;
@@ -1580,7 +1581,7 @@ font-size: 20px!important;
         text-transform: uppercase;
     }
     #campaign_create_modal .modal-header{
-        background: #004664!important
+        background: #f4f4f4!important
     }
 
     #campaign_create_modal .inputfile {
@@ -1604,7 +1605,8 @@ font-size: 20px!important;
         display: inline-block;
         overflow: hidden;
         padding: 0.8rem 1.25rem;
-        margin: 0!important
+        margin: 0!important;
+        border: 1px solid #94a1b5!important;
     }
     #campaign_create_modal .inputfile-1 + label:hover {
         background-color: #75a4b8;
@@ -1631,7 +1633,7 @@ font-size: 20px!important;
     #campaign_create_modal .card , #campaign_create_modal .card-header {  border-radius: 0!important; overflow: visible;  }
     #campaign_create_modal .card-header {   font-weight: 500!important; font-size: 1.2rem;}
 
-    #campaign_create_modal .card-header.bg-primary{ background-color: #004664!important; color: #fff!important; }
+    #campaign_create_modal .card-header.bg-primary{ background-color: #5b97bb!important; color: #fff!important; border-bottom:2px solid #113399; }
     #campaign_create_modal .card-header.bg-primary label{  font-size: 14px; font-weight: 400; color: #fff!important; padding-top:0;  }
 
     #campaign_create_modal table th { font-weight: 500; }
@@ -2098,6 +2100,7 @@ font-size: 20px!important;
     background-color: #ddf5ff;
     flex-direction: column;
     cursor: pointer;
+    border: 1px solid #94a1b5!important;
 }
 .custom_image_video .upload-box label span {
     font-size: 14px;
@@ -2217,9 +2220,9 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination {
 .cuxtom_pt_5 {
 padding-top: 5px;
 }
- #text_white {
+/* #text_white {
     color: #fff !important;
- }
+ }*/
  .custom_image_video .upload-box label:hover {
     background-color: #75a4b8;
 }
@@ -2396,6 +2399,21 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 #formPreviewBLock  .video {
     padding: 0!important;
     width: auto!important;
+}
+#campaign_create_modal {
+    padding-right: 0!important;
+}
+.lp-dark {
+    color: #23231b !important;
+}
+#CreateNewForm .lp-border {
+    border: 3px solid #113399;
+}
+.lp-border-right {
+    border-right: 2px solid #113399;
+}
+#campaign_form .modal-content .modal-body {
+    background: #f4f4f4;
 }
 </style>
 
