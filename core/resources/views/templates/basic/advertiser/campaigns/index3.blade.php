@@ -971,8 +971,8 @@
 
             },messages: {
                 campaign_name:{  required : 'Campaign Name is required.' },
-             
-                company_logo:{  required : 'Company Logo is required.' },
+                 company_logo: "File must be JPG, GIF or PNG, less than 2MB",
+                company_logo:{  required : 'Please Upload a Logo' },
                 target_country:{  required : 'Country is required.' },
 
 
@@ -991,7 +991,7 @@
 
                 service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
                 website_url: 'Please fill Website URL - or leave it blank',
-                company_logo: "File must be JPG, GIF or PNG, less than 2MB",
+               
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
@@ -1546,7 +1546,7 @@ table.dataTable tbody tr td {
 
     .bg-ddd { background-color: #ddd!important; }
     .invalid-feedback { font-size: 90%!important;  }
-    .input-col .invalid-feedback{ width: 100%; }
+    .input-col .invalid-feedback{ width: 100%; color: #ff0000!important;}
     #campaign_create_modal .campaign_create_close{ position: absolute; top: 0; left: -30px; width: 30px; height: 30px; background: #fff; opacity: 1; cursor: pointer; }
 
     #campaign_create_modal .PageFormStyle .form-control, #campaign_create_modal .PageFormStyle .custom-select{
@@ -1718,11 +1718,11 @@ font-size: 20px!important;
         .modal-header span{ color: #000!important; font-weight:400; }
         .modal-header .error.invalid-feedback,
         .bg-primary .error.invalid-feedback
-        { color: #ff9e9e!important; font-size: 13px!important; }
+        { color: #ff0000!important; font-size: 13px!important; }
         #CreateFormModal {
             background-color: #00000080;
         }
-
+        
         label {
             color: #000 !important
         }
@@ -2414,6 +2414,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 #campaign_form .modal-content .modal-body {
     background: #f4f4f4;
+}
+#campaign_form .modal-content {
+    border-radius: 0;
 }
 </style>
 
