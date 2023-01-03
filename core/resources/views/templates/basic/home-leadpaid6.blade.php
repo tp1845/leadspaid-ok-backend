@@ -179,10 +179,10 @@
                             <p class="text2">Leads started increasing slowly but steadily. I'd say, the AI is marvelous. It worked!</p>
                             </div>
                             <div>
-                            <p class="text2">270k - 1st month sales | 357k - 2nd month sales | 590k - 6th month sales. Achieved our growth target in 6 months :) </p>
+                            <p class="text2">270k - 1st month sales | 357k - 2nd month sales | 590k - 6th month sales. Achieved our growth target in 6 months! Strongly recommend. </p>
                             </div>
                             <div>
-                            <p class="text2">Created lead generation campaigns myself easily. Every day, get about 20 to 30 leads consistently. I recommend leadspaid.com.</p>
+                            <p class="text2">Created lead generation campaigns myself easily. Every day, get about 20 to 30 leads consistently. I recommend leadspaid.</p>
                             </div>
                         </div>
                     </div>
