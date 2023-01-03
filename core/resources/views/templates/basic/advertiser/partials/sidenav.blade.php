@@ -1,6 +1,7 @@
 @php
   $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
 @endphp
+<script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
 <style>
   .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
 .custom_side_bar {
@@ -162,9 +163,9 @@
                         </ul>
                     </div>
                 </li> --}}
-                <li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.index')}}">
+               <li class="sidebar-menu-item  {{menuActive('advertiser.campaigns.index')}}">
                     <a href="{{route('advertiser.campaigns.index')}}" class="nav-link" >
-                        <i class="menu-icon las la-money-bill text-white"></i>
+                        <i class="menu-icon fa-solid fa-rocket"></i>
                         <span class="menu-title text-white">@lang('Campaigns') </span>
                     </a>
                 </li>
@@ -259,7 +260,7 @@
                 @endif
                     <li class="sidebar-menu-item {{menuActive('advertiser.payments')}}">
                     <a href="{{route('advertiser.payments')}}" class="nav-link">
-                        <i class="menu-icon las la-credit-card text-white"></i>
+                        <i class="menu-icon fa-solid fa-money-check-dollar"></i>
                             <span class="menu-title text-white">@lang('Payments')</span>
                         </a>
                     </li>
