@@ -636,6 +636,7 @@
             text-transform: uppercase;
             text-align: center;
             box-shadow: 0px 3px 10px 0px #000;
+            border: 0px solid #4833e6!important;
         }
         .MainBanner-Home .btn{ background-color: #4833e6!important; }
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
