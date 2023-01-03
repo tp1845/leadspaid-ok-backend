@@ -207,7 +207,8 @@ table.dataTable {
   <div class="row">
      <div class="col-md-9 col-xl-10 col-lg-10 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
         <div class="row">
-            <div  class="col-md-6 border mb-xl-0 mb-lg-0 mb-md-4 mb-sm-4 mb-4">
+            <div  class="col-md-6 mb-xl-0 mb-lg-0 mb-md-4 mb-sm-4 mb-4 px-0">
+                <div class="border px-3">
                 <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
                     <h4 class="">Contact Information</h4>
                     <div class="adsrock-icon"><a href="{{ url('/') }}/advertiser/profile">
@@ -283,8 +284,10 @@ table.dataTable {
                         </li>
                     </ul>
                 </div>
+                </div>
             </div>
-            <div  class="col-md-6 border">
+            <div  class="col-md-6 pl-0">
+                <div class="border px-3 h-100">
                 <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
                    <h4 class="">Payment Information</h4>
                     <div class="adsrock-icon setup-payment">
@@ -329,10 +332,11 @@ table.dataTable {
                 </div>
                 <p class="py-2">*Please note that the Current Card Service Charge is 3%</p>
             </div>
+            </div>			
         </div>
      </div>
     <div class="col-md-3 col-xl-2 col-lg-2 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
-        <div class="row">
+        <div class="row h-100">
             <div class="col-12 border p-3">
                  <h4>Billing Summary</h4>
                  <div class="adsrock-billing-summary">
