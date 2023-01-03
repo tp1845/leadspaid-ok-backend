@@ -202,7 +202,10 @@
                     transition:all .5s ease;
                 }
                 #MainNav-container.f-nav #MainNav .navbar.fixed{ top: 0!important; }
-                @media screen and (max-width: 992px){ #MainNav .logo{ margin: auto; } #MainNav .logo img{ max-width: 216px!important;} }
+                @media screen and (max-width: 992px){
+                    #MainNav .logo{ margin: auto; } #MainNav .logo img{ max-width: 216px!important;}
+                    #MainNav-container:not(.f-nav) .navbar.fixed .navbar-collapse { display: none!important; opacity: 0;}
+                }
             </style>
         </body>
     </html>

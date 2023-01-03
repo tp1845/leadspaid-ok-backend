@@ -16,7 +16,7 @@
     }
 @endphp
 @section('content')
-    <section class="bg-secondary text-center text-white p-4 MainBanner-bottom onload" >
+    <section class="text-center text-white p-4 MainBanner-bottom onload" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -492,7 +492,7 @@
         .MainBanner-Home .sub_title{
             background-color: #000000aa;
             /* box-shadow: 5px 5px 0 #1361b2; */
-            box-shadow: 0px 0px 5px #fff;
+            box-shadow: -2px -3px 0px #4335e3;
             color: #fff;
             font-size: 28px;
             font-weight: 500;
@@ -513,7 +513,7 @@
         .hero-box h5{ font-size: 26px; font-weight: normal;  color: #1361b2 }
         /* === */
 
-        .MainBanner-bottom{box-shadow: 0px 2px 67px #1361b2;}
+        .MainBanner-bottom{box-shadow: 0px 2px 67px #1361b2; background-color:#0a0434; }
 
         #how_it_works{ background-color: #f5f7f8 !important;  box-shadow: 0px 6px 12px #dfeaef!important; }
         .how-its-works-list{ padding: 0; margin: 0; position: relative;
@@ -637,7 +637,7 @@
             text-align: center;
             box-shadow: 0px 3px 10px 0px #000;
         }
-
+        .MainBanner-Home .btn{ background-color: #4833e6!important; }
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
         #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 0px 0px 10px #fff; }
