@@ -71,7 +71,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $user = Advertiser::whereUsername($request->username)->first();     
+        $user = Advertiser::whereUsername($request->username)->first();
         $this->validateLogin($request);
         if(isset($user)&&$user->status == 2){
              $notify[]=['error','Sorry! You have\'ve been banned by Admin'];
@@ -146,8 +146,16 @@ class LoginController extends Controller
 
     public function authenticated()
     {
-        
+
         $user = auth()->guard('advertiser')->user();
+
+        if ($user->ev == 0) {
+            $this->guard()->logout();
+            // return redirect()->route('login_advertiser')->withErrors(['Please Verify Your Account']);
+            $page_title = 'verify Email';
+            return view('templates.basic.advertiser.auth.login-verify', compact('page_title', 'user' ));
+        }
+
         if ($user->status == 0) {
             $this->guard()->logout();
             return redirect()->route('advertiser.login')->withErrors(['Your account has been banned by admin']);
@@ -180,7 +188,7 @@ class LoginController extends Controller
         $userAgent = osBrowser();
         $userLogin->advertiser_id = $user->id;
         $userLogin->user_ip =  $ip;
-        
+
         $userLogin->browser = @$userAgent['browser'];
         $userLogin->os = @$userAgent['os_platform'];
         $userLogin->save();

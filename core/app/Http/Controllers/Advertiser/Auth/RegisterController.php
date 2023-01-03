@@ -152,6 +152,18 @@ class RegisterController extends Controller
         return unserialize(base64_decode($data));
     }
 
+    public function resend_verification_code(Request $request){
+        $user = Advertiser::findOrFail($request['id']);
+        $code=[ 'code' =>verificationCode(6), 'userid'=>$user->id ];
+        $useremail=$user->email;
+        $urll= url('');
+        $link=$urll.'/advertiser/register-veryfy/?code_verifiyed='.$this->encode_arr($code);
+        // custom code email send
+        send_email_adv($user, 'EVER_CODE',$link);
+        $notify[] = ['success', "email sent"];
+        return back()->withNotify($notify);
+    }
+
     public function register_advertiser(Request $request){
 
         $request->validate([
@@ -199,8 +211,10 @@ class RegisterController extends Controller
         $adv->country_code = $data['country_code'];
         $adv->password = Hash::make($data['password']);
         $adv->status = 0;
-        $adv->ev = $gnl->ev==0 ? 1 : 0;
-        $adv->sv = $gnl->sv==0 ? 1 : 0;
+        $adv->ev = 0;
+        $adv->sv = 0;
+        // $adv->ev = $gnl->ev==0 ? 1 : 0;
+        // $adv->sv = $gnl->sv==0 ? 1 : 0;
         $adv->ts = 0;
         $adv->tv = 1;
         $adv->save();
