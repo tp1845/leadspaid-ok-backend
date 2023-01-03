@@ -3,6 +3,11 @@
 @endphp
 <script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
 <style>
+.sidebar .slimScrollDiv .slimScrollBar {
+    background-color: #000000 !important;
+    width: 0px !important;
+    opacity: 0.25 !important;
+}
   .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
 .custom_side_bar {
 /*    display: flex;*/
