@@ -543,7 +543,7 @@
                                                     </div>
                                                     <div class="form-row mt-3">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
-                                                        <p class="policy">I agree to your privacy policy by submitting the form</p>
+                                                        <p class="policy">I agree to your privacy policy by submitting this form.</p>
 
                                                     </div>
                                                     </div>
