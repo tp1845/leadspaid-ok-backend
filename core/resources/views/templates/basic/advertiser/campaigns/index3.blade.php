@@ -253,7 +253,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <label class="col-form-label mt-4 ar-16" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> <span class="ar-14">(Add up to 3 variations)</span></label>
+                                                    <label class="col-form-label mt-3 ar-16" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> <span class="ar-14">(Add up to 3 variations)</span></label>
                                                     <div id="FormDescription_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="40k+ companies run on Zoho" required  minlength="3" maxlength="68">
@@ -279,7 +279,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <label class="col-form-label mt-4 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / </span><b>Offer Validity</b></label>
+                                                    <label class="col-form-label mt-3 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / </span><b>Offer Validity</b></label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
                                                             <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
@@ -352,7 +352,7 @@
 
 
                                                     <!-- <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label> -->
-                                                    <label class="col-form-label mt-4 ar-16" ><b>Images</b></label>
+                                                    <label class="col-form-label mt-3 ar-16" ><b>Images</b></label>
                                                     <div class="custom_image_upload">
                                                     <div class="input-group input-col" id="upload_image_1">
                                                         <div class="input-col "  style="width: 88%;">
