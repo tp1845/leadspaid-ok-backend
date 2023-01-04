@@ -635,27 +635,7 @@
         #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 7px 7px 10px #1a273a }
         @media only screen and (max-width: 991px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
 
-        #MainFooter {
-            margin-top: 0 !important;
-            position: relative;
-        }
-        #MainFooter:before{
-            background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg.jpg");
-            background-position: center;
-            background-size: cover;
-            position: relative;
-            background-color: #1a273a;
-            opacity: .05;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            content: "";
-            z-index: 1;
-        }
-        #MainFooter .container, .footer_copywrite { position: relative; z-index: 10;}
+
         .MainBanner-bottom h3, .MainBanner-bottom .h3 {
             font-size: 30px;
         }
