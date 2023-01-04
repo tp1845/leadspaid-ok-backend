@@ -6,11 +6,11 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12 pt-4 mb-5">
-               <p class="Page_title">Verify Your Email </p>
+               <h4 class="Page_title">Verify Your Email </h4>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 mx-auto text-left">
+            <div class="col-md-9 mx-auto text-left mb-5">
                <p>Dear {{ $user->name }},</p>
 
                <p>Before login, you need to verify your email address.</p>
@@ -18,12 +18,12 @@
                <p>We have already sent a verification email to {{ $user->email }}.<br>
                 Please check your email ({{ $user->email }}) to verify your account.</p>
 
-                <p>If you haven't received the verification email, <a href=""><u>Click here</u></a> to receive a new verification code</p>
+                <p>If you haven't received the verification email, <a href="" id="resend"><u>Click here</u></a> to receive a new verification code</p>
 
                 <p>If you are still not receiving a verification code,<br>
                 (a) Please check your spam folder<br>
                 (b) Or, use a different email address to register as advertiser<br>
-                (c) Or, Contact support at contact@leadspaid.com</p>
+                (c) Or, Contact support at <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></p>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
 @endsection
 @push('script')
 <script>
-    $("a").click(function(e) {
+    $("a#resend").click(function(e) {
         e.preventDefault();
         var getFormURL = "{{route('resend_advertiser_verification')}}";
         const getformData = { "_token": "{{ csrf_token() }}", "id": {{$user->id}} };
@@ -65,20 +65,15 @@
         font-size: 38px;
         margin-top: 50px;
     }
-
-    .user_info_Rg_advts h4,
-    .Rg_advts_bsc .Rg_advts_bsc_ttls{
-        font-size: 20px;
-        line-height: normal;
-        font-weight: 500;
-    }
     p, p a {
         color: #586167 !important;
         font-weight:400;
-        font-size:18px;
+        font-size:20px;
     }
      p a {
-        font-weight:800;
+        text-decoration: underline;
+        font-weight:800!important;
+        color: #1361b2!important;
     }
 </style>
 

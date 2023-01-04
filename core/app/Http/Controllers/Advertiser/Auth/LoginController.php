@@ -144,6 +144,16 @@ class LoginController extends Controller
         return view('templates.basic.advertiser.auth.reset', compact('page_title'));
     }
 
+    public function unverified_view(Request $request){
+        $user =  $request->session()->get('user');
+        if ($user && $user->ev == 0) {
+            $page_title = 'verify Email';
+            return view('templates.basic.advertiser.auth.login-verify', compact('page_title', 'user' ));
+        }else{
+            return redirect()->route('login_advertiser');
+        }
+    }
+
     public function authenticated()
     {
 
@@ -151,9 +161,7 @@ class LoginController extends Controller
 
         if ($user->ev == 0) {
             $this->guard()->logout();
-            // return redirect()->route('login_advertiser')->withErrors(['Please Verify Your Account']);
-            $page_title = 'verify Email';
-            return view('templates.basic.advertiser.auth.login-verify', compact('page_title', 'user' ));
+            return redirect()->route('advertiser_unverified_view')->with( [ 'user' => $user ] );
         }
 
         if ($user->status == 0) {
