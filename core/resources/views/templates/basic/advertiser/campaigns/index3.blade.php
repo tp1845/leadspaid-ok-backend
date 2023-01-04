@@ -29,7 +29,7 @@
                             <th>Daily Budget</th>
                             <th>Cost</th>
                             <th>Leads</th>
-                            <th>Cost per Leads</th>
+                            <th>CPL</th>
                             <th>Download Leads</th>
                         </tr>
                         </thead>
@@ -53,7 +53,7 @@
                                     @endif</td>
                                 <td>${{ $campaign->daily_budget }}</td>
                                 <td>0</td>
-                                <td>0</td>
+                                <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
                                 <td>0</td>
                                 <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
                                     <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
@@ -82,7 +82,7 @@
                                     @endif</td>
                                 <td>${{ $campaign->daily_budget }}</td>
                                 <td>0</td>
-                                <td>0</td>
+                                <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
                                 <td>0</td>
                                 <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
                                     <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
@@ -863,14 +863,14 @@
             var MyDatatable = $('#campaign_list').DataTable({
                 columnDefs: [{
                     targets: 0,
-                    searchable: false,
+                    searchable: true,
                     visible: true,
-                    orderable: false
+                    orderable: true
                 },
                 {
                     targets: 2,
-                    searchable: false,
-                    orderable: false
+                    searchable: true,
+                    orderable: true
                 },
                 {
                     targets: 11,
@@ -2500,6 +2500,17 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 }
 .bodywrapper__inner .row.align-items-center.mb-15.justify-content-between {
     display: none;
+}
+table tfoot tr th {
+    border-right: 1px solid #ffffff36 !important;
+    font-size: 17px !important;
+    color: #fff;
+    border-left: none !important;
+    border-bottom: none !important;
+    border-top: none !important;
+}
+table tfoot tr {
+    background-color: #1A273A;
 }
 </style>
 

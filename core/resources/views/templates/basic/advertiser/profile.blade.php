@@ -9,50 +9,51 @@ $user = auth()->guard('advertiser')->user();
         <div class="account-area">
             <div class="row justify-content-center">
 
-                <div class="col-lg-5" style="max-width: 475px;">
+                <div class="col-lg-12">
                     <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
                             <form method="POST" id="advertiser_form" action="{{route('advertiser.profile.update')}}">
                                 @csrf
-                                <div class="card border shadow-sm mb-4" style="overflow: inherit;">
-                                    <div class="bg-light card-header font-weight-bolder text-body"> Basic Information
+                                <div class="row">
+                                <div class="mb-4 col-md-6" style="overflow: inherit;">
+                                    <div class="font-weight-bolder text-body"> Basic Information
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body px-0">
                                         <div class="form-group ">
                                             <label>@lang('Company Name')</label>
-                                            <input type="text" class="form-control" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name">
+                                            <input type="text" class="form-control rounded-0" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name">
                                         </div>
                                         <div class="form-group">
                                             <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
-                                            <input type="text" name="name" placeholder="Full Name" class="form-control" value="{{auth()->guard('advertiser')->user()->name}}" required>
+                                            <input type="text" name="name" placeholder="Full Name" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->name}}" required>
                                         </div>
                                         <div class="form-group country-code">
                                             <label>@lang('Mobile') <sup class="text-danger">*</sup></label>
-                                            <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control" required placeholder="@lang('Your Phone Number')">
+                                            <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" required placeholder="@lang('Your Phone Number')">
 
                                         </div>
                                     </div>
 
                                 </div>
 
-                                <div class="card border shadow-sm mb-4">
-                                    <div class="bg-light card-header font-weight-bolder text-body"> Billing Information
+                                <div class="mb-4 col-md-6">
+                                    <div class="font-weight-bolder text-body"> Billing Information
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body px-0">
                                         <div class="form-group ">
                                             <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                            <input type="text" class="form-control" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Company Name/ Full Name">
+                                            <input type="text" class="form-control rounded-0" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Company Name/ Full Name">
                                         </div>
                                         <div class="form-group">
                                             <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
-                                            <input type="email" name="email" placeholder="Billing Email address" class="form-control" value="{{auth()->guard('advertiser')->user()->email}}" required>
+                                            <input type="email" name="email" placeholder="Billing Email address" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->email}}" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" placeholder="City" name="city" class="form-control" value="{{auth()->guard('advertiser')->user()->city}}" required>
+                                            <input type="text" placeholder="City" name="city" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->city}}" required>
                                         </div>
 
                                         <div class="form-group">
-                                            <select class="custom-select mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" required name="country">
+                                            <select class="custom-select rounded-0 mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" required name="country">
                                                 @foreach ($countries as $country)
                                                 <option @if($user->country === $country->country_name)
                                                     selected="selected" @endif
@@ -64,30 +65,32 @@ $user = auth()->guard('advertiser')->user();
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" placeholder="Postal Code" name="postal_code" class="form-control" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
+                                            <input type="text" placeholder="Postal Code" name="postal_code" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
                                         </div>
                                     </div>
 
                                 </div>
-                                <div class="card border shadow-sm mb-4">
-                                    <div class="bg-light card-header font-weight-bolder text-body"> User Information
+                                <div class="mb-4 col-md-6 pb-4">
+
+                                    <div class="font-weight-bolder text-body"> User Information
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body px-0">
                                         <div class="form-group">
                                             <label>@lang('Username') <sup class="text-danger">*</sup></label>
-                                            <input type="text" name="username" placeholder="User Name" class="form-control" readonly value="{{auth()->guard('advertiser')->user()->username}}" required>
+                                            <input type="text" name="username" placeholder="User Name" class="form-control rounded-0" readonly value="{{auth()->guard('advertiser')->user()->username}}" required>
                                         </div>
                                     </div>
-
-                                </div>
-
-                                @include($activeTemplate.'partials.custom-captcha')
+                                    @include($activeTemplate.'partials.custom-captcha')
                                 <div class="form-group row">
                                     <div class="col-md-12 ">
                                         @php echo recaptcha() @endphp
                                     </div>
                                 </div>
                                 <button type="submit" class="box--shadow1 btn btn--primary btn-lg text--small w-100">@lang('Save Changes')</button>
+                                </div>
+                            </div>
+
+                                
 
                             </form>
                         </div>
@@ -481,7 +484,7 @@ $user = auth()->guard('advertiser')->user();
         max-height: 200px;
         overflow-y: auto;
     }
-	 #advertiser_form .card-body .form-group label {
+    #advertiser_form .card-body .form-group label {
         font-size: 16px;
         color: #1a273a;
     }

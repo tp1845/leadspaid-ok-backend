@@ -215,6 +215,15 @@ class AdvertiserController extends Controller
     }
 
 
+        public function TimezoneFromName($country_name = "Singapore")
+    {
+        $country_user = Country::where('country_name', $country_name)->latest()->first();
+        $timezone = \DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, $country_user->country_code);
+        $d = new \DateTime("now", new \DateTimeZone($timezone[0]));
+        $currentDateTime =  $d->format($d->format("Y-m-d H:i:s"));
+        return $currentDateTime; // 2022-11-06 20:40:37
+    }
+
 
     public function showPayments(Request $request)
     {
@@ -232,6 +241,12 @@ class AdvertiserController extends Controller
             ]
         );
 
+        
+		  $countryy=auth()->guard('advertiser')->user()->country;
+          $currentDateTime = $this->TimezoneFromName($countryy);
+            $newDateTime = date('H', strtotime($currentDateTime));
+
+
         $page_title = 'Payments';
         $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('trx_date', 'DESC')->get();
         $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->orderBy('trx_date', 'DESC')->get();
@@ -240,7 +255,7 @@ class AdvertiserController extends Controller
             $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
         }
         $empty_message = 'No Transactions';
-        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key','ta'));
+        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key','ta','newDateTime'));
     }
 
   public function showinvoices($id){

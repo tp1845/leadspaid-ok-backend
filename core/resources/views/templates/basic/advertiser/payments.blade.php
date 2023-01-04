@@ -207,6 +207,7 @@ table.dataTable {
   <div class="row">
      <div class="col-md-9 col-xl-9 col-lg-9 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
         <div class="row">
+
             <div  class="col-md-6 mb-xl-0 mb-lg-0 mb-md-4 mb-sm-4 mb-4 px-0">
                 <div class="border px-3">
                 <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
@@ -284,8 +285,9 @@ table.dataTable {
                         </li>
                     </ul>
                 </div>
-                </div>
             </div>
+            </div>
+
             <div  class="col-md-6 pl-0">
                 <div class="border px-3 h-100">
                 <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
@@ -332,7 +334,7 @@ table.dataTable {
                 </div>
                 <p class="py-2">*Please note that the Current Card Service Charge is 3%</p>
             </div>
-            </div>			
+            </div>
         </div>
      </div>
     <div class="col-md-3 col-xl-3 col-lg-3 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
@@ -349,10 +351,13 @@ table.dataTable {
                      <h3>
                         
                      @php 
+                     
+
                        $currentTime = time() + 3600;
-                       if (((int) date('H', $currentTime)) >= 10) {
+                       
+                       if ($newDateTime >= 10) {
   
-                           echo  date('M d, Y', strtotime(' +1 day')) ;   
+                                echo  date('M d, Y', strtotime(' +1 day')) ;   
                                 }else{
                                    echo  date('M d, Y') ; 
                                 }
@@ -363,10 +368,11 @@ table.dataTable {
                      <p class="ar-12">Everyday at 10:00 AM,</p>
                      <p class="ar-12">
 
-1) <b>This Amount will be deducted from your Prepaid Wallet</b><br/>
-=Lead Generation Cost spent during 10 AM yesterday till 10 AM today.<br/>
-2) <b>This Amount will be charged from your payment method</b><br/>
-=Next day Campaign Budget - Wallet Balance</p>
+
+                        1) <b>Amount deducted from your prepaid-wallet</b><br/>
+                        =Lead Generation Cost spent during 10 AM yesterday till 10 AM today.<br/>
+                        2) <b>Amount charged from your payment method</b><br/>
+                        =Next day Campaign Budget - Wallet Balance</p>
                      
                  </div>
             </div>

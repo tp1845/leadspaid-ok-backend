@@ -30,7 +30,7 @@
                                 <td>{{$form->field_3['question_text']?? '' }}</td>
                                 <td>{{$form->field_4['question_text']?? '' }}</td>
                                 <td>{{$form->field_5['question_text']?? '' }}</td>
-                                <td>10</td>
+                                <td>{{ get_form_leads_by_id($form->id)}}</td>
                                 <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">XLSX</a> |
                                 <a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">CSV</a>
                                 {{-- | <a href="#">Google Sheet</a> --}}

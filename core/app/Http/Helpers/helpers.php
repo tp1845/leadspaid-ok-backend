@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Mail;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
+use App\campaign_forms_leads;
 
 function sidebarVariation()
 {
@@ -941,4 +941,13 @@ function get_invoice_format($invoice){
     }elseif(countDigits($invoice)==7){
          return 'INV'.$invoice;
     }
+}
+function get_form_leads_by_id($id){
+
+    return campaign_forms_leads::where('form_id',$id)->count();
+
+}
+
+function get_campiagn_leads_by_id($id){
+    return campaign_forms_leads::where('campaign_id',$id)->count();
 }
