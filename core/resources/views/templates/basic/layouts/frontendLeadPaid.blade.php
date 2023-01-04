@@ -134,7 +134,7 @@
                                 <li><a href="#"><i class="lab la-instagram"></i></a></li>
                                 <li><a href="#"><i class="lab la-vimeo-square"></i></a></li> --}}
                                 <li><a href="#"><i class="lab la-linkedin"></i></a></li>
-                                <li><a href="#"><i class="lab la-youtube"></i></a></li>
+                                <li><a href="https://www.youtube.com/@LeadsPaid"><i class="lab la-youtube"></i></a></li>
                             </ul>
                         </div>
                     </div>

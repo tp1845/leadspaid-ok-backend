@@ -219,7 +219,7 @@ class RegisterController extends Controller
         // $adv->ev = $gnl->ev==0 ? 1 : 0;
         // $adv->sv = $gnl->sv==0 ? 1 : 0;
         $adv->ts = 0;
-        $adv->tv = 1;
+        $adv->tv = 0;
         $adv->save();
         $ip = $_SERVER["REMOTE_ADDR"];
         $exist = UserLogin::where('user_ip',$ip)->first();
