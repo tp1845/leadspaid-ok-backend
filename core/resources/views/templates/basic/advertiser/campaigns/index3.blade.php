@@ -22,15 +22,15 @@
                             <th>Off/On</th>
                             <th>Campaign Name</th>
                             <th>Delivery</th>
+                            <th>Download Leads</th>
+                            <th>Cost</th>
+                            <th>Leads</th>
+                            <th>CPL</th>
+                            <th>Daily Budget</th>
                             <th>Start</th>
                             <th>End</th>
                             <th>Target Country </th>
                             <th>Form Used</th>
-                            <th>Daily Budget</th>
-                            <th>Cost</th>
-                            <th>Leads</th>
-                            <th>CPL</th>
-                            <th>Download Leads</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -45,20 +45,20 @@
                                     <span class="orange">Pending<br/>Approval</span>
                                    @endif
                                 </td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
+                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
+                                    {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
+                                </td>
+                                <td>0</td>
+                                <td>${{ $campaign->daily_budget }}</td>
+                                <td>0</td>
+                                <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
                                 <td>{{ $campaign->target_country }} </td>
                                 <td> @if (isset($campaign->campaign_forms))
                                         {{$campaign->campaign_forms->form_name}}
                                     @endif</td>
-                                <td>${{ $campaign->daily_budget }}</td>
-                                <td>0</td>
-                                <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
-                                <td>0</td>
-                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
-                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
-                                    {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
-                                </td>
                             </tr>
                         @empty
 
@@ -74,20 +74,22 @@
                                     <span class="orange">Pending<br/>Approval</span>
                                    @endif
                                 </td>
+
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
+                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
+                                    {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
+                                </td>
+                                <td>0</td>
+                                
+                                <td>${{ $campaign->daily_budget }}</td>
+                                <td>0</td>
+                                <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
                                 <td>{{ $campaign->target_country }} </td>
                                 <td> @if (isset($campaign->campaign_forms))
                                         {{$campaign->campaign_forms->form_name}}
                                     @endif</td>
-                                <td>${{ $campaign->daily_budget }}</td>
-                                <td>0</td>
-                                <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
-                                <td>0</td>
-                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
-                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
-                                    {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
-                                </td>
                             </tr>
                         @empty
 
@@ -97,17 +99,17 @@
                         <tfoot>
                         <tr>
                             <th>Total</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th></th>
+                            <th>Campaign Name</th>
+                            <th>Delivery</th>
+                            <th>Download Leads</th>
+                            <th>Cost</th>
+                            <th>Leads</th>
+                            <th>CPL</th>
+                            <th>Daily Budget</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Target Country </th>
+                            <th>Form Used</th>
                         </tr>
                         </tfoot>
                     </table>
@@ -536,6 +538,13 @@
                                         <div id="formPreviewBLock">
                                             <div class="container w-100" >
                                                 <form id="LeadForm" action="#">
+
+                                                    <div class="form-bottom-logo">
+                                                        <p class="logo">
+                                                            <span id="preview_company_logo"> </span>
+                                                            <span id="preview_company_name"> A1 Immigration Consultancy</span>
+                                                        </p>
+                                                    </div>
                                                    <div>
                                                     <div id="loadData">
                                                         <div class="video custom_after_text border-bottom shadow" id="preview_media"> 
@@ -557,12 +566,6 @@
                                                         <p class="policy">I agree to your <a href="https://www.leadspaid.com/privacy-policy" class="privcy-polcy" rel="noindex, nofollow" target="_blank"> privacy policy </a> by submitting this form.</p>
 
                                                     </div>
-                                                    </div>
-                                                    <div class="form-bottom-logo">
-                                                        <p class="logo">
-                                                            <span id="preview_company_logo"> </span>
-                                                            <span id="preview_company_name"> A1 Immigration Consultancy</span>
-                                                        </p>
                                                     </div>
 
 
@@ -1550,7 +1553,7 @@ function ValidURLnew(str) {
 
     .fbox{ background-color: #f4f4f4;  margin: 0 -14px 0px -15px; padding: 0 15px 15px; position: relative; }
     .fbox .gray_title{  background: #5a97bb; padding: 10px;  color: #fff;  margin: 0 -14px 15px -15px; }
-    .fbox.bg-blue .gray_title{ margin-top: -8px; background-color: #5a97bb; color: #fff; }
+    .fbox.bg-blue .gray_title{ border-bottom: 2px solid #113399; margin-top: -8px; background-color: #5a97bb; color: #fff; }
 /*    .fbox label.col-form-label{ color: #fff!important; font-size: 14px!important; }*/
 
     .fbox label.col-form-label{ color: #23231b !important; }
@@ -1980,6 +1983,7 @@ font-size: 20px!important;
       align-content: center;
       flex-direction: row;
       align-items: center;
+      justify-content: center;
       gap: 5px;
     }
 
@@ -2388,7 +2392,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     position: absolute !important;
 }
 #formPreviewBLock .container {
-    overflow: hidden;
+/*    overflow: hidden;*/
     padding: 0 !important;
     margin: 10px auto !important;
     
@@ -2511,6 +2515,12 @@ table tfoot tr th {
 }
 table tfoot tr {
     background-color: #1A273A;
+}
+#formPreviewBLock .container {
+    justify-content: flex-start !important;
+}
+#campaign_form input, .form-punchline, .form-subtitle, .form-title, #preview_company_name {
+    text-transform: capitalize;
 }
 </style>
 

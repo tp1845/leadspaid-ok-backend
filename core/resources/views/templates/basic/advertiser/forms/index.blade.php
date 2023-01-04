@@ -11,30 +11,58 @@
                         <thead>
                             <tr>
                                 <th>Form Name</th>
+                                <th>Leads</th>
+                                <th>Download Leads</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>USP </th>
                                 <th>Field 1</th>
                                 <th>Field 2</th>
                                 <th>Field 3</th>
                                 <th>Field 4</th>
                                 <th>Field 5</th>
 
-                                <th>Leads</th>
-                                <th>Download Leads</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($forms as $form)
                             <tr>
                                 <td>{{ $form->form_name }}</td>
-                                 <td>{{$form->field_1['question_text']?? '' }}</td>
-                                <td>{{$form->field_2['question_text']?? '' }}</td>
-                                <td>{{$form->field_3['question_text']?? '' }}</td>
-                                <td>{{$form->field_4['question_text']?? '' }}</td>
-                                <td>{{$form->field_5['question_text']?? '' }}</td>
                                 <td>{{ get_form_leads_by_id($form->id)}}</td>
                                 <td><a href="{{ route('advertiser.formleads.exportxlsx',$form->id) }}">XLSX</a> |
                                 <a href="{{ route('advertiser.formleads.exportcsv',$form->id) }}">CSV</a>
                                 {{-- | <a href="#">Google Sheet</a> --}}
                                 </td>
+                                <td>
+                                 @php 
+                                    if(!empty($form->title) ){
+                                       foreach($form->title as $formt){
+                                        if(!empty($formt)){
+                                            echo $formt.'<br>';
+                                        }
+                                       }
+                                    }
+ 
+                                 @endphp
+                                </td>
+                                <td>
+                                      @php 
+                                    if(!empty($form->form_desc) ){
+                                       foreach($form->form_desc as $form_desc){
+                                        if(!empty($form_desc)){
+                                            echo $form_desc.'<br>';
+                                        }
+                                       }
+                                    }
+ 
+                                 @endphp
+                                </td>
+                                <td>{{ $form->punchline }}</td>
+                                <td>{{$form->field_1['question_text']?? '' }}</td>
+                                <td>{{$form->field_2['question_text']?? '' }}</td>
+                                <td>{{$form->field_3['question_text']?? '' }}</td>
+                                <td>{{$form->field_4['question_text']?? '' }}</td>
+                                <td>{{$form->field_5['question_text']?? '' }}</td>
                             </tr>
                             @endforeach
                         </tbody>

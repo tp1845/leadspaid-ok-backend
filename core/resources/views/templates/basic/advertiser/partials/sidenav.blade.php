@@ -193,7 +193,7 @@
 
                 <li class="sidebar-menu-item  {{menuActive('advertiser.forms.index')}}">
                     <a href="{{route('advertiser.forms.index')}}" class="nav-link" >
-                        <i class="menu-icon las la-money-bill text-white"></i>
+                         <i class="menu-icon fa-solid fa-square-poll-horizontal"></i>
                         <span class="menu-title text-white">@lang('Forms') </span>
                     </a>
                 </li>

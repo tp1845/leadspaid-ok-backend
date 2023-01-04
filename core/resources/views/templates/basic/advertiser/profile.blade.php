@@ -41,21 +41,23 @@ $user = auth()->guard('advertiser')->user();
                                 </div>
 
                                 <div class="mb-4 col-md-6">
-                                    <div class="font-weight-bolder text-body"> Billing Information
+                                    <div class="font-weight-bolder text-body"> Address Information
                                     </div>
                                     <div class="card-body px-0">
                                         <div class="form-group ">
-                                            <label class="d-none">@lang('Billed to')<sup class="text-danger">*</sup></label>
-                                            <input type="text" class="form-control rounded-0" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Company Name/ Full Name">
+                                            <label class="d-none">@lang('Address')<sup class="text-danger">*</sup></label>
+                                            <input type="text" class="form-control rounded-0" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Address">
                                         </div>
-                                        <div class="form-group">
+                                       <!--  <div class="form-group">
                                             <label class="d-none">@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
                                             <input type="email" name="email" placeholder="Billing Email address" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->email}}" required>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <input type="text" placeholder="City" name="city" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->city}}" required>
                                         </div>
-
+                                        <div class="form-group">
+                                            <input type="text" placeholder="Postal Code" name="postal_code" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
+                                        </div>
                                         <div class="form-group">
                                             <select class="custom-select rounded-0 mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" required name="country">
                                                 @foreach ($countries as $country)
@@ -68,9 +70,7 @@ $user = auth()->guard('advertiser')->user();
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="form-group">
-                                            <input type="text" placeholder="Postal Code" name="postal_code" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
-                                        </div>
+                                        
                                     </div>
 
                                 </div>
@@ -150,7 +150,7 @@ $user = auth()->guard('advertiser')->user();
                     validators: {
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Full Company Name.',
+                            message: 'Company Name is required.',
                         }
                     },
                 },
@@ -158,11 +158,11 @@ $user = auth()->guard('advertiser')->user();
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Full Name.',
+                            message: 'Company Name is required.',
                         },
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Full Name.',
+                            message: 'Company Name is required.',
                         },
                         regexp: {
                             regexp: /^[a-z A-Z]+$/,
@@ -173,22 +173,22 @@ $user = auth()->guard('advertiser')->user();
                 mobile: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Phone Number.',
+                            message: 'Phone is required.',
                         },
                         stringLength: {
                             min: 6,
-                            message: 'Please fill Phone Number.',
+                            message: 'Phone is required.',
                         },
                     },
                 },
                 billed_to: {
                     validators: {
                         notEmpty: {
-                            message: 'Please fill Billed to.',
+                            message: 'Please fill address to.',
                         },
                         stringLength: {
                             min: 3,
-                            message: 'Please fill Billed to.',
+                            message: 'Please fill address to.',
                         },
                     },
                 },
@@ -218,7 +218,7 @@ $user = auth()->guard('advertiser')->user();
                 country: {
                     validators: {
                         notEmpty: {
-                            message: 'Select Country.',
+                            message: 'This field is required.',
                         }
                     },
                 },
@@ -520,6 +520,7 @@ $user = auth()->guard('advertiser')->user();
     padding: 16px 24px;
     line-height: normal;
     height: unset;
+    text-transform: capitalize;
 }
 .profile_pass_setting {
     font-size: 18px !important;
