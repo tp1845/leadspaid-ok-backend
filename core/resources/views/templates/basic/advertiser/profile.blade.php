@@ -20,17 +20,21 @@ $user = auth()->guard('advertiser')->user();
                                     </div>
                                     <div class="card-body px-0">
                                         <div class="form-group ">
-                                            <label>@lang('Company Name')</label>
+                                            <label class="d-none">@lang('Company Name')</label>
                                             <input type="text" class="form-control rounded-0" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name">
                                         </div>
                                         <div class="form-group">
-                                            <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
+                                            <label class="d-none">@lang('Full Name') <sup class="text-danger">*</sup></label>
                                             <input type="text" name="name" placeholder="Full Name" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->name}}" required>
                                         </div>
                                         <div class="form-group country-code">
-                                            <label>@lang('Mobile') <sup class="text-danger">*</sup></label>
-                                            <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" required placeholder="@lang('Your Phone Number')">
-
+                                            <label class="d-none">@lang('Mobile') <sup class="text-danger">*</sup></label>
+                                            <div class="Rg_advts_number">
+                                                <select name="country_code" class="form-select rounded-0">
+                                            @include('partials.country_code')
+                                            </select>
+                                                <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" required placeholder="@lang('Your Phone Number')">
+                                            </div>
                                         </div>
                                     </div>
 
@@ -41,11 +45,11 @@ $user = auth()->guard('advertiser')->user();
                                     </div>
                                     <div class="card-body px-0">
                                         <div class="form-group ">
-                                            <label>@lang('Billed to')<sup class="text-danger">*</sup></label>
+                                            <label class="d-none">@lang('Billed to')<sup class="text-danger">*</sup></label>
                                             <input type="text" class="form-control rounded-0" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Company Name/ Full Name">
                                         </div>
                                         <div class="form-group">
-                                            <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
+                                            <label class="d-none">@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
                                             <input type="email" name="email" placeholder="Billing Email address" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->email}}" required>
                                         </div>
                                         <div class="form-group">
@@ -70,28 +74,29 @@ $user = auth()->guard('advertiser')->user();
                                     </div>
 
                                 </div>
-                                <div class="mb-4 col-md-6 pb-4">
+                                <div class="col-md-6">
 
                                     <div class="font-weight-bolder text-body"> User Information
                                     </div>
                                     <div class="card-body px-0">
                                         <div class="form-group">
-                                            <label>@lang('Username') <sup class="text-danger">*</sup></label>
+                                            <label class="d-none">@lang('Username') <sup class="text-danger">*</sup></label>
                                             <input type="text" name="username" placeholder="User Name" class="form-control rounded-0" readonly value="{{auth()->guard('advertiser')->user()->username}}" required>
                                         </div>
                                     </div>
                                     @include($activeTemplate.'partials.custom-captcha')
-                                <div class="form-group row">
-                                    <div class="col-md-12 ">
-                                        @php echo recaptcha() @endphp
-                                    </div>
-                                </div>
-                                <button type="submit" class="box--shadow1 btn btn--primary btn-lg text--small w-100">@lang('Save Changes')</button>
                                 </div>
                             </div>
-
-                                
-
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div class="form-group row m-0">
+                                        <div class="col-md-12 ">
+                                            @php echo recaptcha() @endphp
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="box--shadow1 rounded-0 btn btn--primary btn-lg text--small Rg_advts_my_btn">@lang('Save Changes')</button>
+                                </div>
+                            </div>
                             </form>
                         </div>
                     </div>
@@ -103,7 +108,7 @@ $user = auth()->guard('advertiser')->user();
 @endsection
 
 @push('breadcrumb-plugins')
-<a href="{{route('advertiser.password')}}" class="btn btn-sm btn--primary box--shadow1 text--small"><i class="fa fa-key"></i>@lang('Password Setting')</a>
+<a href="{{route('advertiser.password')}}" class="btn btn-sm btn--primary box--shadow1 text--small profile_pass_setting rounded-0"><i class="fa fa-key"></i>@lang('Password Setting')</a>
 @endpush
 
 @push('script')
@@ -283,8 +288,8 @@ $user = auth()->guard('advertiser')->user();
     }
 
     .country-code select:focus {
-        border: none;
         outline: none;
+        box-shadow: none;
     }
 
     .nice-select {
@@ -488,5 +493,41 @@ $user = auth()->guard('advertiser')->user();
         font-size: 16px;
         color: #1a273a;
     }
+    .Rg_advts_number {
+    display: flex;
+    flex-wrap: wrap;
+}
+.Rg_advts_number .form-select {
+    background: #f1f1f2 url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/15px 10px !important;
+    appearance: none;
+}
+.Rg_advts_number select {
+    flex: 0 0 25%;
+    width: 25%;
+    border: 1px solid #ced4da;
+}
+.Rg_advts_number input {
+    flex: 0 0 75%;
+    width: 75%;
+}
+#advertiser_form .fv-plugins-icon-container i {
+    top: 13px;
+}
+#advertiser_form .form-group input, #advertiser_form .form-group select {
+    background: #fff;
+    display: block;
+    font-size: 19px !important;
+    padding: 16px 24px;
+    line-height: normal;
+    height: unset;
+}
+.profile_pass_setting {
+    font-size: 18px !important;
+    padding: .375rem .75rem;
+}
+.Rg_advts_my_btn {    
+    font-size: 18px !important;
+    padding: .375rem .75rem;
+}
 </style>
 @endpush
