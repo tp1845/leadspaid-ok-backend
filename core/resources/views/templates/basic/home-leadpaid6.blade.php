@@ -168,12 +168,12 @@
     <div id="hotspot_section" class="onload section bg-gray d-flex justify-content-center align-items-center" style="overflow: hidden">
         <div class="container" style="position: relative; z-index: 10;" >
             <div class="row justify-content-center align-items-center" >
-                <div class="col-12 mb-5">
+                <div class="col-12 mb-3 mb-lg-5">
                     <h2 class="title text-center"><strong>What Leading Companies Say About Us?</strong></h2>
                 </div>
                 <div class="col-lg-8 col-xl-8 ">
                     <div class="testimonial_block">
-                        <p class=" h2 p-0 text-muted"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
+                        <p class=" h2 p-0 text-muted" style="padding-left: 22px!important"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
                         <div class="testimonial_slider">
                             <div>
                             <p class="text2">Leads started increasing slowly but steadily. I'd say, the AI is marvelous. It worked!</p>
@@ -629,6 +629,7 @@
             box-shadow: 0px 3px 10px 0px #000;
             border: 0px solid #4833e6!important;
         }
+         @media only screen and (max-width: 991px) {   .MainBanner-Home .btn, .button-large {  margin-top: 0 !important; } }
         .MainBanner-Home .btn{ background-color: #4833e6!important; }
         #JoinAsAdvertiser_section{ background-color: #11baf3;  }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
