@@ -579,15 +579,13 @@ function send_email_adv($user, $type = null, $link)
 
 function send_email_campaign_approval($user, $type, $data)
 {
-
     $general = GeneralSetting::first();
     $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) { return; }
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= 'Your campaign has been approved - ' . $data['campaign_name'];
-    $message = ' <p style="color: rgb(193,205,220);"> Dear '.$data['advertiser_name'].',</p>';
-    $message .= ' <p style="color: rgb(193,205,220);">Your campaign '.$data['campaign_name'].' has been approved. <br/> Please <a href="'.$data['campaign_url'].'">click here</a> to check.</p>';
+    $message = ' <p style="color: rgb(193,205,220);">Your campaign '.$data['campaign_name'].' has been approved. <br/> Please <a href="'.$data['campaign_url'].'">click here</a> to check.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 

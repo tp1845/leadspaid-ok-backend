@@ -79,7 +79,7 @@ class CampaignsController extends Controller
                 'campaign_name' => $campaign->name,
                 'advertiser_name' => $user->name,
                 'advertiser_email' => $user->email,
-                'campaign_url' =>  '/login-advertiser'
+                'campaign_url' =>  route('advertiser.campaigns.index')
             );
             send_email_campaign_approval($user,'EVER_CODE',$data);
             return response()->json(['success'=>true, 'message'=> 'Campaign successfully approve']);
