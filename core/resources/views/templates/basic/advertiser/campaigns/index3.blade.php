@@ -121,7 +121,7 @@
                             <th>{{ $leadd}}</th>
                             <th>0</th>
                             <th>0</th>
-                            <th>${{ $daily_bug }}</th>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -151,10 +151,14 @@
 
                         <div class="row align-items-end py-2">
                             
-                            <div class="col-lg-3 input-col">
+                            <div class="col-lg-3 ">
                                 <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
                                     <span id="text_white" class="ar-14 lp-dark">(Optional)</span>
                                 </label>
+                                <div class="input-col">
+                                  <input type="text" name="logo_comapny" class="logo_comapny">
+                                 </div>
+
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
                             <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
@@ -732,7 +736,12 @@
         });
 
 
-        form_company_logo.onchange = evt => { const [file] = form_company_logo.files; if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; updateformpreviewtext(); }}
+        form_company_logo.onchange = evt => { const [file] = form_company_logo.files;
+         if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; 
+               $(".logo_comapny").val(1);
+        updateformpreviewtext(); }else{
+             $(".logo_comapny").val('');
+        }}
         image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block"; updateformpreview();  }}
         image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block"; updateformpreview(); }}
         image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block"; updateformpreview(); }}
@@ -742,6 +751,7 @@
             $(this).parent().hide();
             var upload_box = $(this).parent().prev('.upload-box');
             $('.inputfile', upload_box).val("");
+            $(".logo_comapny").val('');
            setTimeout(function() {
 
             updateformpreview();
@@ -1032,7 +1042,8 @@
                 image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
-                create_qty:{ required: true}
+                create_qty:{ required: true},
+                logo_comapny: {required: true}
 
             },messages: {
                 campaign_name:{  required : 'Campaign Name is required.' },
@@ -1059,16 +1070,22 @@
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
-                create_qty: "Add at least 1 creative", 
-            },submitHandler: function(form){
-                if(($("#company_name_Input").val() =="" ) && ($("#form_company_logo").val()=="")){
-                    $("#form_company_logo").parent().after('<span id="form_company_logo-error" class="error invalid-feedback" style="display: inline;">Company/Brand Name or Logo Any 1 is mandatory</span>');
-                    $("#form_company_logo").focus();
-                }else{
-                  form.submit();  
-                }
+                create_qty: "Add at least 1 creative",
+                logo_comapny: 'Comapny/Brand Name or Logo - Any 1 is mandatory', 
             }
         });
+
+        $("#company_name_Input").blur(function(){
+
+            if($(this).val()==""){
+              $(".logo_comapny").val('');   
+            }else{
+               $(".logo_comapny").val(1);    
+            }
+        });
+
+
+
     </script>
     <script>
         function updateformpreview_by_Id(event,el) {
@@ -2581,6 +2598,14 @@ table tfoot tr {
 }
 #campaign_list tbody tr td:nth-child(4), #campaign_list tbody tr td:nth-child(4) a {
     font-size: 15px;
+}
+
+.logo_comapny {
+    min-height: 0 !important;
+    visibility: hidden;
+    padding: 0 !important;
+    height: 0 !important;
+    position: absolute !important;
 }
 </style>
 

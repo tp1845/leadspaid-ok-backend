@@ -78,9 +78,10 @@ $user = auth()->guard('advertiser')->user();
 
                                     <div class="font-weight-bolder text-body"> User Information
                                     </div>
-                                    <div class="card-body px-0">
+
+                                    <div class="card-body px-0 pt-1">
                                         <div class="form-group">
-                                            <label class="d-none">@lang('Username') <sup class="text-danger">*</sup></label>
+                                            <label>@lang('Username / Email Address') <sup class="text-danger">*</sup></label>
                                             <input type="text" id="email" name="email" placeholder="User Name" class="form-control Rg_advts_name rounded-0" readonly value="{{auth()->guard('advertiser')->user()->username}}">
                                         </div>
                                     </div>
@@ -668,6 +669,9 @@ element.style {
     background-repeat: no-repeat;
     background-position: right calc(.375em + .1875rem) center;
     background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+}
+#advertiser_form .text-body {
+    font-size: 16px;
 }
 </style>
 @endpush
