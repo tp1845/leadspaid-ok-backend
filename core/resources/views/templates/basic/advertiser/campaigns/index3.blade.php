@@ -19,6 +19,7 @@
 
                     @php
                       $daily_bug=0;
+                      $leadd=0;
                     @endphp
                  <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                         <thead>
@@ -44,6 +45,7 @@
 
                           @php 
                          $daily_bug= $daily_bug+$campaign->daily_budget;
+                         $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                           @endphp
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
@@ -77,6 +79,7 @@
                         @forelse($campaignspending as $campaign)
                         @php 
                          $daily_bug= $daily_bug+$campaign->daily_budget;
+                          $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                           @endphp
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
