@@ -118,7 +118,7 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th>0</th>
+                              <th>{{ $leadd}}</th>
                             <th>0</th>
                             <th>0</th>
                             <th>${{ $daily_bug }}</th>
