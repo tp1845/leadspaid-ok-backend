@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Advertiser;
 use App\campaigns;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -73,6 +74,14 @@ class CampaignsController extends Controller
             $campaign->start_date = Carbon::now();
             $campaign->update();
         if( $request->approval  == 1){
+            $user = Advertiser::select('name','email')->findOrFail($campaign->advertiser_id);
+            $data = array(
+                'campaign_name' => $campaign->name,
+                'advertiser_name' => $user->name,
+                'advertiser_email' => $user->email,
+                'campaign_url' =>  '/login-advertiser'
+            );
+            send_email_campaign_approval($user,'EVER_CODE',$data);
             return response()->json(['success'=>true, 'message'=> 'Campaign successfully approve']);
         }else{
             return response()->json(['success'=>false, 'message'=> 'Campaign successfully unapprove']);
