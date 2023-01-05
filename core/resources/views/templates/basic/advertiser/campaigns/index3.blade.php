@@ -2029,7 +2029,7 @@ font-size: 20px!important;
       align-content: center;
       flex-direction: row;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: flex-start !important;
       gap: 5px;
     }
 
@@ -2574,7 +2574,7 @@ table tfoot tr {
    /* text-transform: capitalize;*/
 }
 #UseExistingForm {
-    border: 2px solid #113399;
+    border: 3px solid #113399;
 }
 .UseExistingCol #UseExistingForm .border {
     border: none !important;
