@@ -241,7 +241,7 @@
                     z-index: 1;
                 }
                 #MainFooter .container, .footer_copywrite { position: relative; z-index: 10;}
-
+                .inner-hero {  background-position: center bottom; }
             </style>
         </body>
     </html>
