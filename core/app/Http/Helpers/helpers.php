@@ -585,7 +585,8 @@ function send_email_campaign_approval($user, $type, $data)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= 'Your campaign has been approved - ' . $data['campaign_name'];
-    $message = ' <p style="color: rgb(193,205,220);">Your campaign '.$data['campaign_name'].' has been approved. <br/> Please <a href="'.$data['campaign_url'].'">click here</a> to check.</p>';
+    $message = '<p style="color: rgb(193,205,220);">Your campaign '.$data['campaign_name'].' has been approved.</p>';
+    $message .= '<p style="color: rgb(193,205,220);">Please <a href="'.$data['campaign_url'].'">click here</a> to check.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -597,7 +598,7 @@ function send_email_adv_activated($user, $type = null, $name)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= 'Your LeadsPaid.com Account has been activated. Create Campaign Now »';
-    $message = ' <p style="color: rgb(193,205,220);"> Your LeadsPaid.com account has been activated! <br/>  Please login to https://www.leadspaid.com/login-advertiser to create your first lead generation campaign.</p>';
+    $message = '<p style="color: rgb(193,205,220);"> Your LeadsPaid.com account has been activated! <br/>  Please login to https://www.leadspaid.com/login-advertiser to create your first lead generation campaign.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
