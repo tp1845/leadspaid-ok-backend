@@ -166,7 +166,10 @@ class LoginController extends Controller
 
         if ($user->status == 0) {
             $this->guard()->logout();
-            return redirect()->route('login_advertiser')->withErrors(['Your account has been banned by admin']);
+            $code=[ 'code' =>verificationCode(6), 'userid'=>$user->id ];
+            $url = url('') .'/advertiser/register-veryfy/?code_verifiyed='. base64_encode(serialize($code));
+            return redirect($url);
+            // return redirect()->route('login_advertiser')->withErrors(['Your account has been banned by admin']);
         }
 
         $user->tv = $user->ts == 1 ? 0 : 1;

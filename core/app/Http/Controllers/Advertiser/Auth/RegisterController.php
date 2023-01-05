@@ -215,7 +215,7 @@ class RegisterController extends Controller
         $adv->password = Hash::make($data['password']);
         $adv->status = 0;
         $adv->ev = 0;
-       // $adv->sv = 1;
+       // $adv->sv = 0;
         // $adv->ev = $gnl->ev==0 ? 1 : 0;
         $adv->sv = $gnl->sv==0 ? 1 : 0;
         $adv->ts = 0;
