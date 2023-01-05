@@ -16,6 +16,10 @@
                 <!-- <button type="button" class="btn btn-danger rounded-0 ml-2 adsrock-download-pd">Download Invoice</button> -->
             </div>
                 <div class="table-responsive--lg">
+
+                    @php
+                      $daily_bug=0;
+                    @endphp
                  <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                         <thead>
                         <tr>
@@ -23,8 +27,9 @@
                             <th>Campaign Name</th>
                             <th>Delivery</th>
                             <th>Download Leads</th>
+                             <th>Leads</th>
                             <th>Cost</th>
-                            <th>Leads</th>
+                           
                             <th>CPL</th>
                             <th>Daily Budget</th>
                             <th>Start</th>
@@ -36,6 +41,10 @@
                         <tbody>
 
                         @forelse($campaigns as $campaign)
+
+                          @php 
+                         $daily_bug= $daily_bug+$campaign->daily_budget;
+                          @endphp
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
@@ -49,10 +58,11 @@
                                     <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
                                     {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
                                 </td>
-                                <td>0</td>
-                                <td>${{ $campaign->daily_budget }}</td>
-                                <td>0</td>
                                 <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
+                                <td>0</td>
+                                
+                                <td>0</td>
+                                <td> ${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
                                 <td>{{ $campaign->target_country }} </td>
@@ -65,6 +75,9 @@
                         @endforelse
 
                         @forelse($campaignspending as $campaign)
+                        @php 
+                         $daily_bug= $daily_bug+$campaign->daily_budget;
+                          @endphp
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
@@ -80,10 +93,10 @@
                                     {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
                                 </td>
                                 <td>0</td>
-                                
-                                <td>${{ $campaign->daily_budget }}</td>
-                                <td>0</td>
                                 <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
+                                
+                                <td>0</td>
+                                <td>${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
                                 <td>{{ $campaign->target_country }} </td>
@@ -99,17 +112,17 @@
                         <tfoot>
                         <tr>
                             <th>Total</th>
-                            <th>Campaign Name</th>
-                            <th>Delivery</th>
-                            <th>Download Leads</th>
-                            <th>Cost</th>
-                            <th>Leads</th>
-                            <th>CPL</th>
-                            <th>Daily Budget</th>
-                            <th>Start</th>
-                            <th>End</th>
-                            <th>Target Country </th>
-                            <th>Form Used</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th>${{ $daily_bug }}</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>
@@ -142,7 +155,7 @@
                                 <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
                             <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
                                 <div class="upload-box" style="height: 53px; ">
-                                    <input type="file" name="company_logo" required id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
+                                    <input type="file" name="company_logo"  id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
                                     <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo*</span></label>
                                 </div>
                                 <div id="company_logo_preview" class="img_preview_box">
@@ -770,6 +783,7 @@
             var  html ='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="'+placeholder+'" name="'+name+'"  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
             $(options_block).append(html);
             update_options(options_section);
+            makeinoputcharateruppercase();
             }else{
                 Toast('red', 'Only 6 Options Allowed') ;
             }
@@ -852,9 +866,12 @@
                 table.append(html).attr('data-row', row);
                 update_field();
                 updateformpreviewtext();
+                makeinoputcharateruppercase();
             }else{
                 Toast('red', "Only 5 fields allowed");
             }
+
+
         }
 
         function reset_campaign_create_form() {
@@ -1008,7 +1025,7 @@
                 daily_budget: { required: true, money: true,min: 50,max: 1000 },
                 target_cost: { required: false, money: true,min: 10,max: 1000 },
                 website_url: { minlength: 7 },
-                company_logo: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
+                
                 image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
@@ -1016,8 +1033,7 @@
 
             },messages: {
                 campaign_name:{  required : 'Campaign Name is required.' },
-                 company_logo: "File must be JPG, GIF or PNG, less than 2MB",
-                company_logo:{  required : 'Please Upload a Logo' },
+                
                 target_country:{  required : 'Country is required.' },
 
 
@@ -1041,6 +1057,13 @@
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
                 create_qty: "Add at least 1 creative", 
+            },submitHandler: function(form){
+                if(($("#company_name_Input").val() =="" ) && ($("#form_company_logo").val()=="")){
+                    $("#form_company_logo").parent().after('<span id="form_company_logo-error" class="error invalid-feedback" style="display: inline;">Company/Brand Name or Logo Any 1 is mandatory</span>');
+                    $("#form_company_logo").focus();
+                }else{
+                  form.submit();  
+                }
             }
         });
     </script>
@@ -1510,6 +1533,26 @@ function ValidURLnew(str) {
             }
         }
 
+makeinoputcharateruppercase();
+  function makeinoputcharateruppercase(){
+
+    $(".leftForm").find("input").on('keypress',function(e){
+      
+      $(this).val(capitalizeFirstLetter($(this).val()));
+
+    });
+    $(".rightForm").find("input").on('keypress',function(e){
+      
+      $(this).val(capitalizeFirstLetter($(this).val()));
+
+    });
+
+}
+
+
+ function capitalizeFirstLetter(string){
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
     </script>
 
     @php
@@ -1566,7 +1609,7 @@ function ValidURLnew(str) {
 #UseExistingForm label{ font-size: 16px }
 #UseExistingForm  .form-check{ margin-bottom: 10px; }
 .btn--primary.create-campaign-btn{ background-color: #4500dd!important; border-radius: 0; }
-#campaign_list td{ font-size: 16px; color: #1a273a;  }
+#campaign_list td{ font-size: 16px; color: #1a273a; vertical-align:top; }
 #campaign_list td:nth-child(3){  font-size: 14px; }
 #campaign_list a.create-campaign-btn { font-size: 12px !important; }
 
@@ -1983,7 +2026,7 @@ font-size: 20px!important;
       align-content: center;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 5px;
     }
 
@@ -2423,7 +2466,9 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     margin-top: 2px;
 }
 #preview_company_logo {
-    margin-bottom: 5px;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    margin-left: 5px;
 }
 #preview_media > div .owl-item .item .image-wapperr img {
     width: unset;
@@ -2519,8 +2564,20 @@ table tfoot tr {
 #formPreviewBLock .container {
     justify-content: flex-start !important;
 }
-#campaign_form input, .form-punchline, .form-subtitle, .form-title, #preview_company_name {
+#form_name, #campaign_form .modal-header input {
     text-transform: capitalize;
+}
+#campaign_form input, .form-punchline, .form-subtitle, .form-title, #preview_company_name {
+   /* text-transform: capitalize;*/
+}
+#UseExistingForm {
+    border: 2px solid #113399;
+}
+.UseExistingCol #UseExistingForm .border {
+    border: none !important;
+}
+#campaign_list tbody tr td:nth-child(4), #campaign_list tbody tr td:nth-child(4) a {
+    font-size: 15px;
 }
 </style>
 

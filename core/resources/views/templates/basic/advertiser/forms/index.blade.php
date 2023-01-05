@@ -36,11 +36,13 @@
                                 <td>
                                  @php 
                                     if(!empty($form->title) ){
+                                        echo "<ul>";
                                        foreach($form->title as $formt){
                                         if(!empty($formt)){
-                                            echo $formt.'<br>';
+                                            echo "<li>".$formt.'</li>';
                                         }
                                        }
+                                   echo "</ul>";
                                     }
  
                                  @endphp
@@ -87,7 +89,7 @@
 @push('style')
 <style>
     .table th {   padding: 12px 10px; max-width: 200px; }
-    .table td {  text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
+    .table td {vertical-align:top;  text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     table.dataTable thead tr {
     background-color: #1A273A;
 }
@@ -96,6 +98,7 @@ table.dataTable tbody tr td {
     color: #1a273a;
     font-weight: normal;
 }
+
 label {
     color: #000 !important;
 }
@@ -161,6 +164,16 @@ table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:
 table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after {
     top: 50% !important;
     content: "▼" !important;
+}
+#form_list ul li {
+    list-style: disc;
+    font-size: 16px;
+}
+#form_list ul {
+    padding-left: 20px;
+}
+table.dataTable tbody td:nth-child(3) a, table.dataTable tbody td:nth-child(3) {
+    font-size: 15px;
 }
 @media (min-width: 768px){
 .form-list-wrapper-new{

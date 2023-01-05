@@ -21,19 +21,19 @@ $user = auth()->guard('advertiser')->user();
                                     <div class="card-body px-0">
                                         <div class="form-group ">
                                             <label class="d-none">@lang('Company Name')</label>
-                                            <input type="text" class="form-control rounded-0" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name">
+                                            <input type="text" id="company_name" class="form-control Rg_advts_name rounded-0" name="company_name" value="{{ auth()->guard('advertiser')->user()->company_name }}" placeholder="Company Name" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="d-none">@lang('Full Name') <sup class="text-danger">*</sup></label>
-                                            <input type="text" name="name" placeholder="Full Name" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->name}}" required>
+                                            <input type="text" id="full_name" name="name" placeholder="Full Name" class="Rg_advts_name form-control rounded-0" value="{{auth()->guard('advertiser')->user()->name}}">
                                         </div>
                                         <div class="form-group country-code">
                                             <label class="d-none">@lang('Mobile') <sup class="text-danger">*</sup></label>
                                             <div class="Rg_advts_number">
-                                                <select name="country_code" class="form-select rounded-0">
+                                                <select name="country_code" class="country_code  form-select rounded-0">
                                             @include('partials.country_code')
                                             </select>
-                                                <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" required placeholder="@lang('Your Phone Number')">
+                                                <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" placeholder="@lang('Your Phone Number')">
                                             </div>
                                         </div>
                                     </div>
@@ -46,20 +46,20 @@ $user = auth()->guard('advertiser')->user();
                                     <div class="card-body px-0">
                                         <div class="form-group ">
                                             <label class="d-none">@lang('Address')<sup class="text-danger">*</sup></label>
-                                            <input type="text" class="form-control rounded-0" name="billed_to" value="{{auth()->guard('advertiser')->user()->billed_to}}" required placeholder="Address">
+                                            <input type="text" class="form-control rounded-0" name="billed_to" id="floatingTextarea" value="{{auth()->guard('advertiser')->user()->billed_to}}" placeholder="Address">
                                         </div>
                                        <!--  <div class="form-group">
                                             <label class="d-none">@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
                                             <input type="email" name="email" placeholder="Billing Email address" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->email}}" required>
                                         </div> -->
                                         <div class="form-group">
-                                            <input type="text" placeholder="City" name="city" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->city}}" required>
+                                            <input type="text" placeholder="City" name="city" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->city}}">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" placeholder="Postal Code" name="postal_code" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->postal_code}}" required>
+                                            <input type="text" placeholder="Postal Code" name="postal_code" class="form-control rounded-0" value="{{auth()->guard('advertiser')->user()->postal_code}}">
                                         </div>
                                         <div class="form-group">
-                                            <select class="custom-select rounded-0 mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" required name="country">
+                                            <select class="custom-select rounded-0 mr-sm-2 form-control" value="{{auth()->guard('advertiser')->user()->country}}" name="country">
                                                 @foreach ($countries as $country)
                                                 <option @if($user->country === $country->country_name)
                                                     selected="selected" @endif
@@ -81,14 +81,14 @@ $user = auth()->guard('advertiser')->user();
                                     <div class="card-body px-0">
                                         <div class="form-group">
                                             <label class="d-none">@lang('Username') <sup class="text-danger">*</sup></label>
-                                            <input type="text" name="username" placeholder="User Name" class="form-control rounded-0" readonly value="{{auth()->guard('advertiser')->user()->username}}" required>
+                                            <input type="text" id="email" name="email" placeholder="User Name" class="form-control Rg_advts_name rounded-0" readonly value="{{auth()->guard('advertiser')->user()->username}}">
                                         </div>
                                     </div>
                                     @include($activeTemplate.'partials.custom-captcha')
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-12 text-center">
+                                <div class="col-md-12">
                                     <div class="form-group row m-0">
                                         <div class="col-md-12 ">
                                             @php echo recaptcha() @endphp
@@ -108,11 +108,12 @@ $user = auth()->guard('advertiser')->user();
 @endsection
 
 @push('breadcrumb-plugins')
-<a href="{{route('advertiser.password')}}" class="btn btn-sm btn--primary box--shadow1 text--small profile_pass_setting rounded-0"><i class="fa fa-key"></i>@lang('Password Setting')</a>
+<a href="{{route('advertiser.password')}}" class="btn btn-sm btn--primary box--shadow1 text--small profile_pass_setting rounded-0"><i class="fa fa-key"></i>@lang('Change Password')</a>
 @endpush
 
 @push('script')
-
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 <script>
     'use strict'
 
@@ -143,14 +144,14 @@ $user = auth()->guard('advertiser')->user();
         $(this).parent(".file-upload-wrapper").attr("data-text", $(this).val().replace(/.*(\/|\\)/, ''));
     });
 
-    document.addEventListener('DOMContentLoaded', function(e) {
+   /* document.addEventListener('DOMContentLoaded', function(e) {
         FormValidation.formValidation(document.querySelector('#advertiser_form'), {
             fields: {
                 company_name: {
                     validators: {
                         stringLength: {
                             min: 3,
-                            message: 'Company Name is required.',
+                            message: 'Please fill Full Company Name.',
                         }
                     },
                 },
@@ -158,15 +159,15 @@ $user = auth()->guard('advertiser')->user();
                 name: {
                     validators: {
                         notEmpty: {
-                            message: 'Company Name is required.',
+                            message: 'Please fill Full Name.',
                         },
                         stringLength: {
                             min: 3,
-                            message: 'Company Name is required.',
+                            message: 'Please fill Full Name.',
                         },
                         regexp: {
                             regexp: /^[a-z A-Z]+$/,
-                            message: 'Full Name Invalid.',
+                            message: 'Please fill Full Name.',
                         },
                     },
                 },
@@ -271,6 +272,84 @@ $user = auth()->guard('advertiser')->user();
             document.querySelector('#advertiser_form').submit();
 
         });
+    });*/
+
+
+jQuery.fn.capitalize = function() {
+    $(this[0]).keyup(function(event) {
+        var box = event.target;
+        var txt = $(this).val();
+        var stringStart = box.selectionStart;
+        var stringEnd = box.selectionEnd;
+        $(this).val(txt.replace(/^(.)|(\s|\-)(.)/g, function($word) {
+            return $word.toUpperCase();
+        }));
+        box.setSelectionRange(stringStart , stringEnd);
+    });
+   return this;
+}
+$('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
+$('#ad_budget').keyup(function(){  this.value = this.value.replace(/[^0-9]/g,'');});
+$("#company_name").capitalize();
+$("#full_name").capitalize();
+
+    $.validator.setDefaults({
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    $.validator.addMethod(
+        "money",
+        function(value, element) {
+            var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
+            return this.optional(element) || isValidMoney;
+        },
+        "Enter Correct value."
+    );
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z ]+$/i.test(value);
+    }, "Letters only please");
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9]*$/i.test(value);
+    }, "Number only please");
+    jQuery.validator.addMethod("phoneonly", function(value, element) {
+        return this.optional(element) || /^[0-9.-]*$/i.test(value);
+        }, "Number only please");
+    jQuery.validator.addMethod("valid_email", function(value, element) {
+    return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+    }, "Please enter a valid email address");
+
+
+
+
+
+ $("#advertiser_form").validate({
+        rules: {
+            name: { required: true,minlength: 3, lettersonly: true },
+            company_name: { required: true, minlength: 3},
+            country: { required: true},
+            mobile: { required: true, minlength: 6, phoneonly: true },
+            postal_code: { required: false, maxlength: 200  },
+           city: { required: true, minlength: 3, maxlength: 50 },
+           billed_to: { required: true, minlength: 10, maxlength: 100 }
+        },messages: {
+            name:{  required : 'Full Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
+            company_name:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
+            mobile:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
+            postal_code: {maxlength: 'maximum 200 characters.'},
+            city: {required : 'Please fill valid City.',minlength:'minmum 3 characters.', maxlength: 'maximum 50 characters.'},
+            billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'}
+           
+
+        }
     });
 </script>
 
@@ -513,8 +592,16 @@ $user = auth()->guard('advertiser')->user();
 #advertiser_form .fv-plugins-icon-container i {
     top: 13px;
 }
-#advertiser_form .form-group input, #advertiser_form .form-group select {
+#advertiser_form .form-group input {
     background: #fff;
+    display: block;
+    font-size: 19px !important;
+    padding: 16px 24px;
+    line-height: normal;
+    height: unset;
+   
+}
+#advertiser_form .form-group select {
     display: block;
     font-size: 19px !important;
     padding: 16px 24px;
@@ -529,6 +616,58 @@ $user = auth()->guard('advertiser')->user();
 .Rg_advts_my_btn {    
     font-size: 18px !important;
     padding: .375rem .75rem;
+}
+.form-control:disabled, .form-control[readonly]{
+    background-color: #ccc !important;
+}
+#advertiser_form .form-group select {
+    background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+}
+#advertiser_form .form-group input:focus, #advertiser_form .form-group select:focus, #advertiser_form .form-group .form-control:focus {
+    border:1px solid #ced4da;
+    box-shadow: none;
+}
+
+
+element.style {
+}
+#campaign_create_modal .PageFormStyle .form-control {
+    font-size: 20px!important;
+}
+#campaign_create_modal .PageFormStyle .form-control, #campaign_create_modal .PageFormStyle .custom-select {
+    border-radius: 0;
+    background-color: #fff;
+    /* font-size: 19px!important; */
+    /* font-weight: 300!important; */
+    color: #212529!important;
+    border-radius: 0!important;
+    vertical-align: middle!important;
+    border: 1px solid #94a1b5!important;
+    outline: none!important;
+    padding: 10px 18px!important;
+    min-height: 52px;
+    height: auto;
+}
+#campaign_create_modal .PageFormStyle .us_doller input[aria-invalid="false"], #campaign_create_modal form input[aria-invalid="false"] {
+    font-weight: 400 !important;
+}
+#campaign_create_modal form input {
+    font-size: 14px !important;
+}
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 4px;
+    font-size: 14px;
+    color: #dc3545;
+}
+#advertiser_form .form-group .was-validated #advertiser_form .form-group .form-control:invalid, #advertiser_form .form-group .form-control.is-invalid {
+    border-color: #dc3545;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(.375em + .1875rem) center;
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
 }
 </style>
 @endpush

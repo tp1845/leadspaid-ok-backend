@@ -261,12 +261,13 @@ class AdvertiserController extends Controller
   public function showinvoices($id){
 
 
-     $ta = TransactionAdvertiser::where('id',$id)->first();
+      $ta = TransactionAdvertiser::where('id',$id)->first();
      $page_title = 'Payments';
         $data = ['title' => 'Laravel 7 Generate PDF From View Example Tutorial'];
-        $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf',compact('page_title','ta'))->setOptions(['defaultFont' => 'Poppins']);
+        $image_url='data:image/png;base64,'.base64_encode(getImage(imagePath()['logoIcon']['path'] .'/logo.png'));
+        $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf',compact('page_title','ta','image_url'))->setOptions(['defaultFont' => 'Poppins']);
 
-        return $pdf->download('invooice-'.$id.'.pdf','+w');
+        return $pdf->download('invoice-LP-'.strtoupper(substr(auth()->guard('advertiser')->user()->company_name,0,2)).'-'.get_invoice_format($id).'.pdf','+w');
 
   }
 
