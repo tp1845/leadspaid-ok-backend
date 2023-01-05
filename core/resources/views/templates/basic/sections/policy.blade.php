@@ -23,8 +23,7 @@
 .inner-hero {
     background-color: #062c4e99;
     background-image: url('{{url('/')}}/assets/templates/leadpaid/images/hero-privacy-policy.jpg')!important;
-    background-position: center bottom;
     }
-    @media only screen and (min-width: 1200px) { .inner-hero { background-size:100% 100%; }}
+
 </style>
 @endpush
