@@ -2049,8 +2049,19 @@ font-size: 20px!important;
       justify-content: flex-start !important;
       gap: 5px;
     }
-
-    .logo img{ display: inline-block; width: 120px; }
+#preview_company_logo img {
+    width: unset;
+    height: 100%;
+    max-height: 36px;
+    display: inline-block;
+}
+#preview_company_logo {
+    margin-bottom: 3px;
+    margin-top: 3px;
+    margin-left: 5px;
+    height: 100%;
+    max-height: 36px;
+}
 
     .form-row select:invalid,
     .form-row select option:first-child {
