@@ -1545,7 +1545,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
             var url = $(this).attr('href');
             $.get(url, function (data) {
                 console.log(data);
-                $('#input_campaign_id').val(campaign_id);
+               // $('#input_campaign_id').val(campaign_id);
                 $("input[name='campaign_name']").val('');
                 $("input[name='start_date']").val(data.start_date);
                 $("input[name='end_date']").val(data.end_date);
@@ -1565,6 +1565,11 @@ $('body').on('click', '.duplicatecampaign', function (e) {
       
               $("#company_logo_preview").show();
               $("#company_logo_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.company_logo);
+              if((data.company_logo== null) && (data.company_name ==null)){
+               $(".logo_comapny").val(0);
+              }else{
+                $(".logo_comapny").val(1);
+              }
               $("#company_logo_img").show();
               $("input[name='form_punchline']").val(data.punchline);
               
