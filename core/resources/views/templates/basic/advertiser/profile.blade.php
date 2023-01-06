@@ -95,7 +95,7 @@ $user = auth()->guard('advertiser')->user();
                                             @php echo recaptcha() @endphp
                                         </div>
                                     </div>
-                                    <button type="submit" class="box--shadow1 rounded-0 btn btn--primary btn-lg text--small Rg_advts_my_btn">@lang('Save Changes')</button>
+                                    <button type="submit" class="box--shadow1 rounded-0 btn btn--primary btn-lg text--small Rg_advts_my_btn">@lang('Update Profile')</button>
                                 </div>
                             </div>
                             </form>
@@ -614,9 +614,11 @@ $("#full_name").capitalize();
     font-size: 18px !important;
     padding: .375rem .75rem;
 }
-.Rg_advts_my_btn {    
+.Rg_advts_my_btn {
     font-size: 18px !important;
     padding: .375rem .75rem;
+    background-color: #4500dd!important;
+    font-weight: 500;
 }
 .form-control:disabled, .form-control[readonly]{
     background-color: #ccc !important;
