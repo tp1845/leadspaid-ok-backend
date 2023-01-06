@@ -1581,34 +1581,46 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                      $("#form_title_"+idx).find('input').val(val);
                        }
                    });
+                   var vqty='';
                     if(data.youtube_1 != null){
                   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="1"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="1"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_1)+'" frameborder="0" allowfullscreen></iframe></div>';
                       $(".video_1").find('.youtube_iframe').remove(); 
                       $(".video_1").find('label').after(html);
+                       vqty=1;
+                       $("#Youtube_URL_1_Input").val(data.youtube_1);
                   }
                    if(data.youtube_2 != null){
                   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="2"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="2"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_2)+'" frameborder="0" allowfullscreen></iframe></div>';
                       $(".video_2").find('.youtube_iframe').remove(); 
                       $(".video_2").find('label').after(html);
+                      vqty=1;
+                       $("#Youtube_URL_2_Input").val(data.youtube_2);
                   }
 
                    if(data.youtube_3 != null){
                   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="3"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="3"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_3)+'" frameborder="0" allowfullscreen></iframe></div>';
                       $(".video_3").find('.youtube_iframe').remove(); 
                       $(".video_3").find('label').after(html);
+                      vqty=1;
+                       $("#Youtube_URL_3_Input").val(data.youtube_3);
                   }
                   if(data.image_1 != null){
                     $("#upload_image_1").find(".img_preview_box").show();
                     $("#image_1_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_1);
+                    vqty=1;
                   }
                   if(data.image_2 != null){
                     $("#upload_image_2").find(".img_preview_box").show();
                     $("#image_2_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_2);
+                    vqty=1;
                   }
                   if(data.image_3 != null){
                     $("#upload_image_3").find(".img_preview_box").show();
                     $("#image_3_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_3);
+                    vqty=1;
                   }
+
+                  $(".create_qty"). val(vqty);
                    $.each(JSON.parse(data.form_desc), function (idx, val) {
                     if(val !=null){
                      $("#FormDescription_"+idx).show();
