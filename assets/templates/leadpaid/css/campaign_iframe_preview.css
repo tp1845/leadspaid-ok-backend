@@ -170,7 +170,7 @@
 
   }
 
-  #formPreviewBLock  .logo img{ display: inline-block; width: 100%; max-width: 120px; max-height: 41px; }
+  #formPreviewBLock  .logo img{ display: inline-block; width: 100%; max-width: unset; max-height: 36px; }
 
   #formPreviewBLock  .form-row select:invalid,
   #formPreviewBLock   .form-row select option:first-child {

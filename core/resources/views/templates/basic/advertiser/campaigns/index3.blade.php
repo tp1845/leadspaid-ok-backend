@@ -2055,13 +2055,6 @@ font-size: 20px!important;
     max-height: 36px;
     display: inline-block;
 }
-#preview_company_logo {
-    margin-bottom: 3px;
-    margin-top: 3px;
-    margin-left: 5px;
-    height: 100%;
-    max-height: 36px;
-}
 
     .form-row select:invalid,
     .form-row select option:first-child {
@@ -2500,6 +2493,8 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     margin-bottom: 3px;
     margin-top: 3px;
     margin-left: 5px;
+    height: 100%;
+    max-height: 36px;
 }
 #preview_media > div .owl-item .item .image-wapperr img {
     width: unset;
