@@ -38,7 +38,7 @@ class CampaignsController extends Controller
     public function edit(Request $request, $id)
     {
 
-        $campaign = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->where('id', $id)->first();
+        $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id', '=', 'campaign_forms.id')->first();
 
        // $campaign->target_placements = unserialize($campaign->target_placements);
         return response()->json($campaign );

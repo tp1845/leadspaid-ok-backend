@@ -313,7 +313,7 @@
                                                     <label class="col-form-label mt-3 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / </span><b>Offer Validity</b></label>
                                                     <div id="form_title_1">
                                                         <div class="input-group input-col">
-                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="26">
+                                                            <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="23">
                                                             <div class="input-group-append bg-none">
                                                                 <div class="input-group-text">  </div>
                                                             </div>
@@ -1098,7 +1098,7 @@
                 dataType: 'json',
                 type: 'POST',
                 success: function ( data ) {
-                    console.log(data)
+                    
                     updateformpreview(data.form[0]);
                 }
             });
@@ -1110,7 +1110,7 @@
             $('#preview_company_name').html('');
             $('#preview_company_logo').html('');
             $('#preview_media').html('');
-            for ($i = 1; $i < 6; $i++){  $('#preview_filed_'+$i).html('');  }
+            for ($i = 1; $i < 6; $i++){  $('#preview_filed_'+$i).html('');  } 
         }
 
         function updateformpreview(data = false) {
@@ -1225,54 +1225,7 @@
                    $('#preview_media').find(".youtubvre_loadingg").remove();
                 });
                             
-            for ($i = 1; $i < 6; $i++){
-                if(data == false){
-                question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
-                question_text =  $('input[name="field_'+$i+'[question_text]"]').val();
-                question_required =  $('input[name="field_'+$i+'[required]"]').prop('checked')?'*':'';
-                }else{
-                    question_type = null;
-                    question_text =  null;
-                    question_required =  null;
-                    options=  [];
-                    var fd = data['field_'+$i];
-                    if( fd ){
-                        question_type = fd['question_type'];
-                        question_text = fd['question_text'];
-                        if(fd['required']){ question_required =  fd['required']?'*':''; }else{ question_required = '';  }
-                        if(question_type == 'MultipleChoice'){
-                            if(fd['option_1']){ options[0]= fd['option_1'] ; }
-                            if(fd['option_2']){ options[1]= fd['option_2'] ; }
-                            if(fd['option_3']){ options[2]= fd['option_3'] ; }
-                            if(fd['option_4']){ options[3]= fd['option_4'] ; }
-                            if(fd['option_5']){ options[4]= fd['option_5'] ; }
-                            if(fd['option_6']){ options[5]= fd['option_6'] ; }
-                        }
-                    }
-                }
-                t ='';
-                if(question_type === 'MultipleChoice'){
-                    t +='<select class="form-select" id="Input_field_'+$i+'"';
-                    t +='>';
-                        if(question_text){  t +='<option selected value="" class="holder"> '+question_text+ question_required +' </option>'; }
-                        if(data == false){
-                            for ($j = 1; $j < 7; $j++){
-                                op =  $('input[name="field_'+$i+'[option_'+$j+']"]').val();
-                                if(op){ t +='<option value="'+ op+'">'+ op+'</option>'; }
-                            }
-                        }else{
-                            $.each(options, function (key, val) {
-                                t +='<option value="'+ val+'">'+ val+'</option>';
-                            });
-                        }
-                        t +='</select>';
-                }else if(question_type === 'ShortAnswer'){
-                    t +='<input type="text" class="form-control" id="Input_field_'+$i+'" placeholder="'+question_text+ question_required +'" ';
-                    t +='>';
-                }
-                if(t!==''){ $('#preview_filed_'+$i).html(t); }else{ $('#preview_filed_'+$i).html(t); }
-            }
-
+            
           $(function() {
               // Owl Carousel
               var owl = $(".owl-carousel");
@@ -1287,7 +1240,7 @@
               });
             });
 
-     console.log("test");
+     
 
         }
 
@@ -1326,15 +1279,18 @@ function updateformpreviewtext(data = false) {
             if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
     for ($i = 1; $i < 6; $i++){
                 if(data == false){
+                    console.log('empty data');
                 question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
                 question_text =  $('input[name="field_'+$i+'[question_text]"]').val();
                 question_required =  $('input[name="field_'+$i+'[required]"]').prop('checked')?'*':'';
                 }else{
+                    console.log('no empty');
                     question_type = null;
                     question_text =  null;
                     question_required =  null;
                     options=  [];
                     var fd = data['field_'+$i];
+                    console.log(fd);
                     if( fd ){
                         question_type = fd['question_type'];
                         question_text = fd['question_text'];
@@ -1349,6 +1305,7 @@ function updateformpreviewtext(data = false) {
                         }
                     }
                 }
+                console.log(question_type);
                 t ='';
                 if(question_type === 'MultipleChoice'){
                     t +='<select class="form-select" id="Input_field_'+$i+'"';
@@ -1369,6 +1326,7 @@ function updateformpreviewtext(data = false) {
                     t +='<input type="text" class="form-control" id="Input_field_'+$i+'" placeholder="'+question_text+ question_required +'" ';
                     t +='>';
                 }
+
                 if(t!==''){ $('#preview_filed_'+$i).html(t); }else{ $('#preview_filed_'+$i).html(t); }
             }
 
@@ -1573,6 +1531,207 @@ makeinoputcharateruppercase();
  function capitalizeFirstLetter(string){
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
+
+$('body').on('click', '.duplicatecampaign', function (e) {
+            e.preventDefault();
+            reset_campaign_create_form();
+            $('#campaign_createModalLabel').html('Edit Campaign');
+            campaign_create_modal.modal('show');
+            var campaign_id = $(this).attr('data-id');
+            // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
+            // url = url.replace(':campaign_id', campaign_id);
+            // url =  "/advertiser/campaigns/edit/"+ campaign_id;
+            var url = $(this).attr('href');
+            $.get(url, function (data) {
+                console.log(data);
+                $('#input_campaign_id').val(campaign_id);
+                $("input[name='campaign_name']").val('');
+                $("input[name='start_date']").val(data.start_date);
+                $("input[name='end_date']").val(data.end_date);
+                if (data.end_date !== null) {
+                    $('#SelectEndDateSelect').val("SetEndDate").change();
+                } else {
+                    $('#SelectEndDateSelect').val("NoEndDate").change();
+                }
+                $("input[name='SelectFormType'][value=CreateNewForm]").prop('checked', true);
+               
+                $("#CreateNewForm").show();
+                $("input[name='daily_budget']").val(data.daily_budget);
+                $("input[name='target_cost']").val(data.target_cost);
+                $("#TargetCountryInput").val(data.target_country).change();
+                $("input[name='form_name']").val('');
+                $("#TargetingTypeInput").val(data.target_type).change();
+      
+              $("#company_logo_preview").show();
+              $("#company_logo_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.company_logo);
+              $("#company_logo_img").show();
+              $("input[name='form_punchline']").val(data.punchline);
+              
+                   $.each(JSON.parse(data.title), function (idx, val) {
+                    if(val !=null){
+                     $("#form_title_"+idx).show();
+                     $("#form_title_"+idx).prev().find(".fa-plus-circle").hide();
+                     
+                     $("#form_title_"+idx).find('input').val(val);
+                       }
+                   });
+                    if(data.youtube_1 != null){
+                  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="1"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="1"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_1)+'" frameborder="0" allowfullscreen></iframe></div>';
+                      $(".video_1").find('.youtube_iframe').remove(); 
+                      $(".video_1").find('label').after(html);
+                  }
+                   if(data.youtube_2 != null){
+                  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="2"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="2"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_2)+'" frameborder="0" allowfullscreen></iframe></div>';
+                      $(".video_2").find('.youtube_iframe').remove(); 
+                      $(".video_2").find('label').after(html);
+                  }
+
+                   if(data.youtube_3 != null){
+                  var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="3"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="3"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_3)+'" frameborder="0" allowfullscreen></iframe></div>';
+                      $(".video_3").find('.youtube_iframe').remove(); 
+                      $(".video_3").find('label').after(html);
+                  }
+                  if(data.image_1 != null){
+                    $("#upload_image_1").find(".img_preview_box").show();
+                    $("#image_1_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_1);
+                  }
+                  if(data.image_2 != null){
+                    $("#upload_image_2").find(".img_preview_box").show();
+                    $("#image_2_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_2);
+                  }
+                  if(data.image_3 != null){
+                    $("#upload_image_3").find(".img_preview_box").show();
+                    $("#image_3_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_3);
+                  }
+                   $.each(JSON.parse(data.form_desc), function (idx, val) {
+                    if(val !=null){
+                     $("#FormDescription_"+idx).show();
+                     $("#FormDescription_"+idx).find('input').val(val);
+                     $("#FormDescription_"+idx).prev().find(".fa-plus-circle").hide();
+                       }
+
+                    });
+                      
+                      if(data.field_1 != null){ 
+                     var field1=JSON.parse(data.field_1);
+                         if(field1.required=="on"){
+                            $(".row_1").find("input[type=checkbox]").prop('checked',true);
+                         }else{
+                            $(".row_1").find("input[type=checkbox]").prop('checked',false);
+                         }
+                         $(".row_1").find(".sort").val(field1.sort);
+                          $(".row_3").find(".InputQuestionType").val(field1.question_type);
+                          $(".row_1").find(".InputQuestion_text").val(field1.question_text);
+                     }
+
+                       if(data.field_2 != null){ 
+                     var field2=JSON.parse(data.field_2);
+                         if(field2.required=="on"){
+                            $(".row_2").find("input[type=checkbox]").prop('checked',true);
+                         }else{
+                            $(".row_2").find("input[type=checkbox]").prop('checked',false);
+                         }
+                         $(".row_2").find(".sort").val(field2.sort);
+                          $(".row_3").find(".InputQuestionType").val(field2.question_type);
+                          $(".row_2").find(".InputQuestion_text").val(field2.question_text);
+                     }
+
+                 if(data.field_3 != null){ 
+
+                   
+                     var field3=JSON.parse(data.field_3);
+                     
+                          if(field3.required=="on"){
+                            $(".row_3").find("input[type=checkbox]").prop('checked',true);
+                         }else{
+                            $(".row_3").find("input[type=checkbox]").prop('checked',false);
+                         }
+                         $(".row_3").find(".sort").val(field3.sort);
+                         $(".row_3").find(".InputQuestionType").val(field3.question_type);
+                          $(".row_3").find(".InputQuestion_text").val(field3.question_text);
+                     }
+
+                     if(data.field_4 != null){ 
+
+                   
+                     var field4=JSON.parse(data.field_4);
+                     if(field4.question_type=="ShortAnswer"){
+                         add_form_field('single');
+                     }else{
+                        add_form_field('multiple');
+                        if(field4.option_1 !=null){
+                        $(".row_4").find('.option:nth-child(1)').find('input').val(field4.option_1);
+                        }
+                        if(field4.option_2 !=null){
+                        $(".row_4").find('.option:nth-child(2)').find('input').val(field4.option_2);
+                        }
+                        if(field4.option_3 !=null){
+                        $(".row_4").find('.option:nth-child(3)').find('input').val(field4.option_3);
+                        }
+                        if(field4.option_4 !=null){
+                        $(".row_4").find('.option:nth-child(4)').find('input').val(field4.option_4);
+                        }
+                        if(field4.option_5 !=null){
+                          $(".row_4").find(".btn-add-option").triggr('click');  
+                        $(".row_4").find('.option:nth-child(5)').find('input').val(field4.option_5);
+                        }
+                        if(field4.option_6 !=null){
+                             $(".row_4").find(".btn-add-option").triggr('click');  
+                        $(".row_4").find('.option:nth-child(6)').find('input').val(field4.option_6);
+                        }
+
+                     }
+                       
+                          if(field4.required=="on"){
+                            $(".row_4").find("input[type=checkbox]").prop('checked',true);
+                         }else{
+                            $(".row_4").find("input[type=checkbox]").prop('checked',false);
+                         }
+                         $(".row_4").find(".sort").val(field4.sort);
+                         $(".row_4").find(".InputQuestionType").val(field4.question_type);
+                          $(".row_4").find(".InputQuestion_text").val(field4.question_text);
+                     }
+
+                     if(data.field_5 != null){ 
+
+                   
+                     var field5=JSON.parse(data.field_5);
+                     
+                          if(field5.required=="on"){
+                            $(".row_5").find("input[type=checkbox]").prop('checked',true);
+                         }else{
+                            $(".row_5").find("input[type=checkbox]").prop('checked',false);
+                         }
+                         $(".row_5").find(".sort").val(field5.sort);
+                         $(".row_5").find(".InputQuestionType").val(field5.question_type);
+                          $(".row_5").find(".InputQuestion_text").val(field5.question_text);
+                     }
+
+
+               
+                $("input[name='service_sell_buy']").val(data.service_sell_buy);
+                $("input[name='company_name']").val(data.company_name);
+                $("input[name='social_media_page']").val(data.social_media_page);
+                $("input[name=form_id][value=" + data.form_id + "]").prop('checked', true);
+                 $("input[name=form_id][value=" + data.form_id + "]").trigger('click');
+                setTimeout(function(){
+                   updateformpreview();
+                    updateformpreviewtext();
+                 }, 1000);
+                /// target_placements_Input
+                $.each(data.target_placements, function (idx, val) {
+                    $("select#target_placements_Input option[value='" + val + "']").prop("selected", true);
+                });
+                $.each(data.target_categories, function (idx, val) {
+                    $("select#target_categories_Input option[value='" + val + "']").prop("selected", true);
+                });
+            })
+        });
+
+
+
+    
     </script>
 
     @php
@@ -2049,13 +2208,13 @@ font-size: 20px!important;
       justify-content: flex-start !important;
       gap: 5px;
     }
+
 #preview_company_logo img {
     width: unset;
     height: 100%;
     max-height: 36px;
     display: inline-block;
 }
-
     .form-row select:invalid,
     .form-row select option:first-child {
       color: gray !important;
@@ -2613,6 +2772,11 @@ table tfoot tr {
     height: 0 !important;
     position: absolute !important;
 }
+
+#formPreviewBLock .form-punchline{
+    margin: 0 0 2px 0 !important;
+}
+
 </style>
 
 @endpush
