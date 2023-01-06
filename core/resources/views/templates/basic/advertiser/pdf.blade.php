@@ -149,7 +149,7 @@
                         <td>{{auth()->guard('advertiser')->user()->city}}</td>
                     </tr>
                     <tr>
-                        <td>{{auth()->guard('advertiser')->user()->country}}</td>
+                        <td>{{auth()->guard('advertiser')->user()->country}} @if(!empty(auth()->guard('advertiser')->user()->postal_code)) - {{ auth()->guard('advertiser')->user()->postal_code }} @endif</td>
                     </tr>     
 
                 </tbody>
