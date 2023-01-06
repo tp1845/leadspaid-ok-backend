@@ -13,11 +13,16 @@
                                     <th>C.Id</th>
                                     <th>Campaign Name</th>
                                     <th>Approve</th>
+                                    <th>Creation Date</th>
+
+                                    {{--  --}}
+                                    <th>Company</th>
+                                    <th>Target Country</th>
+                                    <th>Daily Budget</th>
+                                    <th>Target CPL</th>
+                                    <th>Form Used</th>
                                     <th>Start</th>
                                     <th>End</th>
-                                    <th>Target Country / City</th>
-                                    <th>Form Used</th>
-                                    <th>Daily Budget</th>
                                     <th>Cost</th>
                                     <th>Leads</th>
                                     <th>Cost per <br>Leads</th>
@@ -38,13 +43,19 @@
                                         <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
                                         <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
-                                        <td>{{ $campaign->start_date }}</td>
-                                        <td>{{ $campaign->end_date }}</td>
-                                        <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
+                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>Company Here</td>
+                                        <td>{{ $campaign->target_country }}</td>
+                                        <td>${{  $campaign->daily_budget }}</td>
+                                        <td>${{  $campaign->target_cost }}</td>
                                         <td>
                                             @if (isset($campaign->campaign_forms))  {{$campaign->campaign_forms->form_name}}  @endif
                                         </td>
-                                        <td>${{  $campaign->daily_budget }}</td>
+                                        <td>{{ $campaign->start_date }}</td>
+                                        <td>{{ $campaign->end_date }}</td>
+
+
+
                                         <td>0</td>
                                         <td>0</td>
                                         <td>0</td>
