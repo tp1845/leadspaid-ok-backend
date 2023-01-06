@@ -675,5 +675,8 @@ element.style {
 #advertiser_form .text-body {
     font-size: 16px;
 }
+.Rg_advts_my_btn:hover {
+    background-color: #4500dd!important;
+}
 </style>
 @endpush
