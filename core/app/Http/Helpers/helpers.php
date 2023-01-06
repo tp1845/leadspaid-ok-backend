@@ -571,8 +571,8 @@ function send_email_adv($user, $type = null, $link)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= $email_template->subj;
-    $message = '<p style="color: rgb(193,205,220);">Please verify your <a href="https://leadspaid.com/">LeadsPaid.com</a> account by clicking this link</p>';
-    $message .= '<p style="color: rgb(193,205,220);"><a href='.$link.'>'.$link.'</a></p>';
+    $message = '<p style="color: rgb(193,205,220);">Please verify your <a href="https://leadspaid.com/"  style="color: rgb(193,205,220);" >LeadsPaid.com</a> account by clicking this link</p>';
+    $message .= '<p style="color: rgb(193,205,220);"><a href='.$link.'  style="color: rgb(193,205,220); font-size: 18px;">'.$link.'</a></p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -598,7 +598,7 @@ function send_email_adv_activated($user, $type = null, $name)
     $sendto_email=$user->email;
     $receiver_name = $user->name;
     $subject= 'Your LeadsPaid.com Account has been activated. Create Campaign Now »';
-    $message = '<p style="color: rgb(193,205,220);"> Your LeadsPaid.com account has been activated! <br/>  Please login to https://www.leadspaid.com/login-advertiser to create your first lead generation campaign.</p>';
+    $message = '<p style="color: rgb(193,205,220);"> Your LeadsPaid.com account has been activated! <br/>  Please login to <a href="https://www.leadspaid.com/login-advertiser" style="color: rgb(193,205,220);">https://www.leadspaid.com/login-advertiser</a>  to create your first lead generation campaign.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
