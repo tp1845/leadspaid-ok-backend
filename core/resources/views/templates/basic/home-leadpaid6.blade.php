@@ -112,7 +112,7 @@
                         <h3>An Alternative Lead Source <br>
                         <span>Distinct from Search, Display, and <br> Programmatic Ads</span></h3>
                         <img src="{{url('/')}}/assets/images/homepage/banner-02.png?v1" class="img-fluid" alt="leadsPaid">
-                        <p>Get leads instead of buying website traffic <br/>through ppc, video or banner ads.</p>
+                        <p>Get leads instead of buying website traffic <br/>through PPC, video or banner ads.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center">
@@ -120,7 +120,7 @@
                         <h3>High Quality Lead Gen Platform<br>
                         <span>To generate leads without a website or <br>social media</span></h3>
                         <img src="{{url('/')}}/assets/images/homepage/leadgeneration.png" class="img-fluid" alt="leadsPaid">
-                        <p>Generate leads through popular high traffic  <br>  and targetted websites/Apps.</p>
+                        <p>Generate leads through popular high traffic <br> and targeted websites/Apps.</p>
                     </div>
                 </div>
             </div><!-- /.row -->
@@ -349,9 +349,9 @@
             overflow: hidden;
         }
         .verticalFlip span{
-            animation: vertical 12s linear infinite 0s;
-            -ms-animation: vertical 12s linear infinite 0s;
-            -webkit-animation: vertical 12s linear infinite 0s;
+            animation: vertical 16s linear infinite 0s;
+            -ms-animation: vertical 16s linear infinite 0s;
+            -webkit-animation: vertical 16s linear infinite 0s;
             color: #fff;
             opacity: 0;
             overflow: hidden;
@@ -362,19 +362,19 @@
             left: 0;
         }
         .verticalFlip span:nth-child(2){
-            animation-delay: 3s;
-            -ms-animation-delay: 3s;
-            -webkit-animation-delay: 3s;
+            animation-delay: 4s;
+            -ms-animation-delay: 4s;
+            -webkit-animation-delay: 4s;
         }
          .verticalFlip span:nth-child(3){
-            animation-delay: 6s;
-            -ms-animation-delay: 6s;
-            -webkit-animation-delay: 6s;
+            animation-delay: 8s;
+            -ms-animation-delay: 8s;
+            -webkit-animation-delay: 8s;
         }
         .verticalFlip span:nth-child(4){
-            animation-delay: 9s;
-            -ms-animation-delay: 9s;
-            -webkit-animation-delay: 9s;
+            animation-delay: 12s;
+            -ms-animation-delay: 12s;
+            -webkit-animation-delay: 12s;
         }
         /*.verticalFlip span:nth-child(5){
             animation-delay: 10s;
