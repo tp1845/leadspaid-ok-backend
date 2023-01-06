@@ -435,23 +435,49 @@
             @if(Request::get('bg') == 1 )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v1.jpg");
             @elseif(Request::get('bg') == 2 )
-                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v2.jpg");
+                background-image: url("{{url('/')}}/assets/images/homepage/hero-1.jpg");
             @elseif(Request::get('bg') == 3 )
-                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v3.webp");
+                background-image: url("{{url('/')}}/assets/images/homepage/hero-2.jpg");
             @elseif(Request::get('bg') == 4 )
-                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v4.png");
+                background-image: url("{{url('/')}}/assets/images/homepage/hero-3.jpg");
+            @elseif(Request::get('bg') == 4 )
+                background-image: url("{{url('/')}}/assets/images/homepage/hero-4.jpg");
             @endif
             background-position: center;
             background-size: cover;
             position: relative;
         }
+        @media o
         @media only screen and (max-width: 1200px) {  #MainHeroHeader{background-position: center left; }  }
         @media only screen and (max-width: 600px) {  #MainHeroHeader{ background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v1-mobile.jpg"); background-position: center right;  }  }
+        @if(Request::get('over') == 1 )
+        #MainHeroHeader:before {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 80, 171, 0.74);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            mix-blend-mode: soft-light;
+        }
+
+        #MainHeroHeader:after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            mix-blend-mode: darken;
+        }
+        @else
         #MainHeroHeader:before{
             background-color: #1a273a;
-            @if(Request::get('bg'))
-                opacity: .7;
-            @endif
+            opacity: .7;
             position: absolute;
             top: 0;
             left: 0;
@@ -461,6 +487,7 @@
             content: "";
             z-index: 1;
         }
+        @endif
 
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
