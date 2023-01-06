@@ -62,7 +62,7 @@
             <div id="MainNav-container">
                 <div id="MainNav">
                     <nav class="navbar navbar-expand-lg no-fixed" >
-                        @include('templates.basic.partials.main-nav');
+                        @include('templates.basic.partials.main-nav')
                     </nav>
                     <nav class="navbar navbar-expand-lg fixed" style="top: -100px; position: fixed;"  >
                         @include('templates.basic.partials.main-nav')
