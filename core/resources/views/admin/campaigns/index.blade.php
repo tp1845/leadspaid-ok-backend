@@ -14,9 +14,6 @@
                                     <th>Campaign Name</th>
                                     <th>Approve</th>
                                     <th>Creation Date</th>
-
-                                    {{--  --}}
-                                    <th>Company</th>
                                     <th>Target Country</th>
                                     <th>Daily Budget</th>
                                     <th>Target CPL</th>
@@ -44,7 +41,6 @@
                                         <td>{{ $campaign->name }} </td>
                                         <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
-                                        <td>Company Here</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{  $campaign->daily_budget }}</td>
                                         <td>${{  $campaign->target_cost }}</td>

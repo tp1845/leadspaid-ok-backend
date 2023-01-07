@@ -230,9 +230,9 @@
                     {{-- <p>From High Ranking/ Popular/ Authority Sites & Apps</p> --}}
                     <div class="d-block text-center">
                         <p class="verticalFlip">
-                            <span>From High Ranking/ Popular/ Authority Sites & Apps.</span>
+                            <span>From High Ranking, Popular, Authority Sites & Apps.</span>
                             <span>No Website or Social Media Needed!</span>
-                            <span>From High Ranking/ Popular/ Authority Sites & Apps.</span>
+                            <span>From High Ranking, Popular, Authority Sites & Apps.</span>
                             <span>No Website or Social Media Needed!</span>
                             {{-- <span>Horrible.</span>
                             <span>Magnificent.</span>
@@ -435,13 +435,11 @@
             @if(Request::get('bg') == 1 )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v1.jpg");
             @elseif(Request::get('bg') == 2 )
-                background-image: url("{{url('/')}}/assets/images/homepage/hero-1.jpg");
+                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v2.jpg");
             @elseif(Request::get('bg') == 3 )
-                background-image: url("{{url('/')}}/assets/images/homepage/hero-2.jpg");
+                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v3.jpg");
             @elseif(Request::get('bg') == 4 )
-                background-image: url("{{url('/')}}/assets/images/homepage/hero-3.jpg");
-            @elseif(Request::get('bg') == 4 )
-                background-image: url("{{url('/')}}/assets/images/homepage/hero-4.jpg");
+                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v4.jpg");
             @elseif(Request::get('bg') == 5 )
                 background-image: url("{{url('/')}}/assets/images/homepage/hero-5.jpg");
             @elseif(Request::get('bg') == 6 )
