@@ -206,7 +206,7 @@
                     left: 0;
                     transition:all .5s ease;
                     background-color: #fff!important;
-                    box-shadow: 0 5px 15px rgb(0 0 0 / 10%)!important;
+                    /* box-shadow: 0 5px 15px rgb(0 0 0 / 10%)!important; */
                 }
 
                 #MainNav-container.f-nav #MainNav .navbar.fixed{ top: 0!important; }
