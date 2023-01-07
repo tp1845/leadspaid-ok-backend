@@ -458,6 +458,8 @@
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.4.jpg");
             @elseif(Request::get('bg') == "9.5" )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.5.jpg");
+            @elseif(Request::get('bg') == "9.6" )
+                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.6.jpg");
             @endif
             background-position: center;
             background-size: cover;
@@ -504,7 +506,7 @@
             z-index: 1;
         }
         @endif
-        @if(Request::get('bg') == "9.2" || Request::get('bg') == "9.3" || Request::get('bg') == "9.4" || Request::get('bg') == "9.5")
+        @if(Request::get('bg') == "9.2" || Request::get('bg') == "9.3" || Request::get('bg') == "9.4" || Request::get('bg') == "9.5" || Request::get('bg') == "9.6")
         #MainHeroHeader:before{
             background-color: #00000066!important;
             opacity: 1!important;
