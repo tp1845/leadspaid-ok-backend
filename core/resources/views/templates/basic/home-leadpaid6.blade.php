@@ -441,7 +441,7 @@
             @elseif(Request::get('bg') == 4 )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v4.jpg");
             @elseif(Request::get('bg') == 5 )
-                background-image: url("{{url('/')}}/assets/images/homepage/hero-5.jpg");
+            background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v5.jpg");
             @elseif(Request::get('bg') == 6 )
                 background-image: url("{{url('/')}}/assets/images/homepage/hero-6.jpg");
             @endif
