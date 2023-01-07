@@ -444,6 +444,8 @@
             background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v5.jpg");
             @elseif(Request::get('bg') == 6 )
             background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v6.jpg");
+            @elseif(Request::get('bg') == 7 )
+            background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v7.jpg");
             @endif
             background-position: center;
             background-size: cover;
