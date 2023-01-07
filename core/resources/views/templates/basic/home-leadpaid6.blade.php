@@ -448,8 +448,10 @@
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v7.jpg");
             @elseif(Request::get('bg') == 8 )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v8.jpg");
-                @elseif(Request::get('bg') == 9 )
+            @elseif(Request::get('bg') == 9 )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.1.jpg");
+            @elseif(Request::get('bg') == "9.2" )
+                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.2.jpg");
             @endif
             background-position: center;
             background-size: cover;
