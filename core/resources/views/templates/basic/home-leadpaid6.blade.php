@@ -498,7 +498,12 @@
             z-index: 1;
         }
         @endif
-
+        @if(Request::get('bg') == "9.2")
+        #MainHeroHeader:before{
+            background-color: #00000066!important;
+            opacity: 1!important;
+        }
+        @endif
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
