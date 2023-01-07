@@ -498,7 +498,9 @@
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
-        #MainNav{ background-color: transparent!important; border-bottom: 0!important; box-shadow: 1px 1px 100px #ffffff; }
+        #MainNav{ background-color: transparent!important; border-bottom: 0!important;
+            /* box-shadow: 1px 1px 100px #ffffff; */
+         }
         .MainBanner-Home {
         font-family: Poppins !important;
         background-color: transparent;
