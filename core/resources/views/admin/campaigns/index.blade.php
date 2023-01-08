@@ -5,7 +5,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
+                        <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                             <thead>
                                 <tr>
                                     <th>Off/On</th>
@@ -121,6 +121,71 @@
 @endsection
 @push('style')
 <style>
+
+table.dataTable thead tr {
+    background-color: #1A273A;
+}
+table.dataTable thead tr th {
+    border-right: 1px solid #ffffff36;
+    font-size: 17px;
+    padding: 12px 10px;
+    max-width: 200px;
+    vertical-align: inherit;
+    line-height: .8;
+}
+.table td {
+    text-align: left !important;
+    border: 1px solid #e5e5e5 !important;
+    padding: 10px 10px !important;
+}
+#campaign_list td {
+    font-size: 16px;
+    color: #1a273a;
+    vertical-align: top;
+}
+
+.dataTables_paginate .pagination .page-item.active .page-link {
+    background-color: #1361b2;
+    border-color: #1361b2;
+    box-shadow: 0px 3px 5px rgb(0 0 0 / 13%);
+}
+
+
+table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before {
+    bottom: 50% !important;
+    content: "▲" !important;
+}
+table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, ttable.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
+    position: absolute !important;
+    display: block !important;
+    opacity: .125 !important;
+    right: 10px !important;
+    line-height: 9px !important;
+    font-size: .8em !important;
+}
+table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, tatable.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
+    position: absolute !important;
+    display: block !important;
+    opacity: .125 !important;
+    right: 10px !important;
+    line-height: 9px !important;
+    font-size: .8em !important;
+}
+table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after {
+    top: 50% !important;
+    content: "▼" !important;
+}
+
+.pagination .page-item .page-link, .pagination .page-item span,
+
+#campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
+#campaign_list_wrapper .dataTables_length select,
+#campaign_list_wrapper .dataTables_filter input {
+    border-radius: 0!important;
+}
+.btn-success {
+    background-color: #11b6f3 !important;
+}
     .table th { padding: 12px 10px; max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
@@ -138,18 +203,55 @@
 </style>
 @endpush
 @push('script')
+  <!-- data table css -->
+  <link rel="stylesheet" href="{{asset('assets/userpanel/css/vendor/datatables.min.css')}}">
+    <!-- data-table js -->
+    <script src="{{asset('assets/userpanel/js/vendor/datatables.min.js')}}"></script>
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script>
         'use strict';
         var leads_preview_modal = $('#leads_preview_modal');
         $(document).ready(function() {
-            $('.toggle-approve').change(function() {
+
+
+            var MyDatatable = $('#campaign_list').DataTable({
+                columnDefs: [{
+                    targets: 0,
+                    searchable: false,
+                    orderable: false
+                },
+                {
+                    targets: 11,
+                    searchable: false,
+                    visible: true,
+                    orderable: false
+                },
+                {
+                    targets: [4, 15, 16],
+                    // className: "",
+                    // width: "10px"
+                    searchable: false,
+                    orderable: false
+                },
+                {
+                    targets: '_all',
+                    visible: true
+                }
+                ],"sDom": 'Lfrtlip',"language": {  "lengthMenu": "Show rows  _MENU_" } });
+
+
+                $(document).on("change",".toggle-approve",function(e){
                 var approval = $(this).prop('checked') == true ? 1 : 0;
                 var campaign_id = $(this).data('id');
                 $.ajax({
                     type: "GET",
                     dataType: "json",
-                       // url:  "{{route('admin.campaigns.approval')}}" ,
-                     url: "/admin/campaigns/approval",
+                      url:  "{{route('admin.campaigns.approval')}}",
+                     //url: "/admin/campaigns/approval",
                     data: { 'approval': approval, 'campaign_id': campaign_id },
                     success: function(data) {
                         if (data.success) {
@@ -160,8 +262,8 @@
                         }
                     }
                 });
-            })
-            $('input[type=file]').change(function () {
+            });
+            $(document).on("change","input[type=file]",function(e){
                 var data_form = $(this).attr('data-form');
                 var form_id = '#'+data_form;
                 var form =$(form_id);
