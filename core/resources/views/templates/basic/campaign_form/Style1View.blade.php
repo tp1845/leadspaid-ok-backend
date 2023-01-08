@@ -6,13 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <title>LeadsPaid</title>
   <style>
     body {
       background-color: #fff;
       margin: 0;
       padding: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Roboto', Helvetica, sans-serif, 'Open Sans', Arial;
       font-size: 16px;
       color: #333;
     }
@@ -25,48 +26,60 @@
       width: 300px;
       margin: 10px auto;
       background-color: #f4f4f4;
+      height: 600px;
+    }
+    #loadData > * {
+    padding: 0 11px !important;
     }
 
-    .video {
-      margin: 0 -5px 5px
-      padding: 0 5px;
+
+    #loadData .video {
+      margin: 0 -5px 5px;
+      margin: 0 !important;
+      padding: 0!important;
+
     }
 
     .video iframe {
         border: 0px;
-        box-shadow: 0 0 2px #00000087;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+        border-bottom: 1px solid #dee2e6!important;
+        height: 150px;
+
     }
 
     .form-title {
-      text-align: center;
-      font-size: 25px;
-      font-weight: bold;
-      margin: 0 0 0 0;
-      padding: 0;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 0 0 0;
+        margin-top: 7px !important;
+        color: #34495e;
+        line-height: 1.4;
     }
 
     .form-subtitle {
-      text-align: center;
-      font-size: 14px;
-      margin: 0;
-      padding: 0;
+        text-align: center;
+        font-size: 14px;
+        margin: 0 0 0px 0;
+        padding: 0;
+        line-height: 1.3;
     }
     .form-punchline {
         color: #3f51b5;
         font-weight: 500;
         font-size: 18px;
         text-align: center;
-        margin: 0 0 5px 0;
-        padding: 0;
+        margin: 0 0 2px 0 !important;
         line-height: 1.3;
     }
     .form-row {
       width: 100%;
-      margin-bottom: 8px;
-      padding: 0 5px;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      margin: 0 !important;
+      padding: 0 11px !important;
     }
 
     .form-row.form-check {
@@ -97,6 +110,9 @@
       appearance: none;
       border-radius: 3px;
       transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+      margin: 4px 0;
+        height: 40px;
+
     }
 
     .form-row .form-control {}
@@ -114,44 +130,59 @@
       color: gray !important;
     }
 
+    #loadData ~ .form-row {
+    margin-top: 8px !important;
+    }
+
     .form-btn {
-      display: block;
-      width: 100%;
-      padding: 0.375rem 0.75rem;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.5;
-      color: #fff;
-      background-color: #e80002;
-      border-radius: 3px;
-      cursor: pointer;
-      margin-top: 2px;
-      border: 0;
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #fff;
+        background-color: #e80002;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: 2px;
+        border: 0;
     }
 
     .policy {
-      margin: 5px 0 0 0;
-      padding: 0;
-      font-size: 12px;
-      color: #666;
-      text-align: center;
-      width: 100%;
+        margin: 5px 0 0 0;
+        padding: 0;
+        font-size: 11px;
+        color: #666;
+        text-align: center;
+        width: 100%;
     }
     .logo{
-      text-align: center;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      font-size: 12px;
-      display: flex;
-      align-content: center;
-      flex-direction: row;
-      align-items: center;
-        justify-content: center;
-      gap: 5px;
+        text-align: left;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        line-height: 15px;
+        display: flex;
+        align-content: center;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start !important;
+        gap: 5px;
     }
-
-    .logo img{ display: inline-block; max-width: 120px; max-height: 40px;  }
+    #img_company_logo{margin-bottom: 3px;
+        margin-top: 3px;
+        margin-left: 5px;
+        height: 100%;
+        max-height: 36px;}
+    #img_company_logo img#company_logo{}
+    .logo img{
+        display: inline-block;
+        width: 100%;
+        max-width: unset;
+        max-height: 36px;
+    }
 
     .form-row select:invalid,
     .form-row select option:first-child {
@@ -234,6 +265,12 @@
         <input type="hidden" name="utm_source" id="utm_source" value="0" >
         <input type="hidden" name="utm_medium" id="utm_medium" value="0" >
         <input type="hidden" name="utm_campaign" id="utm_campaign" value="0" >
+        <div class="form-bottom-logo">
+            <p class="logo">
+                <span id="img_company_logo"><img style="display: none" id="company_logo" src="" alt="" ></span>
+                <span  style="display: none" id="company_name"></span>
+            </p>
+        </div>
         <div id="loadData"></div>
         <div class="message" id="message">
             @if(session()->has('notify'))
@@ -254,7 +291,7 @@
           <div class="form-row">
             <button type="submit" id="saveData" class="form-btn">Submit</button>
             <p class="policy">I agree to your privacy policy by submitting the form</p>
-            <p class="logo"><img style="display: none" id="company_logo" src="" alt="" > <span  style="display: none" id="company_name"></span></p>
+            {{-- <p class="logo"><img style="display: none" id="company_logo" src="" alt="" > <span  style="display: none" id="company_name"></span></p> --}}
           </div>
     </form>
   </div>

@@ -8,9 +8,7 @@
   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   <title>LeadsPaid </title>
   <!-- CSS only -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <style>
 
@@ -210,7 +208,7 @@
     background-color: #fff;
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Helvetica, sans-serif, 'Open Sans', Arial;
     font-size: 16px;
     color: #333;
     }
@@ -220,10 +218,24 @@
     }
 
     .container {
-    width: 300px;
-    margin: 10px auto;
-    background-color: #f4f4f4;
+        --bs-gutter-x: 0;
+        width: 300px;
+        margin: 10px auto;
+        background-color: #f4f4f4;
+        height: 600px;
     }
+    .row{     --bs-gutter-x: 0; }
+    .row>* {
+        padding-right:  var(--bs-gutter-x) ;
+        padding-left:  var(--bs-gutter-x) ;
+    }
+    .form-row.padding{ padding: 0 11px; }
+    .form-row.bottom{ margin-top: 8px !important;}
+
+    #loadData > * {
+    padding: 0 11px !important;
+    }
+
     #loadMedia{
     display: flex;
     flex-direction: column-reverse;
@@ -231,40 +243,50 @@
     }
     .heading{}
     .video {
-        margin: 0 -15px 5px;
-        padding: 0 5px;
+        margin: 0 -5px 5px;
+        margin: 0 !important;
+        padding: 0!important;
     }
 
     .video iframe {
         border: 0px;
-        box-shadow: 0 0 2px #00000087;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+        border-bottom: 1px solid #dee2e6!important;
+        height: 150px;
      }
 
     .form-title {
-    text-align: center;
-    font-size: 25px;
-    font-weight: bold;
-    margin: 0 0 0 0;
-    padding: 0;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin: 0 0 0 0;
+        margin-top: 4px !important;
+        color: #34495e;
+        line-height: 1.4;
     }
 
     .form-subtitle {
-    text-align: center;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-    }
-    .form-punchline{
-        color: #3f51b5;
         text-align: center;
+        font-size: 14px;
+        margin: 0 0 0px 0;
+        padding: 0;
+        line-height: 1.3;
+    }
+    .form-punchline {
+        color: #3f51b5;
+        font-weight: 500;
+        font-size: 18px;
+        text-align: center;
+        margin: 0 0 2px 0 !important;
+        line-height: 1.3;
     }
     .form-row {
-    width: 100%;
-    margin-bottom: 8px;
-    padding: 0 5px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: 0 !important;
+
     }
 
     .form-row.form-check {
@@ -278,22 +300,24 @@
     }
 
     .form-control, .form-select {
-    display: block;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 0.375rem 0.5rem;
-    font-size: .9rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    border-radius: 3px;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        display: block;
+      box-sizing: border-box;
+      width: 100%;
+      padding: 0.375rem 0.5rem;
+      font-size: .9rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #212529;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 3px;
+      transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+      margin: 4px 0;
+        height: 40px;
     }
 
     .form-row .form-control {}
@@ -312,47 +336,54 @@
     }
 
     .form-btn {
-    display: block;
-    width: 100%;
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #fff;
-    background-color: #e80002;
-    border-radius: 3px;
-    cursor: pointer;
-    margin-top: 2px;
-    border: 0;
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #fff;
+        background-color: #e80002;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-top: 2px;
+        border: 0;
     }
 
     .policy {
-    margin: 5px 0 0 0;
-    padding: 0;
-    font-size: 12px;
-    color: #666;
-    text-align: center;
-    width: 100%;
+        margin: 5px 0 0 0;
+        padding: 0;
+        font-size: 11px;
+        color: #666;
+        text-align: center;
+        width: 100%;
     }
+    .form-top-logo{ display: block!important; }
+    .logo.bottom{ display: none!important }
     .logo{
-    text-align: center;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    font-size: 12px;
-    display: flex;
-    align-content: center;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        font-size: 12px;
+        line-height: 15px;
+        display: flex;
+        align-content: center;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start !important;
+        gap: 5px;
     }
-
-    .logo img{ display: inline-block;  max-width: 120px; max-height: 40px;
-    /* -webkit-filter: invert(100%);
-    filter: invert(100%);  */
-}
-
+    #img_company_logo, #img_company_logo_top{margin-bottom: 3px;
+        margin-top: 3px;
+        margin-left: 5px;
+        height: 100%;
+        max-height: 36px;}
+    #img_company_logo img#company_logo{}
+    .logo img{
+        display: inline-block;
+        max-width: unset;
+        max-height: 36px;
+    }
 
     .form-row select:invalid,
     .form-row select option:first-child {
@@ -440,13 +471,22 @@
         <input type="hidden" name="utm_medium" id="utm_medium" value="0" >
         <input type="hidden" name="utm_campaign" id="utm_campaign" value="0" >
         <div class="row main">
+            <div class="col-12">
+                <div class="form-top-logo" style="display: none">
+                    <p class="logo">
+                        <span id="img_company_logo_top"><img style="display: none" id="company_logo_top" src="" alt="" ></span>
+                        <span  style="display: none" id="company_name_top"></span>
+                    </p>
+                </div>
+            </div>
             <div class="col-lg-8" >
                 <div class="darkBG" id="loadMedia"></div>
             </div>
             <div class="col-lg-4">
                 <div class="darkBG" >
+
                     <div class="row" id="loadData"> </div>
-                    <div class="row">
+                    <div class="row form-row padding bottom">
                         <div class="col-12" align="center">
                             <div class="message" id="message">
                                 @if(session()->has('notify'))
@@ -466,7 +506,7 @@
                             </div>
                             <button type="submit" id="saveData" class="form-btn">Submit <i class="fa fa-chevron-right"></i></button>
                             <p class="policy">I agree to your privacy policy by submitting the form</p>
-                            <p class="logo"><img style="display: none" id="company_logo" src="" alt="" > <span  style="display: none" id="company_name"></span></p>
+                            <p class="logo bottom"><img style="display: none" id="company_logo" src="" alt="" > <span  style="display: none" id="company_name"></span></p>
                         </div>
                     </div>
             </div>
@@ -562,8 +602,8 @@
                 if(form_desc){ t +='<p class="form-subtitle">'+form_desc+'</p>'; }
                 if(data.punchline){ t +='<p class="form-punchline">'+data.punchline+'</p>'; }
             t +='</div>';
-            if(data.company_logo){ $('#company_logo').attr('src', image_src + data.company_logo ).show();}
-            if(data.company_name){  $('#company_name').html(data.company_name).show(); }
+            if(data.company_logo){ $('#company_logo').attr('src', image_src + data.company_logo ).show(); $('#company_logo_top').attr('src', image_src + data.company_logo ).show();}
+            if(data.company_name){  $('#company_name').html(data.company_name).show(); $('#company_name_top').html(data.company_name).show(); }
 
             for ($i = 1; $i < 6; $i++){
                 var $field = data['field_'+$i];
