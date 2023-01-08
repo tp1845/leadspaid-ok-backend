@@ -2,8 +2,8 @@
 @section('panel')
     <div class="row">
         <div class="col-lg-12">
-            <div class="card b-radius--10 ">
-                <div class="card-body p-0">
+            <div class=" ">
+                <div class=" ">
                     <div class="table-responsive--md  table-responsive">
                         <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                             <thead>
@@ -49,9 +49,6 @@
                                         </td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
-
-
-
                                         <td>0</td>
                                         <td>0</td>
                                         <td>0</td>
