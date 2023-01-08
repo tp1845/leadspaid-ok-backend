@@ -23,9 +23,10 @@
                                     <th>Cost per <br>Leads</th>
                                     <th>Action</th>
                                     <th>Spend</th>
-                                    <th>iframe 1</th>
-                                    <th>iframe 2</th>
-                                    <th>iframe 3</th>
+                                    <th>iframe 1 ( 300 X 600 )</th>
+                                    <th>iframe 2 ( 1140 X 530 )</th>
+                                    <th>iframe 3 ( 1024 X 585 )</th>
+                                    <th>iframe 4 ( 1024 X 505 )</th>
                                     <th>publisher_url 1</th>
                                     <th>publisher_url 2</th>
                                     <th>publisher_url 3</th>
@@ -83,6 +84,12 @@
                                         <td data-label="Script">
                                             <textarea onclick="this.focus();this.select()" id="advertScript3" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/3/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="573" style="border: 1px solid black;"></iframe></textarea>
                                         </td>
+
+                                        <td data-label="Script">
+                                            <textarea onclick="this.focus();this.select()" id="advertScript4" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/4/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="573" style="border: 1px solid black;"></iframe></textarea>
+                                        </td>
+
+
                                         <td data-label="url">
                                             <input type="text" name="url[url_1]" value="{{ $campaign->campaign_publisher->url[0] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 1" class="form-control publisher_url url_cid_{{$campaign->id}}"  >
                                         </td>
