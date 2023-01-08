@@ -92,9 +92,9 @@
                             @if(Request::get('v') == 2 )
                                 <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 218px" alt="site-logo">
                             @elseif(Request::get('v') == '18-b-rectangle-60-1' )
-                                <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-1.png?v4')}}" style="max-width: 218px" alt="site-logo">
+                                <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-1.png?v1')}}" style="max-width: 218px" alt="site-logo">
                            @else
-                            <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60.png?v4')}}" style="max-width: 218px" alt="site-logo">
+                                <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60.png?v4')}}" style="max-width: 218px" alt="site-logo">
                            @endif
                         </a>
                         <p class="text-light mt-3" style="font-size: 18px"> 1401 21st Street STE R,<br/> Sacramento,  California 95811<br/> United States. </p>
