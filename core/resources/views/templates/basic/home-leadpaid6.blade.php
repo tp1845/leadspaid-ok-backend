@@ -508,18 +508,15 @@
             z-index: 1;
         }
         @endif
-        @if(Request::get('bg') == "9.2" || Request::get('bg') == "9.3" || Request::get('bg') == "9.4" || Request::get('bg') == "9.5" || Request::get('bg') == "9.6")
         #MainHeroHeader:before{
-            background-color: #00000066!important;
-            opacity: 1!important;
+            @if(Request::get('bg') == "9.2" || Request::get('bg') == "9.3" || Request::get('bg') == "9.4" || Request::get('bg') == "9.5" || Request::get('bg') == "9.6")
+                background-color: #00000066!important;
+                opacity: 1!important;
+            @elseif(Request::get('bg') == "9.3.2" )
+                background-color: #151f5688!important;
+                opacity: 1!important;
+            @endif
         }
-        @elseif(Request::get('bg') == "9.3.2" )
-        #MainHeroHeader:before{
-            background-color: #151f5688!important;
-            opacity: 1!important;
-        }
-        @endif
-
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
