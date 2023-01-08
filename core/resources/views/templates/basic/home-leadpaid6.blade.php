@@ -454,6 +454,8 @@
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.2.jpg");
             @elseif(Request::get('bg') == "9.3" )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.3.jpg");
+            @elseif(Request::get('bg') == "9.3.2" )
+                background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.3.jpg");
             @elseif(Request::get('bg') == "9.4" )
                 background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.4.jpg");
             @elseif(Request::get('bg') == "9.5" )
@@ -511,7 +513,11 @@
             background-color: #00000066!important;
             opacity: 1!important;
         }
+        @elseif(Request::get('bg') == "9.3.2" )
+            background-color: #151f5688!important;
+            opacity: 1!important;
         @endif
+
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
