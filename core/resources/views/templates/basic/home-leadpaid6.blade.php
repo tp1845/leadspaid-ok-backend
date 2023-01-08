@@ -514,8 +514,10 @@
             opacity: 1!important;
         }
         @elseif(Request::get('bg') == "9.3.2" )
+        #MainHeroHeader:before{
             background-color: #151f5688!important;
             opacity: 1!important;
+        }
         @endif
 
 
