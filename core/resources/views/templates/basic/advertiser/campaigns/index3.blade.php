@@ -30,7 +30,7 @@
                             <th>Download Leads</th>
                              <th>Leads</th>
                             <th>Cost</th>
-                           
+
                             <th>CPL</th>
                             <th>Daily Budget</th>
                             <th>Start</th>
@@ -43,7 +43,7 @@
 
                         @forelse($campaigns as $campaign)
 
-                          @php 
+                          @php
                          $daily_bug= $daily_bug+$campaign->daily_budget;
                          $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                           @endphp
@@ -51,7 +51,7 @@
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
                                 <td>
-                                    
+
                                     @if($campaign->approve) <span class="green">Active </span> @else
                                     <span class="orange">Pending<br/>Approval</span>
                                    @endif
@@ -62,7 +62,7 @@
                                 </td>
                                 <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
                                 <td>0</td>
-                                
+
                                 <td>0</td>
                                 <td> ${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
@@ -77,7 +77,7 @@
                         @endforelse
 
                         @forelse($campaignspending as $campaign)
-                        @php 
+                        @php
                          $daily_bug= $daily_bug+$campaign->daily_budget;
                           $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                           @endphp
@@ -85,7 +85,7 @@
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
                                 <td>
-                                    
+
                                     @if($campaign->approve) <span class="green">Active </span> @else
                                     <span class="orange">Pending<br/>Approval</span>
                                    @endif
@@ -97,7 +97,7 @@
                                 </td>
                                 <td>0</td>
                                 <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
-                                
+
                                 <td>0</td>
                                 <td>${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
@@ -149,29 +149,7 @@
                            <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
                         </div>
 
-                        <div class="row align-items-end py-2">
-                            
-                            <div class="col-lg-3 ">
-                                <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
-                                    <span id="text_white" class="ar-14 lp-dark">(Optional)</span>
-                                </label>
-                                <div class="input-col">
-                                  <input type="text" name="logo_comapny" class="logo_comapny">
-                                 </div>
 
-                                <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
-                            <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
-                                <div class="upload-box" style="height: 53px; ">
-                                    <input type="file" name="company_logo"  id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
-                                    <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo*</span></label>
-                                </div>
-                                <div id="company_logo_preview" class="img_preview_box">
-                                    <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
-                                    <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
-                                </div>
-                            </div>
-
-                        </div>
 
                         <div class="row py-2">
                             <div class="col-lg-3 input-col">
@@ -253,6 +231,30 @@
                                         </div>
                                     </div>
                                     <div class="card-body p-0 ">
+                                        <div class="row align-items-end m-0 py-2 pb-3 company_row" >
+                                            <div class="col-lg-3 ">
+                                                <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
+                                                    <span id="text_white" class="ar-14 lp-dark">(Optional)</span>
+                                                </label>
+                                                <div class="input-col">
+                                                  <input type="text" name="logo_comapny" class="logo_comapny">
+                                                 </div>
+
+                                                <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
+                                            <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
+                                                <div class="upload-box" style="height: 53px; ">
+                                                    <input type="file" name="company_logo"  id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
+                                                    <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo*</span></label>
+                                                </div>
+                                                <div id="company_logo_preview" class="img_preview_box">
+                                                    <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+                                                    <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
                                         <div class="row m-0">
                                             <div class="col-4 pt-0  h-100 leftForm lp-border-right">
                                                 <div class="fbox bg-blue">
@@ -324,13 +326,13 @@
                                                     <h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
                                                     <label class="col-form-label ar-16"><b>Youtube Videos </b><span class="ar-14"> </span> </label>
 
-                                                   
 
-                                                   <div class="custom_image_video"> 
+
+                                                   <div class="custom_image_video">
                                                     <div class="input-group input-col" id="video_image_1">
                                                         <div class="input-col "  style="width: 88%;">
                                                             <div class="video_1 add_video upload-box grey image" data-id="1">
-                                                                
+
                                                                 <label>
                                                                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
                                                             </div>
@@ -339,7 +341,7 @@
                                                     <div class="input-group input-col" id="video_image_2">
                                                         <div class="input-col "  style="width: 88%;">
                                                             <div class="video_2 add_video upload-box grey image" data-id="2">
-                                                                
+
                                                                 <label>
                                                                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
                                                             </div>
@@ -348,7 +350,7 @@
                                                     <div class="input-group input-col" id="video_image_3">
                                                         <div class="input-col "  style="width: 88%;">
                                                             <div class="video_3 add_video upload-box grey image" data-id="3">
-                                                                
+
                                                                 <label>
                                                                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
                                                             </div>
@@ -442,7 +444,7 @@
                                                         </div>
 
 
-                                                      
+
 
                                                     </div>
 
@@ -567,7 +569,7 @@
                                                     </div>
                                                    <div>
                                                     <div id="loadData">
-                                                        <div class="video custom_after_text border-bottom shadow" id="preview_media"> 
+                                                        <div class="video custom_after_text border-bottom shadow" id="preview_media">
                                                             <div class="">Add Creative</div>
                                                         </div>
                                                         <h2 id="preview_form_title" class="form-title"></h2>
@@ -613,7 +615,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        
+
         <button type="button" class="close close_youtube" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -647,9 +649,9 @@
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{asset('assets/admin/js/vendor/datepicker.min.js')}}"></script>
     <script src="{{asset('assets/admin/js/vendor/datepicker.en.js')}}"></script>
-    
-    <!-- loading Jquery Start-->    
-    
+
+    <!-- loading Jquery Start-->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easy-loading/1.3.0/jquery.loading.min.js"></script>
     <!-- Loading Jquery End-->
 
@@ -737,7 +739,7 @@
 
 
         form_company_logo.onchange = evt => { const [file] = form_company_logo.files;
-         if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block"; 
+         if (file) {  company_logo_img.src = URL.createObjectURL(file);  company_logo_img.style.display = "block"; company_logo_preview.style.display = "block";
                $(".logo_comapny").val(1);
         updateformpreviewtext(); }else{
              $(".logo_comapny").val('');
@@ -745,7 +747,7 @@
         image_1_Input.onchange = evt => { const [file] = image_1_Input.files; if (file) {  image_1_img.src = URL.createObjectURL(file);  image_1_img.style.display = "block"; image_1_img_preview.style.display = "block"; updateformpreview();  }}
         image_2_Input.onchange = evt => { const [file] = image_2_Input.files; if (file) {  image_2_img.src = URL.createObjectURL(file);  image_2_img.style.display = "block"; image_2_img_preview.style.display = "block"; updateformpreview(); }}
         image_3_Input.onchange = evt => { const [file] = image_3_Input.files; if (file) {  image_3_img.src = URL.createObjectURL(file);  image_3_img.style.display = "block"; image_3_img_preview.style.display = "block"; updateformpreview(); }}
-        
+
         $('.del-preview').on('click', function(){
             $(this).next('img').attr('src' , '#');
             $(this).parent().hide();
@@ -755,7 +757,7 @@
            setTimeout(function() {
 
             updateformpreview();
-            
+
             }, 500);
         });
 
@@ -922,7 +924,7 @@
                 }
                 ],"sDom": 'Lfrtlip',"language": {
       "lengthMenu": "Show rows  _MENU_"
-   } 
+   }
             });
             $("#sortable").sortable({
                 handle: ".handle",
@@ -968,7 +970,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <!-- owl slider ---->
     <script>
-   
+
 
         $.validator.setDefaults({
             errorElement: 'span',
@@ -1018,12 +1020,12 @@
             "unique_form_name",
             function(value, element) {
               var  $result =$.map(campaigns, function(item,i){ name =item.campaign_forms.form_name;
-                
+
               if(name.toLowerCase() == value.toLowerCase())
               {
-                  
-                  return 'exits'; 
-              }  
+
+                  return 'exits';
+              }
               })[0];
               return $result == 'exits'?false:true;
             },
@@ -1038,7 +1040,7 @@
                 daily_budget: { required: true, money: true,min: 50,max: 1000 },
                 target_cost: { required: false, money: true,min: 10,max: 1000 },
                 website_url: { minlength: 7 },
-                
+
                 image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
                 image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
@@ -1047,7 +1049,7 @@
 
             },messages: {
                 campaign_name:{  required : 'Campaign Name is required.' },
-                
+
                 target_country:{  required : 'Country is required.' },
 
 
@@ -1066,21 +1068,21 @@
 
                 service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
                 website_url: 'Please fill Website URL - or leave it blank',
-               
+
                 image_1: "File must be JPG, GIF or PNG, less than 2MB",
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
                 create_qty: "Add at least 1 creative",
-                logo_comapny: 'Comapny/Brand Name or Logo - Any 1 is mandatory', 
+                logo_comapny: 'Comapny/Brand Name or Logo - Any 1 is mandatory',
             }
         });
 
         $("#company_name_Input").blur(function(){
 
             if($(this).val()==""){
-              $(".logo_comapny").val('');   
+              $(".logo_comapny").val('');
             }else{
-               $(".logo_comapny").val(1);    
+               $(".logo_comapny").val(1);
             }
         });
 
@@ -1098,7 +1100,7 @@
                 dataType: 'json',
                 type: 'POST',
                 success: function ( data ) {
-                    
+
                     updateformpreview(data.form[0]);
                 }
             });
@@ -1110,12 +1112,12 @@
             $('#preview_company_name').html('');
             $('#preview_company_logo').html('');
             $('#preview_media').html('');
-            for ($i = 1; $i < 6; $i++){  $('#preview_filed_'+$i).html('');  } 
+            for ($i = 1; $i < 6; $i++){  $('#preview_filed_'+$i).html('');  }
         }
 
         function updateformpreview(data = false) {
             resetformpreview();
-            var image_1_img= image_2_img= image_3_img ="#";  
+            var image_1_img= image_2_img= image_3_img ="#";
             if(data == false){
             var youtube_1 = $('.video_1').find('iframe').attr('src');
             var youtube_2 = $('.video_2').find('iframe').attr('src');
@@ -1157,33 +1159,33 @@
             var company_logo = image_src +  data.company_logo;
             var Punchline = data.punchline;
             }
-           
+
             $('#preview_form_title').html(title_1);
             $('#preview_form_sub_title').html(sub_title_1);
             $('#preview_Punchline').html(Punchline);
            $('#preview_company_name').html(company_name);
-              
+
             if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
-    
+
            var image_vide='<div class="owl-carousel owl-theme ">';
              var creative_status='';
             if(youtube_1){
-               
+
                 const iframeMarkup = '<iframe src="'+youtube_1+'" frameborder="0" width="100%" allowfullscreen></iframe>';
-                
+
                 image_vide +='<div class="item">'+iframeMarkup+'</div>';
                 creative_status =1;
             }
 
              if(youtube_2){
-                
+
                  const iframeMarkup = '<iframe src="'+youtube_2+'" frameborder="0" width="100%" allowfullscreen></iframe>';
                  image_vide +='<div class="item">'+iframeMarkup+'</div>';
                   creative_status =1;
             }
 
              if(youtube_3){
-                
+
                  const iframeMarkup = '<iframe src="'+youtube_3+'" frameborder="0" width="100%" allowfullscreen></iframe>';
                  image_vide +='<div class="item">'+iframeMarkup+'</div>';
                   creative_status =1;
@@ -1191,22 +1193,22 @@
 
 
              if(image_1_img !== '#'){
-                
+
                  image_vide +='<div class="item"><div class="image-wapperr"><img src="'+ image_1_img +'" alt="" width="100%" /></div></div>';
                   creative_status =1;
             }
              if(image_2_img !== '#'){
-               
+
                  image_vide +='<div class="item"><div class="image-wapperr"><img src="'+ image_2_img +'" alt="" width="100%" /></div></div>';
                   creative_status =1;
             }
 
              if(image_3_img !== '#'){
-                
+
                  image_vide +='<div class="item"><div class="image-wapperr"><img src="'+ image_3_img +'" alt="" width="100%" /></div></div>';
                   creative_status =1;
             }
-          
+
             image_vide +='</div>';
             $('#preview_media').html(image_vide);
             if(creative_status==1){
@@ -1224,8 +1226,8 @@
                 $('#preview_media').find("iframe").show();
                    $('#preview_media').find(".youtubvre_loadingg").remove();
                 });
-                            
-            
+
+
           $(function() {
               // Owl Carousel
               var owl = $(".owl-carousel");
@@ -1240,15 +1242,15 @@
               });
             });
 
-     
+
 
         }
 
 function updateformpreviewtext(data = false) {
-           
+
 
             if(data == false){
-         
+
             var title_1 = $('#FormTitleInput_1').val();
             var title_2 = $('#FormTitleInput_2').val();
             var title_3 = $('#FormTitleInput_3').val();
@@ -1259,7 +1261,7 @@ function updateformpreviewtext(data = false) {
             var company_logo = $('#company_logo_img').attr('src');
             var Punchline = $('#FormPunchlineInput').val();
             }else{
-            
+
             var title_1 = data.title[1];;
             var title_2 = data.title[2];
             var title_3 = data.title[3];
@@ -1270,12 +1272,12 @@ function updateformpreviewtext(data = false) {
             var company_logo = image_src +  data.company_logo;
             var Punchline = data.punchline;
             }
-           
+
             $('#preview_form_title').html(title_1);
             $('#preview_form_sub_title').html(sub_title_1);
             $('#preview_Punchline').html(Punchline);
            $('#preview_company_name').html(company_name);
-              
+
             if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
     for ($i = 1; $i < 6; $i++){
                 if(data == false){
@@ -1330,13 +1332,13 @@ function updateformpreviewtext(data = false) {
                 if(t!==''){ $('#preview_filed_'+$i).html(t); }else{ $('#preview_filed_'+$i).html(t); }
             }
 
-         
-     
+
+
 
         }
 
        // updateformpreview();
-        $('.PageFormStyle').on('input', function() { updateformpreviewtext(); 
+        $('.PageFormStyle').on('input', function() { updateformpreviewtext();
         });
 
     function getVideoId(url) {
@@ -1369,7 +1371,7 @@ function updateformpreviewtext(data = false) {
         }, {});
     }
   $("#TargetCountryInput").on('change',function(){
-    
+
     if($(this).val()==""){
      $("#TargetCountryInput").css("font-size","16px");
     }else{
@@ -1398,18 +1400,18 @@ if(youtube_url !==''){
   var vid='';
   var str2='https://www.youtube.com/watch?v=';
   var str3='https://www.youtube.com/embed/';
-    
 
-    
+
+
 
    var y_url=validateYouTubeUrl(youtube_url);
- 
+
 if(y_url !== ""){
 
   $(".video_"+vidd).find('label').hide();
   $(".video_"+vidd).addClass("disabled");
   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="'+vidd+'"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="'+vidd+'"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+y_url+'" frameborder="0" allowfullscreen></iframe></div>';
-  $(".video_"+vidd).find('.youtube_iframe').remove(); 
+  $(".video_"+vidd).find('.youtube_iframe').remove();
   $(".video_"+vidd).find('label').after(html);
   $("#Youtube_"+vidd).find('input').val(y_url);
   custom_edit_vide();
@@ -1438,8 +1440,8 @@ $(".edit_video").click(function(){
  var iddd=$(this).data('id');
  $(".video_"+iddd).removeClass("disabled");
   var src =$(".video_"+iddd).find("iframe").attr('src');
-  
-  
+
+
  $(".video_"+iddd).trigger("click");
  setTimeout(function() {
 $(".youtube_video").val(src);
@@ -1470,20 +1472,20 @@ function validateYouTubeUrl(url)
              var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=|\?v=)([^#\&\?]*).*/;
             var match = url.match(regExp);
             if (match && match[2].length == 11) {
-               
+
               return 'https://www.youtube.com/embed/' + match[2];
             }
             else {
                 return url;
             }
             }else{
-                
+
                 return '';
             }
 
-            
+
         }
-     
+
 }
 
 
@@ -1494,7 +1496,7 @@ function validateYouTubeUrl2(url){
 
                         return true;
                     }else{
-                        
+
                         return false;
                     }
                 }
@@ -1515,12 +1517,12 @@ makeinoputcharateruppercase();
   function makeinoputcharateruppercase(){
 
     $(".leftForm").find("input").on('keypress',function(e){
-      
+
       $(this).val(capitalizeFirstLetter($(this).val()));
 
     });
     $(".rightForm").find("input").on('keypress',function(e){
-      
+
       $(this).val(capitalizeFirstLetter($(this).val()));
 
     });
@@ -1555,14 +1557,14 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                     $('#SelectEndDateSelect').val("NoEndDate").change();
                 }
                 $("input[name='SelectFormType'][value=CreateNewForm]").prop('checked', true);
-               
+
                 $("#CreateNewForm").show();
                 $("input[name='daily_budget']").val(data.daily_budget);
                 $("input[name='target_cost']").val(data.target_cost);
                 $("#TargetCountryInput").val(data.target_country).change();
                 $("input[name='form_name']").val('');
                 $("#TargetingTypeInput").val(data.target_type).change();
-      
+
               $("#company_logo_preview").show();
               $("#company_logo_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.company_logo);
               if((data.company_logo== null) && (data.company_name ==null)){
@@ -1572,26 +1574,26 @@ $('body').on('click', '.duplicatecampaign', function (e) {
               }
               $("#company_logo_img").show();
               $("input[name='form_punchline']").val(data.punchline);
-              
+
                    $.each(JSON.parse(data.title), function (idx, val) {
                     if(val !=null){
                      $("#form_title_"+idx).show();
                      $("#form_title_"+idx).prev().find(".fa-plus-circle").hide();
-                     
+
                      $("#form_title_"+idx).find('input').val(val);
                        }
                    });
                    var vqty='';
                     if(data.youtube_1 != null){
                   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="1"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="1"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_1)+'" frameborder="0" allowfullscreen></iframe></div>';
-                      $(".video_1").find('.youtube_iframe').remove(); 
+                      $(".video_1").find('.youtube_iframe').remove();
                       $(".video_1").find('label').after(html);
                        vqty=1;
                        $("#Youtube_URL_1_Input").val(data.youtube_1);
                   }
                    if(data.youtube_2 != null){
                   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="2"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="2"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_2)+'" frameborder="0" allowfullscreen></iframe></div>';
-                      $(".video_2").find('.youtube_iframe').remove(); 
+                      $(".video_2").find('.youtube_iframe').remove();
                       $(".video_2").find('label').after(html);
                       vqty=1;
                        $("#Youtube_URL_2_Input").val(data.youtube_2);
@@ -1599,7 +1601,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
 
                    if(data.youtube_3 != null){
                   var html='<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="3"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="3"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="'+validateYouTubeUrl(data.youtube_3)+'" frameborder="0" allowfullscreen></iframe></div>';
-                      $(".video_3").find('.youtube_iframe').remove(); 
+                      $(".video_3").find('.youtube_iframe').remove();
                       $(".video_3").find('label').after(html);
                       vqty=1;
                        $("#Youtube_URL_3_Input").val(data.youtube_3);
@@ -1629,8 +1631,8 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                        }
 
                     });
-                      
-                      if(data.field_1 != null){ 
+
+                      if(data.field_1 != null){
                      var field1=JSON.parse(data.field_1);
                          if(field1.required=="on"){
                             $(".row_1").find("input[type=checkbox]").prop('checked',true);
@@ -1642,7 +1644,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                           $(".row_1").find(".InputQuestion_text").val(field1.question_text);
                      }
 
-                       if(data.field_2 != null){ 
+                       if(data.field_2 != null){
                      var field2=JSON.parse(data.field_2);
                          if(field2.required=="on"){
                             $(".row_2").find("input[type=checkbox]").prop('checked',true);
@@ -1654,11 +1656,11 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                           $(".row_2").find(".InputQuestion_text").val(field2.question_text);
                      }
 
-                 if(data.field_3 != null){ 
+                 if(data.field_3 != null){
 
-                   
+
                      var field3=JSON.parse(data.field_3);
-                     
+
                           if(field3.required=="on"){
                             $(".row_3").find("input[type=checkbox]").prop('checked',true);
                          }else{
@@ -1669,9 +1671,9 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                           $(".row_3").find(".InputQuestion_text").val(field3.question_text);
                      }
 
-                     if(data.field_4 != null){ 
+                     if(data.field_4 != null){
 
-                   
+
                      var field4=JSON.parse(data.field_4);
                      if(field4.question_type=="ShortAnswer"){
                          add_form_field('single');
@@ -1690,16 +1692,16 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                         $(".row_4").find('.option:nth-child(4)').find('input').val(field4.option_4);
                         }
                         if(field4.option_5 !=null){
-                          $(".row_4").find(".btn-add-option").triggr('click');  
+                          $(".row_4").find(".btn-add-option").triggr('click');
                         $(".row_4").find('.option:nth-child(5)').find('input').val(field4.option_5);
                         }
                         if(field4.option_6 !=null){
-                             $(".row_4").find(".btn-add-option").triggr('click');  
+                             $(".row_4").find(".btn-add-option").triggr('click');
                         $(".row_4").find('.option:nth-child(6)').find('input').val(field4.option_6);
                         }
 
                      }
-                       
+
                           if(field4.required=="on"){
                             $(".row_4").find("input[type=checkbox]").prop('checked',true);
                          }else{
@@ -1710,11 +1712,11 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                           $(".row_4").find(".InputQuestion_text").val(field4.question_text);
                      }
 
-                     if(data.field_5 != null){ 
+                     if(data.field_5 != null){
 
-                   
+
                      var field5=JSON.parse(data.field_5);
-                     
+
                           if(field5.required=="on"){
                             $(".row_5").find("input[type=checkbox]").prop('checked',true);
                          }else{
@@ -1726,7 +1728,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                      }
 
 
-               
+
                 $("input[name='service_sell_buy']").val(data.service_sell_buy);
                 $("input[name='company_name']").val(data.company_name);
                 $("input[name='social_media_page']").val(data.social_media_page);
@@ -1748,11 +1750,11 @@ $('body').on('click', '.duplicatecampaign', function (e) {
 
 
 
-    
+
     </script>
 
     @php
- 
+
   if(isset($_GET['action'])){
     if($_GET['action']=="create_campiagin"){
      @endphp
@@ -1802,26 +1804,25 @@ $('body').on('click', '.duplicatecampaign', function (e) {
     .small, small { font-size: 90%; }
     table.dataTable thead tr { background-color: #1A273A; }
     .dataTables_paginate .pagination .page-item.active .page-link{ background-color: #1361b2; border-color: #1361b2; box-shadow: 0px 3px 5px rgb(0,0,0,0.125); }
-#UseExistingForm label{ font-size: 16px }
-#UseExistingForm  .form-check{ margin-bottom: 10px; }
-.btn--primary.create-campaign-btn{ background-color: #4500dd!important; border-radius: 0; }
-#campaign_list td{ font-size: 16px; color: #1a273a; vertical-align:top; }
-#campaign_list td:nth-child(3){  font-size: 14px; }
-#campaign_list a.create-campaign-btn { font-size: 12px !important; }
+    #UseExistingForm label{ font-size: 16px }
+    #UseExistingForm  .form-check{ margin-bottom: 10px; }
+    .btn--primary.create-campaign-btn{ background-color: #4500dd!important; border-radius: 0; }
+    #campaign_list td{ font-size: 16px; color: #1a273a; vertical-align:top; }
+    #campaign_list td:nth-child(3){  font-size: 14px; }
+    #campaign_list a.create-campaign-btn { font-size: 12px !important; }
 
-
-#campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
-#campaign_list_wrapper .dataTables_length select,
-#campaign_list_wrapper .dataTables_filter input {
-    border-radius: 0!important;
-}
-table.dataTable tbody tr td {
-    font-size: 16px;
-    color: #1a273a;
-    font-weight: normal;
-}
-.page-wrapper.default-version, table td, tfoot tr { font-weight: normal;  }
-#campaign_list_wrapper{  overflow-x: scroll; }
+    #campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
+    #campaign_list_wrapper .dataTables_length select,
+    #campaign_list_wrapper .dataTables_filter input {
+        border-radius: 0!important;
+    }
+    table.dataTable tbody tr td {
+        font-size: 16px;
+        color: #1a273a;
+        font-weight: normal;
+    }
+    .page-wrapper.default-version, table td, tfoot tr { font-weight: normal;  }
+    #campaign_list_wrapper{  overflow-x: scroll; }
 
     .img_preview_box{ position: relative; display: none;}
     .img_preview_box .del-preview{ position: absolute; right: 0;  top: 0px; background: #fff;  display: inline-block; padding: 0;  border-radius: 20px; z-index:1; }
@@ -1846,16 +1847,16 @@ table.dataTable tbody tr td {
         min-height: 52px;
         height: auto;
     }
-#campaign_create_modal .PageFormStyle .form-control {
-font-size: 20px!important;
-}
-     #campaign_create_modal .PageFormStyle .custom-select{ 
-        font-size: 16px;
+    #campaign_create_modal .PageFormStyle .form-control {
+    font-size: 20px!important;
     }
-  #campaign_create_modal .modal-header .btn {
-    background-color: #1361b2;
-    color: #fff;
-}
+        #campaign_create_modal .PageFormStyle .custom-select{
+            font-size: 16px;
+        }
+    #campaign_create_modal .modal-header .btn {
+        background-color: #1361b2;
+        color: #fff;
+    }
     #campaign_create_modal .btn-xl{
         border-radius: 0;
         font-size: 20px!important;
@@ -1919,6 +1920,10 @@ font-size: 20px!important;
 
     #campaign_create_modal .card-header.bg-primary{ background-color: #5b97bb!important; color: #fff!important; border-bottom:2px solid #113399; }
     #campaign_create_modal .card-header.bg-primary label{  font-size: 14px; font-weight: 400; color: #fff!important; padding-top:0;  }
+
+    #campaign_create_modal .company_row{ background-color: #5b97bb!important;   background-image: url("{{url('/')}}/assets/images/rainbow-advertiser.png"); background-position: center -93px; background-size: cover;  border-bottom:1px solid #113399;   }
+
+
 
     #campaign_create_modal table th { font-weight: 500; }
     table th:last-child { text-align: left; }
@@ -2040,7 +2045,7 @@ font-size: 20px!important;
             justify-content: center;
             display: flex;
             align-items: center;
-            
+
         }
         #preview_media .owl-carousel .owl-stage {
             margin: auto;
@@ -2049,7 +2054,7 @@ font-size: 20px!important;
         #preview_media > div .owl-item iframe {
             min-width:300px !important;
         }
-        #preview_media > div .owl-item {            
+        #preview_media > div .owl-item {
              margin-right: 0 !important;
         }
         #preview_media > div .owl-item.active {
@@ -2131,7 +2136,7 @@ font-size: 20px!important;
     #loadData ~ .form-row {
         margin-top: 8px !important;
     }
-    #loadData .form-row input, #loadData .form-row select { 
+    #loadData .form-row input, #loadData .form-row select {
         margin: 4px 0;
         height:40px;
     }
@@ -2458,7 +2463,7 @@ font-size: 20px!important;
 }
  .title-small2 {
     font-size: 14px !important;
-    
+
 }
 .create-campaign-btn {
     font-size: 18px;
@@ -2638,7 +2643,7 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
 /*    overflow: hidden;*/
     padding: 0 !important;
     margin: 10px auto !important;
-    
+
 }
 #formPreviewBLock  .video {
     margin: 0 !important;
