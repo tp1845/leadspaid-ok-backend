@@ -215,6 +215,7 @@
         line-height: normal;
 
     }
+    .country_code.form-select.is-invalid{ padding: 16px 24px;}
     .contact-3 .form-group .form-control:focus,
     .contact-3 .contact_msg:focus,
     .contact-3 .was-validated
