@@ -551,22 +551,17 @@
             display: inline-block;
             padding: 3px 15px;
         }
-        @media only screen and (max-width: 568px) {
-            .MainBanner-Home .sub_title{
-                font-size: 19px;
-                padding: 3px 12px;
-            }
-        }
+
 
         @media only screen and (max-width: 568px) {
             .MainBanner-Home .sub_title{
                 font-size: 19px;
-                padding: 3px 12px;
+                padding: 5px 12px;
             }
         }
         @media only screen and (max-width: 600px) {
             .MainBanner-Home  { position: relative; }
-            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 24px);  left: 12px; top: 15px;  }
+            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 24px);  left: 12px; top: 12px;  }
         }
         @media only screen and (max-width: 503px) {
             .MainBanner-Home .sub_title{ width: calc(100% - 24px); left: 12px;   }
