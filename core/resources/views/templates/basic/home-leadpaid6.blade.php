@@ -222,7 +222,7 @@
     <section class="MainBanner-Home onload">
         <div class="container">
             <div class="row align-item-center justify-content-center align-items-center">
-                <div class="col-lg-12">
+                <div class="col-lg-12 hero-text-col">
                     @if(Request::get('sub') == 1 )
                         <h4 class="sub_title">An AI-Powered Leads Ad Network</h4>
                     @endif
@@ -554,7 +554,23 @@
             }
         }
 
+        @media only screen and (max-width: 568px) {
+            .MainBanner-Home .sub_title{
+                font-size: 19px;
+                padding: 3px 12px;
+            }
+        }
+        @media only screen and (max-width: 600px) {
+            .MainBanner-Home .hero-text-col{ position: relative; }
+            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 60px);  left: 30px; top: calc(-185px - -15px) ;  }
+        }
 
+        @media only screen and (max-width: 503px) {
+            .MainBanner-Home .sub_title{ top:   calc(-149px - -15px) ;;  }
+        }
+        @media only screen and (max-width: 378px) {
+            .MainBanner-Home .sub_title{ top: calc(-127px - -15px);  }
+        }
         /* Hero */
         .hero-box{ border: 0 solid #fff; width: 100%; padding: 30px; text-align: center; height: 100%;; display: flex; flex-direction: column;  align-items: center; justify-content: center; }
         .hero-box h4{ font-size: 46px; font-weight: bold; color: #1361b2 }
@@ -688,7 +704,7 @@
         }
          @media only screen and (max-width: 991px) {   .MainBanner-Home .btn, .button-large {  margin-top: 0 !important; } }
         .MainBanner-Home .btn{ background-color: #4833e6!important; }
-        #JoinAsAdvertiser_section{ background-color: #11baf3;  }
+        #JoinAsAdvertiser_section{ background-color: #11baf3; margin-bottom: -2px; }
         #JoinAsAdvertiser_section .title{ font-size: 63px }
         #JoinAsAdvertiser_section .button-large{ font-size: 39px; box-shadow: 7px 7px 10px #1a273a }
         @media only screen and (max-width: 991px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }

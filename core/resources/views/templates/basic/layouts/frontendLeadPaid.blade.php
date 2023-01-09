@@ -222,12 +222,13 @@
                 #MainNav .navbar.fixed li:nth-child(3) { border: 2px solid #000; }
                 #MainNav .navbar.fixed .navbar-toggler .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")!important;'' }
 
+
                 #MainFooter {
                     margin-top: 0 !important;
                     position: relative;
                 }
                 #MainFooter:before{
-                    background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg.jpg");
+                    background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg.png");
                     background-position: center;
                     background-size: cover;
                     position: relative;
