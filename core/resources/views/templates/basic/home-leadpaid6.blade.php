@@ -555,8 +555,8 @@
 
         @media only screen and (max-width: 568px) {
             .MainBanner-Home .sub_title{
-                font-size: 19px;
-                padding: 6px 9px;
+                font-size: 20px;
+                padding: 6px 8px;
             }
         }
         @media only screen and (max-width: 600px) {
