@@ -2309,6 +2309,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
     width: unset;
     height: 100%;
     max-height: 36px;
+    max-width: 150px;
     display: inline-block;
 }
     .form-row select:invalid,
@@ -2404,6 +2405,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
     display: flex;
     justify-content: space-between;
     width: 100%;
+    z-index: 999999;
 }
 .custom_image_video .upload-box .youtube_iframe {
     position: absolute;
@@ -2448,6 +2450,9 @@ $('body').on('click', '.duplicatecampaign', function (e) {
     display: block;
     border-radius: 50px;
     cursor: pointer;
+}
+.custom_image_video .upload-box .youtube_iframe ul span {
+    z-index: 999999;
 }
 .custom_image_video .upload-box label svg {
     width: 18px;
