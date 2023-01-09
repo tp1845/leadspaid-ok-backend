@@ -732,7 +732,23 @@
         campaign_create_modal.on('hidden.bs.modal', function (event) { reset_campaign_create_form(); updateformpreview(); })
         $('.create-campaign-btn').on('click', function (e) {
             e.preventDefault();
+             $(".img_preview_box").hide();
+             $(".row_4").remove();
+             $(".row_5").remove();
+             $("#form_company_logo").value='#';
+             $("#preview_company_logo").html('');
+             $("#preview_company_name").remove();
+             $('#company_logo_img').attr('src','');
+             $("#Youtube_1").find('input').val('');
+             $("#Youtube_2").find('input').val('');
+             $("#Youtube_3").find('input').val('');
+             $("#video_image_1").find(".youtube_iframe").remove();
+             $("#video_image_2").find(".youtube_iframe").remove();
+             $("#video_image_3").find(".youtube_iframe").remove();
+            
             updateformpreview();
+            updateformpreviewtext();
+          
             campaign_create_modal.modal('show');
             $("#campaign_form").find("#submit").text('Create Campaign');
         });
@@ -1165,7 +1181,13 @@
             $('#preview_Punchline').html(Punchline);
            $('#preview_company_name').html(company_name);
 
-            if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
+            if(company_logo !== '#'){
+            if(company_logo !=''){ 
+                $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');
+                   }else{
+                    $('#preview_company_logo').html('')
+                   }
+            } else{  $('#preview_company_logo').html('') }
 
            var image_vide='<div class="owl-carousel owl-theme ">';
              var creative_status='';
