@@ -556,15 +556,15 @@
         @media only screen and (max-width: 568px) {
             .MainBanner-Home .sub_title{
                 font-size: 19px;
-                padding: 5px 12px;
+                padding: 6px 9px;
             }
         }
         @media only screen and (max-width: 600px) {
             .MainBanner-Home  { position: relative; }
-            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 24px);  left: 12px; top: 12px;  }
+            .MainBanner-Home .sub_title{ position: absolute;    left: 12px; top: 12px;  }
         }
         @media only screen and (max-width: 503px) {
-            .MainBanner-Home .sub_title{ width: calc(100% - 24px); left: 12px;   }
+            .MainBanner-Home .sub_title{  left: 12px;   }
         }
         @media only screen and (max-width: 378px) {
             .MainBanner-Home .sub_title{    }
