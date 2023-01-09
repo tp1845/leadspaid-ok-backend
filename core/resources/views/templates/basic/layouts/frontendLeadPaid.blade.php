@@ -89,10 +89,8 @@
                 <div class="row">
                     <div class="col-12 col-md">
                         <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
-                            @if(Request::get('v') == 2 )
-                                <img src="{{asset('assets/templates/leadpaid/images/logo-2.png')}}" style="max-width: 218px" alt="site-logo">
-                            @elseif(Request::get('v') == '18-b-rectangle-60-1' )
-                                <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-1.png?v1')}}" style="max-width: 218px" alt="site-logo">
+                             @if(Request::get('v'))
+                                <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png?v1')}}" style="max-width: 218px" alt="site-logo">
                            @else
                                 <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60.png?v4')}}" style="max-width: 218px" alt="site-logo">
                            @endif
