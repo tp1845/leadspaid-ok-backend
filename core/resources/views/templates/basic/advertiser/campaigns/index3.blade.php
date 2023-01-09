@@ -1567,20 +1567,30 @@ makeinoputcharateruppercase();
     }
 
 
-$('body').on('click', '.duplicatecampaign', function (e) {
+$('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
             e.preventDefault();
             reset_campaign_create_form();
             $('#campaign_createModalLabel').html('Edit Campaign');
             campaign_create_modal.modal('show');
             var campaign_id = $(this).attr('data-id');
+            var tyrpp=$(this).data('type');
             // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
             // url = url.replace(':campaign_id', campaign_id);
             // url =  "/advertiser/campaigns/edit/"+ campaign_id;
             var url = $(this).attr('href');
             $.get(url, function (data) {
-                console.log(data);
-               // $('#input_campaign_id').val(campaign_id);
-                $("input[name='campaign_name']").val('');
+                if(tyrpp=="edit"){
+                 $('#input_campaign_id').val(campaign_id); 
+                 $("input[name='campaign_name']").val(data.name);
+                 
+                  $("input[name='form_name']").val(data.form_name); 
+                ; 
+                }else{
+                     $("input[name='campaign_name']").val('');
+                      $("input[name='form_name']").val('');
+                }
+              
+                
                 $("input[name='start_date']").val(data.start_date);
                 $("input[name='end_date']").val(data.end_date);
                 if (data.end_date !== null) {
@@ -1594,7 +1604,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                 $("input[name='daily_budget']").val(data.daily_budget);
                 $("input[name='target_cost']").val(data.target_cost);
                 $("#TargetCountryInput").val(data.target_country).change();
-                $("input[name='form_name']").val('');
+               
                 $("#TargetingTypeInput").val(data.target_type).change();
 
               $("#company_logo_preview").show();
@@ -1737,11 +1747,11 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                         $(".row_4").find('.option:nth-child(4)').find('input').val(field4.option_4);
                         }
                         if(field4.option_5 !=null){
-                          $(".row_4").find(".btn-add-option").triggr('click');
+                          //$(".row_4").find(".btn-add-option").triggr('click');
                         $(".row_4").find('.option:nth-child(5)').find('input').val(field4.option_5);
                         }
                         if(field4.option_6 !=null){
-                             $(".row_4").find(".btn-add-option").triggr('click');
+                            // $(".row_4").find(".btn-add-option").triggr('click');
                         $(".row_4").find('.option:nth-child(6)').find('input').val(field4.option_6);
                         }
 
