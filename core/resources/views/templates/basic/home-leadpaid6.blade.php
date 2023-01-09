@@ -565,16 +565,16 @@
             }
         }
         @media only screen and (max-width: 600px) {
-            .MainBanner-Home .hero-text-col{ position: relative; }
-            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 60px);  left: 30px; top: calc(-185px - -15px) ;  }
+            .MainBanner-Home  { position: relative; }
+            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 60px);  left: 30px; top: 15px;  }
         }
-
         @media only screen and (max-width: 503px) {
-            .MainBanner-Home .sub_title{ top:   calc(-149px - -15px) ;;  }
+            .MainBanner-Home .sub_title{ width: calc(100% - 30px); left: 15px;   }
         }
         @media only screen and (max-width: 378px) {
-            .MainBanner-Home .sub_title{ top: calc(-127px - -15px);  }
+            .MainBanner-Home .sub_title{    }
         }
+
         /* Hero */
         .hero-box{ border: 0 solid #fff; width: 100%; padding: 30px; text-align: center; height: 100%;; display: flex; flex-direction: column;  align-items: center; justify-content: center; }
         .hero-box h4{ font-size: 46px; font-weight: bold; color: #1361b2 }
