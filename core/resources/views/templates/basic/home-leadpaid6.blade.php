@@ -566,10 +566,10 @@
         }
         @media only screen and (max-width: 600px) {
             .MainBanner-Home  { position: relative; }
-            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 60px);  left: 30px; top: 15px;  }
+            .MainBanner-Home .sub_title{ position: absolute; width: calc(100% - 24px);  left: 12px; top: 15px;  }
         }
         @media only screen and (max-width: 503px) {
-            .MainBanner-Home .sub_title{ width: calc(100% - 30px); left: 15px;   }
+            .MainBanner-Home .sub_title{ width: calc(100% - 24px); left: 12px;   }
         }
         @media only screen and (max-width: 378px) {
             .MainBanner-Home .sub_title{    }
