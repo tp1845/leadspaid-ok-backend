@@ -226,12 +226,12 @@
                     position: relative;
                 }
                 #MainFooter:before{
-                    background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg.png");
+                    background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg-2.jpg");
                     background-position: center;
                     background-size: cover;
                     position: relative;
                     background-color: #1a273a;
-                    opacity: .4;
+                    opacity: .3;
                     position: absolute;
                     top: 0;
                     left: 0;
