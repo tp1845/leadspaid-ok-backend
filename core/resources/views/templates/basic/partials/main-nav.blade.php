@@ -6,9 +6,11 @@
             <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-1.png?v1')}}" style="max-width: 250px" alt="site-logo">
         @elseif(Request::get('v') == '18-b-rectangle-60-2' )
             <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-2.png?v1')}}" style="max-width: 250px" alt="site-logo">
-            @elseif(Request::get('v') == '18-b-rectangle-wide1' )
+        @elseif(Request::get('v') == '18-b-rectangle-60-2-wide-1' )
+            <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png?v1')}}" style="max-width: 250px" alt="site-logo">
+        @elseif(Request::get('v') == '18-b-rectangle-wide1' )
             <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-wide1.png?v1')}}" style="max-width: 250px" alt="site-logo">
-            @elseif(Request::get('v') == '18-b-rectangle-wide2' )
+        @elseif(Request::get('v') == '18-b-rectangle-wide2' )
             <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-wide2.png?v1')}}" style="max-width: 250px" alt="site-logo">
         @else
             <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60.png?v4')}}" style="max-width: 250px" alt="site-logo">
