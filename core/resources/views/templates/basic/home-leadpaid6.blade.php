@@ -567,7 +567,7 @@
             .MainBanner-Home .sub_title{  left: 12px;   }
         }
         @media only screen and (max-width: 378px) {
-            .MainBanner-Home .sub_title{    }
+            .MainBanner-Home .sub_title{    font-size: 19px;   }
         }
 
         /* Hero */
