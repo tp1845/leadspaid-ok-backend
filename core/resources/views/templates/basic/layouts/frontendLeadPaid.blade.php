@@ -226,7 +226,7 @@
                     position: relative;
                 }
                 #MainFooter:before{
-                    background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg.png");
+                    background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer-bg-1.jpg");
                     background-position: center;
                     background-size: cover;
                     position: relative;
