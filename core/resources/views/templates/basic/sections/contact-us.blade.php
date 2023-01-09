@@ -39,6 +39,7 @@
                         <div class="col-md-6">
                             <div class="form-group  input-group  mb-3">
                                 <select name="country_code" class="country_code form-select form-control  rounded-0">
+                                    <option value="">ISD</option>
                                     @include('partials.country_code')
                                 </select>
                                 <input type="text" id="conact_phone" name="phone" class="rounded-0 form-control py-2" placeholder="@lang('Phone Number')">
@@ -136,11 +137,13 @@
                 name: { required: true,minlength: 3, lettersonly: true },
                 company: { required: false, minlength: 3},
                 email: { required: true,  valid_email:true  },
+                country_code: { required: true },
                 phone: { required: true, minlength: 6, phoneonly: true },
                 message: { required: true, minlength: 15 }
             },messages: {
                 name:{  required : 'Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
                 company:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
+                country_code:{  required : 'Country Code is required.'},
                 phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
                 email:{  required : 'email is required.'},
                 message:  { required : 'Message is required.', minlength:'Please fill your message in detail'}
