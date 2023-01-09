@@ -581,7 +581,7 @@
                                                         <div class="form-row" id="preview_filed_3"> </div>
                                                         <div class="form-row" id="preview_filed_4"> </div>
                                                         <div class="form-row" id="preview_filed_5"> </div>
-                                                        <div class="form-row" id="preview_filed_6"> </div>
+                                                       
                                                     </div>
                                                     <div class="form-row mt-3">
                                                         <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
@@ -746,10 +746,10 @@
              $("#video_image_1").find(".youtube_iframe").remove();
              $("#video_image_2").find(".youtube_iframe").remove();
              $("#video_image_3").find(".youtube_iframe").remove();
-            
+            setTimeout(function(){
             updateformpreview();
             updateformpreviewtext();
-          
+          }, 2000);
             campaign_create_modal.modal('show');
             $("#campaign_form").find("#submit").text('Create Campaign');
         });
@@ -857,7 +857,7 @@
             updateformpreviewtext();
         }
 
-        function add_form_field(type = 'single'){
+        function add_form_field(type){
             var table = $('#sortable');
             var row = table.attr('data-row');
                 row = ++row;
@@ -870,6 +870,7 @@
                 html +='<input type="checkbox" checked class="InputQuestion_Required" name="field_'+row+'[required]">';
                 html +='</td>';
                 html +='<td>';
+                console.log("+++++"+type+"+++");
                 if(type == 'multiple'){
                     html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="MultipleChoice" required>';
                 }else{
@@ -1090,7 +1091,7 @@
                 image_2: "File must be JPG, GIF or PNG, less than 2MB",
                 image_3: "File must be JPG, GIF or PNG, less than 2MB",
                 create_qty: "Add at least 1 creative",
-                logo_comapny: 'Comapny/Brand Name or Logo - Any 1 is mandatory',
+                logo_comapny: 'Company/Brand Name or Logo - Any 1 is mandatory',
             }
         });
 
@@ -1267,7 +1268,7 @@
             });
 
 
-
+updateformpreviewtext();
         }
 
 function updateformpreviewtext(data = false) {
@@ -1312,18 +1313,18 @@ function updateformpreviewtext(data = false) {
             } else{  $('#preview_company_logo').html('') }
     for ($i = 1; $i < 6; $i++){
                 if(data == false){
-                    console.log('empty data');
+                   
                 question_type =  $('input[name="field_'+$i+'[question_type]"]').val();
                 question_text =  $('input[name="field_'+$i+'[question_text]"]').val();
                 question_required =  $('input[name="field_'+$i+'[required]"]').prop('checked')?'*':'';
                 }else{
-                    console.log('no empty');
+                   
                     question_type = null;
                     question_text =  null;
                     question_required =  null;
                     options=  [];
                     var fd = data['field_'+$i];
-                    console.log(fd);
+                  
                     if( fd ){
                         question_type = fd['question_type'];
                         question_text = fd['question_text'];
@@ -1338,7 +1339,7 @@ function updateformpreviewtext(data = false) {
                         }
                     }
                 }
-                console.log(question_type);
+                
                 t ='';
                 if(question_type === 'MultipleChoice'){
                     t +='<select class="form-select" id="Input_field_'+$i+'"';
@@ -1639,16 +1640,19 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                   }
                   if(data.image_1 != null){
                     $("#upload_image_1").find(".img_preview_box").show();
+                       $("#upload_image_3").find(".img_preview_box").find("img").show();
                     $("#image_1_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_1);
                     vqty=1;
                   }
                   if(data.image_2 != null){
                     $("#upload_image_2").find(".img_preview_box").show();
+                       $("#upload_image_3").find(".img_preview_box").find("img").show();
                     $("#image_2_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_2);
                     vqty=1;
                   }
                   if(data.image_3 != null){
                     $("#upload_image_3").find(".img_preview_box").show();
+                    $("#upload_image_3").find(".img_preview_box").find("img").show();
                     $("#image_3_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.image_3);
                     vqty=1;
                   }
@@ -1665,25 +1669,31 @@ $('body').on('click', '.duplicatecampaign', function (e) {
 
                       if(data.field_1 != null){
                      var field1=JSON.parse(data.field_1);
+
+                    
+
+
                          if(field1.required=="on"){
                             $(".row_1").find("input[type=checkbox]").prop('checked',true);
                          }else{
                             $(".row_1").find("input[type=checkbox]").prop('checked',false);
                          }
                          $(".row_1").find(".sort").val(field1.sort);
-                          $(".row_3").find(".InputQuestionType").val(field1.question_type);
+                          $(".row_1").find(".InputQuestionType").val(field1.question_type);
                           $(".row_1").find(".InputQuestion_text").val(field1.question_text);
                      }
 
                        if(data.field_2 != null){
                      var field2=JSON.parse(data.field_2);
+
+                            
                          if(field2.required=="on"){
                             $(".row_2").find("input[type=checkbox]").prop('checked',true);
                          }else{
                             $(".row_2").find("input[type=checkbox]").prop('checked',false);
                          }
                          $(".row_2").find(".sort").val(field2.sort);
-                          $(".row_3").find(".InputQuestionType").val(field2.question_type);
+                          $(".row_2").find(".InputQuestionType").val(field2.question_type);
                           $(".row_2").find(".InputQuestion_text").val(field2.question_text);
                      }
 
@@ -1691,6 +1701,9 @@ $('body').on('click', '.duplicatecampaign', function (e) {
 
 
                      var field3=JSON.parse(data.field_3);
+                            
+                    
+
 
                           if(field3.required=="on"){
                             $(".row_3").find("input[type=checkbox]").prop('checked',true);
@@ -1706,6 +1719,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
 
 
                      var field4=JSON.parse(data.field_4);
+                     
                      if(field4.question_type=="ShortAnswer"){
                          add_form_field('single');
                      }else{
@@ -1739,6 +1753,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                             $(".row_4").find("input[type=checkbox]").prop('checked',false);
                          }
                          $(".row_4").find(".sort").val(field4.sort);
+
                          $(".row_4").find(".InputQuestionType").val(field4.question_type);
                           $(".row_4").find(".InputQuestion_text").val(field4.question_text);
                      }
@@ -1747,6 +1762,34 @@ $('body').on('click', '.duplicatecampaign', function (e) {
 
 
                      var field5=JSON.parse(data.field_5);
+
+                        if(field5.question_type=="ShortAnswer"){
+                         add_form_field('single');
+                     }else{
+                        add_form_field('multiple');
+                        if(field5.option_1 !=null){
+                        $(".row_5").find('.option:nth-child(1)').find('input').val(field5.option_1);
+                        }
+                        if(field5.option_2 !=null){
+                        $(".row_5").find('.option:nth-child(2)').find('input').val(field5.option_2);
+                        }
+                        if(field5.option_3 !=null){
+                        $(".row_5").find('.option:nth-child(3)').find('input').val(field5.option_3);
+                        }
+                        if(field5.option_4 !=null){
+                        $(".row_5").find('.option:nth-child(4)').find('input').val(field5.option_4);
+                        }
+                        if(field5.option_5 !=null){
+                          //$(".row_5").find(".btn-add-option").triggr('click');
+                        $(".row_5").find('.option:nth-child(5)').find('input').val(field5.option_5);
+                        }
+                        if(field5.option_6 !=null){
+                           //  $(".row_5").find(".btn-add-option").triggr('click');
+                        $(".row_5").find('.option:nth-child(6)').find('input').val(field5.option_6);
+                        }
+
+                     }
+
 
                           if(field5.required=="on"){
                             $(".row_5").find("input[type=checkbox]").prop('checked',true);
@@ -1768,7 +1811,7 @@ $('body').on('click', '.duplicatecampaign', function (e) {
                 setTimeout(function(){
                    updateformpreview();
                     updateformpreviewtext();
-                 }, 1000);
+                 }, 1500);
                 /// target_placements_Input
                 $.each(data.target_placements, function (idx, val) {
                     $("select#target_placements_Input option[value='" + val + "']").prop("selected", true);
