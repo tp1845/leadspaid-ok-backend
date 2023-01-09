@@ -735,9 +735,10 @@
              $(".img_preview_box").hide();
              $(".row_4").remove();
              $(".row_5").remove();
-             $("#form_company_logo").value='#';
-             $("#preview_company_logo").html('');
-             $("#preview_company_name").remove();
+             $("#form_company_logo").value=' ';
+
+             $("#preview_company_logo").hide();;
+             $("#preview_company_name").html('');
              $('#company_logo_img').attr('src','');
              $("#Youtube_1").find('input').val('');
              $("#Youtube_2").find('input').val('');
@@ -1183,6 +1184,7 @@
 
             if(company_logo !== '#'){
             if(company_logo !=''){ 
+                 $('#preview_company_logo').show();
                 $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');
                    }else{
                     $('#preview_company_logo').html('')
@@ -1300,7 +1302,14 @@ function updateformpreviewtext(data = false) {
             $('#preview_Punchline').html(Punchline);
            $('#preview_company_name').html(company_name);
 
-            if(company_logo !== '#'){ $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');} else{  $('#preview_company_logo').html('') }
+            if(company_logo !== '#'){ 
+                if(company_logo !=''){
+                $('#preview_company_logo').show();
+                $('#preview_company_logo').html('<img src="'+ company_logo +'" alt="" width="100%" />');
+                   }else{
+                     $('#preview_company_logo').html('');
+                   }
+            } else{  $('#preview_company_logo').html('') }
     for ($i = 1; $i < 6; $i++){
                 if(data == false){
                     console.log('empty data');
