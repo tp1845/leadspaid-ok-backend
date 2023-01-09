@@ -233,7 +233,7 @@
                     background-size: cover;
                     position: relative;
                     background-color: #1a273a;
-                    opacity: .05;
+                    opacity: .4;
                     position: absolute;
                     top: 0;
                     left: 0;
