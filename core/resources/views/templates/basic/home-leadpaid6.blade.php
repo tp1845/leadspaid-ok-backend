@@ -138,10 +138,10 @@
                     <img src="{{url('/')}}/assets/images/homepage/brands/ramsey.svg" alt="" >
                 </div>
                 <div>
-                    <img src="{{url('/')}}/assets/images/homepage/brands/zeromortgage.png" alt="" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/merrill.png" alt="" >
                 </div>
                 <div>
-                    <img src="{{url('/')}}/assets/images/homepage/brands/getsuncoast.webp" alt="" >
+                    <img src="{{url('/')}}/assets/images/homepage/brands/lake-austin.png" alt="" >
                 </div>
                 <div>
                     <img src="{{url('/')}}/assets/images/homepage/brands/greenwayps.webp" alt="" >
@@ -290,8 +290,12 @@
                     speed:6000,
                     autoplay:true,
                     autoplaySpeed:0,
-                    prevArrow:'<button type="button" class="slick-prev"><i class="las la-chevron-circle-left"></i></button>',
-                    nextArrow:'<button type="button" class="slick-next"><i class="las la-chevron-circle-right"></i></button>',
+                    draggable:false,
+                    infinite:true,
+                    pauseOnFocus:false,
+                    pauseOnHover:false,
+                    prevArrow:'',
+                    nextArrow:'',
                     responsive: [
                     {
                         breakpoint: 980, // tablet breakpoint
