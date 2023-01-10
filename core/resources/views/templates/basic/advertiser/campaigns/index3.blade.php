@@ -49,7 +49,7 @@
                           @endphp
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                                <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
+                                <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a></td>
                                 <td>
 
                                     @if($campaign->approve) <span class="green">Active </span> @else
@@ -83,7 +83,7 @@
                           @endphp
                             <tr>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                                <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="edit" class="editcampaign create-campaign-btn">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn">Duplicate</a></td>
+                                <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a></td>
                                 <td>
 
                                     @if($campaign->approve) <span class="green">Active </span> @else
@@ -709,6 +709,7 @@
         });
         $('.toggle-status').change(function () {
             var status = $(this).prop('checked') == true ? 1 : 0;
+            $(".editcampaign").attr('data-status',status);
             var campaign_id = $(this).data('id');
             $.ajax({
                 type: "GET",
@@ -752,6 +753,7 @@
           }, 2000);
             campaign_create_modal.modal('show');
             $("#campaign_form").find("#submit").text('Create Campaign');
+            validate_form_data();
         });
 
 
@@ -989,7 +991,8 @@
 <!-- owl slider ---->
     <script>
 
-
+ function validate_form_data(){
+    
         $.validator.setDefaults({
             errorElement: 'span',
             errorPlacement: function (error, element) {
@@ -1026,10 +1029,14 @@
         );
 
         var campaigns =  @json($campaignsval);
+       
+        if($('#input_campaign_id').val() ==""){
+       
         $.validator.addMethod(
             "unique_campaign_name",
             function(value, element) {
                 var  $result = $.map(campaigns, function(item,i){  name =item.name;  if(name.toLowerCase() == value.toLowerCase()){  return 'exits'; } })[0];
+
                 return $result == 'exits'?false:true;
             },
             "Use a different campaign name (Same Campaign Name already exist)"
@@ -1049,7 +1056,7 @@
             },
             "Use a different Form name (Same Form Name already exist)"
         );
-
+ console.log("te st899999");
         $("#campaign_form").validate({
             rules: {
                 campaign_name: { minlength: 3, unique_campaign_name: true },
@@ -1095,6 +1102,59 @@
             }
         });
 
+    }else{
+          console.log("te st");
+      $("#campaign_form").validate({
+            rules: {
+                campaign_name: { minlength: 3 },
+                form_name: { minlength: 3 },
+                min_row_validation:{  check_row: true },
+                daily_budget: { required: true, money: true,min: 50,max: 1000 },
+                target_cost: { required: false, money: true,min: 10,max: 1000 },
+                website_url: { minlength: 7 },
+
+                image_1: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
+                image_2: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
+                image_3: { extension: "png|jpg|jpeg|gif", maxsize:2e+6 },
+                create_qty:{ required: true},
+                logo_comapny: {required: true}
+
+            },messages: {
+                campaign_name:{  required : 'Campaign Name is required.' },
+
+                target_country:{  required : 'Country is required.' },
+
+
+                daily_budget:  { required : 'Daily Budget is required.', min:'Daily Budget should be minimum $50', max: 'Daily Budget should not be greater than $1000'} ,
+                target_cost:  { required : 'Target Cost is required.', min:'Target Cost should be minimum $10', max: 'Target Cost should not be greater than $1000'} ,
+                SelectFormType:{  required : 'Form is required.' },
+                form_name:{  required : 'Form Name is required.' },
+                'form_title[1]':{  required : '"Product/Service/Offer" is required.' },
+                'form_desc[1]':{  required : '"Product/Service/Offer Description" is required.' },
+                'field_1[question_text]':{  required : 'Question is required.' },
+                'field_2[question_text]':{  required : 'Question is required.' },
+                'field_3[question_text]':{  required : 'Question is required.' },
+                'field_4[question_text]':{  required : 'Question is required.' },
+                'field_5[question_text]':{  required : 'Question is required.' },
+                'form_id':{  required : 'Form is required.' },
+
+                service_sell_buy:'Please fill Product / Service you Sell or Buy in this Campaign -  or leave it blank',
+                website_url: 'Please fill Website URL - or leave it blank',
+
+                image_1: "File must be JPG, GIF or PNG, less than 2MB",
+                image_2: "File must be JPG, GIF or PNG, less than 2MB",
+                image_3: "File must be JPG, GIF or PNG, less than 2MB",
+                create_qty: "Add at least 1 creative",
+                logo_comapny: 'Company/Brand Name or Logo - Any 1 is mandatory',
+            }
+        });
+
+
+
+    }
+   
+
+        
         $("#company_name_Input").blur(function(){
 
             if($(this).val()==""){
@@ -1104,7 +1164,7 @@
             }
         });
 
-
+ }
 
     </script>
     <script>
@@ -1574,21 +1634,36 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
             campaign_create_modal.modal('show');
             var campaign_id = $(this).attr('data-id');
             var tyrpp=$(this).data('type');
+            var sttaus=$(this).data('status');
             // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
             // url = url.replace(':campaign_id', campaign_id);
             // url =  "/advertiser/campaigns/edit/"+ campaign_id;
             var url = $(this).attr('href');
             $.get(url, function (data) {
                 if(tyrpp=="edit"){
+                    
                  $('#input_campaign_id').val(campaign_id); 
                  $("input[name='campaign_name']").val(data.name);
                  
                   $("input[name='form_name']").val(data.form_name); 
-                ; 
+                 $("#submit").text('Save Camapign');
+                 $(".btn--primary").text('Save Camapign');
+                 if(sttaus==1){
+                    $("#campaign_name_Input").prop('readonly',true);
+                    $("#form_name").prop('readonly',true);
+                    $(".leftForm").find('input').prop('readonly',true);
+                    $(".rightForm").find('input').prop('readonly',true);
+                 }else{
+                    $("#campaign_name_Input").prop('readonly',false);
+                    $("#form_name").prop('readonly',false);
+                    $(".leftForm").find('input').prop('readonly',false);
+                    $(".rightForm").find('input').prop('readonly',false);
+                 }
                 }else{
                      $("input[name='campaign_name']").val('');
                       $("input[name='form_name']").val('');
                 }
+                validate_form_data();
               
                 
                 $("input[name='start_date']").val(data.start_date);
@@ -2886,6 +2961,9 @@ table tfoot tr {
 
 #formPreviewBLock .form-punchline{
     margin: 0 0 2px 0 !important;
+}
+.InputQuestion_text[readonly], .fbox input[readonly] {
+    background: #ccc !important;
 }
 
 </style>
