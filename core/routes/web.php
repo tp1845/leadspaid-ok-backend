@@ -416,7 +416,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         // Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
         Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');
          Route::get('/campaigns/delete-camp/{id}', 'CampaignsController@delete_camp')->name('campaigns.delete-camp');
-		
+
 		Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
         Route::get('/campaigns/status/', 'CampaignsController@changeStatus')->name('campaigns.status');
         //Campaigns Forms
@@ -585,11 +585,11 @@ Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name(
 Route::get('/home-v4', 'SiteController@home4')->name('home_v4');
 Route::get('/home-v5', 'SiteController@home5')->name('home_v5');
 Route::get('/home-v6', 'SiteController@home6')->name('home_v6');
-Route::get('new-home', 'SiteController@home2')->name('new-home');
+Route::get('home_old', 'SiteController@home2')->name('new-home');
 Route::get('/old-home', 'SiteController@index')->name('old-home');
 Route::get('/new_home_2_test','SiteController@home3')->name('new_home_2_test');
 Route::get('/{slug}', 'SiteController@pages')->name('pages');
-Route::get('/', 'SiteController@home2')->name('home');
+Route::get('/', 'SiteController@homelive')->name('home');
 
 Route::get('/campaign_form/{publisher_id}/{style}','CampaignFormController@campaign_form_view')->name('front_campaign_form.view');
 Route::get('/campaign_form/{publisher_id}/{style}/{campaign_id}','CampaignFormController@campaign_form_view')->name('front_campaign_id_form.view');
