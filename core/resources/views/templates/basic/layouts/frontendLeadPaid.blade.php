@@ -27,16 +27,16 @@
     @stack('style')
 
     <style>
-      #MainNav a.nav-link {
-    color: #fff;
-    text-transform: capitalize;
-    font-weight: 400;
-}
-#navbarSupportedContent li:nth-child(3) {
-    border: 2px solid #fff;
-    margin: 0px 10px;
-}
-    </style>
+    #MainNav a.nav-link {
+        color: #fff;
+        text-transform: capitalize;
+        font-weight: 400;
+    }
+    #navbarSupportedContent li:nth-child(3) {
+        border: 2px solid #fff;
+        margin: 0px 10px;
+    }
+</style>
 </head>
   <body>
     @php
@@ -89,11 +89,7 @@
                 <div class="row">
                     <div class="col-12 col-md">
                         <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
-                             @if(Request::get('v'))
-                                <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png?v1')}}" style="max-width: 218px" alt="site-logo">
-                           @else
-                                <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60.png?v4')}}" style="max-width: 218px" alt="site-logo">
-                           @endif
+                            <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png?v1')}}" style="max-width: 218px" alt="site-logo">
                         </a>
                         <p class="text-light mt-3" style="font-size: 18px"> 1401 21st Street STE R,<br/> Sacramento,  California 95811<br/> United States. </p>
                     </div>
@@ -133,7 +129,7 @@
                                 <li><a target="_blank" href="#"><i class="lab la-google-plus"></i></a></li>
                                 <li><a target="_blank" href="#"><i class="lab la-instagram"></i></a></li>
                                 <li><a target="_blank" href="#"><i class="lab la-vimeo-square"></i></a></li> --}}
-                                <li><a target="_blank" href="#"><i class="lab la-linkedin"></i></a></li>
+                                <li><a target="_blank" href="https://www.linkedin.com/company/leadspaid/"><i class="lab la-linkedin"></i></a></li>
                                 <li><a target="_blank" href="https://www.youtube.com/@LeadsPaid"><i class="lab la-youtube"></i></a></li>
                             </ul>
                         </div>
@@ -219,7 +215,6 @@
                 #MainNav .navbar.fixed  a.nav-link { color: #000;  }
                 #MainNav .navbar.fixed li:nth-child(3) { border: 2px solid #000; }
                 #MainNav .navbar.fixed .navbar-toggler .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")!important;'' }
-
 
                 #MainFooter {
                     margin-top: 0 !important;
