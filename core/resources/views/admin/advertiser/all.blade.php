@@ -13,10 +13,17 @@
                             <tr>
                                 <th>Status</th>
                                 <th scope="col">@lang('Name')</th>
-                                <th scope="col">@lang('Email')</th>
-                                <th scope="col">@lang('Username')</th>
-                                <th scope="col">@lang('Phone')</th>
+
                                 <th scope="col">@lang('Country')</th>
+                                <th scope="col">@lang('Phone')</th>
+                                <th scope="col">@lang('Email')</th>
+                                <th scope="col">@lang('Products/Services')</th>
+                                <th scope="col">@lang('Website')</th>
+                                <th scope="col">@lang('Social Media')</th>
+                                <th scope="col">@lang('Ad Budget')</th>
+
+
+                                <th scope="col">@lang('Username')</th>
                                 <th scope="col">@lang('Date Applied')</th>
                                 <th scope="col">@lang('Actions')</th>
                             </tr>
@@ -30,13 +37,16 @@
 
                                 </td>
                                 <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
-                                <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
-                                <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                                <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                 <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                <td>{{ $advertiser->country }}</td>
-                                <td><span class="text--small"><strong>
-                                    {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }}
-                                </strong></span></td>
+                                <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                <td data-label="@lang('Products/Services')">{{ $advertiser->product_services }}</td>
+                                <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+                                <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                                <td><span class="text--small"><strong>  {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
                                 {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
                                 <td data-label="@lang('Actions')">
                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
