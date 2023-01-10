@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     @if(Route::current()->getName() == 'old-home' || Route::current()->getName() == 'new-home')
-    <meta name="robots" content="noindex, nofollow">
-      @endif
-      @if(Route::current()->getName() == 'privacy_policy')
-    <meta name="robots" content="noindex, nofollow">
-      @endif
+        <meta name="robots" content="noindex, nofollow">
+    @endif
+    @if(Route::current()->getName() == 'privacy_policy')
+        <meta name="robots" content="noindex, nofollow">
+    @endif
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
