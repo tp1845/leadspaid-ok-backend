@@ -122,6 +122,14 @@
 @endpush
 @push('style')
 <style>
+    table.table--light thead th { background-color: #1A273A; }
+    .pagination .page-item .page-link, .pagination .page-item span {   border-radius: 0 !important;  }
+
+    .pagination .page-item.active .page-link {  background-color: #1361b2;  border-color: #1361b2; }
+
+    .text--primary { color: #1361b2 !important; }
+    .btn--primary {  background-color: #11b6f3 !important; }
+    .btn-success { background-color: #11b6f3;  border-color: #11b6f3; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
     .toggle.btn-sm {  min-width: 40px; min-height: 15px;  height: 15px; }
     .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
