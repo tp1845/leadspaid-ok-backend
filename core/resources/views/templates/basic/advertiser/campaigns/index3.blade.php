@@ -49,7 +49,8 @@ $user = auth()->guard('advertiser')->user();
                         @endphp
                         <tr>
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                            <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
+                            <td>{{ $campaign->name }} <br>
+                                @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
                             <td>
 
                                 @if($campaign->approve) <span class="green">Active </span> @else
@@ -83,7 +84,7 @@ $user = auth()->guard('advertiser')->user();
                         @endphp
                         <tr>
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                            <td>{{ $campaign->name }} <br><a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
+                            <td>{{ $campaign->name }} <br>@if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
                             <td>
 
                                 @if($campaign->approve) <span class="green">Active </span> @else
