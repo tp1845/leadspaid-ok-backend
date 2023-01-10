@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    @if(Route::current()->getName() == 'old-home')
+    @if(Route::current()->getName() == 'old-home' || Route::current()->getName() == 'old_home')
     <meta name="robots" content="noindex, nofollow">
       @endif
       @if(Route::current()->getName() == 'privacy_policy')
