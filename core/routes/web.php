@@ -415,7 +415,9 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         Route::get('/campaigns-old', 'CampaignsController@index')->name('campaigns.index_old');
         // Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
         Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');
-        Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
+         Route::get('/campaigns/delete-camp/{id}', 'CampaignsController@delete_camp')->name('campaigns.delete-camp');
+		
+		Route::post('/campaigns/create', 'CampaignsController@store')->name('campaigns.store');
         Route::get('/campaigns/status/', 'CampaignsController@changeStatus')->name('campaigns.status');
         //Campaigns Forms
         Route::get('/forms', 'FormsController@index')->name('forms.index');

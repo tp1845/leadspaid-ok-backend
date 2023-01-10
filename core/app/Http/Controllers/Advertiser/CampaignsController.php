@@ -44,6 +44,13 @@ class CampaignsController extends Controller
         return response()->json($campaign );
     }
 
+  public function delete_camp(Request $request, $id){
+       $campaign = campaigns::where('campaigns.id', $id)->update(array('approve'=>0,'status'=>0));
+          $res=array('code'=>200);
+           return response()->json($res);
+       
+    } 
+
 
     public function store(Request $request)
     {

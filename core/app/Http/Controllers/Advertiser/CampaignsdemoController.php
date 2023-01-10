@@ -17,7 +17,8 @@ class CampaignsdemoController extends Controller
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
         $campaigns=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',1)->orderBy('id', 'DESC')->get(); 
-        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->orderBy('id', 'DESC')->get();   $campaignsval=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
+        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->orderBy('status', 'DESC')->get();   
+		$campaignsval=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
  
         $last_campaign = campaigns::orderBy('id', 'desc')->first();
         if($last_campaign){
