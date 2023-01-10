@@ -331,27 +331,27 @@
                                                    <div class="custom_image_video">
                                                     <div class="input-group input-col" id="video_image_1">
                                                         <div class="input-col "  style="width: 88%;">
-                                                            <div class="video_1 add_video upload-box grey image" data-id="1">
+                                                            <div class="video_1  upload-box grey image" data-id="1">
 
-                                                                <label>
+                                                                <label class="add_video">
                                                                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="input-group input-col" id="video_image_2">
                                                         <div class="input-col "  style="width: 88%;">
-                                                            <div class="video_2 add_video upload-box grey image" data-id="2">
+                                                            <div class="video_2  upload-box grey image" data-id="2">
 
-                                                                <label>
+                                                                <label class="add_video">
                                                                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="input-group input-col" id="video_image_3">
                                                         <div class="input-col "  style="width: 88%;">
-                                                            <div class="video_3 add_video upload-box grey image" data-id="3">
+                                                            <div class="video_3  upload-box grey image" data-id="3">
 
-                                                                <label>
+                                                                <label class="add_video">
                                                                 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
                                                             </div>
                                                         </div>
@@ -1528,7 +1528,7 @@ $('body').addClass('modal-open');
 });
 
 function custom_edit_vide(){
-$(".edit_video").click(function(){
+$(".edit_video").unbind().click(function(){
  var iddd=$(this).data('id');
  $(".video_"+iddd).removeClass("disabled");
   var src =$(".video_"+iddd).find("iframe").attr('src');
@@ -1539,11 +1539,13 @@ $(".edit_video").click(function(){
 $(".youtube_video").val(src);
 updateformpreview();
     }, 500);
+ return false;
 });
 
 $(".remove_video").unbind().click(function(){
  var iddd=$(this).data('id');
- if(confirm('Are you sure?')){
+ 
+ if(confirm('Do you really want to remove this video?')){
   $(".video_"+iddd).find(".youtube_iframe").remove();
    $(".video_"+iddd).removeClass('disabled');
    $("#Youtube_"+vidd).find('input').val('');
@@ -1648,7 +1650,7 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
                   $("input[name='form_name']").val(data.form_name); 
                  $("#submit").text('Save Camapign');
                  $(".btn--primary").text('Save Camapign');
-                 if(sttaus==1){
+                 if(data.approve==1){
                     $("#campaign_name_Input").prop('readonly',true);
                     $("#form_name").prop('readonly',true);
                     $(".leftForm").find('input').prop('readonly',true);
@@ -1886,7 +1888,7 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
                           $(".row_5").find(".InputQuestion_text").val(field5.question_text);
                      }
 
-
+                   custom_edit_vide();
 
                 $("input[name='service_sell_buy']").val(data.service_sell_buy);
                 $("input[name='company_name']").val(data.company_name);
