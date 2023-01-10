@@ -1545,13 +1545,13 @@ updateformpreview();
 $(".remove_video").unbind().click(function(){
  var iddd=$(this).data('id');
  
- if(confirm('Do you really want to remove this video?')){
+ ///if(confirm('Do you really want to remove this video?')){
   $(".video_"+iddd).find(".youtube_iframe").remove();
    $(".video_"+iddd).removeClass('disabled');
    $("#Youtube_"+vidd).find('input').val('');
    updateformpreview();
   return false;
-}
+//}
 
 });
 
