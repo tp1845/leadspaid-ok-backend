@@ -2,8 +2,8 @@
 @section('panel')
     <div class="row">
         <div class="col-lg-12">
-            <div class="card b-radius--10 ">
-                <div class="card-body p-0">
+            <div >
+                <div >
                     <div class="table-responsive--lg">
                         <table id="campaign_list" class="table table-striped table-bordered datatable">
                             <thead>
@@ -30,6 +30,9 @@
                                     <th>publisher_url 1</th>
                                     <th>publisher_url 2</th>
                                     <th>publisher_url 3</th>
+                                    <th>publisher_url 4</th>
+                                    <th>publisher_url 5</th>
+                                    <th>publisher_url 6</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,15 +92,28 @@
                                             <textarea onclick="this.focus();this.select()" id="advertScript4" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/4/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="573" style="border: 1px solid black;"></iframe></textarea>
                                         </td>
 
+                                        {{-- Urls --}}
+                                        <td data-label="url">
+                                            <textarea rows="2" placeholder="publisher_url 1" name="url[url_1]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher->url[0] ?? '' }}</textarea>
 
-                                        <td data-label="url">
-                                            <input type="text" name="url[url_1]" value="{{ $campaign->campaign_publisher->url[0] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 1" class="form-control publisher_url url_cid_{{$campaign->id}}"  >
+                                            {{-- <input type="text" name="url[url_1]" value="{{ $campaign->campaign_publisher->url[0] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 1" class="form-control publisher_url url_cid_{{$campaign->id}}"  > --}}
                                         </td>
                                         <td data-label="url">
-                                            <input type="text" name="url[url_2]" value="{{ $campaign->campaign_publisher->url[1] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 2"  class="form-control publisher_url url_cid_{{$campaign->id}}"  >
+                                            <textarea rows="2" placeholder="publisher_url 2" name="url[url_2]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher->url[1] ?? '' }}</textarea>
+                                            {{-- <input type="text" name="url[url_2]" value="{{ $campaign->campaign_publisher->url[1] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 2"  class="form-control publisher_url url_cid_{{$campaign->id}}"  > --}}
                                         </td>
                                         <td data-label="url">
-                                            <input type="text" name="url[url_3]" value="{{ $campaign->campaign_publisher->url[2] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 3"  class="form-control publisher_url url_cid_{{$campaign->id}}"  >
+                                            <textarea rows="2" placeholder="publisher_url 3" name="url[url_3]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher->url[2] ?? '' }}</textarea>
+                                            {{-- <input type="text" name="url[url_3]" value="{{ $campaign->campaign_publisher->url[2] ?? '' }}" data-cid='{{$campaign->id}}' placeholder="publisher_url 3"  class="form-control publisher_url url_cid_{{$campaign->id}}"  > --}}
+                                        </td>
+                                        <td data-label="url">
+                                            <textarea rows="2" placeholder="publisher_url 4" name="url[url_4]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher->url[3] ?? '' }}</textarea>
+                                        </td>
+                                        <td data-label="url">
+                                            <textarea rows="2" placeholder="publisher_url 5" name="url[url_5]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher->url[4] ?? '' }}</textarea>
+                                        </td>
+                                        <td data-label="url">
+                                            <textarea rows="2" placeholder="publisher_url 6" name="url[url_6]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher->url[5] ?? '' }}</textarea>
                                         </td>
                                     </tr>
                                 @empty
@@ -159,6 +175,8 @@
 
     .td-iframe{ min-width: 200px!important;}
     .table th { padding: 12px 10px; max-width: 200px; }
+    .td-url{ min-width: 200px; max-width: 200px; }
+    th.td-url{ text-align: center!important; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
     .toggle.btn-sm {  min-width: 40px; min-height: 15px;  height: 15px; }
@@ -194,9 +212,18 @@
                         orderable: false
                     },
                     {
-                        targets: [15, 16, 17],
+                        targets: [ 16, 17,18],
                         className: "td-iframe",
-                        width: "100px"
+                        width: "100px",
+                        searchable: false,
+                        orderable: false
+                    },
+                    {
+                        targets: [ 19, 20, 21, 22, 23, 24],
+                        className: "td-url",
+                        width: "200px",
+                        searchable: false,
+                        orderable: false
                     },
                     {
                         targets: '_all',
@@ -204,12 +231,12 @@
                     }
                 ]
             });
-            $("body").on("blur", "td input.publisher_url", function() {
+            $("body").on("blur", "td textarea.publisher_url", function() {
                 var url = [];
                 var campaign_id =  $(this).attr('data-cid');
                 var publisher_id =  {{Auth::guard('publisher')->user()->id}};
                 const formData = { "_token": "{{ csrf_token() }}", "campaign_id":campaign_id, "publisher_id":publisher_id, "url":[] };
-                var get_input = 'input.url_cid_'+campaign_id;
+                var get_input = 'textarea.url_cid_'+campaign_id;
                 jQuery(get_input).each(function(index, el) {
                     if(el.value){
                       formData['url'][index++] = el.value;
