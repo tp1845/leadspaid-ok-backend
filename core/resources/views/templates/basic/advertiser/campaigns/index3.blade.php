@@ -1660,7 +1660,7 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
 
            $("input[name='form_name']").val(data.form_name); 
            $("#submit").text('Save Camapign');
-           $(".btn--primary").text('Save Camapign');
+           $("#campaign_form").find(".btn--primary").text('Save Camapign');
            if(data.approve==1){
             $("#campaign_name_Input").prop('readonly',true);
             $("#form_name").prop('readonly',true);
