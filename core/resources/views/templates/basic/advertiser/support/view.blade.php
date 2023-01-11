@@ -2,7 +2,7 @@
 
 @section('panel')
 
-    <div class="container-fluid mb-5">
+    <div class="container-fluid mb-5" id="ticket-create">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card ">
@@ -178,7 +178,12 @@
     </div>
 
 @endsection
-
+<style>
+    
+    #ticket-create .bg--primary, #ticket-create form .btn--primary, #ticket-create form .file-upload-wrapper:before {
+    background-color: #4500dd!important;
+}   
+</style>
 @push('script')
     <script>
         'use strict'

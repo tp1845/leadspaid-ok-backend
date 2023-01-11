@@ -2,7 +2,7 @@
 
 @section('panel')
 
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0" id="ticket-create">
         <div class="mt-2">
             <div class="card">
                 <div class="table-responsive--sm">
@@ -62,7 +62,12 @@
 
 
 @endsection
-
+<style>
+    
+    #ticket-create .bg--primary, #ticket-create form .btn--primary, #ticket-create form .file-upload-wrapper:before {
+    background-color: #4500dd!important;
+}   
+</style>
 
 
 @push('breadcrumb-plugins')
