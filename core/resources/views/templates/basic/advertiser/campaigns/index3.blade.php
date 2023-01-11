@@ -47,15 +47,16 @@ $user = auth()->guard('advertiser')->user();
                         $daily_bug= $daily_bug+$campaign->daily_budget;
                         $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                         @endphp
-                        <tr>
+                        <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif">
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                             <td class="edit_btns">{{ $campaign->name }} <br>
                                 @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
                             <td>
-
+                              @if(($campaign->status==0) && ($campaign->approve==0)) Deleted @else 
                                 @if($campaign->approve) <span class="green">Active </span> @else
                                 <span class="orange">Pending<br/>Approval</span>
                                 @endif
+                                 @endif
                             </td>
                             <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
                                 <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
@@ -82,14 +83,15 @@ $user = auth()->guard('advertiser')->user();
                         $daily_bug= $daily_bug+$campaign->daily_budget;
                         $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                         @endphp
-                        <tr>
+                        <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif">
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                             <td class="edit_btns">{{ $campaign->name }} <br>@if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
                             <td>
-
+                                  @if(($campaign->status==0) && ($campaign->approve==0)) Deleted @else
                                 @if($campaign->approve) <span class="green">Active </span> @else
                                 <span class="orange">Pending<br/>Approval</span>
                                 @endif
+                                   @endif
                             </td>
 
                             <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
@@ -874,7 +876,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                     html +='<input type="checkbox" checked class="InputQuestion_Required" name="field_'+row+'[required]">';
                     html +='</td>';
                     html +='<td>';
-                    console.log("+++++"+type+"+++");
+                   
                     if(type == 'multiple'){
                         html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="MultipleChoice" required>';
                     }else{
@@ -1031,6 +1033,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
         );
 
         var campaigns =  @json($campaignsval);
+        console.log($('#input_campaign_id').val());
 
         if(($('#input_campaign_id').val() =="") || ($('#input_campaign_id').val() ==0)){
 
@@ -1660,7 +1663,7 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
 
            $("input[name='form_name']").val(data.form_name); 
            $("#submit").text('Save Camapign');
-           $("#campaign_form").find(".btn--primary").text('Save Camapign'); 
+           $("#campaign_form").find(".btn--primary").text('Save Camapign');
            if(data.approve==1){
             $("#campaign_name_Input").prop('readonly',true);
             $("#form_name").prop('readonly',true);
@@ -2991,7 +2994,10 @@ table tfoot tr {
     background: #ccc !important;
 }
 #campaign_list td.edit_btns a {
-    font-size: 14px !important;
+    font-size: 12px !important;
+}
+tr.delete_row {
+    background-color: #ccc !important;
 }
 </style>
 
