@@ -202,6 +202,19 @@ class AdvertiserController extends Controller
         }
     }
 
+    public function assign_publisher(Request $request){
+        $request->validate([  'advertiser_id' => 'required' ]);
+        $advertiser = Advertiser::findOrFail( $request->advertiser_id);
+        if($advertiser){
+            $advertiser->assign_publisher = $request->assign_publisher?$request->assign_publisher:null;
+            $advertiser->update();
+            return response()->json(['success'=>true, 'message'=> 'Successfully  Updated']);
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Someting wrong try again!']);
+        }
+
+    }
+
     public function advertiserActive($id)
     {
         $Adv = Advertiser::findOrFail($id);
