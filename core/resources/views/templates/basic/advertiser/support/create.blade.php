@@ -1,7 +1,7 @@
 @extends($activeTemplate.'layouts.advertiser.frontend')
 
 @section('panel')
-    <div class="container-fluid">
+    <div class="container-fluid" id="ticket-create">
         <div class="row justify-content-center mt-4">
             <div class="col-md-12">
                 <div class="card">
@@ -70,7 +70,12 @@
         </div>
     </div>
 @endsection
-
+<style>
+    
+    #ticket-create .bg--primary, #ticket-create form .btn--primary, #ticket-create form .file-upload-wrapper:before {
+    background-color: #4500dd!important;
+}   
+</style>
 
 @push('script')
     <script>

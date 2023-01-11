@@ -905,8 +905,10 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                     html +='</tr>';
                     table.append(html).attr('data-row', row);
                     update_field();
+                     validate_custom_field();
                     updateformpreviewtext();
                     makeinoputcharateruppercase();
+                   
                 }else{
                     Toast('red', "Only 5 fields allowed");
                 }
@@ -1379,6 +1381,7 @@ function updateformpreviewtext(data = false) {
    } else{  $('#preview_company_logo').html('') }
 
 
+
    for ($i = 1; $i < 6; $i++){
     if(data == false){
 
@@ -1408,6 +1411,8 @@ function updateformpreviewtext(data = false) {
         }
     }
 
+    
+ 
     t ='';
     if(question_type === 'MultipleChoice'){
         t +='<select class="form-select" id="Input_field_'+$i+'"';
@@ -1436,6 +1441,30 @@ function updateformpreviewtext(data = false) {
 
 
 }
+validate_custom_field();
+
+function  validate_custom_field(){
+$(".InputQuestion_text").blur(function(){
+    var nam=$(this).attr('name');
+    var vall=$(this).val();
+    var $_this=$(this);
+    $(".InputQuestion_text").each(function(){
+        if(nam != $(this).attr('name')){
+            if($(this).val()==vall){
+                 $_this.parent().find('.error').remove();
+                 $_this.parent().find('.bg-white').after('<span id="'+nam+'-error" class="error invalid-feedback" style="display:block">Field is repeating - Please change it</span>');
+            }else{
+                $_this.parent().find('.error').remove();
+            }
+        }
+    })
+});
+
+}
+
+
+
+
 
        // updateformpreview();
 $('.PageFormStyle').on('input', function() { updateformpreviewtext();
