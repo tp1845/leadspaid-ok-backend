@@ -949,8 +949,11 @@ $user = auth()->guard('advertiser')->user();
                $('.del-preview').on('click', function(){ $(this).next
                ('img').attr('src' , '#'); $(this).parent().hide(); var
                upload_box = $(this).parent().prev('.upload-box'); $
-               ('.inputfile', upload_box).val(""); $(".logo_comapny").val
-               (''); setTimeout(function() {
+               ('.inputfile', upload_box).val("");
+               if($("#company_name_Input").val()==""){
+                $(".logo_comapny").val('');
+            }
+                 setTimeout(function() {
 
                     updateformpreview();
 
@@ -1859,9 +1862,11 @@ $("input[name='target_cost']").val(data.target_cost);
 $("#TargetCountryInput").val(data.target_country).change();
 
 $("#TargetingTypeInput").val(data.target_type).change();
-
+if(data.company_logo != null){
 $("#company_logo_preview").show();
+
 $("#company_logo_img").attr('src',"{{ url('/')}}/assets/images/campaign_forms/"+data.company_logo);
+}
 if((data.company_logo== null) || (data.company_name == null)){
  $(".logo_comapny").val(1);
 }else{
