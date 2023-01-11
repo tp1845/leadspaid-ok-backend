@@ -3,6 +3,9 @@
 @endphp
 <script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
 <style>
+.sidebar__menu .menu-icon {
+    width: 20px;
+}
 .sidebar .slimScrollDiv .slimScrollBar {
     background-color: #000000 !important;
     width: 0px !important;
@@ -244,12 +247,7 @@
                         </a>
                     </li>
 
-                    <li class="sidebar-menu-item {{menuActive(['ticket','ticket.open','ticket.view'])}}">
-                    <a href="{{route('ticket')}}" class="nav-link">
-                        <i class="menu-icon las la-ticket-alt text-white"></i>
-                            <span class="menu-title text-white">@lang('Support Ticket')</span>
-                        </a>
-                    </li>
+                   
                     <li class="sidebar-menu-item {{menuActive('advertiser.profile')}}">
                     <a href="{{route('advertiser.profile')}}" class="nav-link">
                         <i class="menu-icon las la-user-cog text-white"></i>
@@ -274,6 +272,14 @@
             </ul>
 
             <ul class="sidebar__menu footer-fix">
+			
+			  <li class="sidebar-menu-item {{menuActive(['ticket','ticket.open','ticket.view'])}}">
+                    <a href="{{route('ticket')}}" class="nav-link">
+                        <i class="menu-icon las la-ticket-alt text-white"></i>
+                            <span class="menu-title text-white">@lang('Support Ticket')</span>
+                        </a>
+              </li>
+					
                <li class="sidebar-menu-item {{menuActive('advertiser.profile')}}">
                     <a href="{{route('advertiser.profile')}}" class="nav-link">
                         <i class="menu-icon dropdown-menu__icon las la-cog"></i>
