@@ -10,7 +10,7 @@ class Advertiser extends Authenticatable
 {
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'ver_code_send_at'];
-
+    protected $casts = [ 'assign_publisher' => 'array' ];
     public function ads()
     {
         return $this->hasMany(CreateAd::class,'advertiser_id');
@@ -25,7 +25,7 @@ class Advertiser extends Authenticatable
     {
         return $this->hasMany(UserLogin::class);
     }
-    
+
     public function transactions()
     {
         return $this->hasMany(Transaction::class,'user_id')->orderBy('id','desc');
@@ -58,5 +58,5 @@ class Advertiser extends Authenticatable
     {
         return $this->where('status', 2);
     }
-    
+
 }

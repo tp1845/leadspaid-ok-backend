@@ -12,8 +12,9 @@
                             <thead>
                             <tr>
                                 <th>Status</th>
+                                <th scope="col">@lang('Company Name')</th>
+                                <th scope="col">@lang('Assign publisher Admin')</th>
                                 <th scope="col">@lang('Name')</th>
-
                                 <th scope="col">@lang('Country')</th>
                                 <th scope="col">@lang('Phone')</th>
                                 <th scope="col">@lang('Email')</th>
@@ -21,8 +22,6 @@
                                 <th scope="col">@lang('Website')</th>
                                 <th scope="col">@lang('Social Media')</th>
                                 <th scope="col">@lang('Ad Budget')</th>
-
-
                                 <th scope="col">@lang('Username')</th>
                                 <th scope="col">@lang('Date Applied')</th>
                                 <th scope="col">@lang('Actions')</th>
@@ -30,11 +29,19 @@
                             </thead>
                             <tbody>
                             @forelse($advertisers as $advertiser)
-
                             <tr>
                                 <td data-label="@lang('Name')" class="text--primary">
                                     <input type="checkbox" name="status" @if($advertiser->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                </td>
+                                <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                <td data-label="@lang('Assign publisher Admin')">
+                                    <ul class="check_box_list">
+                                        @forelse($publishers_admin as $publisher)
+                                            <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked  @endif  type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                        @empty
 
+                                        @endforelse
+                                    </ul>
                                 </td>
                                 <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                 <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
@@ -91,6 +98,28 @@
     'use strict';
     var leads_preview_modal = $('#leads_preview_modal');
     $(document).ready(function() {
+        $('.assign_publisher').change(function() {
+            console.log('assign_publisher');
+            var advertiser_id = $(this).data('advertiser_id');
+            name =  $(this).attr('name');
+            var data = new Array();
+            $("input[name='"+name+"']:checked").each(function(i) { data.push($(this).val()); });
+            const formData = { "_token": "{{ csrf_token() }}", "assign_publisher":data, "advertiser_id":advertiser_id};
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url:  "{{route('admin.advertiser.assign_publisher')}}" ,
+                data: formData,
+                success: function(data) {
+                    if (data.success) {
+                        Toast('green', data.message);
+                    } else {
+                        Toast('red', data.message);
+                    }
+                }
+            });
+        })
+
         $('.toggle-status').change(function() {
             var status = $(this).prop('checked') == true ? 1 : 0;
             var id = $(this).data('id');
@@ -122,11 +151,16 @@
 @endpush
 @push('style')
 <style>
+    ul.check_box_list { height: 100px; overflow: auto; width: 100%; border: 1px solid #000; }
+    ul.check_box_list { list-style-type: none; margin: 0; padding: 0; overflow-x: hidden; }
+    ul.check_box_list li { margin: 0; padding: 0; }
+    ul.check_box_list label {  text-align: left;  padding: 3px 5px; display: inline-block; width: 100%; color: WindowText; background-color: Window; margin: 0; width: 100%; }
+    ul.check_box_list label input { margin-right: 3px; }
+    ul.check_box_list label:hover { background-color: Highlight; color: HighlightText; }
+
     table.table--light thead th { background-color: #1A273A; }
     .pagination .page-item .page-link, .pagination .page-item span {   border-radius: 0 !important;  }
-
     .pagination .page-item.active .page-link {  background-color: #1361b2;  border-color: #1361b2; }
-
     .text--primary { color: #1361b2 !important; }
     .btn--primary {  background-color: #11b6f3 !important; }
     .btn-success { background-color: #11b6f3;  border-color: #11b6f3; }
