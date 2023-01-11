@@ -3003,6 +3003,9 @@ tr.delete_row {
 .delete_row  td:first-child {
     pointer-events: none;
 }
+.delete_row  td:first-child .toggle {
+    display:none;
+}
 </style>
 
 @endpush
