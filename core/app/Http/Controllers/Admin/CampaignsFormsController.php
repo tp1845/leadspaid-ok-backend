@@ -65,7 +65,7 @@ class CampaignsFormsController extends Controller
         }
         else
         {
-            $notify[] = ['error', 'Data Not Found!'];
+            $notify[] = ['error', 'No Leads for this Campaign yet'];
             return redirect()->back()->withNotify($notify);
         }
     }
@@ -110,7 +110,7 @@ class CampaignsFormsController extends Controller
         }
         else
         {
-            $notify[] = ['error', 'Data Not Found!'];
+            $notify[] = ['error', 'No Leads for this Campaign yet'];
             return redirect()->back()->withNotify($notify);
         }
     }
@@ -155,7 +155,7 @@ class CampaignsFormsController extends Controller
         }
         else
         {
-            $notify[] = ['error', 'Data Not Found!'];
+            $notify[] = ['error', 'No Leads for this Forms yet'];
             return redirect()->back()->withNotify($notify);
         }
     }
@@ -200,7 +200,7 @@ class CampaignsFormsController extends Controller
         }
         else
         {
-            $notify[] = ['error', 'Data Not Found!'];
+            $notify[] = ['error', 'No Leads for this Forms yet'];
             return redirect()->back()->withNotify($notify);
         }
     }
