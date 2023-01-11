@@ -50,7 +50,8 @@ $user = auth()->guard('advertiser')->user();
                         <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif">
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                             <td class="edit_btns">{{ $campaign->name }} <br>
-                                @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
+                                @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> 
+                                 @if(($campaign->status==0) && ($campaign->approve==0)) @else | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif</td>
                             <td>
                               @if(($campaign->status==0) && ($campaign->approve==0)) Deleted @else 
                                 @if($campaign->approve) <span class="green">Active </span> @else
@@ -85,7 +86,7 @@ $user = auth()->guard('advertiser')->user();
                         @endphp
                         <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif">
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                            <td class="edit_btns">{{ $campaign->name }} <br>@if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
+                            <td class="edit_btns">{{ $campaign->name }} <br>@if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> @if(($campaign->status==0) && ($campaign->approve==0)) @else | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif</td>
                             <td>
                                   @if(($campaign->status==0) && ($campaign->approve==0)) Deleted @else
                                 @if($campaign->approve) <span class="green">Active </span> @else
@@ -2998,6 +2999,9 @@ table tfoot tr {
 }
 tr.delete_row {
     background-color: #ccc !important;
+}
+.delete_row  td.sorting_1 {
+    pointer-events: none;
 }
 </style>
 
