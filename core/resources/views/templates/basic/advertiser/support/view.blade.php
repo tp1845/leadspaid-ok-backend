@@ -180,9 +180,10 @@
 @endsection
 <style>
     
-    #ticket-create .bg--primary, #ticket-create form .btn--primary, #ticket-create form .file-upload-wrapper:before {
+   
+     #ticket-create table thead tr th, .btn--primary {
     background-color: #4500dd!important;
-}   
+}  
 </style>
 @push('script')
     <script>
