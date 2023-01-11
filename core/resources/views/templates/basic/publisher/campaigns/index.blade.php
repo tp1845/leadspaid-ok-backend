@@ -39,7 +39,7 @@
                                 @forelse($campaigns as $campaign)
                                     <tr>
                                         <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->company_name}} </td>
                                         <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
 

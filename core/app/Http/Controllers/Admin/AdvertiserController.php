@@ -9,6 +9,7 @@ use App\Transaction;
 use App\GeneralSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Publisher;
 use Stripe\ApiOperations\Create;
 
 class AdvertiserController extends Controller
@@ -18,14 +19,16 @@ class AdvertiserController extends Controller
         $page_title = 'All advertiser';
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest()->paginate(15);
-        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers'));
+        $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
+        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
     }
     public function allActiveAdvertiser()
     {
         $page_title = 'All active advertiser';
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest()->whereStatus(1)->paginate(15);
-        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers'));
+        $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
+        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
     }
 
     public function advertiserDetails($id)
@@ -183,7 +186,7 @@ class AdvertiserController extends Controller
 
           //  if( $Adv->email_activated == 0){
            //     send_email_adv_activated($Adv, 'EVER_CODE',$Adv->name);
-          // }  
+          // }
 
             $Adv->status = $request->status;
             //$Adv->email_activated = 1;
@@ -197,6 +200,19 @@ class AdvertiserController extends Controller
         }else{
             return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
         }
+    }
+
+    public function assign_publisher(Request $request){
+        $request->validate([  'advertiser_id' => 'required' ]);
+        $advertiser = Advertiser::findOrFail( $request->advertiser_id);
+        if($advertiser){
+            $advertiser->assign_publisher = $request->assign_publisher?$request->assign_publisher:null;
+            $advertiser->update();
+            return response()->json(['success'=>true, 'message'=> 'Successfully  Updated']);
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Someting wrong try again!']);
+        }
+
     }
 
     public function advertiserActive($id)
@@ -251,7 +267,8 @@ class AdvertiserController extends Controller
         $advertisers = $users->paginate(getPaginate());
         $page_title = 'User Search - ' . $search;
         $empty_message = 'No search result found';
-        return view('admin.advertiser.all', compact('page_title', 'search', 'empty_message', 'advertisers'));
+        $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
+        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
     }
 
 }
