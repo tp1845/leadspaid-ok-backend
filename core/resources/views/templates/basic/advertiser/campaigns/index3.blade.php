@@ -136,682 +136,503 @@ $user = auth()->guard('advertiser')->user();
 </div>
 {{-- Start Create campaign_create MODAL --}}
 <div id="campaign_create_modal" style="max-width: 100vw;" class="modal fade right modal-lg" tabindex="-1" role="dialog">
-    <div class="float-right h-100 m-0 modal-dialog w-100" style="max-width: 25rem;" role="document">
-        <button type="button" class="close campaign_create_close"  data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
-        <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
-            @csrf
-            <div class="modal-content h-100 ">
-                <div class="modal-header bg-primary m-0 PageFormStyle py-0">
-                    <div class="w-100">
-                        <div class="row align-items-end justify-content-between pb-2">
-                            <div class="col-lg-3 input-col">
-                                <label class="form-label lp-dark mb-1 ar-16 ls-mt-2" for="campaign_name_Input"><b>Campaign Name</b></label>
-                                <input type="text" class="form-control" id="campaign_name_Input" placeholder="eg. Lead_Gen1" name="campaign_name"   required maxlength="30"></div>
-                                <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
-                            </div>
+<div class="float-right h-100 m-0 modal-dialog w-100" style="max-width: 25rem;" role="document">
+<button type="button" class="close campaign_create_close"  data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+<form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
+@csrf
+<div class="modal-content h-100 ">
+<div class="modal-header bg-primary m-0 PageFormStyle py-0">
+<div class="w-100">
+<div class="row align-items-end justify-content-between pb-2">
+<div class="col-lg-3 input-col">
+<label class="form-label lp-dark mb-1 ar-16 ls-mt-2" for="campaign_name_Input"><b>Campaign Name</b></label>
+<input type="text" class="form-control" id="campaign_name_Input" placeholder="eg. Lead_Gen1" name="campaign_name"   required maxlength="30"></div>
+<div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
+</div>
 
 
 
-                            <div class="row py-2">
-                                <div class="col-lg-3 input-col">
-                                    <label class="form-label lp-dark mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 lp-dark">(from which leads are required)</span></label>
-                                    <select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
-                                        <option value="" label="Select a country ... " selected="selected">Select a country ...</option>
-                                        @foreach ($countries as $country)
-                                        <option @if($user->country === $country->country_name) selected="selected" @endif   value="{{ $country->country_name }}" label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-lg-3 input-col">
-                                    <label class="form-label lp-dark mb-1 ar-16" for="DailyBudgetInput"><b>Daliy Budget</b><i>*</i></label>
-                                    <div class="us_doller">
-                                        <input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required></div>
-                                    </div>
-                                    <div class="col-lg-3 input-col ">
-                                        <label class=" form-label lp-dark mb-1 ar-16" for="TargetCostInput"><b>Target Cost Per Lead</b><i>*</i></label>
-                                        <div class="us_doller"><input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
-                                        </div>
-                                        {{-- <small class="form-text text-muted">You will get the leads within this cost on average. However, the cost per lead may vary on different days.</small> --}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-body h-100" style="overflow-y: scroll">
-                            <div id="error-message"></div>
-                            <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
-                            <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
-                            <div class="row mb-3 PageFormStyle">
-                                <div class=" col input-col ">
-                                    <div class=" d-flex SelectFormType ">
-                                        <div class="form-check mr-4">
-                                            <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType1" value="CreateNewForm" required  >
-                                            <label class="form-check-label" for="SelectFormType1">
-                                                Create New Form
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType2" value="UseExistingForm" required>
-                                            <label class="form-check-label" for="SelectFormType2">
-                                                Use An Existing Form
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row w-100">
-                                <div class="col PageFormStyle formBlock" id="MainForm">
-                                    <div id="UseExistingForm" style="display: none">
-                                       <div class="card border h-100">
-                                        <div class="card-header bg-primary">Form List</div>
-                                        <div class="card-body p-3 input-col">
-                                            @foreach ($forms as $form)
-                                            <div class="form-check large-check">
-                                                <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required  onclick="updateformpreview_by_Id(event,this)">
-                                                <label class="form-check-label" for="form_{{ $form->id }}">
-                                                    {{ $form->form_name }}
-                                                </label>
-                                            </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                </div>
-                                <div  id="CreateNewForm" style="display: none">
-                                    <div class="card lp-border h-100">
-                                        <div class="card-header bg-primary cuxtom_pt_5">
-                                            <div class="input-col">
-                                                <label class="col-form-label ar-16" for="form_name" style=""><b>Form Name</b></label>
-                                                <input type="text" class="form-control" id="form_name" name="form_name" placeholder="eg.  Zoho_Form_1" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
-                                            </div>
-                                        </div>
-                                        <div class="card-body p-0 ">
-                                            <div class="row align-items-end m-0 py-2 pb-3 company_row" >
-                                                <div class="col-lg-3 ">
-                                                    <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
-                                                        <span id="text_white" class="ar-14 lp-dark">(Optional)</span>
-                                                    </label>
-                                                    <div class="input-col">
-                                                      <input type="text" name="logo_comapny" class="logo_comapny">
-                                                  </div>
+<div class="row py-2">
+<div class="col-lg-3 input-col">
+<label class="form-label lp-dark mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 lp-dark">(from which leads are required)</span></label>
+<select class="custom-select mr-sm-2" id="TargetCountryInput" name="target_country" required>
+<option value="" label="Select a country ... " selected="selected">Select a country ...</option>
+@foreach ($countries as $country)
+<option @if($user->country === $country->country_name) selected="selected" @endif   value="{{ $country->country_name }}" label=" {{ $country->country_name }} "> {{ $country->country_name }} </option>
+@endforeach
+</select>
+</div>
+<div class="col-lg-3 input-col">
+<label class="form-label lp-dark mb-1 ar-16" for="DailyBudgetInput"><b>Daliy Budget</b><i>*</i></label>
+<div class="us_doller">
+<input type="text" class="form-control" id="DailyBudgetInput" name="daily_budget" placeholder="Daliy Budget" required></div>
+</div>
+<div class="col-lg-3 input-col ">
+<label class=" form-label lp-dark mb-1 ar-16" for="TargetCostInput"><b>Target Cost Per Lead</b><i>*</i></label>
+<div class="us_doller"><input type="text" class="form-control" id="TargetCostInput" name="target_cost"  placeholder="Target Cost Per Lead" required>
+</div>
+{{-- <small class="form-text text-muted">You will get the leads within this cost on average. However, the cost per lead may vary on different days.</small> --}}
+</div>
+</div>
+</div>
+</div>
+<div class="modal-body h-100" style="overflow-y: scroll">
+<div id="error-message"></div>
+<input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
+<input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
+<div class="row mb-3 PageFormStyle">
+<div class=" col input-col ">
+<div class=" d-flex SelectFormType ">
+<div class="form-check mr-4">
+<input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType1" value="CreateNewForm" required  >
+<label class="form-check-label" for="SelectFormType1">
+Create New Form
+</label>
+</div>
+<div class="form-check">
+<input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType2" value="UseExistingForm" required>
+<label class="form-check-label" for="SelectFormType2">
+Use An Existing Form
+</label>
+</div>
+</div>
+</div>
+</div>
+<div class="row w-100">
+<div class="col PageFormStyle formBlock" id="MainForm">
+<div id="UseExistingForm" style="display: none">
+<div class="card border h-100">
+<div class="card-header bg-primary">Form List</div>
+<div class="card-body p-3 input-col">
+@foreach ($forms as $form)
+<div class="form-check large-check">
+<input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required  onclick="updateformpreview_by_Id(event,this)">
+<label class="form-check-label" for="form_{{ $form->id }}">
+{{ $form->form_name }}
+</label>
+</div>
+@endforeach
+</div>
+</div>
+</div>
+<div  id="CreateNewForm" style="display: none">
+<div class="card lp-border h-100">
+<div class="card-header bg-primary cuxtom_pt_5">
+<div class="input-col">
+<label class="col-form-label ar-16" for="form_name" style=""><b>Form Name</b></label>
+<input type="text" class="form-control" id="form_name" name="form_name" placeholder="eg.  Zoho_Form_1" required="" minlength="3" style="max-width: 400px; padding: 5px!important;">
+</div>
+</div>
+<div class="card-body p-0 ">
+<div class="row align-items-end m-0 py-2 pb-3 company_row" >
+<div class="col-lg-3 ">
+<label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
+<span id="text_white" class="ar-14 lp-dark">(Optional)</span>
+</label>
+<div class="input-col">
+<input type="text" name="logo_comapny" class="logo_comapny">
+</div>
 
-                                                  <input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
-                                                  <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
-                                                    <div class="upload-box" style="height: 53px; ">
-                                                        <input type="file" name="company_logo"  id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
-                                                        <label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo*</span></label>
-                                                    </div>
-                                                    <div id="company_logo_preview" class="img_preview_box">
-                                                        <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
-                                                        <img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
-                                                    </div>
-                                                </div>
+<input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
+<div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
+<div class="upload-box" style="height: 53px; ">
+<input type="file" name="company_logo"  id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
+<label for="form_company_logo"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Logo*</span></label>
+</div>
+<div id="company_logo_preview" class="img_preview_box">
+<a href="#" class="text-danger del-preview">
+<i class="fas fa-times-circle"></i></a>
+<img id="company_logo_img" src="#" alt="company_logo_img"  style="display: none" />
+</div>
+</div>
 
-                                            </div>
-
-
-                                            <div class="row m-0">
-                                                <div class="col-4 pt-0  h-100 leftForm lp-border-right">
-                                                    <div class="fbox bg-blue">
-                                                        <h4 class="gray_title top"> Add Product/Service Details</h4>
-                                                        <div>
-                                                            <label class="col-form-label ar-16" for="FormTitleInput_1 "><b>Product/Service/Offer</b> <span class="ar-14">(Add up to 3 variations)</span></label>
-                                                            <div id="form_title_1">
-                                                                <div class="input-group input-col">
-                                                                    <input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="eg. Start a Free 30-day Trial" required="" minlength="3" maxlength="25">
-                                                                    <div class="input-group-append bg-none">
-                                                                        <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div id="form_title_2" style="display: none">
-                                                                <div class="input-group input-col my-3">
-                                                                    <input type="text" class="form-control" id="FormTitleInput_2" name="form_title[2]" placeholder="eg. Start a Free 30-day Trial"  minlength="3" maxlength="25">
-                                                                    <div class="input-group-append bg-none">
-                                                                        <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div id="form_title_3" style="display: none">
-                                                                <div class="input-group input-col">
-                                                                    <input type="text" class="form-control" id="FormTitleInput_3" name="form_title[3]" placeholder="eg. Start a Free 30-day Trial"   minlength="3" maxlength="25">
-                                                                    <div class="input-group-append bg-none">
-                                                                        <div class="input-group-text"> </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <label class="col-form-label mt-3 ar-16" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> <span class="ar-14">(Add up to 3 variations)</span></label>
-                                                        <div id="FormDescription_1">
-                                                            <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="40k+ companies run on Zoho" required  minlength="3" maxlength="68">
-                                                                <div class="input-group-append bg-none">
-                                                                    <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="FormDescription_2" style="display: none">
-                                                            <div class="input-group input-col my-3">
-                                                                <input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Over 40k companies run their business with Zoho"  minlength="3" maxlength="68">
-                                                                <div class="input-group-append bg-none">
-                                                                    <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div id="FormDescription_3" style="display: none">
-                                                            <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Over 40k companies run their business with Zoho"   minlength="3" maxlength="68">
-                                                                <div class="input-group-append bg-none">
-                                                                    <div class="input-group-text"> </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <label class="col-form-label mt-3 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / </span><b>Offer Validity</b></label>
-                                                        <div id="form_title_1">
-                                                            <div class="input-group input-col">
-                                                                <input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="23">
-                                                                <div class="input-group-append bg-none">
-                                                                    <div class="input-group-text">  </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="fbox">
-                                                        <h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
-                                                        <label class="col-form-label ar-16"><b>Youtube Videos </b><span class="ar-14"> </span> </label>
+</div>
 
 
+<div class="row m-0">
+<div class="col-4 pt-0  h-100 leftForm lp-border-right">
+<div class="fbox bg-blue">
+<h4 class="gray_title top"> Add Product/Service Details</h4>
+<div>
+<label class="col-form-label ar-16" for="FormTitleInput_1 "><b>Product/Service/Offer</b> 
+<span class="ar-14">(Add up to 3 variations)</span></label>
+<div id="form_title_1">
+<div class="input-group input-col">
+<input type="text" class="form-control" id="FormTitleInput_1" name="form_title[1]" placeholder="eg. Start a Free 30-day Trial" required="" minlength="3" maxlength="25">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+</div>
+</div>
+</div>
+<div id="form_title_2" style="display: none">
+<div class="input-group input-col my-3">
+<input type="text" class="form-control" id="FormTitleInput_2" name="form_title[2]" placeholder="eg. Start a Free 30-day Trial"  minlength="3" maxlength="25">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#form_title_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+</div>
+</div>
+</div>
+<div id="form_title_3" style="display: none">
+<div class="input-group input-col">
+<input type="text" class="form-control" id="FormTitleInput_3" name="form_title[3]" placeholder="eg. Start a Free 30-day Trial"   minlength="3" maxlength="25">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> </div>
+</div>
+</div>
+</div>
+</div>
+<label class="col-form-label mt-3 ar-16" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> <span class="ar-14">(Add up to 3 variations)</span></label>
+<div id="FormDescription_1">
+<div class="input-group input-col">
+<input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="40k+ companies run on Zoho" required  minlength="3" maxlength="68">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+</div>
+</div>
+</div>
+<div id="FormDescription_2" style="display: none">
+<div class="input-group input-col my-3">
+<input type="text" class="form-control" id="form_desc_2_Input" name="form_desc[2]" placeholder="Over 40k companies run their business with Zoho"  minlength="3" maxlength="68">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+</div>
+</div>
+</div>
+<div id="FormDescription_3" style="display: none">
+<div class="input-group input-col">
+<input type="text" class="form-control" id="form_desc_3_Input" name="form_desc[3]" placeholder="Over 40k companies run their business with Zoho"   minlength="3" maxlength="68">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> </div>
+</div>
+</div>
+</div>
 
-                                                        <div class="custom_image_video">
-                                                            <div class="input-group input-col" id="video_image_1">
-                                                                <div class="input-col "  style="width: 88%;">
-                                                                    <div class="video_1  upload-box grey image" >
-
-                                                                        <label class="add_video" data-id="1">
-                                                                            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="input-group input-col" id="video_image_2">
-                                                                    <div class="input-col "  style="width: 88%;">
-                                                                        <div class="video_2  upload-box grey image" data-id="2">
-
-                                                                            <label class="add_video" data-id="2">
-                                                                                <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="input-group input-col" id="video_image_3">
-                                                                        <div class="input-col "  style="width: 88%;">
-                                                                            <div class="video_3  upload-box grey image" data-id="3">
-
-                                                                                <label class="add_video" data-id="3">
-                                                                                    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="Youtube_1" style="display:none;">
-                                                                        <div class="input-group input-col">
-                                                                            <input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
-                                                                            <div class="input-group-append bg-none">
-                                                                                <div class="input-group-text"> <a href="#" class="text-success" onClick="show_next('#Youtube_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div id="Youtube_2" style="display: none" >
-                                                                        <div class="input-group input-col">
-                                                                            <input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2"  maxlength="255">
-                                                                            <div class="input-group-append bg-none">
-                                                                                <div class="input-group-text"> <a href="#" class="text-success" onClick="show_next('#Youtube_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div id="Youtube_3" style="display: none" >
-                                                                        <div class="input-group input-col">
-                                                                            <input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3"  maxlength="255">
-                                                                            <div class="input-group-append bg-none">
-                                                                                <div class="input-group-text">  </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-
-                                                                    <!-- <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label> -->
-                                                                    <label class="col-form-label mt-3 ar-16" ><b>Images</b></label>
-                                                                    <div class="custom_image_upload">
-                                                                        <div class="input-group input-col" id="upload_image_1">
-                                                                            <div class="input-col "  style="width: 88%;">
-                                                                                <div class="upload-box grey image">
-                                                                                    <input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                                                    <label for="image_1_Input">
-                                                                                        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
-                                                                                    </div>
-                                                                                    <div id="image_1_img_preview" class="img_preview_box">
-                                                                                        <a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
-                                                                                        <img id="image_1_img" src="#" alt="image_1_img" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="input-group-append bg-none">
-                                                                                    <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_2', event)">
-                                                                                        <!-- <i class="fas fa-plus-circle"></i></i> -->
-                                                                                    </a></div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="input-group input-col" id="upload_image_2">
-                                                                                <div class="input-col flex-wrap"  style="width: 88%;">
-                                                                                    <div class="upload-box grey image">
-                                                                                        <input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                                                        <label for="image_2_Input"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
-                                                                                    </div>
-                                                                                    <div id="image_2_img_preview" class="img_preview_box">
-                                                                                        <a href="#" class="text-danger del-preview">
-                                                                                            <i class="fas fa-times-circle"></i>
-                                                                                        </a>
-                                                                                        <img id="image_2_img" src="#" alt="image_2_img" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="input-group-append bg-none">
-                                                                                    <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_3', event)">
-                                                                                        <!-- <i class="fas fa-plus-circle"></i></i> -->
-                                                                                    </a></div>
-                                                                                </div>
-                                                                            </div>
-
-                                                                            <div class="input-group input-col" id="upload_image_3">
-                                                                                <div class="input-col"  style="width: 88%;">
-                                                                                    <div class="upload-box grey image">
-                                                                                        <input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
-                                                                                        <label for="image_3_Input"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
-                                                                                    </div>
-                                                                                    <div id="image_3_img_preview" class="img_preview_box">
-                                                                                        <a href="#" class="text-danger del-preview">
-                                                                                            <i class="fas fa-times-circle"></i>
-                                                                                        </a>
-                                                                                        <img id="image_3_img" src="#" alt="image_3_img" style="display: none" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div class="input-group-append bg-none">
-                                                                                    <div class="input-group-text">  </div>
-                                                                                </div>
+<label class="col-form-label mt-3 ar-16" for="FormPunchlineInput"><b>Unique Selling Proposition </b><span class="ar-14">(Why someone should buy your product or service) / </span><b>Offer Validity</b></label>
+<div id="form_title_1">
+<div class="input-group input-col">
+<input type="text" class="form-control" id="FormPunchlineInput" name="form_punchline" placeholder="eg. No Credit Card Required."   maxlength="23">
+<div class="input-group-append bg-none">
+<div class="input-group-text">  </div>
+</div>
+</div>
+</div>
+</div>
+<div class="fbox">
+<h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
+<label class="col-form-label ar-16"><b>Youtube Videos </b><span class="ar-14"> </span> </label>
 
 
 
+<div class="custom_image_video">
+<div class="input-group input-col" id="video_image_1">
+<div class="input-col "  style="width: 88%;">
+<div class="video_1  upload-box grey image" >
 
-                                                                            </div>
+<label class="add_video" data-id="1">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
+</div>
+</div>
+</div>
+<div class="input-group input-col" id="video_image_2">
+<div class="input-col "  style="width: 88%;">
+<div class="video_2  upload-box grey image" data-id="2">
 
+<label class="add_video" data-id="2">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
+</div>
+</div>
+</div>
+<div class="input-group input-col" id="video_image_3">
+<div class="input-col "  style="width: 88%;">
+<div class="video_3  upload-box grey image" data-id="3">
 
-                                                                        </div>
-                                                                        <div class="input-group input-col create_qty_error">
-                                                                            <input type="text" name="create_qty" class="form-control create_qty">
-                                                                        </div>
+<label class="add_video" data-id="3">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add Video</span></label>
+</div>
+</div>
+</div>
+</div>
+<div id="Youtube_1" style="display:none;">
+<div class="input-group input-col">
+<input type="text" class="form-control" id="Youtube_URL_1_Input" name="youtube_1" placeholder="Youtube Video Url 1"  maxlength="255">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success" onClick="show_next('#Youtube_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+</div>
+</div>
+</div>
 
-
-
-                                                                    </div>
-                                                                    </div>
-                                                                    <div
-                                                                    class="col
-                                                                    rightForm">
-                                                                    <div
-                                                                    class="row">
-                                                                    <div
-                                                                    class="col-12
-                                                                    padding">
-                                                                    <h5
-                                                                    class="my-2">Lead
-                                                                    Form
-                                                                    Fields
-                                                                    <small
-                                                                    class="title-small2">(Add
-                                                                    Up
-                                                                    to
-                                                                    5
-                                                                    Fields)
-                                                                    </small></h5>
-                                                                    <div
-                                                                    class="input-col">
-                                                                    <input
-                                                                    type="text"
-                                                                    name="min_row_validation"
-                                                                    style="
-                                                                    border:
-                                                                    none;
-                                                                    height:
-                                                                    1px;
-                                                                    padding:
-                                                                    0;
-                                                                    display:
-                                                                    block;
-                                                                    opacity:
-                                                                    0;"
-                                                                    >
-                                                                    </div>
-                                                                    <table
-                                                                    class="table
-                                                                    table-bordered
-                                                                    ">
-                                                                    <thead>
-                                                                    <tr>
-                                                                    <th
-                                                                    scope="col"
-                                                                    width="10px">#</th>
-                                                                    <th
-                                                                    scope="col"
-                                                                    style="min-width:
-                                                                    100px;"
-                                                                    >
-                                                                    <div
-                                                                    class="ar-16">Required</div></th>
-                                                                    <th
-                                                                    scope="col"><span
-                                                                    class="ar-16">Fileds</span></th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody
-                                                                    id="sortable"
-                                                                    data-row='3'>
-                                                                    <tr
-                                                                    class="sortable-group
-                                                                    row_1
-                                                                    ">
-                                                                    <td
-                                                                    class="handle
-                                                                    ui-sortable-handle"><i
-                                                                    class="fa
-                                                                    fa-solid
-                                                                    fa-grip-vertical"></i>
-                                                                    <input
-                                                                    type="hidden"
-                                                                    class="sort"
-                                                                    name="field_1[sort]"
-                                                                    value="1">
-                                                                    </td>
-                                                                    <td>
-                                                                    <input
-                                                                    type="checkbox"
-                                                                    checked
-                                                                    class="InputQuestion_Required"
-                                                                    name="field_1[required]">
-                                                                    </td>
-                                                                    <td>{{--
-                                                                    <small
-                                                                    class="type">Short
-                                                                    Answer</small>
-                                                                    --}}
-                                                                    <input
-                                                                    type="text"
-                                                                    readonly
-                                                                    class="small_info
-                                                                    InputQuestionType"
-                                                                    name="field_1[question_type]"
-                                                                    value="ShortAnswer"
-                                                                    required>
-                                                                    <div
-                                                                    class="input-group
-                                                                    input-col">
-                                                                    <input
-                                                                    type="text"
-                                                                    class="form-control
-                                                                    InputQuestion_text"
-                                                                    placeholder="Enter
-                                                                    Your
-                                                                    Question"
-                                                                    name="field_1[question_text]"
-                                                                    value="Full
-                                                                    Name"
-                                                                    required=""
-                                                                    maxlength="50">
-                                                                    <div
-                                                                    class="input-group-append
-                                                                    bg-white">
-                                                                    <div
-                                                                    class="input-group-text">
-                                                                    <a
-                                                                    href="#"
-                                                                    class="text-danger
-                                                                    del-row"><i
-                                                                    class="fas
-                                                                    fa-times-circle"></i></a></div>
-                                                                    </div>
-                                                                    </div>
-                                                                    </td>
-                                                                    </tr>
-                                                                    <tr
-                                                                    class="sortable-group
-                                                                    row_2">
-                                                                    <td
-                                                                    class="handle
-                                                                    ui-sortable-handle"><i
-                                                                    class="fa
-                                                                    fa-solid
-                                                                    fa-grip-vertical"></i>
-                                                                    <input
-                                                                    type="hidden"
-                                                                    class="sort"
-                                                                    name="field_2[sort]"
-                                                                    value="2">
-                                                                    </td>
-                                                                    <td>
-                                                                    <input
-                                                                    type="checkbox"
-                                                                    checked
-                                                                    class="InputQuestion_Required"
-                                                                    name="field_2[required]">
-                                                                    </td>
-                                                                    <td>{{--
-                                                                    <small
-                                                                    class="type">Short
-                                                                    Answer</small>
-                                                                    --}}
-                                                                    <input
-                                                                    type="text"
-                                                                    readonly
-                                                                    class="small_info
-                                                                    InputQuestionType"
-                                                                    name="field_2[question_type]"
-                                                                    value="ShortAnswer"
-                                                                    required>
-                                                                    <div
-                                                                    class="input-group
-                                                                    input-col">
-                                                                    <input
-                                                                    type="text"
-                                                                    class="form-control
-                                                                    InputQuestion_text"
-                                                                    placeholder="Enter
-                                                                    Your
-                                                                    Question"
-                                                                    name="field_2[question_text]"
-                                                                    value="Email
-                                                                    id"
-                                                                    required=""
-                                                                    maxlength="50">
-                                                                    <div
-                                                                    class="input-group-append
-                                                                    bg-white">
-                                                                    <div
-                                                                    class="input-group-text">
-                                                                    <a
-                                                                    href="#"
-                                                                    class="text-danger
-                                                                    del-row"><i
-                                                                    class="fas
-                                                                    fa-times-circle"></i></a></div>
-                                                                    </div>
-                                                                    </div>
-                                                                    </td>
-                                                                    </tr>
-                                                                    <tr
-                                                                    class="sortable-group
-                                                                    row_3">
-                                                                    <td
-                                                                    class="handle
-                                                                    ui-sortable-handle"><i
-                                                                    class="fa
-                                                                    fa-solid
-                                                                    fa-grip-vertical"></i>
-                                                                    <input
-                                                                    type="hidden"
-                                                                    class="sort"
-                                                                    name="field_3[sort]"
-                                                                    value="3">
-                                                                    </td>
-                                                                    <td>
-                                                                    <input
-                                                                    type="checkbox"
-                                                                    checked
-                                                                    class="InputQuestion_Required"
-                                                                    name="field_3[required]">
-                                                                    </td>
-                                                                    <td>{{--
-                                                                    <small
-                                                                    class="type">Short
-                                                                    Answer</small>
-                                                                    --}}
-                                                                    <input
-                                                                    type="text"
-                                                                    readonly
-                                                                    class="small_info
-                                                                    InputQuestionType"
-                                                                    name="field_3[question_type]"
-                                                                    value="ShortAnswer"
-                                                                    required>
-                                                                    <div
-                                                                    class="input-group
-                                                                    input-col">
-                                                                    <input
-                                                                    type="text"
-                                                                    class="form-control
-                                                                    InputQuestion_text"
-                                                                    placeholder="Enter
-                                                                    Your
-                                                                    Question"
-                                                                    name="field_3[question_text]"
-                                                                    value="Phone
-                                                                    Number"
-                                                                    required=""
-                                                                    maxlength="50">
-                                                                    <div
-                                                                    class="input-group-append
-                                                                    bg-white">
-                                                                    <div
-                                                                    class="input-group-text">
-                                                                    <a
-                                                                    href="#"
-                                                                    class="text-danger
-                                                                    del-row"><i
-                                                                    class="fas
-                                                                    fa-times-circle"></i></a></div>
-                                                                    </div>
-                                                                    </div>
-                                                                    </td>
-                                                                    </tr>
-                                                                    </tbody>
-                                                                    </table>
-
-                                                                                <div class="dropdown  my-3">
-                                                                                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                                        + Add question
-                                                                                    </button>
-                                                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                                        <a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle icon-Aa"></i> Short Answer</a>
-                                                                                        <a class="dropdown-item" href="#" onclick="add_form_field('multiple')"> <i class="far fa-dot-circle"></i> Multiple Choice</a>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                                {{--  --}}
-
-                                                {{--  --}}
-                                                <div class="col" id="formPreview">
-                                                    <div class=" mb-4">
-                                                        <h3 class=" gray formPreview_title"> Form Preview</h3>
-                                                        <div class=" ">
-                                                            <div id="formPreviewBLock">
-                                                                <div class="container w-100" >
-                                                                    <form id="LeadForm" action="#">
-
-                                                                        <div class="form-bottom-logo">
-                                                                            <p class="logo">
-                                                                                <span id="preview_company_logo"> </span>
-                                                                                <span id="preview_company_name"> A1 Immigration Consultancy</span>
-                                                                            </p>
-                                                                        </div>
-                                                                        <div>
-                                                                            <div id="loadData">
-                                                                                <div class="video custom_after_text border-bottom shadow" id="preview_media">
-                                                                                    <div class="">Add Creative</div>
-                                                                                </div>
-                                                                                <h2 id="preview_form_title" class="form-title"></h2>
-                                                                                <p id="preview_form_sub_title"class="form-subtitle"> </p>
-                                                                                <p id="preview_Punchline"class="form-punchline"> </p>
-
-                                                                                <div class="form-row" id="preview_filed_1"> </div>
-                                                                                <div class="form-row" id="preview_filed_2"> </div>
-                                                                                <div class="form-row" id="preview_filed_3"> </div>
-                                                                                <div class="form-row" id="preview_filed_4"> </div>
-                                                                                <div class="form-row" id="preview_filed_5"> </div>
-
-                                                                            </div>
-                                                                            <div class="form-row mt-3">
-                                                                                <button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
-                                                                                <p class="policy">I agree to your <a href="https://www.leadspaid.com/privacy-policy" class="privcy-polcy" rel="noindex, nofollow" target="_blank"> privacy policy </a> by submitting this form.</p>
-
-                                                                            </div>
-                                                                        </div>
+<div id="Youtube_2" style="display: none" >
+<div class="input-group input-col">
+<input type="text" class="form-control my-3" id="Youtube_URL_2_Input" name="youtube_2" placeholder="Youtube Video Url 2"  maxlength="255">
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success" onClick="show_next('#Youtube_3', event)"><i class="fas fa-plus-circle"></i></i></a></div>
+</div>
+</div>
+</div>
+<div id="Youtube_3" style="display: none" >
+<div class="input-group input-col">
+<input type="text" class="form-control" id="Youtube_URL_3_Input" name="youtube_3" placeholder="Youtube Video Url 3"  maxlength="255">
+<div class="input-group-append bg-none">
+<div class="input-group-text">  </div>
+</div>
+</div>
+</div>
 
 
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                    <!-- <label class="col-form-label mt-4" ><b>Upload upto 3 images</b> (Add up to 3 variations) </label> -->
+<label class="col-form-label mt-3 ar-16" ><b>Images</b></label>
+<div class="custom_image_upload">
+<div class="input-group input-col" id="upload_image_1">
+<div class="input-col "  style="width: 88%;">
+<div class="upload-box grey image">
+<input type="file" name="image_1" id="image_1_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+<label for="image_1_Input">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
+</div>
+<div id="image_1_img_preview" class="img_preview_box">
+<a href="#" class="text-danger del-preview"><i class="fas fa-times-circle"></i></a>
+<img id="image_1_img" src="#" alt="image_1_img" />
+</div>
+</div>
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_2', event)">
+<!-- <i class="fas fa-plus-circle"></i></i> -->
+</a></div>
+</div>
+</div>
 
-                                            <div class="row">
-                                                <div class="col-12 mt-3">
-                                                    <button id="submit" class="btn btn--primary btn-xl mt-3 mb-5">Create Campaign</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+<div class="input-group input-col" id="upload_image_2">
+<div class="input-col flex-wrap"  style="width: 88%;">
+<div class="upload-box grey image">
+<input type="file" name="image_2" id="image_2_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+<label for="image_2_Input"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
+</div>
+<div id="image_2_img_preview" class="img_preview_box">
+<a href="#" class="text-danger del-preview">
+<i class="fas fa-times-circle"></i>
+</a>
+<img id="image_2_img" src="#" alt="image_2_img" />
+</div>
+</div>
+<div class="input-group-append bg-none">
+<div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#upload_image_3', event)">
+<!-- <i class="fas fa-plus-circle"></i></i> -->
+</a></div>
+</div>
+</div>
+
+<div class="input-group input-col" id="upload_image_3">
+<div class="input-col"  style="width: 88%;">
+<div class="upload-box grey image">
+<input type="file" name="image_3" id="image_3_Input" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+<label for="image_3_Input"><svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px;}</style></defs><title/><g id="plus"><line class="cls-1" x1="16" x2="16" y1="7" y2="25"/><line class="cls-1" x1="7" x2="25" y1="16" y2="16"/></g></svg> <span>Add images</span></label>
+</div>
+<div id="image_3_img_preview" class="img_preview_box">
+<a href="#" class="text-danger del-preview">
+<i class="fas fa-times-circle"></i>
+</a>
+<img id="image_3_img" src="#" alt="image_3_img" style="display: none" />
+</div>
+</div>
+<div class="input-group-append bg-none">
+<div class="input-group-text">  </div>
+</div>
 
 
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
-                          <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
 
-                                <button type="button" class="close close_youtube" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                          <div class="modal-body">
-                            <div class="form-group">
-                                <label>Add Youtube video link</label>
-                                <input type="text" name="video" data-video="" class="form-control youtube_video" >
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary close_youtube" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary save_youtube">Add Video</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+</div>
+
+
+</div>
+<div class="input-group input-col create_qty_error">
+<input type="text" name="create_qty" class="form-control create_qty">
+</div>
+
+
+
+</div>
+</div>
+<div class="col rightForm"> <div class="row"> 
+<div class="col-12 padding">
+<h5 class="my-2">Lead Form Fields <small class="title-small2">(Add Up to 5 Fields)</small></h5>
+<div class="input-col"> <input type="text" name="min_row_validation" style=" border: none;  height: 1px;
+padding: 0; display: block; opacity: 0;">
+</div>
+<table class="table table-bordered">
+<thead>
+<tr>
+<th scope="col" width="10px">#</th>
+<th scope="col" style="min-width: 100px;">
+<div class="ar-16">Required</div></th>
+<th scope="col"><span class="ar-16">Fileds</span></th>
+</tr> 
+</thead>
+<tbody id="sortable" data-row='3'> 
+<tr class="sortable-group row_1">
+<td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
+<input type="hidden" class="sort" name="field_1[sort]" value="1">
+</td>
+<td>
+<input type="checkbox" checked class="InputQuestion_Required" name="field_1[required]">
+</td>
+<td>{{-- <small class="type">Short Answer</small> --}}
+<input  type="text" readonly class="small_info InputQuestionType" name="field_1[question_type]" value="ShortAnswer" required>
+<div class="input-group input-col">
+<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[ estion_text]" value="Full Name" required="" maxlength="50">
+<div class="input-group-append bg-white">
+<div class="input-group-text"> 
+<a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="sortable-group row_2">
+<td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
+<input type="hidden" class="sort" name="field_2[sort]" value="2">
+</td>
+<td>
+<input type="checkbox" checked class="InputQuestion_Required" name="field_2[required]">
+</td>
+<td>{{-- <small class="type">Short Answer</small> --}}
+<input type="text" readonly class="small_info InputQuestionType" name="field_2[question_type]" value="ShortAnswer"
+required>
+<div class="input-group input-col">
+<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question"
+name="field_2[question_text]"
+value="Email id" required="" maxlength="50"> 
+<div class="input-group-append bg-white">
+<div class="input-group-text"> 
+<a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a>
+</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="sortable-group row_3">
+<td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>
+<input type="hidden" class="sort" name="field_3[sort]" value="3"> </td>
+<td>
+<input type="checkbox" checked class="InputQuestion_Required" name="field_3[required]">
+</td>
+<td>{{-- <small class="type">Short Answer</small> --}}
+<input type="text" readonly class="small_info InputQuestionType" name="field_3[question_type]"
+value="ShortAnswer" required>
+<div class="input-group input-col">
+<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question"
+name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
+<div class="input-group-append bg-white">
+<div class="input-group-text">
+<a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+<div class="dropdown  my-3">
+<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
++ Add question
+</button>
+<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+<a class="dropdown-item" href="#" onclick="add_form_field('single')"> <i class="far fa-dot-circle icon-Aa"></i> Short Answer</a>
+<a class="dropdown-item" href="#" onclick="add_form_field('multiple')"> <i class="far fa-dot-circle"></i> Multiple Choice</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+{{--  --}}
+
+{{--  --}}
+<div class="col" id="formPreview">
+<div class=" mb-4">
+<h3 class=" gray formPreview_title"> Form Preview</h3>
+<div class=" ">
+<div id="formPreviewBLock">
+<div class="container w-100" >
+<form id="LeadForm" action="#">
+
+<div class="form-bottom-logo">
+<p class="logo">
+<span id="preview_company_logo"> </span>
+<span id="preview_company_name"> A1 Immigration Consultancy</span>
+</p>
+</div>
+<div>
+<div id="loadData">
+<div class="video custom_after_text border-bottom shadow" id="preview_media">
+<div class="">Add Creative</div>
+</div>
+<h2 id="preview_form_title" class="form-title"></h2>
+<p id="preview_form_sub_title"class="form-subtitle"> </p>
+<p id="preview_Punchline"class="form-punchline"> </p>
+
+<div class="form-row" id="preview_filed_1"> </div>
+<div class="form-row" id="preview_filed_2"> </div>
+<div class="form-row" id="preview_filed_3"> </div>
+<div class="form-row" id="preview_filed_4"> </div>
+<div class="form-row" id="preview_filed_5"> </div>
+
+</div>
+<div class="form-row mt-3">
+<button type="submit" id="saveData" class="form-btn" disabled>Submit</button>
+<p class="policy">I agree to your <a href="https://www.leadspaid.com/privacy-policy" class="privcy-polcy" rel="noindex, nofollow" target="_blank"> privacy policy </a> by submitting this form.</p>
+
+</div>
+</div>
+
+
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-12 mt-3">
+<button id="submit" class="btn btn--primary btn-xl mt-3 mb-5">Create Campaign</button>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+
+<button type="button" class="close close_youtube" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label>Add Youtube video link</label>
+<input type="text" name="video" data-video="" class="form-control youtube_video" >
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary close_youtube" data-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary save_youtube">Add Video</button>
+</div>
+</div>
+</div>
+</div>
 
 
 
@@ -2093,11 +1914,13 @@ $.each(data.target_categories, function (idx, val) {
 $(".delete_campaign").click(function(e){
     e.preventDefault();
   var url=$(this).attr('href');
+  if(confirm(' Do you really want to delete the campaign?')){
   $.get(url, function (data) {
         if(data.code==200){
             location.reload();
         }
   });
+}
 });
 
 
