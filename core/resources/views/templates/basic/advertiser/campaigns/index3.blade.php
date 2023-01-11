@@ -3000,7 +3000,7 @@ table tfoot tr {
 tr.delete_row {
     background-color: #ccc !important;
 }
-.delete_row  td.sorting_1 {
+.delete_row  td:first-child {
     pointer-events: none;
 }
 </style>
