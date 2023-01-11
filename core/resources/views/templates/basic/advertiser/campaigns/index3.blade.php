@@ -49,7 +49,7 @@ $user = auth()->guard('advertiser')->user();
                         @endphp
                         <tr>
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                            <td>{{ $campaign->name }} <br>
+                            <td class="edit_btns">{{ $campaign->name }} <br>
                                 @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
                             <td>
 
@@ -84,7 +84,7 @@ $user = auth()->guard('advertiser')->user();
                         @endphp
                         <tr>
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                            <td>{{ $campaign->name }} <br>@if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
+                            <td class="edit_btns">{{ $campaign->name }} <br>@if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a></td>
                             <td>
 
                                 @if($campaign->approve) <span class="green">Active </span> @else
@@ -479,7 +479,8 @@ padding: 0; display: block; opacity: 0;">
 <td>{{-- <small class="type">Short Answer</small> --}}
 <input  type="text" readonly class="small_info InputQuestionType" name="field_1[question_type]" value="ShortAnswer" required>
 <div class="input-group input-col">
-<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_1[ estion_text]" value="Full Name" required="" maxlength="50">
+<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question"
+ name="field_1[question_text]" value="Full Name" required="" maxlength="50">
 <div class="input-group-append bg-white">
 <div class="input-group-text"> 
 <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a>
@@ -1031,7 +1032,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
 
         var campaigns =  @json($campaignsval);
 
-        if($('#input_campaign_id').val() ==""){
+        if(($('#input_campaign_id').val() =="") || ($('#input_campaign_id').val() ==0)){
 
             $.validator.addMethod(
                 "unique_campaign_name",
@@ -1057,7 +1058,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
               },
               "Use a different Form name (Same Form Name already exist)"
               );
-            console.log("te st899999");
+            
             $("#campaign_form").validate({
                 rules: {
                     campaign_name: { minlength: 3, unique_campaign_name: true },
@@ -1104,7 +1105,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
             });
 
         }else{
-          console.log("te st");
+         
           $("#campaign_form").validate({
             rules: {
                 campaign_name: { minlength: 3 },
@@ -1372,6 +1373,8 @@ function updateformpreviewtext(data = false) {
            $('#preview_company_logo').html('');
        }
    } else{  $('#preview_company_logo').html('') }
+
+
    for ($i = 1; $i < 6; $i++){
     if(data == false){
 
@@ -1615,6 +1618,14 @@ function makeinoputcharateruppercase(){
       $(this).val(capitalizeFirstLetter($(this).val()));
 
   });
+
+   $("#company_name_Input").on('keypress',function(e){
+
+      $(this).val(capitalizeFirstLetter($(this).val()));
+
+  });
+
+
     $(".rightForm").find("input").on('keypress',function(e){
 
       $(this).val(capitalizeFirstLetter($(this).val()));
@@ -1796,14 +1807,14 @@ if(data.field_3 != null){
 
    if(field3.required=="on"){
     $(".row_3").find("input[type=checkbox]").prop('checked',true);
-}else{
-    $(".row_3").find("input[type=checkbox]").prop('checked',false);
-}
-$(".row_3").find(".sort").val(field3.sort);
-$(".row_3").find(".InputQuestionType").val(field3.question_type);
-$(".row_3").find(".InputQuestion_text").val(field3.question_text);
-}
-
+        }else{
+            $(".row_3").find("input[type=checkbox]").prop('checked',false);
+        }
+        $(".row_3").find(".sort").val(field3.sort);
+        $(".row_3").find(".InputQuestionType").val(field3.question_type);
+        $(".row_3").find(".InputQuestion_text").val(field3.question_text);
+        }
+  $(".row_4").remove();
 if(data.field_4 != null){
 
 
@@ -1846,12 +1857,12 @@ $(".row_4").find(".sort").val(field4.sort);
 $(".row_4").find(".InputQuestionType").val(field4.question_type);
 $(".row_4").find(".InputQuestion_text").val(field4.question_text);
 }
-
+ $(".row_5").remove();
 if(data.field_5 != null){
 
 
    var field5=JSON.parse(data.field_5);
-
+  
    if(field5.question_type=="ShortAnswer"){
        add_form_field('single');
    }else{
@@ -2056,7 +2067,7 @@ height: auto;
     background-color: #ddf5ff;
     max-width: 100%;
     font-size: 1.15rem;
-    font-weight: 300;
+    font-weight: 400;
     text-overflow: ellipsis;
     white-space: nowrap;
     cursor: pointer;
@@ -2979,7 +2990,9 @@ table tfoot tr {
 .InputQuestion_text[readonly], .fbox input[readonly] {
     background: #ccc !important;
 }
-
+#campaign_list td.edit_btns a {
+    font-size: 14px !important;
+}
 </style>
 
 @endpush
