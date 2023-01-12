@@ -41,14 +41,14 @@
 
     </div>
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
-    <form class="navbar-search">
+    <form class="navbar-search d-none">
       <button type="submit" class="navbar-search__btn">
         <i class="las la-search"></i>
       </button>
       <input type="search" name="navbar-search__field" id="navbar-search__field" placeholder="Search your products">
       <button type="button" class="navbar-search__close"><i class="las la-times"></i></button>
     </form>
-    <div class="navbar navbar-expand-md mr-2">
+    <div class="navbar navbar-expand-md mr-2 d-none">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>@lang('Menu')</span>
       </button>
