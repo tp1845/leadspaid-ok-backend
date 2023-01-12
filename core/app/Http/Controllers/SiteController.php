@@ -59,12 +59,13 @@ class SiteController extends Controller
     {
          if($request->email)
          {
+            $enquiry_about    = $request->enquiry_about;
             $name    = $request->name;
             $email   = $request->email;
             $company   = $request->company;
             $phone     = $request->country_code . '-' . $request->phone;
             $message     = $request->message;
-            send_email_contact_admin($name,'EVER_CODE',$email,$company,$phone,$message);
+            send_email_contact_admin($name,'EVER_CODE',$email,$company,$phone,$message, $enquiry_about);
             $page_title = "Thanks email";
             $useremail = $request->email;
             return view($this->activeTemplate . 'thanks-email-contact', compact('page_title','useremail'));

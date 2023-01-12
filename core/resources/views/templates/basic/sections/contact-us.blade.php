@@ -23,6 +23,16 @@
                         @csrf
                         <div class="col-md-12">
                             <div class="form-group mb-3">
+                                <select id="EnquiryAbout" name="enquiry_about" class="rounded-0 form-control form-select py-2" required  >
+                                    <option value="">What is your Enquiry About?</option>
+                                    <option value="Advertiser Enquiry">Advertiser Enquiry</option>
+                                    <option value="Publisher Enquiry - Join As Publisher">Publisher Enquiry - Join As Publisher</option>
+                                    <option value="Other Enquiries">Other Enquiries</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group mb-3">
                                 <input type="text" id="conact_name" name="name" class="rounded-0 form-control py-2" placeholder="@lang('Full Name')" >
                             </div>
                         </div>
@@ -155,6 +165,7 @@
 
         $("#contact_form").validate({
             rules: {
+                enquiry_about:{ required: true }
                 name: { required: true,minlength: 3, lettersonly: true },
                 company: { required: false, minlength: 3},
                 email: { required: true,  valid_email:true  },

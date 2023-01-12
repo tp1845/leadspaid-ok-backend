@@ -614,13 +614,14 @@ function send_email_adv_admin($user, $type = null, $username)
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
-function send_email_contact_admin($name,$type = null,$email,$company,$phone,$messages){
+function send_email_contact_admin($name,$type = null,$email,$company,$phone,$messages,$enquiry_about){
     $general = GeneralSetting::first();
     $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) { return; }
     $sendto_email='arun.saba@leadspaid.com';
     $receiver_name = '';
     $subject="Contact Us Email";
+    $message = '<p style="color: rgb(193,205,220);"><b>Enquiry About : </b> '.$enquiry_about.'</p>';
     $message = '<p style="color: rgb(193,205,220);"><b>Name : </b> '.$name.'</p>';
     $message .= '<p style="color: rgb(193,205,220);"><b>Email : </b> '.$email.'</p>';
     $message .= '<p style="color: rgb(193,205,220);"><b>Company : </b> '.$company.'</p>';

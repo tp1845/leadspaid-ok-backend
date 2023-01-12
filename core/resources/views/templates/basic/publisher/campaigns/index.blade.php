@@ -20,7 +20,7 @@
                                     <th>Daily Budget</th>
                                     <th>Cost</th>
                                     <th>Leads</th>
-                                    <th>Cost per <br>Leads</th>
+                                    <th>CPL</th>
                                     <th>Action</th>
                                     <th>Spend</th>
                                     <th>iframe 1 ( 300 X 600 )</th>
