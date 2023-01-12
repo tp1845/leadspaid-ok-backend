@@ -303,7 +303,7 @@ table.dataTable {
                                 Card Type:
                             </div>
                             <div class="adsrock-detail-list pl-3">
-                                {{$card_info->brand}}
+                                {{ucfirst($card_info->brand)}}
                             </div>
                         </li>
                         <li>
