@@ -33,6 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+
                                 @forelse($campaigns as $campaign)
                                     <tr>
                                         <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
@@ -45,7 +46,8 @@
                                         <td>${{  $campaign->daily_budget }}</td>
                                         <td>${{  $campaign->target_cost }}</td>
                                         <td>
-                                            @if (isset($campaign->campaign_forms))  {{$campaign->campaign_forms->form_name}}  @endif
+                                            @if (isset($campaign->campaign_forms))
+                                            <a href="#" class="btn_form_preview"  data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}" > {{$campaign->campaign_forms->form_name}}  </a> @endif
                                         </td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
@@ -60,7 +62,6 @@
                                                     <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
                                                     <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
                                                 </div>
-
                                             </form>
                                         </td>
                                         <td class="spend_col">
@@ -96,6 +97,22 @@
             <div class="card-footer py-4"> </div>
         </div>
     </div>
+ {{-- SETUP Form Preview MODAL --}}
+    <div class="modal fade" id="form_preview_modal" tabindex="-1" aria-labelledby="FormPreviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="FormPreviewModalLabel">Form Preview</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="form_preview_html"  ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     {{-- SETUP Lead Preview MODAL --}}
     <div class="modal fade" id="leads_preview_modal" tabindex="-2" aria-labelledby="leads_preview_modalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-xl">
@@ -118,71 +135,70 @@
 @endsection
 @push('style')
 <style>
-
-table.dataTable thead tr {
+    table.dataTable thead tr {
     background-color: #1A273A;
-}
-table.dataTable thead tr th {
+    }
+    table.dataTable thead tr th {
     border-right: 1px solid #ffffff36;
     font-size: 17px;
     padding: 12px 10px;
     max-width: 200px;
     vertical-align: inherit;
     line-height: .8;
-}
-.table td {
+    }
+    .table td {
     text-align: left !important;
     border: 1px solid #e5e5e5 !important;
     padding: 10px 10px !important;
-}
-#campaign_list td {
+    }
+    #campaign_list td {
     font-size: 16px;
     color: #1a273a;
     vertical-align: top;
-}
+    }
 
-.dataTables_paginate .pagination .page-item.active .page-link {
+    .dataTables_paginate .pagination .page-item.active .page-link {
     background-color: #1361b2;
     border-color: #1361b2;
     box-shadow: 0px 3px 5px rgb(0 0 0 / 13%);
-}
+    }
 
 
-table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before {
+    table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before {
     bottom: 50% !important;
     content: "▲" !important;
-}
-table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, ttable.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
+    }
+    table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, ttable.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
     position: absolute !important;
     display: block !important;
     opacity: .125 !important;
     right: 10px !important;
     line-height: 9px !important;
     font-size: .8em !important;
-}
-table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, tatable.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
+    }
+    table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, tatable.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
     position: absolute !important;
     display: block !important;
     opacity: .125 !important;
     right: 10px !important;
     line-height: 9px !important;
     font-size: .8em !important;
-}
-table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after {
+    }
+    table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after {
     top: 50% !important;
     content: "▼" !important;
-}
+    }
 
-.pagination .page-item .page-link, .pagination .page-item span,
+    .pagination .page-item .page-link, .pagination .page-item span,
 
-#campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
-#campaign_list_wrapper .dataTables_length select,
-#campaign_list_wrapper .dataTables_filter input {
+    #campaign_list_wrapper .dataTables_paginate .pagination .page-item .page-link,
+    #campaign_list_wrapper .dataTables_length select,
+    #campaign_list_wrapper .dataTables_filter input {
     border-radius: 0!important;
-}
-.btn-success {
+    }
+    .btn-success {
     background-color: #11b6f3 !important;
-}
+    }
     .table th { padding: 12px 10px; max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
@@ -212,9 +228,15 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
     <script>
         'use strict';
         var leads_preview_modal = $('#leads_preview_modal');
+        var form_preview_modal = $('#form_preview_modal');
+        $('.btn_form_preview').on('click', function() {
+           var id =  $(this).data('id');
+            var iframe_html = '<iframe id="leadpaidform_1" src="https://leadspaid.com/campaign_form/1/1/'+id+'" referrerpolicy="unsafe-url" sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="600" style="border: 1px solid black;"></iframe>';
+            $('#form_preview_html').html(iframe_html);
+            form_preview_modal.modal('show');
+        });
+
         $(document).ready(function() {
-
-
             var MyDatatable = $('#campaign_list').DataTable({
                 columnDefs: [{
                     targets: 0,
@@ -240,7 +262,6 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
                 }
                 ],"sDom": 'Lfrtlip',"language": {  "lengthMenu": "Show rows  _MENU_" } });
 
-
                 $(document).on("change",".toggle-approve",function(e){
                 var approval = $(this).prop('checked') == true ? 1 : 0;
                 var campaign_id = $(this).data('id');
@@ -252,7 +273,6 @@ table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_a
                     data: { 'approval': approval, 'campaign_id': campaign_id },
                     success: function(data) {
                         if (data.success) {
-
                             Toast('green', data.message);
                         } else {
                             Toast('red', data.message);

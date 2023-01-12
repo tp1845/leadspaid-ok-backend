@@ -67,7 +67,7 @@
                 <div class="contact_wrap text-left">
                     <h4 class="title mb-3">Leads Paid Inc.</h4>
                     <div class="row">
-                        <div class="col-12"><h4><img src="{{asset('assets/images/frontend')}}/icon-usa-flag.png" width="32px" alt=""  class="me-3">United States</h4></div>
+                        <div class="col-12"><h4 class="title_country"><img src="{{asset('assets/images/frontend')}}/icon-usa-flag.png" width="32px" alt=""  class="me-3">United States</h4></div>
                         <div class="col-xl-6">
                             <p class="mb-0 d-flex justify-content-start">
 
@@ -88,10 +88,10 @@
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
                                 <span><b>Sacramento, CA</b><br>1401 21st Street STE R,<br/> Sacramento, California 95811<br>United States.</span>
                             </p>
-                            <p class="my-3 d-flex justify-content-start">
+                            {{-- <p class="my-3 d-flex justify-content-start">
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
                                 <span><a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></span>
-                            </p>
+                            </p> --}}
                             {{-- <p class="mb-0 d-flex justify-content-start">
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
                                 <span>1401</span>
@@ -183,6 +183,7 @@
     .contact-3 .title-3:before {
         display:none;
     }
+    .title_country{ font-size: 20px; }
     .contact_msg {
         color: #586167 !important;
         font-weight:400;
@@ -196,6 +197,7 @@
         font-size: 28px;
         line-height: 1.7;
         font-weight: 500;
+        width: 100%;
     }
     .input-group {
         border-color: #94a1b5 !important;
