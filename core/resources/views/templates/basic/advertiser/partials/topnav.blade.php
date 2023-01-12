@@ -19,6 +19,10 @@
 .nav-payment ul li .num-img {
     height: 25px;
 }
+.nav-payment {
+    position: absolute;
+    left: 12px;
+}
 </style>
 
 <nav class="navbar-wrapper active">
