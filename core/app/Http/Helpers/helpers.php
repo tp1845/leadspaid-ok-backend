@@ -6,7 +6,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use App\campaign_forms_leads;
-
+use App\campaigns;
 function sidebarVariation()
 {
 
@@ -964,4 +964,7 @@ function get_form_leads_by_id($id){
 
 function get_campiagn_leads_by_id($id){
     return campaign_forms_leads::where('campaign_id',$id)->count();
+}
+function get_total_campaign($id){
+    return campaigns::where('advertiser_id',$id)->count();
 }

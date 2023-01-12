@@ -13,6 +13,24 @@
 </style>
 
 <nav class="navbar-wrapper active">
+ <div class="nav-payment">
+      <ul>
+        @if(empty( auth()->guard('advertiser')->user()->card_session))
+        <li><img class="num-img" src="{{ url('/')}}/assets/images/gif/number-1.png" /><span class="px-2">Add a payment method (Credit/ Debit card)</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /></li>
+        @endif
+        <li>
+          @if(get_total_campaign( auth()->guard('advertiser')->user()->id) == 0)
+          @if(!empty( auth()->guard('advertiser')->user()->card_session))
+           <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-1.png" />
+          @else
+          <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-2.png" />
+         
+          @endif
+          <span class="px-2">Create your first lead Generation Campaign</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /></li>
+          @endif
+      </ul>   
+
+    </div>
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
     <form class="navbar-search">
       <button type="submit" class="navbar-search__btn">
