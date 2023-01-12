@@ -31,7 +31,7 @@ class AdvertiserController extends Controller
 
     public function dashboard()
     {
-		return redirect('/advertiser/campaigns');
+        return redirect('/advertiser/campaigns');
         $page_title = 'Advertiser Dashboard';
         $trxs = Transaction::all();
 
@@ -78,7 +78,7 @@ class AdvertiserController extends Controller
         $page_title = 'Profile';
         $countries = Country::all();
         $advertiser = Auth::guard('advertiser')->user();
-        return view(activeTemplate() . 'advertiser.profile', compact('page_title', 'advertiser','countries'));
+        return view(activeTemplate() . 'advertiser.profile', compact('page_title', 'advertiser', 'countries'));
     }
 
     public function profileUpdate(Request $request)
@@ -215,7 +215,7 @@ class AdvertiserController extends Controller
     }
 
 
-        public function TimezoneFromName($country_name = "Singapore")
+    public function TimezoneFromName($country_name = "Singapore")
     {
         $country_user = Country::where('country_name', $country_name)->latest()->first();
         $timezone = \DateTimeZone::listIdentifiers(\DateTimeZone::PER_COUNTRY, $country_user->country_code);
@@ -234,6 +234,20 @@ class AdvertiserController extends Controller
         $publishable_key = $gateway_parameter->publishable_key->value;
         $user = auth()->guard('advertiser')->user();
         $customer = \Stripe\Customer::create();
+
+        $card_info =  (object) array('last4' => null,"brand"=>"","exp_month"=>null,"exp_year"=>null,"country"=>"");
+     
+        if ("" !=auth()->guard('advertiser')->user()->card_session){
+            $user_intent =  $stripe->setupIntents->retrieve(
+                auth()->guard('advertiser')->user()->card_session,
+                []
+            );
+            $card_info =  $stripe->paymentMethods->retrieve(
+                $user_intent->payment_method,
+                []
+            )->card;
+        }
+       
         $intent = $stripe->setupIntents->create(
             [
                 'customer' =>  $customer->id,
@@ -241,35 +255,34 @@ class AdvertiserController extends Controller
             ]
         );
 
-        
-		  $countryy=auth()->guard('advertiser')->user()->country;
-          $currentDateTime = $this->TimezoneFromName($countryy);
-            $newDateTime = date('H', strtotime($currentDateTime));
+        $countryy = auth()->guard('advertiser')->user()->country;
+        $currentDateTime = $this->TimezoneFromName($countryy);
+        $newDateTime = date('H', strtotime($currentDateTime));
 
 
         $page_title = 'Payments';
         $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('trx_date', 'DESC')->get();
         $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->orderBy('trx_date', 'DESC')->get();
-        if (isset($request->startDate)){
+        if (isset($request->startDate)) {
             $trxs = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
             $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
         }
         $empty_message = 'No Transactions';
-        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key','ta','newDateTime'));
+        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key', 'ta', 'newDateTime', 'card_info'));
     }
 
-  public function showinvoices($id){
+    public function showinvoices($id)
+    {
 
 
-      $ta = TransactionAdvertiser::where('id',$id)->first();
-     $page_title = 'Payments';
+        $ta = TransactionAdvertiser::where('id', $id)->first();
+        $page_title = 'Payments';
         $data = ['title' => 'Laravel 7 Generate PDF From View Example Tutorial'];
-        $image_url='data:image/png;base64,'.base64_encode(getImage(imagePath()['logoIcon']['path'] .'/logo.png'));
-        $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf',compact('page_title','ta','image_url'))->setOptions(['defaultFont' => 'Poppins']);
+        $image_url = 'data:image/png;base64,' . base64_encode(getImage(imagePath()['logoIcon']['path'] . '/logo.png'));
+        $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf', compact('page_title', 'ta', 'image_url'))->setOptions(['defaultFont' => 'Poppins']);
 
-        return $pdf->download('invoice-LP-'.strtoupper(substr(auth()->guard('advertiser')->user()->company_name,0,2)).'-'.get_invoice_format($id).'.pdf','+w');
-
-  }
+        return $pdf->download('invoice-LP-' . strtoupper(substr(auth()->guard('advertiser')->user()->company_name, 0, 2)) . '-' . get_invoice_format($id) . '.pdf', '+w');
+    }
 
 
     public function PaymentsCreateSession(Request $request)
@@ -402,5 +415,4 @@ class AdvertiserController extends Controller
             return back()->with($notify);
         }
     }
-
 }
