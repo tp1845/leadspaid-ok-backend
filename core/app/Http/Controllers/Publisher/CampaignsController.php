@@ -34,6 +34,22 @@ class CampaignsController extends Controller
         }
         return view($this->activeTemplate .'publisher.campaigns.index',compact('page_title','empty_message','campaigns'));
     }
+    public function advertisers_index()
+    {
+        $page_title = 'All Advertisers Company';
+        $empty_message = 'No Advertisers Company';
+        $user = auth()->guard('publisher')->user();
+        $assign_campaign = $user->assign_campaign;
+        $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id  )->select('id')->get()->toarray();
+        $assign_advertiser_ids = array();
+        foreach($assign_advertiser as $advertiser ){ $assign_advertiser_ids[] = $advertiser['id']; }
+        if($assign_advertiser_ids){
+            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->whereIn('advertiser_id', $assign_advertiser_ids)->get();
+        }else{
+            $campaigns= array();
+        }
+        return view($this->activeTemplate .'publisher.campaigns.advertiser',compact('page_title','empty_message','campaigns'));
+    }
 
     public function export($cid, $aid, $fid)  {
         $campaign_id = $cid;

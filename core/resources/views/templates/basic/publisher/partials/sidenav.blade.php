@@ -29,6 +29,12 @@
                                     <span class="menu-title">@lang('All Campaigns')</span>
                                 </a>
                             </li>
+                            <li class="sidebar-menu-item {{menuActive('publisher.campaigns.advertisers')}}">
+                                <a href="{{route('publisher.campaigns.advertisers')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Advertisers Company')</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
