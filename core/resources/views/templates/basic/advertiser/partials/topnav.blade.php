@@ -3,12 +3,21 @@
 @endphp
 
 <style>
-  .btn--primary.create-campaign-btn {
+.btn--primary.create-campaign-btn {
     background-color: #4500dd!important;
     border-radius: 0;
 }
-  .create-campaign-btn {
+.create-campaign-btn {
     font-size: 18px !important;
+}
+.nav-payment ul li:first-child {
+    margin-bottom: 5px;
+}
+.nav-payment ul li img {
+    height: 30px;
+}
+.nav-payment ul li .num-img {
+    height: 25px;
 }
 </style>
 
