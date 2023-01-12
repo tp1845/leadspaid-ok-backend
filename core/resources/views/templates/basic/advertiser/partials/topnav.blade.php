@@ -21,7 +21,7 @@
 }
 .nav-payment {
     position: absolute;
-    left: 12px;
+    left: 20px;
 }
 </style>
 
