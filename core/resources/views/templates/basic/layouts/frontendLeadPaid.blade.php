@@ -91,7 +91,7 @@
                         <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
                             <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png?v1')}}" style="max-width: 218px" alt="site-logo">
                         </a>
-                        <p class="text-light mt-3" style="font-size: 18px"> 1401 21st Street STE R,<br/> Sacramento,  California 95811<br/> United States. </p>
+                        <p class="text-light mt-3" style="font-size: 18px">Leads Paid Inc.<br/>5214F Diamond Heights Blvd #3077<br/>San Francisco, CA 94131 </p>
                     </div>
                     <div class="col-6 col-md">
                       <h5>Company</h5>
@@ -116,8 +116,8 @@
                     <div class="col-6 col-md">
                       <h5>Publisher</h5>
                       <ul class="list-unstyled text-small">
-                        <li><a href="#">Join as Publisher</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="https://www.leadspaid.com/contact-us">Join as Publisher</a></li>
+                        {{-- <li><a href="#">Login</a></li> --}}
                       </ul>
                     </div>
                   </div>

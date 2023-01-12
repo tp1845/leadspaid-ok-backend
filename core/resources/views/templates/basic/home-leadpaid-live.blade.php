@@ -492,13 +492,14 @@
                 font-size: 20px;
                 padding: 6px 8px;
             }
+            .MainBanner-Home .hero_title {  padding-top: 125px; }
         }
         @media only screen and (max-width: 600px) {
             .MainBanner-Home  { position: relative; }
-            .MainBanner-Home .sub_title{ position: absolute;    left: 12px; top: 12px;  }
+            .MainBanner-Home .sub_title{ position: absolute; left: 12px; top: 12px; width: calc(100% - 24px); text-align: left;  }
         }
         @media only screen and (max-width: 503px) {
-            .MainBanner-Home .sub_title{  left: 12px;   }
+            .MainBanner-Home .sub_title{     }
         }
         @media only screen and (max-width: 378px) {
             .MainBanner-Home .sub_title{    font-size: 19px;   }

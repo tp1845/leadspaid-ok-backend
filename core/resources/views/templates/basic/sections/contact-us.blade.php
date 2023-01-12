@@ -14,29 +14,29 @@
 <section class="small-section contact-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-4 mb-4">
                 <div class="log-in theme-card">
                     <div class="title-3 text-start">
                         <h2>CONTACT US</h2>
                     </div>
                     <form method="POST" name="contact_form" id="contact_form" action="{{route('contact.send')}}" class="row form gx-3 get-in-touch">
                         @csrf
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <input type="text" id="conact_name" name="name" class="rounded-0 form-control py-2" placeholder="@lang('Full Name')" >
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <input type="text" id="conact_company" name="company" class="rounded-0 form-control py-2" placeholder="@lang('Company Name')" >
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group mb-3">
                                 <input type="text" id="conact_email" name="email" class="rounded-0 form-control py-2" placeholder="@lang('Email Address')" >
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group  input-group  mb-3">
                                 <select name="country_code" class="country_code form-select form-control  rounded-0">
                                     <option value="">ISD</option>
@@ -63,21 +63,42 @@
                     </div>
                 </div> --}}
             </div>
-            <div class="col-lg-4 contact_section contact_sidebar mb-4">
+            <div class="col-lg-8 contact_section contact_sidebar mb-4">
                 <div class="contact_wrap text-left">
                     <h4 class="title mb-3">Leads Paid Inc.</h4>
-                    <p class="mb-0 d-flex justify-content-start">
-                        <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
-                        <span>1401 21st Street STE R,<br/> Sacramento, California 95811<br>United States.</span>
-                    </p>
-                    <p class="my-3 d-flex justify-content-start">
-                        <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
-                        <span><a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></span>
-                    </p>
-                    {{-- <p class="mb-0 d-flex justify-content-start">
-                        <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
-                        <span>1401</span>
-                    </p> --}}
+                    <div class="row">
+                        <div class="col-12"><h4><img src="{{asset('assets/images/frontend')}}/icon-usa-flag.png" width="32px" alt=""  class="me-3">United States</h4></div>
+                        <div class="col-xl-6">
+                            <p class="mb-0 d-flex justify-content-start">
+
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
+                                <span><b>San Francisco, CA</b><br> 5214F Diamond Heights Blvd #3077<br/> San Francisco, California 94131<br>United States.</span>
+                            </p>
+                            <p class="my-3 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
+                                <span><a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></span>
+                            </p>
+                            {{-- <p class="mb-0 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
+                                <span>1401</span>
+                            </p> --}}
+                        </div>
+                        <div class="col-xl-6">
+                            <p class="mb-0 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
+                                <span><b>Sacramento, CA</b><br>1401 21st Street STE R,<br/> Sacramento, California 95811<br>United States.</span>
+                            </p>
+                            <p class="my-3 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
+                                <span><a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></span>
+                            </p>
+                            {{-- <p class="mb-0 d-flex justify-content-start">
+                                <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-phone.png" width="32px" alt="" ></span>
+                                <span>1401</span>
+                            </p> --}}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -224,7 +245,6 @@
         background-color: #fff;
         border: 1px solid #94a1b5 !important;
         box-shadow: 0 0 20px rgb(0 0 0 / 16%) !important;
-
     }
 
     .contact-3 .form-group i {
@@ -235,7 +255,6 @@
         -webkit-box-shadow: none !important;
         box-shadow: none !important;
     }
-
     .contact_sidebar .contact_wrap {
         text-align:left !important;
         -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
