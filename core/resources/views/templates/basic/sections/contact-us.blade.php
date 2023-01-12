@@ -216,7 +216,7 @@
     .contact-3 .form-group {
         margin-bottom: unset;
     }
-    .contact-3 .form-group input {
+    .contact-3 .form-group input , .form-select {
         color: #586167;
         outline: none;
         display: block;
@@ -236,6 +236,17 @@
         padding: 16px 24px;
         line-height: normal;
         font-weight:300;
+    }
+    .form-select{
+        border: 1px solid #94a1b5;
+        background: #fff  url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
+        width: 100%;
+        font-weight: 300;
+        font-size: 19px;
+        padding: 16px 24px;
+        border-radius: 0;
+        line-height: normal;
+
     }
     .country_code.form-select{
         border: 1px solid #94a1b5;
