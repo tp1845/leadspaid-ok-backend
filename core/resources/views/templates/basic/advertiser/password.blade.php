@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn--primary btn-block btn-lg">@lang('Save Changes')</button>
+                            <button type="submit" class="btn btn--primary btn-block btn-lg Rg_advts_my_btn rounded-0">@lang('Save Changes')</button>
                         </div>
                     </form>
                 </div>
@@ -52,7 +52,7 @@
 @endsection
 
 @push('breadcrumb-plugins')
-    <a href="{{route('advertiser.profile')}}" class="btn btn-sm btn--primary box--shadow1 text--small" ><i class="fa fa-user"></i>@lang('Profile Setting')</a>
+    <a href="{{route('advertiser.profile')}}" class="profile_pass_setting rounded-0 btn btn-sm btn--primary box--shadow1 text--small" ><i class="fa fa-user"></i>@lang('Profile Setting')</a>
 @endpush
 
 @push('style')
@@ -61,5 +61,18 @@
         font-size: 16px;
         color: #1a273a;
     }
+	
+	.profile_pass_setting {
+    font-size: 18px !important;
+    padding: .375rem .75rem;
+}
+
+    .Rg_advts_my_btn {
+    font-size: 18px !important;
+    padding: .375rem .75rem;
+    background-color: #4500dd!important;
+    font-weight: 500;
+}
+	
 </style>
 @endpush

@@ -72,8 +72,8 @@ class CampaignsdemoController extends Controller
             $campaign_forms->company_logo  = $request->company_logo;
             $campaign_forms->form_name    = $request->form_name;
 
-            $campaign_forms->title    = $request->form_title;
-            $campaign_forms->form_desc    = $request->form_desc;
+            $campaign_forms->title    = array_unique($request->form_title);
+            $campaign_forms->form_desc    = array_unique($request->form_desc);
 
             if(isset($request->form_title[1])){
                 $campaign_forms->form_title    = $request->form_title[1];

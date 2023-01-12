@@ -286,7 +286,7 @@ Use An Existing Form
 </div>
 <label class="col-form-label mt-3 ar-16" for="form_desc_1_Input"><b>Product/Service/Offer Description </b> <span class="ar-14">(Add up to 3 variations)</span></label>
 <div id="FormDescription_1">
-<div class="input-group input-col">
+<div class="input-group input-col my-3">
 <input type="text" class="form-control" id="form_desc_1_Input" name="form_desc[1]" placeholder="40k+ companies run on Zoho" required  minlength="3" maxlength="68">
 <div class="input-group-append bg-none">
 <div class="input-group-text"> <a href="#" class="text-success"  onClick="show_next('#FormDescription_2', event)"><i class="fas fa-plus-circle"></i></i></a></div>
@@ -741,7 +741,8 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                     $(".row_4").remove();
                     $(".row_5").remove();
                     $("#form_company_logo").value=' ';
-
+                    $(".leftForm").find('input').prop('readonly',false);
+                    $(".rightForm").find('input').prop('readonly',false);
                     $("#preview_company_logo").hide();;
                     $("#preview_company_name").html('');
                     $('#company_logo_img').attr('src','');
@@ -1449,8 +1450,9 @@ $(".InputQuestion_text").blur(function(){
     var vall=$(this).val();
     var $_this=$(this);
     $(".InputQuestion_text").each(function(){
+        
         if(nam != $(this).attr('name')){
-            if($(this).val()==vall){
+            if($.trim($(this).val()).toLowerCase()==$.trim(vall).toLowerCase()){
                  $_this.parent().find('.error').remove();
                  $_this.parent().find('.bg-white').after('<span id="'+nam+'-error" class="error invalid-feedback" style="display:block">Field is repeating - Please change it</span>');
             }else{

@@ -63,10 +63,30 @@
 
 @endsection
 <style>
+#ticket-create table thead tr th {
+        background-color: transparent;
+    }
+#ticket-create table thead tr th, .btn--primary {
+    background-color: #1A273A!important;
+    border-radius: 0 !important;
+    padding: 12px 10px;
+    font-size: 17px;
+    line-height: 25.5px;
+    border-right: 1px solid #ffffff36;
+}
+#ticket-create table thead tr th:last-child {
+    text-align: left;
+}
+table thead tr th {
+    border: none;
+}
+#ticket-create tbody tr td {
+    border-top: none;
+}
+#ticket-create .card {
+    border-radius: 0;
+}
     
-    #ticket-create .bg--primary, #ticket-create form .btn--primary, #ticket-create form .file-upload-wrapper:before {
-    background-color: #4500dd!important;
-}   
 </style>
 
 
