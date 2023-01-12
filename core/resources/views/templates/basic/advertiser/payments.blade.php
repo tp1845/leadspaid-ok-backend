@@ -300,10 +300,10 @@ table.dataTable {
                     <ul>
                         <li>
                             <div class="adsrock-name-list">
-                                Cardholder Name:
+                                Card Type:
                             </div>
                             <div class="adsrock-detail-list pl-3">
-                                Test
+                                {{$card_info->brand}}
                             </div>
                         </li>
                         <li>
@@ -311,15 +311,15 @@ table.dataTable {
                                 Card Number:
                             </div>
                             <div class="adsrock-detail-list pl-3">
-                                Test
+                               **** **** **** {{$card_info->last4}}
                             </div>
                         </li>
                         <li>
                             <div class="adsrock-name-list">
-                                Expires:
+                                Expires: 
                             </div>
                             <div class="adsrock-detail-list pl-3">
-                                Test
+                            {{$card_info->exp_month}}/{{$card_info->exp_year}}
                             </div>
                         </li>
                         <li>
@@ -327,7 +327,15 @@ table.dataTable {
                                 CVC:
                             </div>
                             <div class="adsrock-detail-list pl-3">
-                                Test
+                                ***
+                            </div>
+                        </li>
+                        <li>
+                            <div class="adsrock-name-list">
+                                Country:
+                            </div>
+                            <div class="adsrock-detail-list pl-3">
+                            {{$card_info->country}}
                             </div>
                         </li>
                     </ul>
