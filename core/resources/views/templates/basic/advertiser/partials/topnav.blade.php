@@ -1,9 +1,8 @@
 @php
   $testing = auth()->guard('advertiser')->user()->id === 11?true:false;
 @endphp
-
 <style>
-.btn--primary.create-campaign-btn {
+  .btn--primary.create-campaign-btn {
     background-color: #4500dd!important;
     border-radius: 0;
 }
@@ -18,6 +17,12 @@
 }
 .nav-payment ul li .num-img {
     height: 25px;
+    margin-bottom: 3px;
+}
+.navbar-wrapper .nav-payment ul li {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
 }
 .nav-payment {
     position: absolute;
@@ -30,51 +35,48 @@
 .advertiser_user_icon {
   height: 25px;
 }
-
-.nav-payment ul li .num-img {
-    height: 25px;
-    margin-bottom: 3px;
-}
-.navbar-wrapper .nav-payment ul li {
-    display: flex;
-    align-items: center;
-    vertical-align: middle;
-}
 </style>
-
-<nav class="navbar-wrapper active">
- <div class="nav-payment">
+<nav class="navbar-wrapper justify-content-between active">
+  <div class="nav-payment">
       <ul>
         @if(empty( auth()->guard('advertiser')->user()->card_session))
-        <li><img class="num-img" src="{{ url('/')}}/assets/images/gif/number-1.png" /><span class="px-2">Add a payment method (Credit/ Debit card)</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /></li>
-        @endif
         <li>
+           <a href="{{ url('/')}}/advertiser/payments">
+          <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-1.png" /><span class="px-2">Add a payment method (Credit/ Debit card)</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /></a></li>
+        @endif
+       
           @if(get_total_campaign( auth()->guard('advertiser')->user()->id) == 0)
+           <li>
+          <a href="{{ url('/')}}/advertiser/campaigns/?action=create_campiagin" class="create-campaign-btn">
           @if(!empty( auth()->guard('advertiser')->user()->card_session))
            <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-1.png" />
           @else
           <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-2.png" />
          
           @endif
-          <span class="px-2">Create your first lead Generation Campaign</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /></li>
+          <span class="px-2">Create your first lead Generation Campaign</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /> </a></li>
           @endif
       </ul>   
 
     </div>
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
-    <form class="navbar-search d-none">
+    <form class="navbar-search">
       <button type="submit" class="navbar-search__btn">
         <i class="las la-search"></i>
       </button>
       <input type="search" name="navbar-search__field" id="navbar-search__field" placeholder="Search your products">
       <button type="button" class="navbar-search__close"><i class="las la-times"></i></button>
     </form>
-    <div class="navbar navbar-expand-md mr-2 d-none">
+    <div class="navbar navbar-expand-md mr-2">
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>@lang('Menu')</span>
       </button>
       @if( $testing  )
       <div class="collapse navbar-collapse " id="navbarSupportedContent">
+     
+
+
         <ul class="navbar-nav ml-auto main-menu align-items-center">
 
           <li class="dropdown">
@@ -112,53 +114,51 @@
       </div>
       @endif
     </div>
-    <div class="navbar__right">
-	
-	
-      <ul class="main-menu d-flex flex-wrap align-items-center">
+      <div class="navbar__right">
+        <ul class="main-menu d-flex flex-wrap align-items-center">
 
-        <li>          
-          <a href="{{ url('/')}}/advertiser/campaigns/?action=create_campiagin"class="btn btn--primary text-white create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</a>
-        </li>
-        <li class="dropdown">
-          <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
-            <span class="navbar-user">
-			 <img class="num-img advertiser_user_icon mr-2" src="{{ url('/')}}/assets/images/profile/portrait.png" />
-                {{auth()->guard('advertiser')->user()->username}}
-                {{-- <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span> --}}
-              <span class="icon"><i class="las la-chevron-circle-down"></i></span>
-            </span>
-          </button>
-          <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
+          <li>          
+            <a href="{{ url('/')}}/advertiser/campaigns/?action=create_campiagin"class="btn btn--primary text-white create-campaign-btn"><i class="fas fa-plus"></i> Create Campaign</a>
+          </li>
+          <li class="dropdown">
+            <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
+              <span class="navbar-user">
+                <img class="num-img advertiser_user_icon mr-2" src="{{ url('/')}}/assets/images/profile/portrait.png" />
+                  {{auth()->guard('advertiser')->user()->username}}
+                  {{-- <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span> --}}
+                <span class="icon"><i class="las la-chevron-circle-down"></i></span>
+              </span>
+            </button>
+            <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
 
-            @if(Route::has('advertiser.profile'))
-            <a href="{{route('advertiser.profile')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
-              <i class="dropdown-menu__icon las la-cog"></i>
-              <span class="dropdown-menu__caption">@lang('Edit profile')</span>
-            </a>
-            @endif
+              @if(Route::has('advertiser.profile'))
+              <a href="{{route('advertiser.profile')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
+                <i class="dropdown-menu__icon las la-cog"></i>
+                <span class="dropdown-menu__caption">@lang('Edit profile')</span>
+              </a>
+              @endif
 
-            @if(Route::has('advertiser.password'))
-            <a href="{{route('advertiser.password')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
-              <i class="dropdown-menu__icon las la-key"></i>
-              <span class="dropdown-menu__caption">@lang('Change Password')</span>
-            </a>
-           @endif
+              @if(Route::has('advertiser.password'))
+              <a href="{{route('advertiser.password')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
+                <i class="dropdown-menu__icon las la-key"></i>
+                <span class="dropdown-menu__caption">@lang('Change Password')</span>
+              </a>
+             @endif
 
-            @if(Route::has('advertiser.twofactor'))
-            <a href="{{route('advertiser.twofactor')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
-              <i class="dropdown-menu__icon las la-key"></i>
-              <span class="dropdown-menu__caption">@lang('Enable 2FA')</span>
-            </a>
-           @endif
-           @if(Route::has('advertiser.logout'))
-            <a href="{{route('advertiser.logout')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
-              <i class="dropdown-menu__icon las la-sign-out-alt"></i>
-              <span class="dropdown-menu__caption">@lang('Logout')</span>
-            </a>
-            @endif
-          </div>
-        </li>
-      </ul>
+              @if(Route::has('advertiser.twofactor'))
+              <a href="{{route('advertiser.twofactor')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
+                <i class="dropdown-menu__icon las la-key"></i>
+                <span class="dropdown-menu__caption">@lang('Enable 2FA')</span>
+              </a>
+             @endif
+             @if(Route::has('advertiser.logout'))
+              <a href="{{route('advertiser.logout')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
+                <i class="dropdown-menu__icon las la-sign-out-alt"></i>
+                <span class="dropdown-menu__caption">@lang('Logout')</span>
+              </a>
+              @endif
+            </div>
+          </li>
+        </ul>
     </div>
   </nav>
