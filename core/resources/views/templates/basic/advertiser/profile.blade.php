@@ -12,7 +12,7 @@ $user = auth()->guard('advertiser')->user();
                 <div class="col-lg-12">
                     <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
-                            <form method="POST" id="advertiser_form" action="{{route('advertiser.profile.update')}}">
+                            <form method="POST" id="advertiser_form" action="{{route('advertiser.profile.update')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                 <div class="mb-4 col-md-6" style="overflow: inherit;">
@@ -87,6 +87,40 @@ $user = auth()->guard('advertiser')->user();
                                     </div>
                                     @include($activeTemplate.'partials.custom-captcha')
                                 </div>
+
+
+                                <div class="col-md-6">
+
+                                    <div class="upload_btn_spc">
+                                        <div class="font-weight-bolder text-body"> Upload Profile Logo
+                                    </div>
+
+                                    <div class="card-body px-0 pt-1 my-upload-btns">
+                                        <div class="upload-box" style="height: 53px; ">
+                                            
+                                            <input type="file" name="image" id="form_company_logo" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+                                            <label for="form_company_logo" class="profile_company_logo" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Profile Logo*</span> </label>
+                                            </div>
+
+                                       <div class="image_preview" style="">
+                                            @php 
+                                            $imge_url='';
+                                            if(empty(auth()->guard('advertiser')->user()->image)){
+                                             $imge_url=get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image);
+                                            }else{
+                                             $imge_url=get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image);
+                                            } 
+                                            @endphp
+                                           <img src="{{ $imge_url }}" id="imgPreview">
+                                       </div>
+
+                                    </div>
+                                    </div>
+                                    @include($activeTemplate.'partials.custom-captcha')
+                                </div>
+
+
+
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -145,135 +179,7 @@ $user = auth()->guard('advertiser')->user();
         $(this).parent(".file-upload-wrapper").attr("data-text", $(this).val().replace(/.*(\/|\\)/, ''));
     });
 
-   /* document.addEventListener('DOMContentLoaded', function(e) {
-        FormValidation.formValidation(document.querySelector('#advertiser_form'), {
-            fields: {
-                company_name: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Company Name.',
-                        }
-                    },
-                },
-
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Full Name.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Name.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'Please fill Full Name.',
-                        },
-                    },
-                },
-                mobile: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Phone is required.',
-                        },
-                        stringLength: {
-                            min: 6,
-                            message: 'Phone is required.',
-                        },
-                    },
-                },
-                billed_to: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill address to.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill address to.',
-                        },
-                    },
-                },
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill vaild Email.',
-                        },
-                        emailAddress: {},
-                    },
-                },
-                city: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill city.',
-                        },
-                        stringLength: {
-                            min: 2,
-                            message: 'Please fill city.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'City Invalid.',
-                        },
-                    },
-                },
-                country: {
-                    validators: {
-                        notEmpty: {
-                            message: 'This field is required.',
-                        }
-                    },
-                },
-                username: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Username.',
-                        },
-                        regexp: {
-                            regexp: /^[a-zA-Z0-9_.]+$/,
-                            message: 'Username should not contain special characters.',
-                        },
-                    },
-                },
-                password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Password',
-                        },
-                    },
-                },
-                password_confirmation: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Confirm Password',
-                        },
-                        checkConfirmation: {
-                            message: 'Passowrd Mismatch',
-                            callback: function(input) {
-                                return document.querySelector("#advertiser_form").querySelector('[name="password"]').value === input.value;
-                            },
-                        },
-                    },
-                }
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap: new FormValidation.plugins.Bootstrap(),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                icon: new FormValidation.plugins.Icon({
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh',
-                }),
-                alias: new FormValidation.plugins.Alias({
-                    checkConfirmation: 'callback'
-                }),
-            },
-        }).on('core.form.valid', function() {
-            document.querySelector('#advertiser_form').submit();
-
-        });
-    });*/
+   
 
 
 jQuery.fn.capitalize = function() {
@@ -340,17 +246,35 @@ $("#full_name").capitalize();
             mobile: { required: true, minlength: 6, phoneonly: true },
             postal_code: { required: false, maxlength: 200  },
            city: { required: true, minlength: 3, maxlength: 50 },
-           billed_to: { required: true, minlength: 10, maxlength: 100 }
+           billed_to: { required: true, minlength: 10, maxlength: 100 },
+           image: {extension: "png|jpg|jpeg|gif", maxsize:2e+6}
         },messages: {
-            name:{  required : 'Full Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
-            company_name:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
-            mobile:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
+            name:{  required : 'Full Name is required.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
+            company_name:{  required : 'Company Name is required.', minlength:'minmum 3 characters.' },
+            mobile:{  required : 'Phone is required.', minlength:'minmum 6 characters.', phoneonly:'Please enter valid phone.'},
             postal_code: {maxlength: 'maximum 200 characters.'},
             city: {required : 'Please fill valid City.',minlength:'minmum 3 characters.', maxlength: 'maximum 50 characters.'},
-            billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'}
+            billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'},
+             image: "File must be JPG, GIF or PNG, less than 2MB",
            
 
         }
+    });
+
+
+$(document).ready(()=>{
+      $('#form_company_logo').change(function(){
+        const file = this.files[0];
+        ;
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            $(".image_preview").show();
+            $('#imgPreview').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
+        }
+      });
     });
 </script>
 
@@ -614,11 +538,14 @@ $("#full_name").capitalize();
     font-size: 18px !important;
     padding: .375rem .75rem;
 }
-.Rg_advts_my_btn {
+.Rg_advts_my_btn {    
     font-size: 18px !important;
     padding: .375rem .75rem;
     background-color: #4500dd!important;
     font-weight: 500;
+}
+.Rg_advts_my_btn:hover {
+    background-color: #4500dd!important;
 }
 .form-control:disabled, .form-control[readonly]{
     background-color: #ccc !important;
@@ -675,8 +602,61 @@ element.style {
 #advertiser_form .text-body {
     font-size: 16px;
 }
-.Rg_advts_my_btn:hover {
-    background-color: #4500dd!important;
+
+.my-upload-btns input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
+.my-upload-btns .profile_company_logo {
+    color: #004664;
+    background-color: #ddf5ff;
+    max-width: 100%;
+    font-size: 1.15rem;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.8rem 1.25rem;
+    margin: 0!important;
+    border: 1px solid #94a1b5!important;
+}
+.upload_btn_spc {
+    margin-top: 35px;
+}
+.my-upload-btns {
+    position: relative;
+    vertical-align: middle;
+}
+.my-upload-btns .image_preview {
+    width: 54px;
+    position: absolute;
+    left: 50%;
+    top: 3px;
+    transform: translateX(50%);
+    border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+}
+.my-upload-btns .image_preview img{
+    height: 50px;
+    width: 60px;
+}
+.navbar-user__thumb {
+     border: none; 
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    box-shadow: 0px 0px 0px 3px #7367f0;
+    margin-right: 10px;
+}
+
 </style>
 @endpush

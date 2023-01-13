@@ -35,6 +35,15 @@
 .advertiser_user_icon {
   height: 25px;
 }
+.nav-payment span{
+  color: #000;
+}
+.nav-payment ul li:first-child{
+  margin-bottom: 2px;
+}
+.nav-payment ul{
+  margin: 15px 0;
+}
 </style>
 <nav class="navbar-wrapper justify-content-between active">
   <div class="nav-payment">
@@ -42,7 +51,7 @@
         @if(empty( auth()->guard('advertiser')->user()->card_session))
         <li>
            <a href="{{ url('/')}}/advertiser/payments">
-          <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-1.png" /><span class="px-2">Add a payment method (Credit/ Debit card)</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /></a></li>
+          <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-1.png" /><span class="px-1">Add a payment method (Credit/ Debit card)</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /></a></li>
         @endif
        
           @if(get_total_campaign( auth()->guard('advertiser')->user()->id) == 0)
@@ -54,7 +63,7 @@
           <img class="num-img" src="{{ url('/')}}/assets/images/gif/number-2.png" />
          
           @endif
-          <span class="px-2">Create your first lead Generation Campaign</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /> </a></li>
+          <span class="px-0">Create your first lead Generation Campaign</span><img src="{{ url('/')}}/assets/images/gif/arrow.gif" /> </a></li>
           @endif
       </ul>   
 
@@ -123,9 +132,9 @@
           <li class="dropdown">
             <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
               <span class="navbar-user">
-                <img class="num-img advertiser_user_icon mr-2" src="{{ url('/')}}/assets/images/profile/portrait.png" />
+                 <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span>
                   {{auth()->guard('advertiser')->user()->username}}
-                  {{-- <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span> --}}
+                 
                 <span class="icon"><i class="las la-chevron-circle-down"></i></span>
               </span>
             </button>
