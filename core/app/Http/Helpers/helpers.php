@@ -620,9 +620,9 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
     $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
     if ($general->en != 1 || !$email_template) { return; }
     $sendto_email='arun.saba@leadspaid.com';
-    $receiver_name = '';
-    $subject="Contact Us Email";
-    $message = '<p style="color: rgb(193,205,220);"><b>Enquiry About : </b> '.$enquiry_about.'</p>';
+    $receiver_name = 'Admin';
+    $subject="Message from: Contact Us Page";
+    $message = '<p style="color: rgb(193,205,220);"><b>What is your Enquiry About : </b> '.$enquiry_about.'</p>';
     $message = '<p style="color: rgb(193,205,220);"><b>Name : </b> '.$name.'</p>';
     $message .= '<p style="color: rgb(193,205,220);"><b>Email : </b> '.$email.'</p>';
     $message .= '<p style="color: rgb(193,205,220);"><b>Company : </b> '.$company.'</p>';
@@ -975,3 +975,4 @@ function get_assigned_advertisers($publisher_id){
     $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $publisher_id  )->select('id', 'name', 'company_name')->get()->toarray();
     return $assign_advertiser;
 }
+
