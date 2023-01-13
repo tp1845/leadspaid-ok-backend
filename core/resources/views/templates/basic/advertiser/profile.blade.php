@@ -655,7 +655,7 @@ element.style {
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     box-shadow: 0px 0px 0px 2px #7367f0;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 .navbar-user__thumb {
     width: 30px;
