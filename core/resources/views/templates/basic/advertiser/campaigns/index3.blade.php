@@ -672,7 +672,9 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
 
             <link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
             <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
-            <script>
+            <script src="https://cdn.jsdelivr.net/gh/jeffreydwalter/ColReorderWithResize@9ce30c640e394282c9e0df5787d54e5887bc8ecc/ColReorderWithResize.js"></script>
+			
+			<script>
                 'use strict';
                 $(function() {
                     $(document).ready(function() {
@@ -958,7 +960,8 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                         targets: '_all',
                         visible: true
                     }
-                    ],"sDom": 'Lfrtlip',"language": {
+                    ],"sDom": 'Lfrtlip',
+					'dom': 'Rlfrtip',"language": {
                       "lengthMenu": "Show rows  _MENU_"
                   }
               });
