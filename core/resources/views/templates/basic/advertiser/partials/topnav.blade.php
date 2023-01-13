@@ -132,7 +132,16 @@
           <li class="dropdown">
             <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
               <span class="navbar-user">
-                 <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span>
+                 <span class="navbar-user__thumb">
+				 @if(empty(auth()->guard('advertiser')->user()->image))
+                  <img src="{{ url('/')}}/assets/images/profile/user.png" alt="image">
+
+                  @else
+                  
+                  <img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image">
+
+                  @endif
+				 </span>
                   {{auth()->guard('advertiser')->user()->username}}
                  
                 <span class="icon"><i class="las la-chevron-circle-down"></i></span>

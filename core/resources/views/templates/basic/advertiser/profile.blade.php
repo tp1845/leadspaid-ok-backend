@@ -103,10 +103,10 @@ $user = auth()->guard('advertiser')->user();
                                             </div>
 
                                        <div class="image_preview" style="">
-                                            @php 
+                                              @php 
                                             $imge_url='';
                                             if(empty(auth()->guard('advertiser')->user()->image)){
-                                             $imge_url=get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image);
+                                             $imge_url=get_image('assets/images/profile/user.png');
                                             }else{
                                              $imge_url=get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image);
                                             } 
