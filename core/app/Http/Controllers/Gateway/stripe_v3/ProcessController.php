@@ -130,7 +130,6 @@ class ProcessController extends Controller
                     $deducting_amount = 0;
                     $user->wallet_deposit = $new_deposit;
                 }
-                $user->save();
 
                 $method = Gateway::where('alias', 'stripe')->firstOrFail();
                 $gateway_parameter = json_decode($method->parameters);
@@ -189,6 +188,9 @@ class ProcessController extends Controller
                 $transaction->deduct = $deduct_amount;
                 $transaction->final_wallet =  $user->wallet_deposit;
                 $transaction->save();
+
+                $user->nextbill = date('M d, Y', strtotime(' +1 day')) ;  
+                $user->save();
             }
         }
 
@@ -211,7 +213,6 @@ class ProcessController extends Controller
             $deducting_amount = 0;
             $user->wallet_deposit = $new_deposit;
         }
-        $user->save();
 
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
         $gateway_parameter = json_decode($method->parameters);
@@ -263,6 +264,9 @@ class ProcessController extends Controller
         $transaction->deduct = $deduct_amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
+
+        $user->nextbill = date('M d, Y', strtotime(' +1 day')) ;  
+        $user->save();
 
         return redirect()->route('advertiser.payments')->withNotify($notify);
     }

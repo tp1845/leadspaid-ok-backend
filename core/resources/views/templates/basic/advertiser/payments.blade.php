@@ -358,19 +358,24 @@ table.dataTable {
                      <h6>Next Bill:</h6>
                      <h3>
                         
-                     @php 
-                     
-
-                       $currentTime = time() + 3600;
+                     @php                      
+                    if($showbill){
+                        if (isset($nextbill)){
+                        echo $nextbill . "  , 10:00 AM";
+                     }else{
+                        $currentTime = time() + 3600;
                        
-                       if ($newDateTime >= 10) {
-  
-                                echo  date('M d, Y', strtotime(' +1 day')) ;   
-                                }else{
-                                   echo  date('M d, Y') ; 
-                                }
+                       if ($newDateTime >= 10) {  
+                            echo  date('M d, Y', strtotime(' +1 day')) . "  , 10:00 AM";
+                        }else{
+                           echo  date('M d, Y') . "  , 10:00 AM";
+                        }
+                     }
+                     
+                    }
+                    
 
-                     @endphp   , 10:00 AM
+                     @endphp
                       
                      </h3><br>
                      <p class="ar-12">Everyday at 10:00 AM,</p>
