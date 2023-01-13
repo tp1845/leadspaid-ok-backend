@@ -11,7 +11,7 @@
     width: 0px !important;
     opacity: 0.25 !important;
 }
-  .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
+    .sidebar__menu .menu-title{font-size: 20px ; color: #fff}
 .custom_side_bar {
 /*    display: flex;*/
     flex-wrap: wrap;
@@ -22,9 +22,7 @@
     transition:unset;
     position: relative;
 }
-.sidebar__menu {
-    margin-bottom: 30vh;
-}
+
 .sidebar, .slimScrollDiv {
     transition:unset;
 }
@@ -77,9 +75,6 @@
     top: -50px;
 }
 
-.sidebar.active .sidebar__menu {
-    margin-bottom: 48vh;
-}
 .sidebar.active .sidebar__menu .sidebar-menu-item > a {
     justify-content: flex-start;
 }
@@ -113,13 +108,55 @@
 .sidebar .sidebar__inner .sidebar__logo .sidebar__main-logo {
     width: 100%;
 }
-@media (min-width:1441px){
-    .sidebar__menu {
-        margin-bottom: 55vh;
-    }
+.sidebar__menu {
+    margin-top: 20px;
+    margin-bottom: 100px;
+    width: 100%;
 }
-
-   
+.sidebar.active .sidebar__menu {
+    margin-bottom: unset;
+}
+@media (min-width:1080px){
+ .sidebar__menu {
+    margin-bottom: 15vh;
+}
+.sidebar.active .sidebar__menu {
+    margin-bottom: 15vh;
+}
+}
+@media (min-width:1199px){
+ .sidebar__menu {
+    margin-bottom: 23vh;
+}
+.sidebar.active .sidebar__menu {
+    margin-bottom: 23vh;
+}
+}
+@media (min-width:1280px){
+ .sidebar__menu {
+    margin-bottom: 30vh;
+}
+.sidebar.active .sidebar__menu {
+    margin-bottom: 43vh;
+}
+}
+@media (min-width:1440px){
+ .sidebar__menu {
+    margin-bottom: 37vh;
+}
+.sidebar.active .sidebar__menu {
+    margin-bottom: 49vh;
+}
+}
+@media (min-width:1920px){
+.sidebar__menu {
+    margin-bottom: 45vh;
+}
+.sidebar.active .sidebar__menu {
+    margin-bottom: 57vh;
+}
+}
+ 
 </style>
 <div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/2.jfif')}}')">
     
