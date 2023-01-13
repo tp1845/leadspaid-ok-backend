@@ -622,7 +622,9 @@ function send_email_contact_admin($name,$type = null,$email,$company,$phone,$mes
     $sendto_email='arun.saba@leadspaid.com';
     $receiver_name = 'Admin';
     $subject="Message from: Contact Us Page";
-    $message = '<p style="color: rgb(193,205,220);"><b>What is your Enquiry About : </b> '.$enquiry_about.'</p>';
+
+    $message = '<h3 style="color: rgb(193,205,220);"><b>Message from: Contact Us Page </b></h3>';
+    $message .= '<p style="color: rgb(193,205,220);"><b>What is your Enquiry About : </b> '.$enquiry_about.'</p>';
     $message .= '<p style="color: rgb(193,205,220);"><b>Name : </b> '.$name.'</p>';
     $message .= '<p style="color: rgb(193,205,220);"><b>Email : </b> '.$email.'</p>';
     $message .= '<p style="color: rgb(193,205,220);"><b>Company : </b> '.$company.'</p>';

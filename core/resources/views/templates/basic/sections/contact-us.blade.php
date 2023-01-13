@@ -110,7 +110,9 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-12"><h4 class="title_country"><img src="{{asset('assets/images/frontend')}}/icon-uk-flag.png" width="32px" alt=""  class="me-3">United Kingdom</h4></div>
+                        <div class="col-12">
+                            <h4 class="title mb-3">Leads Paid Inc.</h4>
+                            <h4 class="title_country"><img src="{{asset('assets/images/frontend')}}/icon-uk-flag.png" width="32px" alt=""  class="me-3">United Kingdom</h4></div>
                         <div class="col-xl-6">
                             <p class="mb-0 d-flex justify-content-start">
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
