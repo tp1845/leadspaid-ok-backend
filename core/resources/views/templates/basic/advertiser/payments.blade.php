@@ -467,7 +467,7 @@
                         </div>
                         <p class="py-2">*Please note that the current card service charge is 3%</p>
                         <div class="border-top py-10">
-                            <div class="container">
+                            <div class="container-box">
                                 <form method="POST" id="manual_form" action="{{ route('ipn.manual_pay') }}" class="d-flex" style="gap: 10px;">
                                     @csrf
                                     <div class="d-flex" style="display: flex;align-items: center;gap: 14px;">
@@ -527,7 +527,7 @@
 
                             <b>1) Amount deducted from your prepaid-wallet</b><br />
                             =Lead Generation Cost spent during 10am yesterday till 10am today.<br />
-                            <b>2) Amount charged from your payment method</b><br />
+                            <b>2) Amount charged from your Card</b><br />
                             =Next day Campaign Budget - Wallet Balance
                         </p>
 
@@ -673,7 +673,7 @@
                                             <td scope="col">{{date('Y-m-d',strtotime($tas['trx_date']))}}</td>
                                             <td scope="col"> {{get_invoice_format($tas['id']) }} </td>
                                             <td scope="col">{{ $general->cur_sym }} {{$tas['deduct']}}</td>
-                                            <td scope="col">Paid</td>
+                                            <td scope="col">{{$tas->total_budget !== "NA"?"Paid":"Paid (Manual Payment)"}}</td>
                                             <td scope="col">
                                                 @if(empty(auth()->guard('advertiser')->user()->billed_to) || empty(auth()->guard('advertiser')->user()->city) )
                                                 <a href="{{ url('/')}}/advertiser/profile" onclick="return confirm('Please fill your profile before downloading the invoice')"><svg style="enable-background:new 0 0 128 128; width:20px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -1004,9 +1004,9 @@
             errorPlacement: function(error, element) {
                 error.addClass('invalid-feedback');
                 try {
-                    element.closest('.container')[0].children[1].remove();
+                    element.closest('.container-box')[0].children[1].remove();
                 } catch (error) {}
-                element.closest('.container').append(error);
+                element.closest('.container-box').append(error);
             },
             highlight: function(element, errorClass, validClass) {
                 $(element).addClass('is-invalid');
@@ -1016,7 +1016,7 @@
             },
             success: function(element) {
                 try {
-                    element.closest('.container')[0].children[1].remove();
+                    element.closest('.container-box')[0].children[1].remove();
                 } catch (error) {}
             }
         });
