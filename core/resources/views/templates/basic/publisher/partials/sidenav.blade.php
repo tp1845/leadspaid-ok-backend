@@ -162,12 +162,7 @@
 
         <div class="sidebar__menu-wrapper custom_side_bar" id="sidebar__menuWrapper">
             <ul class="sidebar__menu">
-                <li class="sidebar-menu-item {{menuActive('publisher.dashboard')}}">
-                    <a href="{{route('publisher.dashboard')}}" class="nav-link ">
-                        <i class="menu-icon las la-home"></i>
-                        <span class="menu-title">@lang('Dashboard')</span>
-                    </a>
-                </li>
+
                 @if(auth()->guard('publisher')->user()->role === 1)
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('publisher.campaigns*',3)}}">
@@ -195,6 +190,16 @@
                     </div>
                 </li>
                 @endif
+
+            </ul>
+            {{-- Footer Menu --}}
+            <ul class="sidebar__menu footer-fix">
+                <li class="sidebar-menu-item {{menuActive('publisher.dashboard')}}">
+                    <a href="{{route('publisher.dashboard')}}" class="nav-link ">
+                        <i class="menu-icon las la-home"></i>
+                        <span class="menu-title">@lang('Dashboard')</span>
+                    </a>
+                </li>
                 <li class="sidebar-menu-item {{menuActive(['publisher.domain.verify','publisher.domain.verify.action'])}}">
                     <a href="{{route('publisher.domain.verify')}}" class="nav-link ">
                         <i class="menu-icon las la-check-circle"></i>
@@ -207,9 +212,6 @@
                         <span class="menu-title">@lang('Advertisements')</span>
                     </a>
                 </li>
-            </ul>
-            {{-- Footer Menu --}}
-            <ul class="sidebar__menu footer-fix">
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('user.withdraw*',3)}}">
                         <i class="menu-icon las la-credit-card"></i>

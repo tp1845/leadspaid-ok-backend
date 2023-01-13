@@ -70,7 +70,7 @@ $user = auth()->guard('advertiser')->user();
                                                 @endforeach
                                             </select>
                                         </div>
-                                        
+
                                     </div>
 
                                 </div>
@@ -97,19 +97,19 @@ $user = auth()->guard('advertiser')->user();
 
                                     <div class="card-body px-0 pt-1 my-upload-btns">
                                         <div class="upload-box" style="height: 53px; ">
-                                            
+
                                             <input type="file" name="image" id="form_company_logo" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                             <label for="form_company_logo" class="profile_company_logo" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Profile Logo*</span> </label>
                                             </div>
 
                                        <div class="image_preview" style="">
-                                              @php 
+                                              @php
                                             $imge_url='';
                                             if(empty(auth()->guard('advertiser')->user()->image)){
                                              $imge_url=get_image('assets/images/profile/user.png');
                                             }else{
                                              $imge_url=get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image);
-                                            } 
+                                            }
                                             @endphp
                                            <img src="{{ $imge_url }}" id="imgPreview">
                                        </div>
@@ -179,7 +179,7 @@ $user = auth()->guard('advertiser')->user();
         $(this).parent(".file-upload-wrapper").attr("data-text", $(this).val().replace(/.*(\/|\\)/, ''));
     });
 
-   
+
 
 
 jQuery.fn.capitalize = function() {
@@ -256,7 +256,7 @@ $("#full_name").capitalize();
             city: {required : 'Please fill valid City.',minlength:'minmum 3 characters.', maxlength: 'maximum 50 characters.'},
             billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'},
              image: "File must be JPG, GIF or PNG, less than 2MB",
-           
+
 
         }
     });
@@ -524,7 +524,7 @@ $(document).ready(()=>{
     padding: 16px 24px;
     line-height: normal;
     height: unset;
-   
+
 }
 #advertiser_form .form-group select {
     display: block;
@@ -538,7 +538,7 @@ $(document).ready(()=>{
     font-size: 18px !important;
     padding: .375rem .75rem;
 }
-.Rg_advts_my_btn {    
+.Rg_advts_my_btn {
     font-size: 18px !important;
     padding: .375rem .75rem;
     background-color: #4500dd!important;
@@ -648,7 +648,7 @@ element.style {
     width: 60px;
 }
 .navbar-user__thumb {
-     border: none; 
+     border: none;
     border-radius: 50%;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;

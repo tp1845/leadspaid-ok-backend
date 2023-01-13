@@ -156,15 +156,15 @@
     margin-bottom: 57vh;
 }
 }
- 
+
 </style>
 <div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/2.jfif')}}')">
-    
+
     <div class="sidebar__inner">
         <div class="sidebar__logo">
             <a href="{{route('advertiser.dashboard')}}" class="sidebar__main-logo"><img
                     src="{{getImage(imagePath()['logoIcon']['path'] .'/logo2.png')}}" alt="image"></a>
-         
+
         </div>
 
         <div class="sidebar__menu-wrapper custom_side_bar" id="sidebar__menuWrapper">
@@ -284,7 +284,7 @@
                         </a>
                     </li>
 
-                   
+
                     <li class="sidebar-menu-item {{menuActive('advertiser.profile')}}">
                     <a href="{{route('advertiser.profile')}}" class="nav-link">
                         <i class="menu-icon las la-user-cog text-white"></i>
@@ -304,19 +304,19 @@
                             <span class="menu-title text-white">@lang('Payments')</span>
                         </a>
                     </li>
-                   
+
 
             </ul>
 
             <ul class="sidebar__menu footer-fix">
-			
+
 			  <li class="sidebar-menu-item {{menuActive(['ticket','ticket.open','ticket.view'])}}">
                     <a href="{{route('ticket')}}" class="nav-link">
                         <i class="menu-icon las la-ticket-alt text-white"></i>
                             <span class="menu-title text-white">@lang('Support Ticket')</span>
                         </a>
               </li>
-					
+
                <li class="sidebar-menu-item {{menuActive('advertiser.profile')}}">
                     <a href="{{route('advertiser.profile')}}" class="nav-link">
                         <i class="menu-icon dropdown-menu__icon las la-cog"></i>
@@ -342,7 +342,7 @@
                             <button class="sidebar__expand"><i class="fa fa-angle-right" aria-hidden="true"></i></button>
                         </div>
                     </li>
-					
+
             </ul>
         </div>
     </div>
