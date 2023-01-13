@@ -15,7 +15,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="title-3 text-start">  <h2 style=" color:#191f58">CONTACT US</h2>  </div>
+                <div class="title-3 text-start">  <h2 style=" color:#191f58; padding-left:30px">CONTACT US</h2>  </div>
             </div>
             <div class="col-lg-4 mb-4">
                 <div class="log-in theme-card">
