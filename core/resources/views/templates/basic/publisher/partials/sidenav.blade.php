@@ -189,6 +189,12 @@
                         </ul>
                     </div>
                 </li>
+                <li class="sidebar-menu-item ">
+                    <a href="{{route('publisher.campaigns.all')}}" class="nav-link ">
+                        <i class="menu-icon las la-home"></i>
+                        <span class="menu-title">@lang('My Advertisers')</span>
+                    </a>
+                </li>
                 @endif
 
             </ul>
