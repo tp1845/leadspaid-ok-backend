@@ -227,8 +227,11 @@
     }
 
     .custom_bg_change_btn button.btn--primary {
-        background: #1361b2 !important;
+        background: #999 !important;
         border-radius: 0;
+    }
+  .custom_bg_change_btn button.btn--primary:hover {
+        background: #1361b2 !important;
     }
 
     .custom_bg_change_btn .form-text {
@@ -627,7 +630,7 @@
                                             <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->init_blance)  }}</td>
                                             <td data-label="@lang('Total Campaign Budget')" class="budget">{{$trx->total_budget === "NA"? "NA": $general->cur_sym . " ".  getAmount((float)$trx->total_budget)}} </td>
                                             <td data-label="@lang('Amount Spent Yesterday')" class="budget">{{$trx->spent_previous_day === "NA"? "NA": $general->cur_sym . " ".  getAmount((float)$trx->spent_previous_day) }} </td>
-                                            <td data-label="@lang('Amount Deducted From Card')" class="budget"> {{ ($trx->deduct) }}</td>
+                                            <td data-label="@lang('Amount Deducted From Card')" class="budget">{{ $general->cur_sym }} {{ ($trx->deduct) }}</td>
                                             <td data-label="@lang('Final Wallet Balance')" class="budget">{{ $general->cur_sym }} {{ getAmount($trx->final_wallet) }}</td>
                                         </tr>
                                         @empty
@@ -654,7 +657,7 @@
                                         <tr>
                                             <th scope="col"><span class="text-white px-1">Date</span></th>
                                             <th scope="col"><span class="text-white px-1">Invoice Number</span></th>
-                                            <th scope="col"><span class="text-white px-1">Amount (USD)</span></th>
+                                            <th scope="col"><span class="text-white px-1">Amount</span></th>
                                             <th scope="col"><span class="text-white px-1">Payment Status</span></th>
                                             <th scope="col"><span class="text-white px-1">Download</span></th>
                                         </tr>
@@ -665,7 +668,7 @@
                                         <tr>
                                             <td scope="col">{{date('Y-m-d',strtotime($tas['trx_date']))}}</td>
                                             <td scope="col"> {{get_invoice_format($tas['id']) }} </td>
-                                            <td scope="col">{{$tas['deduct']}}</td>
+                                            <td scope="col">{{ $general->cur_sym }} {{$tas['deduct']}}</td>
                                             <td scope="col">Paid</td>
                                             <td scope="col">
                                                 @if(empty(auth()->guard('advertiser')->user()->billed_to) || empty(auth()->guard('advertiser')->user()->city) )
