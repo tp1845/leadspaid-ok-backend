@@ -13,11 +13,13 @@
                                     <th>C.Id</th>
                                     <th>Campaign Name</th>
                                     <th>Delivery</th>
+                                    <th>Creation date</th>
+                                    <th>Target Country</th>
+                                    <th>Daily Budget</th>
+                                    <th>Target CPL</th>
+                                    <th>Form Used</th>
                                     <th>Start</th>
                                     <th>End</th>
-                                    <th>Target Country / City</th>
-                                    <th>Form Used</th>
-                                    <th>Daily Budget</th>
                                     <th>Cost</th>
                                     <th>Leads</th>
                                     <th>CPL</th>
@@ -42,15 +44,14 @@
                                         <td>{{ $campaign->advertiser->company_name}} </td>
                                         <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
-
                                         <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
+                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>{{ $campaign->target_country }}</td>
+                                        <td>${{  $campaign->daily_budget }}</td>
+                                        <td>${{  $campaign->target_cost }}</td>
+                                        <td>  @if (isset($campaign->campaign_forms))  {{$campaign->campaign_forms->form_name}}  @endif  </td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
-                                        <td>{{ $campaign->target_country }}, {{ $campaign->target_city }}</td>
-                                        <td>
-                                            @if (isset($campaign->campaign_forms))  {{$campaign->campaign_forms->form_name}}  @endif
-                                        </td>
-                                        <td>${{  $campaign->daily_budget }}</td>
                                         <td>0</td>
                                         <td>0</td>
                                         <td>0</td>
@@ -190,6 +191,7 @@
     .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; width: 100%; height: 100%; left: 0; top: 0; opacity: 0; cursor: pointer; }
     .up-down-btn{ font-size: 28px; background: transparent; border: 0; padding: 0 }
     .text-light-red{ color: #ff7481!important}
+    textarea{ min-height: auto!important; }
 </style>
 @endpush
 @push('script')
