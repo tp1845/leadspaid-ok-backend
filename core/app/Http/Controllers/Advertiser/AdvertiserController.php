@@ -235,9 +235,9 @@ class AdvertiserController extends Controller
         $user = auth()->guard('advertiser')->user();
         $customer = \Stripe\Customer::create();
 
-        $card_info =  (object) array('last4' => null,"brand"=>"","exp_month"=>null,"exp_year"=>null,"country"=>"");
-     
-        if ("" !=auth()->guard('advertiser')->user()->card_session){
+        $card_info =  (object) array('last4' => null, "brand" => "", "exp_month" => null, "exp_year" => null, "country" => "");
+
+        if ("" != auth()->guard('advertiser')->user()->card_session) {
             $user_intent =  $stripe->setupIntents->retrieve(
                 auth()->guard('advertiser')->user()->card_session,
                 []
@@ -246,8 +246,11 @@ class AdvertiserController extends Controller
                 $user_intent->payment_method,
                 []
             )->card;
+            $showbill = true;
+        }else{
+            $showbill = false;
         }
-       
+
         $intent = $stripe->setupIntents->create(
             [
                 'customer' =>  $customer->id,
@@ -258,7 +261,7 @@ class AdvertiserController extends Controller
         $countryy = auth()->guard('advertiser')->user()->country;
         $currentDateTime = $this->TimezoneFromName($countryy);
         $newDateTime = date('H', strtotime($currentDateTime));
-
+        $nextbill = auth()->guard('advertiser')->user()->nextbill;
 
         $page_title = 'Payments';
         $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('trx_date', 'DESC')->get();
@@ -268,7 +271,7 @@ class AdvertiserController extends Controller
             $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
         }
         $empty_message = 'No Transactions';
-        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key', 'ta', 'newDateTime', 'card_info'));
+        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key', 'ta','showbill', 'currentDateTime','newDateTime', 'nextbill', 'card_info'));
     }
 
     public function showinvoices($id)
@@ -278,7 +281,7 @@ class AdvertiserController extends Controller
         $ta = TransactionAdvertiser::where('id', $id)->first();
         $page_title = 'Payments';
         $data = ['title' => 'Laravel 7 Generate PDF From View Example Tutorial'];
-        $image_url = 'data:image/png;base64,' . base64_encode(getImage(imagePath()['logoIcon']['path'] . '/logo.png'));
+        $image_url = 'https://leadspaid.com/assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png';
         $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf', compact('page_title', 'ta', 'image_url'))->setOptions(['defaultFont' => 'Poppins']);
 
         return $pdf->download('invoice-LP-' . strtoupper(substr(auth()->guard('advertiser')->user()->company_name, 0, 2)) . '-' . get_invoice_format($id) . '.pdf', '+w');

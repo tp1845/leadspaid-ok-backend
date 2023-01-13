@@ -165,7 +165,7 @@
 
         $("#contact_form").validate({
             rules: {
-                enquiry_about:{ required: true }
+                enquiry_about:{ required: true },
                 name: { required: true,minlength: 3, lettersonly: true },
                 company: { required: false, minlength: 3},
                 email: { required: true,  valid_email:true  },

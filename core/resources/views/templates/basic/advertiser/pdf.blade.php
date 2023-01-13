@@ -71,8 +71,7 @@
                 <thead>
                     <tr>
                         <th style=" font-size: 40px;font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial'; text-align: left;">
-                            <!-- <span style="color:#1c273b;">Leads</span>Paid.com -->
-                            <img src="data:image/png;base64,{{ base64_encode(getImage(imagePath()['logoIcon']['path'] .'/logo.png'))}}" alt="LEADPaid" width="200px">
+                            <img src="{{$image_url}}" alt="LEADPaid" width="200px"/>
                         </th>
                     </tr>
                 </thead>
