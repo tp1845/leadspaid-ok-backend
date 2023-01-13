@@ -27,6 +27,9 @@
     font-size: 18px;
     font-weight: 500;
 }
+.advertiser_user_icon {
+  height: 25px;
+}
 </style>
 
 <nav class="navbar-wrapper active">
@@ -110,6 +113,7 @@
         <li class="dropdown">
           <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             <span class="navbar-user">
+			 <img class="num-img advertiser_user_icon mr-2" src="{{ url('/')}}/assets/images/profile/portrait.png" />
                 {{auth()->guard('advertiser')->user()->username}}
                 {{-- <span class="navbar-user__thumb"><img src="{{ get_image('assets/advertiser/images/profile/'. auth()->guard('advertiser')->user()->image) }}" alt="image"></span> --}}
               <span class="icon"><i class="las la-chevron-circle-down"></i></span>
