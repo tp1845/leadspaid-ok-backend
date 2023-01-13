@@ -10,6 +10,7 @@
                                 <tr>
                                     <th>Off/On</th>
                                     <th>Advertiser</th>
+                                    <th>A.Id</th>
                                     <th>C.Id</th>
                                     <th>Campaign Name</th>
                                     <th>Delivery</th>
@@ -42,6 +43,7 @@
                                     <tr>
                                         <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
                                         <td>{{ $campaign->advertiser->company_name}} </td>
+                                        <td>{{ $campaign->advertiser->id}} </td>
                                         <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
                                         <td>{{ $campaign->delivery ? "Active" : "Inactive" }}</td>
