@@ -275,10 +275,12 @@ class ProcessController extends Controller
 
         $user = Auth::guard('advertiser')->user();
         $currentDateTime = $this->TimezoneFromName($user->country);
+        if ($request->amount > 0) {
+            $deducting_amount = $request->amount + ($request->amount * 0.03);
         $previous_deposit = $user->wallet_deposit;
         $new_deposit =  $previous_deposit + $request->amount;
         $user->wallet_deposit = $new_deposit;
-
+        } 
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
         $gateway_parameter = json_decode($method->parameters);
         $stripe = new   \Stripe\StripeClient($gateway_parameter->secret_key->value);
@@ -298,11 +300,11 @@ class ProcessController extends Controller
         );
         $customer_id = $payment_method->customer;
       
-        if ( $request->amount >= 1) {
+        if ( $deducting_amount >= 1) {
             try {
                 \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
                 \Stripe\PaymentIntent::create([
-                    'amount' =>  $request->amount * 100,
+                    'amount' =>  $deducting_amount * 100,
                     'currency' => 'usd',
                     'customer' => $customer_id,
                     'payment_method' => $payment_method_id,
@@ -318,14 +320,14 @@ class ProcessController extends Controller
                 return redirect()->route('advertiser.payments')->withNotify($notify);
             }
         }
-        $notify[] = ['success', 'Success!' .  $request->amount];
+        $notify[] = ['success', 'Success!'];
         $transaction = new TransactionAdvertiser();
         $transaction->user_id =  $user->id;
         $transaction->trx_date = $currentDateTime;
         $transaction->init_blance = getAmount($previous_deposit);
         $transaction->total_budget = "NA";
         $transaction->spent_previous_day = "NA";
-        $deduct_amount =  $request->amount <= 0 ? 0 :  $request->amount . '(' .  $request->amount . '+3% service charge)';
+        $deduct_amount =  $request->amount <= 0 ? 0 :  $deducting_amount . '(' .  $request->amount . '+3% service charge)';
         $transaction->deduct = $deduct_amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
