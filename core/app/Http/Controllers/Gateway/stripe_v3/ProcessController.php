@@ -260,7 +260,7 @@ class ProcessController extends Controller
         $transaction->init_blance = getAmount($previous_deposit);
         $transaction->total_budget = getAmount($user->total_budget);
         $transaction->spent_previous_day = getAmount($user->amount_used);
-        $deduct_amount = $deducting_amount <= 0 ? 0 : $deducting_amount . '(' . $amount . '+3% service charge)';
+        $deduct_amount = $deducting_amount <= 0 ? 0 : $deducting_amount . ' (' . $amount . '+3% service charge)';
         $transaction->deduct = $deduct_amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
