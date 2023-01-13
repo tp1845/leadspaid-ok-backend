@@ -30,6 +30,16 @@
 .advertiser_user_icon {
   height: 25px;
 }
+
+.nav-payment ul li .num-img {
+    height: 25px;
+    margin-bottom: 3px;
+}
+.navbar-wrapper .nav-payment ul li {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
 </style>
 
 <nav class="navbar-wrapper active">
