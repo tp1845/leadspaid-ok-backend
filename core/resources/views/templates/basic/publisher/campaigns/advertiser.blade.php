@@ -397,7 +397,6 @@
             t += "</table>"
             $('#previewData').html(t);
         }
-
         function reset_upload_preview(form){
             form[0].reset();
             leads_preview_modal.modal('hide').removeAttr('data-form');

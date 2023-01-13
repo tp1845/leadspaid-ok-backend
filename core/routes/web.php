@@ -527,7 +527,7 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
     Route::middleware(['publisher','checkStatus:publisher','publisherAdmin:publisher'])->group(function () {
         //Manage Campaigns for publiser admin
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
-        Route::get('/campaigns/advertisers/','CampaignsController@advertisers_index')->name('campaigns.advertisers');
+        Route::get('/campaigns/advertiser/{id}','CampaignsController@advertisers_campaigns')->name('campaigns.advertiser');
         Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
         Route::post('/campaigns/leads/importpreview/{cid}/{aid}/{fid}','CampaignsController@importpreview')->name('leads.importpreview');
         Route::post('/campaigns/leads/import/{cid}/{aid}/{fid}','CampaignsController@import')->name('leads.import');

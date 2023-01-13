@@ -29,12 +29,15 @@
                                     <span class="menu-title">@lang('All Campaigns')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{menuActive('publisher.campaigns.advertisers')}}">
-                                <a href="{{route('publisher.campaigns.advertisers')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Advertisers Company')</span>
-                                </a>
-                            </li>
+                            @php $assigned_advertisers = get_assigned_advertisers(auth()->guard('publisher')->user()->id); @endphp
+                            @foreach ($assigned_advertisers as $advertiser)
+                                <li class="sidebar-menu-item {{menuActive('publisher.campaigns.advertiser', $advertiser['id'] )}}">
+                                    <a href="{{route('publisher.campaigns.advertiser', $advertiser['id'] )}}" class="nav-link">
+                                        <i class="menu-icon las la-dot-circle"></i>
+                                        <span class="menu-title"> {{$advertiser['company_name']}}</span>
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </li>
