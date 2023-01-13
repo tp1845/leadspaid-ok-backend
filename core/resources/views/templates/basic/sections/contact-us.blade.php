@@ -203,14 +203,14 @@
 @endpush
 @push('style')
 <style>
-    .contact-3 .title-3{
+    .contact-3 .title-3, .contact-3 .title-3 h2{
         color: #1a273a;
         font-weight: bold;
         font-size: 52px;
         text-transform: uppercase;
         margin: 0;
     }
-    @media (max-width: 768px)  { .contact-3 .title-3{ font-size: 36px; } }
+    @media (max-width: 768px)  { .contact-3 .title-3, .contact-3 .title-3 h2{ font-size: 36px; } }
     .contact-banner{
         position: relative;
         filter: invert(10%);
