@@ -17,7 +17,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="las la-key"></i></span>
                                 </div>
-                                <input class="form-control" type="password" name="old_password" required>
+                                <input class="form-control rounded-0" type="password" name="old_password" required>
                             </div>
                         </div>
 
@@ -27,7 +27,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="las la-key"></i></span>
                                 </div>
-                                <input class="form-control" type="password" name="password" required>
+                                <input class="form-control rounded-0" type="password" name="password" required>
                             </div>
                         </div>
 
@@ -37,12 +37,12 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="las la-key"></i></span>
                                 </div>
-                                <input class="form-control" type="password" name="password_confirmation" required>
+                                <input class="form-control rounded-0" type="password" name="password_confirmation" required>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <button type="submit" class="btn btn--primary btn-block btn-lg Rg_advts_my_btn rounded-0">@lang('Save Changes')</button>
+                        <div class="form-group text-center">
+                            <button type="submit" class="btn btn--primary btn-lg Rg_advts_my_btn rounded-0">@lang('Update Password')</button>
                         </div>
                     </form>
                 </div>
@@ -57,22 +57,35 @@
 
 @push('style')
 <style type="text/css">
+    .profile_pass_setting {
+    font-size: 18px !important;
+    padding: .375rem .75rem;
+}
  #change_password .form-group label {
         font-size: 16px;
         color: #1a273a;
     }
-	
-	.profile_pass_setting {
-    font-size: 18px !important;
-    padding: .375rem .75rem;
-}
-
     .Rg_advts_my_btn {
     font-size: 18px !important;
     padding: .375rem .75rem;
     background-color: #4500dd!important;
     font-weight: 500;
 }
-	
+#change_password .form-group .input-group input {
+    background: #fff;
+    display: block;
+    font-size: 19px !important;
+    padding: 16px 24px;
+    line-height: normal;
+    height: unset;
+}
+#change_password .form-group .input-group .input-group-text {
+    width: 63px;
+    border-radius: 0;
+    justify-content: center;
+}
+#change_password .form-group .input-group .input-group-text i {
+    font-size: 26px;
+}
 </style>
 @endpush
