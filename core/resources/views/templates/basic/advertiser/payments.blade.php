@@ -460,17 +460,16 @@
                         </div>
                         <p class="py-2">*Please note that the current card service charge is 3%</p>
                         <div class="border-top py-10">
-                            <div>
-                                <form method="POST" action="{{ route('ipn.manual_pay') }}" class="d-flex" style="gap: 10px;">
+                            <div class="container">
+                                <form method="POST" id="manual_form" action="{{ route('ipn.manual_pay') }}" class="d-flex" style="gap: 10px;">
                                     @csrf
                                     <div class="d-flex" style="display: flex;align-items: center;gap: 14px;">
-                                        Amount:
                                         <div class="us_doller" style="width: 160px;">
-                                            <input type="text" id="AmountInput" class="form-control bg-white" name="amount" placeholder="Daliy Budget" required>
+                                            <input type="text" id="AmountInput" class="form-control bg-white" name="amount" required>
                                         </div>
                                     </div>
                                     <div class="custom_bg_change_btn">
-                                        <button type="submit" class="btn btn--primary fs-16">@lang('Make a Manual payment')</button>
+                                        <button type="submit" style="background-color: #999;" class="btn btn--primary fs-16">@lang('Make A Manual Payment')</button>
                                     </div>
                                 </form>
 
@@ -514,8 +513,8 @@
                             @endphp
 
                         </h3><br>
-                        <p class="ar-12">Everyday at 10:00 AM,</p>
-                        <p class="ar-12">
+                        <p class="ar-12 border-top">Everyday at 10:00 AM,</p>
+                        <p class="ar-12 ">
 
 
                             <b>1) Amount deducted from your prepaid-wallet</b><br />
@@ -980,25 +979,55 @@
         })
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+
     <script>
         "use strict";
-        var typingTimer;
-        var $input = $('#AmountInput');
+
 
         $('#AmountInput').keyup(function() {
             this.value = this.value.replace(/[^0-9]/g, "");
-            clearTimeout(typingTimer);
-            typingTimer = setTimeout(doneTyping, 300);
         });
 
-        function doneTyping() {
-            if (Number($('#AmountInput').val()) > 10000){
-                $('#AmountInput').val (10000);
+        $.validator.setDefaults({
+            errorElement: 'span',
+            errorPlacement: function(error, element) {
+                error.addClass('invalid-feedback');
+                try {
+                    element.closest('.container')[0].children[1].remove();
+                } catch (error) {}
+                element.closest('.container').append(error);
+            },
+            highlight: function(element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function(element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+            success: function(element) {
+                try {
+                    element.closest('.container')[0].children[1].remove();
+                } catch (error) {}
             }
-            if (Number($('#AmountInput').val()) < 10){
-                $('#AmountInput').val(10);
+        });
+        $("#manual_form").validate({
+            rules: {
+                amount: {
+                    required: true,
+                    min: 10,
+                    max: 10000
+                }
+            },
+            messages: {
+                amount: {
+                    required: 'Amount is required.',
+                    min: 'Minimum Payment is $10',
+                    max: 'Maximum payment is $10,000'
+                },
             }
-        }
+        });
+
 
 
         $('.setup-payment').on('click', function() {
