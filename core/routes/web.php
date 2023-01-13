@@ -37,6 +37,7 @@ Route::namespace('Gateway')->prefix('ipn')->name('ipn.')->group(function () {
     Route::post('cashmaal', 'cashmaal\ProcessController@ipn')->name('cashmaal');
     Route::post('advertiser/charge', 'stripe_v3\ProcessController@charge')->name('advertiser_charge');
     Route::post('advertiser/current/charge', 'stripe_v3\ProcessController@charge_current')->name('current_advertiser_charge');
+    Route::post('advertiser/current/manual/pay', 'stripe_v3\ProcessController@manual_pay')->name('manual_pay');
 });
 
 // User Support Ticket
