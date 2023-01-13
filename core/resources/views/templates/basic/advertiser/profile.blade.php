@@ -632,14 +632,14 @@ element.style {
 .my-upload-btns {
     position: relative;
     vertical-align: middle;
+    display: flex;
+}
+.my-upload-btns .upload-box {
+    margin-right: 15px;
 }
 .my-upload-btns .image_preview {
     width: 54px;
-    position: absolute;
-    left: 50%;
-    top: 3px;
-    transform: translateX(50%);
-    border-radius: 50%;
+     border-radius: 50%;
     object-fit: cover;
     overflow: hidden;
 }
