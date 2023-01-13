@@ -23,6 +23,10 @@
     position: absolute;
     left: 20px;
 }
+.nav-payment span {
+    font-size: 18px;
+    font-weight: 500;
+}
 </style>
 
 <nav class="navbar-wrapper active">
