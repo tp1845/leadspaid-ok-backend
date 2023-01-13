@@ -189,7 +189,7 @@ class ProcessController extends Controller
                 $transaction->final_wallet =  $user->wallet_deposit;
                 $transaction->save();
 
-                $user->nextbill = date('Y-m-d', strtotime(' +1 day')) ;  
+                $user->nextbill = date('Y-m-d', strtotime(' +1 day',strtotime ( $currentDateTime))) ;  
                 $user->save();
             }
         }
@@ -264,8 +264,7 @@ class ProcessController extends Controller
         $transaction->deduct = $deduct_amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
-
-        $user->nextbill = date('Y-m-d', strtotime(' +1 day')) ;  
+        $user->nextbill = date('Y-m-d', strtotime(' +1 day',strtotime ( $currentDateTime))) ;  
         $user->save();
 
         return redirect()->route('advertiser.payments')->withNotify($notify);
