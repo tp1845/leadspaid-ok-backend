@@ -274,6 +274,45 @@
     .text-green {
         color: #008000;
     }
+
+
+    .us_doller input[aria-invalid="false"],
+    .us_doller input {
+        padding-left: 90px !important;
+    }
+
+    .us_doller:after {
+        content: 'US$';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        color: rgb(33 37 41 / 80%);
+        left: 0;
+        background: #f1f1f2;
+        font-size: 14px;
+        height: 100%;
+        border: 1px solid #94a1b5;
+        padding: 10px 20px;
+    }
+
+    .us_doller {
+        position: relative;
+    }
+
+    .form-control,
+    .custom-select {
+        border-radius: 0;
+        background-color: #fff;
+        /*        font-size: 19px!important;*/
+        /*        font-weight: 300!important;*/
+        color: #212529 !important;
+        border-radius: 0 !important;
+        vertical-align: middle !important;
+        border: 1px solid #94a1b5 !important;
+        outline: none !important;
+        padding: 10px 18px !important;
+        height: auto;
+    }
 </style>
 <div class="container-fluid position-relative px-0     5555555">
 
@@ -426,9 +465,11 @@
                                     @csrf
                                     <div class="d-flex" style="display: flex;align-items: center;gap: 14px;">
                                         Amount:
-                                        <input type="number" value="0" name="amount" class="bg-white form-control text--black" placeholder="Amount" style="max-width: 7rem;">
+                                        <div class="us_doller" style="width: 160px;">
+                                            <input type="text" id="AmountInput" class="form-control bg-white" name="amount" placeholder="Daliy Budget" required>
+                                        </div>
                                     </div>
-                                    <div>
+                                    <div class="custom_bg_change_btn">
                                         <button type="submit" class="btn btn--primary fs-16">@lang('Make a Manual payment')</button>
                                     </div>
                                 </form>
@@ -941,6 +982,24 @@
 
     <script>
         "use strict";
+        var typingTimer;
+        var $input = $('#AmountInput');
+
+        $('#AmountInput').keyup(function() {
+            this.value = this.value.replace(/[^0-9]/g, "");
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(doneTyping, 300);
+        });
+
+        function doneTyping() {
+            if (Number($('#AmountInput').val()) > 10000){
+                $('#AmountInput').val (10000);
+            }
+            if (Number($('#AmountInput').val()) < 10){
+                $('#AmountInput').val(10);
+            }
+        }
+
 
         $('.setup-payment').on('click', function() {
             var modal = $('#SetupPaymentModal');
