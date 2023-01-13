@@ -271,7 +271,7 @@ class AdvertiserController extends Controller
             $ta = TransactionAdvertiser::whereUserId(Auth::guard('advertiser')->user()->id)->whereNotNull('deduct')->where('deduct', '!=',  0)->orderBy('id', 'DESC')->whereBetween('trx_date', array($request->startDate, $request->endDate))->get();
         }
         $empty_message = 'No Transactions';
-        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key', 'ta','showbill', 'newDateTime', 'nextbill', 'card_info'));
+        return view($this->activeTemplate . 'advertiser.payments', compact('page_title', 'trxs', 'empty_message', 'intent', 'publishable_key', 'ta','showbill', 'currentDateTime','newDateTime', 'nextbill', 'card_info'));
     }
 
     public function showinvoices($id)

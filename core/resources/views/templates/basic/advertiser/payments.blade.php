@@ -366,9 +366,9 @@ table.dataTable {
                         $currentTime = time() + 3600;
                        
                        if ($newDateTime >= 10) {  
-                            echo  date('M d, Y', strtotime(' +1 day')) . "  , 10:00 AM";
+                            echo  date('M d, Y', strtotime(' +1 day',strtotime ($currentDateTime))) . "  , 10:00 AM";
                         }else{
-                           echo  date('M d, Y') . "  , 10:00 AM";
+                           echo  date('M d, Y',strtotime($currentDateTime)) . "  , 10:00 AM";
                         }
                      }
                      
