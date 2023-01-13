@@ -206,7 +206,7 @@
     .contact-3 .title-3, .contact-3 .title-3 h2{
         color: #1a273a;
         font-weight: bold;
-        font-size: 52px;
+        font-size: 36px;
         text-transform: uppercase;
         margin: 0;
     }
