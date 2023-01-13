@@ -185,7 +185,7 @@
                $amoun_arr = explode('(', $amun);
                if ($ta->total_budget !== "NA"){
                 $isManual = false;
-                $card_s_c = (float)$amoun_arr[0] - (float)$ta->spent_previous_day;
+                $card_s_c = (float)$ta->spent_previous_day * 0.03;
                }else{
                 $isManual = true;
                 $card_s_c =  (float)$amoun_arr[1] * 0.03;
