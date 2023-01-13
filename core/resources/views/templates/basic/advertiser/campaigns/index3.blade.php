@@ -228,15 +228,23 @@ Use An Existing Form
 </div>
 <div class="card-body p-0 ">
 <div class="row align-items-end m-0 py-2 pb-3 company_row" >
-<div class="col-lg-3 ">
-<label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
+
+<div class="col-lg-12">
+     <label class="form-label lp-dark mb-1 ar-16" for="company_name_Input"><b>Company/Brand Name</b>
 <span id="text_white" class="ar-14 lp-dark">(Optional)</span>
 </label>
 <div class="input-col">
 <input type="text" name="logo_comapny" class="logo_comapny">
 </div>
+     
+ </div> 
 
-<input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30"></div>
+<div class="col-lg-3 ">
+
+
+<input type="text" class="form-control" id="company_name_Input" placeholder="eg. {{ auth()->guard('advertiser')->user()->company_name }}" name="company_name"  maxlength="30">
+
+</div>
 <div class="col-lg-6 input-col d-flex  flex-wrap align-items-center">
 <div class="upload-box" style="height: 53px; ">
 <input type="file" name="company_logo"  id="form_company_logo" class="inputfile inputfile-1"  accept="image/jpeg, image/png" >
