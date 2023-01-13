@@ -1,5 +1,6 @@
 <?php
 
+use App\Advertiser;
 use App\GeneralSetting;
 use Illuminate\Support\Facades\Mail;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -968,4 +969,9 @@ function get_campiagn_leads_by_id($id){
 }
 function get_total_campaign($id){
     return campaigns::where('advertiser_id',$id)->count();
+}
+
+function get_assigned_advertisers($publisher_id){
+    $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $publisher_id  )->select('id', 'name', 'company_name')->get()->toarray();
+    return $assign_advertiser;
 }

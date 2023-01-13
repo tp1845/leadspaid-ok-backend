@@ -1,22 +1,18 @@
 @extends($activeTemplate.'layouts.publisher.frontend')
-
 @section('panel')
-
-
 <section >
     <div class="container">
         <div class="account-area">
             <div class="row justify-content-center">
-
-                <div class="col-lg-5" style="max-width: 475px;">
+                <div class="col-lg-12">
                     <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
                             <form method="POST" id="publisher_form" action="{{route('publisher.profile.update')}}">
                                 @csrf
-                                <div class="card border shadow-sm mb-4" style="overflow: inherit;">
-                                    <div class="bg-light card-header font-weight-bolder text-body"> Basic Information
-                                    </div>
-                                    <div class="card-body">
+                                <div class="row">
+                                <div class="mb-4 col-md-6" style="overflow: inherit;">
+                                    <div class="form_subtitle"> Basic Information </div>
+                                    <div class="card-body px-0">
                                         <div class="form-group ">
                                             <label>@lang('Company Name')</label>
                                             <input type="text" class="form-control" name="company_name" value="{{ $publisher->company_name }}" placeholder="Company Name">
@@ -28,8 +24,13 @@
                                         <div class="form-group country-code">
                                             <label>@lang('Phone') <sup class="text-danger">*</sup></label>
                                             <input type="text" name="phone" value="{{$publisher->phone}}" class="form-control" required placeholder="@lang('Your Phone Number')">
-
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4 col-md-6">
+                                    <div class="form_subtitle"> Address Information </div>
+                                    <div class="card-body px-0">
                                         <div class="form-group">
                                             <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
                                             <input type="email" name="email" placeholder="Billing Email address" class="form-control" value="{{$publisher->email}}" required>
@@ -54,28 +55,25 @@
                                             <input type="text" placeholder="Postal Code" name="postal_code" class="form-control" value="{{$publisher->postal_code}}" required>
                                         </div>
                                     </div>
-
                                 </div>
-                                <div class="card border shadow-sm mb-4">
-                                    <div class="bg-light card-header font-weight-bolder text-body"> User Information
-                                    </div>
-                                    <div class="card-body">
+
+                                <div class="col-md-6">
+                                    <div class="form_subtitle"> User Information  </div>
+                                    <div class="card-body px-0 pt-1">
                                         <div class="form-group">
                                             <label>@lang('Username') <sup class="text-danger">*</sup></label>
                                             <input type="text" name="username" placeholder="User Name" class="form-control" readonly value="{{$publisher->username}}" required>
                                         </div>
                                     </div>
-
-                                </div>
-
-                                @include($activeTemplate.'partials.custom-captcha')
-                                <div class="form-group row">
-                                    <div class="col-md-12 ">
-                                        @php echo recaptcha() @endphp
+                                    @include($activeTemplate.'partials.custom-captcha')
+                                    <div class="form-group row">
+                                        <div class="col-md-12 ">
+                                            @php echo recaptcha() @endphp
+                                        </div>
                                     </div>
+                                    <button type="submit" class="box--shadow1 rounded-0 btn btn--primary btn-lg text--small Rg_advts_my_btn">@lang('Update Profile')</button>
                                 </div>
-                                <button type="submit" class="box--shadow1 btn btn--primary btn-lg text--small w-100">@lang('Save Changes')</button>
-
+                            </div>
                             </form>
                         </div>
                     </div>
@@ -87,7 +85,7 @@
 @endsection
 
 @push('breadcrumb-plugins')
-    <a href="{{route('publisher.password')}}" class="btn btn-sm btn--primary box--shadow1 text--small" ><i class="fa fa-key"></i>@lang('Password Setting')</a>
+    <a href="{{route('publisher.password')}}" class="profile_pass_setting rounded-0 btn btn-sm btn--primary box--shadow1 text--small" ><i class="fa fa-key"></i>@lang('Change Password')</a>
 @endpush
 
 @push('script')
@@ -110,7 +108,7 @@
     $(".profilePicUpload").on('change', function () {
         proPicURL(this);
     });
-    
+
     document.addEventListener('DOMContentLoaded', function(e) {
         FormValidation.formValidation(document.querySelector('#publisher_form'), {
             fields: {
@@ -236,9 +234,48 @@
         $(this).parents(".thumb").find('input[type=file]').val('');
     });
 
-    $("form").on("change", ".file-upload-field", function(){ 
+    $("form").on("change", ".file-upload-field", function(){
     $(this).parent(".file-upload-wrapper").attr("data-text",   $(this).val().replace(/.*(\/|\\)/, '') );
     });
 </script>
+@endpush
+@push('style')
+<style type="text/css">
+    #publisher_form .form-group input{
+        background: #fff;
+        display: block;
+        font-size: 19px !important;
+        padding: 16px 24px;
+        line-height: normal;
+        height: unset;
+        border-radius: 0!important;
+    }
+    .form_subtitle{
+        font-size: 16px;
+        color: #212529!important;
+        font-weight: bolder!important;
+        font-family: 'Roboto', Helvetica, sans-serif, 'Open Sans', Arial;
+    }
 
+    #publisher_form .Rg_advts_my_btn {
+    font-size: 18px !important;
+    padding: 0.375rem 0.75rem;
+    background-color: #4500dd!important;
+    font-weight: 500;
+}
+.profile_pass_setting {
+    font-size: 18px !important;
+    padding: 0.375rem 0.75rem;
+}
+
+#publisher_form .form-group select {
+    display: block;
+    font-size: 19px !important;
+    padding: 16px 24px;
+    line-height: normal;
+    height: unset;
+    text-transform: capitalize;
+    background: #fff url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e) no-repeat right 0.75rem center/30px 10px !important;
+}
+</style>
 @endpush

@@ -492,7 +492,7 @@
                 font-size: 20px;
                 padding: 6px 8px;
             }
-            .MainBanner-Home .hero_title {  padding-top: 90px; }
+            .MainBanner-Home .hero_title {  padding-top: 110px; }
         }
         @media only screen and (max-width: 600px) {
             .MainBanner-Home  { position: relative; }

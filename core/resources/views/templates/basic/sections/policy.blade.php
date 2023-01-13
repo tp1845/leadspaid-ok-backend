@@ -23,7 +23,7 @@
 .inner-hero {
     background-color: #062c4e99;
     background-image: url('{{url('/')}}/assets/templates/leadpaid/images/hero-privacy-policy.jpg')!important;
-    }
-
+}
+.page-title{ text-transform: uppercase; }
 </style>
 @endpush

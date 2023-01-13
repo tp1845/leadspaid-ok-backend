@@ -269,4 +269,70 @@ class ProcessController extends Controller
 
         return redirect()->route('advertiser.payments')->withNotify($notify);
     }
+
+    public function manual_pay(Request $request)
+    {
+
+        $user = Auth::guard('advertiser')->user();
+        $currentDateTime = $this->TimezoneFromName($user->country);
+        $previous_deposit = $user->wallet_deposit;
+        $new_deposit =  $previous_deposit + $request->amount;
+        $user->wallet_deposit = $new_deposit;
+
+        $method = Gateway::where('alias', 'stripe')->firstOrFail();
+        $gateway_parameter = json_decode($method->parameters);
+        $stripe = new   \Stripe\StripeClient($gateway_parameter->secret_key->value);
+
+        try {
+            $setup_intent = $stripe->setupIntents->retrieve($user->card_session, []);
+        } catch (\Stripe\Exception\InvalidArgumentException $e) {
+            $notify[] = ['error', 'Please add your card'];
+            return redirect()->route('advertiser.payments')->withNotify($notify);
+        }
+
+
+        $payment_method_id = $setup_intent->payment_method;
+        $payment_method =  $stripe->paymentMethods->retrieve(
+            $payment_method_id,
+            []
+        );
+        $customer_id = $payment_method->customer;
+      
+        if ( $request->amount >= 1) {
+            try {
+                \Stripe\Stripe::setApiKey($gateway_parameter->secret_key->value);
+                \Stripe\PaymentIntent::create([
+                    'amount' =>  $request->amount * 100,
+                    'currency' => 'usd',
+                    'customer' => $customer_id,
+                    'payment_method' => $payment_method_id,
+                    'off_session' => true,
+                    'confirm' => true,
+                ]);
+            } catch (\Stripe\Exception\CardException $e) {
+                // Error code will be authentication_required if authentication is needed
+                echo 'Error code is:' . $e->getError()->code;
+                $payment_intent_id = $e->getError()->payment_intent->id;
+                $payment_intent = \Stripe\PaymentIntent::retrieve($payment_intent_id);
+                $notify[] = ['error', 'Failed to charge'];
+                return redirect()->route('advertiser.payments')->withNotify($notify);
+            }
+        }
+        $notify[] = ['success', 'Success!' .  $request->amount];
+        $transaction = new TransactionAdvertiser();
+        $transaction->user_id =  $user->id;
+        $transaction->trx_date = $currentDateTime;
+        $transaction->init_blance = getAmount($previous_deposit);
+        $transaction->total_budget = "NA";
+        $transaction->spent_previous_day = "NA";
+        $deduct_amount =  $request->amount <= 0 ? 0 :  $request->amount . '(' .  $request->amount . '+3% service charge)';
+        $transaction->deduct = $deduct_amount;
+        $transaction->final_wallet =  $user->wallet_deposit;
+        $transaction->save();
+        // $user->nextbill = date('Y-m-d', strtotime(' +1 day',strtotime ( $currentDateTime))) ;  
+        $user->save();
+
+        return redirect()->route('advertiser.payments')->withNotify($notify);
+    }
+
 }
