@@ -3048,6 +3048,12 @@ tr.delete_row {
 .delete_row  td:first-child .toggle {
     display:none;
 }
+div.dataTables_wrapper div.dataTables_filter label {
+    font-weight: normal;
+    white-space: nowrap;
+    text-align: left;
+    margin-right: 240px;
+}
 </style>
 
 @endpush
