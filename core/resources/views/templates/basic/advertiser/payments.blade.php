@@ -232,7 +232,7 @@
     }
 
     .custom_bg_change_btn button.btn--primary.manualbtn {
-        background: #999 !important;
+        background:  #777!important;
         border-radius: 0;
     }
   .custom_bg_change_btn button.btn--primary.manualbtn:hover {
