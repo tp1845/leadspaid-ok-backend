@@ -3,7 +3,7 @@
 @section('panel')
     <div class="row justify-content-center mb-none-30">
 
-        <div class="col-lg-6 mb-30">
+        <div class="col-lg-5 mb-30">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-50 border-bottom pb-2">@lang('Change Password')</h5>
