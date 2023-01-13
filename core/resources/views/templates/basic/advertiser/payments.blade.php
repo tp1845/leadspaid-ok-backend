@@ -314,7 +314,7 @@
         height: auto;
     }
 </style>
-<div class="container-fluid position-relative px-0     5555555">
+<div class="container-fluid position-relative px-0">
 
     <div class="row">
         <div class="col-md-9 col-xl-9 col-lg-9 col-sm-12 col-12 adsrock-heading mb-xl-0 mb-lg-0 mb-md-0 mb-sm-4 mb-4">
@@ -512,8 +512,9 @@
 
                             @endphp
 
-                        </h3><br>
-                        <p class="ar-12 border-top">Everyday at 10:00 AM,</p>
+                        </h3>
+                        <hr/>
+                        <p class="ar-12">Everyday at 10:00 AM,</p>
                         <p class="ar-12 ">
 
 
@@ -922,7 +923,8 @@
                         'Last 7 Days': [moment().subtract(6, 'days'), moment().add(1, 'days')],
                         'Last 30 Days': [moment().subtract(30, 'days'), moment().add(1, 'days')],
                         'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                        'All Time': ['01/01/1970', moment().add(1, 'days')]
                     },
                     "alwaysShowCalendars": true,
                     "startDate": isSearched ? startDate : moment().subtract(6, 'days'),

@@ -88,7 +88,7 @@
             <table class="table style--two" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
                 <thead>
                     <tr>
-                        <th style=" font-size: 40px;font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial'; text-align: left;">
+                        <th style=" font-size: 40px;font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial'; text-align: left; color:#4727e6">
                         <span style="font-weight: bolder;">LEADS</span><span style="font-weight: 400;;">PAID</span>
                         </th>
                     </tr>
@@ -96,14 +96,14 @@
                 <tbody style="border:none;border-radius: 5px !important; font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
                     <tr>
                         <td>
-                            <h3>Leads Paids inc.</h3>
+                            <h3>Leads Paid Inc.</h3>
                         </td>
                     </tr>
                     <tr>
-                        <td>1401 21st Street STE R</td>
+                        <td>5214F Diamond Heights Blvd #3077</td>
                     </tr>
                     <tr>
-                        <td>Sacramento, California 95811</td>
+                        <td>San Francisco, California 94131</td>
                     </tr>
                     <tr>
                         <td>United States.</td>
@@ -188,15 +188,21 @@
                 $card_s_c = (float)$amoun_arr[0] - (float)$ta->spent_previous_day;
                }else{
                 $isManual = true;
-                $card_s_c =  (float)$amoun_arr[1];
+                $card_s_c =  (float)$amoun_arr[1] * 0.03;
             }
-            
+            $i = 0;
+            function add( $i)
+            {
+                $i++;
+                return $i;
+            }
+          
                $ga = (float)$amoun_arr[0]; ?>
 
             <table class="table-3 style--two">
                 <thead>
                     <tr>
-                        <th scope="col" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Date</th>
+                        <th scope="col" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">#</th>
                         <th scope="col" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Description</th>
 
                         <th scope="col" style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">Amount</th>
@@ -207,12 +213,12 @@
                 </thead>
                 <tbody>
                     <tr style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
-                        <td data-label="Inital Wallet Balance" class="budget">{{ date('Y-m-d',strtotime($ta->trx_date))}}</td>
+                        <td data-label="Inital Wallet Balance" class="budget">{{ add($i) }}</td>
                         <td data-label="Transaction Date">Lead Generation Charges</td>
 
-                        <td data-label="Total Campaign Budget" class="budget"> $ {{ number_format((float)$card_s_c, 2, '.', '')}}</td>
+                        <td data-label="Total Campaign Budget" class="budget"> $ {{ number_format((float)$amoun_arr[1], 2, '.', '')}}</td>
 
-                        <td data-label="Amount Deducted From Card" class="budget" style="vertical-align: bottom;;padding-top: 40px;"> $ {{ number_format((float)$ta->deduct, 2, '.', '')}} <br>(3%)</td>
+                        <td data-label="Amount Deducted From Card" class="budget" style="vertical-align: bottom;;padding-top: 40px;"> $ {{ number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
                         <td data-label="Final Wallet Balance" class="budget">
                             $ {{ number_format((float)$ga, 2, '.', '')}}</td>
                     </tr>
