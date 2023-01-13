@@ -165,12 +165,12 @@ class ProcessController extends Controller
                     }
                 }
 
-                $expectedDateTime->hour(6);
+                $expectedDateTime->hour(10);
                 $expectedDateTime->minute(0);
                 $expectedDateTime->second(0);
                 $totalMinutes = \Carbon\Carbon::parse($currentDateTime)->diffInMinutes($expectedDateTime);
                 if ($totalMinutes < 15) {
-                    $expectedDateTime->hour(6);
+                    $expectedDateTime->hour(10);
                     $expectedDateTime->minute(0);
                     $expectedDateTime->second(0);
                 } else {
@@ -189,7 +189,7 @@ class ProcessController extends Controller
                 $transaction->final_wallet =  $user->wallet_deposit;
                 $transaction->save();
 
-                $user->nextbill = date('M d, Y', strtotime(' +1 day')) ;  
+                $user->nextbill = date('Y-m-d', strtotime(' +1 day')) ;  
                 $user->save();
             }
         }
@@ -265,7 +265,7 @@ class ProcessController extends Controller
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
 
-        $user->nextbill = date('M d, Y', strtotime(' +1 day')) ;  
+        $user->nextbill = date('Y-m-d', strtotime(' +1 day')) ;  
         $user->save();
 
         return redirect()->route('advertiser.payments')->withNotify($notify);

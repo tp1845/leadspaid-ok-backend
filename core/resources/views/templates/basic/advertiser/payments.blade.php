@@ -361,7 +361,7 @@ table.dataTable {
                      @php                      
                     if($showbill){
                         if (isset($nextbill)){
-                        echo $nextbill . "  , 10:00 AM";
+                        echo  date('M d, Y', strtotime($nextbill)) . "  , 10:00 AM";
                      }else{
                         $currentTime = time() + 3600;
                        
