@@ -227,13 +227,17 @@
     }
 
     .custom_bg_change_btn button.btn--primary {
+        background: #1361b2 !important;
+        border-radius: 0;
+    }
+
+    .custom_bg_change_btn button.btn--primary.manualbtn {
         background: #999 !important;
         border-radius: 0;
     }
-  .custom_bg_change_btn button.btn--primary:hover {
+  .custom_bg_change_btn button.btn--primary.manualbtn:hover {
         background: #1361b2 !important;
     }
-
     .custom_bg_change_btn .form-text {
         color: #5b6e88 !important;
     }
@@ -472,7 +476,7 @@
                                         </div>
                                     </div>
                                     <div class="custom_bg_change_btn">
-                                        <button type="submit" style="background-color: #999;" class="btn btn--primary fs-16">@lang('Make A Manual Payment')</button>
+                                        <button type="submit" style="background-color: #999;" class="btn btn--primary manualbtn fs-16">@lang('Make A Manual Payment')</button>
                                     </div>
                                 </form>
 
