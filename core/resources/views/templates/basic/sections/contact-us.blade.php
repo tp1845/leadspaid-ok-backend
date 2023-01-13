@@ -304,6 +304,7 @@
         -webkit-box-shadow: none !important;
         box-shadow: none !important;
     }
+    .contact_sidebar{ margin-top: 30px; }
     .contact_sidebar .contact_wrap {
         text-align:left !important;
         -webkit-box-shadow: 3.346px 3.716px 22.5px rgb(0 0 0 / 20%);
