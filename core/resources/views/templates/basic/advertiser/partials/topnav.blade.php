@@ -21,7 +21,7 @@
 }
 .nav-payment {
     position: absolute;
-    left: 20px;
+    left: 75px;
 }
 .nav-payment span {
     font-size: 18px;
