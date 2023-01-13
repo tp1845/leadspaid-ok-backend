@@ -14,11 +14,11 @@
 <section class="small-section contact-3">
     <div class="container">
         <div class="row">
+            <div class="col-12">
+                <div class="title-3 text-start">  <h2 style=" color:#191f58">CONTACT US</h2>  </div>
+            </div>
             <div class="col-lg-4 mb-4">
                 <div class="log-in theme-card">
-                    <div class="title-3 text-start">
-                        <h2 style=" color:#191f58">CONTACT US</h2>
-                    </div>
                     <form method="POST" name="contact_form" id="contact_form" action="{{route('contact.send')}}" class="row form gx-3 get-in-touch">
                         @csrf
                         <div class="col-md-12">
@@ -108,6 +108,7 @@
                             </p> --}}
                         </div>
                     </div>
+                    <hr>
                     <div class="row">
                         <div class="col-12"><h4 class="title_country"><img src="{{asset('assets/images/frontend')}}/icon-uk-flag.png" width="32px" alt=""  class="me-3">United Kingdom</h4></div>
                         <div class="col-xl-6">
@@ -202,6 +203,14 @@
 @endpush
 @push('style')
 <style>
+    .contact-3 .title-3{
+        color: #1a273a;
+        font-weight: bold;
+        font-size: 52px;
+        text-transform: uppercase;
+        margin: 0;
+    }
+    @media (max-width: 768px)  { .contact-3 .title-3{ font-size: 36px; } }
     .contact-banner{
         position: relative;
         filter: invert(10%);

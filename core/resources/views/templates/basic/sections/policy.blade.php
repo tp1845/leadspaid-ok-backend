@@ -4,7 +4,7 @@
 @section('content')
 
 @include($activeTemplate.'partials.breadcrumb')
- <section class="pt-100 pb-100">
+ <section class="pt-100 pb-5">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">

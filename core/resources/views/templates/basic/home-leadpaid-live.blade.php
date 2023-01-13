@@ -173,7 +173,7 @@
                 </div>
                 <div class="col-lg-8 col-xl-8 ">
                     <div class="testimonial_block">
-                        <p class=" h2 p-0 text-muted" style="padding-left: 22px!important"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
+                        <p class=" h2 p-0" style="padding-left: 22px!important"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
                         <div class="testimonial_slider">
                             <div>
                             <p class="text2">Leads started increasing slowly but steadily. I'd say, the AI is marvelous. It worked!</p>
@@ -644,9 +644,7 @@
         @media only screen and (max-width: 991px) {  #JoinAsAdvertiser_section .title{ font-size: 55px } }
 
 
-        .MainBanner-bottom h3, .MainBanner-bottom .h3 {
-            font-size: 30px;
-        }
+        .MainBanner-bottom h3, .MainBanner-bottom .h3 {  font-size: 30px;  }
 
         .MainBanner-Home .hero_title {
             text-shadow: 7px 14px 10px #000000;
@@ -725,12 +723,17 @@
             }
             .MainBanner-bottom h3, .MainBanner-bottom .h3 {
                 line-height: 1.6;
+                font-size: 29px;
             }
+            #hotspot_section .title {  font-size: 34px!important; }
         }
 
         @media only screen and (max-width: 366px) {
             .MainBanner-Home .btn, .button-large {  padding-right: 11px;  padding-left: 11px;  }
             .MainBanner-Home .sub_title{ padding: 3px 9px; }
         }
+
+        .testimonial_block .h2, .testimonial_block .text2{ color:#212529; }
+
     </style>
 @endpush
