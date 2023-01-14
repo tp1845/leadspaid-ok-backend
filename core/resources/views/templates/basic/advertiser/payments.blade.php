@@ -412,7 +412,7 @@
 
                 <div class="col-md-6 pl-0">
                     <div class="border px-3 h-100">
-                        <div class="border-bottom py-2 mb-2 d-flex justify-content-between">
+                        <div class="border-bottom py-2 mb-2 d-flex justify-content-between align-items-center">
                             <h4 class="">Payment Information</h4>
                             <div class="adsrock-icon setup-payment">
                                 <?php 

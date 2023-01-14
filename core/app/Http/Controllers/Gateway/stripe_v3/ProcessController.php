@@ -184,7 +184,7 @@ class ProcessController extends Controller
                 $transaction->init_blance = getAmount($previous_deposit);
                 $transaction->total_budget = getAmount($user->total_budget);
                 $transaction->spent_previous_day = getAmount($user->amount_used);
-                $deduct_amount = $deducting_amount <= 0 ? 0 : number_format((float)$deducting_amount, 2, '.', '') . ' (' . $amount . '+3% service charge)';
+                $deduct_amount = $deducting_amount <= 0 ? 0 : number_format((float)$deducting_amount, 2, '.', '') . ' (' .number_format((float)$amount, 2, '.', '') . '+3% service charge)';
                 $transaction->deduct = $deduct_amount;
                 $transaction->final_wallet =  $user->wallet_deposit;
                 $transaction->save();
@@ -260,7 +260,7 @@ class ProcessController extends Controller
         $transaction->init_blance = getAmount($previous_deposit);
         $transaction->total_budget = getAmount($user->total_budget);
         $transaction->spent_previous_day = getAmount($user->amount_used);
-        $deduct_amount = $deducting_amount <= 0 ? 0 : number_format((float)$deducting_amount, 2, '.', '') . ' (' . $amount . '+3% service charge)';
+        $deduct_amount = $deducting_amount <= 0 ? 0 : number_format((float)$deducting_amount, 2, '.', '') . ' (' . number_format((float)$amount, 2, '.', '') . '+3% service charge)';
         $transaction->deduct = $deduct_amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
@@ -327,7 +327,7 @@ class ProcessController extends Controller
         $transaction->init_blance = getAmount($previous_deposit);
         $transaction->total_budget = "NA";
         $transaction->spent_previous_day = "NA";
-        $deduct_amount =  $request->amount <= 0 ? 0 :   number_format((float)$deducting_amount, 2, '.', '') . ' (' . $request->amount . '+3% service charge)';
+        $deduct_amount =  $request->amount <= 0 ? 0 :   number_format((float)$deducting_amount, 2, '.', '') . ' (' . number_format((float)$request->amount , 2, '.', ''). '+3% service charge)';
         $transaction->deduct = $deduct_amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
