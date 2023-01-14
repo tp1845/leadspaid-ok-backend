@@ -18,12 +18,12 @@
                <p>We have already sent a verification email to {{ $user->email }}.<br>
                 Please check your email ({{ $user->email }}) to verify your account.</p>
 
-                <p>If you haven't received the verification email, <a href="" id="resend"><u>Click here</u></a> to receive a new verification code</p>
+                <p>If you haven't received the verification email, <a href="" id="resend"><u>Click here</u></a> to receive a new verification email</p>
 
-                <p>If you are still not receiving a verification code,<br>
+                <p>If you are still not receiving a verification email,<br>
                 (a) Please check your spam folder<br>
                 (b) Or, use a different email address to register as advertiser<br>
-                (c) Or, Contact support at <a href="mailto:&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;">&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#108;&#101;&#97;&#100;&#115;&#112;&#97;&#105;&#100;&#46;&#99;&#111;&#109;</a></p>
+                (c) Or, Contact support at <a href="https://leadspaid.com/contact-us">https://leadspaid.com/contact-us</a></p>
             </div>
         </div>
     </div>
