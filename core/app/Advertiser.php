@@ -11,6 +11,11 @@ class Advertiser extends Authenticatable
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'ver_code_send_at'];
     protected $casts = [ 'assign_publisher' => 'array' ];
+    public function publisher_advertiser()
+    {
+        return $this->hasone(publisher_advertiser::class, 'advertiser_id');
+    }
+
     public function ads()
     {
         return $this->hasMany(CreateAd::class,'advertiser_id');

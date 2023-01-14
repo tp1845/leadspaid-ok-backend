@@ -189,11 +189,29 @@
                         </ul>
                     </div>
                 </li>
-                <li class="sidebar-menu-item ">
-                    <a href="{{route('publisher.campaigns.all')}}" class="nav-link ">
-                        <i class="menu-icon las la-home"></i>
-                        <span class="menu-title">@lang('My Advertisers')</span>
-                    </a>
+
+                {{--  --}}
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('publisher.advertiser*',3)}}">  <i class="menu-icon las la-home"></i> <span class="menu-title">@lang('My Advertisers')</span> </a>
+                    <div class="sidebar-submenu {{menuActive('publisher.advertiser*',2)}} ">
+                        <ul>
+                            <li class="sidebar-menu-item {{menuActive('publisher.advertiser.all')}}">
+                                <a href="{{route('publisher.advertiser.all')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('All Advertiser')</span>
+                                </a>
+                            </li>
+                            @php $assigned_advertisers = get_assigned_advertisers(auth()->guard('publisher')->user()->id); @endphp
+                            @foreach ($assigned_advertisers as $advertiser)
+                                <li class="sidebar-menu-item {{menuActive('publisher.advertiser', $advertiser['id'] )}}">
+                                    <a href="{{route('publisher.campaigns.advertiser', $advertiser['id'] )}}" class="nav-link">
+                                        <i class="menu-icon las la-dot-circle"></i>
+                                        <span class="menu-title"> {{$advertiser['company_name']}}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </li>
                 @endif
 

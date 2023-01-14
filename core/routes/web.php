@@ -529,6 +529,11 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         //Manage Campaigns for publiser admin
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
         Route::get('/campaigns/advertiser/{id}','CampaignsController@advertisers_campaigns')->name('campaigns.advertiser');
+
+        Route::get('/advertiser/all','AdvertiserController@index')->name('advertiser.all');
+        Route::get('/advertiser/{id}','AdvertiserController@advertiser_detail')->name('advertiser.detail');
+        Route::post('/advertiser/ad-network-save','AdvertiserController@ad_network_save')->name('advertiser.ad_network_save');
+
         Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
         Route::post('/campaigns/leads/importpreview/{cid}/{aid}/{fid}','CampaignsController@importpreview')->name('leads.importpreview');
         Route::post('/campaigns/leads/import/{cid}/{aid}/{fid}','CampaignsController@import')->name('leads.import');
