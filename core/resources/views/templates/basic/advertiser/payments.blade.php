@@ -641,7 +641,7 @@
                                             <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }}{{ getAmount($trx->init_blance)  }}</td>
                                             <td data-label="@lang('Amount Spent Yesterday')" class="budget">{{$trx->spent_previous_day === "NA"? "NA": $general->cur_sym .  getAmount((float)$trx->spent_previous_day) }} </td>
                                             <td data-label="@lang('Total Campaign Budget')" class="budget">{{$trx->total_budget === "NA"? "NA": $general->cur_sym .  getAmount((float)$trx->total_budget)}} </td>
-                                            <td data-label="@lang('Amount Deducted From Card')" class="budget">{{ $general->cur_sym }}{{ ($trx->deduct) }}</td>
+                                            <td data-label="@lang('Amount Deducted From Card')" class="budget">{{ $general->cur_sym }}{{$trx->deducted_amount . ' ($' . $trx->amount . '+3% service charge)' }}</td>
                                             <td data-label="@lang('Final Wallet Balance')" class="budget">{{ $general->cur_sym }}{{ getAmount($trx->final_wallet) }}</td>
                                         </tr>
                                         @empty
@@ -679,8 +679,8 @@
                                         <tr>
                                             <td scope="col">{{date('Y-m-d',strtotime($tas['trx_date']))}}</td>
                                             <td scope="col"> {{get_invoice_format($tas['id']) }} </td>
-                                            <td scope="col">{{ $general->cur_sym }}{{$tas['deduct']}}</td>
-                                            <td scope="col">{{$tas->total_budget !== "NA"?"Paid":"Paid (Manual Payment)"}}</td>
+                                            <td scope="col">{{ $general->cur_sym }}{{$tas->deducted_amount . ' ($' . $tas->amount . '+3% service charge)' }}</td>
+                                            <td scope="col">{{$tas->total_budget !== "NA"?"Paid":"Paid (Manual payment)"}}</td>
                                             <td scope="col">
                                                 @if(empty(auth()->guard('advertiser')->user()->billed_to) || empty(auth()->guard('advertiser')->user()->city) )
                                                 <a href="{{ url('/')}}/advertiser/profile" onclick="return confirm('Please fill your profile before downloading the invoice')"><svg style="enable-background:new 0 0 128 128; width:20px" version="1.1" viewBox="0 0 128 128" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

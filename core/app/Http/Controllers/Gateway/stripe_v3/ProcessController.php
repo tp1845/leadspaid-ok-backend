@@ -186,6 +186,8 @@ class ProcessController extends Controller
                 $transaction->spent_previous_day = getAmount($user->amount_used);
                 $deduct_amount = $deducting_amount <= 0 ? 0 : number_format((float)$deducting_amount, 2, '.', '') . ' (' .number_format((float)$amount, 2, '.', '') . '+3% service charge)';
                 $transaction->deduct = $deduct_amount;
+                $transaction->deducted_amount = (float)number_format((float)$deducting_amount, 2, '.', '');
+                $transaction->amount = (float)number_format((float)$amount, 2, '.', '');                
                 $transaction->final_wallet =  $user->wallet_deposit;
                 $transaction->save();
 
@@ -212,6 +214,7 @@ class ProcessController extends Controller
         } else {
             $deducting_amount = 0;
             $user->wallet_deposit = $new_deposit;
+            $amount = 0;
         }
 
         $method = Gateway::where('alias', 'stripe')->firstOrFail();
@@ -262,6 +265,8 @@ class ProcessController extends Controller
         $transaction->spent_previous_day = getAmount($user->amount_used);
         $deduct_amount = $deducting_amount <= 0 ? 0 : number_format((float)$deducting_amount, 2, '.', '') . ' (' . number_format((float)$amount, 2, '.', '') . '+3% service charge)';
         $transaction->deduct = $deduct_amount;
+        $transaction->deducted_amount = $deducting_amount <= 0 ? 0 : (float)$deducting_amount ;
+        $transaction->amount = (float)$amount;
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
         // $user->nextbill = date('Y-m-d', strtotime(' +1 day',strtotime ( $currentDateTime))) ;  
@@ -329,6 +334,8 @@ class ProcessController extends Controller
         $transaction->spent_previous_day = "NA";
         $deduct_amount =  $request->amount <= 0 ? 0 :   number_format((float)$deducting_amount, 2, '.', '') . ' (' . number_format((float)$request->amount , 2, '.', ''). '+3% service charge)';
         $transaction->deduct = $deduct_amount;
+        $transaction->deducted_amount = (float)number_format((float)$deducting_amount, 2, '.', '');
+        $transaction->amount = (float)number_format((float)$request->amount, 2, '.', '');
         $transaction->final_wallet =  $user->wallet_deposit;
         $transaction->save();
         // $user->nextbill = date('Y-m-d', strtotime(' +1 day',strtotime ( $currentDateTime))) ;  
