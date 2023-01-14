@@ -147,7 +147,7 @@
 .justify-content-between:first-child{display:none;}
 #ticket-create .card{border-radius: 0px !important;}
 .my-support-ticket {
-    padding: 9px 15px !important;
+    padding: 5px 10px !important;
     font-size: 18px !important;
     font-weight: 500 !important;
 }
