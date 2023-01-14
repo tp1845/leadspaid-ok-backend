@@ -1,5 +1,6 @@
 
 <nav class="navbar-wrapper active">
+    <h5 style="position: absolute; left:35px; ">Publisher Admin</h5>
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
     <form class="navbar-search">
       <button type="submit" class="navbar-search__btn">
@@ -12,10 +13,10 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>@lang('Menu')</span>
       </button>
-    
+
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto main-menu align-items-center">
-          
+
           <li class="dropdown">
             <a href="#0" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">@lang('Widthdraw') <i class="las la-angle-down"></i></a>
             <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
@@ -42,7 +43,7 @@
             </span>
           </button>
           <div class="dropdown-menu dropdown-menu--sm p-0 border-0 box--shadow1 dropdown-menu-right">
-         
+
             @if(Route::has('publisher.profile'))
             <a href="{{route('publisher.profile')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
               <i class="dropdown-menu__icon las la-cog"></i>
@@ -57,7 +58,7 @@
             </a>
            @endif
 
-           
+
            @if(Route::has('publisher.twofactor'))
            <a href="{{route('publisher.twofactor')}}" class="dropdown-menu__item d-flex align-items-center px-3 py-2">
              <i class="dropdown-menu__icon las la-key"></i>
