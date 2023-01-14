@@ -3052,7 +3052,7 @@ div.dataTables_wrapper div.dataTables_filter label {
     font-weight: normal;
     white-space: nowrap;
     text-align: left;
-    margin-right: 240px;
+   
 }
 </style>
 
