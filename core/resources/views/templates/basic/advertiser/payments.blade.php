@@ -232,12 +232,14 @@
     }
 
     .custom_bg_change_btn button.btn--primary.manualbtn {
-        background:  #777!important;
+        background: #777 !important;
         border-radius: 0;
     }
-  .custom_bg_change_btn button.btn--primary.manualbtn:hover {
+
+    .custom_bg_change_btn button.btn--primary.manualbtn:hover {
         background: #1361b2 !important;
     }
+
     .custom_bg_change_btn .form-text {
         color: #5b6e88 !important;
     }
@@ -415,19 +417,10 @@
                         <div class="border-bottom py-2 mb-2 d-flex justify-content-between align-items-center">
                             <h4 class="">Payment Information</h4>
                             <div class="adsrock-icon setup-payment">
-                                <?php 
-                                if($card_info->last4){?>
-                                    <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
+                                <svg height="48" viewBox="0 0 48 48" width="48" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M6 34.5v7.5h7.5l22.13-22.13-7.5-7.5-22.13 22.13zm35.41-20.41c.78-.78.78-2.05 0-2.83l-4.67-4.67c-.78-.78-2.05-.78-2.83 0l-3.66 3.66 7.5 7.5 3.66-3.66z" />
                                     <path d="M0 0h48v48h-48z" fill="none" />
                                 </svg>
-                                <?php }else{ ?>
-                                    <a class="btn btn--primary text-white create-campaign-btn">Add Payment Method (Credit/ Debit card)</a>
-                                <?php } ?>
-
-                           
-                            
-                          
                             </div>
                         </div>
                         <div class="adsrock-list pt-3">
@@ -476,20 +469,25 @@
                         </div>
                         <p class="py-2">*Please note that the current card service charge is 3%</p>
                         <div class="border-top py-10">
-                            <div class="container-box">
-                                <form method="POST" id="manual_form" action="{{ route('ipn.manual_pay') }}" class="d-flex" style="gap: 10px;">
-                                    @csrf
-                                    <div class="d-flex" style="display: flex;align-items: center;gap: 14px;">
-                                        <div class="us_doller" style="width: 160px;">
-                                            <input type="text" id="AmountInput" class="form-control bg-white" name="amount" required>
+                            <?php
+                            if ($card_info->last4) { ?>
+                                <div class="container-box">
+                                    <form method="POST" id="manual_form" action="{{ route('ipn.manual_pay') }}" class="d-flex" style="gap: 10px;">
+                                        @csrf
+                                        <div class="d-flex" style="display: flex;align-items: center;gap: 14px;">
+                                            <div class="us_doller" style="width: 160px;">
+                                                <input type="text" id="AmountInput" class="form-control bg-white" name="amount" required>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="custom_bg_change_btn">
-                                        <button type="submit" style="background-color: #999;" class="btn btn--primary manualbtn fs-16">@lang('Make A Manual Payment')</button>
-                                    </div>
-                                </form>
+                                        <div class="custom_bg_change_btn">
+                                            <button type="submit" style="background-color: #999;" class="btn btn--primary manualbtn fs-16">@lang('Make A Manual Payment')</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            <?php } else { ?>
+                                <a class="btn btn--primary text-white create-campaign-btn setup-payment">Add Payment Method (Credit/ Debit card)</a>
+                            <?php } ?>
 
-                            </div>
                         </div>
                     </div>
 
@@ -529,7 +527,7 @@
                             @endphp
 
                         </h3>
-                        <hr/>
+                        <hr />
                         <p class="ar-12">Everyday at 10:00 AM,</p>
                         <p class="ar-12 ">
 
