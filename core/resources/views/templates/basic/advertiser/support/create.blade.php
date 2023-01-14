@@ -319,8 +319,8 @@ $("#full_name").capitalize();
             message: { required: true  },
             subject: { required: true}
         },messages: {
-            name:{  required : 'Full Name is requiredired.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
-            company_name:{  required : 'Company Name is required.', minlength:'minmum 3 characters.' },
+            name:{  required : 'Full Name is required..', minlength:'Please fill Full Name..', lettersonly:'Full Name Invalid.' },
+            company_name:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
             mobile:{  required : 'Phone is required.', minlength:'minmum 6 characters.', phoneonly:'Please enter valid phone.'},
             message: {required: 'Message  is required.'},
           
