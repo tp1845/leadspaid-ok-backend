@@ -128,8 +128,10 @@
 <style>
     
     #ticket-create .bg--primary, #ticket-create form .btn--primary, #ticket-create form .file-upload-wrapper:before {
-    background-color: #4500dd!important;
+    background-color: #1A273A !important;
 }   
+
+#ticket-create .card{border-radius: 0px !important;}   
 #ticket-create .form-group input, #ticket-create .form-group select {
     background: #fff;
     display: block;
