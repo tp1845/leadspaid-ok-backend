@@ -1,13 +1,27 @@
 @extends($activeTemplate.'layouts.advertiser.frontend')
 
 @section('panel')
+
+<div class="row align-items-center mb-15 justify-content-between">
+    <div class="col-lg-6 col-sm-6">
+        <h6 class="page-title">Open New Ticket</h6>
+    </div>
+    <div class="col-lg-6 col-sm-6 text-sm-right mt-sm-0 mt-3">
+      
+        <a href="https://www.leadspaid.com/ticket" class="btn btn-sm btn--primary mr-3 my-support-ticket">
+                            My Support Ticket                        </a>
+
+            </div>
+</div>
+
+
     <div class="container-fluid" id="ticket-create">
         <div class="row justify-content-center mt-4">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg--primary">
 
-                        <a href="{{route('ticket') }}" class="btn btn-sm btn--dark float-right">
+                        <a href="{{route('ticket') }}" class="btn btn-sm btn--dark float-right" style="    opacity: 0;    pointer-events: none;">
                             @lang('My Support Ticket')
                         </a>
                     </div>
@@ -130,8 +144,13 @@
     #ticket-create .bg--primary, #ticket-create form .btn--primary, #ticket-create form .file-upload-wrapper:before {
     background-color: #1A273A !important;
 }   
-
-#ticket-create .card{border-radius: 0px !important;}   
+.justify-content-between:first-child{display:none;}
+#ticket-create .card{border-radius: 0px !important;}
+.my-support-ticket {
+    padding: 9px 15px !important;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+}
 #ticket-create .form-group input, #ticket-create .form-group select {
     background: #fff;
     display: block;
