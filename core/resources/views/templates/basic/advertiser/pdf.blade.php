@@ -216,18 +216,18 @@
                         <td data-label="Inital Wallet Balance" class="budget">{{ add($i) }}</td>
                         <td data-label="Transaction Date">Lead Generation Charges</td>
 
-                        <td data-label="Total Campaign Budget" class="budget"> $ {{ number_format((float)$amoun_arr[1], 2, '.', '')}}</td>
+                        <td data-label="Total Campaign Budget" class="budget"> ${{ number_format((float)$amoun_arr[1], 2, '.', '')}}</td>
 
-                        <td data-label="Amount Deducted From Card" class="budget" style="vertical-align: bottom;;padding-top: 40px;"> $ {{ number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
+                        <td data-label="Amount Deducted From Card" class="budget" style="vertical-align: bottom;;padding-top: 40px;"> ${{ number_format((float)$card_s_c, 2, '.', '')}} <br>(3%)</td>
                         <td data-label="Final Wallet Balance" class="budget">
-                            $ {{ number_format((float)$ga, 2, '.', '')}}</td>
+                            ${{ number_format((float)$ga, 2, '.', '')}}</td>
                     </tr>
                     <tr style="font-family: Roboto', Helvetica, sans-serif, 'Open Sans', Arial';">
                         <td style="border: none;"></td>
                         <td style="border: none;"></td>
                         <td style="border: none;"></td>
                         <td><b>Total</b></td>
-                        <td>$ {{ number_format((float)$ga, 2, '.', '')}}</td>
+                        <td>${{ number_format((float)$ga, 2, '.', '')}}</td>
                     </tr>
 
                 </tbody>
