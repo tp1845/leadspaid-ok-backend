@@ -961,7 +961,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                         visible: true
                     }
                     ],"sDom": 'Lfrtlip',
-					'dom': 'Rlfrtip',"language": {
+					"language": {
                       "lengthMenu": "Show rows  _MENU_"
                   }
               });
