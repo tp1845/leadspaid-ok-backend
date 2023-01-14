@@ -51,7 +51,9 @@
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{  $campaign->daily_budget }}</td>
                                         <td>${{  $campaign->target_cost }}</td>
-                                        <td>  @if (isset($campaign->campaign_forms))  {{$campaign->campaign_forms->form_name}}  @endif  </td>
+                                        <td>
+                                            @if (isset($campaign->campaign_forms)) <a href="#" class="btn_form_preview"  data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}" > {{$campaign->campaign_forms->form_name}}  </a> @endif
+                                        </td>
                                         <td>{{ $campaign->start_date }}</td>
                                         <td>{{ $campaign->end_date }}</td>
                                         <td>0</td>
@@ -132,6 +134,22 @@
             <div class="card-footer py-4"> </div>
         </div>
     </div>
+
+     {{-- SETUP Form Preview MODAL --}}
+     <div class="modal fade" id="form_preview_modal" tabindex="-1" aria-labelledby="FormPreviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="FormPreviewModalLabel">Form Preview</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="form_preview_html"  ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     {{-- SETUP Lead Preview MODAL --}}
     <div class="modal fade" id="leads_preview_modal" tabindex="-2" aria-labelledby="leads_preview_modalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-xl">
@@ -201,6 +219,14 @@
         'use strict';
 
         $(document).ready(function () {
+            var form_preview_modal = $('#form_preview_modal');
+            $('.btn_form_preview').on('click', function() {
+            var id =  $(this).data('id');
+                var iframe_html = '<iframe id="leadpaidform_1" src="https://leadspaid.com/campaign_form/{{auth()->guard('publisher')->user()->id}}/1/'+id+'" referrerpolicy="unsafe-url" sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="600" style="border: 1px solid black;"></iframe>';
+                $('#form_preview_html').html(iframe_html);
+                form_preview_modal.modal('show');
+            });
+
             var MyDatatable = $('#campaign_list').DataTable({
                 columnDefs: [{
                     targets: 0,
