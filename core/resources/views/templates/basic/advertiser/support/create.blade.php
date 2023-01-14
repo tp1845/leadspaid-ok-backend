@@ -52,7 +52,7 @@
                                         <select name="country_code" class="country_code  form-select rounded-0">
                                         @include('partials.country_code')
                                         </select>
-                                        <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" placeholder="@lang('Your Phone Number')">
+                                        <input type="text" id="conact_phone" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" placeholder="@lang('Your Phone Number')">
                                     </div>
                                     <!-- <input type="email"  name="email" value="{{@$user->email}}" class="form-control form-control-lg rounded-0" placeholder="@lang('Enter your Email')" required> -->
                                 </div>
@@ -308,7 +308,7 @@ $("#full_name").capitalize();
     }, "Please enter a valid email address");
 
 
-
+  $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
 
 
  $("#advertiser_form").validate({
