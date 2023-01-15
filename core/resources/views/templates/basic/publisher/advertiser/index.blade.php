@@ -34,7 +34,9 @@
                                                         <input
                                                         @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher))
                                                             checked  readonly disabled @else name="assign_publisher_by_pub_{{$advertiser->id}}[]"  @endif
-                                                        @if($advertiser->assign_publisher_by_pub != null && in_array($publisher->id, $advertiser->assign_publisher_by_pub)) checked  @endif
+                                                            @if($advertiser->assign_publisher_by_pub != null && in_array(Auth::guard('publisher')->user()->id, $advertiser->assign_publisher_by_pub))  readonly disabled  @endif
+                                                            @if($advertiser->assign_publisher_by_pub != null && in_array($publisher->id, $advertiser->assign_publisher_by_pub)) checked  @endif
+
                                                         type="checkbox"
                                                         class="assign_publisher"
                                                         value="{{ $publisher->id }}"
@@ -54,6 +56,7 @@
                                                         <input
                                                         @if($advertiser->assign_cm != null && in_array($cm->id, $advertiser->assign_cm))
                                                             checked  readonly disabled @else  name="assign_cm_by_pub_{{$advertiser->id}}[]"   @endif
+                                                        @if($advertiser->assign_cm_by_pub != null && in_array(Auth::guard('publisher')->user()->id, $advertiser->assign_cm_by_pub)) readonly disabled  @endif
                                                         @if($advertiser->assign_cm_by_pub != null && in_array($cm->id, $advertiser->assign_cm_by_pub)) checked  @endif
                                                         type="checkbox"
                                                         class="assign_publisher"
