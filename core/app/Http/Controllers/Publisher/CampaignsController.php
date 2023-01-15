@@ -24,7 +24,7 @@ class CampaignsController extends Controller
         $empty_message = 'No Campaigns';
         $user = auth()->guard('publisher')->user();
         $assign_campaign = $user->assign_campaign;
-        $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id  )->select('id')->get()->toarray();
+        $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id  )->orwhereJsonContains('assign_publisher_by_pub',  (string) $user->id)->select('id')->get()->toarray();
         $assign_advertiser_ids = array();
         foreach($assign_advertiser as $advertiser ){ $assign_advertiser_ids[] = $advertiser['id']; }
         if($assign_advertiser_ids){
