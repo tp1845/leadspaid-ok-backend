@@ -10,7 +10,7 @@ class Advertiser extends Authenticatable
 {
     protected $guarded = [];
     protected $dates = ['created_at', 'updated_at', 'ver_code_send_at'];
-    protected $casts = [ 'assign_publisher' => 'array' ];
+    protected $casts = [ 'assign_publisher' => 'array', 'assign_publisher_by_pub' => 'array', 'assign_cm' => 'array', 'assign_cm_by_pub' => 'array' ];
     public function publisher_advertiser()
     {
         return $this->hasone(publisher_advertiser::class, 'advertiser_id');

@@ -26,8 +26,9 @@ class AdvertiserController extends Controller
         $user = auth()->guard('publisher')->user();
         $assign_campaign = $user->assign_campaign;
         $advertisers = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id)->with('publisher_advertiser')->get();
-        $publishers = Publisher::select('id', 'name', 'role')->get();
-        return view($this->activeTemplate .'publisher.advertiser.index',compact('page_title','empty_message','advertisers', 'publishers'));
+        $publishers_admin = Publisher::where('role', 1)->select('id', 'name', 'role')->get();
+        $campaign_manager = Publisher::where('role', 2)->select('id', 'name', 'role')->get();
+        return view($this->activeTemplate .'publisher.advertiser.index',compact('page_title','empty_message','advertisers', 'publishers_admin', 'campaign_manager'));
     }
     public function advertisers_detail($id)
     {
@@ -49,6 +50,23 @@ class AdvertiserController extends Controller
             $publisher_advertiser->delete();
         }
         return response()->json(['success'=>true, 'message'=> $request->ad_network]);
+    }
+    public function assign_publisher_by_pub(Request $request){
+        $request->validate([  'advertiser_id' => 'required' ]);
+        $advertiser = Advertiser::findOrFail( $request->advertiser_id);
+        if($advertiser){
+            if($request->update_type == 'publisher_admin'){
+                $advertiser->assign_publisher_by_pub = $request->data_ids?$request->data_ids:null;
+                $advertiser->update();
+            }
+            if($request->update_type == 'campaign_mamager'){
+                $advertiser->assign_cm_by_pub = $request->data_ids?$request->data_ids:null;
+                $advertiser->update();
+            }
+            return response()->json(['success'=>true, 'message'=> 'Successfully  Updated']);
+        }else{
+            return response()->json(['success'=>false, 'message'=> 'Someting wrong try again!']);
+        }
     }
 
 }

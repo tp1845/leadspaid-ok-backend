@@ -12,6 +12,7 @@
                                     <th>Advertiser</th>
                                     <th>A.Id</th>
                                     <th>Assign to<br>Publisher Admin</th>
+                                    <th>Assign to<br>Campaign Manager</th>
                                     <th>AdNetwork 1</th>
                                     <th>AdNetwork 2</th>
                                     <th>AdNetwork 3</th>
@@ -28,59 +29,89 @@
                                         <td>{{ $advertiser->id}} </td>
                                         <td data-label="@lang('Assign publisher Admin')">
                                             <ul class="check_box_list">
-                                                @forelse($publishers as $publisher)
-                                                    <li><label><input @if($publisher->role == 1) checked  @endif  type="checkbox" class="role" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @forelse($publishers_admin as $publisher)
+                                                    <li><label>
+                                                        <input
+                                                        @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher))
+                                                            checked  readonly disabled @else name="assign_publisher_by_pub_{{$advertiser->id}}[]"  @endif
+                                                        @if($advertiser->assign_publisher_by_pub != null && in_array($publisher->id, $advertiser->assign_publisher_by_pub)) checked  @endif
+                                                        type="checkbox"
+                                                        class="assign_publisher"
+                                                        value="{{ $publisher->id }}"
+                                                        data-advertiser_id = "{{$advertiser->id}}"
+                                                        data-update_type = "publisher_admin"
+                                                        >
+                                                        {{ $publisher->name }}</label></li>
                                                 @empty
                                                 @endforelse
                                             </ul>
                                         </td>
-                                        <form action="post" id="form_{{ $advertiser->id}}">
-                                            <input type="hidden" name="advertiser_id" value="{{$advertiser->id}}" >
+
+                                        <td data-label="@lang('Assign Campaign Mamager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $cm)
+                                                    <li><label>
+                                                        <input
+                                                        @if($advertiser->assign_cm != null && in_array($cm->id, $advertiser->assign_cm))
+                                                            checked  readonly disabled @else  name="assign_cm_by_pub_{{$advertiser->id}}[]"   @endif
+                                                        @if($advertiser->assign_cm_by_pub != null && in_array($cm->id, $advertiser->assign_cm_by_pub)) checked  @endif
+                                                        type="checkbox"
+                                                        class="assign_publisher"
+                                                        value="{{ $cm->id }}"
+                                                        data-advertiser_id = "{{$advertiser->id}}" data-update_type = "campaign_mamager"
+                                                        >
+                                                        {{ $cm->name }}</label></li>
+                                                @empty
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                            <form action="post" id="form_{{ $advertiser->id}}">
+                                                <input type="hidden" name="advertiser_id" value="{{$advertiser->id}}" >
                                                 <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
-                                        {{-- Urls --}}
-                                        <td data-label="url">
-                                                <input type="text" name="ad_network[ad_1][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['network'] }}" @endif >
-                                                <input type="text" name="ad_network[ad_1][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['url'] }}" @endif >
-                                                <input type="text" name="ad_network[ad_1][id]" data-aid='{{$advertiser->id}}' placeholder="ID 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['id'] }}" @endif >
-                                                <input type="text" name="ad_network[ad_1][password]" data-aid='{{$advertiser->id}}' placeholder="Password 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['password'] }}" @endif >
-                                                <input type="text" name="ad_network[ad_1][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['remarks'] }}" @endif >
-                                        </td>
-                                        <td data-label="url">
-                                            <input type="text" name="ad_network[ad_2][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['network'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_2][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['url'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_2][id]" data-aid='{{$advertiser->id}}' placeholder="ID 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['id'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_2][password]" data-aid='{{$advertiser->id}}' placeholder="Password 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['password'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_2][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['remarks'] }}" @endif >
-                                        </td>
-                                        <td data-label="url">
-                                            <input type="text" name="ad_network[ad_3][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['network'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_3][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['url'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_3][id]" data-aid='{{$advertiser->id}}' placeholder="ID 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['id'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_3][password]" data-aid='{{$advertiser->id}}' placeholder="Password 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['password'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_3][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['remarks'] }}" @endif >
-                                        </td>
-                                        <td data-label="url">
-                                            <input type="text" name="ad_network[ad_4][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['network'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_4][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['url'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_4][id]" data-aid='{{$advertiser->id}}' placeholder="ID 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['id'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_4][password]" data-aid='{{$advertiser->id}}' placeholder="Password 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['password'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_4][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['remarks'] }}" @endif >
-                                        </td>
-                                        <td data-label="url">
-                                            <input type="text" name="ad_network[ad_5][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['network'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_5][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['url'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_5][id]" data-aid='{{$advertiser->id}}' placeholder="ID 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['id'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_5][password]" data-aid='{{$advertiser->id}}' placeholder="Password 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['password'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_5][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['remarks'] }}" @endif >
-                                        </td>
-                                        <td data-label="url">
-                                            <input type="text" name="ad_network[ad_6][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['network'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_6][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['url'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_6][id]" data-aid='{{$advertiser->id}}' placeholder="ID 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['id'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_6][password]" data-aid='{{$advertiser->id}}' placeholder="Password 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['password'] }}" @endif >
-                                            <input type="text" name="ad_network[ad_6][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['remarks'] }}" @endif >
-                                        </td>
-                                    </form>
+                                                {{-- Urls --}}
+                                                <td data-label="url">
+                                                        <input type="text" name="ad_network[ad_1][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['network'] }}" @endif >
+                                                        <input type="text" name="ad_network[ad_1][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['url'] }}" @endif >
+                                                        <input type="text" name="ad_network[ad_1][id]" data-aid='{{$advertiser->id}}' placeholder="ID 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['id'] }}" @endif >
+                                                        <input type="text" name="ad_network[ad_1][password]" data-aid='{{$advertiser->id}}' placeholder="Password 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['password'] }}" @endif >
+                                                        <input type="text" name="ad_network[ad_1][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_1']['remarks'] }}" @endif >
+                                                </td>
+                                                <td data-label="url">
+                                                    <input type="text" name="ad_network[ad_2][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['network'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_2][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['url'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_2][id]" data-aid='{{$advertiser->id}}' placeholder="ID 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['id'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_2][password]" data-aid='{{$advertiser->id}}' placeholder="Password 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['password'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_2][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_2']['remarks'] }}" @endif >
+                                                </td>
+                                                <td data-label="url">
+                                                    <input type="text" name="ad_network[ad_3][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['network'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_3][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['url'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_3][id]" data-aid='{{$advertiser->id}}' placeholder="ID 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['id'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_3][password]" data-aid='{{$advertiser->id}}' placeholder="Password 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['password'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_3][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_3']['remarks'] }}" @endif >
+                                                </td>
+                                                <td data-label="url">
+                                                    <input type="text" name="ad_network[ad_4][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['network'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_4][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['url'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_4][id]" data-aid='{{$advertiser->id}}' placeholder="ID 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['id'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_4][password]" data-aid='{{$advertiser->id}}' placeholder="Password 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['password'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_4][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_4']['remarks'] }}" @endif >
+                                                </td>
+                                                <td data-label="url">
+                                                    <input type="text" name="ad_network[ad_5][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['network'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_5][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['url'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_5][id]" data-aid='{{$advertiser->id}}' placeholder="ID 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['id'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_5][password]" data-aid='{{$advertiser->id}}' placeholder="Password 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['password'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_5][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_5']['remarks'] }}" @endif >
+                                                </td>
+                                                <td data-label="url">
+                                                    <input type="text" name="ad_network[ad_6][network]" data-aid='{{$advertiser->id}}' placeholder="Ad Network 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['network'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_6][url]" data-aid='{{$advertiser->id}}' placeholder="Ad Network URL 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['url'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_6][id]" data-aid='{{$advertiser->id}}' placeholder="ID 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['id'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_6][password]" data-aid='{{$advertiser->id}}' placeholder="Password 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['password'] }}" @endif >
+                                                    <input type="text" name="ad_network[ad_6][remarks]" data-aid='{{$advertiser->id}}' placeholder="Remearks 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$advertiser->id}}" @if($advertiser->publisher_advertiser) value="{{ $advertiser->publisher_advertiser->ad_network['ad_6']['remarks'] }}" @endif >
+                                                </td>
+                                            </form>
                                     </tr>
                                 @empty
                                     <tr>
@@ -165,6 +196,31 @@
     <script>
         'use strict';
         $(document).ready(function () {
+
+            $('.assign_publisher').change(function() {
+            var advertiser_id = $(this).data('advertiser_id');
+            var update_type = $(this).data('update_type');
+            name =  $(this).attr('name');
+            var data = new Array();
+            $("input[name='"+name+"']:checked").each(function(i) { data.push($(this).val()); });
+            const formData = { "_token": "{{ csrf_token() }}", "data_ids":data, "advertiser_id":advertiser_id, "update_type":update_type};
+            console.log(formData);
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url:  "{{route('publisher.advertiser.assign_publisher_by_pub_save')}}" ,
+                data: formData,
+                success: function(data) {
+                    if (data.success) {
+                        Toast('green', data.message);
+                    } else {
+                        Toast('red', data.message);
+                    }
+                }
+            });
+        })
+
+            $('input[type="checkbox"][readonly]').on("click.readonly", function(event){event.preventDefault();}).css("opacity", "0.5");
             var form_preview_modal = $('#form_preview_modal');
             $('.btn_form_preview').on('click', function() {
             var id =  $(this).data('id');
@@ -237,7 +293,6 @@
                 });
             });
         });
-
 
         function Toast( color = 'green', message ){
             iziToast.show({

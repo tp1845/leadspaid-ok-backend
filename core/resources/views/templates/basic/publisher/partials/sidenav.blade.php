@@ -163,7 +163,7 @@
         <div class="sidebar__menu-wrapper custom_side_bar" id="sidebar__menuWrapper">
             <ul class="sidebar__menu">
 
-                @if(auth()->guard('publisher')->user()->role === 1)
+                @if(auth()->guard('publisher')->user()->role === 1 || auth()->guard('publisher')->user()->role == 2)
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('publisher.campaigns*',3)}}">
                         <i class="menu-icon lab la-autoprefixer"></i>

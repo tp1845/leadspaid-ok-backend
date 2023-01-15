@@ -533,6 +533,7 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::get('/advertiser/all','AdvertiserController@index')->name('advertiser.all');
         Route::get('/advertiser/{id}','AdvertiserController@advertiser_detail')->name('advertiser.detail');
         Route::post('/advertiser/ad-network-save','AdvertiserController@ad_network_save')->name('advertiser.ad_network_save');
+        Route::post('/advertiser/assign_publisher_by_pub-save','AdvertiserController@assign_publisher_by_pub')->name('advertiser.assign_publisher_by_pub_save');
 
         Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
         Route::post('/campaigns/leads/importpreview/{cid}/{aid}/{fid}','CampaignsController@importpreview')->name('leads.importpreview');
