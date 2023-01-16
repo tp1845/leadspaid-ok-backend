@@ -177,7 +177,7 @@ $user = auth()->guard('advertiser')->user();
                 </table>
 
                  </div>
-                 <div class="tab-pane fade show active" id="trash"  role="tabpanel" aria-labelledby="trash-tab">
+                 <div class="tab-pane fade show active" id="trash"  role="tabpanel" aria-labelledby="trash-tab" style="display:none;"> 
                 <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                     <thead>
                         <tr>
