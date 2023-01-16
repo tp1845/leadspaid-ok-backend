@@ -167,7 +167,7 @@
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('publisher.campaigns*',3)}}">
                         <i class="menu-icon lab la-autoprefixer"></i>
-                        <span class="menu-title">@lang('Manage Campaigns')</span>
+                        <span class="menu-title">@lang('My Campaigns')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('publisher.campaigns*',2)}} ">
                         <ul>
@@ -203,7 +203,7 @@
                             </li>
                             @php $assigned_advertisers = get_assigned_advertisers(auth()->guard('publisher')->user()->id); @endphp
                             @foreach ($assigned_advertisers as $advertiser)
-                                <li class="sidebar-menu-item {{menuActive('publisher.advertiser', $advertiser['id'] )}}">
+                                <li class="sidebar-menu-item {{menuActive('publisher.advertiser.detail', $advertiser['id'] )}}">
                                     <a href="{{route('publisher.advertiser.detail', $advertiser['id'] )}}" class="nav-link">
                                         <i class="menu-icon las la-dot-circle"></i>
                                         <span class="menu-title"> {{$advertiser['company_name']}}</span>
