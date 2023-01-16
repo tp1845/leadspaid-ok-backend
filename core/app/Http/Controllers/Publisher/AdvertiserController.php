@@ -37,10 +37,21 @@ class AdvertiserController extends Controller
     }
     public function advertisers_detail($id)
     {
-        $page_title = 'Advertiser Details';
+        $page_title = 'All Advertiser';
         $empty_message = 'No Advertiser';
-        $advertiser = Advertiser::where('id',  $id)->select('id', 'name', 'company_name')->first();
-        return view($this->activeTemplate .'publisher.campaigns.advertiser',compact('page_title','empty_message','campaigns'));
+        $user = auth()->guard('publisher')->user();
+        $assign_campaign = $user->assign_campaign;
+        // $advertisers = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id)->with('publisher_advertiser')->get();
+        if($user->role == 1){
+            $advertisers = Advertiser::where('id',$id)->whereJsonContains('assign_publisher',  (string) $user->id)->orwhereJsonContains('assign_publisher_by_pub',  (string) $user->id)->with('publisher_advertiser')->get();
+        } else if($user->role == 2){
+            $advertisers = Advertiser::where('id',$id)->whereJsonContains('assign_cm',  (string) $user->id)->orwhereJsonContains('assign_cm_by_pub',  (string) $user->id)->with('publisher_advertiser')->get();
+        }
+
+        $publishers_admin = Publisher::where('role', 1)->select('id', 'name', 'username', 'role')->get();
+        $campaign_manager = Publisher::where('role', 2)->select('id', 'name', 'username', 'role')->get();
+
+        return view($this->activeTemplate .'publisher.advertiser.index',compact('page_title','empty_message','advertisers', 'publishers_admin', 'campaign_manager'));
     }
     public function ad_network_save(Request $request){
         $advertiser_id = $request->advertiser_id;

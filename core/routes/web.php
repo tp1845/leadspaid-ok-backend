@@ -531,7 +531,7 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::get('/campaigns/advertiser/{id}','CampaignsController@advertisers_campaigns')->name('campaigns.advertiser');
 
         Route::get('/advertiser/all','AdvertiserController@index')->name('advertiser.all');
-        Route::get('/advertiser/{id}','AdvertiserController@advertiser_detail')->name('advertiser.detail');
+        Route::get('/advertiser/{id}','AdvertiserController@advertisers_detail')->name('advertiser.detail');
         Route::post('/advertiser/ad-network-save','AdvertiserController@ad_network_save')->name('advertiser.ad_network_save');
         Route::post('/advertiser/assign_publisher_by_pub-save','AdvertiserController@assign_publisher_by_pub')->name('advertiser.assign_publisher_by_pub_save');
 
