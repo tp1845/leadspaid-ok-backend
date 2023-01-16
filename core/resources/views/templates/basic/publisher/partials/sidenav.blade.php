@@ -204,7 +204,7 @@
                             @php $assigned_advertisers = get_assigned_advertisers(auth()->guard('publisher')->user()->id); @endphp
                             @foreach ($assigned_advertisers as $advertiser)
                                 <li class="sidebar-menu-item {{menuActive('publisher.advertiser', $advertiser['id'] )}}">
-                                    <a href="{{route('publisher.campaigns.advertiser', $advertiser['id'] )}}" class="nav-link">
+                                    <a href="{{route('publisher.advertiser.detail', $advertiser['id'] )}}" class="nav-link">
                                         <i class="menu-icon las la-dot-circle"></i>
                                         <span class="menu-title"> {{$advertiser['company_name']}}</span>
                                     </a>
