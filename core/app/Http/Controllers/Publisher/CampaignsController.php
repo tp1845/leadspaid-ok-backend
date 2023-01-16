@@ -43,6 +43,7 @@ class CampaignsController extends Controller
     }
     public function advertisers_campaigns($id)
     {
+        $user = auth()->guard('publisher')->user();
         $page_title = 'Advertiser Campaigns';
         $empty_message = 'No Campaigns';
         $advertiser = Advertiser::where('id',  $id)->select('id', 'name', 'company_name')->first();
@@ -52,7 +53,11 @@ class CampaignsController extends Controller
         }else{
             $campaigns= array();
         }
-        return view($this->activeTemplate .'publisher.campaigns.advertiser',compact('page_title','empty_message','campaigns'));
+        if($user->role === 2){
+            return view($this->activeTemplate .'publisher.campaigns.index_cm',compact('page_title','empty_message','campaigns'));
+        }else{
+            return view($this->activeTemplate .'publisher.campaigns.index_admin',compact('page_title','empty_message','campaigns'));
+        }
     }
     public function export($cid, $aid, $fid)  {
         $campaign_id = $cid;
