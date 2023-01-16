@@ -61,7 +61,7 @@ class CampaignsdemoController extends Controller
             $request->all(), [
                 'campaign_name' => 'required',
                 
-                'company_logo' => 'mimes:jpeg,jpg,png,gif|max:2048'
+                'company_logo' => 'mimes:jpeg,jpg,png,gif,svg,webp,tiff,eps|max:2048'
             ]
         );
         $validator->validate();

@@ -177,8 +177,9 @@ $user = auth()->guard('advertiser')->user();
                 </table>
 
                  </div>
-                 <div class="tab-pane fade show active" id="trash"  role="tabpanel" aria-labelledby="trash-tab" style="display:none;"> 
-                <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
+                 <div class="tab-pane fade show active" id="trash"  role="tabpanel" aria-labelledby="trash-tab" 
+                 style="display:none;">
+                <table id="campaign_list1" class="table table-striped table-bordered datatable " style="width:100%">
                     <thead>
                         <tr>
                             <th>Off/On</th>
@@ -1080,6 +1081,64 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
 
             }
 
+
+
+          
+            function add_form_field_2(row_num,type){
+                var table = $('#sortable');
+                var row = table.attr('data-row');
+                row = row_num;
+                if(row <=5){
+                    var html ='';
+                    html +='<td class="handle ui-sortable-handle"><i class="fa fa-solid fa-grip-vertical"></i>';
+                    html +='<input type="hidden" class="sort" name="field_'+row+'[sort]" value="'+row+'">';
+                    html +='</td>';
+                    html +='<td>';
+                    html +='<input type="checkbox" checked class="InputQuestion_Required" name="field_'+row+'[required]">';
+                    html +='</td>';
+                    html +='<td>';
+                   
+                    if(type == 'multiple'){
+                        html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="MultipleChoice" required>';
+                    }else{
+                        html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="ShortAnswer" required>';
+                    }
+                    html +='<div class="input-group input-col">';
+                    html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required maxlength="50">';
+                    html +='<div class="input-group-append bg-white">';
+                    html +='<div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>';
+                    html +='</div>';
+                    html +='</div>';
+                    if(type == 'multiple'){
+                        html +='<div class="options-section">';
+                        html +='<div class="pl-5 options-block">';
+                        html +='<div class="input-group option"><input type="text" class="form-control mt-3 mb-3" placeholder="Option 1" name="field_'+row+'[option_1]" required maxlength="30"><div class="input-group-text ">  </div></div>';
+                        html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 2" name="field_'+row+'[option_2]" required  maxlength="30"><div class="input-group-text">  </div></div>';
+                        html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 3" name="field_'+row+'[option_3]"  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+                        html +='<div class="input-group option"><input type="text" class="form-control mb-3" placeholder="Option 4" name="field_'+row+'[option_4]"  maxlength="30"><div class="input-group-text"> <a href="#" class="text-danger del-option"><i class="fas fa-times-circle"></i></a></div></div>';
+                        html +='</div>';
+                        html +='<div class="pl-5"><a class="btn-add-option btn"  data-row="'+row+'" data-option="5">+ Add Option</a></div>';
+                        html +='</div>';
+
+                    }
+                    html +='</td>';
+                    html +='';
+                    $(".row_"+row_num).html(html);
+                    //table.append(html).attr('data-row', row);
+                    update_field();
+                     validate_custom_field();
+                    updateformpreviewtext();
+                    makeinoputcharateruppercase();
+                   
+                }else{
+                    Toast('red', "Only 5 fields allowed");
+                }
+
+
+            }
+
+
+
             function reset_campaign_create_form() {
                 $('#campaign_createModalLabel').html('Create Campaign');
                 $('#campaign_create_modal form').trigger("reset");
@@ -1118,6 +1177,45 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                       "lengthMenu": "Show rows  _MENU_"
                   }
               });
+
+            var MyDatatable = $('#campaign_list1').DataTable({
+                    columnDefs: [{
+                        targets: 0,
+                        searchable: true,
+                        visible: true,
+                        orderable: true
+                    },
+                    {
+                        targets: 2,
+                        searchable: true,
+                        orderable: true
+                    },
+                    {
+                        targets: 11,
+                        searchable: false,
+                        visible: true,
+                        orderable: false
+                    },
+                    {
+                        targets: [7, 8, 9, 10],
+                        className: "td-small",
+                        width: "10px"
+                    },
+                    {
+                        targets: '_all',
+                        visible: true
+                    }
+                    ],"sDom": 'Lfrtlip',
+                    "language": {
+                      "lengthMenu": "Show rows  _MENU_"
+                  }
+              });
+
+
+
+
+
+
                 $("#sortable").sortable({
                     handle: ".handle",
                     stop: function (event, ui) {
@@ -1848,8 +1946,8 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
     reset_campaign_create_form();
     $('#campaign_createModalLabel').html('Edit Campaign');
 
-                   var validator = $( "#campaign_form" ).validate();
-                      validator.resetForm();
+                   //var validator = $( "#campaign_form" ).validate();
+                      //validator.resetForm();
                    $("#campaign_form").find('.has-error').removeClass("has-error");
                    $("#campaign_form").find('.has-success').removeClass("has-success");
                    $('#campaign_form').find('.form-control-feedback').remove();
@@ -1888,6 +1986,10 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
     }else{
        $("input[name='campaign_name']").val(data.name+' (Copy)');
        $("input[name='form_name']").val(data.form_name+' (Copy)');
+         $("#campaign_name_Input").prop('readonly',false);
+            $("#form_name").prop('readonly',false);
+            $(".leftForm").find('input').prop('readonly',false);
+            $(".rightForm").find('input').prop('readonly',false);
    }
    validate_form_data();
 
@@ -1980,9 +2082,38 @@ $.each(JSON.parse(data.form_desc), function (idx, val) {
 
 });
 
-if(data.field_1 != null){
-   var field1=JSON.parse(data.field_1);
 
+var field_count=0;
+
+if(data.field_1 != null){
+    field_count=field_count+1;
+   var field1=JSON.parse(data.field_1);
+if(field1.question_type=="ShortAnswer"){
+       add_form_field_2(1,'single');
+   }else{
+  add_form_field_2(1,'multiple');
+    if(field1.option_1 !=null){
+        $(".row_1").find('.option:nth-child(1)').find('input').val(field1.option_1);
+    }
+    if(field1.option_2 !=null){
+        $(".row_1").find('.option:nth-child(2)').find('input').val(field1.option_2);
+    }
+    if(field1.option_3 !=null){
+        $(".row_1").find('.option:nth-child(3)').find('input').val(field1.option_3);
+    }
+    if(field1.option_4 !=null){
+        $(".row_1").find('.option:nth-child(4)').find('input').val(field1.option_4);
+    }
+    if(field1.option_5 !=null){
+                          //$(".row_4").find(".btn-add-option").triggr('click');
+        $(".row_1").find('.option:nth-child(5)').find('input').val(field1.option_5);
+    }
+    if(field1.option_6 !=null){
+                            // $(".row_4").find(".btn-add-option").triggr('click');
+        $(".row_1").find('.option:nth-child(6)').find('input').val(field1.option_6);
+    }
+
+}
 
 
 
@@ -1997,24 +2128,85 @@ $(".row_1").find(".InputQuestion_text").val(field1.question_text);
 }
 
 if(data.field_2 != null){
+
+     field_count=field_count+1;
    var field2=JSON.parse(data.field_2);
+        
+     
+     if(field2.question_type=="ShortAnswer"){
+       add_form_field_2(2,'single');
+   }else{
+    
+    add_form_field_2(2,'multiple');
+    if(field2.option_1 !=null){
+        $(".row_2").find('.option:nth-child(1)').find('input').val(field2.option_1);
+    }
+    if(field2.option_2 !=null){
+        $(".row_2").find('.option:nth-child(2)').find('input').val(field2.option_2);
+    }
+    if(field2.option_3 !=null){
+        $(".row_2").find('.option:nth-child(3)').find('input').val(field2.option_3);
+    }
+    if(field2.option_4 !=null){
+        $(".row_2").find('.option:nth-child(4)').find('input').val(field2.option_4);
+    }
+    if(field2.option_5 !=null){
+                          //$(".row_4").find(".btn-add-option").triggr('click');
+        $(".row_2").find('.option:nth-child(5)').find('input').val(field2.option_5);
+    }
+    if(field2.option_6 !=null){
+                            // $(".row_4").find(".btn-add-option").triggr('click');
+        $(".row_2").find('.option:nth-child(6)').find('input').val(field2.option_6);
+    }
+
+}
+
+
 
 
    if(field2.required=="on"){
-    $(".row_2").find("input[type=checkbox]").prop('checked',true);
-}else{
-    $(".row_2").find("input[type=checkbox]").prop('checked',false);
-}
-$(".row_2").find(".sort").val(field2.sort);
-$(".row_2").find(".InputQuestionType").val(field2.question_type);
-$(".row_2").find(".InputQuestion_text").val(field2.question_text);
+       $(".row_2").find("input[type=checkbox]").prop('checked',true);
+        }else{
+            $(".row_2").find("input[type=checkbox]").prop('checked',false);
+        }
+        $(".row_2").find(".sort").val(field2.sort);
+        $(".row_2").find(".InputQuestionType").val(field2.question_type);
+        
+        $(".row_2").find(".InputQuestion_text").val(field2.question_text);
 }
 
 if(data.field_3 != null){
-
+ field_count=field_count+1;
 
    var field3=JSON.parse(data.field_3);
 
+
+    if(field3.question_type=="ShortAnswer"){
+      add_form_field_2(3,'single');
+   }else{
+   add_form_field_2(3,'multiple');
+    if(field3.option_1 !=null){
+        $(".row_3").find('.option:nth-child(1)').find('input').val(field3.option_1);
+    }
+    if(field3.option_2 !=null){
+        $(".row_3").find('.option:nth-child(2)').find('input').val(field3.option_2);
+    }
+    if(field3.option_3 !=null){
+        $(".row_3").find('.option:nth-child(3)').find('input').val(field3.option_3);
+    }
+    if(field3.option_4 !=null){
+        $(".row_3").find('.option:nth-child(4)').find('input').val(field3.option_4);
+    }
+    if(field3.option_5 !=null){
+                          //$(".row_4").find(".btn-add-option").triggr('click');
+        $(".row_3").find('.option:nth-child(5)').find('input').val(field3.option_5);
+    }
+    if(field3.option_6 !=null){
+                            // $(".row_4").find(".btn-add-option").triggr('click');
+        $(".row_3").find('.option:nth-child(6)').find('input').val(field3.option_6);
+    }
+
+}
 
 
 
@@ -2030,7 +2222,7 @@ if(data.field_3 != null){
   $(".row_4").remove();
 if(data.field_4 != null){
 
-
+ field_count=field_count+1;
    var field4=JSON.parse(data.field_4);
 
    if(field4.question_type=="ShortAnswer"){
@@ -2073,7 +2265,7 @@ $(".row_4").find(".InputQuestion_text").val(field4.question_text);
  $(".row_5").remove();
 if(data.field_5 != null){
 
-
+ field_count=field_count+1;
    var field5=JSON.parse(data.field_5);
   
    if(field5.question_type=="ShortAnswer"){
@@ -2113,7 +2305,7 @@ $(".row_5").find(".sort").val(field5.sort);
 $(".row_5").find(".InputQuestionType").val(field5.question_type);
 $(".row_5").find(".InputQuestion_text").val(field5.question_text);
 }
-
+$("#sortable").attr('data-row',field_count);
 custom_edit_vide();
 
 $("input[name='service_sell_buy']").val(data.service_sell_buy);
@@ -3183,7 +3375,7 @@ margin: 10px auto !important;
     border: 1px solid #ced4da;
 }
 #campaigns_date_table #campaign_list_filter:after {
-    content: 'All Campaigns';
+    content: 'Live Campaigns';
     position: absolute;
     left: 0;
     font-size: 1.125rem;
@@ -3257,7 +3449,7 @@ div.dataTables_wrapper div.dataTables_filter label {
    
 }
 .draft td {
-    background: #FBE790;
+    background: #FDEFB2;
 }
 #campaigns_date_table img {width: 13px;margin-right: 4px;}
 #campaigns_date_table .nav {margin-bottom: 25px;}
@@ -3275,13 +3467,34 @@ div.dataTables_wrapper div.dataTables_filter label {
     background: #4500dd;
     color: #fff;
 }
+#campaigns_date_table #campaign_list1_filter input {
+    border-radius: 0 !important;
+}
+#campaigns_date_table #campaign_list1_filter {
+    position: relative;
+}
+#campaign_list1_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+}
+#campaigns_date_table #campaign_list1_wrapper:after {
+    content: 'Trash Campaigns';
+    position: absolute;
+    left: 0;
+    font-size: 1.125rem;
+    color: #34495e;
+    display: inline-block;
+    font-weight: 500;
+}
 @media (min-width:769px){
 .paymentt_tab input {
     position: absolute;
     right: 0;
     top: 55px;
 }
-#campaigns_date_table #campaign_list_filter {
+#campaigns_date_table #campaign_list_filter, #campaigns_date_table #campaign_list1_filter {
     width: calc(100% - 250px);
 }
 }
