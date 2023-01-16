@@ -21,6 +21,14 @@ $user = auth()->guard('advertiser')->user();
                 $daily_bug=0;
                 $leadd=0;
                 @endphp
+
+                <ul class="nav custon_nav">
+                    <li class="nav-item"><button  data-bs-target="#live" type="button" role="tab" aria-controls="live" aria-selected="true"  class="nav-link active">Live</button></li>
+                    <li class="nav-item"><button  data-tab="trash" class="nav-link " data-bs-toggle="tab" data-bs-target="#trash" type="button" role="tab" aria-controls="trash" aria-selected="false"><i class="fa-solid fa-trash-can"></i> Trash</a></li>
+
+                </ul>
+
+                <div class="tab-pane fade show active" id="live" role="tabpanel" aria-labelledby="live-tab">
                 <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
                     <thead>
                         <tr>
@@ -167,6 +175,107 @@ $user = auth()->guard('advertiser')->user();
                         </tr>
                     </tfoot>
                 </table>
+
+                 </div>
+                 <div class="tab-pane fade show active" id="trash"  role="tabpanel" aria-labelledby="trash-tab">
+                <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Off/On</th>
+                            <th>Campaign Name</th>
+                            <th>Delivery</th>
+                            <th>Download Leads</th>
+                            <th>Leads</th>
+                            <th>Cost</th>
+
+                            <th>CPL</th>
+                            <th>Daily Budget</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Target Country </th>
+                            <th>Form Used</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @forelse($campaignstrash as $campaign)
+
+                        @php
+                        $daily_bug= $daily_bug+$campaign->daily_budget;
+                        $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
+                        @endphp
+                        <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif 
+                          
+                            ">
+                            <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                            <td class="edit_btns">{{ $campaign->name }} <br>
+                                @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif 
+                               
+                               @if($campaign->delivery !=2 )
+                                <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> 
+                                @endif
+
+
+                                 @if(($campaign->status==0) && ($campaign->approve==0)) @else 
+
+                                  @if($campaign->delivery !=2 ) | @endif <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif</td>
+                            <td>
+                               @if(($campaign->status==0) && ($campaign->approve==0)) Deleted
+                                   @else
+                                @if($campaign->delivery ==2 ) 
+                                         <span class="yellow">Draft</span>
+                                 @elseif($campaign->approve ==1 )
+                                
+                                <span class="green">Active </span>
+                                 @else
+                                <span class="orange">Pending<br/>Approval</span>
+                                @endif
+                                   @endif
+                            </td>
+                            <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
+                                <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
+                                {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
+                            </td>
+                            <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
+                            <td>0</td>
+
+                            <td>0</td>
+                            <td> ${{ $campaign->daily_budget }}</td>
+                            <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }}  @endif</td>
+                            <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
+                            <td>{{ $campaign->target_country }} </td>
+                            <td> @if (isset($campaign->campaign_forms))
+                                {{$campaign->campaign_forms->form_name}}
+                            @endif</td>
+                        </tr>
+                        @empty
+
+                        @endforelse
+
+                       
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>{{ $leadd}}</th>
+                            <th>0</th>
+                            <th>0</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                    </div>
+
+
             </div>
         </div>
     </div>
@@ -2065,6 +2174,14 @@ var images_modal = document.getElementById('campaign_create_modal');
     }
    }
 
+ $(".custon_nav").find('.nav-link').click(function(){
+   var tab_name=$(this).data('bs-target');
+   $(".tab-pane").hide();
+   $(tab_name).show();
+   $(".custon_nav").find('.nav-link').removeClass('active');
+  $(this).addClass('active');
+
+ });
 
 </script>
 
@@ -3051,8 +3168,8 @@ margin: 10px auto !important;
     margin: 0 -15px 0px -15px;
 }
 #campaigns_date_table #campaign_list_filter {
-    width: calc(100% - 250px);
     position: relative;
+        text-align: right;
 }
 #campaigns_date_table .paymentt_tab {
     position: absolute;
@@ -3140,7 +3257,33 @@ div.dataTables_wrapper div.dataTables_filter label {
    
 }
 .draft td {
-    background: yellow;
+    background: #FBE790;
+}
+#campaigns_date_table img {width: 13px;margin-right: 4px;}
+#campaigns_date_table .nav {margin-bottom: 25px;}
+#campaigns_date_table .nav .nav-item {
+    background: #fff;
+    margin-right: 12px;
+    box-shadow: 0 0 3px #0000003d;
+    font-size: 13px;
+}
+#campaigns_date_table .nav .nav-item .nav-link {
+    color: #1a273a;
+    padding: 5px 15px;
+}
+#campaigns_date_table .nav .nav-item .active {
+    background: #4500dd;
+    color: #fff;
+}
+@media (min-width:769px){
+.paymentt_tab input {
+    position: absolute;
+    right: 0;
+    top: 55px;
+}
+#campaigns_date_table #campaign_list_filter {
+    width: calc(100% - 250px);
+}
 }
 </style>
 

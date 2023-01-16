@@ -17,7 +17,10 @@ class CampaignsdemoController extends Controller
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
         $campaigns=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',1)->orderBy('id', 'DESC')->get(); 
-        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->orderBy('status', 'DESC')->get();   
+         $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->where('status','!=',0)->orderBy('id', 'DESC')->get(); 
+
+        $campaignstrash = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->where('status',0)->orderBy('id', 'DESC')->get();
+		
 		$campaignsval=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
  
         $last_campaign = campaigns::orderBy('id', 'desc')->first();
@@ -45,7 +48,7 @@ class CampaignsdemoController extends Controller
 		
 		
 
-        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns','campaignspending', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message','campaignsval'));
+        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns','campaignspending', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message','campaignsval','campaignstrash'));
     }
 
 
