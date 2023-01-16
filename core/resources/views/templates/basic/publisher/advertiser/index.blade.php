@@ -30,6 +30,7 @@
                                         <td data-label="@lang('Assign publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
+                                                    @php  $username = substr($publisher->username, 0, strpos($publisher->username, "@"));  @endphp
                                                     <li><label>
                                                         <input
                                                         @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher))
@@ -43,7 +44,7 @@
                                                         data-advertiser_id = "{{$advertiser->id}}"
                                                         data-update_type = "publisher_admin"
                                                         >
-                                                        {{ $publisher->name }}</label></li>
+                                                        {{ $username?$username:$publisher->username }}</label></li>
                                                 @empty
                                                 @endforelse
                                             </ul>
@@ -52,6 +53,7 @@
                                         <td data-label="@lang('Assign Campaign Mamager')">
                                             <ul class="check_box_list">
                                                 @forelse($campaign_manager as $cm)
+                                                    @php $username = substr($cm->username, 0, strpos($cm->username, "@"));   @endphp
                                                     <li><label>
                                                         <input
                                                         @if($advertiser->assign_cm != null && in_array($cm->id, $advertiser->assign_cm))
@@ -64,7 +66,7 @@
                                                         value="{{ $cm->id }}"
                                                         data-advertiser_id = "{{$advertiser->id}}" data-update_type = "campaign_mamager"
                                                         >
-                                                        {{ $cm->name }}</label></li>
+                                                        {{ $username?$username:$cm->username  }}</label></li>
                                                 @empty
                                                 @endforelse
                                             </ul>

@@ -1,6 +1,6 @@
 
 <nav class="navbar-wrapper active">
-    <h5 style="position: absolute; left:35px; ">Publisher Admin</h5>
+    <h5 style="position: absolute; left:35px; font-size: 25px; color: #3382f6; ">Publisher Admin</h5>
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
     <form class="navbar-search">
       <button type="submit" class="navbar-search__btn">
