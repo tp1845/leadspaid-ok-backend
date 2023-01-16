@@ -23,7 +23,7 @@
                 <p>If you are still not receiving a verification email,<br>
                 (a) Please check your spam folder<br>
                 (b) Or, use a different email address to register as advertiser<br>
-                (c) Or, Contact support at <a href="https://leadspaid.com/contact-us">https://leadspaid.com/contact-us</a></p>
+                (c) Or, Contact support at <a href="https://leadspaid.com/contact-us">www.leadspaid.com/contact-us</a></p>
             </div>
         </div>
     </div>
