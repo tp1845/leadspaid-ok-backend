@@ -430,9 +430,10 @@
 
         #MainHeroHeader{
             background-color: #1a273a;
-
             background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.3.jpg");
-
+            @if(Request::get('bg') == 1 )
+            background-image: url("{{url('/')}}/assets/images/homepage/home-hero-v9.3-v1.jpg")!important;
+            @endif
             background-position: center;
             background-size: cover;
             position: relative;
