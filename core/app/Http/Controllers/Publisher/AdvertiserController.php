@@ -50,7 +50,6 @@ class AdvertiserController extends Controller
 
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name', 'username', 'role')->get();
         $campaign_manager = Publisher::where('role', 2)->select('id', 'name', 'username', 'role')->get();
-
         return view($this->activeTemplate .'publisher.advertiser.index',compact('page_title','empty_message','advertisers', 'publishers_admin', 'campaign_manager'));
     }
     public function ad_network_save(Request $request){
