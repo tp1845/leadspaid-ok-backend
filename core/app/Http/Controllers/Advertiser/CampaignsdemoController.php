@@ -57,7 +57,7 @@ class CampaignsdemoController extends Controller
         $validator = Validator::make(
             $request->all(), [
                 'campaign_name' => 'required',
-                'daily_budget' => 'required',
+                
                 'company_logo' => 'mimes:jpeg,jpg,png,gif|max:2048'
             ]
         );
@@ -141,7 +141,9 @@ class CampaignsdemoController extends Controller
             $campaign->website_url = $request->website_url;
             $campaign->social_media_page = $request->social_media_page;
             $campaign->form_id = $form_id;
-
+              if(isset($request->statusr)){
+                 $campaign->delivery = 2;
+            }
             if($request->campaign_id){
                 $campaign->update();
                 $notify[] = ['success', 'Campaign Updated successfully'];

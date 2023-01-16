@@ -47,17 +47,33 @@ $user = auth()->guard('advertiser')->user();
                         $daily_bug= $daily_bug+$campaign->daily_budget;
                         $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                         @endphp
-                        <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif">
+                        <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif 
+                           @if($campaign->delivery ==2 ) draft @endif
+                            ">
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                             <td class="edit_btns">{{ $campaign->name }} <br>
-                                @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> 
-                                 @if(($campaign->status==0) && ($campaign->approve==0)) @else | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif</td>
+                                @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif 
+                               
+                               @if($campaign->delivery !=2 )
+                                <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> 
+                                @endif
+
+
+                                 @if(($campaign->status==0) && ($campaign->approve==0)) @else 
+
+                                  @if($campaign->delivery !=2 ) | @endif <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif</td>
                             <td>
-                              @if(($campaign->status==0) && ($campaign->approve==0)) Deleted @else 
-                                @if($campaign->approve) <span class="green">Active </span> @else
+                               @if(($campaign->status==0) && ($campaign->approve==0)) Deleted
+                                   @else
+                                @if($campaign->delivery ==2 ) 
+                                         <span class="yellow">Draft</span>
+                                 @elseif($campaign->approve ==1 )
+                                
+                                <span class="green">Active </span>
+                                 @else
                                 <span class="orange">Pending<br/>Approval</span>
                                 @endif
-                                 @endif
+                                   @endif
                             </td>
                             <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
                                 <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
@@ -84,12 +100,30 @@ $user = auth()->guard('advertiser')->user();
                         $daily_bug= $daily_bug+$campaign->daily_budget;
                         $leadd=$leadd+get_campiagn_leads_by_id($campaign->id);
                         @endphp
-                        <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif">
+                        <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
+                              @if($campaign->delivery ==2 ) draft @endif
+                            ">
                             <td><input type="checkbox" name="status" @if($campaign->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
-                            <td class="edit_btns">{{ $campaign->name }} <br>@if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> @if(($campaign->status==0) && ($campaign->approve==0)) @else | <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif</td>
+                            <td class="edit_btns">{{ $campaign->name }} <br>
+                                @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif 
+                               
+                               @if($campaign->delivery !=2 )
+                                <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}"   data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a> 
+                                @endif
+
+
+                                 @if(($campaign->status==0) && ($campaign->approve==0)) @else 
+
+                                  @if($campaign->delivery !=2 ) | @endif <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif </td>
                             <td>
-                                  @if(($campaign->status==0) && ($campaign->approve==0)) Deleted @else
-                                @if($campaign->approve) <span class="green">Active </span> @else
+                                  @if(($campaign->status==0) && ($campaign->approve==0)) Deleted
+                                   @else
+                                @if($campaign->delivery ==2) 
+                                         <span class="yellow">Draft</span>
+                                 @elseif($campaign->approve ==1 )
+                                
+                                <span class="green">Active </span>
+                                 @else
                                 <span class="orange">Pending<br/>Approval</span>
                                 @endif
                                    @endif
@@ -138,7 +172,7 @@ $user = auth()->guard('advertiser')->user();
     </div>
 </div>
 {{-- Start Create campaign_create MODAL --}}
-<div id="campaign_create_modal" style="max-width: 100vw;" class="modal fade right modal-lg" tabindex="-1" role="dialog">
+<div id="campaign_create_modal" style="max-width: 100vw;" class="modal fade right modal-lg" tabindex="-1" role="dialog" >
 <div class="float-right h-100 m-0 modal-dialog w-100" style="max-width: 25rem;" role="document">
 <button type="button" class="close campaign_create_close"  data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
 <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
@@ -673,8 +707,8 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
             <link rel="stylesheet" href="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.css')}}">
             <script src="{{asset('assets/admin/js/vendor/tagsinput/bootstrap-tagsinput.min.js')}}"></script>
             <script src="https://cdn.jsdelivr.net/gh/jeffreydwalter/ColReorderWithResize@9ce30c640e394282c9e0df5787d54e5887bc8ecc/ColReorderWithResize.js"></script>
-			
-			<script>
+            
+            <script>
                 'use strict';
                 $(function() {
                     $(document).ready(function() {
@@ -769,6 +803,16 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                     campaign_create_modal.modal('show');
                     $("#campaign_form").find("#submit").text('Create Campaign');
                     validate_form_data();
+
+                    var validator = $( "#campaign_form" ).validate();
+                   validator.resetForm();
+                   $("#campaign_form").find('.has-error').removeClass("has-error");
+                   $("#campaign_form").find('.has-success').removeClass("has-success");
+                   $('#campaign_form').find('.form-control-feedback').remove();
+                   $('#campaign_form').find('input').removeClass('is-invalid');
+                   $("#CreateNewForm").hide();
+                   $("#UseExistingForm").hide();
+                   $("#campaign_create_modal").attr('data-status','create');
                 });
 
 
@@ -961,7 +1005,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                         visible: true
                     }
                     ],"sDom": 'Lfrtlip',
-					"language": {
+                    "language": {
                       "lengthMenu": "Show rows  _MENU_"
                   }
               });
@@ -1185,6 +1229,10 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
  });
 
   }
+
+  $(".campaign_create_close").click(function(){
+  $("#campaign_create_modal").modal('hide');
+  });
 
 </script>
 <script>
@@ -1690,6 +1738,16 @@ $('body').on('click', '.duplicatecampaign, .editcampaign', function (e) {
     e.preventDefault();
     reset_campaign_create_form();
     $('#campaign_createModalLabel').html('Edit Campaign');
+
+                   var validator = $( "#campaign_form" ).validate();
+                      validator.resetForm();
+                   $("#campaign_form").find('.has-error').removeClass("has-error");
+                   $("#campaign_form").find('.has-success').removeClass("has-success");
+                   $('#campaign_form').find('.form-control-feedback').remove();
+                   $('#campaign_form').find('input').removeClass('is-invalid');
+                   
+   $("#campaign_create_modal").attr("data-status",'edit');
+
     campaign_create_modal.modal('show');
     var campaign_id = $(this).attr('data-id');
     var tyrpp=$(this).data('type');
@@ -1979,6 +2037,33 @@ $(".delete_campaign").click(function(e){
   });
 }
 });
+
+
+var images_modal = document.getElementById('campaign_create_modal');
+ window.onclick = function(event) {
+  
+   if (event.target.id == 'campaign_create_modal') {
+       var url=$("#campaign_form").attr('action');
+       var data=$("#campaign_form").serialize();
+       var campaign_name_Input=$("#campaign_name_Input").val();
+       var input_campaign_id=$("#input_campaign_id").val();
+     var statuss=$("#campaign_create_modal").attr("data-status");
+
+       if((campaign_name_Input != '') && (statuss=="create")) {
+       
+       $.ajax({
+              type: "POST",
+              url: url,
+              data: data+'&statusr=1',
+             success: function (data) {
+                   location.reload(); 
+             }
+
+            });
+   }
+
+    }
+   }
 
 
 </script>
@@ -3053,6 +3138,9 @@ div.dataTables_wrapper div.dataTables_filter label {
     white-space: nowrap;
     text-align: left;
    
+}
+.draft td {
+    background: yellow;
 }
 </style>
 
