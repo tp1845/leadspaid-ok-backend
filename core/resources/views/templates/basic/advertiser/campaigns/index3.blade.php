@@ -635,7 +635,7 @@ padding: 0; display: block; opacity: 0;">
 <input  type="text" readonly class="small_info InputQuestionType" name="field_1[question_type]" value="ShortAnswer" required>
 <div class="input-group input-col">
 <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question"
- name="field_1[question_text]" value="Full Name" required="" maxlength="50">
+ name="field_1[question_text]" value="Full Name" required="" maxlength="39">
 <div class="input-group-append bg-white">
 <div class="input-group-text"> 
 <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a>
@@ -657,7 +657,7 @@ required>
 <div class="input-group input-col">
 <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question"
 name="field_2[question_text]"
-value="Email id" required="" maxlength="50"> 
+value="Email id" required="" maxlength="39"> 
 <div class="input-group-append bg-white">
 <div class="input-group-text"> 
 <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a>
@@ -677,7 +677,7 @@ value="Email id" required="" maxlength="50">
 value="ShortAnswer" required>
 <div class="input-group input-col">
 <input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question"
-name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
+name="field_3[question_text]" value="Phone Number" required="" maxlength="39">
 <div class="input-group-append bg-white">
 <div class="input-group-text">
 <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>
@@ -1049,7 +1049,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                         html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="ShortAnswer" required>';
                     }
                     html +='<div class="input-group input-col">';
-                    html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required maxlength="50">';
+                    html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required maxlength="39">';
                     html +='<div class="input-group-append bg-white">';
                     html +='<div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>';
                     html +='</div>';
@@ -1104,7 +1104,7 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="50">
                         html +='<input type="text" readonly class="small_info InputQuestionType" name="field_'+row+'[question_type]" value="ShortAnswer" required>';
                     }
                     html +='<div class="input-group input-col">';
-                    html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required maxlength="50">';
+                    html +='<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_'+row+'[question_text]" required maxlength="39">';
                     html +='<div class="input-group-append bg-white">';
                     html +='<div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>';
                     html +='</div>';
