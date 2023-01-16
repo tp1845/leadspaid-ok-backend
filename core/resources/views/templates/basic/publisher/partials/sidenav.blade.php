@@ -157,7 +157,7 @@
     <div class="sidebar bg--" style="background-image: url('{{asset('assets/userpanel/images/sidebar/2.jfif')}}')">
     <div class="sidebar__inner">
         <div class="sidebar__logo">
-            <a href="{{route('publisher.dashboard')}}" class="sidebar__main-logo"><img src="{{getImage(imagePath()['logoIcon']['path'] .'/logo2.png')}}" alt="image"> </a>
+            <a href="{{route('publisher.dashboard')}}" class="sidebar__main-logo"><img src="{{getImage(imagePath()['logoIcon']['path'] .'/logo-3.png')}}" alt="image"> </a>
         </div>
 
         <div class="sidebar__menu-wrapper custom_side_bar" id="sidebar__menuWrapper">
