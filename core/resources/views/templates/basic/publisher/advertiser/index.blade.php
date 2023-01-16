@@ -56,6 +56,7 @@
                                                         <input
                                                         @if($advertiser->assign_cm != null && in_array($cm->id, $advertiser->assign_cm))
                                                             checked  readonly disabled @else  name="assign_cm_by_pub_{{$advertiser->id}}[]"   @endif
+                                                        @if($advertiser->assign_publisher_by_pub != null && in_array(Auth::guard('publisher')->user()->id, $advertiser->assign_publisher_by_pub))  readonly disabled  @endif
                                                         @if($advertiser->assign_cm_by_pub != null && in_array(Auth::guard('publisher')->user()->id, $advertiser->assign_cm_by_pub)) readonly disabled  @endif
                                                         @if($advertiser->assign_cm_by_pub != null && in_array($cm->id, $advertiser->assign_cm_by_pub)) checked  @endif
                                                         type="checkbox"
@@ -269,7 +270,6 @@
             $("body").on("blur", "td input.AdNetwork", function() {
                 var advertiser_id =  $(this).attr('data-aid');
                 var form_id = '#form_'+advertiser_id;
-                {{ $advertiser->id}}
                 var form_array = $(form_id).serializeArray();
                 form_array.push({ name: '_token',  value: "{{ csrf_token() }}" });
                // var url = [];

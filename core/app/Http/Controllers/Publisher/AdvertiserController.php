@@ -26,8 +26,11 @@ class AdvertiserController extends Controller
         $user = auth()->guard('publisher')->user();
         $assign_campaign = $user->assign_campaign;
         // $advertisers = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id)->with('publisher_advertiser')->get();
-        $advertisers = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id)->orwhereJsonContains('assign_publisher_by_pub',  (string) $user->id)->with('publisher_advertiser')->get();
-
+        if($user->role == 1){
+            $advertisers = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id)->orwhereJsonContains('assign_publisher_by_pub',  (string) $user->id)->with('publisher_advertiser')->get();
+        } else if($user->role == 2){
+            $advertisers = Advertiser::whereJsonContains('assign_cm',  (string) $user->id)->orwhereJsonContains('assign_cm_by_pub',  (string) $user->id)->with('publisher_advertiser')->get();
+        }
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name', 'role')->get();
         $campaign_manager = Publisher::where('role', 2)->select('id', 'name', 'role')->get();
         return view($this->activeTemplate .'publisher.advertiser.index',compact('page_title','empty_message','advertisers', 'publishers_admin', 'campaign_manager'));

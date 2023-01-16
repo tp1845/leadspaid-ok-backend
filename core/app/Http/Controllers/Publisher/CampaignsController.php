@@ -23,8 +23,11 @@ class CampaignsController extends Controller
         $page_title = 'All Campaigns';
         $empty_message = 'No Campaigns';
         $user = auth()->guard('publisher')->user();
-        $assign_campaign = $user->assign_campaign;
-        $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id  )->orwhereJsonContains('assign_publisher_by_pub',  (string) $user->id)->select('id')->get()->toarray();
+        if($user->role == 1){
+            $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $user->id  )->orwhereJsonContains('assign_publisher_by_pub',  (string) $user->id)->select('id')->get()->toarray();
+        } else if($user->role == 2){
+            $assign_advertiser = Advertiser::whereJsonContains('assign_cm',  (string) $user->id  )->orwhereJsonContains('assign_cm_by_pub',  (string) $user->id)->select('id')->get()->toarray();
+        }
         $assign_advertiser_ids = array();
         foreach($assign_advertiser as $advertiser ){ $assign_advertiser_ids[] = $advertiser['id']; }
         if($assign_advertiser_ids){
@@ -32,7 +35,11 @@ class CampaignsController extends Controller
         }else{
             $campaigns= array();
         }
-        return view($this->activeTemplate .'publisher.campaigns.index',compact('page_title','empty_message','campaigns'));
+        if($user->role === 2){
+            return view($this->activeTemplate .'publisher.campaigns.index_cm',compact('page_title','empty_message','campaigns'));
+        }else{
+            return view($this->activeTemplate .'publisher.campaigns.index_admin',compact('page_title','empty_message','campaigns'));
+        }
     }
     public function advertisers_campaigns($id)
     {

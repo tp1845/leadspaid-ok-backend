@@ -16,9 +16,9 @@ class RedirectIfNotPublisherAdmin
     {
         if(auth()->guard($guard)->check()){
             $user = auth()->guard($guard)->user();
-                if ($user->role === 1) {
+                if ($user->role === 1 || $user->role === 2 || $user->role === 3) {
                     return $next($request);
-                } else {
+                }  else {
                     return redirect()->route('authorization',$guard);
                 }
             }
