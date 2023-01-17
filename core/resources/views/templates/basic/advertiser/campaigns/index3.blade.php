@@ -3479,6 +3479,7 @@ div.dataTables_wrapper div.dataTables_filter label {
     justify-content: space-between;
     position: relative;
 }
+body{background-color:yellow;}
 #campaigns_date_table #campaign_list1_wrapper:after {
     content: 'Trash Campaigns';
     position: absolute;
@@ -3493,7 +3494,7 @@ div.dataTables_wrapper div.dataTables_filter label {
     position: absolute;
     right: 0;
     top: 55px;
-}
+}       
 #campaigns_date_table #campaign_list_filter, #campaigns_date_table #campaign_list1_filter {
     width: calc(100% - 250px);
 }
