@@ -8,7 +8,7 @@ class campaign_publisher extends Model
 {
     protected $guarded = [];
     protected $table = 'campaign_publisher';
-    protected $casts = [ 'url' => 'array' ];
+    protected $casts = [ 'url' => 'array', 'planned' => 'array', ];
     public function publisher()
     {
         return $this->belongsTo(Publisher::class,'publisher_id');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Publisher;
 
 use App\Advertiser;
 use App\campaign_publisher;
+use App\campaign_publisher_common;
 use App\campaigns;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -31,7 +32,7 @@ class CampaignsController extends Controller
         $assign_advertiser_ids = array();
         foreach($assign_advertiser as $advertiser ){ $assign_advertiser_ids[] = $advertiser['id']; }
         if($assign_advertiser_ids){
-            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->whereIn('advertiser_id', $assign_advertiser_ids)->get();
+            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->with('campaign_publisher_common')->whereIn('advertiser_id', $assign_advertiser_ids)->get();
         }else{
             $campaigns= array();
         }
@@ -49,7 +50,7 @@ class CampaignsController extends Controller
         $advertiser = Advertiser::where('id',  $id)->select('id', 'name', 'company_name')->first();
         if($advertiser){
             $page_title = $advertiser['company_name'] . "'s Advertiser Campaigns";
-            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->where('advertiser_id', $advertiser['id'])->get();
+            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->with('campaign_publisher_common')->where('advertiser_id', $advertiser['id'])->get();
         }else{
             $campaigns= array();
         }
@@ -122,15 +123,20 @@ class CampaignsController extends Controller
     public function url_save(Request $request){
         $campaign_id = $request->campaign_id;
         $publisher_id = $request->publisher_id;
-        $campaign = campaign_publisher::firstOrNew([ 'campaign_id' => $campaign_id,  'publisher_id' => $publisher_id ]);
-       /// $campaign = campaign_publisher::where('campaign_id', $campaign_id )->where('publisher_id', $publisher_id)->first();
-        if($request->url){
-            $campaign->url =  $request->url;
-            $campaign->save();
-        } else{
-            $campaign->delete();
+       if($request->url){
+            $campaign_publisher_common = campaign_publisher_common::firstOrNew([ 'campaign_id' => $campaign_id ]);
+            $campaign_publisher_common->url =  $request->url;
+            $campaign_publisher_common->save();
+       }
+       $campaign_publisher = campaign_publisher::firstOrNew([ 'campaign_id' => $campaign_id,  'publisher_id' => $publisher_id ]);
+       /// $campaign_publisher = campaign_publisher::where('campaign_id', $campaign_id )->where('publisher_id', $publisher_id)->first();
+        if($request->planned){
+            $campaign_publisher->planned =  $request->planned;
+            $campaign_publisher->save();
+        }else{
+            $campaign_publisher->delete();
         }
-        return response()->json(['success'=>true, 'message'=> $request->url]);
+        return response()->json(['success'=>true, 'message'=> $request->planned]);
     }
 
 }

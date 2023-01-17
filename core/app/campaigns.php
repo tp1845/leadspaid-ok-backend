@@ -21,4 +21,8 @@ class campaigns extends Model
     {
         return $this->hasone(campaign_publisher::class, 'campaign_id')->where('publisher_id', Auth::guard('publisher')->user()->id);
     }
+    public function campaign_publisher_common()
+    {
+        return $this->hasone(campaign_publisher_common::class, 'campaign_id');
+    }
 }
