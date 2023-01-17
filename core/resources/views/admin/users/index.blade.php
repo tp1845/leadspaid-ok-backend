@@ -55,24 +55,7 @@
                 </div>
             </div>
         </div><!-- card end -->
-        <div class="card-footer py-4">
-            <nav aria-label="...">
-				<ul class="pagination justify-content-end mb-0">
-				<li class="page-item active">
-				<a class="page-link" href="javascript:void(0)">1</a>
-				</li>
-				<li class="page-item ">
-				<a class="page-link" href="http://localhost/leadspaids/leadspaid/public/admin/advertiser/all?page=2">2</a>
-				</li>
-				<li class="page-item">
-				<a class="page-link" href="http://localhost/leadspaids/leadspaid/public/admin/advertiser/all?page=2">
-				<i class="fa fa-angle-right" aria-hidden="true"></i>
-				<span class="sr-only">Next</span>
-				</a>
-				</li>
-				</ul>
-			</nav>
-        </div>
+        
     </div>
 </div>
 
