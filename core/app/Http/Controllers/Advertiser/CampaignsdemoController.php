@@ -114,6 +114,10 @@ class CampaignsdemoController extends Controller
             {
                 $campaign_forms->image_3 = uploadImage($request->image_3, $path);
             }
+			
+			if(isset($request->statusr)){
+                $campaign_forms->status = 2;
+            }
 
             if($campaign_forms->save())
             {
