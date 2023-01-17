@@ -180,6 +180,32 @@
         jQuery.validator.addMethod("valid_email", function(value, element) {
         return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
         }, "Please enter a valid email address");
+        jQuery.validator.addMethod("isdphone", function(value, element) {
+            var isd = $('.country_code').val();
+
+            phone = value.replace(/-/ig, "");;
+            console.log(phone);
+            if(isd === '+1'){
+                var phone_isd = phone.substring(0, 3);
+                if(phone_isd === '001'){  phone = phone.substring(3); }
+                return this.optional(element) || /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/i.test(phone);
+            }
+            if(isd === '+44'){
+                var phone_isd = phone.substring(0, 4);
+                if(phone_isd === '0044'){  phone = phone.substring(4); }
+                return this.optional(element) || /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/i.test(phone);
+            }
+            if( isd === '+61' ){
+                var phone_isd = phone.substring(0, 4);
+                if(phone_isd === '0061'){  phone = phone.substring(4); }
+                return this.optional(element) || /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/i.test(phone);
+            }
+            if(isd === '+65'){
+                var phone_isd = phone.substring(0, 4);
+                if(phone_isd === '0065'){  phone = phone.substring(4); }
+                return this.optional(element) || /^(3|6|8|9)\d{7}$/i.test(phone);
+            }
+        }, "Please enter valid phone");
 
 
         $("#contact_form").validate({
@@ -189,7 +215,7 @@
                 company: { required: false, minlength: 3},
                 email: { required: true,  valid_email:true  },
                 country_code: { required: true },
-                phone: { required: true, minlength: 6, phoneonly: true },
+                phone: { required: true, minlength: 6, phoneonly: true, isdphone:true },
                 message: { required: true, minlength: 15 }
             },messages: {
                 name:{  required : 'Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
