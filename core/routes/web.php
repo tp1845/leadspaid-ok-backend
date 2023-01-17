@@ -594,6 +594,7 @@ Route::get('privacy-policy-old', 'SiteController@privacy_policy_old')->name('pri
 Route::get('privacy-policy', 'SiteController@privacy_policy')->name('privacy_policy');
 Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_condition');
 
+
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
 Route::get('/home-v4', 'SiteController@home4')->name('home_v4');
 Route::get('/home-v5', 'SiteController@home5')->name('home_v5');
