@@ -13,7 +13,7 @@
         </div>
     </form>
 
-    <div class="navbar__left">
+    <div class="navbar__left d-none">
         <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
         <button type="button" class="fullscreen-btn">
             <i class="fullscreen-open las la-compress" onclick="openFullscreen();"></i>

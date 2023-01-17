@@ -1,13 +1,91 @@
+<style>
+    .sidebar__logo {
+    padding: 0;
+    display: -ms-flexbox;
+    display: block;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: center;
+    text-align: center;
+}
+.custom_nav_btn .navbar__expand {
+    margin: 0;
+    width: 100%;
+    height: unset;
+    font-size: 20px;
+    background: transparent;
+    min-width: 40px;
+}
+.custom_nav_btn .sidebar__expand {
+    position: unset;
+}
+.custom_nav_btn {
+    position: fixed;
+    left: 210px;
+    width: 40px;
+    display: flex;
+    height: 35px;
+    background: #f3f5f7;
+    border-radius: 5px 0px 0px 5px;
+    align-items: center;
+    justify-content: center;
+    bottom: 40px;
+}
+/*.custom_nav_btn .navbar__expand:after, .custom_nav_btn .navbar__expand:before, .sidebar.active .navbar__expand.active {
+    display: none;
+}*/
+.navbar__expand::after {
+    border: none;
+}
+.sidebar.active:hover .sidebar__menu-header {
+    font-size: 0;
+}
+.sidebar.active .navbar__expand {
+    display: block;
+}
+.navbar__expand.active .fa-angle-left::before {
+    content: "\f105";
+}
+.sidebar__expand {
+    background-color: transparent;
+    color: #000;
+    position: absolute;
+    font-size: 20px;
+    text-align: center;
+    display: none;
+}
+.sidebar.active .custom_nav_btn {
+    left: 40px;
+}
+.sidebar.active .sidebar__expand {
+    display: block;
+}
+.sidebar.active:hover .sidebar__logo a, .sidebar.active .sidebar__logo-shape, .sidebar.active:hover .sidebar__menu .sidebar-dropdown > a::before, .sidebar.active:hover .sidebar__menu .sidebar-menu-item > a .menu-title, .sidebar.active:hover .menu-badge {
+    display: none;
+}
+.sidebar.active:hover {
+    width: 80px;
+}
+.sidebar.active:hover .sidebar__menu .sidebar-menu-item > a {
+    padding: 15px;
+    padding-right: 5px;
+    justify-content: center;
+}
+.sidebar.active {
+    transition: none !important;
+}
+</style>
+<script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
 <div class="sidebar {{ sidebarVariation()['selector'] }} {{ sidebarVariation()['sidebar'] }} {{ @sidebarVariation()['overlay'] }} {{ @sidebarVariation()['opacity'] }}"
-     data-background="{{getImage('assets/admin/images/sidebar/2.jpg','400x800')}}">
+    data-background="{{getImage('assets/admin/images/sidebar/2.jfif')}}"  style="background-image: url('{{asset('assets/admin/images/sidebar/2.jfif')}}')>
     <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
     <div class="sidebar__inner">
         <div class="sidebar__logo">
             <a href="{{route('admin.dashboard')}}" class="sidebar__main-logo"><img
-                    src="{{getImage(imagePath()['logoIcon']['path'] .'/logo.png')}}" alt="@lang('image')"></a>
+                    src="{{getImage(imagePath()['logoIcon']['path'] .'/logo2.png')}}" alt="@lang('image')"></a>
             <a href="{{route('admin.dashboard')}}" class="sidebar__logo-shape"><img
                     src="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" alt="@lang('image')"></a>
-            <button type="button" class="navbar__expand"></button>
+            <button type="button" class="navbar__expand d-none"></button>
         </div>
 
         <div class="sidebar__menu-wrapper" id="sidebar__menuWrapper">
@@ -495,7 +573,20 @@
 
 
                 <li class="sidebar__menu-header">@lang('Settings')</li>
-
+                 <li class="sidebar-menu-item {{menuActive('admin.create-users')}}">
+                    <a href="{{route('admin.create-users')}}">
+                        <i class="menu-icon las la-images"></i>
+                        <span class="menu-title">Create User</span>
+                    </a>
+                </li>
+                <li class="sidebar-menu-item {{menuActive('admin.users')}}">
+                    <a href="{{route('admin.users')}}">
+                        <i class="menu-icon las la-images"></i>
+                        <span class="menu-title">Manage User</span>
+                    </a>
+                </li>
+			   
+			    
                 <li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
                     <a href="{{route('admin.setting.index')}}" class="nav-link">
                         <i class="menu-icon las la-life-ring"></i>
@@ -626,6 +717,13 @@
                         </ul>
                     </div>
                 </li>
+				<li class="sidebar-menu-item ">
+                    <div class="sidebar__logo custom_nav_btn">
+                        <button type="button" class="navbar__expand"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+                      
+                    </div>
+                    
+                </li>
             </ul>
             <div class="text-center mb-3 text-uppercase">
                 <span class="text--primary">{{systemDetails()['name']}}</span>
@@ -637,3 +735,14 @@
 
 </div>
 <!-- sidebar end -->
+<script>
+    $(".sidebar__expand").click(function(){
+     if($('.navbar__expand').hasClass('active')){
+        $(".sidebar").removeClass('active');
+        
+       
+     }
+
+    })
+
+</script>

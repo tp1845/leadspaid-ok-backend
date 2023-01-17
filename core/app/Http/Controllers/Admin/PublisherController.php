@@ -9,6 +9,8 @@ use App\GeneralSetting;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\PublisherAd;
+use Illuminate\Support\Facades\Hash;
+use App\Country;
 
 class PublisherController extends Controller
 {
@@ -240,5 +242,42 @@ class PublisherController extends Controller
             return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
         }
     }
+	
+	
+	public function create_user(){
+     $countries = Country::all();
+        $page_title = 'Create User'  ;
+        $empty_message = 'No search result found';
+        return view('admin.users.create', compact('page_title', 'empty_message','countries'));
+   }
+   
+   public function manage_user(){
+     $Publisher = Publisher::all();
+      $page_title = 'Users List'  ;
+        $empty_message = 'No search result found';
+        return view('admin.users.index', compact('page_title', 'empty_message','Publisher'));
+   } 
+
+   public function save_user(Request $request){
+        $Publisher = new Publisher();
+         $Publisher->name=$request->name;
+         $Publisher->role=$request->role;
+         $Publisher->email=$request->email;
+         $Publisher->country=$request->country;
+         $Publisher->company_name=$request->company_name;
+         $Publisher->country_code=$request->country_code;
+          $Publisher->phone=$request->mobile;
+          $Publisher->password=Hash::make($request->password);
+          $Publisher->status=1;
+           $Publisher->save();
+        $notify[] = ['success', 'New user create successfully'];
+        $url=route('admin.users');
+        return redirect($url)->withNotify($notify);
+
+   }
+
+
+	
+	
 
 }

@@ -79,6 +79,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
 
 
+        Route::get('create-users','PublisherController@create_user')->name('create-users');
+        Route::post('save-users','PublisherController@save_user')->name('save-users');
+        Route::get('users','PublisherController@manage_user')->name('users');
+
         // Users Manager
         Route::get('user/email/{id}/{flag}', 'ManageUsersController@showEmailSingleForm')->name('users.email.single');
         Route::post('user/send-email/{id}/{role}', 'ManageUsersController@sendEmailSingle')->name('users.send.email.single');
