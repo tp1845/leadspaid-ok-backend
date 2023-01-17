@@ -188,8 +188,8 @@ $("#full_name").capitalize();
             phone: { required: true, minlength: 6, phoneonly: true },
             email: { required: true,  valid_email:true  },
             product_services: { required: true},
-            Website: { website: true},
-            Social: { website: true},
+            Website: { website: true },
+            Social: { website: true },
             ad_budget: { required: true,  numbersonly: true, min:1000 },
             password: { required: true, minlength: 6,    },
             password_confirmation: { equalTo: "#password" }
@@ -199,8 +199,8 @@ $("#full_name").capitalize();
             phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
             email:{  required : 'email is required.'},
             product_services:{  required : 'Lead Generation Information is required.', minlength:'Please fill your Lead Generation Information in detail.', },
-            Website:{  website:'Please valid Website url.', },
-            Social:{   website:'Please valid Social url.', },
+            Website:{  website:'Please valid Website url.'  },
+            Social:{   website:'Please valid Social url.' },
             ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.', min: 'Ad Budget per month should be at least $1000.' },
             password:{  required : 'Please fill a stronger password.',  minlength : 'Please fill a stronger password.',  },
             password_confirmation:{  required : 'The password and its confirm are not the same.', equalTo: 'The password and its confirm are not the same.'}
