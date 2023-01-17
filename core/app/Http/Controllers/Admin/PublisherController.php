@@ -263,6 +263,7 @@ class PublisherController extends Controller
          $Publisher->name=$request->name;
          $Publisher->role=$request->role;
          $Publisher->email=$request->email;
+		  $Publisher->username=$request->email;
          $Publisher->country=$request->country;
          $Publisher->company_name=$request->company_name;
          $Publisher->country_code=$request->country_code;
