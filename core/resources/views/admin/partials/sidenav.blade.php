@@ -77,8 +77,8 @@
 </style>
 <script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
 <div class="sidebar {{ sidebarVariation()['selector'] }} {{ sidebarVariation()['sidebar'] }} {{ @sidebarVariation()['overlay'] }} {{ @sidebarVariation()['opacity'] }}"
-    data-background="{{getImage('assets/admin/images/sidebar/2.jfif')}}"  style="background-image: url('{{asset('assets/admin/images/sidebar/2.jfif')}}')>
-    <button class="res-sidebar-close-btn"><i class="las la-times"></i></button>
+    data-background="{{getImage('assets/admin/images/sidebar/2.jfif')}}"  style="background-image: url('{{asset('assets/admin/images/sidebar/2.jfif')}}')">
+    <button class="res-sidebar-close-btn d-none"><i class="las la-times"></i></button>
     <div class="sidebar__inner">
         <div class="sidebar__logo">
             <a href="{{route('admin.dashboard')}}" class="sidebar__main-logo"><img
