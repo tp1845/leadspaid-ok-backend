@@ -74,6 +74,9 @@
 .sidebar.active {
     transition: none !important;
 }
+[class*="overlay"].overlay--indigo::before {
+    background-color: #10163a !important;
+}
 </style>
 <script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
 <div class="sidebar {{ sidebarVariation()['selector'] }} {{ sidebarVariation()['sidebar'] }} {{ @sidebarVariation()['overlay'] }} {{ @sidebarVariation()['opacity'] }}"
