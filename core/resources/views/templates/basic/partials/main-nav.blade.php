@@ -26,7 +26,7 @@
         </li> --}}
         @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
             <li class="nav-item">
-                <a class="nav-link" href="#">Publisher</a>
+                <a class="nav-link" href="{{route('home.contact')}}">Publisher</a>
             </li>
         @endif
         <li class="nav-item">
@@ -44,7 +44,7 @@
             <li class="nav-item"><a href="{{route('publisher.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
         @endif
         @if(auth()->guard('advertiser')->user())
-        <li class="nav-item"><a href="{{route('advertiser.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
+            <li class="nav-item"><a href="{{route('advertiser.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
         @endif
         </ul>
     </div>

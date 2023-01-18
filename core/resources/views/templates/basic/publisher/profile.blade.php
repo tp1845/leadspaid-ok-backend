@@ -73,6 +73,34 @@
                                     </div>
                                     <button type="submit" class="box--shadow1 rounded-0 btn btn--primary btn-lg text--small Rg_advts_my_btn">@lang('Update Profile')</button>
                                 </div>
+                                <div class="col-md-6">
+
+                                    <div class="upload_btn_spc">
+                                        <div class="font-weight-bolder text-body"> Upload Profile Logo
+                                    </div>
+
+                                    <div class="card-body px-0 pt-1 my-upload-btns">
+                                        <div class="upload-box" style="height: 53px; ">
+                                            <input type="file" name="image" id="form_company_logo" class="inputfile inputfile-1" accept="image/jpeg, image/png">
+                                            <label for="form_company_logo" class="profile_company_logo" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Profile Logo*</span> </label>
+                                            </div>
+
+                                       <div class="image_preview" style="">
+                                              @php
+                                            $imge_url='';
+                                            if(empty(auth()->guard('publisher')->user()->image)){
+                                             $imge_url=get_image('assets/images/profile/user.png');
+                                            }else{
+                                             $imge_url=get_image('assets/publisher/images/profile/'. auth()->guard('publisher')->user()->image);
+                                            }
+                                            @endphp
+                                           <img src="{{ $imge_url }}" id="imgPreview">
+                                       </div>
+
+                                    </div>
+                                    </div>
+                                    @include($activeTemplate.'partials.custom-captcha')
+                                </div>
                             </div>
                             </form>
                         </div>
@@ -92,21 +120,19 @@
 <script>
 
     "use strict";
-    function proPicURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            var preview = $(input).parents('.thumb').find('.profilePicPreview');
-            $(preview).css('background-image', 'url(' + e.target.result + ')');
-            $(preview).addClass('has-image');
-            $(preview).hide();
-            $(preview).fadeIn(650);
+    $(document).ready(()=>{
+      $('#form_company_logo').change(function(){
+        const file = this.files[0];
+        ;
+        if (file){
+          let reader = new FileReader();
+          reader.onload = function(event){
+            $(".image_preview").show();
+            $('#imgPreview').attr('src', event.target.result);
+          }
+          reader.readAsDataURL(file);
         }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-    $(".profilePicUpload").on('change', function () {
-        proPicURL(this);
+      });
     });
 
     document.addEventListener('DOMContentLoaded', function(e) {
@@ -182,10 +208,10 @@
                         notEmpty: {
                             message: 'Please fill Username.',
                         },
-                        regexp: {
-                            regexp: /^[a-zA-Z0-9_.]+$/,
-                            message: 'Username should not contain special characters.',
-                        },
+                        // regexp: {
+                        //     regexp: /^[a-zA-Z0-9_.]+$/,
+                        //     message: 'Username should not contain special characters.',
+                        // },
                     },
                 },
                 password: {
@@ -228,15 +254,6 @@
         });
     });
 
-    $(".remove-image").on('click', function () {
-        $(this).parents(".profilePicPreview").css('background-image', 'none');
-        $(this).parents(".profilePicPreview").removeClass('has-image');
-        $(this).parents(".thumb").find('input[type=file]').val('');
-    });
-
-    $("form").on("change", ".file-upload-field", function(){
-    $(this).parent(".file-upload-wrapper").attr("data-text",   $(this).val().replace(/.*(\/|\\)/, '') );
-    });
 </script>
 @endpush
 @push('style')
@@ -276,6 +293,52 @@
     height: unset;
     text-transform: capitalize;
     background: #fff url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e) no-repeat right 0.75rem center/30px 10px !important;
+}
+
+
+.my-upload-btns input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.my-upload-btns .profile_company_logo {
+    color: #004664;
+    background-color: #ddf5ff;
+    max-width: 100%;
+    font-size: 1.15rem;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.8rem 1.25rem;
+    margin: 0!important;
+    border: 1px solid #94a1b5!important;
+}
+.upload_btn_spc {
+    margin-top: 35px;
+}
+.my-upload-btns {
+    position: relative;
+    vertical-align: middle;
+    display: flex;
+}
+.my-upload-btns .upload-box {
+    margin-right: 15px;
+}
+.my-upload-btns .image_preview {
+    width: 54px;
+     border-radius: 50%;
+    object-fit: cover;
+    overflow: hidden;
+}
+.my-upload-btns .image_preview img{
+    height: 50px;
+    width: 60px;
 }
 </style>
 @endpush
