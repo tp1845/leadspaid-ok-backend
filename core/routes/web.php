@@ -594,7 +594,7 @@ Route::get('/ad-clicked/{publisher}/{track_id}', 'VisitorController@adClicked')-
 Route::get('company/plicy/{id}/{slug}', 'SiteController@policy')->name('policy');
 Route::get('privacy-policy-old', 'SiteController@privacy_policy_old')->name('privacy_policy_old');
 Route::get('privacy-policy', 'SiteController@privacy_policy')->name('privacy_policy');
-Route::get('terms-condition', 'SiteController@terms_condition')->name('terms_condition');
+Route::get('terms-of-use', 'SiteController@terms_condition')->name('terms_condition');
 
 
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
