@@ -275,7 +275,7 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Restore">
                                       <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
                                 </td>
@@ -303,7 +303,7 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
-                                     <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                     <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Restore">
                                       <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
                                 </td>
