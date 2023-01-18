@@ -1,5 +1,5 @@
 <style>
-    .sidebar__logo {
+  .sidebar__logo {
     padding: 0;
     display: -ms-flexbox;
     display: block;
@@ -76,6 +76,12 @@
 }
 [class*="overlay"].overlay--indigo::before {
     background-color: #10163a !important;
+}
+.sidebar__menu-header {
+    border-top: 1px solid #626262;
+    margin-left: 0;
+    padding-left: 25px;
+    padding-top: 10px;
 }
 </style>
 <script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
@@ -577,26 +583,27 @@
 
                 <li class="sidebar__menu-header">@lang('Settings')</li>
 				<li class="sidebar-menu-item sidebar-dropdown">
-				<a href="javascript:void(0)" class="{{menuActive('admin.create-users',3)}}">
+                <a href="javascript:void(0)" class="{{menuActive('admin.users',3)}} {{menuActive('admin.create-users',3)}}">
                         <i class="menu-icon la la-envelope-o"></i>
                         <span class="menu-title">@lang('Users')</span>
                     </a>
-				<div class="sidebar-submenu {{menuActive('admin.create-users',2)}} ">
-				  <ul>
+                <div class="sidebar-submenu {{menuActive('admin.users',2)}} {{menuActive('admin.create-users',2)}} ">
+                  <ul>
+                    <li class="sidebar-menu-item {{menuActive('admin.users')}}">
+                    <a href="{{route('admin.users')}}">
+                        <i class="menu-icon las la-images"></i>
+                        <span class="menu-title">Manage User</span>
+                    </a>
+                </li>
                  <li class="sidebar-menu-item {{menuActive('admin.create-users')}}">
                     <a href="{{route('admin.create-users')}}">
                         <i class="menu-icon las la-images"></i>
                         <span class="menu-title">Create User</span>
                     </a>
                 </li>
-                <li class="sidebar-menu-item {{menuActive('admin.users')}}">
-                    <a href="{{route('admin.users')}}">
-                        <i class="menu-icon las la-images"></i>
-                        <span class="menu-title">Manage User</span>
-                    </a>
-                </li>
-				</ul>
-			   </li>
+                
+                </ul>
+               </li>
 			    
                 <li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
                     <a href="{{route('admin.setting.index')}}" class="nav-link">
