@@ -242,7 +242,8 @@
     .text-light-red{ color: #ff7481!important}
     textarea{ min-height: auto!important; }
     div.dataTables_wrapper .dataTables_length label, div.dataTables_wrapper div.dataTables_filter label, div.dataTables_wrapper .dataTables_info, .table td{ color: #000; }
-    .form-control {   color: #442ce7; }
+    .form-control { color: #442ce7; }
+    td textarea.form-control, td input.form-control { font-size: 16px!important; }
 </style>
 @endpush
 @push('script')
