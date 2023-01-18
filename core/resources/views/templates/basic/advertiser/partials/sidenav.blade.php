@@ -163,7 +163,7 @@
     <div class="sidebar__inner">
         <div class="sidebar__logo">
             <a href="{{route('advertiser.dashboard')}}" class="sidebar__main-logo"><img
-                    src="{{getImage(imagePath()['logoIcon']['path'] .'/logo2.png')}}" alt="image"></a>
+                    src="{{getImage(imagePath()['logoIcon']['path'] .'/logo3.png')}}" alt="image"></a>
 
         </div>
 

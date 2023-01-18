@@ -576,6 +576,13 @@
 
 
                 <li class="sidebar__menu-header">@lang('Settings')</li>
+				<li class="sidebar-menu-item sidebar-dropdown">
+				<a href="javascript:void(0)" class="{{menuActive('admin.create-users',3)}}">
+                        <i class="menu-icon la la-envelope-o"></i>
+                        <span class="menu-title">@lang('Users')</span>
+                    </a>
+				<div class="sidebar-submenu {{menuActive('admin.create-users',2)}} ">
+				  <ul>
                  <li class="sidebar-menu-item {{menuActive('admin.create-users')}}">
                     <a href="{{route('admin.create-users')}}">
                         <i class="menu-icon las la-images"></i>
@@ -588,7 +595,8 @@
                         <span class="menu-title">Manage User</span>
                     </a>
                 </li>
-			   
+				</ul>
+			   </li>
 			    
                 <li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
                     <a href="{{route('admin.setting.index')}}" class="nav-link">
