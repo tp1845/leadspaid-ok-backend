@@ -31,7 +31,7 @@
                             <div class="form-group col-md-6">
                                 <label class="">@lang('Name') <sup class="text-danger">*</sup></label>
                                 <input type="text" id="full_name" name="name" placeholder="Name" class="Rg_advts_name form-control rounded-0" value="" onkeypress="return (event.charCode > 64 && 
-event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
+event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.charCode  == 32">
                             </div>
                             <div class="form-group col-md-6">
                             	<label class="">@lang('Country') <sup class="text-danger">*</sup></label>
@@ -240,7 +240,8 @@ $("#full_name").capitalize();
             country: { required: true},
             email: { required: true,valid_email:true},
             role: {required: true},
-            password: {required: true,minlength: 6}
+            password: {required: true,minlength: 6},
+            mobile: {required: true,minlength: 6}
            
         },messages: {
             name:{  required : 'Full Name is required.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
@@ -248,7 +249,8 @@ $("#full_name").capitalize();
              },
             email:{  required : 'Please enter a valid email address.' },
             password:{  required : 'Password is required.' },
-            role: { required : 'Select a User Role.',minlength: 'minmum 6 characters.'} 
+            role: { required : 'Select a User Role.',minlength: 'minmum 6 characters.'},
+             mobile:{ required: ' '} 
 
         }
     });
