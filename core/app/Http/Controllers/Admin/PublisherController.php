@@ -252,7 +252,7 @@ class PublisherController extends Controller
         return view('admin.users.create', compact('page_title', 'empty_message','countries'));
    }
    
-   public function manage_user(){
+  public function manage_user(){
      $publisher_admin = Publisher::where('role',1)->where('status',1)->get();
      $campaign_manager=Publisher::where('role',2)->where('status',1)->get();
      $Campaign_executive=Publisher::where('role',3)->where('status',1)->get();
@@ -266,7 +266,7 @@ class PublisherController extends Controller
         return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash','admin_trash'));
    } 
 
- public function save_user(Request $request){
+   public function save_user(Request $request){
     if($request->role==4){
         $admin=new Admin();
          $admin_count=Admin::where('email',$request->email)->count();
@@ -319,18 +319,16 @@ class PublisherController extends Controller
 
    }
 
-     public function user_status($id,$status){
+    public function user_status($id,$status){
         Publisher::where('id',$id)->update(['status'=>$status]);
         return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
 
-        }
+    }
     
     public function admin_status($id,$status){
         Admin::where('id',$id)->update(['status'=>$status]);
        return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
     }
-
-	
 	
 
 }
