@@ -24,22 +24,24 @@
         {{--<li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
         </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" href="#">About Us</a>
-        </li> --}}
+        @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
+            <li class="nav-item">
+                <a class="nav-link" href="#">Publisher</a>
+            </li>
+        @endif
         <li class="nav-item">
             <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
         </li>
         @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
         <li class="nav-item">
-            <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
+            <a class="nav-link" href="{{route('login_advertiser')}}">Login</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route('login_advertiser')}}">Login</a>
+            <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
         </li>
         @endif
         @if(auth()->guard('publisher')->user())
-        <li class="nav-item"><a href="{{route('publisher.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
+            <li class="nav-item"><a href="{{route('publisher.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
         @endif
         @if(auth()->guard('advertiser')->user())
         <li class="nav-item"><a href="{{route('advertiser.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
