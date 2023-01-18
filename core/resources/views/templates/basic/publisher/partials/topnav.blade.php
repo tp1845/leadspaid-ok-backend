@@ -1,6 +1,11 @@
 
 <nav class="navbar-wrapper active">
-    <h5 style="position: absolute; left:35px; font-size: 25px; color: #3382f6; ">Publisher Admin</h5>
+    <h5 style="position: absolute; left:35px; font-size: 25px; color: #3382f6; ">
+        @if(auth()->guard('publisher')->user()->role == 2)  Campaign Manager
+        @elseif(auth()->guard('publisher')->user()->role == 3)  Campaign Executive
+        @else Publisher Admin
+        @endif
+    </h5>
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
     <form class="navbar-search">
       <button type="submit" class="navbar-search__btn">
