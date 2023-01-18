@@ -63,5 +63,8 @@ class Advertiser extends Authenticatable
     {
         return $this->where('status', 2);
     }
-
+    public function campaigns()
+    {
+        return $this->hasMany(campaigns::class,'advertiser_id');
+    }
 }

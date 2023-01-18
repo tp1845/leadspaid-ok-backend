@@ -974,7 +974,7 @@ function get_total_campaign($id){
 }
 
 function get_assigned_advertisers($publisher_id){
-    $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $publisher_id  )->select('id', 'name', 'company_name')->get()->toarray();
+    $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $publisher_id  )->select(['id', 'name', 'company_name'])->withCount('campaigns')->get()->toarray();
     return $assign_advertiser;
 }
 
