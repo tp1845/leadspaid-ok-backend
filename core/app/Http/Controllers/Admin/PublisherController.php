@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use App\PublisherAd;
 use Illuminate\Support\Facades\Hash;
 use App\Country;
+use App\Admin;
 
 class PublisherController extends Controller
 {
@@ -258,12 +259,40 @@ class PublisherController extends Controller
         return view('admin.users.index', compact('page_title', 'empty_message','Publisher'));
    } 
 
-   public function save_user(Request $request){
-        $Publisher = new Publisher();
+ public function save_user(Request $request){
+    if($request->role==4){
+        $admin=new Admin();
+         $admin_count=Admin::where('email',$request->email)->count();
+         
+         if($admin_count == 0 ){
+
+         $admin->name=$request->name;
+         $admin->role=1;
+         $admin->email=$request->email;
+         $admin->username=$request->email;
+         $admin->country=$request->country;
+         $admin->company_name=$request->company_name;
+         $admin->country_code=$request->country_code;
+         $admin->phone=$request->mobile;
+         $admin->password=Hash::make($request->password);
+         
+          $admin->save();
+           }else{
+            $notify[] = ['error', 'Email already  Exists'];
+            return back()->withNotify($notify);
+           }
+
+
+    }else{      
+
+      $Publisher = new Publisher();
+         
+         $p_count=Publisher::where('email',$request->email)->count();
+        if($p_count == 0){
          $Publisher->name=$request->name;
          $Publisher->role=$request->role;
          $Publisher->email=$request->email;
-		  $Publisher->username=$request->email;
+         $Publisher->username=$request->email;
          $Publisher->country=$request->country;
          $Publisher->company_name=$request->company_name;
          $Publisher->country_code=$request->country_code;
@@ -271,7 +300,13 @@ class PublisherController extends Controller
           $Publisher->password=Hash::make($request->password);
           $Publisher->status=1;
            $Publisher->save();
-        $notify[] = ['success', 'New user create successfully'];
+         }else{
+            $notify[] = ['error', 'Email already  Exists'];
+            return back()->withNotify($notify);
+         }
+
+       }
+       $notify[] = ['success', 'New user create successfully'];
         $url=route('admin.users');
         return redirect($url)->withNotify($notify);
 

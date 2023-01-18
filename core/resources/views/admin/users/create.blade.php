@@ -3,7 +3,7 @@
 @section('panel')
 
 <div class="row mb-none-30">
-        <div class="col-xl-12">
+        <div class="col-md-8 mx-auto">
             <div class="card">
                 <form action="{{ route('admin.save-users')}}" method="POST" id="advertiser_form">
                     @csrf
@@ -17,32 +17,38 @@
                                     <option value="2">Campaign Manager</option>
                                     <option value="3">Campaign executive</option>
                                      <option value="0">Normal Publisher </option>
+                                      <option value="4">Admin </option>
                                 </select>
                             </div>
                             <div class="col-md-6 form-group">
                             	<label class="">@lang('Company Name')</label>
-                                <input type="text" id="company_name" class="form-control Rg_advts_name rounded-0" name="company_name" value="" placeholder="Company Name">
+                              <select name="company_name" class="form-control" >
+                                  <option value="Leads Paid Inc.">Leads Paid Inc. </option>
+                              </select>
+
+                                
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="">@lang('Name') <sup class="text-danger">*</sup></label>
-                                <input type="text" id="full_name" name="name" placeholder="Name" class="Rg_advts_name form-control rounded-0" value="">
+                                <input type="text" id="full_name" name="name" placeholder="Name" class="Rg_advts_name form-control rounded-0" value="" onkeypress="return (event.charCode > 64 && 
+event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)">
                             </div>
                             <div class="form-group col-md-6">
                             	<label class="">@lang('Country') <sup class="text-danger">*</sup></label>
                             	<select class="custom-select rounded-0 mr-sm-2 form-control"  name="country"> 
                             	<option value="">Select country</option>                                   
                                    @foreach ($countries as $country)
-                                                <option 
-                                                    value=" {{ $country->country_name }} " label=" {{
-                                                        $country->country_name }} ">
+                                        <option 
+                                            value=" {{ $country->country_name }} " label=" {{
+                                                        $country->country_name }}" @if($country->country_name=="Singapore") selected @endif>
                                                     {{ $country->country_name }}
                                                 </option>
                                                 @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-md-6">
-                                <label class="">@lang('Email ID') <sup class="text-danger">*</sup></label>
-                                <input type="text" id="email" name="email" placeholder="Email id" class="form-control Rg_advts_name rounded-0" value="">
+                                <label class="">@lang('Email ID (User Name)') <sup class="text-danger">*</sup></label>
+                                <input type="text" id="email" name="email" placeholder="Email id" class="form-control Rg_advts_name rounded-0" value="@leadspaid.com">
                             </div>
                             <div class="form-group col-md-6">
                                 <label class="">@lang('Password') <sup class="text-danger">*</sup></label>
@@ -53,6 +59,7 @@
 	                                <label class="">@lang('Mobile') <sup class="text-danger">*</sup></label>
 	                                <div class="Rg_advts_number">
 	                                    <select name="country_code" class="country_code  form-select rounded-0">
+                                        
 	                                @include('partials.country_code')
 	                                </select>
 	                                    <input type="text" name="mobile" value="" class="form-control rounded-0" placeholder="@lang('Your Phone Number')">
@@ -105,13 +112,13 @@
     flex-wrap: wrap;
 }
 .Rg_advts_number select {
-    flex: 0 0 25%;
-    width: 25%;
+    flex: 0 0 30%;
+    width: 30%;
     border: 1px solid #ced4da;
 }
 .Rg_advts_number input {
-    flex: 0 0 75%;
-    width: 75%;
+    flex: 0 0 70%;
+    width: 70%;
 }
 
 #advertiser_form .form-group select, #advertiser_form .form-group input {
@@ -167,7 +174,7 @@
         $(this).parent(".file-upload-wrapper").attr("data-text", $(this).val().replace(/.*(\/|\\)/, ''));
     });
 
-   
+   $(".country_code").val('+65');
 
 
 jQuery.fn.capitalize = function() {
@@ -229,18 +236,19 @@ $("#full_name").capitalize();
  $("#advertiser_form").validate({
         rules: {
             name: { required: true,minlength: 3, lettersonly: true },
-            company_name: { required: true, minlength: 3},
+            company_name: { required: true},
             country: { required: true},
             email: { required: true,valid_email:true},
             role: {required: true},
-            password: {required: true}
+            password: {required: true,minlength: 6}
            
         },messages: {
             name:{  required : 'Full Name is required.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
-            company_name:{  required : 'Company Name is required.', minlength:'minmum 3 characters.' },
+            company_name:{  required : 'Company Name is required.'
+             },
             email:{  required : 'Please enter a valid email address.' },
             password:{  required : 'Password is required.' },
-            role: { required : 'Select a User Role.'} 
+            role: { required : 'Select a User Role.',minlength: 'minmum 6 characters.'} 
 
         }
     });
@@ -260,6 +268,9 @@ $(document).ready(()=>{
         }
       });
     });
+
+ 
+  
 </script>
 
 @endpush
