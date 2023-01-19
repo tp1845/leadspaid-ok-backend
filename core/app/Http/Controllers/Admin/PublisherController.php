@@ -275,7 +275,7 @@ class PublisherController extends Controller
         return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash','admin_trash','adminpending','user_pending','adminapprove','userapprove'));
    } 
 
-   public function save_user(Request $request){
+  public function save_user(Request $request){
     if($request->role==4){
         $admin=new Admin();
          $admin_count=Admin::where('email',$request->email)->count();
@@ -293,6 +293,14 @@ class PublisherController extends Controller
          $admin->password=Hash::make($request->password);
          $admin->status=3;
           $admin->save();
+       $subject="Account Create";
+         
+       $message='<p>Your Admin Account has been created.</p>';
+        $message .='<p>Your onetime password is : '.$request->password.'</p>';
+        $receiver_name=$request->name;
+
+         send_general_email($request->email, $subject, $message, $receiver_name);
+
            }else{
             $notify[] = ['error', 'Email already  Exists'];
             return back()->withNotify($notify);
@@ -316,6 +324,26 @@ class PublisherController extends Controller
           $Publisher->password=Hash::make($request->password);
           $Publisher->status=3;
            $Publisher->save();
+           $rol_name="";
+           if($request->role==1){
+            $rol_name='Publisher_Admin';
+           }elseif($request->role==2){
+             $rol_name='Campaign Manager';
+           }elseif($request->role==3){
+            $rol_name='Campaign executive';
+           }elseif($request->role==0){
+            $rol_name='Normal Publisher ';
+           }
+
+           $subject="Account Create";
+
+       $message='<p>Your '.$rol_name.' Account has been created.</p>';
+        $message .='<p>Your onetime password is : '.$request->password.'</p>';
+        $receiver_name=$request->name;
+
+         send_general_email($request->email, $subject, $message, $receiver_name);
+
+
          }else{
             $notify[] = ['error', 'Email already  Exists'];
             return back()->withNotify($notify);
@@ -327,7 +355,10 @@ class PublisherController extends Controller
         return redirect($url)->withNotify($notify);
 
    }
-
+   
+   
+   
+   
     public function user_status($id,$status){
         Publisher::where('id',$id)->update(['status'=>$status]);
         return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
