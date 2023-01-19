@@ -1,10 +1,7 @@
 
 <nav class="navbar-wrapper active">
     <h5 style="position: absolute; left:35px; font-size: 25px; color: #3382f6; ">
-        @if(auth()->guard('publisher')->user()->role == 2)  Campaign Manager
-        @elseif(auth()->guard('publisher')->user()->role == 3)  Campaign Executive
-        @else Publisher Admin
-        @endif
+           {{ get_publisher_type('name') }}
     </h5>
     <button class="res-sidebar-open-btn"><i class="las la-bars"></i></button>
     <form class="navbar-search">
@@ -14,7 +11,7 @@
       <input type="search" name="navbar-search__field" id="navbar-search__field" placeholder="Search your products">
       <button type="button" class="navbar-search__close"><i class="las la-times"></i></button>
     </form>
-    <div class="navbar navbar-expand-md">
+    {{-- <div class="navbar navbar-expand-md">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>@lang('Menu')</span>
       </button>
@@ -37,13 +34,14 @@
           </li>
         </ul>
       </div>
-    </div>
+    </div> --}}
     <div class="navbar__right">
       <ul class="main-menu d-flex flex-wrap align-items-center">
         <li class="dropdown">
           <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             <span class="navbar-user">
               <span class="navbar-user__thumb"><img src="{{ get_image('assets/publisher/images/profile/'. auth()->guard('publisher')->user()->image) }}" alt="image"></span>
+              <span class="mx-1">{{  get_publisher_username() }}</span>
               <span class="icon"><i class="las la-chevron-circle-down"></i></span>
             </span>
           </button>

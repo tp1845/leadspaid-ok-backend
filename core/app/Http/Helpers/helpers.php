@@ -978,3 +978,13 @@ function get_assigned_advertisers($publisher_id){
     return $assign_advertiser;
 }
 
+function get_publisher_type($type){
+    $role = auth()->guard('publisher')->user()->role;
+    if($role == 2){ $name ='Campaign Manager'; } elseif($role == 3){  $name = 'Campaign Executive'; } else { $name =  'Publisher Admin'; }
+    if($type == 'name'){ return $name;  }else{   return $role;  }
+}
+
+function get_publisher_username(){
+    $username = auth()->guard('publisher')->user()->username;
+    return substr($username, 0, strpos($username, "@"));
+}
