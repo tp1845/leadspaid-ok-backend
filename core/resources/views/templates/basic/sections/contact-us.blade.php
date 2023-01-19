@@ -168,23 +168,24 @@
                 return this.optional(element) || isValidMoney;
             },
             "Enter Correct value."
-        );
-        jQuery.validator.addMethod("lettersonly", function(value, element) {
-        return this.optional(element) || /^[a-z ]+$/i.test(value);
-        }, "Letters only please");
-        jQuery.validator.addMethod("numbersonly", function(value, element) {
-        return this.optional(element) || /^[0-9]*$/i.test(value);
-        }, "Number only please");
-         jQuery.validator.addMethod("phoneonly", function(value, element) {
-        return this.optional(element) || /^[0-9.-]*$/i.test(value);
-        }, "Number only please");
-        jQuery.validator.addMethod("valid_email", function(value, element) {
-        return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
-        }, "Please enter a valid email address");
-        jQuery.validator.addMethod("isdphone", function(value, element) {
+            );
+            jQuery.validator.addMethod("lettersonly", function(value, element) {
+            return this.optional(element) || /^[a-z ]+$/i.test(value);
+            }, "Letters only please");
+            jQuery.validator.addMethod("numbersonly", function(value, element) {
+            return this.optional(element) || /^[0-9]*$/i.test(value);
+            }, "Number only please");
+            jQuery.validator.addMethod("phoneonly", function(value, element) {
+            return this.optional(element) || /^[0-9.-]*$/i.test(value);
+            }, "Number only please");
+            jQuery.validator.addMethod("valid_email", function(value, element) {
+            return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+            }, "Please enter a valid email address");
+            jQuery.validator.addMethod("isdphone", function(value, element) {
             var isd = $('.country_code').val();
 
             phone = value.replace(/-/ig, "");
+            console.log('- removed : 'phone);
             if(isd === '+1'){
                 var phone_isd = phone.substring(0, 3);
                 if(phone_isd === '001'){  phone = phone.substring(3); }
