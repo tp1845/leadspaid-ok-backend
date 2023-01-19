@@ -213,7 +213,6 @@
         }
     }, "Please enter valid phone");
 
-
     $("#contact_form").validate({
         rules: {
             enquiry_about:{ required: true },
