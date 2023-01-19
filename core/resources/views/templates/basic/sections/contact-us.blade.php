@@ -143,100 +143,96 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 @endpush
 @push('script')
+<script>
+    $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-]/g,'');});
+    $.validator.setDefaults({
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    $.validator.addMethod(
+        "money",
+        function(value, element) {
+            var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
+            return this.optional(element) || isValidMoney;
+        },
+        "Enter Correct value."
+        );
+        jQuery.validator.addMethod("lettersonly", function(value, element) {
+        return this.optional(element) || /^[a-z ]+$/i.test(value);
+        }, "Letters only please");
+        jQuery.validator.addMethod("numbersonly", function(value, element) {
+        return this.optional(element) || /^[0-9]*$/i.test(value);
+        }, "Number only please");
+        jQuery.validator.addMethod("phoneonly", function(value, element) {
+        return this.optional(element) || /^[0-9.-]*$/i.test(value);
+        }, "Number only please");
+        jQuery.validator.addMethod("valid_email", function(value, element) {
+        return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+        }, "Please enter a valid email address");
+        jQuery.validator.addMethod("isdphone", function(value, element) {
+        var isd = $('.country_code').val();
 
-    <script>
-
-        $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-]/g,'');});
-
-        $.validator.setDefaults({
-            errorElement: 'span',
-            errorPlacement: function (error, element) {
-                error.addClass('invalid-feedback');
-                element.closest('.form-group').append(error);
-            },
-            highlight: function (element, errorClass, validClass) {
-                $(element).addClass('is-invalid');
-            },
-            unhighlight: function (element, errorClass, validClass) {
-                $(element).removeClass('is-invalid');
-            }
-        });
-        $.validator.addMethod(
-            "money",
-            function(value, element) {
-                var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
-                return this.optional(element) || isValidMoney;
-            },
-            "Enter Correct value."
-            );
-            jQuery.validator.addMethod("lettersonly", function(value, element) {
-            return this.optional(element) || /^[a-z ]+$/i.test(value);
-            }, "Letters only please");
-            jQuery.validator.addMethod("numbersonly", function(value, element) {
-            return this.optional(element) || /^[0-9]*$/i.test(value);
-            }, "Number only please");
-            jQuery.validator.addMethod("phoneonly", function(value, element) {
-            return this.optional(element) || /^[0-9.-]*$/i.test(value);
-            }, "Number only please");
-            jQuery.validator.addMethod("valid_email", function(value, element) {
-            return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
-            }, "Please enter a valid email address");
-            jQuery.validator.addMethod("isdphone", function(value, element) {
-            var isd = $('.country_code').val();
-
-            phone = value.replace(/-/ig, "");
-            console.log('- removed : ' + phone);
-            if(isd === '+1'){
-                // USA
-                var phone_isd = phone.substring(0, 3);
-                if(phone_isd === '001'){  phone = phone.substring(3); }
-                return this.optional(element) || /^[0-9]{1,10}$/i.test(phone);
-            }
-            else if(isd === '+44'){
-                // Uk
-                var phone_isd = phone.substring(0, 4);
-                if(phone_isd === '0044'){  phone = phone.substring(4); }
-                return this.optional(element) || /^[0-9]{1,9}$/i.test(phone);
-            }
-            else if( isd === '+61' ){
-                //AUS
-                var phone_isd = phone.substring(0, 4);
-                if(phone_isd === '0061'){  phone = phone.substring(4); }
-                return this.optional(element) || /^[0-9]{1,9}$/i.test(phone);
-            }
-            else if(isd === '+65'){
-                //Singapore
-                var phone_isd = phone.substring(0, 4);
-                if(phone_isd === '0065'){  phone = phone.substring(4); }
-                return this.optional(element) || /^(3|6|8|9)\d{7}$/i.test(phone);
-            }else{
-                var phone_isd = phone.substring(0, 2);
-                if(phone_isd === '00'){  phone = phone.substring(2); }
-                return this.optional(element) || /^[0-9]{1,6}$/i.test(phone);
-            }
-        }, "Please enter valid phone");
+        phone = value.replace(/-/ig, "");
+        console.log('- removed : ' + phone);
+        if(isd === '+1'){
+            // USA
+            var phone_isd = phone.substring(0, 3);
+            if(phone_isd === '001'){  phone = phone.substring(3); }
+            return this.optional(element) || /^[0-9]{10,10}$/i.test(phone);
+        }
+        else if(isd === '+44'){
+            // Uk
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0044'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if( isd === '+61' ){
+            //AUS
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0061'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if(isd === '+65'){
+            //Singapore
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0065'){  phone = phone.substring(4); }
+            return this.optional(element) || /^(3|6|8|9)\d{7}$/i.test(phone);
+        }else{
+            var phone_isd = phone.substring(0, 2);
+            if(phone_isd === '00'){  phone = phone.substring(2); }
+            return this.optional(element) || /^[0-9]{1,6}$/i.test(phone);
+        }
+    }, "Please enter valid phone");
 
 
-        $("#contact_form").validate({
-            rules: {
-                enquiry_about:{ required: true },
-                name: { required: true,minlength: 3, lettersonly: true },
-                company: { required: false, minlength: 3},
-                email: { required: true,  valid_email:true  },
-                country_code: { required: true },
-                phone: { required: true, minlength: 6, phoneonly: true, isdphone:true },
-                message: { required: true, minlength: 15 }
-            },messages: {
-                name:{  required : 'Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
-                company:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
-                country_code:{  required : 'Country Code is required.'},
-                phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
-                email:{  required : 'email is required.'},
-                message:  { required : 'Message is required.', minlength:'Please fill your message in detail'}
-            }
-        });
-    </script>
-
+    $("#contact_form").validate({
+        rules: {
+            enquiry_about:{ required: true },
+            name: { required: true,minlength: 3, lettersonly: true },
+            company: { required: false, minlength: 3},
+            email: { required: true,  valid_email:true  },
+            country_code: { required: true },
+            phone: { required: true, minlength: 6, phoneonly: true, isdphone:true },
+            message: { required: true, minlength: 15 }
+        },messages: {
+            name:{  required : 'Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
+            company:{  required : 'Company Name is required.', minlength:'Please fill Full Company Name.' },
+            country_code:{  required : 'Country Code is required.'},
+            phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
+            email:{  required : 'email is required.'},
+            message:  { required : 'Message is required.', minlength:'Please fill your message in detail'}
+        }
+    });
+</script>
 @endpush
 @push('style')
 <style>
