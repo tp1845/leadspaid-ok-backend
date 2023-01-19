@@ -8,6 +8,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 use App\campaign_forms_leads;
 use App\campaigns;
+use App\lgen_spend;
 function sidebarVariation()
 {
 
@@ -966,8 +967,19 @@ function get_form_leads_by_id($id){
 
 }
 
-function get_campiagn_leads_by_id($id){
-    return campaign_forms_leads::where('campaign_id',$id)->count();
+function get_campiagn_leads_by_id($id,$start_date=null,$end_date=null){
+    if ($start_date === null){
+        $start_date = date("Y-m-d",strtotime("-1 week +1 day"));
+        $end_date = date("Y-m-d",strtotime("+1 day"));
+    }
+    return campaign_forms_leads::where('campaign_id',$id)->whereBetween('lgen_date', array($start_date, $end_date))->get()->count();
+}
+function get_campiagn_cost_by_id($id,$start_date=null,$end_date=null){
+    if ($start_date === null){
+        $start_date = date("Y-m-d",strtotime("-1 week +1 day"));
+        $end_date = date("Y-m-d",strtotime("+1 day"));
+    }
+    return lgen_spend::where('campaign_id',$id)->whereBetween('lgen_date', array($start_date, $end_date))->get()->count();
 }
 function get_total_campaign($id){
     return campaigns::where('advertiser_id',$id)->count();
