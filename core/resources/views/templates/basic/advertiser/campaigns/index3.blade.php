@@ -124,9 +124,9 @@ $user = auth()->guard('advertiser')->user();
                             <?php
                             $daily_bug = $daily_bug + $campaign->daily_budget;
                             $leadd = $leadd + get_campiagn_leads_by_id($campaign->id, $start_date, $end_date);
-                            $costValue =  get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) > 0 ? number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date), 2) : 0;
+                            $costValue =  get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) > 0 ? number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date), 2, '.', '') : 0;
                             $costt =  $costt + $costValue;
-                            $cplValue = get_campiagn_leads_by_id($campaign->id, $start_date, $end_date) > 0 ? $costValue / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date) : 0;
+                            $cplValue = get_campiagn_leads_by_id($campaign->id, $start_date, $end_date) > 0 ? number_format($costValue / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date), 2, '.', '') : 0;
                             $cpll = $cpll + $cplValue;
                             ?>
                             <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
