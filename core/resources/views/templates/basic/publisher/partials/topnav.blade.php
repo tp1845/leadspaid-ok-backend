@@ -40,7 +40,13 @@
         <li class="dropdown">
           <button type="button" data-toggle="dropdown" data-display="static" aria-haspopup="true" aria-expanded="false">
             <span class="navbar-user">
-              <span class="navbar-user__thumb"><img src="{{ get_image('assets/publisher/images/profile/'. auth()->guard('publisher')->user()->image) }}" alt="image"></span>
+                <span class="navbar-user__thumb">
+                    @if(empty(auth()->guard('publisher')->user()->image))
+                        <img src="{{ url('/')}}/assets/images/profile/user.png" alt="image">
+                    @else
+                        <img src="{{ get_image('assets/publisher/images/profile/'. auth()->guard('publisher')->user()->image) }}" alt="image">
+                    @endif
+                </span>
               <span class="mx-1">{{  get_publisher_username() }}</span>
               <span class="icon"><i class="las la-chevron-circle-down"></i></span>
             </span>
