@@ -10,6 +10,7 @@ use App\PublisherPasswordReset;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
 
 class ForgotPasswordController extends Controller
 {
