@@ -104,4 +104,36 @@ class ForgotPasswordController extends Controller
 
         return redirect()->route('publisher.password.change-link', $code)->withNotify($notify);
     }
+	
+	public function resetpassword($id){
+    $page_title = 'Password Reset';
+     $admin = Publisher::where('id', '=', $id)->first();
+     if( $admin->status==3){
+      return view('templates.basic.publisher.auth.passwords.new-resetpassword',compact('id','page_title') );
+      }else{
+        $notify[] = ['success', 'Account is activated already'];
+        $url=url('/').'/login';
+          return redirect($url)->withNotify($notify);
+      } 
+   }
+    
+  public function updatepassword(Request $request){
+
+       
+        $admin = Publisher::where('id', '=', $request->id)->first();
+
+       if(Hash::check($request->old_password, $admin->password)){
+
+          Publisher::where('id',$request->id)->update(['password'=>Hash::make($request->new_password),'status'=>1]);
+          $notify[] = ['success', 'Password update successfully '];
+          $url=url('/').'/login';
+          return redirect($url)->withNotify($notify);
+       }else{
+          $notify[] = ['error', 'Old password is invalid'];
+          return back()->withNotify($notify);
+       }
+
+  }
+
+	
 }

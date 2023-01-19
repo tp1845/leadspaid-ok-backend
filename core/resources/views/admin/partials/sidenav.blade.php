@@ -83,6 +83,9 @@
     padding-left: 25px;
     padding-top: 10px;
 }
+.sidebar .sidebar__menu li a .menu-title {
+    font-size: 15px;
+}
 </style>
 <script src="https://kit.fontawesome.com/3a1bd56da8.js" crossorigin="anonymous"></script>
 <div class="sidebar {{ sidebarVariation()['selector'] }} {{ sidebarVariation()['sidebar'] }} {{ @sidebarVariation()['overlay'] }} {{ @sidebarVariation()['opacity'] }}"

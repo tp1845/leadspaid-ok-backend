@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Admin;
 
 class LoginController extends Controller
 {
@@ -67,8 +68,14 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
+        $user = Admin::whereUsername($request->username)->first();
         $this->validateLogin($request);
+		if(isset($user)&&$user->status == 3){
+             $notify[]=['error','Sorry! You need to update the password first '];
+             $url =url('/').'/admin/password/re-set/'.$user->id;
+             return redirect($url)->withNotify($notify);
+        }
+		
         $lv = @getLatestVersion();
         $gnl = GeneralSetting::first();
         if (@systemDetails()['version'] < @json_decode($lv)->version) {

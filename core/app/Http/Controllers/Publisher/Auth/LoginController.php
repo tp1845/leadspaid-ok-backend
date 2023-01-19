@@ -72,6 +72,14 @@ class LoginController extends Controller
 
         $user = Publisher::whereUsername($request->username)->first();     
         $this->validateLogin($request);
+		 if(isset($user)&& $user->status == 3){
+             $notify[]=['error','Sorry! You need to update the password first '];
+             $url =url('/').'/publisher/password/re-set/'.$user->id;
+             return redirect($url)->withNotify($notify);
+        }
+		
+		
+		
         if(isset($user)&& $user->status == 2){
              $notify[]=['error','Sorry! You have\'ve been banned by Admin'];
              return back()->withNotify($notify);

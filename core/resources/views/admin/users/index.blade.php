@@ -2,7 +2,7 @@
 
 @section('panel')
 <link href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-<div class="row">
+<div class="row" id="ulser_list">
     <div class="col-lg-12">
         <div class="card b-radius--10 ">
             <div class="card-body">
@@ -20,7 +20,13 @@
                     <a class="nav-link btn-primary" href="#admin" role="tab" data-toggle="tab">Admin</a>
                 </li>
                 <li class="nav-item mx-1">
-                    <a class="nav-link btn-danger" href="#trash" role="tab" data-toggle="tab"><i class="fa-solid fa-trash-can"></i></a>
+                    <a class="nav-link btn-primary" href="#AllActive" role="tab" data-toggle="tab">All Active</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#PendingLogin" role="tab" data-toggle="tab">Pending Login</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#trash" role="tab" data-toggle="tab"><i class="fa-solid fa-trash-can"></i></a>
                 </li>
                 
             </ul>
@@ -50,7 +56,7 @@
                             @foreach($publisher_admin as $pub)                           
                             <tr>
                                 <td data-label="Name" class="text--primary">
-                                  <input type="checkbox" name="approve" @if($pub->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
 
 
 
@@ -65,7 +71,7 @@
 
                                  <td data-label="Actions " class="delete_icon">
                                      @if(auth()->guard('admin')->user()->id != $pub->id)
-                                    <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
                                     @endif
@@ -101,7 +107,7 @@
                             @foreach($campaign_manager as $pub)                           
                             <tr>
                                 <td data-label="Name" class="text--primary">
-                                  <input type="checkbox" name="approve" @if($pub->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
 
 
 
@@ -117,7 +123,7 @@
                                  <td data-label="Actions " class="delete_icon">
                                     
                                  @if(auth()->guard('admin')->user()->id != $pub->id)
-                                    <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
 
@@ -153,7 +159,7 @@
                             @foreach($Campaign_executive as $pub)                           
                             <tr>
                                 <td data-label="Name" class="text--primary">
-                                  <input type="checkbox" name="approve" @if($pub->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
 
 
 
@@ -169,7 +175,7 @@
                                  <td data-label="Actions " class="delete_icon">
                                      
                                       @if(auth()->guard('admin')->user()->id != $pub->id)
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
                                     @endif
@@ -204,7 +210,7 @@
                             @foreach($admin as $pub)                           
                             <tr>
                                 <td data-label="Name" class="text--primary">
-                                  <input type="checkbox" name="approve" @if($pub->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
 
 
 
@@ -221,7 +227,7 @@
                                  <td data-label="Actions " class="delete_icon" style="text-align: center;">
 
                                     @if(auth()->guard('admin')->user()->id != $pub->id)
-                                    <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
                                     @endif
@@ -234,7 +240,161 @@
                     </table><!-- table end -->
                 </div>
             </div>
+            <div role="tabpanel" class="tab-pane fade" id="PendingLogin">
+                <div class="table-responsive--md  table-responsive">
+                    <table class="table table--light style--two" id="Pending_Login">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Company Name</th>
 
+                                <th scope="col">Phone</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>                           
+                               @if(!empty($user_pending))
+                            @foreach($user_pending as $pub)                           
+                            <tr>
+                                <td data-label="Name" class="text--primary">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+
+
+
+                              </td>
+                              <td data-label="Name" class="text--primary">
+                                 @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin  @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
+                                 <td data-label="Username">{{ $pub->name }}</td>
+                                 <td data-label="Email">{{ $pub->email }}</td>
+                                 <td data-label="Email">{{ $pub->company_name }}</td>
+                                 <td data-label="Phone">{{ $pub->phone }}</td>
+                                 <td>{{ $pub->country }}</td>
+
+                                 <td data-label="Actions " class="delete_icon">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                      <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+
+   
+                           @endif
+
+
+                            @if(!empty($adminpending))
+                            @foreach($adminpending as $pub)                           
+                            <tr>
+                                <td data-label="Name" class="text--primary">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+
+
+
+                              </td>
+                              <td data-label="Name" class="text--primary">
+                                Admin</td>
+                                 <td data-label="Username">{{ $pub->name }}</td>
+                                 <td data-label="Email">{{ $pub->email }}</td>
+                                 <td data-label="Email">{{ $pub->company_name }}</td>
+                                 <td data-label="Phone">{{ $pub->phone }}</td>
+                                 <td>{{ $pub->country }}</td>
+
+                                 <td data-label="Actions " class="delete_icon">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                      <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+
+   
+                           @endif
+                        </tbody>
+                    </table><!-- table end -->
+                </div>
+            </div><div role="tabpanel" class="tab-pane fade" id="AllActive">
+                <div class="table-responsive--md  table-responsive">
+                    <table class="table table--light style--two" id="All_Active">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Company Name</th>
+
+                                <th scope="col">Phone</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                           @if(!empty($userapprove))
+                            @foreach($userapprove as $pub)                           
+                            <tr>
+                                <td data-label="Name" class="text--primary">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+
+
+
+                              </td>
+                              <td data-label="Name" class="text--primary">
+                                 @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin  @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
+                                 <td data-label="Username">{{ $pub->name }}</td>
+                                 <td data-label="Email">{{ $pub->email }}</td>
+                                 <td data-label="Email">{{ $pub->company_name }}</td>
+                                 <td data-label="Phone">{{ $pub->phone }}</td>
+                                 <td>{{ $pub->country }}</td>
+
+                                 <td data-label="Actions " class="delete_icon">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                      <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+
+   
+                           @endif
+
+
+                            @if(!empty($adminapprove))
+                            @foreach($adminapprove as $pub)                           
+                            <tr>
+                                <td data-label="Name" class="text--primary">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+
+
+
+                              </td>
+                              <td data-label="Name" class="text--primary">
+                                Admin</td>
+                                 <td data-label="Username">{{ $pub->name }}</td>
+                                 <td data-label="Email">{{ $pub->email }}</td>
+                                 <td data-label="Email">{{ $pub->company_name }}</td>
+                                 <td data-label="Phone">{{ $pub->phone }}</td>
+                                 <td>{{ $pub->country }}</td>
+
+                                 <td data-label="Actions " class="delete_icon">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                      <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+
+   
+                           @endif
+
+                              
+                        </tbody>
+                    </table><!-- table end -->
+                </div>
+            </div>
 
 
 
@@ -261,7 +421,7 @@
                             @foreach($user_trash as $pub)                           
                             <tr>
                                 <td data-label="Name" class="text--primary">
-                                  <input type="checkbox" name="approve" @if($pub->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
 
 
 
@@ -275,7 +435,7 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Restore">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
                                 </td>
@@ -289,7 +449,7 @@
                             @foreach($admin_trash as $pub)                           
                             <tr>
                                 <td data-label="Name" class="text--primary">
-                                  <input type="checkbox" name="approve" @if($pub->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
+                                  <input type="checkbox" name="approve" @if($pub->status==1) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$pub->id}}">
 
 
 
@@ -303,7 +463,7 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
-                                     <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Restore">
+                                     <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
                                 </td>
@@ -347,13 +507,41 @@
     #myTable_info {margin: 10px 0;}
     #myTable_filter label input[type="search"] {height: 30px;border: 1px solid gray;margin-left:10px;}
    .toggle {pointer-events: none;}
+   #ulser_list ul.nav-tabs li a {
+    padding: 10px;
+}
+#ulser_list ul.nav-tabs li {
+    margin: 0 2px !important;
+}
+#ulser_list .card-body ul.nav.nav-tabs {
+    position: absolute;
+    top: 35px;
+}
 </style>
 <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script>
-    $('#publisher_admin').DataTable({"pageLength": 100,"sDom": 'Lfrtlip' });
-     $('#campaign_manager_table').DataTable({"pageLength": 100,"sDom": 'Lfrtlip' });
-      $('#Campaign_executive_table').DataTable({"pageLength": 100,"sDom": 'Lfrtlip' });
-       $('#admin_userss').DataTable({"pageLength": 100,"sDom": 'Lfrtlip' });
+    $('#publisher_admin').DataTable({"pageLength": 100,"sDom": 'Lfrtlip', 
+     language: { search: "",
+        searchPlaceholder: "Search"
+    } });
+     $('#campaign_manager_table').DataTable({"pageLength": 100,"sDom": 'Lfrtlip',language: { search: "",
+        searchPlaceholder: "Search"
+    } });
+      $('#Campaign_executive_table').DataTable({"pageLength": 100,"sDom": 'Lfrtlip',language: { search: "",
+        searchPlaceholder: "Search"
+    } });
+       $('#admin_userss').DataTable({"pageLength": 100,"sDom": 'Lfrtlip',language: { search: "",
+        searchPlaceholder: "Search"
+    } });
+       $('#trash_table').DataTable({"pageLength": 100,"sDom": 'Lfrtlip',language: { search: "",
+        searchPlaceholder: "Search"
+    } });
+       $('#Pending_Login').DataTable({"pageLength": 100,"sDom": 'Lfrtlip',language: { search: "",
+        searchPlaceholder: "Search"
+    } });
+       $('#All_Active').DataTable({"pageLength": 100,"sDom": 'Lfrtlip',language: { search: "",
+        searchPlaceholder: "Search"
+    } });
 
       $(".delete_icon").find('a').click(function(e){
         e.preventDefault();

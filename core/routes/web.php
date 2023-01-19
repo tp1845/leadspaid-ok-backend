@@ -68,7 +68,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('password/verify-code', 'ForgotPasswordController@verifyCode')->name('password.verify-code');
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.change-link');
         Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
-    });
+      Route::get('password/re-set/{id}','ForgotPasswordController@resetpassword')->name('password/re-set');
+
+         Route::post('password/update','ForgotPasswordController@updatepassword')->name('password/update');   
+
+   });
 
     Route::middleware(['admin'])->group(function () {
         Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
@@ -496,7 +500,10 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::post('password/verify-code', 'ForgotPasswordController@verifyCode')->name('password.verify-code');
         Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')->name('password.change-link');
         Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
-    });
+        Route::get('password/re-set/{id}','ForgotPasswordController@resetpassword')->name('password/re-set');
+        Route::post('password/update','ForgotPasswordController@updatepassword')->name('password/update');
+	
+	});
 
     Route::middleware(['publisher','checkStatus:publisher'])->group(function () {
         Route::get('dashboard', 'PublisherController@dashboard')->name('dashboard');

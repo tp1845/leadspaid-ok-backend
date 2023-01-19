@@ -279,13 +279,22 @@ class AdvertiserController extends Controller
 
 
         $ta = TransactionAdvertiser::where('id', $id)->first();
+		if($ta->user_id==Auth::guard('advertiser')->user()->id){
+		
         $page_title = 'Payments';
         $data = ['title' => 'Laravel 7 Generate PDF From View Example Tutorial'];
         $image_url = 'https://leadspaid.com/assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png';
         $pdf = PDF::loadView($this->activeTemplate . 'advertiser.pdf', compact('page_title', 'ta', 'image_url'))->setOptions(['defaultFont' => 'Poppins']);
 
         return $pdf->download('invoice-LP-' . strtoupper(substr(auth()->guard('advertiser')->user()->company_name, 0, 2)) . '-' . get_invoice_format($id) . '.pdf', '+w');
-    }
+    
+		 }else{
+		  $notify[] = ['error', 'you are not allow to download invoice.']; 
+		  $url =url('/').'/advertiser/payments';
+		  return redirect($url)->withNotify($notify); 
+		}
+	
+	}
 
 
     public function PaymentsCreateSession(Request $request)

@@ -252,18 +252,27 @@ class PublisherController extends Controller
         return view('admin.users.create', compact('page_title', 'empty_message','countries'));
    }
    
-  public function manage_user(){
-     $publisher_admin = Publisher::where('role',1)->where('status',1)->get();
-     $campaign_manager=Publisher::where('role',2)->where('status',1)->get();
-     $Campaign_executive=Publisher::where('role',3)->where('status',1)->get();
-     $admin=Admin::where('status',1)->get();
-     $user_trash=Publisher::where('status',0)->get();
+   
+  
+   public function manage_user(){
+     $publisher_admin = Publisher::where('role',1)->where('status','!=',0)->get();
+     $campaign_manager=Publisher::where('role',2)->where('status','!=',0)->get();
+     $Campaign_executive=Publisher::where('role',3)->where('status','!=',0)->get();
+     $admin=Admin::where('status','!=',0)->get();
+
+    $adminpending=Admin::where('status',3)->get();
+    $user_pending=Publisher::where('status',3)->get();
+     
+     $adminapprove=Admin::where('status',1)->get();
+     $userapprove=Publisher::where('status',1)->get();
+
+       $user_trash=Publisher::where('status',0)->get();
      $admin_trash=Admin::where('status',0)->get();
 
 
       $page_title = 'Users List'  ;
         $empty_message = 'No search result found';
-        return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash','admin_trash'));
+        return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash','admin_trash','adminpending','user_pending','adminapprove','userapprove'));
    } 
 
    public function save_user(Request $request){
@@ -282,7 +291,7 @@ class PublisherController extends Controller
          $admin->country_code=$request->country_code;
          $admin->phone=$request->mobile;
          $admin->password=Hash::make($request->password);
-         
+         $admin->status=3;
           $admin->save();
            }else{
             $notify[] = ['error', 'Email already  Exists'];
@@ -305,7 +314,7 @@ class PublisherController extends Controller
          $Publisher->country_code=$request->country_code;
           $Publisher->phone=$request->mobile;
           $Publisher->password=Hash::make($request->password);
-          $Publisher->status=1;
+          $Publisher->status=3;
            $Publisher->save();
          }else{
             $notify[] = ['error', 'Email already  Exists'];
@@ -329,6 +338,5 @@ class PublisherController extends Controller
         Admin::where('id',$id)->update(['status'=>$status]);
        return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
     }
-	
 
 }

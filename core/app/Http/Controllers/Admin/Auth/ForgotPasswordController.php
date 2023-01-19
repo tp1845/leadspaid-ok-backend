@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
 
 class ForgotPasswordController extends Controller
 {
@@ -100,4 +101,36 @@ class ForgotPasswordController extends Controller
 
         return redirect()->route('admin.password.change-link', $code)->withNotify($notify);
     }
+	
+	public function resetpassword($id){
+     $admin = Admin::where('id', '=', $id)->first();
+     if( $admin->status==3){
+      return view('admin.auth.passwords.new-resetpassword',compact('id') );
+      }else{
+        $notify[] = ['success', 'Account is activated already'];
+        $url=url('/').'/admin';
+          return redirect($url)->withNotify($notify);
+      } 
+   }
+    
+  public function updatepassword(Request $request){
+
+       
+        $admin = Admin::where('id', '=', $request->id)->first();
+
+       if(Hash::check($request->old_password, $admin->password)){
+
+          Admin::where('id',$request->id)->update(['password'=>Hash::make($request->new_password),'status'=>1]);
+          $notify[] = ['success', 'Password update successfully '];
+          $url=url('/').'/admin';
+          return redirect($url)->withNotify($notify);
+       }else{
+          $notify[] = ['error', 'Old password is invalid'];
+          return back()->withNotify($notify);
+       }
+
+  }
+	
+	
+	
 }
