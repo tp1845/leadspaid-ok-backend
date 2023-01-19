@@ -185,7 +185,7 @@
             var isd = $('.country_code').val();
 
             phone = value.replace(/-/ig, "");
-            console.log('- removed : 'phone);
+            console.log('- removed : ' + phone);
             if(isd === '+1'){
                 var phone_isd = phone.substring(0, 3);
                 if(phone_isd === '001'){  phone = phone.substring(3); }
