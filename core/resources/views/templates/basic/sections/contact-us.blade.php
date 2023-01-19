@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="col-md-12 submit-btn">
-                            <button type="submit" class="btn btn-secondary px-5 py-2 text-uppercase fw-bold">@lang('Submit Message')</button>
+                            <button type="submit" class="btn btn-secondary px-2 px-lg-5 py-2 text-uppercase fw-bold">@lang('Submit Message')</button>
                         </div>
                     </form>
                 </div>
