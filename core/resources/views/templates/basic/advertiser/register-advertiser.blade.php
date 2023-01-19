@@ -139,7 +139,7 @@ jQuery.fn.capitalize = function() {
     });
    return this;
 }
-$('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
+$('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-]/g,'');});
 $('#ad_budget').keyup(function(){  this.value = this.value.replace(/[^0-9]/g,'');});
 $("#company_name").capitalize();
 $("#full_name").capitalize();
@@ -180,14 +180,47 @@ $("#full_name").capitalize();
     jQuery.validator.addMethod("website", function(value, element) {
     return this.optional(element) || /^([^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/i.test(value);
     }, "Please enter a valid Website");
+    jQuery.validator.addMethod("isdphone", function(value, element) {
+        var isd = $('.country_code').val();
 
+        phone = value.replace(/-/ig, "");
+        console.log('- removed : ' + phone);
+        if(isd === '+1'){
+            // USA
+            var phone_isd = phone.substring(0, 3);
+            if(phone_isd === '001'){  phone = phone.substring(3); }
+            return this.optional(element) || /^[0-9]{10,10}$/i.test(phone);
+        }
+        else if(isd === '+44'){
+            // Uk
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0044'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if( isd === '+61' ){
+            //AUS
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0061'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if(isd === '+65'){
+            //Singapore
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0065'){  phone = phone.substring(4); }
+            return this.optional(element) || /^(3|6|8|9)\d{7}$/i.test(phone);
+        }else{
+            var phone_isd = phone.substring(0, 2);
+            if(phone_isd === '00'){  phone = phone.substring(2); }
+            return this.optional(element) || /^[0-9]{1,6}$/i.test(phone);
+        }
+    }, "Please enter valid phone");
 
     $("#form").validate({
         rules: {
             name: { required: true,minlength: 3, lettersonly: true },
             company_name: { required: true, minlength: 3},
             country: { required: true},
-            phone: { required: true, minlength: 6, phoneonly: true },
+            phone: { required: true, minlength: 6, phoneonly: true, isdphone:true },
             email: { required: true,  valid_email:true  },
             product_services: { required: true},
             Website: { website: true },
