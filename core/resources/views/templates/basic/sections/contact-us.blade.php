@@ -146,7 +146,7 @@
 
     <script>
 
-       $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
+        $('#conact_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-]/g,'');});
 
         $.validator.setDefaults({
             errorElement: 'span',
@@ -187,21 +187,25 @@
             phone = value.replace(/-/ig, "");
             console.log('- removed : ' + phone);
             if(isd === '+1'){
+                // USA
                 var phone_isd = phone.substring(0, 3);
                 if(phone_isd === '001'){  phone = phone.substring(3); }
-                return this.optional(element) || /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/i.test(phone);
+                return this.optional(element) || /^[0-9]{1,10}$/i.test(phone);
             }
             else if(isd === '+44'){
+                // Uk
                 var phone_isd = phone.substring(0, 4);
                 if(phone_isd === '0044'){  phone = phone.substring(4); }
-                return this.optional(element) || /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/i.test(phone);
+                return this.optional(element) || /^[0-9]{1,9}$/i.test(phone);
             }
             else if( isd === '+61' ){
+                //AUS
                 var phone_isd = phone.substring(0, 4);
                 if(phone_isd === '0061'){  phone = phone.substring(4); }
-                return this.optional(element) || /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/i.test(phone);
+                return this.optional(element) || /^[0-9]{1,9}$/i.test(phone);
             }
             else if(isd === '+65'){
+                //Singapore
                 var phone_isd = phone.substring(0, 4);
                 if(phone_isd === '0065'){  phone = phone.substring(4); }
                 return this.optional(element) || /^(3|6|8|9)\d{7}$/i.test(phone);
