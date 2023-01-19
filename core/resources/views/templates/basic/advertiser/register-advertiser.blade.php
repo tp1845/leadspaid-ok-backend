@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="col-12 text-center mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
                                     <button type="submit" class="btn btn-secondary Rg_advts_my_btn">SIGN UP</button>
-                                    <p class="mt-2"><small style="font-size: .79em;">I agree to your privacy policy and terms of use by submitting this form.</small></p>
+                                    <p class="mt-2"><small style="font-size: .79em;">I agree to your <a href="{{route('privacy_policy')}}"><u>privacy policy</u></a> and <a href="{{route('terms_condition')}}"><u>terms of use</u></a> by submitting this form.</small></p>
                                 </div>
                             </div>
                         </div>
