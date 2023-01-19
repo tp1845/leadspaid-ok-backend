@@ -81,7 +81,9 @@
     'use strict';
     $(document).ready(function () {
         var MyDatatable =  $('#form_list').DataTable({  columnDefs: [  { targets: 7, searchable: false,  visible: true, orderable: false}, ],"sDom": 'Lfrtlip',"language": {
-      "lengthMenu": "Show rows  _MENU_"
+      "lengthMenu": "Show rows  _MENU_",
+					  search: "",
+                       searchPlaceholder: "Search"
    }  });
     });
 </script>

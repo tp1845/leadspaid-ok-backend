@@ -1174,7 +1174,9 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="39">
                     }
                     ],"sDom": 'Lfrtlip',
                     "language": {
-                      "lengthMenu": "Show rows  _MENU_"
+                      "lengthMenu": "Show rows  _MENU_",
+					  search: "",
+                       searchPlaceholder: "Search"
                   }
               });
 
@@ -1207,7 +1209,9 @@ name="field_3[question_text]" value="Phone Number" required="" maxlength="39">
                     }
                     ],"sDom": 'Lfrtlip',
                     "language": {
-                      "lengthMenu": "Show rows  _MENU_"
+                      "lengthMenu": "Show rows  _MENU_" ,
+					  search: "",
+                       searchPlaceholder: "Search"
                   }
               });
 
