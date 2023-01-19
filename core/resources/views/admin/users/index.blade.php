@@ -304,9 +304,12 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
+                                     @if(auth()->guard('admin')->user()->id != $pub->id)
                                      <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
+                                     @endif
+
                                 </td>
                             </tr>
                             @endforeach
@@ -351,9 +354,12 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
+
+                                     @if(auth()->guard('admin')->user()->id != $pub->id)
                                      <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -380,9 +386,13 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
+                                     
+                                   @if(auth()->guard('admin')->user()->id != $pub->id)
                                      <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
+
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
