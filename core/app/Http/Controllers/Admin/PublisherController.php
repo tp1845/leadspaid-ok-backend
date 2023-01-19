@@ -294,9 +294,11 @@ class PublisherController extends Controller
          $admin->status=3;
           $admin->save();
        $subject="Account Create";
-         
+       $insertedId = $admin->id;
+         $url =url('/').'/admin/password/re-set/'.$insertedId;
        $message='<p>Your Admin Account has been created.</p>';
         $message .='<p>Your onetime password is : '.$request->password.'</p>';
+        $message .='<p><a href="'.$url.'">Click here to login.</a></p>';
         $receiver_name=$request->name;
 
          send_general_email($request->email, $subject, $message, $receiver_name);
@@ -324,6 +326,10 @@ class PublisherController extends Controller
           $Publisher->password=Hash::make($request->password);
           $Publisher->status=3;
            $Publisher->save();
+
+           $insertedId = $Publisher->id;
+
+
            $rol_name="";
            if($request->role==1){
             $rol_name='Publisher_Admin';
@@ -336,9 +342,10 @@ class PublisherController extends Controller
            }
 
            $subject="Account Create";
-
+            $url =url('/').'/publisher/password/re-set/'.$insertedId;
        $message='<p>Your '.$rol_name.' Account has been created.</p>';
         $message .='<p>Your onetime password is : '.$request->password.'</p>';
+        $message .='<p><a href="'.$url.'">Click here to login.</a></p>';
         $receiver_name=$request->name;
 
          send_general_email($request->email, $subject, $message, $receiver_name);
@@ -355,7 +362,6 @@ class PublisherController extends Controller
         return redirect($url)->withNotify($notify);
 
    }
-   
    
    
    
