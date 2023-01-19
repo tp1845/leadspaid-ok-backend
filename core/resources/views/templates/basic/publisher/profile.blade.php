@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <div class="profile account-wrapper">
                         <div class="tab-content mt-5" id="myTabContent">
-                            <form method="POST" id="publisher_form" action="{{route('publisher.profile.update')}}">
+                            <form method="POST" id="publisher_form" action="{{route('publisher.profile.update')}}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="row">
                                 <div class="mb-4 col-md-6" style="overflow: inherit;">
