@@ -58,20 +58,14 @@
 @endsection
 
 @push('script-lib')
-<script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/FormValidation.min.js"></script>
-
   <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
   <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
-
 @endpush
 
 @push('script')
 <script>
-
-
     function submitUserForm() {
         var response = grecaptcha.getResponse();
         if (response.length == 0) {
@@ -87,10 +81,8 @@
 
 
     document.addEventListener('DOMContentLoaded', function(e) {
-
         FormValidation.formValidation(document.querySelector('#login_form'), {
             fields: {
-
                 username: {
                      validators: {
                         notEmpty: {

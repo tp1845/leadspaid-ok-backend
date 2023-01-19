@@ -15,10 +15,6 @@
     </div>
  </section>
 @endsection
-@push('script-lib')
-<script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
-@endpush
 <style>
     .Rg_advts{ padding-top: 60px; }
     .Rg_advts_ttls-1 {

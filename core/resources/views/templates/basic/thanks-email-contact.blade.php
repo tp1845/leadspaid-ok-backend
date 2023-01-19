@@ -39,12 +39,6 @@
     </div>
  </section>
 @endsection
-
-@push('script-lib')
-<script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
-<script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script>
-
-@endpush
 @push('style')
 <style>
     .Rg_advts_ttls-1, .Rg_advts_ttls__1, .Rg_advts_sub_title {
