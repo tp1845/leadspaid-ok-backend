@@ -79,7 +79,8 @@
                                         <div class="font-weight-bolder text-body"> Upload Profile Logo
                                     </div>
 
-                                    <div class="card-body px-0 pt-1 my-upload-btns">
+                                <div class="form-group">
+                                    <div class="card-bodys px-0 pt-1 my-upload-btns">
                                         <div class="upload-box" style="height: 53px; ">
                                             <input type="file" name="image" id="form_company_logo" class="inputfile inputfile-1" accept="image/jpeg, image/png">
                                             <label for="form_company_logo" class="profile_company_logo" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"></path></svg> <span>Upload Profile Logo*</span> </label>
@@ -98,6 +99,7 @@
                                        </div>
 
                                     </div>
+                                </div>
                                     </div>
                                     @include($activeTemplate.'partials.custom-captcha')
                                 </div>
@@ -117,6 +119,8 @@
 @endpush
 
 @push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
 <script>
 
     "use strict";
@@ -135,123 +139,79 @@
       });
     });
 
-    document.addEventListener('DOMContentLoaded', function(e) {
-        FormValidation.formValidation(document.querySelector('#publisher_form'), {
-            fields: {
-                company_name: {
-                    validators: {
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Company Name.',
-                        }
-                    },
-                },
 
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Full Name.',
-                        },
-                        stringLength: {
-                            min: 3,
-                            message: 'Please fill Full Name.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'Full Name Invalid.',
-                        },
-                    },
-                },
-                phone: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Phone Number.',
-                        },
-                        stringLength: {
-                            min: 6,
-                            message: 'Please fill Phone Number.',
-                        },
-                    },
-                },
-                email: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill vaild Email.',
-                        },
-                        emailAddress: {},
-                    },
-                },
-                city: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill city.',
-                        },
-                        stringLength: {
-                            min: 2,
-                            message: 'Please fill city.',
-                        },
-                        regexp: {
-                            regexp: /^[a-z A-Z]+$/,
-                            message: 'City Invalid.',
-                        },
-                    },
-                },
-                country: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Select Country.',
-                        }
-                    },
-                },
-                username: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Username.',
-                        },
-                        // regexp: {
-                        //     regexp: /^[a-zA-Z0-9_.]+$/,
-                        //     message: 'Username should not contain special characters.',
-                        // },
-                    },
-                },
-                password: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Password',
-                        },
-                    },
-                },
-                password_confirmation: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Please fill Confirm Password',
-                        },
-                        checkConfirmation: {
-                            message: 'Passowrd Mismatch',
-                            callback: function(input) {
-                                return document.querySelector("#publisher_form").querySelector('[name="password"]').value === input.value;
-                            },
-                        },
-                    },
-                }
-            },
-            plugins: {
-                trigger: new FormValidation.plugins.Trigger(),
-                bootstrap: new FormValidation.plugins.Bootstrap(),
-                submitButton: new FormValidation.plugins.SubmitButton(),
-                icon: new FormValidation.plugins.Icon({
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh',
-                }),
-                alias: new FormValidation.plugins.Alias({
-                    checkConfirmation: 'callback'
-                }),
-            },
-        }).on('core.form.valid', function() {
-            document.querySelector('#publisher_form').submit();
 
+
+    jQuery.fn.capitalize = function() {
+        $(this[0]).keyup(function(event) {
+            var box = event.target;
+            var txt = $(this).val();
+            var stringStart = box.selectionStart;
+            var stringEnd = box.selectionEnd;
+            $(this).val(txt.replace(/^(.)|(\s|\-)(.)/g, function($word) {
+                return $word.toUpperCase();
+            }));
+            box.setSelectionRange(stringStart , stringEnd);
         });
+    return this;
+    }
+    $('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
+    $("#company_name").capitalize();
+    $("#full_name").capitalize();
+
+    $.validator.setDefaults({
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    $.validator.addMethod(
+        "money",
+        function(value, element) {
+            var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
+            return this.optional(element) || isValidMoney;
+        },
+        "Enter Correct value."
+    );
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+    return this.optional(element) || /^[a-z ]+$/i.test(value);
+    }, "Letters only please");
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+    return this.optional(element) || /^[0-9]*$/i.test(value);
+    }, "Number only please");
+    jQuery.validator.addMethod("phoneonly", function(value, element) {
+        return this.optional(element) || /^[0-9.-]*$/i.test(value);
+        }, "Number only please");
+    jQuery.validator.addMethod("valid_email", function(value, element) {
+    return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+    }, "Please enter a valid email address");
+
+    $("#publisher_form").validate({
+        rules: {
+            name: { required: true,minlength: 3, lettersonly: true },
+            company_name: { required: true, minlength: 3},
+            country: { required: true},
+            phone: { required: true, minlength: 6, phoneonly: true },
+            postal_code: { required: false, maxlength: 200  },
+           city: { required: true, minlength: 3, maxlength: 50 },
+           billed_to: { required: true, minlength: 10, maxlength: 100 },
+           image: {extension: "png|jpg|jpeg|gif", maxsize:1e+6}
+        },messages: {
+            name:{  required : 'Full Name is required.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
+            company_name:{  required : 'Company Name is required.', minlength:'minmum 3 characters.' },
+            mobile:{  required : 'Phone is required.', minlength:'minmum 6 characters.', phoneonly:'Please enter valid phone.'},
+            postal_code: {maxlength: 'maximum 200 characters.'},
+            city: {required : 'Please fill valid City.',minlength:'minmum 3 characters.', maxlength: 'maximum 50 characters.'},
+            billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'},
+            image: "File must be JPG, GIF or PNG, less than 1MB",
+        }
     });
 
 </script>
