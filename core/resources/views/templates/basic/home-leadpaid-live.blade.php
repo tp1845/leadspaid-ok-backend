@@ -244,7 +244,6 @@
         {{-- <script src="{{asset('assets/templates/basic')}}/js/vendor/particles.js"></script>
         <script src="{{asset('assets/templates/basic')}}/js/vendor/app.js"></script> --}}
         <script src="{{asset('assets/templates/basic')}}/js/vendor/all-icons.js"></script>
-        <script src="https://formvalidation.io/vendors/formvalidation/dist/js/plugins/Bootstrap.min.js"></script>
         <script type="text/javascript" src="{{asset('assets/templates/basic')}}/js/vendor/slick.min.js"></script>
         <link rel="stylesheet" type="text/css" href="{{asset('assets/templates/basic')}}/css/vendor/slick.css"/>
         <link rel="stylesheet" href="{{asset('assets/templates/leadpaid/js/mediaelement')}}/build/mediaelementplayer.min.css">
