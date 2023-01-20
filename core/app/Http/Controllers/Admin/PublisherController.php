@@ -373,13 +373,21 @@ class PublisherController extends Controller
    
    
     public function user_status($id,$status){
-        Publisher::where('id',$id)->update(['status'=>$status]);
+         if($status==5){
+           Publisher::where('id',$id)->delete();
+        }else{
+           Publisher::where('id',$id)->update(['status'=>$status]);
+        }
         return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
 
     }
     
     public function admin_status($id,$status){
-        Admin::where('id',$id)->update(['status'=>$status]);
+      if($status==5){
+          Admin::where('id',$id)->delete();
+        }else{
+           Admin::where('id',$id)->update(['status'=>$status]);
+        }
        return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
     }
 

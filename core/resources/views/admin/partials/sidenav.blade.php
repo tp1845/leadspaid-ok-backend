@@ -392,60 +392,7 @@
                     </div>
                 </li>
 
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.deposit*',3)}}">
-                        <i class="menu-icon las la-credit-card"></i>
-                        <span class="menu-title">@lang('Deposits')</span>
-                        @if(0 < $pending_deposits_count)
-                            <span class="menu-badge pill bg--primary ml-auto">
-                                <i class="fa fa-exclamation"></i>
-                            </span>
-                        @endif
-                    </a>
-                    <div class="sidebar-submenu {{menuActive('admin.deposit*',2)}} ">
-                        <ul>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.deposit.pending')}} ">
-                                <a href="{{route('admin.deposit.pending')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Pending Deposits')</span>
-                                    @if($pending_deposits_count)
-                                        <span class="menu-badge pill bg--primary ml-auto">{{$pending_deposits_count}}</span>
-                                    @endif
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.deposit.approved')}} ">
-                                <a href="{{route('admin.deposit.approved')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Approved Deposits')</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.deposit.successful')}} ">
-                                <a href="{{route('admin.deposit.successful')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Successful Deposits')</span>
-                                </a>
-                            </li>
-
-
-                            <li class="sidebar-menu-item {{menuActive('admin.deposit.rejected')}} ">
-                                <a href="{{route('admin.deposit.rejected')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Rejected Deposits')</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.deposit.list')}} ">
-                                <a href="{{route('admin.deposit.list')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Deposits')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                
 
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.withdraw*',3)}}">
@@ -719,23 +666,23 @@
 
 
 
-                <li class="sidebar__menu-header">@lang('Frontend Manager')</li>
+                <li class="sidebar__menu-header d-none">@lang('Frontend Manager')</li>
 
-                <li class="sidebar-menu-item {{menuActive('admin.frontend.templates')}}">
+                <li class="sidebar-menu-item {{menuActive('admin.frontend.templates')}} d-none">
                     <a href="{{route('admin.frontend.templates')}}" class="nav-link ">
                         <i class="menu-icon la la-html5"></i>
                         <span class="menu-title">@lang('Manage Templates')</span>
                     </a>
                 </li>
 
-                <li class="sidebar-menu-item {{menuActive('admin.frontend.manage.pages')}}">
+                <li class="sidebar-menu-item {{menuActive('admin.frontend.manage.pages')}} d-none">
                     <a href="{{route('admin.frontend.manage.pages')}}" class="nav-link ">
                         <i class="menu-icon la la-list"></i>
                         <span class="menu-title">@lang('Manage Pages')</span>
                     </a>
                 </li>
 
-                <li class="sidebar-menu-item sidebar-dropdown">
+                <li class="sidebar-menu-item sidebar-dropdown d-none">
                     <a href="javascript:void(0)" class="{{menuActive('admin.frontend.sections*',3)}}">
                         <i class="menu-icon la la-html5"></i>
                         <span class="menu-title">@lang('Manage Section')</span>
@@ -758,6 +705,62 @@
                         </ul>
                     </div>
                 </li>
+				
+				<li class="sidebar-menu-item sidebar-dropdown d-none">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.deposit*',3)}}">
+                        <i class="menu-icon las la-credit-card"></i>
+                        <span class="menu-title">@lang('Deposits')</span>
+                        @if(0 < $pending_deposits_count)
+                            <span class="menu-badge pill bg--primary ml-auto">
+                                <i class="fa fa-exclamation"></i>
+                            </span>
+                        @endif
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.deposit*',2)}} ">
+                        <ul>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.pending')}} ">
+                                <a href="{{route('admin.deposit.pending')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Pending Deposits')</span>
+                                    @if($pending_deposits_count)
+                                        <span class="menu-badge pill bg--primary ml-auto">{{$pending_deposits_count}}</span>
+                                    @endif
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.approved')}} ">
+                                <a href="{{route('admin.deposit.approved')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Approved Deposits')</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.successful')}} ">
+                                <a href="{{route('admin.deposit.successful')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Successful Deposits')</span>
+                                </a>
+                            </li>
+
+
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.rejected')}} ">
+                                <a href="{{route('admin.deposit.rejected')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Rejected Deposits')</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.deposit.list')}} ">
+                                <a href="{{route('admin.deposit.list')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('All Deposits')</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+				
 				<li class="sidebar-menu-item ">
                     <div class="sidebar__logo custom_nav_btn">
                         <button type="button" class="navbar__expand"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
@@ -765,6 +768,8 @@
                     </div>
                     
                 </li>
+				
+				
             </ul>
             <div class="text-center mb-3 text-uppercase">
                 <span class="text--primary">{{systemDetails()['name']}}</span>
