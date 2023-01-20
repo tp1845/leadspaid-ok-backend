@@ -258,12 +258,16 @@
                     $(window).off("scroll", startCounter);
                     $('.count').each(function() {
                     var $this = $(this);
+                    var start = 0;
+                    if( $this.text() == '20000'){ start = 10000; }
+                    if( $this.text() == '50000'){ start = 30000; }
+                    if( $this.text() == '11'){ start = 5; }
                     jQuery({
-                        Counter: 0
+                        Counter: start
                     }).animate({
                         Counter: $this.text().replace(/,/g, '')
                     }, {
-                        duration: 2000,
+                        duration: 3000,
                         easing: 'swing',
                         step: function() {
                         $this.text(commaSeparateNumber(Math.floor(this.Counter)));
