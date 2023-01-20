@@ -66,7 +66,7 @@
               @foreach($pages as $k => $data)
               <li><a href="{{route('pages',[$data->slug])}}">{{trans($data->name)}}</a></li>
               @endforeach  
-              <li> <a href="{{route('blog')}}">@lang('Blog')</a></li>
+              <li> <a href="{{url('/')}}/blog">@lang('Blog')</a></li>
               @if(auth()->guard('publisher')->user() || auth()->guard('advertiser')->user())
                <li> <a href="{{route('ticket')}}">@lang('Contact')</a></li>
                @else
