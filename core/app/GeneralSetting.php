@@ -12,7 +12,7 @@ class GeneralSetting extends Model
 
     public function scopeSitename($query, $page_title)
     {
-        $page_title = empty($page_title) ? '' : ' - ' . $page_title;
-        return $this->sitename . $page_title;
+        $page_title = empty($page_title) ? '' : $page_title . ' - ' ;
+        return $page_title . $this->sitename;
     }
 }
