@@ -279,7 +279,7 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                       <!-- <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;"> -->
                                     </a>
@@ -310,7 +310,7 @@
 
                                  <td data-label="Actions " class="delete_icon">
                                      @if(auth()->guard('admin')->user()->id != $pub->id)
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                       <!-- <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;"> -->
                                     </a>
@@ -362,7 +362,7 @@
                                  <td data-label="Actions " class="delete_icon">
 
                                     
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                         <i class="fa-regular fa-circle-xmark" data-toggle="tooltip" title="" data-original-title="Disable"></i>
                                       <!-- <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;"> -->
                                     </a>
@@ -395,7 +395,7 @@
                                  <td data-label="Actions " class="delete_icon">
                                      
                                    @if(auth()->guard('admin')->user()->id != $pub->id)
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                         <i class="fa-regular fa-circle-xmark" data-toggle="tooltip" title="" data-original-title="Disable"></i>
                                       <!-- <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;"> -->
                                     </a>
@@ -457,7 +457,7 @@
                                      <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
-                                    <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>5])}}"><i class="fa-sharp fa-solid fa-circle-xmark" data-toggle="tooltip" title="" data-original-title="delete"></i></a>
+                                    <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>5])}}" onclick="retrun confirm('Are you sure?')" class="delte_item" data-type="delete" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-sharp fa-solid fa-circle-xmark" ></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -485,10 +485,10 @@
 
                                  <td data-label="Actions " class="delete_icon">
                                       @if(auth()->guard('admin')->user()->id != $pub->id)
-                                     <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                     <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="_icon" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
-                                    <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>5])}}" class=""><i class="fa-sharp fa-solid fa-circle-xmark"data-toggle="tooltip" title="" data-original-title="delete"></i></a>
+                                    <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>5])}}" onclick="retrun confirm('Are you sure?')"  class="delte_item" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-sharp fa-solid fa-circle-xmark"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -581,6 +581,25 @@ table.table--light thead th {
 .delete_icon .fa-regular.fa-circle-xmark {
     color: gray;
 }
+#ulser_list .tab-pane.active .dataTables_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#ulser_list .tab-pane.active .dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+    padding-left: 24px;
+    margin-right: 7px;
+}
+#ulser_list .tab-pane.active .dataTables_info {
+    flex: auto;
+    text-align: right;
+}
+#ulser_list .tab-pane.active .dataTables_length {
+    flex: 0 0 auto;
+}
 </style>
 <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 <script>
@@ -614,7 +633,7 @@ table.table--light thead th {
         "lengthMenu": "Show rows  _MENU_"
     } });
 
-      $(".delete_icon").find('a').click(function(e){
+      $(".delete_icon").find('a:first-child').click(function(e){
         e.preventDefault();
         var actionUrl=$(this).attr('href');
         $.ajax({
@@ -629,6 +648,25 @@ table.table--light thead th {
           }
         }
             });
+      })
+
+      $(".delte_item").click(function(e){
+        e.preventDefault();
+        var actionUrl=$(this).attr('href');
+        if(confirm('Are you sure?')){
+        $.ajax({
+        type: "GET",
+        url: actionUrl,
+        dataType:'json',
+        success: function(data)
+        {
+         
+          if(data.success){
+            location.reload(true);
+          }
+        }
+            });
+        }
       })
 
 
