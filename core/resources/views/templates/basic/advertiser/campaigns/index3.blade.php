@@ -970,7 +970,8 @@ padding: 0; display: block; opacity: 0;">
                     'Last 7 Days': [moment().subtract(6, 'days'), moment().add(1, 'days')],
                     'Last 30 Days': [moment().subtract(30, 'days'), moment().add(1, 'days')],
                     'This Month': [moment().startOf('month'), moment().endOf('month')],
-                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                    'All Time': ['<?php echo date_format(auth()->guard('advertiser')->user()->created_at,"d-m-Y") ?>', moment().add(1, 'days')]
                 },
                 "alwaysShowCalendars": true,
                 "startDate": isSearched ? startDate : moment().subtract(6, 'days'),
