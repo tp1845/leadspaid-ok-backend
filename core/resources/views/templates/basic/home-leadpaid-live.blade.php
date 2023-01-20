@@ -30,19 +30,19 @@
             <div class="row align-item-center justify-content-center py-2">
                 <div class="col-lg-4">
                     <div class="hero-box">
-                        <h4>20,000+</h4>
+                        <h4> <span class="count">20000</span>+</h4>
                         <h5>Impressions/day</h5>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="hero-box">
-                        <h4>50,000+</h4>
+                        <h4><span class="count">50000</span>+</h4>
                         <h5>Leads Generated</h5>
                     </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="hero-box">
-                        <h4>11 Countries</h4>
+                        <h4><span class="count">11</span> Countries</h4>
                         <img src="{{url('/')}}/assets/images/homepage/home-flags.png" alt=""  width="300px"  class="img-fluid">
                     </div>
                 </div>
@@ -252,6 +252,37 @@
 
     @push('script')
         <script>
+            $(window).scroll(startCounter);
+            function startCounter() {
+                if ($(window).scrollTop() > 200) {
+                    $(window).off("scroll", startCounter);
+                    $('.count').each(function() {
+                    var $this = $(this);
+                    jQuery({
+                        Counter: 0
+                    }).animate({
+                        Counter: $this.text().replace(/,/g, '')
+                    }, {
+                        duration: 1000,
+                        easing: 'swing',
+                        step: function() {
+                        $this.text(commaSeparateNumber(Math.floor(this.Counter)));
+                        },
+                        complete: function() {
+                        $this.text(commaSeparateNumber(this.Counter));
+                        //alert('finished');
+                        }
+                    });
+                    });
+
+                    function commaSeparateNumber(val) {
+                    while (/(\d+)(\d{3})/.test(val.toString())) {
+                        val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+                    }
+                    return val;
+                    }
+                }
+            }
             $(document).ready(function(){
                 $('video, audio').mediaelementplayer({
                     // Do not forget to put a final slash (/)
@@ -453,15 +484,15 @@
         }
 
         #MainHeroHeader:before{
-                background-color: #151f5688!important;
-                opacity: 1!important;
+            background-color: #151f5688!important;
+            opacity: 1!important;
         }
 
         #MainHeroHeader  #MainNav, #MainHeroHeader .MainBanner-Home { position: relative; z-index: 10; }
 
         #MainNav{ background-color: transparent!important; border-bottom: 0!important;
             /* box-shadow: 1px 1px 100px #ffffff; */
-         }
+        }
         .MainBanner-Home {
         font-family: Poppins !important;
         background-color: transparent;
@@ -717,15 +748,8 @@
         }
         }
         @media only screen and (max-width: 768px) {
-            .MainBanner-Home .btn, .button-large {
-                font-size: 30px !important;
-                padding-right: 15px;
-                padding-left: 15px;
-            }
-            .MainBanner-bottom h3, .MainBanner-bottom .h3 {
-                line-height: 1.6;
-                font-size: 29px;
-            }
+            .MainBanner-Home .btn, .button-large { font-size: 30px !important; padding-right: 15px; padding-left: 15px; }
+            .MainBanner-bottom h3, .MainBanner-bottom .h3 { line-height: 1.6;  font-size: 29px; }
             #hotspot_section .title {  font-size: 34px!important; }
         }
 
@@ -733,8 +757,6 @@
             .MainBanner-Home .btn, .button-large {  padding-right: 11px;  padding-left: 11px;  }
             .MainBanner-Home .sub_title{ padding: 3px 9px; }
         }
-
         .testimonial_block .h2, .testimonial_block .text2{ color:#212529; }
-
     </style>
 @endpush
