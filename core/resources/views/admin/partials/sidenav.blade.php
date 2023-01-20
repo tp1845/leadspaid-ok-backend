@@ -771,7 +771,7 @@
 				
 				
             </ul>
-            <div class="text-center mb-3 text-uppercase">
+            <div class="text-center mb-3 text-uppercase d-none">
                 <span class="text--primary">{{systemDetails()['name']}}</span>
                 <span class="text--success">@lang('V'){{systemDetails()['version']}} </span>
             </div>
