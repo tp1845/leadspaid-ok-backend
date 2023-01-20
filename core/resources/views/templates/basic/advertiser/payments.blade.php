@@ -922,6 +922,7 @@
     @push('script')
     <script type="text/javascript">
         "use strict";
+        console.log('<?php echo date_format(auth()->guard('advertiser')->user()->created_at,"Y-m-d") ?>');
         $(function() {
             $(document).ready(function() {
                 //Date Range
@@ -938,7 +939,7 @@
                         'Last 30 Days': [moment().subtract(30, 'days'), moment().add(1, 'days')],
                         'This Month': [moment().startOf('month'), moment().endOf('month')],
                         'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-                        'All Time': ['<?php echo date_format(auth()->guard('advertiser')->user()->created_at,"d-m-Y") ?>', moment().add(1, 'days')]
+                        'All Time': [moment("<?php echo date_format(auth()->guard('advertiser')->user()->created_at,"Y-m-d") ?>", 'YYYY-MM-DD'), moment().add(1, 'days')]
                     },
                     "alwaysShowCalendars": true,
                     "startDate": isSearched ? startDate : moment().subtract(6, 'days'),
@@ -949,7 +950,7 @@
                     $('#startDate').val(start.format('YYYY-MM-DD'));
                     $('#endDate').val(end.format('YYYY-MM-DD'));
                     $('#RangeForm').submit();
-                    console.log('New date range selected: ' + +' to ' + end.format('MM-DD-YYYY') + ' (predefined range: ' + label + ')');
+                    console.log('New date range selected: ' +start +' to ' + end.format('MM-DD-YYYY') + ' (predefined range: ' + label + ')');
                 });
             });
 

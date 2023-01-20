@@ -65,9 +65,9 @@ $user = auth()->guard('advertiser')->user();
                             $daily_bug= $daily_bug+$campaign->daily_budget;
                             $leadd=$leadd+get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
 
-                            $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '. ', '' ):0;
+                            $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
                             $costt= $costt+ $costValue ;
-                            $cplValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? number_format( get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)/get_campiagn_leads_by_id($campaign->id,$start_date,$end_date), 2, '. ', '' ):0;
+                            $cplValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? number_format( get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)/get_campiagn_leads_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
                             $cpll = $cpll+$cplValue;
                             @endphp
                             <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif 
@@ -228,9 +228,9 @@ $user = auth()->guard('advertiser')->user();
                             $daily_bug= $daily_bug+$campaign->daily_budget;
                             $leadd=$leadd+get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
 
-                            $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '. ', '' ):0;
+                            $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
                             $costt= $costt+ $costValue ;
-                            $cplValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? number_format( get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)/get_campiagn_leads_by_id($campaign->id,$start_date,$end_date), 2, '. ', '' ):0;
+                            $cplValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? number_format( get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)/get_campiagn_leads_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
                             $cpll = $cpll+$cplValue;
                             @endphp
                             <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif 
@@ -971,7 +971,8 @@ padding: 0; display: block; opacity: 0;">
                     'Last 30 Days': [moment().subtract(30, 'days'), moment().add(1, 'days')],
                     'This Month': [moment().startOf('month'), moment().endOf('month')],
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-                    'All Time': ['<?php echo date_format(auth()->guard('advertiser')->user()->created_at,"d-m-Y") ?>', moment().add(1, 'days')]
+                    'All Time': [moment("<?php echo date_format(auth()->guard('advertiser')->user()->created_at,"Y-m-d") ?>", 'YYYY-MM-DD'), moment().add(1, 'days')]
+               
                 },
                 "alwaysShowCalendars": true,
                 "startDate": isSearched ? startDate : moment().subtract(6, 'days'),
