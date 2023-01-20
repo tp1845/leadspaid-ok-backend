@@ -534,7 +534,7 @@
 
                             <b>1) Amount deducted from your prepaid-wallet</b><br />
                             =Lead Generation Cost spent during 10am yesterday till 10am today.<br />
-                            <b>2) Amount charged from your Card</b><br />
+                            <b>2) Amount charged from your card</b><br />
                             =Next day Campaign Budget - Wallet Balance
                         </p>
 
