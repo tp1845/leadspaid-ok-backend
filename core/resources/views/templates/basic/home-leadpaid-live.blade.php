@@ -263,7 +263,7 @@
                     }).animate({
                         Counter: $this.text().replace(/,/g, '')
                     }, {
-                        duration: 1000,
+                        duration: 2000,
                         easing: 'swing',
                         step: function() {
                         $this.text(commaSeparateNumber(Math.floor(this.Counter)));
