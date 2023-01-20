@@ -45,11 +45,7 @@
   margin: 15px 0;
 }
 
-.navbar-user__thumb{
-      width: 30px !important;
-    height: 30px !important;
-    margin-right: 5px;
-}
+
 </style>
 <nav class="navbar-wrapper justify-content-between active">
   <div class="nav-payment">
