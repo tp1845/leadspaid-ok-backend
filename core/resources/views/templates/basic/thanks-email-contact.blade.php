@@ -10,9 +10,9 @@
 <section class="small-section contact-3">
     <div class="container">
         <div class="row justify-content-center align-items-center mb-4">
-            <div class="col-lg-8 pt-4 d-flex justify-content-center align-items-center">
+            <div class="col-lg-8 pt-4 d-lg-flex text-center  text-lg-left justify-content-center align-items-center">
                 <img src="{{asset('assets/images/frontend')}}/robot-arm.png" width="150px" alt="" >
-                <div class="ps-5 pt-lg-3">
+                <div class="ps-lg-5 pt-lg-3">
                     <p class="Rg_advts_ttls-1">Thank you for contacting us!</p>
                     <p class="Rg_advts_sub_title mb-0"> We will get back to you soon.</p>
                 </div>
@@ -29,7 +29,7 @@
                             <p class="mb-0 d-flex justify-content-start">
 
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
-                                <span><b>San Francisco, CA</b><br> 5214F Diamond Heights Blvd #3077<br/> San Francisco, California 94131<br>United States.</span>
+                                <span><b>San Francisco, CA</b><br> 5214F Diamond Heights Blvd <br/> San Francisco, California 94131<br>United States.</span>
                             </p>
                             <p class="my-3 d-flex justify-content-start">
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
@@ -91,6 +91,8 @@
     letter-spacing: 1px;
     margin-bottom: 10px;
     }
+    @media (max-width: 768px)  { .Rg_advts_ttls-1, .Rg_advts_ttls__1, .Rg_advts_sub_title { font-size: 23px; }  }
+    @media (max-width: 387px)  { .Rg_advts_ttls-1, .Rg_advts_ttls__1, .Rg_advts_sub_title { font-size: 22px; }  }
     .Rg_advts_sub_title{ font-weight: 400!important; }
     .contact-banner{
         position: relative;
@@ -122,5 +124,7 @@
         font-weight:400;
         font-size:18px;
     }
+
+
 </style>
 @endpush

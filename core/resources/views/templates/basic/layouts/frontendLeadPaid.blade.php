@@ -91,7 +91,7 @@
                         <a class="navbar-brand fw-bold logo" href="{{route('home')}}">
                             <img src="{{asset('assets/templates/leadpaid/images/logo-18-b-rectangle-60-2-wide-1.png?v1')}}" style="max-width: 218px" alt="site-logo">
                         </a>
-                        <p class="text-light mt-3" style="font-size: 18px">Leads Paid Inc.<br/>5214F Diamond Heights Blvd #3077<br/>San Francisco, CA 94131 </p>
+                        <p class="text-light mt-3" style="font-size: 18px">Leads Paid Inc.<br/>5214F Diamond Heights Blvd<br/>San Francisco, CA 94131 </p>
                     </div>
                     <div class="col-6 col-md">
                       <h5>Company</h5>
