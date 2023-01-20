@@ -70,11 +70,11 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
-                                     @if(auth()->guard('admin')->user()->id != $pub->id)
+                                     
                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
-                                    @endif
+                                   
                                 </td>
                             </tr>
                             @endforeach
@@ -122,12 +122,12 @@
 
                                  <td data-label="Actions " class="delete_icon">
                                     
-                                 @if(auth()->guard('admin')->user()->id != $pub->id)
+                                 
                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
 
-                                  @endif
+                                 
 
                                 </td>
                             </tr>
@@ -174,11 +174,11 @@
 
                                  <td data-label="Actions " class="delete_icon">
                                      
-                                      @if(auth()->guard('admin')->user()->id != $pub->id)
+                                     
                                      <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>0])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
-                                    @endif
+                                   
 
                                 </td>
                             </tr>
@@ -275,7 +275,7 @@
                                  <td>{{ $pub->country }}</td>
 
                                  <td data-label="Actions " class="delete_icon">
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
                                 </td>
@@ -305,7 +305,7 @@
 
                                  <td data-label="Actions " class="delete_icon">
                                      @if(auth()->guard('admin')->user()->id != $pub->id)
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
                                      @endif
@@ -355,11 +355,11 @@
 
                                  <td data-label="Actions " class="delete_icon">
 
-                                     @if(auth()->guard('admin')->user()->id != $pub->id)
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                    
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
-                                    @endif
+                                   
                                 </td>
                             </tr>
                             @endforeach
@@ -388,7 +388,7 @@
                                  <td data-label="Actions " class="delete_icon">
                                      
                                    @if(auth()->guard('admin')->user()->id != $pub->id)
-                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
+                                     <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Disable">
                                       <img src="{{ url('/')}}/assets/images/icon/delete.png" style="width:20px;margin:0 auto;">
                                     </a>
 
@@ -518,7 +518,7 @@
     #myTable_filter label input[type="search"] {height: 30px;border: 1px solid gray;margin-left:10px;}
    .toggle {pointer-events: none;}
    #ulser_list ul.nav-tabs li a {
-    padding: 10px;
+    padding: 5px 10px;
 }
 #ulser_list ul.nav-tabs li {
     margin: 0 2px !important;
@@ -526,6 +526,13 @@
 #ulser_list .card-body ul.nav.nav-tabs {
     position: absolute;
     top: 35px;
+}
+div.dataTables_wrapper div.dataTables_filter input {
+    border: 1px solid #ced4da;
+    border-radius: 0;
+    height: 33px;
+    
+    color: #495057;
 }
 </style>
 <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>

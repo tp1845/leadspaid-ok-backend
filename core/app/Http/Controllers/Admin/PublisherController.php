@@ -254,11 +254,11 @@ class PublisherController extends Controller
    
    
   
-   public function manage_user(){
-     $publisher_admin = Publisher::where('role',1)->where('status','!=',0)->get();
-     $campaign_manager=Publisher::where('role',2)->where('status','!=',0)->get();
-     $Campaign_executive=Publisher::where('role',3)->where('status','!=',0)->get();
-     $admin=Admin::where('status','!=',0)->get();
+  public function manage_user(){
+     $publisher_admin = Publisher::where('role',1)->where('status','=',1)->get();
+     $campaign_manager=Publisher::where('role',2)->where('status','=',1)->get();
+     $Campaign_executive=Publisher::where('role',3)->where('status','=',1)->get();
+     $admin=Admin::where('status','=',1)->get();
 
     $adminpending=Admin::where('status',3)->get();
     $user_pending=Publisher::where('status',3)->get();
@@ -273,7 +273,7 @@ class PublisherController extends Controller
       $page_title = 'Users List'  ;
         $empty_message = 'No search result found';
         return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash','admin_trash','adminpending','user_pending','adminapprove','userapprove'));
-   } 
+   }  
 
   public function save_user(Request $request){
     if($request->role==4){
@@ -380,6 +380,17 @@ class PublisherController extends Controller
     public function admin_status($id,$status){
         Admin::where('id',$id)->update(['status'=>$status]);
        return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
+    }
+
+   public function checkmail(Request $request){
+        $role= $request->role;
+        $email=$request->email;
+       if($role==4){
+         $p_count=Admin::where('email',$request->email)->count();
+       }else{
+         $p_count=Publisher::where('email',$request->email)->count();
+       }
+     return response()->json(['success'=>true, 'message'=> 'User move to trash successfully','code'=>$p_count]);
     }
 
 }

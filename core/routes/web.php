@@ -88,7 +88,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('users','PublisherController@manage_user')->name('users');
 		 Route::get('users/status/{id}/{status}','PublisherController@user_status')->name('users/status');
         Route::get('admin/status/{id}/{status}','PublisherController@admin_status')->name('admin/status');
-
+       Route::post('admin/checkmail','PublisherController@checkmail')->name('admin/checkmail');
         // Users Manager
         Route::get('user/email/{id}/{flag}', 'ManageUsersController@showEmailSingleForm')->name('users.email.single');
         Route::post('user/send-email/{id}/{role}', 'ManageUsersController@sendEmailSingle')->name('users.send.email.single');
