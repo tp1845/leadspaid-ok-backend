@@ -325,6 +325,12 @@ class PublisherController extends Controller
           $Publisher->phone=$request->mobile;
           $Publisher->password=Hash::make($request->password);
           $Publisher->status=3;
+		  $Publisher->ev=1;
+          $Publisher->sv=1;
+          $Publisher->tv=1;
+		  
+		  
+		  
            $Publisher->save();
 
            $insertedId = $Publisher->id;
