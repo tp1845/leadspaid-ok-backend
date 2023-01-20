@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
+
     <link rel="canonical" href="{{ Request::url() }}" />
     <meta property="og:locale" content="en_US" />
 
