@@ -641,7 +641,7 @@
                                             <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }}{{ getAmount($trx->init_blance)  }}</td>
                                             <td data-label="@lang('Amount Spent Yesterday')" class="budget">{{$trx->spent_previous_day === "NA"? "NA": $general->cur_sym .  getAmount((float)$trx->spent_previous_day) }} </td>
                                             <td data-label="@lang('Total Campaign Budget')" class="budget">{{$trx->total_budget === "NA"? "NA": $general->cur_sym .  getAmount((float)$trx->total_budget)}} </td>
-                                            <td data-label="@lang('Amount Deducted From Card')" class="budget">{{ $general->cur_sym }}{{$trx->deducted_amount . ' ($' . $trx->amount . '+3% service charge)' }}</td>
+                                            <td data-label="@lang('Amount Deducted From Card')" class="budget">{{ $general->cur_sym }}{{$trx->deducted_amount . ' ($' . $trx->amount . '+3% service charge)' }}{{$trx->total_budget === "NA"? " (Manual payment)": ""}}</td>
                                             <td data-label="@lang('Final Wallet Balance')" class="budget">{{ $general->cur_sym }}{{ getAmount($trx->final_wallet) }}</td>
                                         </tr>
                                         @empty
@@ -801,7 +801,7 @@
                                 <td data-label="@lang('Inital Wallet Balance')" class="budget">{{ $general->cur_sym }}{{ getAmount($trx->init_blance)  }}</td>
                                 <td data-label="@lang('Total Campaign Budget')" class="budget">{{$trx->total_budget === "NA"? "NA": $general->cur_sym .  getAmount((float)$trx->total_budget)}} </td>
                                 <td data-label="@lang('Amount Spent Yesterday')" class="budget">{{$trx->spent_previous_day === "NA"? "NA": $general->cur_sym .  getAmount((float)$trx->spent_previous_day) }} </td>
-                                <td data-label="@lang('Amount Deducted From Card')" class="budget"> {{ ($trx->deduct) }}</td>
+                                <td data-label="@lang('Amount Deducted From Card')" class="budget"> {{ ($trx->deduct) }} )</td>
                                 <td data-label="@lang('Final Wallet Balance')" class="budget">{{ $general->cur_sym }}{{ getAmount($trx->final_wallet) }}</td>
                             </tr>
                             @empty
