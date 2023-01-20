@@ -70,7 +70,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
       Route::get('password/re-set/{id}','ForgotPasswordController@resetpassword')->name('password/re-set');
 
-         Route::post('password/update','ForgotPasswordController@updatepassword')->name('password/update');   
+         Route::post('password/update','ForgotPasswordController@updatepassword')->name('password/update');
 
    });
 
@@ -502,7 +502,7 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
         Route::post('password/reset/change', 'ResetPasswordController@reset')->name('password.change');
         Route::get('password/re-set/{id}','ForgotPasswordController@resetpassword')->name('password/re-set');
         Route::post('password/update','ForgotPasswordController@updatepassword')->name('password/update');
-	
+
 	});
 
     Route::middleware(['publisher','checkStatus:publisher'])->group(function () {
@@ -593,8 +593,8 @@ Route::get('register-advertiser','SiteController@register_advertiser')->name('re
 Route::get('login-advertiser','SiteController@login_advertiser')->name('login_advertiser');
 Route::get('login-advertiser-unverified','Advertiser\Auth\LoginController@unverified_view')->name('advertiser_unverified_view');
 Route::post('resend-advertiser-verification','Advertiser\Auth\RegisterController@resend_verification_code')->name('resend_advertiser_verification');
-Route::get('/blog', 'SiteController@blogs')->name('blog');
-Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details');
+// Route::get('/blog', 'SiteController@blogs')->name('blog');
+// Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details');
 
 Route::get('/ads/{publisher}/{type}/{current}', 'VisitorController@getAdvertise')->name('adsUrl');
 Route::get('/ad-clicked/{publisher}/{track_id}', 'VisitorController@adClicked')->name('adClicked');
@@ -602,7 +602,6 @@ Route::get('company/plicy/{id}/{slug}', 'SiteController@policy')->name('policy')
 Route::get('privacy-policy-old', 'SiteController@privacy_policy_old')->name('privacy_policy_old');
 Route::get('privacy-policy', 'SiteController@privacy_policy')->name('privacy_policy');
 Route::get('terms-of-use', 'SiteController@terms_condition')->name('terms_condition');
-
 
 Route::get('placeholder-image/{size}', 'SiteController@placeholderImage')->name('placeholderImage');
 Route::get('/home-v4', 'SiteController@home4')->name('home_v4');
