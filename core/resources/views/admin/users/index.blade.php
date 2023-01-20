@@ -582,7 +582,7 @@ table.table--light thead th {
     color: gray;
 }
 #ulser_list .tab-pane.active .dataTables_wrapper {
-    display: flex;
+   
     flex-wrap: wrap;
     justify-content: space-between;
 }
