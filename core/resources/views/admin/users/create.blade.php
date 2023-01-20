@@ -50,7 +50,7 @@ event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || event.c
                                 <label class="">@lang('Email ID (User Name)') <sup class="text-danger">*</sup></label>
                                 <input type="text" id="email" name="email" placeholder="Email id" class="form-control Rg_advts_name rounded-0" value="@leadspaid.com">
                             </div>
-                            <div class="form-group col-md-6">
+                            <div class="form-group col-md-6 d-none">
                                 <label class="">@lang('Password') <sup class="text-danger">*</sup></label>
                                 <input type="text" id="password" name="password" placeholder="Password" class="form-control Rg_advts_name rounded-0" value="">
                             </div>

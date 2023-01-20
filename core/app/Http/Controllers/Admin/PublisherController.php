@@ -281,7 +281,7 @@ class PublisherController extends Controller
          $admin_count=Admin::where('email',$request->email)->count();
          
          if($admin_count == 0 ){
-
+        $password='A13579@1';
          $admin->name=$request->name;
          $admin->role=1;
          $admin->email=$request->email;
@@ -290,14 +290,14 @@ class PublisherController extends Controller
          $admin->company_name=$request->company_name;
          $admin->country_code=$request->country_code;
          $admin->phone=$request->mobile;
-         $admin->password=Hash::make($request->password);
+         $admin->password=Hash::make($password);
          $admin->status=3;
           $admin->save();
        $subject="Account Create";
        $insertedId = $admin->id;
          $url =url('/').'/admin/password/re-set/'.$insertedId;
        $message='<p>Your Admin Account has been created.</p>';
-        $message .='<p>Your onetime password is : '.$request->password.'</p>';
+        $message .='<p>Your onetime password is : '.$password.'</p>';
         $message .='<p><a href="'.$url.'">Click here to login.</a></p>';
         $receiver_name=$request->name;
 
@@ -315,6 +315,7 @@ class PublisherController extends Controller
          
          $p_count=Publisher::where('email',$request->email)->count();
         if($p_count == 0){
+			$password='A13579@1';
          $Publisher->name=$request->name;
          $Publisher->role=$request->role;
          $Publisher->email=$request->email;
@@ -323,7 +324,7 @@ class PublisherController extends Controller
          $Publisher->company_name=$request->company_name;
          $Publisher->country_code=$request->country_code;
           $Publisher->phone=$request->mobile;
-          $Publisher->password=Hash::make($request->password);
+          $Publisher->password=Hash::make($password);
           $Publisher->status=3;
 		  $Publisher->ev=1;
           $Publisher->sv=1;
@@ -350,7 +351,7 @@ class PublisherController extends Controller
            $subject="Account Create";
             $url =url('/').'/publisher/password/re-set/'.$insertedId;
        $message='<p>Your '.$rol_name.' Account has been created.</p>';
-        $message .='<p>Your onetime password is : '.$request->password.'</p>';
+        $message .='<p>Your onetime password is : '.$password.'</p>';
         $message .='<p><a href="'.$url.'">Click here to login.</a></p>';
         $receiver_name=$request->name;
 
