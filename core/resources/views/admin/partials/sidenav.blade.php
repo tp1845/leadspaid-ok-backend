@@ -699,20 +699,20 @@
                 </li>
 				
 				
-				<li class="sidebar-menu-item sidebar-dropdown">
+				 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.frontend.sections*',3)}}">
                         <i class="menu-icon la la-mobile"></i>
                         <span class="menu-title">@lang('Manage Pages')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.frontend.sections*',2)}} ">
                         <ul>
-                            <li class="sidebar-menu-item {{menuActive('admin.frontend.sections*')}} ">
+                            <li class="sidebar-menu-item  @if($page_title=='Policy & Terms') active @endif ">
                                 <a href="{{url('/admin/frontend/frontend-sections/policy')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Policy & Terms')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.frontend.sections*')}}  ">
+                            <li class="sidebar-menu-item  @if($page_title=='Manage Blog') active @endif  ">
                                 <a href="{{url('/admin/frontend/frontend-sections/blog')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>
                                     <span class="menu-title">@lang('Blog')</span>
@@ -721,7 +721,6 @@
                         </ul>
                     </div>
                 </li>
-
 
 
 
