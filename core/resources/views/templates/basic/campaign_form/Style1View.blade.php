@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
   <title>LeadsPaid</title>
   <style>
+    label.error{ color: red; font-size: 14px; margin-bottom: 3px; }
     body {
       background-color: #fff;
       margin: 0;
@@ -427,26 +428,26 @@
         $(form).show();
     }
 
-    $("#LeadForm").submit(function(e){
-        e.preventDefault();
-        var form = $(this);
-        var actionUrl = form.attr('action');
-        formData = form.serialize();
-        $.ajax({
-                type: "POST",
-                url: actionUrl,
-                data: formData,
-                success: function(data)
-                {
-                    if (data.success) {
-                        form[0].reset();
-                        $('#message').html('<div class="alert success">'+data.form+'</div>');
-                    }else{
-                        $('#message').html('<div class="alert error">'+data.form+'</div>');
-                    }
-                }
-            });
-    });
+    // $("#LeadForm").submit(function(e){
+    //     e.preventDefault();
+    //     var form = $(this);
+    //     var actionUrl = form.attr('action');
+    //     formData = form.serialize();
+    //     $.ajax({
+    //             type: "POST",
+    //             url: actionUrl,
+    //             data: formData,
+    //             success: function(data)
+    //             {
+    //                 if (data.success) {
+    //                     form[0].reset();
+    //                     $('#message').html('<div class="alert success">'+data.form+'</div>');
+    //                 }else{
+    //                     $('#message').html('<div class="alert error">'+data.form+'</div>');
+    //                 }
+    //             }
+    //         });
+    // });
     function get_random_object(object_data, min = 1){
       $.each( object_data, function(key, value){ if (value === "" || value === null){ delete  object_data[key]; } });
       var max = Object.keys(object_data).length;
