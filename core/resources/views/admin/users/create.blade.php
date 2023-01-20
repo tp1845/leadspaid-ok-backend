@@ -230,8 +230,26 @@ $("#full_name").capitalize();
     return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter a valid email address");
 
-
-
+  jQuery.validator.addMethod("checkemail", function(value, element) {
+       
+        var duplicate = 0;
+        var role=$(".custom-select").val();
+        var data={'email':value,'role':role, "_token": "{{ csrf_token() }}",};
+         $.ajax({
+           url: "{{ route('admin.admin/checkmail')}}",
+           type: "POST",
+           dataType: 'json' ,
+           data:data,
+            async: false, 
+          success: function (data) {
+           duplicate=data.code;
+            
+            
+          
+        }
+    });
+          return this.optional(element) || duplicate == 0;  
+    }, "Email already exisits");
 
 
  $("#advertiser_form").validate({
@@ -239,7 +257,7 @@ $("#full_name").capitalize();
             name: { required: true,minlength: 3, lettersonly: true },
             company_name: { required: true},
             country: { required: true},
-            email: { required: true,valid_email:true},
+            email: { required: true,valid_email:true,checkemail:true},
             role: {required: true},
             password: {required: true,minlength: 6},
             mobile: {required: true,minlength: 6}
