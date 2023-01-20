@@ -385,12 +385,13 @@
                 t +='<div class="form-row">';
                 t +='<label for="Input_field_'+$i+'" class="form-label">'+$field['question_text']+'*</label>';
                 if($field){
+                    $class = $field['question_text'].toLowerCase().replace(/\s/g,'_');
                     if($field['question_type']== "ShortAnswer"){
-                        t +='<input type="text" class="form-control" id="Input_field_'+$i+'" name="field_'+$i+'" placeholder="'+$field['question_text']+'*" ';
+                        t +='<input type="text" class="form-control '+ $class +'" id="Input_field_'+$i+'" name="field_'+$i+'" placeholder="'+$field['question_text']+'*" ';
                         if($field['required']){ t +=' required '; }
                         t +='>';
                     }else{
-                        t +='<select class="form-select" id="Input_field_'+$i+'"  name="field_'+$i+'" ';
+                        t +='<select class="form-select '+ $class +'" id="Input_field_'+$i+'"  name="field_'+$i+'" ';
                         if($field['required']){ t +=' required '; }
                         t +='>';
                         if($field['question_text']){
@@ -481,6 +482,88 @@
         return urlParams;
         }, {});
     }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js" integrity="sha512-rstIgDs0xPgmG6RX1Aba4KV5cWJbAMcvRCVmglpam9SoHZiUCyQVDdH2LPlxoHtrv17XWblE/V/PP+Tr04hbtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/additional-methods.min.js"></script>
+<script>
+    $("#LeadForm").validate({
+        submitHandler: function (form) {
+            var actionUrl = $(form).attr('action');
+            formData = $(form).serialize();
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data: formData,
+                success: function (data) {
+                    if (data.success) {
+                        $("#LeadForm").trigger("reset");;
+                        $('#message').html('<div class="alert success">'+data.form+'</div>');
+                    }else{
+                        $('#message').html('<div class="alert error">'+data.form+'</div>');
+                    }
+                }
+            });
+            return false; // required to block normal submit since you used ajax
+        }
+    });
+
+    $.validator.addMethod( "money", function(value, element) {
+        var isValidMoney = /^\d{0,10}(\.\d{0,2})?$/.test(value);
+        return this.optional(element) || isValidMoney;
+    }, "Enter Correct value." );
+    jQuery.validator.addMethod("lettersonly", function(value, element) {
+        return this.optional(element) || /^[a-z ]+$/i.test(value);
+    }, "Letters only please");
+    jQuery.validator.addMethod("city", function(value, element) {
+        return this.optional(element) || /^[a-zA-Z.&\s\- ]+$/i.test(value);
+    }, "Letters only please");
+    jQuery.validator.addMethod("numbersonly", function(value, element) {
+        return this.optional(element) || /^[0-9]*$/i.test(value);
+    }, "Number only please");
+    jQuery.validator.addMethod("phoneonly", function(value, element) {
+        return this.optional(element) || /^[0-9.-]*$/i.test(value);
+        }, "Number only please");
+    jQuery.validator.addMethod("valid_email", function(value, element) {
+        return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
+    }, "Please enter a valid email address");
+    jQuery.validator.addMethod("website", function(value, element) {
+        rawInput =value;
+        cleanInput = rawInput.replace('www.', '');
+        cleanInput = cleanInput.replace('http://', '');
+        cleanInput = cleanInput.replace('https://', '');
+        return this.optional(element) || /^([^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/i.test(value);
+    }, "Please enter a valid Website");
+
+    jQuery.validator.addMethod("valid_email", function(value, element) { return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);   }, "Please enter a valid email address");
+    jQuery.validator.addClassRules({
+        full_name: { minlength: 3, maxlength:20, lettersonly: true },
+        first_name: { minlength: 3, maxlength:20, lettersonly: true },
+        last_name: { minlength: 3, maxlength:20, lettersonly: true },
+        fullname: { minlength: 3, maxlength:20, lettersonly: true },
+        lastname: { minlength: 3, maxlength:20, lettersonly: true },
+        name: { minlength: 3, maxlength:20, lettersonly: true },
+
+        email: { valid_email:true  },
+        email_id : { valid_email:true  },
+        emailid : { valid_email:true  },
+        email_address : { valid_email:true  },
+
+        phone: { minlength: 6, phoneonly: true, isdphone:true },
+        phone_number: { minlength: 6, phoneonly: true, isdphone:true },
+        mobile: { minlength: 6, phoneonly: true, isdphone:true },
+        mobile_number: { minlength: 6, phoneonly: true, isdphone:true },
+
+        city: { minlength: 3, city: true },
+        your_city: { minlength: 3, city: true },
+        your_present_city: { minlength: 3, city: true },
+        your_current_city: { minlength: 3, city: true },
+        city_you_live: { minlength: 3, city: true },
+        city_you_live_in: { minlength: 3, city: true },
+        current_city: { minlength: 3, city: true },
+        present_city: { minlength: 3, city: true },
+        city_you_live_in: { minlength: 3, city: true },
+    });
 </script>
 </body>
 </html>
