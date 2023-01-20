@@ -423,7 +423,7 @@
             background: #a1c0e0!important;
             /* background: #e0e0e0 url("{{asset('assets/templates/leadpaid/images/')}}/gray_wave_bg.jpg") no-repeat center!important; background-size: cover; */
         }
-        #section_advertisers .title{ font-size: 21px!important;  }
+        #section_advertisers .title{ font-size: 30px!important;  }
         #section_advertisers  .slick-slider{ padding: 0}
         .title{ color: #003561; font-size: 3rem; }
 
