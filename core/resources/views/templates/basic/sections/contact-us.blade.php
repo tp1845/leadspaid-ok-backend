@@ -83,7 +83,7 @@
                             <p class="mb-0 d-flex justify-content-start">
 
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-pin.png" width="32px" alt="" ></span>
-                                <span><b>San Francisco, CA</b><br> 5214F Diamond Heights Blvd #3077<br/> San Francisco, California 94131<br>United States.</span>
+                                <span><b>San Francisco, CA</b><br> 5214F Diamond Heights Blvd<br/> San Francisco, California 94131<br>United States.</span>
                             </p>
                             <p class="my-3 d-flex justify-content-start">
                                 <span class="me-3"><img src="{{asset('assets/images/frontend')}}/icon-email.png" width="32px" alt="" ></span>
