@@ -13,6 +13,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('partials.seo')
     <title>{{ $general->sitename($page_title ?? '') }}</title>
+    <link rel="canonical" href="{{$request->url()}}" />
+    <meta property="og:locale" content="en_US" />
+
     <link rel="icon" type="image/png" href="{{getImage(imagePath()['logoIcon']['path'] .'/favicon.png')}}" sizes="16x16">
     <!-- jQuery library -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
