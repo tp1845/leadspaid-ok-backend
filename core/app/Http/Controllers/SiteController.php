@@ -314,7 +314,7 @@ class SiteController extends Controller
     }
     public function homelive()
     {
-        $data['page_title'] = 'New Home 6';
+        $data['page_title'] = "World's First AI-powered Leads Ad Network";
         return view($this->activeTemplate . 'home-leadpaid-live', $data);
     }
 }
