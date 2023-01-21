@@ -9,7 +9,7 @@
                 <div class="card-body">
 
                     <div class="table-responsive table-responsive--sm">
-                        <table class="table align-items-center table--light">
+                        <table class="table align-items-center table--light"  id="datatabl">
                             <thead>
                             <tr>
                                 <th>@lang('Short Code')</th>
@@ -93,3 +93,15 @@
         </div>
     </div>
 @endsection
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</styl
+</style>
+@endpush
