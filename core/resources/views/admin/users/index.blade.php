@@ -539,7 +539,9 @@
 }
 #ulser_list .card-body ul.nav.nav-tabs {
     position: absolute;
-    top: 35px;
+    top: 55px;
+    z-index: 1;
+    left: 19px;
 }
 div.dataTables_wrapper div.dataTables_filter input {
     border: 1px solid #ced4da;
@@ -599,6 +601,12 @@ table.table--light thead th {
 }
 #ulser_list .tab-pane.active .dataTables_length {
     flex: 0 0 auto;
+}
+    table thead tr th:after {
+    top: 11px !important;
+}
+table thead tr th:before {
+    bottom: 11px !important;
 }
 </style>
 <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
