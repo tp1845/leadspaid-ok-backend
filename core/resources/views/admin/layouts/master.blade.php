@@ -191,7 +191,10 @@ position: absolute;
     white-space: nowrap;
     justify-content: flex-end;
 }
-
+table.table--light thead th {
+   
+    background-color: #1A273A !important;
+}
 	</style>
 </head>
 <body>
