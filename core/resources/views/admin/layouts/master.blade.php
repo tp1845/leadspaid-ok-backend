@@ -104,6 +104,92 @@ table thead tr th:before {
     content: "\f105";
     font-size: 16px;
     color: #5b6e88;
+}.dataTables_paginate {
+    display: flex;
+}
+ .dataTables_paginate span {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: flex-start;
+}
+.dataTables_paginate span a.paginate_button.current {
+    background-color: #1361b2;
+    border-color: #1361b2;
+    box-shadow: 0px 3px 5px rgb(0 0 0 / 13%);
+    color: #fff;
+}
+    .paginate_button {
+    margin: 5px 7px;
+    position: relative;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #dee2e6;
+    line-height: 35px;
+    text-align: center;
+    cursor: pointer;
+    color: #5b6e88;
+}
+#datatable_previous:after {
+    position: absolute;
+    top: 0;
+    right: 11px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    content: "\f104";
+    font-size: 16px;
+    color: #5b6e88;
+}
+#datatable_next, #datatable_previous {
+    color: transparent;
+}
+#datatable_next:after {
+position: absolute;
+    top: 0;
+    right: 11px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 700;
+    content: "\f105";
+    font-size: 16px;
+    color: #5b6e88;
+}
+.dataTables_wrapper {
+    display: flex;
+    padding-top: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.dataTables_filter {
+    position: relative;
+    width: 100%;
+}
+.dataTables_filter label {
+    margin-bottom: 0 !important;
+    float: right;
+}
+
+.dataTables_wrapper table.dataTable {
+    background: #fff;
+}
+.card {
+    background: transparent;
+}
+.dataTables_filter label input {
+    height: calc(1rem + 1rem + 2px);
+    font-size: 0.8125rem !important;
+    padding: 10px 20px;
+    border: 1px solid #ced4da;
+    border-radius: 0;
+}
+.dataTables_info {
+    flex: auto;
+    text-align: right;
+    padding-top: 12px;
+    padding-right: 20px;
+}
+.dataTables_paginate {
+    margin: 2px 0;
+    white-space: nowrap;
+    justify-content: flex-end;
 }
 
 	</style>
