@@ -29,14 +29,14 @@
                 <a class="nav-link" href="{{route('home.contact')}}">Publisher</a>
             </li>
         @endif
-        <li class="nav-item">
+        <li class="nav-item {{ (request()->is('contact-us')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
         </li>
         @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
-        <li class="nav-item">
+        <li class="nav-item {{ (request()->is('login-advertiser')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('login_advertiser')}}">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item {{ (request()->is('register-advertiser')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
         </li>
         @endif
