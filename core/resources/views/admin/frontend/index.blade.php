@@ -128,7 +128,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="table-responsive--sm table-responsive">
-                            <table class="table table--light style--two custom-data-table">
+                            <table id="datatable5" class="table table--light style--two custom-data-table">
                                 <thead>
                                 <tr>
                                     <th>@lang('SL')</th>
@@ -502,6 +502,28 @@
                 $(this).parent().siblings('.icon').val(`<i class="${e.icon}"></i>`);
             });
         })(jQuery);
+		$('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
     </script>
 
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+
+</style>
 @endpush
