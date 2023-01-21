@@ -580,8 +580,7 @@ function send_email_publisher($user, $type, $link, $email_type)
         $subject= 'Your LeadsPaid.com Account has been activated. Login Now »';
         $message = '<p style="color: rgb(193,205,220);"> Your LeadsPaid.com account has been activated! <br/>  Please login to <a href="https://www.leadspaid.com/login-publisher" style="color: rgb(193,205,220);">https://www.leadspaid.com/login-publisher</a>  to Add your App or Webite.</p>';
     } elseif($email_type == 'admin_on_publisher_registered'){
-       // $sendto_email= 'arun.saba@leadspaid.com';
-        $sendto_email= 'tejinder.animator@gmail.com';
+        $sendto_email= 'arun.saba@leadspaid.com';
         $receiver_name = 'Admin';
         $subject= 'New Publisher registered - Approve Now';
         $message = '<p style="color: rgb(193,205,220);">A new Publisher ('. $user->company_name .') has registered for an Publisher account.<br/> <a href="https://www.leadspaid.com/admin">Approve it in admin panel</a>.</p>';
