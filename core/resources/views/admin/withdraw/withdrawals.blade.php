@@ -36,7 +36,7 @@
                 <div class="card-body p-0">
 
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Date')</th>
@@ -61,7 +61,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($withdrawals as $withdraw)
+                                @if(!empty($withdrawals))
+                            @foreach($withdrawals as $withdraw)
                                 @php
                                     $details = ($withdraw->withdraw_information != null) ? json_encode($withdraw->withdraw_information) : null;
                                 @endphp
@@ -108,19 +109,12 @@
                                         </td>
                                     @endif
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                                </tr>
-                            @endforelse
+                               @endforeach
+                               @endif
 
                             </tbody>
                         </table><!-- table end -->
                     </div>
-                </div>
-
-                <div class="card-footer py-4">
-                    {{ $withdrawals->links('admin.partials.paginate') }}
                 </div>
             </div><!-- card end -->
         </div>
@@ -157,4 +151,34 @@
 </form>
 @endif
     
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+
+
+</style>
+@endpush
+
+@push('script')
+    <script>
+
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
 @endpush

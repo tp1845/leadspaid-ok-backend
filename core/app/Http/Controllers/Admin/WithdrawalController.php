@@ -17,7 +17,7 @@ class WithdrawalController extends Controller
     public function pending()
     {
         $page_title = 'Pending Withdrawals';
-        $withdrawals = Withdrawal::where('status', 2)->with(['publisher','method'])->latest()->paginate(getPaginate());
+        $withdrawals = Withdrawal::where('status', 2)->with(['publisher','method'])->latest()->get();
         $empty_message = 'No withdrawal is pending';
         $type = 'pending';
         return view('admin.withdraw.withdrawals', compact('page_title', 'withdrawals', 'empty_message','type'));
@@ -25,7 +25,7 @@ class WithdrawalController extends Controller
     public function approved()
     {
         $page_title = 'Approved Withdrawals';
-        $withdrawals = Withdrawal::where('status', 1)->with(['publisher','method'])->latest()->paginate(getPaginate());
+        $withdrawals = Withdrawal::where('status', 1)->with(['publisher','method'])->latest()->get();
         $empty_message = 'No withdrawal is approved';
         $type = 'approved';
         return view('admin.withdraw.withdrawals', compact('page_title', 'withdrawals', 'empty_message','type'));
@@ -34,7 +34,7 @@ class WithdrawalController extends Controller
     public function rejected()
     {
         $page_title = 'Rejected Withdrawals';
-        $withdrawals = Withdrawal::where('status', 3)->with(['publisher','method'])->latest()->paginate(getPaginate());
+        $withdrawals = Withdrawal::where('status', 3)->with(['publisher','method'])->latest()->get();
         $empty_message = 'No withdrawal is rejected';
         $type = 'rejected';
         return view('admin.withdraw.withdrawals', compact('page_title', 'withdrawals', 'empty_message','type'));
@@ -43,7 +43,7 @@ class WithdrawalController extends Controller
     public function log()
     {
         $page_title = 'Withdrawals Log';
-        $withdrawals = Withdrawal::where('status', '!=', 0)->with(['publisher','method'])->latest()->paginate(getPaginate());
+        $withdrawals = Withdrawal::where('status', '!=', 0)->with(['publisher','method'])->latest()->get();
         $empty_message = 'No withdrawal history';
         return view('admin.withdraw.withdrawals', compact('page_title', 'withdrawals', 'empty_message'));
     }
@@ -53,17 +53,17 @@ class WithdrawalController extends Controller
         $method = WithdrawMethod::findOrFail($method_id);
         if ($type == 'approved') {
             $page_title = 'Approved Withdrawal Via '.$method->name;
-            $withdrawals = Withdrawal::where('status', 1)->with(['publisher','method'])->latest()->paginate(getPaginate());
+            $withdrawals = Withdrawal::where('status', 1)->with(['publisher','method'])->latest()->get();
         }elseif($type == 'rejected'){
             $page_title = 'Rejected Withdrawals Via '.$method->name;
-            $withdrawals = Withdrawal::where('status', 3)->with(['publisher','method'])->latest()->paginate(getPaginate());
+            $withdrawals = Withdrawal::where('status', 3)->with(['publisher','method'])->latest()->get();
 
         }elseif($type == 'pending'){
             $page_title = 'Pending Withdrawals Via '.$method->name;
-            $withdrawals = Withdrawal::where('status', 2)->with(['publisher','method'])->latest()->paginate(getPaginate());
+            $withdrawals = Withdrawal::where('status', 2)->with(['publisher','method'])->latest()->get();
         }else{
             $page_title = 'Withdrawals Via '.$method->name;
-            $withdrawals = Withdrawal::where('status', '!=', 0)->with(['publisher','method'])->latest()->paginate(getPaginate());
+            $withdrawals = Withdrawal::where('status', '!=', 0)->with(['publisher','method'])->latest()->get();
         }
         $empty_message = 'Withdraw Log Not Found';
         return view('admin.withdraw.withdrawals', compact('page_title', 'withdrawals', 'empty_message','method'));
@@ -145,7 +145,7 @@ class WithdrawalController extends Controller
                 break;
         }
 
-        $withdrawals = $withdrawals->with(['publisher', 'method'])->paginate(getPaginate());
+        $withdrawals = $withdrawals->with(['publisher', 'method'])->get();
         $page_title = 'Withdraw Log';
         $empty_message = 'No Withdrawals Found';
         $dateSearch = $search;

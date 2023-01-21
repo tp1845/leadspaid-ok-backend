@@ -9,7 +9,7 @@
                 <div class="card-body p-0">
 
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
 
                             <thead>
                             <tr>
@@ -23,7 +23,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($methods as $method)
+                                @if(!empty($methods))
+                            @foreach($methods as $method)
                                 <tr>
                                     <td data-label="@lang('Method')">
                                         <div class="user">
@@ -64,11 +65,8 @@
                                         @endif
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ __($empty_message) }}</td>
-                                </tr>
-                            @endforelse
+                             @endforeach
+                             @endif
 
                             </tbody>
                         </table><!-- table end -->
@@ -155,5 +153,28 @@
                 modal.modal('show');
             });
         });
+		$('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
     </script>
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+
+
+</style>
 @endpush
