@@ -8,7 +8,7 @@
             <div class="card">
                 <div class="card-body p-0">
                     <div class="table-responsive table-responsive--sm">
-                        <table class=" table align-items-center table--light">
+                        <table class=" table align-items-center table--light" id="datatable5">
                             <thead>
                             <tr>
                                 <th>@lang('Short Code') </th>
@@ -59,3 +59,31 @@
 @endsection
 
 
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
+@endpush
+
+@push('script')
+    <script>
+
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
+@endpush

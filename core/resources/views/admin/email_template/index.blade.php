@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two custom-data-table">
+                        <table class="table table--light style--two custom-data-table" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Name')</th>
@@ -17,7 +17,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($email_templates as $template)
+                                @if(!empty($email_templates))
+                            @foreach($email_templates as $template)
                                 <tr>
                                     <td data-label="@lang('Name')">{{ __($template->name) }}</td>
                                     <td data-label="@lang('Subject')">{{ __($template->subj) }}</td>
@@ -36,11 +37,8 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ __($empty_message) }}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+                            @endif
 
                             </tbody>
                         </table><!-- table end -->
@@ -50,3 +48,32 @@
         </div>
     </div>
 @endsection
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+
+</style>
+@endpush
+
+@push('script')
+    <script>
+
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
+@endpush
