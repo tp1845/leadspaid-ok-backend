@@ -161,6 +161,7 @@ position: absolute;
 .dataTables_filter {
     position: relative;
     width: 100%;
+	text-align:left !important;
 }
 .dataTables_filter label {
     margin-bottom: 0 !important;
