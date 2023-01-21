@@ -41,9 +41,7 @@
                         </table><!-- table end -->
                     </div>
                 </div>
-                <div class="card-footer py-4">
-                 {{$advertisers->links('admin.partials.paginate')}}
-                </div>
+                
             </div><!-- card end -->
         </div>
 
