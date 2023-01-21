@@ -129,7 +129,7 @@ class CampaignFormController extends Controller
         $leads = campaign_forms_leads::where('expiry', Null)->get();
         foreach($leads as $lead ){
            if(Carbon::today()->subDays(90) >= $lead->created_at){
-                $update_lead = campaign_forms_leads::findOrFail( $lead->id);
+                $update_lead = campaign_forms_leads::findOrFail($lead->id);
                 $update_lead->expiry = 'expired';
                 $update_lead->update();
            }
