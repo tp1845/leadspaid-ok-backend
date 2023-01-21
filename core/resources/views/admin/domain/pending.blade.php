@@ -8,7 +8,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Publisher Username')</th>
@@ -20,7 +20,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($pendings as $pending)
+                                @if(!empty($pendings))
+                            @foreach($pendings as $pending)
                                 <tr>
                                     <td data-label="@lang('Publisher Username')"><a
                                             href="{{route('admin.publisher.details',$pending->publisher->id)}}"
@@ -53,18 +54,12 @@
                                         </a>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+                            @endif
 
                             </tbody>
                         </table><!-- table end -->
                     </div>
-                </div>
-                <div class="card-footer py-4">
-                    {{$pendings->links('admin.partials.paginate')}}
                 </div>
             </div><!-- card end -->
         </div>
@@ -150,6 +145,16 @@
             $('#deleteModal').find('form').attr('action', route)
             modal.modal('show');
         })
+        $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            },
+           
+        });
     </script>
 
 @endpush
@@ -172,6 +177,12 @@
             -ms-border-radius: 3px;
             -o-border-radius: 3px;
         }
+		           table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
     </style>
 
 @endpush

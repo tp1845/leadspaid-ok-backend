@@ -8,7 +8,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Publisher Username')</th>
@@ -91,4 +91,32 @@
             </div>
         </div>
     </form>
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
+@endpush
+
+@push('script')
+<script>
+
+ $('#datatable').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
 @endpush

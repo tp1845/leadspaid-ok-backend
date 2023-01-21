@@ -10,14 +10,14 @@ class DomainController extends Controller
 {
     public function pending()
     {
-        $pendings = DomainVerifcation::whereStatus(2)->latest()->paginate(15);
+        $pendings = DomainVerifcation::whereStatus(2)->latest()->get();
         $page_title = 'Pending Domain';
         $empty_message  = "No data";
         return view('admin.domain.pending',compact('pendings','page_title','empty_message'));
     }
     public function approved()
     {
-        $approves = DomainVerifcation::whereStatus(1)->latest()->paginate(15);
+        $approves = DomainVerifcation::whereStatus(1)->latest()->get();
         $page_title = 'Approved Domain';
         $empty_message  = "No data";
         return view('admin.domain.approved',compact('approves','page_title','empty_message'));
