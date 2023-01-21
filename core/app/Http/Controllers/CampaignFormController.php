@@ -126,13 +126,6 @@ class CampaignFormController extends Controller
     }
 
     public function check_lead_expiry(){
-
-        $sendto_email= 'tejinder.animator@gmail.com';
-        $receiver_name = 'tejinder';
-        $subject= 'Your LeadsPaid.com Testing';
-        $message = ' Testing';
-        send_general_email($sendto_email, $subject, $message, $receiver_name);
-
         $leads = campaign_forms_leads::where('expiry', Null)->get();
         foreach($leads as $lead ){
            if(Carbon::today()->subDays(90) >= $lead->created_at){
