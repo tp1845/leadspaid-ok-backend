@@ -33,19 +33,19 @@ class ReportController extends Controller
             }
             if(count($date) == 1){
                 $firstDate = Carbon::create($date[0])->format('Y-m-d');
-                $earningLogs = EarningLogs::where('date','like',"%$firstDate%")->paginate(15);
+                $earningLogs = EarningLogs::where('date','like',"%$firstDate%")->get();
             } else{
                 $firstDate = Carbon::create($date[0])->format('Y-m-d');
                 $secondDate = Carbon::create($date[1])->format('Y-m-d');
-                $earningLogs = EarningLogs::whereBetween('date',[$firstDate,$secondDate])->paginate(15);
+                $earningLogs = EarningLogs::whereBetween('date',[$firstDate,$secondDate])->get();
               
             }
         } elseif($request->search) {
             $earningLogs = EarningLogs::whereHas('publisher', function ($user) use ($search) {
                 $user->where('username', 'like',"%$search%");
-            })->paginate(15);
+            })->get();
         } else {
-            $earningLogs = EarningLogs::latest()->paginate(15);
+            $earningLogs = EarningLogs::latest()->get();
         }
         return view('admin.reports.publisherEarnings', compact('page_title', 'earningLogs', 'empty_message','search'));
 
@@ -60,10 +60,10 @@ class ReportController extends Controller
             $page_title = 'Search Result of '.$search;
             $transactions = Transaction::with('user')->whereHas('user', function ($user) use ($search) {
                 $user->where('username', 'like',"%$search%");
-            })->orWhere('trx', $search)->paginate(getPaginate());
+            })->orWhere('trx', $search)->get();
         } else {
 
-            $transactions = Transaction::where('user_id','!=',null)->latest()->paginate(15);
+            $transactions = Transaction::where('user_id','!=',null)->latest()->get();
         }
        
         $empty_message = 'No transactions.';
@@ -81,12 +81,12 @@ class ReportController extends Controller
                 $query->where('username', $search);
             })->orWhereHas('publisher', function ($query) use ($search) {
                 $query->where('username', $search);
-            })->orderBy('id','desc')->paginate(getPaginate());
+            })->orderBy('id','desc')->get();
             return view('admin.reports.logins', compact('page_title', 'empty_message', 'search', 'login_logs'));
         }
         $page_title = 'User Login History';
         $empty_message = 'No users login found.';
-        $login_logs = UserLogin::orderBy('id','desc')->paginate(getPaginate());
+        $login_logs = UserLogin::orderBy('id','desc')->get();
         return view('admin.reports.logins', compact('page_title', 'empty_message', 'login_logs'));
     }
 
@@ -94,7 +94,7 @@ class ReportController extends Controller
     public function loginIpHistory($ip)
     {
         $page_title = 'Login By - ' . $ip;
-        $login_logs = UserLogin::where('user_ip',$ip)->latest()->paginate(getPaginate());
+        $login_logs = UserLogin::where('user_ip',$ip)->latest()->get();
         $empty_message = 'No users login found.';
         return view('admin.iplogins', compact('page_title', 'empty_message', 'login_logs'));
 

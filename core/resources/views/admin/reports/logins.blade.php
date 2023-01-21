@@ -8,7 +8,7 @@
                 <div class="card-body p-0">
 
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Date')</th>
@@ -20,7 +20,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($login_logs as $log)
+                                @if(!empty($login_logs))
+                            @foreach($login_logs as $log)
                                 <tr>
                                     <td data-label="@lang('Date')">{{diffForHumans($log->created_at) }}</td>
                                     @if ($log->publisher_id == null)
@@ -39,18 +40,13 @@
                                     <td data-label="@lang('Browser')">{{ __($log->browser) }}</td>
                                     <td data-label="@lang('OS')">{{ __($log->os) }}</td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ __($empty_message) }}</td>
-                                </tr>
-                            @endforelse
+                              @endforeach
+
+                              @endif
 
                             </tbody>
                         </table><!-- table end -->
                     </div>
-                </div>
-                <div class="card-footer py-4">
-                    {{ paginateLinks($login_logs) }}
                 </div>
             </div><!-- card end -->
         </div>
@@ -70,4 +66,32 @@
         </div>
     </form>
    
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
+@endpush
+
+@push('script')
+    <script>
+
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
 @endpush

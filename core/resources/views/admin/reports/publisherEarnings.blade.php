@@ -7,7 +7,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Date')</th>
@@ -19,7 +19,8 @@
                             </thead>
                             <tbody>
 
-                            @forelse($earningLogs as  $log)
+                             @if(!empty($earningLogs))
+                            @foreach($earningLogs as  $log)
                                <tr>
                                 <td data-label="@lang('Date')">{{ $log->date }}</td>
                                 <td data-label="@lang('Publisher')"><a href="{{ route('admin.publisher.details', $log->publisher_id) }}">{{ @$log->publisher->username }}</a></td>
@@ -29,17 +30,11 @@
                                     {{getAmount($log->amount)}} {{$general->cur_text}}
                                 </td>
                             </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-center" colspan="12">{{$empty_message}}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+                            @endif
                             </tbody>
                         </table><!-- table end -->
                     </div>
-                </div>
-                <div class="card-footer py-4">
-                    {{ paginateLinks($earningLogs) }}
                 </div>
             </div><!-- card end -->
         </div>
@@ -81,5 +76,26 @@
     // date picker
     "use strict";
     $('.datepicker-here').datepicker();
-    </script>
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
+@endpush
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
 @endpush
