@@ -52,8 +52,8 @@ table thead tr th:after {
     bottom: 50% !important;
     content: "▲" !important;
     position: absolute !important;
-    right: 10px !important;
-    top: 10px !important;
+    right: 10px;
+    top: 10px;
     opacity: .125 !important;
     line-height: 9px !important;
     font-size: .9em !important;
@@ -61,8 +61,8 @@ table thead tr th:after {
 table thead tr th:before {
     content: "▼" !important;
     position: absolute;
-    right: 10px !important;
-    bottom: 10px !important;
+    right: 10px;
+    bottom: 10px;
     opacity: .125 !important;
     line-height: 9px !important;
     font-size: .9em !important;
