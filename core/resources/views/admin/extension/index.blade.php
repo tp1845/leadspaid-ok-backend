@@ -6,7 +6,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body">
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two custom-data-table">
+                        <table class="table table--light style--two custom-data-table" id="datatable5">
                             <thead>
                                 <tr>
                                     <th scope="col">@lang('Extension')</th>
@@ -15,6 +15,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if(!empty($extensions))
                             @foreach($extensions as $extension)
                                 <tr>
                                     <td data-label="@lang('Extension')">
@@ -64,6 +65,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -225,6 +227,27 @@
 
 
         })(jQuery);
-
+$('#datatable5').DataTable({
+           
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
     </script>
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+
+</style>
 @endpush
