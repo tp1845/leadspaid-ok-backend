@@ -16,7 +16,7 @@ class SupportTicketController extends Controller
     {
         $page_title = 'Support Tickets';
         $empty_message = 'No Data found.';
-        $items = SupportTicket::latest()->with(['advertiser','publisher'])->paginate(getPaginate());
+        $items = SupportTicket::latest()->with(['advertiser','publisher'])->get();
         return view('admin.support.tickets', compact('items', 'page_title','empty_message'));
     }
 
@@ -24,7 +24,7 @@ class SupportTicketController extends Controller
     {
         $page_title = 'Pending Tickets';
         $empty_message = 'No Data found.';
-        $items = SupportTicket::whereIn('status', [0,2])->latest()->with(['advertiser','publisher'])->paginate(getPaginate());
+        $items = SupportTicket::whereIn('status', [0,2])->latest()->with(['advertiser','publisher'])->get();
         return view('admin.support.tickets', compact('items', 'page_title','empty_message'));
     }
 
@@ -32,7 +32,7 @@ class SupportTicketController extends Controller
     {
         $empty_message = 'No Data found.';
         $page_title = 'Closed Tickets';
-        $items = SupportTicket::whereIn('status', [3])->latest()->with(['advertiser','publisher'])->paginate(getPaginate());
+        $items = SupportTicket::whereIn('status', [3])->latest()->with(['advertiser','publisher'])->get();
         return view('admin.support.tickets', compact('items', 'page_title','empty_message'));
     }
 
@@ -40,7 +40,7 @@ class SupportTicketController extends Controller
     {
         $page_title = 'Answered Tickets';
         $empty_message = 'No Data found.';
-        $items = SupportTicket::latest()->with(['advertiser','publisher'])->whereIN('status', [1])->paginate(getPaginate());
+        $items = SupportTicket::latest()->with(['advertiser','publisher'])->whereIN('status', [1])->get();
         return view('admin.support.tickets', compact('items', 'page_title','empty_message'));
     }
 

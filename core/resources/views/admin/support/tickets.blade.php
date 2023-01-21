@@ -6,7 +6,7 @@
         <div class="card b-radius--10 ">
             <div class="card-body p-0">
                 <div class="table-responsive--sm table-responsive">
-                    <table class="table table--light">
+                    <table class="table table--light" id="datatable5">
                         <thead>
                         <tr>
                             <th scope="col">@lang('Subject')</th>
@@ -17,7 +17,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($items as $item)
+                            @if(!empty($items))
+                        @foreach($items as $item)
                             <tr>
                                 <td data-label="Subject">
                                     <a href="{{ route('admin.ticket.view', $item->id) }}" class="font-weight-bold"> [@lang('Ticket') #{{ $item->ticket }}] {{ $item->subject }} </a>
@@ -54,18 +55,12 @@
                                     </a>
                                 </td>
                             </tr>
-                        @empty
-                            <tr>
-                                <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                            </tr>
-                        @endforelse
+                         @endforeach
+                         @endif
 
                         </tbody>
                     </table><!-- table end -->
                 </div>
-            </div>
-            <div class="card-footer py-4">
-                {{ $items->links('admin.partials.paginate') }}
             </div>
         </div><!-- card end -->
     </div>
@@ -73,3 +68,30 @@
 @endsection
 
 
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
+@endpush
+
+@push('script')
+    <script>
+
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
+@endpush
