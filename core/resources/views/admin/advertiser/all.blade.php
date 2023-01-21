@@ -178,5 +178,12 @@
     .toggle input[data-size="small"] ~ .toggle-group label {   text-indent: -999px;   }
     .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
+	table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+
 </style>
 @endpush
