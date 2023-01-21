@@ -19,14 +19,14 @@ class PublisherController extends Controller
     {
         $page_title = 'All publishers';
         $empty_message = 'No data';
-        $publishers = Publisher::latest()->paginate(15);
+        $publishers = Publisher::latest()->get();
         return view('admin.publisher.all',compact('page_title','empty_message','publishers'));
     }
     public function allActivePublisher()
     {
         $page_title = 'All active advertiser';
         $empty_message = 'No advertiser';
-        $publishers = Publisher::whereStatus(1)->latest()->paginate(15);
+        $publishers = Publisher::whereStatus(1)->latest()->get();
         return view('admin.publisher.all',compact('page_title','empty_message','publishers'));
     }
     public function publisherDetails($id)
@@ -45,7 +45,7 @@ class PublisherController extends Controller
         $user = Publisher::findOrFail($id);
         $page_title = 'Publisher Login History - ' . $user->username;
         $empty_message = 'No users login found.';
-        $login_logs = $user->login_logs()->latest()->paginate(getPaginate());
+        $login_logs = $user->login_logs()->latest()->get();
         return view('admin.publisher.logins', compact('page_title', 'empty_message', 'login_logs'));
     }
 
@@ -81,7 +81,7 @@ class PublisherController extends Controller
     {
         $page_title = 'Email Unverified Users';
         $empty_message = 'No email unverified user found';
-        $publishers = Publisher::emailUnverified()->latest()->paginate(getPaginate());
+        $publishers = Publisher::emailUnverified()->latest()->get();
         return view('admin.publisher.emailUnverified', compact('page_title', 'empty_message', 'publishers'));
     }
 
@@ -89,7 +89,7 @@ class PublisherController extends Controller
     {
         $page_title = 'SMS Unverified Users';
         $empty_message = 'No sms unverified user found';
-        $publishers = Publisher::smsUnverified()->latest()->paginate(getPaginate());
+        $publishers = Publisher::smsUnverified()->latest()->get();
         return view('admin.publisher.smsUnverified', compact('page_title', 'empty_message', 'publishers'));
     }
 
@@ -113,7 +113,7 @@ class PublisherController extends Controller
     {
         $page_title = 'All banned publishers';
         $empty_message = 'No data';
-        $publishers = Publisher::latest()->whereStatus(2)->paginate(15);
+        $publishers = Publisher::latest()->whereStatus(2)->get();
         return view('admin.publisher.banned',compact('page_title','empty_message','publishers'));
     }
 

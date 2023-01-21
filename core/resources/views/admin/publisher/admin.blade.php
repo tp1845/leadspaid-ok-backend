@@ -6,7 +6,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Name')</th>
@@ -19,7 +19,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($publishers as $publisher)
+							
+                            @if(!empty($publishers))
+                                @foreach($publishers as $publisher)
                             <tr>
                                 <td data-label="@lang('Name')" class="text--primary">{{ $publisher->name }}</td>
                                 <td data-label="@lang('Email')">{{ $publisher->email }}</td>
@@ -36,11 +38,8 @@
 
                                 </td>
                             </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+							@endif
 
                             </tbody>
                         </table><!-- table end -->
@@ -64,6 +63,12 @@
     }
     .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
+	  table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
 </style>
 @endpush
 @push('script')
@@ -98,5 +103,15 @@
                 position: 'topRight'
             });
         }
+		$('#datatable5').DataTable({
+           
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });	
     </script>
 @endpush
