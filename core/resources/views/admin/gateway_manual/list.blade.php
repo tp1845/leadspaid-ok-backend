@@ -5,7 +5,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two custom-data-table">
+                        <table class="table table--light style--two custom-data-table" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Gateway')</th>
@@ -137,5 +137,26 @@
 
         });
 
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
     </script>
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
 @endpush

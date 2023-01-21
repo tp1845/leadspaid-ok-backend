@@ -7,7 +7,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body">
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two custom-data-table">
+                        <table class="table table--light style--two custom-data-table" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Gateway')</th>
@@ -18,7 +18,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($gateways as $k=>$gateway)
+                                @if(!empty($gateways))
+                            @foreach($gateways as $k=>$gateway)
                                 <tr>
                                     <td data-label="@lang('Gateway')">
                                         <div class="user">
@@ -61,11 +62,8 @@
                                         @endif
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ __($empty_message) }}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+                            @endif
 
                             </tbody>
                         </table><!-- table end -->
@@ -145,6 +143,26 @@
             modal.find('.method-name').text($(this).data('name'));
             modal.find('input[name=code]').val($(this).data('code'));
         });
-
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
     </script>
+@endpush
+
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
 @endpush
