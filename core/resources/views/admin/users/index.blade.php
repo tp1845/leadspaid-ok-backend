@@ -5,7 +5,7 @@
 <div class="row" id="ulser_list">
     <div class="col-lg-12">
         <div class="card b-radius--10 ">
-            <div class="card-body">
+            <div class="card-body pt-0">
                 <ul class="nav nav-tabs border-0" role="tablist">
                   <li class="nav-item mx-1">
                     <a class="nav-link btn-primary active" href="#profile" role="tab" data-toggle="tab">Publisher Admin</a>
