@@ -18,7 +18,7 @@ class AdvertiserController extends Controller
     {
         $page_title = 'All advertiser';
         $empty_message = 'No advertiser';
-        $advertisers = Advertiser::latest()->paginate(15);
+        $advertisers = Advertiser::latest()->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
         return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
     }
@@ -26,7 +26,7 @@ class AdvertiserController extends Controller
     {
         $page_title = 'All active advertiser';
         $empty_message = 'No advertiser';
-        $advertisers = Advertiser::latest()->whereStatus(1)->paginate(15);
+        $advertisers = Advertiser::latest()->whereStatus(1)->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
         return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
     }
@@ -46,13 +46,13 @@ class AdvertiserController extends Controller
         $user = Advertiser::findOrFail($id);
         $page_title = 'Advertiser Login History - ' . $user->username;
         $empty_message = 'No users login found.';
-        $login_logs = $user->login_logs()->latest()->paginate(15);
+        $login_logs = $user->login_logs()->latest()->get();
         return view('admin.advertiser.logins', compact('page_title', 'empty_message', 'login_logs'));
     }
 
     public function advertiserAds($id)
     {
-        $ads = CreateAd::where('advertiser_id',$id)->paginate(15);
+        $ads = CreateAd::where('advertiser_id',$id)->get();
         $empty_message = "No ads";
         $advr = Advertiser::findOrFail($id);
         $page_title = "Ads of  $advr->name";
@@ -156,7 +156,7 @@ class AdvertiserController extends Controller
     {
         $page_title = 'Email Unverified Users';
         $empty_message = 'No email unverified user found';
-        $advertisers = Advertiser::emailUnverified()->latest()->paginate(15);
+        $advertisers = Advertiser::emailUnverified()->latest()->get();
         return view('admin.advertiser.emailUnverified', compact('page_title', 'empty_message', 'advertisers'));
     }
 
@@ -164,7 +164,7 @@ class AdvertiserController extends Controller
     {
         $page_title = 'SMS Unverified Users';
         $empty_message = 'No sms unverified user found';
-        $advertisers = Advertiser::smsUnverified()->latest()->paginate(15);
+        $advertisers = Advertiser::smsUnverified()->latest()->get();
         return view('admin.advertiser.smsUnverified', compact('page_title', 'empty_message', 'advertisers'));
     }
 
@@ -228,7 +228,7 @@ class AdvertiserController extends Controller
     {
         $page_title = 'All banned Advertisers';
         $empty_message = 'No data';
-        $advertisers = Advertiser::latest()->whereStatus(2)->paginate(15);
+        $advertisers = Advertiser::latest()->whereStatus(2)->get();
         return view('admin.advertiser.banned',compact('page_title','empty_message','advertisers'));
     }
 

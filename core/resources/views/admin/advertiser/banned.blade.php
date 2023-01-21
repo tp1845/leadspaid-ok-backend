@@ -8,7 +8,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Name')</th>
@@ -20,7 +20,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($advertisers as $advertiser)
+                            @if(!empty($advertisers))
+                            @foreach($advertisers as $advertiser)
                             <tr>
                                 <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                 <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
@@ -36,22 +37,57 @@
                                     </a>
                                 </td>
                             </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+                                
+                            @endif
 
                             </tbody>
                         </table><!-- table end -->
                     </div>
                 </div>
-                <div class="card-footer py-4">
-                 {{$advertisers->links('admin.partials.paginate')}}
-                </div>
+                
             </div><!-- card end -->
         </div>
 
 
     </div>
 @endsection
+@push('script')
+<script>
+
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
+@endpush
+
+@push('style')
+<style>
+    .card {
+    background: transparent;
+}
+.dataTables_filter {
+    position: relative;
+    width: 100%;
+}
+.dataTables_filter label {
+    margin-bottom: 0 !important;
+    float: right;
+}
+
+table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
+@endpush

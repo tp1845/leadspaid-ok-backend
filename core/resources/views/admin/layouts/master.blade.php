@@ -41,7 +41,7 @@
     <link rel="stylesheet" href="{{asset('assets/admin/css/app.css')}}">
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-
+<link href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     @stack('style')
 </head>
 <body>
@@ -71,6 +71,7 @@
 <script src="{{asset('assets/admin/js/vendor/select2.min.js')}}"></script>
 <!-- main js -->
 <script src="{{asset('assets/admin/js/app.js')}}"></script>
+<script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
 {{-- LOAD NIC EDIT --}}
 <script>
@@ -89,7 +90,19 @@
 </script>
 
 @stack('script')
+<script>
+    $(".breadcrumb-plugins").find('.page-title').hide();
+     $(".breadcrumb-plugins").find('form').hide();
+$(window).on('load', function () {
+   
+setTimeout(function(){
 
+ var ctext= $(".breadcrumb-plugins").find(".page-title").text();
+   $(".dataTables_filter").append('<span>'+ctext+'</span>');
+   }, 500);
+   }); 
+
+</script>
 
 </body>
 </html>

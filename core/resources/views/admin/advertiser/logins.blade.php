@@ -8,7 +8,7 @@
                 <div class="card-body p-0">
 
                     <div class="table-responsive--sm table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5">
                             <thead>
                             <tr>
                                 <th scope="col">@lang('Date')</th>
@@ -20,7 +20,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($login_logs as $log)
+							@if(!empty($login_logs))
+                            @foreach($login_logs as $log)
                                 <tr>
                                     <td data-label="@lang('Date')">{{ \Carbon\Carbon::parse($log->created_at)->diffForHumans() }}</td>
                                     <td data-label="@lang('Username')"><a href="{{ route('admin.advertiser.details', $log->advertiser_id)}}"> {{ ($log->advertiser) ? $log->Advertiser->username : '' }}</a></td>
@@ -33,11 +34,8 @@
                                     <td data-label="@lang('Browser')">{{ $log->browser }}</td>
                                     <td data-label="@lang('OS')">{{ $log->os }}</td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+							@endif
 
                             </tbody>
                         </table><!-- table end -->
@@ -66,4 +64,20 @@
         </div>
     </form>
     @endif
+@endpush
+@push('script')
+<script>
+
+ $('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
+
+</script>
 @endpush

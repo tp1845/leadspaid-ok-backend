@@ -8,7 +8,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two">
+                        <table class="table table--light style--two" id="datatable5" >
                             <thead>
                             <tr>
                                 <th>Status</th>
@@ -28,7 +28,8 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($advertisers as $advertiser)
+                             @if(!empty($advertisers))
+                            @foreach($advertisers as $advertiser)
                             <tr>
                                 <td data-label="@lang('Name')" class="text--primary">
                                     <input type="checkbox" name="status" @if($advertiser->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
@@ -62,11 +63,8 @@
 
                                 </td>
                             </tr>
-                            @empty
-                                <tr>
-                                    <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                                </tr>
-                            @endforelse
+                            @endforeach
+                            @endif
 
                             </tbody>
                         </table><!-- table end -->
@@ -74,9 +72,7 @@
                 </div>
 
             </div><!-- card end -->
-            <div class="card-footer py-4">
-                {{$advertisers->links('admin.partials.paginate')}}
-            </div>
+           
         </div>
 
 
@@ -147,6 +143,17 @@
             position: 'topRight'
         });
     }
+	
+	$('#datatable5').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
 </script>
 @endpush
 @push('style')
