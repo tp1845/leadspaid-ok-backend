@@ -285,6 +285,17 @@ class SiteController extends Controller
         return view($this->activeTemplate . 'advertiser/login-advertiser',compact('data','page_title'));
    }
 
+   public function register_publisher(){
+    $user = Auth::guard('publisher')->user();
+    if($user){  $notify[] = ['success', 'Your are already registered.'];  return redirect()->route('publisher.dashboard')->withNotify($notify); }
+    $data['page_title'] = 'Home';
+    $page_title="Sign Up";
+    $info         = json_decode(json_encode(getIpInfo()), true);
+    $country_code = @implode(',', $info['code']);
+    $countries    = Country::all();
+    return view($this->activeTemplate . 'publisher/register-publisher',compact('data','page_title','country_code','countries'));
+}
+
    public function home2()
     {
         $data['page_title'] = 'New Home';

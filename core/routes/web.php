@@ -484,8 +484,6 @@ Route::name('user.')->prefix('advertiser')->group(function () {
     });
 });
 
-
-
 Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(function () {
     Route::namespace('Auth')->group(function () {
         Route::get('/', 'LoginController@showLoginForm')->name('login');
@@ -494,6 +492,10 @@ Route::namespace('Publisher')->prefix('publisher')->name('publisher.')->group(fu
 
         Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
         Route::post('register', 'RegisterController@register')->name('signup')->middleware('regStatus');
+
+        Route::post('register-publisher/thank-you', 'RegisterController@register_publisher')->name('register_pub')->middleware(['regStatus']);
+        Route::get('register-veryfy', 'RegisterController@varify_pub')->name('varify_pub');
+
         // Publisher Password Reset
         Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.reset');
         Route::post('password/reset', 'ForgotPasswordController@sendResetLinkEmail');
@@ -593,6 +595,9 @@ Route::get('register-advertiser','SiteController@register_advertiser')->name('re
 Route::get('login-advertiser','SiteController@login_advertiser')->name('login_advertiser');
 Route::get('login-advertiser-unverified','Advertiser\Auth\LoginController@unverified_view')->name('advertiser_unverified_view');
 Route::post('resend-advertiser-verification','Advertiser\Auth\RegisterController@resend_verification_code')->name('resend_advertiser_verification');
+
+Route::get('register-publisher','SiteController@register_publisher')->name('register_publisher');
+
 // Route::get('/blog', 'SiteController@blogs')->name('blog');
 // Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details');
 
