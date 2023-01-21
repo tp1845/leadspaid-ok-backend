@@ -72,6 +72,17 @@
         $(document).ready(function() {
 
         });
+		
+		$('#leadsTable').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
     </script>
 @endpush
 @push('style')
@@ -86,5 +97,11 @@
     .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
     #selectimportfile{     display: inline-block;  width: auto; padding: 5px; }
+	   table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
 </style>
 @endpush
