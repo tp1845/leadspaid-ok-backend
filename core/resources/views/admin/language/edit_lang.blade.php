@@ -30,7 +30,7 @@
                         </div>
                         <hr>
                         <div class="table-responsive--sm table-responsive">
-                            <table class="table table--light tabstyle--two custom-data-table white-space-wrap" id="myTable">
+                            <table class="table table--light tabstyle--two custom-data-table white-space-wrap" id="myTable datatable">
                                 <thead>
                                 <tr>
                                     <th scope="col">@lang('Key')
@@ -265,8 +265,46 @@
 
             });
         })
+		
+ $('#datatable').DataTable({
+            columnDefs: [{
+                    targets: 0,
+                    searchable: true,
+                    visible: true,
+                    orderable: true
+                },
+                {
+                    targets: 2,
+                    searchable: true,
+                    orderable: true
+                },
+                {
+                    targets: 11,
+                    searchable: false,
+                    visible: true,
+                    orderable: false
+                },
+                {
+                    targets: [7, 8, 9, 10],
+                    className: "td-small",
+                    width: "10px"
+                },
+                {
+                    targets: '_all',
+                    visible: true
+                }
+            ],
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            },
+           
+        });
     </script>
 @endpush
+
 @push('style')
 
 <style>
@@ -275,4 +313,14 @@
 }
 </style>
 
+@endpush
+@push('style')
+<style>
+    table thead tr th:after {
+    top: 14px !important;
+}
+table thead tr th:before {
+    bottom: 14px !important;
+}
+</style>
 @endpush
