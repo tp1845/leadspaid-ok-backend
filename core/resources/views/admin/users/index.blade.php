@@ -539,7 +539,7 @@
 }
 #ulser_list .card-body ul.nav.nav-tabs {
     position: absolute;
-    top: 55px;
+    top: 35px;
     z-index: 1;
     left: 19px;
 }
