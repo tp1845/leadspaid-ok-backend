@@ -215,7 +215,7 @@ $("#full_name").capitalize();
         }else{
             var phone_isd = phone.substring(0, 2);
             if(phone_isd === '00'){  phone = phone.substring(2); }
-            return this.optional(element) || /^[0-9]{1,6}$/i.test(phone);
+            return this.optional(element) || /^[0-9]{4,16}$/i.test(phone);
         }
     }, "Please enter valid phone");
     $("#form").validate({
