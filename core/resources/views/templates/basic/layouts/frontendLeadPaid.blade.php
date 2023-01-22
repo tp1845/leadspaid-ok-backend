@@ -187,10 +187,8 @@
                     transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
                     transform-style: preserve-3d;
                 }
-
-
-
                 #MainNav{ z-index: 9999!important; }
+                #MainNav .navbar.no-fixed{ z-index: 9999!important; }
                 @if(Request::is('/') || Request::get('v') == '18-b-rectangle-60' )
                     #MainNav .navbar.no-fixed{ background-color: #000011cc!important;   }
                 @else
