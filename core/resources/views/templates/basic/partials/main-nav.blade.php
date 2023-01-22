@@ -25,9 +25,25 @@
             <a class="nav-link active" aria-current="page" href="{{route('home')}}">Home</a>
         </li> --}}
         @if(!auth()->guard('publisher')->user() && !auth()->guard('advertiser')->user())
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{route('home.contact')}}">Publisher</a>
-            </li>
+            </li> --}}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publisher</a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{route('register_publisher')}}">Join as Publisher</a></li>
+                  <li><a class="dropdown-item" href="#">Login</a></li>
+                </ul>
+              </li>
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Advertiser</a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{route('home')}}/#benefits">Benefits</a></li>
+                    <li><a class="dropdown-item" href="{{route('register_advertiser')}}">Join as Advertiser</a></li>
+                    <li><a class="dropdown-item" href="{{route('login_advertiser')}}">Login</a></li>
+                </ul>
+              </li>
         @endif
         <li class="nav-item {{ (request()->is('contact-us')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
@@ -36,7 +52,7 @@
         <li class="nav-item {{ (request()->is('login-advertiser')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('login_advertiser')}}">Login</a>
         </li>
-        <li class="nav-item {{ (request()->is('register-advertiser')) ? 'active' : '' }}">
+        <li class="nav-item btn_link {{ (request()->is('register-advertiser')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
         </li>
         @endif

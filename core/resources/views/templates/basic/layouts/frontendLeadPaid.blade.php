@@ -31,14 +31,14 @@
     @stack('style')
     <style>
         #MainNav a.nav-link { color: #fff; text-transform: capitalize; font-weight: 400; }
-        #navbarSupportedContent li:nth-child(4) {  border: 2px solid #fff; margin: 0px 10px; }
-        #navbarSupportedContent li:nth-child(4) a.nav-link:after { display: none!important;  }
+        #navbarSupportedContent li.btn_link {  border: 2px solid #fff; margin: 0px 10px; }
+        #navbarSupportedContent li.btn_link a.nav-link:before { display: none!important;  }
         #MainNav .active a.nav-link{  }
         #MainNav a.nav-link { position: relative; }
-        #MainNav a.nav-link:after { content: ""; position: absolute; left: 0px; bottom: 0px; width: 0; height: 2px;  transition: width 320ms ease-in; background-color: rgba(242, 245, 248, 1.0);  margin: 0 25px; }
+        #MainNav a.nav-link:before { content: ""; position: absolute; left: 0px; bottom: 0px; width: 0; height: 2px;  transition: width 320ms ease-in; background-color: rgba(242, 245, 248, 1.0);  margin: 0 25px; }
         #MainNav a.nav-link:hover{   color: #3375f5!important }
-        #MainNav a.nav-link:hover:after { background-color: #3375f5;}
-        @media only screen and (min-width: 992px) { #MainNav a.nav-link:hover:after, #MainNav .active a.nav-link:after{  width: calc( 100% - 50px);  color: inherit } }
+        #MainNav a.nav-link:hover:before { background-color: #3375f5;}
+        @media only screen and (min-width: 992px) { #MainNav a.nav-link:hover:before, #MainNav .active a.nav-link:before{  width: calc( 100% - 50px);  color: inherit } }
     </style>
 </head>
   <body>
@@ -208,7 +208,7 @@
                     box-shadow: 0 5px 15px rgb(0 0 0 / 10%)!important;
                 }
 
-                #MainNav-container.f-nav #MainNav .navbar.fixed{ top: 0!important; }
+                #MainNav-container.f-nav #MainNav .navbar.fixed{ top: 0!important; overflow: visible; }
                 @media screen and (max-width: 992px){
                     /* #MainNav .logo{ margin: auto; } */
                      #MainNav .logo img{ max-width: 175px!important;}
