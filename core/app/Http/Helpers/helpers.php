@@ -1002,7 +1002,9 @@ function get_campiagn_cost_by_id($id,$start_date=null,$end_date=null){
         $start_date = date("Y-m-d",strtotime("-1 week +1 day"));
         $end_date = date("Y-m-d",strtotime("+1 day"));
     }
-    return lgen_spend::where('campaign_id',$id)->whereBetween('lgen_date', array($start_date, $end_date))->get()->count();
+    $cost_row= lgen_spend::where('campaign_id',$id)->whereBetween('lgen_date', array($start_date, $end_date))->select(['cost'])->get()->sum('cost');
+ 
+    return $cost_row;
 }
 function get_total_campaign($id){
     return campaigns::where('advertiser_id',$id)->count();
