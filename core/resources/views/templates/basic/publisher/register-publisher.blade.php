@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="Rg_advts_bsc" id="advertiser___form">
-                                <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
+                                <h4 class="Rg_advts_bsc_ttls mb-4">What are the methods you use to generate leads?</h4>
                                 <div class="Rg_advts_form">
                                     <div class="form-group mb-3">
                                         <textarea name="app_methods"  placeholder='What are the methods you use to generate leads? eg. "Show ads in a webpage", "Show ads in an App"' id="floatingTextarea">{{old('app_methods')}}</textarea>

@@ -40,7 +40,21 @@
         border: 2px solid #fff;
         margin: 0px 10px;
     }
-    #MainNav .active a.nav-link{ text-decoration: underline; }
+    #navbarSupportedContent li:nth-child(4) a.nav-link:after { display: none!important; }
+    #MainNav a.nav-link { position: relative; }
+    #MainNav a.nav-link:after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 0;
+    height: 2px;
+    transition: width 220ms ease-in;
+    background-color: rgba(242, 245, 248, 1.0);
+}
+
+#MainNav a.nav-link:hover{   color: #fff!important }
+#MainNav a.nav-link:hover:after, #MainNav .active a.nav-link:after{ width: 100%; color: inherit }
 </style>
 </head>
   <body>
