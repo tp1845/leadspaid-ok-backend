@@ -46,6 +46,12 @@
 	<style>
 	
 table thead tr th {
+    cursor: pointer;
+}
+.sorting.sorting_asc:before, .sorting_asc:before, .sorting.sorting_desc:after, .sorting_desc:after {
+    opacity: 0.5 !important;
+}
+table thead tr th {
     position: relative;
 }
 table thead tr th:after {
