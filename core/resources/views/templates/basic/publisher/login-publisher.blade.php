@@ -39,8 +39,8 @@
                 <button type="submit" class="cmn-btn ">@lang('Login Now')</button>
                 </div>
                 <div class="custom-forgot mt-4 mb-4 mb-sm-5 d-flex justify-content-between align-items-center">
-                    <a href="{{route('advertiser.password.reset')}}">@lang('Forgot Password?')</a>
-                    <a href="{{route('register_advertiser')}}">@lang('Don\'t have an Account?')</a>
+                    <a href="#">@lang('Forgot Password?')</a>
+                    <a href="{{route('register_publisher')}}">@lang('Don\'t have an Account?')</a>
                 </div>
             </form>
         </div>
