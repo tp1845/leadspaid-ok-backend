@@ -35,15 +35,6 @@
                   <li><a class="dropdown-item" href="#">Login</a></li>
                 </ul>
               </li>
-
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Advertiser</a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="{{route('home')}}/#benefits">Benefits</a></li>
-                    <li><a class="dropdown-item" href="{{route('register_advertiser')}}">Join as Advertiser</a></li>
-                    <li><a class="dropdown-item" href="{{route('login_advertiser')}}">Login</a></li>
-                </ul>
-              </li>
         @endif
         <li class="nav-item {{ (request()->is('contact-us')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('home.contact')}}">Contact Us</a>
