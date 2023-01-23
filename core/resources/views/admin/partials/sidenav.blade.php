@@ -265,7 +265,30 @@
                         </ul>
                     </div>
                 </li>
+                <li class="sidebar-menu-item sidebar-dropdown">
+                <a href="javascript:void(0)" class="{{menuActive('admin.users',3)}} {{menuActive('admin.create-users',3)}}">
+                        <i class="menu-icon la la-envelope-o"></i>
+                        <span class="menu-title">@lang('Manage Users')</span>
+                    </a>
+                <div class="sidebar-submenu {{menuActive('admin.users',2)}} {{menuActive('admin.create-users',2)}} ">
+                  <ul>
+                    <li class="sidebar-menu-item {{menuActive('admin.users')}}">
+                    <a href="{{route('admin.users')}}">
+                        <i class="menu-icon las la-images"></i>
+                        <span class="menu-title">Manage User</span>
+                    </a>
+                </li>
+                 <li class="sidebar-menu-item {{menuActive('admin.create-users')}}">
+                    <a href="{{route('admin.create-users')}}">
+                        <i class="menu-icon las la-images"></i>
+                        <span class="menu-title">Create User</span>
+                    </a>
+                </li>
+                
+                </ul>
+               </li>
 
+                <li class="sidebar__menu-header">@lang('Publisher')</li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.publisher*',3)}}">
                         <i class="menu-icon lab la-chromecast"></i>
@@ -451,6 +474,52 @@
                     </div>
                 </li>
 
+                <li class="sidebar__menu-header"></li>
+                
+                
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.publisher*',3)}}">
+                        <i class="menu-icon las la-life-ring"></i>
+                        <span class="menu-title">@lang('General Setting')</span>
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.publisher*',2)}} ">
+                        <ul>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.publisher.all')}}">
+                                <a href="{{route('admin.setting.index')}}" class="nav-link">
+                                    <i class="menu-icon las la-life-ring"></i>
+                                    <span class="menu-title">@lang('General Setting')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.publisher.admin.all')}}">
+                                <a href="{{route('admin.setting.logo_icon')}}" class="nav-link">
+                                    <i class="menu-icon las la-images"></i>
+                                    <span class="menu-title">@lang('Logo Icon Setting')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.publisher.active.all')}}">
+                                <a href="{{route('admin.extensions.index')}}" class="nav-link">
+                                    <i class="menu-icon las la-cogs"></i>
+                                    <span class="menu-title">@lang('Extensions')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.publisher.banned.all')}}">
+                                <a href="{{route('admin.language.manage')}}" class="nav-link"
+                       data-default-url="{{ route('admin.language.manage') }}">
+                                    <i class="menu-icon las la-language"></i>
+                                    <span class="menu-title">@lang('Language')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.publisher.email.unverified')}}">
+                                <a href="{{route('admin.seo')}}" class="nav-link">
+                                    <i class="menu-icon las la-globe"></i>
+                                    <span class="menu-title">@lang('SEO Manager')</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.ticket*',3)}}">
                         <i class="menu-icon la la-ticket"></i>
@@ -494,101 +563,6 @@
                             </li>
                         </ul>
                     </div>
-                </li>
-
-
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive(['admin.earnings.publisher','admin.transaction.advertiser','admin.users.login.ipHistory','admin.report.login.history'],3)}}">
-                        <i class="menu-icon la la-list"></i>
-                        <span class="menu-title">@lang('Report') </span>
-                    </a>
-                    <div class="sidebar-submenu {{menuActive(['admin.earnings.publisher','admin.transaction.advertiser','admin.users.login.ipHistory','admin.report.login.history'],2)}} ">
-                        <ul>
-                            <li class="sidebar-menu-item {{menuActive('admin.earnings.publisher')}}">
-                                <a href="{{route('admin.earnings.publisher')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Publishers Earning Log')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.transaction.advertiser')}}">
-                                <a href="{{route('admin.transaction.advertiser')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Advertisers TRX Log')</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive(['admin.report.login.history','admin.report.login.ipHistory'])}}">
-                                <a href="{{route('admin.report.login.history')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Login History')</span>
-                                </a>
-                            </li>
-
-                        </ul>
-                    </div>
-                </li>
-
-
-
-
-                <li class="sidebar__menu-header">@lang('Settings')</li>
-				<li class="sidebar-menu-item sidebar-dropdown">
-                <a href="javascript:void(0)" class="{{menuActive('admin.users',3)}} {{menuActive('admin.create-users',3)}}">
-                        <i class="menu-icon la la-envelope-o"></i>
-                        <span class="menu-title">@lang('Users')</span>
-                    </a>
-                <div class="sidebar-submenu {{menuActive('admin.users',2)}} {{menuActive('admin.create-users',2)}} ">
-                  <ul>
-                    <li class="sidebar-menu-item {{menuActive('admin.users')}}">
-                    <a href="{{route('admin.users')}}">
-                        <i class="menu-icon las la-images"></i>
-                        <span class="menu-title">Manage User</span>
-                    </a>
-                </li>
-                 <li class="sidebar-menu-item {{menuActive('admin.create-users')}}">
-                    <a href="{{route('admin.create-users')}}">
-                        <i class="menu-icon las la-images"></i>
-                        <span class="menu-title">Create User</span>
-                    </a>
-                </li>
-                
-                </ul>
-               </li>
-			    
-                <li class="sidebar-menu-item {{menuActive('admin.setting.index')}}">
-                    <a href="{{route('admin.setting.index')}}" class="nav-link">
-                        <i class="menu-icon las la-life-ring"></i>
-                        <span class="menu-title">@lang('General Setting')</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-menu-item {{menuActive('admin.setting.logo_icon')}}">
-                    <a href="{{route('admin.setting.logo_icon')}}" class="nav-link">
-                        <i class="menu-icon las la-images"></i>
-                        <span class="menu-title">@lang('Logo Icon Setting')</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-menu-item {{menuActive('admin.extensions.index')}}">
-                    <a href="{{route('admin.extensions.index')}}" class="nav-link">
-                        <i class="menu-icon las la-cogs"></i>
-                        <span class="menu-title">@lang('Extensions')</span>
-                    </a>
-                </li>
-
-                <li class="sidebar-menu-item  {{menuActive(['admin.language.manage','admin.language.key'])}}">
-                    <a href="{{route('admin.language.manage')}}" class="nav-link"
-                       data-default-url="{{ route('admin.language.manage') }}">
-                        <i class="menu-icon las la-language"></i>
-                        <span class="menu-title">@lang('Language') </span>
-                    </a>
-                </li>
-
-                <li class="sidebar-menu-item {{menuActive('admin.seo')}}">
-                    <a href="{{route('admin.seo')}}" class="nav-link">
-                        <i class="menu-icon las la-globe"></i>
-                        <span class="menu-title">@lang('SEO Manager')</span>
-                    </a>
                 </li>
 
                 <li class="sidebar-menu-item sidebar-dropdown">
@@ -644,9 +618,9 @@
                         </ul>
                     </div>
                 </li>
-				
-				
-				<li class="sidebar-menu-item sidebar-dropdown">
+                
+                
+                <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.frontend.sections*',3)}}">
                         <i class="menu-icon la la-mobile"></i>
                         <span class="menu-title">@lang('Manage Pages')</span>
@@ -705,8 +679,8 @@
                         </ul>
                     </div>
                 </li>
-				
-				<li class="sidebar-menu-item sidebar-dropdown d-none">
+                
+                <li class="sidebar-menu-item sidebar-dropdown d-none">
                     <a href="javascript:void(0)" class="{{menuActive('admin.deposit*',3)}}">
                         <i class="menu-icon las la-credit-card"></i>
                         <span class="menu-title">@lang('Deposits')</span>
@@ -760,16 +734,16 @@
                         </ul>
                     </div>
                 </li>
-				
-				<li class="sidebar-menu-item ">
+                
+                <li class="sidebar-menu-item ">
                     <div class="sidebar__logo custom_nav_btn">
                         <button type="button" class="navbar__expand"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
                       
                     </div>
                     
                 </li>
-				
-				
+                
+                
             </ul>
             <div class="text-center mb-3 text-uppercase d-none">
                 <span class="text--primary">{{systemDetails()['name']}}</span>
