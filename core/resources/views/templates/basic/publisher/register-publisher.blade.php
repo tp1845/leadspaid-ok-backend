@@ -223,7 +223,7 @@ $("#full_name").capitalize();
             name: { required: true,minlength: 3, lettersonly: true },
             company_name: { required: true, minlength: 3},
             country: { required: true},
-            phone: { required: true, minlength: 6, phoneonly: true, isdphone:true },
+            phone: { required: true,  phoneonly: true, isdphone:true },
             email: { required: true,  valid_email:true  },
             product_services: { required: true},
             Website: { website: true },

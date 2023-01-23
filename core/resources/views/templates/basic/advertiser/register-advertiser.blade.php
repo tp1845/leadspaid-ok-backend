@@ -227,7 +227,7 @@ $("#full_name").capitalize();
             name: { required: true,minlength: 3, lettersonly: true },
             company_name: { required: true, minlength: 3},
             country: { required: true},
-            phone: { required: true, minlength: 6, phoneonly: true, isdphone:true },
+            phone: { required: true,  phoneonly: true, isdphone:true },
             email: { required: true,  valid_email:true  },
             product_services: { required: true},
             Website: { website: true },
@@ -246,7 +246,6 @@ $("#full_name").capitalize();
             ad_budget:{  required : 'Ad Budget is required.', numbersonly:'Please enter valid Ad Budget.', min: 'Ad Budget per month should be at least $1000.' },
             password:{  required : 'Please fill a stronger password.',  minlength : 'Please fill a stronger password.',  },
             password_confirmation:{  required : 'The password and its confirm are not the same.', equalTo: 'The password and its confirm are not the same.'}
-
         }
     });
 </script>
@@ -258,57 +257,53 @@ $("#full_name").capitalize();
     .Rg_advts .container{ max-width: 1200px; background-color: #fffffff0; padding-bottom: 60px;  border: 5px solid #1361b2; }
     #MainFooter { margin-top: 0!important; }
     /* ==== */
+    .Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
+        background: none !important;
+    }
+    .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small {
+        display: none;
+    }
+    .Rg_advts .form-control {
+            position: relative;
+    }
+    .Rg_advts .form-group{ position: relative; }
 
-.Rg_advts .form-control.error select#country_id, .Rg_advts .form-control.success select#country_id {
-    background: none !important;
-}
-  .custom_msg .fa-times, .custom_msg .fa-check, .Rg_advts .form-control.success small {
-    display: none;
-  }
-  .Rg_advts .form-control {
-    position: relative;
-  }
+    .Rg_advts .form-group label{
+        color:#777;
+        display: block;
+        margin-bottom: 5px;
+    }
 
-.Rg_advts .form-group{ position: relative; }
+    .Rg_advts .form-group input:focus{
+        outline: 0;
+        border-color: #777;
+    }
 
-.Rg_advts .form-group label{
-    color:#777;
-    display: block;
-    margin-bottom: 5px;
-}
+    .Rg_advts textarea, .Rg_advts textarea:hover {
+        border:1px solid #94a1b5;
+    }
+    .Rg_advts textarea:focus-visible {
+        outline: none;
+    }
 
-.Rg_advts .form-group input:focus{
-    outline: 0;
-    border-color: #777;
-
-}
-
-.Rg_advts textarea, .Rg_advts textarea:hover {
-    border:1px solid #94a1b5;
-}
-.Rg_advts textarea:focus-visible {
-    outline: none;
-}
-
-
-.form button {
-    cursor: pointer;
-    /* background-color: #3498db;
-    border: 2px solid #3498db;
-    border-radius: 4px; */
-    color: #fff;
-    display: block;
-    padding: 10px;
-    font-size: 16px;
-    margin-top:20px;
-    width:100%;
-}
+    .form button {
+        cursor: pointer;
+        /* background-color: #3498db;
+        border: 2px solid #3498db;
+        border-radius: 4px; */
+        color: #fff;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+        margin-top:20px;
+        width:100%;
+    }
     .Rg_advts {
         font-family: Poppins !important;
     }
     .Rg_advts .form-control:focus {
-    border-color: #16C79A !important;
-}
+        border-color: #16C79A !important;
+    }
     .Rg_advts_form .custom-state.fv-plugins-icon-container.has-success .form-select {
         background: none !important;
     }
@@ -362,85 +357,85 @@ $("#full_name").capitalize();
         line-height: normal;
     }
     .Rg_advts_form textarea {
-    font-size: 19px;
-    padding: 16px 24px;
-    width: 100%;
-    line-height: normal;
-    max-height: 140px;
-    height: 100%;
-}
+        font-size: 19px;
+        padding: 16px 24px;
+        width: 100%;
+        line-height: normal;
+        max-height: 140px;
+        height: 100%;
+    }
 
     .Rg_advts_number .form-group, .Rg_advts_number .form-control.error, .Rg_advts_number .form-control.success {
-    display: flex;
-    flex-wrap: wrap;
-}
-.Rg_advts_number select {
-    flex: 0 0 25%;
-    width: 25%;
-}
-.Rg_advts_number input {
-    flex: 0 0 75%;
-    width: 75%;
-    border: 1px solid #94a1b5;
-    font-size: 19px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .Rg_advts_number select {
+        flex: 0 0 25%;
+        width: 25%;
+    }
+    .Rg_advts_number input {
+        flex: 0 0 75%;
+        width: 75%;
+        border: 1px solid #94a1b5;
+        font-size: 19px;
+            line-height: normal;
+        padding: 16px 24px;
+    }
+    .Rg_advts_form input:focus-visible {
+        outline: none;
+    }
+
+    .Rg_advts .form-control, .Rg_advts_form select, .Rg_advts_number input {
+        border: 1px solid #94a1b5;
+        /* background: #f2f7ff; */
+    }
+    .Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
+        box-shadow: 0 0 20px rgb(0 0 0 / 16%);
+        border: 1px solid #94a1b5 !important;
+
+    }
+    .Rg_advts .form-control.is-valid {
+        border: 1px solid #94a1b5 !important;
+    }
+
+    .Rg_advts .form-control:valid:focus, .Rg_advts .form-control.is-valid:focus {
+        box-shadow: none;
+    }
+    .Rg_advts_bsc textarea.form-control{
+        min-height: 140px;
+    }
+    button.btn.btn-secondary.Rg_advts_my_btn {
+        font-size: 28px;
+        font-weight: 700;
+        display: inline-block;
+    }
+    .Rg_advts_my_btn {
+        width: 100%;
+        max-width: 250px;
+        height: 63px;
         line-height: normal;
-    padding: 16px 24px;
-}
-.Rg_advts_form input:focus-visible {
-    outline: none;
-}
+    }
 
-.Rg_advts .form-control, .Rg_advts_form select, .Rg_advts_number input {
-    border: 1px solid #94a1b5;
-    /* background: #f2f7ff; */
-}
-.Rg_advts .form-control:focus, .Rg_advts_form .form-select:focus {
-    box-shadow: 0 0 20px rgb(0 0 0 / 16%);
-    border: 1px solid #94a1b5 !important;
+    .user_info_Rg_advts {
+        padding-left: 15px;
+    }
 
-}
-.Rg_advts .form-control.is-valid {
-    border: 1px solid #94a1b5 !important;
-}
-
-.Rg_advts .form-control:valid:focus, .Rg_advts .form-control.is-valid:focus {
-    box-shadow: none;
-}
-.Rg_advts_bsc textarea.form-control{
-    min-height: 140px;
-}
-button.btn.btn-secondary.Rg_advts_my_btn {
-    font-size: 28px;
-    font-weight: 700;
-    display: inline-block;
-}
-.Rg_advts_my_btn {
-    width: 100%;
-    max-width: 250px;
-    height: 63px;
+    .Rg_advts input, .Rg_advts select, .Rg_advts textarea {
+        font-weight: 300;
+    }
+    .Rg_advts .form-group i {
+        top: 10px;
+        right: 10px;
+    }
+    .Rg_advts .form-group .fv-plugins-message-container {
+        font-weight: 400;
+    }
+    .Rg_advts_bsc select {
+        font-size: 19px;
+        padding: 16px 24px;
+        border-radius: 0;
         line-height: normal;
-}
-
-.user_info_Rg_advts {
-    padding-left: 15px;
-}
-
-.Rg_advts input, .Rg_advts select, .Rg_advts textarea {
-    font-weight: 300;
-}
-.Rg_advts .form-group i {
-    top: 10px;
-    right: 10px;
-}
-.Rg_advts .form-group .fv-plugins-message-container {
-    font-weight: 400;
-}
-.Rg_advts_bsc select {
-    font-size: 19px;
-    padding: 16px 24px;
-    border-radius: 0;
-    line-height: normal;
-}
+    }
 
     .us_doller {  position: relative; }
     .us_doller input {
@@ -463,21 +458,21 @@ button.btn.btn-secondary.Rg_advts_my_btn {
         padding: 10px;
     }
 
-.fv-plugins-bootstrap .fv-help-block {
-    font-size: 14px;
-}
-.was-validated .form-control:invalid,  .is-invalid {
-    border-color: #e74c3c!important;
-}
-@media screen and (max-width: 480px){
-    .Rg_advts_number input {
-        flex: 0 0 70%;
-        width: 70%;
+    .fv-plugins-bootstrap .fv-help-block {
+        font-size: 14px;
     }
-    .Rg_advts_number select.form-select {
-        flex: 0 0 30%;
-        width: 30%;
+    .was-validated .form-control:invalid,  .is-invalid {
+        border-color: #e74c3c!important;
     }
-}
+    @media screen and (max-width: 480px){
+        .Rg_advts_number input {
+            flex: 0 0 70%;
+            width: 70%;
+        }
+        .Rg_advts_number select.form-select {
+            flex: 0 0 30%;
+            width: 30%;
+        }
+    }
 </style>
 @endpush

@@ -218,7 +218,7 @@
             company: { required: false, minlength: 3},
             email: { required: true,  valid_email:true  },
             country_code: { required: true },
-            phone: { required: true, minlength: 6, phoneonly: true, isdphone:true },
+            phone: { required: true, phoneonly: true, isdphone:true },
             message: { required: true, minlength: 15 }
         },messages: {
             name:{  required : 'Name is required.', minlength:'Please fill Full Name.', lettersonly:'Full Name Invalid.' },
