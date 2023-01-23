@@ -119,7 +119,7 @@
                     <div class="col-6 col-md">
                       <h5>Publisher</h5>
                       <ul class="list-unstyled text-small">
-                        <li><a href="https://www.leadspaid.com/contact-us">Join as Publisher</a></li>
+                        <li><a href="{{route('register_publisher')}}">Join as Publisher</a></li>
                         {{-- <li><a href="#">Login</a></li> --}}
                       </ul>
                     </div>
