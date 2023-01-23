@@ -564,7 +564,37 @@
                         </ul>
                     </div>
                 </li>
+				
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive(['admin.earnings.publisher','admin.transaction.advertiser','admin.users.login.ipHistory','admin.report.login.history'],3)}}">
+                        <i class="menu-icon la la-list"></i>
+                        <span class="menu-title">@lang('Report') </span>
+                    </a>
+                    <div class="sidebar-submenu {{menuActive(['admin.earnings.publisher','admin.transaction.advertiser','admin.users.login.ipHistory','admin.report.login.history'],2)}} ">
+                        <ul>
+                            <li class="sidebar-menu-item {{menuActive('admin.earnings.publisher')}}">
+                                <a href="{{route('admin.earnings.publisher')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Publishers Earning Log')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.transaction.advertiser')}}">
+                                <a href="{{route('admin.transaction.advertiser')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Advertisers TRX Log')</span>
+                                </a>
+                            </li>
 
+                            <li class="sidebar-menu-item {{menuActive(['admin.report.login.history','admin.report.login.ipHistory'])}}">
+                                <a href="{{route('admin.report.login.history')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Login History')</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.email.template*',3)}}">
                         <i class="menu-icon la la-envelope-o"></i>
