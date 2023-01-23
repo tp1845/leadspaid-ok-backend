@@ -176,7 +176,7 @@
                         <p class=" h2 p-0" style="padding-left: 22px!important"><i class="fas fa-quote-left" aria-hidden="true"></i></p>
                         <div class="testimonial_slider">
                             <div>
-                            <p class="text2">Leads started increasing slowly but steadily. I'd say, the AI is marvelous. It worked!</p>
+                            <p class="text2">Leads increased steadily over a period of 3 weeks. I'd say, the AI is marvelous. It worked!</p>
                             </div>
                             <div>
                             <p class="text2">270k - 1st month sales | 357k - 2nd month sales | 590k - 6th month sales. Achieved our growth target in 6 months! Strongly recommend. </p>
