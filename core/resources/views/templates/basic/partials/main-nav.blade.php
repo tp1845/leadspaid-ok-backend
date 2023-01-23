@@ -40,7 +40,7 @@
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Publisher</a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{{route('register_publisher')}}">Join as Publisher</a></li>
-                  <li><a class="dropdown-item" href="#">Login</a></li>
+                  <li><a class="dropdown-item" href="{{route('login_publisher')}}">Login</a></li>
                 </ul>
             </li>
         @endif

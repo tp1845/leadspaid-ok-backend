@@ -285,6 +285,14 @@ class SiteController extends Controller
         return view($this->activeTemplate . 'advertiser/login-advertiser',compact('data','page_title'));
    }
 
+   public function login_publisher(){
+    $user = Auth::guard('publisher')->user();
+    if($user){  $notify[] = ['success', 'Your are already login.'];  return redirect()->route('publisher.dashboard')->withNotify($notify); }
+    $data['page_title'] = 'Home';
+    $page_title="Login";
+    return view($this->activeTemplate . 'publisher/login-publisher',compact('data','page_title'));
+}
+
    public function register_publisher(){
     $user = Auth::guard('publisher')->user();
     if($user){  $notify[] = ['success', 'Your are already registered.'];  return redirect()->route('publisher.dashboard')->withNotify($notify); }

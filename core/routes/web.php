@@ -597,6 +597,7 @@ Route::get('login-advertiser-unverified','Advertiser\Auth\LoginController@unveri
 Route::post('resend-advertiser-verification','Advertiser\Auth\RegisterController@resend_verification_code')->name('resend_advertiser_verification');
 
 Route::get('register-publisher','SiteController@register_publisher')->name('register_publisher');
+Route::get('login-publisher','SiteController@login_publisher')->name('login_publisher');
 
 // Route::get('/blog', 'SiteController@blogs')->name('blog');
 // Route::get('blog/{id}/{slug}', 'SiteController@blogDetails')->name('blog.details');
