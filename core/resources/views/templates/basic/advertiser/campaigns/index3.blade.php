@@ -1021,6 +1021,7 @@ padding: 0; display: block; opacity: 0;">
                     'All Time': [moment("<?php echo date_format(auth()->guard('advertiser')->user()->created_at, "Y-m-d") ?>", 'YYYY-MM-DD'), moment().add(1, 'days')]
 
                 },
+                minDate:moment("<?php echo date_format(auth()->guard('advertiser')->user()->created_at, "Y-m-d") ?>", 'YYYY-MM-DD'),
                 "alwaysShowCalendars": true,
                 "startDate": isSearched ? startDate : moment().subtract(6, 'days'),
                 "endDate": isSearched ? endDate : moment().add(1, 'days'),
