@@ -279,7 +279,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('ticket/reply/{id}', 'SupportTicketController@ticketReplySend')->name('ticket.reply');
         Route::get('ticket/download/{ticket}', 'SupportTicketController@ticketDownload')->name('ticket.download');
         Route::post('ticket/delete', 'SupportTicketController@ticketDelete')->name('ticket.delete');
-
+        Route::get('ticket/delete/{id}','SupportTicketController@ticketremoive')->name('ticket/delete');
 
         // Language Manager
         Route::get('/language', 'LanguageController@langManage')->name('language.manage');

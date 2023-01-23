@@ -53,6 +53,12 @@
                                     <a href="{{ route('admin.ticket.view', $item->id) }}" class="icon-btn  ml-1" data-toggle="tooltip" title="" data-original-title="Details">
                                         <i class="las la-desktop"></i>
                                     </a>
+									
+									 <a href="{{ route('admin.ticket/delete',['id'=>$item->id])}}" class="ml-1" data-toggle="tooltip" title="" onclick="return confirm('Are you sure?')" data-original-title="Details">
+                                        <i class="fa-sharp fa-solid fa-circle-xmark text-danger"></i>
+                                    </a>
+									
+									
                                 </td>
                             </tr>
                          @endforeach

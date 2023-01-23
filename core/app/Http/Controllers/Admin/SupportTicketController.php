@@ -158,5 +158,13 @@ class SupportTicketController extends Controller
         return back()->withNotify($notify);
 
     }
+	
+	
+	public function ticketremoive($id){
+     SupportTicket::where('id',$id)->delete();
+     $notify[] = ['success', "Delete Successfully"];
+        return back()->withNotify($notify);
+    }
+	
 
 }
