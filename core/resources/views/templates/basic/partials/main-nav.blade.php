@@ -43,9 +43,12 @@
         <li class="nav-item {{ (request()->is('login-advertiser')) ? 'active' : '' }}">
             <a class="nav-link" href="{{route('login_advertiser')}}">Login</a>
         </li>
-        <li class="nav-item btn_link {{ (request()->is('register-advertiser')) ? 'active' : '' }}">
-            <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
-        </li>
+        @if(Request::is('/') )
+            <li class="nav-item btn_link {{ (request()->is('register-advertiser')) ? 'active' : '' }}">
+                <a class="nav-link" href="{{route('register_advertiser')}}">Join As Advertiser</a>
+            </li>
+         @endif
+
         @endif
         @if(auth()->guard('publisher')->user())
             <li class="nav-item"><a href="{{route('publisher.dashboard')}}" class="nav-link">@lang('Dashboard')</a></li>
