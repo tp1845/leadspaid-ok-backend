@@ -36,7 +36,7 @@
         #MainNav .active a.nav-link{  }
         #MainNav a.nav-link { position: relative; }
         #MainNav a.nav-link:before { content: ""; position: absolute; left: 0px; bottom: 0px; width: 0; height: 2px;  transition: width 320ms ease-in; background-color: rgba(242, 245, 248, 1.0);  margin: 0 25px; }
-        #MainNav a.nav-link:hover{   color: #3375f5!important }
+        #MainNav a.nav-link:hover{ color: #87aaf8!important }
         #MainNav a.nav-link:hover:before { background-color: #3375f5;}
         @media only screen and (min-width: 992px) { #MainNav a.nav-link:hover:before, #MainNav .active a.nav-link:before{  width: calc( 100% - 50px);  color: inherit } }
     </style>
