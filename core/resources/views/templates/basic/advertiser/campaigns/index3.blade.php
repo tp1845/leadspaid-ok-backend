@@ -20,6 +20,7 @@ $user = auth()->guard('advertiser')->user();
                 @php
                 $daily_bug=0;
                 $leadd=0;
+                $output = [];
                 $cpll = 0;
                 $costt = 0;
                 @endphp
@@ -62,13 +63,29 @@ $user = auth()->guard('advertiser')->user();
                             @forelse($campaigns as $campaign)
 
                             @php
-                            $daily_bug= $daily_bug+$campaign->daily_budget;
-                            $leadd=$leadd+get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
 
+                            $daily_bug= $daily_bug+$campaign->daily_budget;
+                            $leadValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
+                            if ($leadValue > 0){
+                            array_push($output,$campaign->id);
+                            $leadd=$leadd+ $leadValue;
+                            }
                             $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
                             $costt= $costt+ $costValue ;
-                            $cplValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? number_format( get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)/get_campiagn_leads_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
-                            $cpll = $cpll+$cplValue;
+                            if ($leadValue === 0 && $costValue > 0) {
+                                $cplValue = "";
+                            } elseif ($leadValue > 0 && $costValue === 0) {
+                                $cplValue = "";
+                            } else {
+                                if ($leadValue > 0 && $costValue > 0) {
+                                    $cplValueWithoutFormatted =  number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date), 2, '.', '');
+                                    $cplValue = "$" .  $cplValueWithoutFormatted;
+
+                                    $cpll = $cpll + $cplValueWithoutFormatted;
+                                }else{
+                                    $cplValue = 0;
+                                }
+                            }
                             @endphp
                             <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif 
                            @if($campaign->delivery ==2 ) draft @endif
@@ -103,10 +120,11 @@ $user = auth()->guard('advertiser')->user();
                                     <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
                                     {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
                                 </td>
-                                <td>{{ get_campiagn_leads_by_id($campaign->id)}} </td>
-                                <td>0</td>
+                                <td for="leads_count">{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date)}} </td>
+                                <td>{{$costValue>0?"$" . $costValue:0}}</td>
 
-                                <td>0</td>
+
+                                <td>{{ $cplValue }}</td>
                                 <td> ${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
@@ -123,11 +141,28 @@ $user = auth()->guard('advertiser')->user();
                             @forelse($campaignspending as $campaign)
                             <?php
                             $daily_bug = $daily_bug + $campaign->daily_budget;
-                            $leadd = $leadd + get_campiagn_leads_by_id($campaign->id, $start_date, $end_date);
+                            $leadValue = get_campiagn_leads_by_id($campaign->id, $start_date, $end_date);
+                            if ($leadValue > 0) {
+                                array_push($output, $campaign->id);
+                                $leadd = $leadd + $leadValue;
+                            }
+
                             $costValue =  get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) > 0 ? number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date), 2, '.', '') : 0;
                             $costt =  $costt + $costValue;
-                            $cplValue = get_campiagn_leads_by_id($campaign->id, $start_date, $end_date) > 0 ? number_format($costValue / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date), 2, '.', '') : 0;
-                            $cpll = $cpll + $cplValue;
+                            if ($leadValue === 0 && $costValue > 0) {
+                                $cplValue = "";
+                            } elseif ($leadValue > 0 && $costValue === 0) {
+                                $cplValue = "";
+                            } else {
+                                if ($leadValue > 0 && $costValue > 0) {
+                                    $cplValueWithoutFormatted =  number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date), 2, '.', '');
+                                    $cplValue = "$" .  $cplValueWithoutFormatted;
+
+                                    $cpll = $cpll + $cplValueWithoutFormatted;
+                                }else{
+                                    $cplValue = 0;
+                                }
+                            }
                             ?>
                             <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
                               @if($campaign->delivery ==2 ) draft @endif
@@ -167,7 +202,7 @@ $user = auth()->guard('advertiser')->user();
                                 <td>{{$costValue>0?"$" . $costValue:0}}</td>
 
 
-                                <td>{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? "$" .  $cplValue :0}}</td>
+                                <td>{{ $cplValue}}</td>
                                 <td>${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
@@ -184,8 +219,8 @@ $user = auth()->guard('advertiser')->user();
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Total</th>
                                 <th></th>
+                                <th>Overall Total</th>
                                 <th></th>
                                 <th></th>
                                 <th>{{$leadd}}</th>
@@ -226,12 +261,24 @@ $user = auth()->guard('advertiser')->user();
 
                             @php
                             $daily_bug= $daily_bug+$campaign->daily_budget;
-                            $leadd=$leadd+get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
+                            $leadValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
 
                             $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
                             $costt= $costt+ $costValue ;
-                            $cplValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? number_format( get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)/get_campiagn_leads_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
-                            $cpll = $cpll+$cplValue;
+                            if ($leadValue === 0 && $costValue > 0) {
+                                $cplValue = "";
+                            } elseif ($leadValue > 0 && $costValue === 0) {
+                                $cplValue = "";
+                            } else {
+                                if ($leadValue > 0 && $costValue > 0) {
+                                    $cplValueWithoutFormatted =  number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date), 2, '.', '');
+                                    $cplValue = "$" .  $cplValueWithoutFormatted;
+
+                                    $cpll = $cpll + $cplValueWithoutFormatted;
+                                }else{
+                                    $cplValue = 0;
+                                }
+                            }
                             @endphp
                             <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif 
                           
@@ -270,7 +317,7 @@ $user = auth()->guard('advertiser')->user();
                                 <td>{{$costValue>0?"$" . $costValue:0}}</td>
 
 
-                                <td>{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date) >0? "$" .  $cplValue :0}}</td>
+                                <td>{{ $cplValue}}</td>
                                 <td> ${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
@@ -289,8 +336,8 @@ $user = auth()->guard('advertiser')->user();
                         </tbody>
                         <tfoot>
                             <tr>
-                                <th>Total</th>
                                 <th></th>
+                                <th>Overall Total</th>
                                 <th></th>
                                 <th></th>
                                 <th>{{$leadd}}</th>
@@ -971,8 +1018,8 @@ padding: 0; display: block; opacity: 0;">
                     'Last 30 Days': [moment().subtract(30, 'days'), moment().add(1, 'days')],
                     'This Month': [moment().startOf('month'), moment().endOf('month')],
                     'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-                    'All Time': [moment("<?php echo date_format(auth()->guard('advertiser')->user()->created_at,"Y-m-d") ?>", 'YYYY-MM-DD'), moment().add(1, 'days')]
-               
+                    'All Time': [moment("<?php echo date_format(auth()->guard('advertiser')->user()->created_at, "Y-m-d") ?>", 'YYYY-MM-DD'), moment().add(1, 'days')]
+
                 },
                 "alwaysShowCalendars": true,
                 "startDate": isSearched ? startDate : moment().subtract(6, 'days'),
@@ -3866,7 +3913,7 @@ if($_GET['action']=="create_campiagin"){
         line-height: 9px !important;
         font-size: .8em !important;
     } */
-   
+
 
     table.dataTable thead tr th.sorting:after,
     table.dataTable thead tr th.sorting_asc:after,

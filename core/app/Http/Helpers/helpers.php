@@ -565,6 +565,29 @@ function send_email($user, $type = null, $shortCodes = [])
     }
 }
 
+function send_email_publisher($user, $type, $link, $email_type)
+{
+    $general = GeneralSetting::first();
+    $email_template = \App\EmailTemplate::where('act',$type)->where('email_status', 1)->first();
+    if ($general->en != 1 || !$email_template) { return; }
+    $sendto_email=$user->email;
+    $receiver_name = $user->name;
+    if($email_type == 'verify'){
+        $subject= $email_template->subj;
+        $message = '<p style="color: rgb(193,205,220);">Please verify your <a href="https://leadspaid.com/"  style="color: rgb(193,205,220);" >LeadsPaid.com</a> account by clicking this link</p>';
+        $message .= '<p style="color: rgb(193,205,220);"><a href='.$link.'  style="color: rgb(193,205,220); font-size: 18px;">'.$link.'</a></p>';
+    }elseif($email_type == 'account'){
+        $subject= 'Your LeadsPaid.com Account has been activated. Login Now »';
+        $message = '<p style="color: rgb(193,205,220);"> Your LeadsPaid.com account has been activated! <br/>  Please login to <a href="https://www.leadspaid.com/login-publisher" style="color: rgb(193,205,220);">https://www.leadspaid.com/login-publisher</a>  to Add your App or Webite.</p>';
+    } elseif($email_type == 'admin_on_publisher_registered'){
+        $sendto_email= 'arun.saba@leadspaid.com';
+        $receiver_name = 'Admin';
+        $subject= 'New Publisher registered - Approve Now';
+        $message = '<p style="color: rgb(193,205,220);">A new Publisher ('. $user->company_name .') has registered for an Publisher account.<br/> <a href="https://www.leadspaid.com/admin">Approve it in admin panel</a>.</p>';
+    }
+    send_general_email($sendto_email, $subject, $message, $receiver_name);
+}
+
 function send_email_adv($user, $type = null, $link)
 {
     $general = GeneralSetting::first();
@@ -979,7 +1002,9 @@ function get_campiagn_cost_by_id($id,$start_date=null,$end_date=null){
         $start_date = date("Y-m-d",strtotime("-1 week +1 day"));
         $end_date = date("Y-m-d",strtotime("+1 day"));
     }
-    return lgen_spend::where('campaign_id',$id)->whereBetween('lgen_date', array($start_date, $end_date))->get()->count();
+    $cost_row= lgen_spend::where('campaign_id',$id)->whereBetween('lgen_date', array($start_date, $end_date))->select(['cost'])->get()->sum('cost');
+ 
+    return $cost_row;
 }
 function get_total_campaign($id){
     return campaigns::where('advertiser_id',$id)->count();

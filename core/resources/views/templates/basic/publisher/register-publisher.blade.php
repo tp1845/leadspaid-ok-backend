@@ -21,12 +21,12 @@
     <div class="container">
         <div class="row text-center">
             <div class="col-lg-12 mb-5" >
-                <p class="Rg_advts_ttls_1 pt-5">Generate Leads Now!</p>
-                <p class="Rg_advts_ttls">REGISTER AS ADVERTISER</p>
+                <p class="Rg_advts_ttls_1 pt-5">Monetize your Website or App!</p>
+                <p class="Rg_advts_ttls">REGISTER AS PUBLISHER</p>
                 <div class="w-75 m-auto" id="errors_message"></div>
             </div>
         </div>
-        <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
+        <form id="form" class="form" name="form"  method="POST" action="{{route('publisher.register_pub')}}">
             @csrf
             <div class="row">
                 <div class="col-md-11 mx-auto">
@@ -58,22 +58,18 @@
                         </div>
                         <div class="col-md-6">
                             <div class="Rg_advts_bsc" id="advertiser___form">
-                                <h4 class="Rg_advts_bsc_ttls mb-4">Lead Generation Information</h4>
+                                <h4 class="Rg_advts_bsc_ttls mb-4">What are the methods you use to generate leads?</h4>
                                 <div class="Rg_advts_form">
                                     <div class="form-group mb-3">
-                                        <textarea name="product_services"  placeholder="Products or Services for which you want to generate leads" id="floatingTextarea">{{old('product_services')}}</textarea>
+                                        <textarea name="app_methods"  placeholder='What are the methods you use to generate leads? eg. "Show ads in a webpage", "Show ads in an App"' id="floatingTextarea">{{old('app_methods')}}</textarea>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="text" name="Website" value="{{old('Website')}}" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
+                                        <input type="text" name="website" value="{{old('website')}}" class="form-control Rg_advts_name rounded-0" placeholder="Website (Optional)">
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input type="text" name="Social" value="{{old('Social')}}" class="form-control Rg_advts_name rounded-0" placeholder="Social media URL(Optional)">
+                                        <input type="text" name="apps" value="{{old('apps')}}" class="form-control Rg_advts_name rounded-0" placeholder="Apps (Optional)">
                                     </div>
-                                    <div class="form-group mb-3">
-                                        <div class="us_doller">
-                                            <input type="text" name="ad_budget" value="{{old('ad_budget')}}" id="ad_budget" class="form-control Rg_advts_name rounded-0" placeholder="Ad Budget Per Month">
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -107,7 +103,7 @@
                                 </div>
                                 <div class="col-12 text-center mt-4 mb-xl-0 mb-lg-0 mb-md-0 mb-sm-5 mb-5">
                                     <button type="submit" class="btn btn-secondary Rg_advts_my_btn">SIGN UP</button>
-                                    <p class="mt-2"><small style="font-size: .79em;">I agree to your <a href="{{route('privacy_policy')}}"><u>privacy policy</u></a> and <a href="{{route('terms_condition')}}"><u>terms of use</u></a> by submitting this form.</small></p>
+                                    <p class="mt-2"><small style="font-size: .79em;">I agree to your privacy policy and terms of use by submitting this form.</small></p>
                                 </div>
                             </div>
                         </div>
@@ -165,6 +161,7 @@ $("#full_name").capitalize();
         },
         "Enter Correct value."
     );
+
     jQuery.validator.addMethod("lettersonly", function(value, element) {
     return this.optional(element) || /^[a-z ]+$/i.test(value);
     }, "Letters only please");
@@ -177,14 +174,14 @@ $("#full_name").capitalize();
     jQuery.validator.addMethod("valid_email", function(value, element) {
     return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter a valid email address");
-
     jQuery.validator.addMethod("website", function(value, element) {
         rawInput =value;
+        console.log(rawInput);
         cleanInput = rawInput.replace('www.', '');
         cleanInput = cleanInput.replace('http://', '');
         cleanInput = cleanInput.replace('https://', '');
-        console.log('url:' + cleanInput);
-    return this.optional(element) || /^([^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/i.test(cleanInput);
+        console.log(cleanInput);
+    return this.optional(element) || /^([^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/i.test(value);
     }, "Please enter a valid Website");
 
     jQuery.validator.addMethod("isdphone", function(value, element) {
@@ -221,7 +218,6 @@ $("#full_name").capitalize();
             return this.optional(element) || /^[0-9]{4,16}$/i.test(phone);
         }
     }, "Please enter valid phone");
-
     $("#form").validate({
         rules: {
             name: { required: true,minlength: 3, lettersonly: true },
