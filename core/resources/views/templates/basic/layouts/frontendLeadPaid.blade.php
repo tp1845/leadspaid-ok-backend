@@ -30,7 +30,7 @@
     @stack('style-lib')
     @stack('style')
     <style>
-        #MainNav a.nav-link { color: #fff; text-transform: capitalize; font-weight: 400; }
+        #MainNav a.nav-link { color: #fff; text-transform: uppercase; font-weight: 400; }
         #navbarSupportedContent li.btn_link {  border: 2px solid #fff; margin: 0px 10px; }
         #navbarSupportedContent li.btn_link a.nav-link:before { display: none!important;  }
         #MainNav .active a.nav-link{  }
