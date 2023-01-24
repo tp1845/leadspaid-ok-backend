@@ -190,5 +190,8 @@ table thead tr th:before {
     white-space: break-spaces !important;
     min-width: 300px;
 }
+.icon-btn {
+    display: inline-flex;
+}
 </style>
 @endpush
