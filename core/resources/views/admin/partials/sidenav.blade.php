@@ -180,42 +180,8 @@
                                     <span class="menu-title">@lang('All Advertiser')</span>
                                 </a>
                             </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.advertiser.active.all')}}">
-                                <a href="{{route('admin.advertiser.active.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Active Advertiser')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.advertiser.banned.all')}}">
-                                <a href="{{route('admin.advertiser.banned.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Banned Advertiser')</span>
-                                    @if($banned_advertiser_count)
-                                    <span
-                                        class="menu-badge pill bg--primary ml-auto">{{$banned_advertiser_count}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.advertiser.email.unverified')}}">
-                                <a href="{{route('admin.advertiser.email.unverified')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Email Unverified')</span>
-                                    @if($email_unverified_advertiser)
-                                    <span
-                                        class="menu-badge pill bg--primary ml-auto">{{$email_unverified_advertiser}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.advertiser.sms.unverified')}}">
-                                <a href="{{route('admin.advertiser.sms.unverified')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('SMS Unverified')</span>
-                                    @if($sms_unverified_advertiser)
-                                    <span
-                                        class="menu-badge pill bg--primary ml-auto">{{$sms_unverified_advertiser}}</span>
-                                    @endif
-                                </a>
-                            </li>
+                           
+                           
                             <li class="sidebar-menu-item {{menuActive('admin.advertiser.email.all')}}">
                                 <a href="{{route('admin.advertiser.email.all')}}" class="nav-link">
                                     <i class="menu-icon las la-dot-circle"></i>

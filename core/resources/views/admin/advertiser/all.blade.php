@@ -7,8 +7,32 @@
         <div class="col-lg-12">
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
+				
+				
+				<ul class="nav nav-tabs border-0" role="tablist">
+                  <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary active" href="#active" role="tab" data-toggle="tab">Active</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#pending" role="tab" data-toggle="tab">Pending Approval</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#emaildata" role="tab" data-toggle="tab">Email Unverified</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#banned" role="tab" data-toggle="tab">Banned</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#advertiserdata" role="tab" data-toggle="tab">All Advertiser</a>
+                </li>
+                
+            </ul>
+
+                    <div class="tab-content mt-3">
+              <div role="tabpanel" class="tab-pane active" id="active">
+
                     <div class="table-responsive--md  table-responsive">
-                        <table class="table table--light style--two" id="datatable5" >
+                        <table class="table table--light style--two" id="activedata">
                             <thead>
                             <tr>
                                 <th>Status</th>
@@ -18,17 +42,308 @@
                                 <th scope="col">@lang('Country')</th>
                                 <th scope="col">@lang('Phone')</th>
                                 <th scope="col">@lang('Email')</th>
+                                 <th scope="col">@lang('Username')</th>
                                 <th scope="col">@lang('Products/Services')</th>
                                 <th scope="col">@lang('Website')</th>
                                 <th scope="col">@lang('Social Media')</th>
                                 <th scope="col">@lang('Ad Budget')</th>
-                                <th scope="col">@lang('Username')</th>
+                               
                                 <th scope="col">@lang('Date Applied')</th>
                                 <th scope="col">@lang('Actions')</th>
                             </tr>
                             </thead>
                             <tbody>
-                             @if(!empty($advertisers))
+                                @if(!empty($active))
+                            @foreach($active as $advertiser)
+                            <tr>
+                                <td data-label="@lang('Name')" class="text--primary">
+                                    <input type="checkbox" name="status" @if($advertiser->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                </td>
+                                <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                <td data-label="@lang('Assign publisher Admin')">
+                                    <ul class="check_box_list">
+                                        @forelse($publishers_admin as $publisher)
+                                            <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked  @endif  type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                        @empty
+
+                                        @endforelse
+                                    </ul>
+                                </td>
+                                <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
+                                <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
+                                <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                 <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                                <td data-label="@lang('Products/Services')">{{ $advertiser->product_services }}</td>
+                                <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+                               
+                                <td><span class="text--small"><strong>  {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
+                                {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
+                                <td data-label="@lang('Actions')">
+                                    <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
+                                        <i class="las la-desktop text--shadow"></i>
+                                    </a>
+                                    
+                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                      
+                                    </a>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
+
+                            </tbody>
+                        </table><!-- table end -->
+                    </div>
+                </div>
+            <!-- Tab panes 2 -->
+              <div role="tabpanel" class="tab-pane" id="pending">
+
+                    <div class="table-responsive--md  table-responsive">
+                        <table class="table table--light style--two" id="pendingdata">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th scope="col">@lang('Company Name')</th>
+                                <th scope="col">@lang('Assign publisher Admin')</th>
+                                <th scope="col">@lang('Name')</th>
+                                <th scope="col">@lang('Country')</th>
+                                <th scope="col">@lang('Phone')</th>
+                                <th scope="col">@lang('Email')</th>
+                                 <th scope="col">@lang('Username')</th>
+                                <th scope="col">@lang('Products/Services')</th>
+                                <th scope="col">@lang('Website')</th>
+                                <th scope="col">@lang('Social Media')</th>
+                                <th scope="col">@lang('Ad Budget')</th>
+                               
+                                <th scope="col">@lang('Date Applied')</th>
+                                <th scope="col">@lang('Actions')</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    @if(!empty($pending))
+                            @foreach($pending as $advertiser)
+                            <tr>
+                                <td data-label="@lang('Name')" class="text--primary">
+                                    <input type="checkbox" name="status" @if($advertiser->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                </td>
+                                <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                <td data-label="@lang('Assign publisher Admin')">
+                                    <ul class="check_box_list">
+                                        @forelse($publishers_admin as $publisher)
+                                            <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked  @endif  type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                        @empty
+
+                                        @endforelse
+                                    </ul>
+                                </td>
+                                <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
+                                <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
+                                <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                 <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                                <td data-label="@lang('Products/Services')">{{ $advertiser->product_services }}</td>
+                                <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+                               
+                                <td><span class="text--small"><strong>  {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
+                                {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
+                                <td data-label="@lang('Actions')">
+                                    <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
+                                        <i class="las la-desktop text--shadow"></i>
+                                    </a>
+                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                      
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
+
+                            </tbody>
+                        </table><!-- table end -->
+                    </div>
+                </div>
+            <!-- Tab panes 3 -->
+              <div role="tabpanel" class="tab-pane" id="emaildata">
+
+                    <div class="table-responsive--md  table-responsive">
+                        <table class="table table--light style--two" id="data-email">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th scope="col">@lang('Company Name')</th>
+                                <th scope="col">@lang('Assign publisher Admin')</th>
+                                <th scope="col">@lang('Name')</th>
+                                <th scope="col">@lang('Country')</th>
+                                <th scope="col">@lang('Phone')</th>
+                                <th scope="col">@lang('Email')</th>
+                                 <th scope="col">@lang('Username')</th>
+                                <th scope="col">@lang('Products/Services')</th>
+                                <th scope="col">@lang('Website')</th>
+                                <th scope="col">@lang('Social Media')</th>
+                                <th scope="col">@lang('Ad Budget')</th>
+                               
+                                <th scope="col">@lang('Date Applied')</th>
+                                <th scope="col">@lang('Actions')</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    @if(!empty($email_unverify))
+                            @foreach($email_unverify as $advertiser)
+                            <tr>
+                                <td data-label="@lang('Name')" class="text--primary">
+                                    <input type="checkbox" name="status" @if($advertiser->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                </td>
+                                <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                <td data-label="@lang('Assign publisher Admin')">
+                                    <ul class="check_box_list">
+                                        @forelse($publishers_admin as $publisher)
+                                            <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked  @endif  type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                        @empty
+
+                                        @endforelse
+                                    </ul>
+                                </td>
+                                <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
+                                <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
+                                <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                 <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                                <td data-label="@lang('Products/Services')">{{ $advertiser->product_services }}</td>
+                                <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+                               
+                                <td><span class="text--small"><strong>  {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
+                                {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
+                                <td data-label="@lang('Actions')">
+                                    <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
+                                        <i class="las la-desktop text--shadow"></i>
+                                    </a>
+                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                      
+                                    </a>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
+
+                            </tbody>
+                        </table><!-- table end -->
+                    </div>
+                </div>
+
+
+            <!-- Tab panes 4 -->
+              <div role="tabpanel" class="tab-pane" id="banned">
+
+                    <div class="table-responsive--md  table-responsive">
+                        <table class="table table--light style--two" id="banneddata">
+                            <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th scope="col">@lang('Company Name')</th>
+                                <th scope="col">@lang('Assign publisher Admin')</th>
+                                <th scope="col">@lang('Name')</th>
+                                <th scope="col">@lang('Country')</th>
+                                <th scope="col">@lang('Phone')</th>
+                                <th scope="col">@lang('Email')</th>
+                                 <th scope="col">@lang('Username')</th>
+                                <th scope="col">@lang('Products/Services')</th>
+                                <th scope="col">@lang('Website')</th>
+                                <th scope="col">@lang('Social Media')</th>
+                                <th scope="col">@lang('Ad Budget')</th>
+                               
+                                <th scope="col">@lang('Date Applied')</th>
+                                <th scope="col">@lang('Actions')</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    @if(!empty($banned))
+                            @foreach($banned as $advertiser)
+                            <tr>
+                                <td data-label="@lang('Name')" class="text--primary">
+                                    <input type="checkbox" name="status" @if($advertiser->status) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                </td>
+                                <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                <td data-label="@lang('Assign publisher Admin')">
+                                    <ul class="check_box_list">
+                                        @forelse($publishers_admin as $publisher)
+                                            <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked  @endif  type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                        @empty
+
+                                        @endforelse
+                                    </ul>
+                                </td>
+                                <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
+                                <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
+                                <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                 <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                                <td data-label="@lang('Products/Services')">{{ $advertiser->product_services }}</td>
+                                <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+                               
+                                <td><span class="text--small"><strong>  {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
+                                {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
+                                <td data-label="@lang('Actions')">
+                                    <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
+                                        <i class="las la-desktop text--shadow"></i>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            @endforeach
+                            @endif
+
+                            </tbody>
+                        </table><!-- table end -->
+                    </div>
+                </div>
+            <!-- Tab panes 5 -->
+              <div role="tabpanel" class="tab-pane" id="advertiserdata">
+
+                    <div class="table-responsive--md  table-responsive">
+                        <table class="table table--light style--two" id="advertiser-data">
+                           <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th scope="col">@lang('Company Name')</th>
+                                <th scope="col">@lang('Assign publisher Admin')</th>
+                                <th scope="col">@lang('Name')</th>
+                                <th scope="col">@lang('Country')</th>
+                                <th scope="col">@lang('Phone')</th>
+                                <th scope="col">@lang('Email')</th>
+                                 <th scope="col">@lang('Username')</th>
+                                <th scope="col">@lang('Products/Services')</th>
+                                <th scope="col">@lang('Website')</th>
+                                <th scope="col">@lang('Social Media')</th>
+                                <th scope="col">@lang('Ad Budget')</th>
+                               
+                                <th scope="col">@lang('Date Applied')</th>
+                                <th scope="col">@lang('Actions')</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    @if(!empty($advertisers))
                             @foreach($advertisers as $advertiser)
                             <tr>
                                 <td data-label="@lang('Name')" class="text--primary">
@@ -48,17 +363,23 @@
                                 <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                 <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
                                 <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                 <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                 <td data-label="@lang('Products/Services')">{{ $advertiser->product_services }}</td>
                                 <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
                                 <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
                                 <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
 
-                                <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                               
                                 <td><span class="text--small"><strong>  {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
                                 {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
                                 <td data-label="@lang('Actions')">
                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                         <i class="las la-desktop text--shadow"></i>
+                                    </a>
+
+                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                      
                                     </a>
 
                                 </td>
@@ -69,6 +390,8 @@
                             </tbody>
                         </table><!-- table end -->
                     </div>
+                </div>
+            </div>
                 </div>
 
             </div><!-- card end -->
@@ -154,6 +477,16 @@
             }
            
         });
+		 $('#advertiser-data,#pendingdata,#data-email,#banneddata').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
 </script>
 @endpush
 @push('style')
@@ -198,6 +531,20 @@ table.dataTable tbody tr td:nth-child(8) {
     white-space: normal !important;
     overflow-y: auto;
     display: inline-flex;
+}
+
+#apporved_list ul.nav.nav-tabs {
+    position: absolute;
+    top: 30px;
+    z-index: 1;
+    left: 0;
+}
+#apporved_list .dataTables_filter span {
+    display: none;
+}
+.toggle.btn{
+    width: 27px !important;
+    height: 20px !important;
 }
 </style>
 @endpush
