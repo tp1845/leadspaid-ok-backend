@@ -187,6 +187,7 @@ table thead tr th:before {
 
 .table td {
     width: 100%;
+    white-space: break-spaces !important;
     min-width: 300px;
 }
 </style>
