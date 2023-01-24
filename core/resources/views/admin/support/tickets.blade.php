@@ -54,7 +54,7 @@
                                         <i class="las la-desktop"></i>
                                     </a>
 									
-									 <a href="{{ route('admin.ticket/delete',['id'=>$item->id])}}" class="ml-1" data-toggle="tooltip" title="" onclick="return confirm('Are you sure?')" data-original-title="Details">
+									 <a href="{{ route('admin.ticket/delete',['id'=>$item->id])}}" class="ml-1" data-toggle="tooltip" title="" onclick="return confirm('Are you sure?')" data-original-title="Delete">
                                         <i class="fa-sharp fa-solid fa-circle-xmark text-danger"></i>
                                     </a>
 									
