@@ -9,6 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 use App\campaign_forms_leads;
 use App\campaigns;
 use App\lgen_spend;
+use App\Publisher;
 function sidebarVariation()
 {
 
@@ -1024,4 +1025,26 @@ function get_publisher_type($type){
 function get_publisher_username(){
     $username = auth()->guard('publisher')->user()->username;
     return substr($username, 0, strpos($username, "@"));
+}
+
+
+function get_campaign_name_by_id($id){
+    
+    $data=campaigns::where('id',$id)->first();
+     
+    if(!empty($data)){
+        return $data->name;
+    }else{
+        return  '';
+    }
+}
+
+function get_publisher_name_by_id($id){
+    $data=publisher::where('id', $id)->first();
+
+    if(!empty($data)){
+        return $data->name;
+    }else{
+        return  '';
+    }
 }

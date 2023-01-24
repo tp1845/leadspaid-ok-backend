@@ -8,7 +8,7 @@
             <div class="card b-radius--10 ">
                 <div class="card-body p-0">
                     <div class="table-responsive--md  table-responsive">
-                        <table id="leadsTable" class="table table--light style--two">
+                        <table id="leadsTable" class="table table--light style--two" >
                             <thead>
                                 <tr>
                                     <th>Lead Id</th>
@@ -19,8 +19,12 @@
                                     <th>Field 4</th>
                                     <th>Field 5</th>
                                     <th>Campaign ID</th>
+                                    <th>Campaign Name</th>
                                     <th>publisher  Id</th>
-
+                                    <th>publisher name</th>
+                                    <th>lgen_source</th>
+                                    <th>lgen_medium</th>
+                                    <th>lgen_campaign</th>
                                     <th>Form Id</th>
                                     <th>Date</th>
                                 </tr>
@@ -36,7 +40,12 @@
                                 <td>{{ $lead->field_4 }}</td>
                                 <td>{{ $lead->field_5 }}</td>
                                 <td>{{ $lead->campaign_id }}</td>
+                                <td>{{ get_campaign_name_by_id($lead->campaign_id) }}</td>
                                 <td>{{ $lead->publisher_id }}</td>
+                                <td>{{ get_publisher_name_by_id($lead->campaign_id) }}</td>
+                                <td>{{ $lead->lgen_source }}</td>
+                                <td>{{ $lead->lgen_medium }}</td>
+                                <td>{{ $lead->lgen_campaign }}</td>
                                 <td>{{ $lead->form_id }}</td>
                                 <td>{{ $lead->created_at  }}</td>
                             </tr>
@@ -72,8 +81,9 @@
         $(document).ready(function() {
 
         });
-		
-		$('#leadsTable').DataTable({
+
+
+ $('#leadsTable').DataTable({
             
             "sDom": 'Lfrtlip',
             "language": {
@@ -83,11 +93,12 @@
             }
            
         });
-    </script>
+
+</script>
 @endpush
 @push('style')
 <style>
-    .table th { padding: 12px 10px; max-width: 200px; }
+    .table th {  max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
     .toggle.btn-sm {  min-width: 40px; min-height: 15px;  height: 15px; }
@@ -97,7 +108,7 @@
     .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
     #selectimportfile{     display: inline-block;  width: auto; padding: 5px; }
-	   table thead tr th:after {
+    table thead tr th:after {
     top: 14px !important;
 }
 table thead tr th:before {
