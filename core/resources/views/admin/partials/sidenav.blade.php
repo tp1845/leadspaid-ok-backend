@@ -331,191 +331,112 @@
                         </ul>
                     </div>
                 </li>
-                <li class="sidebar__menu-header">@lang('Publisher')</li>
+                
+                <li class="sidebar__menu-header"></li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.publisher*',3)}}">
                         <i class="menu-icon lab la-chromecast"></i>
-                        <span class="menu-title">@lang('Manage Publisher')</span>
+                        <span class="menu-title">@lang('Publisher')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.publisher*',2)}} ">
                         <ul>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.publisher.all')}}">
-                                <a href="{{route('admin.publisher.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Publisher')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.publisher.admin.all')}}">
-                                <a href="{{route('admin.publisher.admin.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Admin Publisher')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.publisher.active.all')}}">
-                                <a href="{{route('admin.publisher.active.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Active Publisher')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.publisher.banned.all')}}">
-                                <a href="{{route('admin.publisher.banned.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Banned Publishers')</span>
-                                    @if($banned_publisher_count)
-                                    <span
-                                        class="menu-badge pill bg--primary ml-auto">{{$banned_publisher_count}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.publisher.email.unverified')}}">
-                                <a href="{{route('admin.publisher.email.unverified')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Email Unverified')</span>
-                                    @if($email_unverified_publisher)
-                                    <span
-                                        class="menu-badge pill bg--primary ml-auto">{{$email_unverified_publisher}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.publisher.sms.unverified')}}">
-                                <a href="{{route('admin.publisher.sms.unverified')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('SMS Unverified')</span>
-                                    @if($sms_unverified_publisher)
-                                    <span
-                                        class="menu-badge pill bg--primary ml-auto">{{$sms_unverified_publisher}}</span>
-                                    @endif
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.publisher.email.all')}}">
-                                <a href="{{route('admin.publisher.email.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Send Email to all')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.domain*',3)}}">
-                        <i class="menu-icon las la-check-circle"></i>
-                        <span class="menu-title">@lang('Manage Domain')</span>
-                        @if(0 < $pending_domain)
-                        <span class="menu-badge pill bg--primary ml-auto">
-                            <i class="fa fa-exclamation"></i>
-                        </span>
-                        @endif
-                    </a>
-                    <div class="sidebar-submenu {{menuActive('admin.domain*',2)}} ">
-                        <ul>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.domain.pending')}}">
-                                <a href="{{route('admin.domain.pending')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Pending Domain')</span>
+                            <li class="sidebar-menu-item sidebar-dropdown">
+                            <a href="javascript:void(0)" class="{{menuActive('admin.publisher*',3)}}">
+                                <i class="menu-icon lab la-chromecast"></i>
+                                <span class="menu-title">@lang('Manage Publisher')</span>
+                            </a>
+                            <div class="sidebar-submenu {{menuActive('admin.publisher*',2)}} ">
+                                <ul>
+                                    <li class="sidebar-menu-item {{menuActive('admin.publisher.all')}}">
+                                        <a href="{{route('admin.publisher.all')}}" class="nav-link">
+                                            <i class="menu-icon las la-dot-circle"></i>
+                                            <span class="menu-title">@lang('All Publisher')</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item {{menuActive('admin.publisher.admin.all')}}">
+                                        <a href="{{route('admin.publisher.admin.all')}}" class="nav-link">
+                                            <i class="menu-icon las la-dot-circle"></i>
+                                            <span class="menu-title">@lang('All Admin Publisher')</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item {{menuActive('admin.publisher.active.all')}}">
+                                        <a href="{{route('admin.publisher.active.all')}}" class="nav-link">
+                                            <i class="menu-icon las la-dot-circle"></i>
+                                            <span class="menu-title">@lang('All Active Publisher')</span>
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item {{menuActive('admin.publisher.banned.all')}}">
+                                        <a href="{{route('admin.publisher.banned.all')}}" class="nav-link">
+                                            <i class="menu-icon las la-dot-circle"></i>
+                                            <span class="menu-title">@lang('Banned Publishers')</span>
+                                            @if($banned_publisher_count)
+                                            <span
+                                                class="menu-badge pill bg--primary ml-auto">{{$banned_publisher_count}}</span>
+                                            @endif
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item {{menuActive('admin.publisher.email.unverified')}}">
+                                        <a href="{{route('admin.publisher.email.unverified')}}" class="nav-link">
+                                            <i class="menu-icon las la-dot-circle"></i>
+                                            <span class="menu-title">@lang('Email Unverified')</span>
+                                            @if($email_unverified_publisher)
+                                            <span
+                                                class="menu-badge pill bg--primary ml-auto">{{$email_unverified_publisher}}</span>
+                                            @endif
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item {{menuActive('admin.publisher.sms.unverified')}}">
+                                        <a href="{{route('admin.publisher.sms.unverified')}}" class="nav-link">
+                                            <i class="menu-icon las la-dot-circle"></i>
+                                            <span class="menu-title">@lang('SMS Unverified')</span>
+                                            @if($sms_unverified_publisher)
+                                            <span
+                                                class="menu-badge pill bg--primary ml-auto">{{$sms_unverified_publisher}}</span>
+                                            @endif
+                                        </a>
+                                    </li>
+                                    <li class="sidebar-menu-item {{menuActive('admin.publisher.email.all')}}">
+                                        <a href="{{route('admin.publisher.email.all')}}" class="nav-link">
+                                            <i class="menu-icon las la-dot-circle"></i>
+                                            <span class="menu-title">@lang('Send Email to all')</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            </li>                  
+                            <li class="sidebar-menu-item sidebar-dropdown">
+                                <a href="javascript:void(0)" class="{{menuActive('admin.domain*',3)}}">
+                                    <i class="menu-icon las la-check-circle"></i>
+                                    <span class="menu-title">@lang('Manage Domain')</span>
                                     @if(0 < $pending_domain)
                                     <span class="menu-badge pill bg--primary ml-auto">
-                                        {{$pending_domain}}
+                                        <i class="fa fa-exclamation"></i>
                                     </span>
                                     @endif
                                 </a>
+                                <div class="sidebar-submenu {{menuActive('admin.domain*',2)}} ">
+                                    <ul>
+
+                                        <li class="sidebar-menu-item {{menuActive('admin.domain.pending')}}">
+                                            <a href="{{route('admin.domain.pending')}}" class="nav-link">
+                                                <i class="menu-icon las la-dot-circle"></i>
+                                                <span class="menu-title">@lang('Pending Domain')</span>
+                                                @if(0 < $pending_domain)
+                                                <span class="menu-badge pill bg--primary ml-auto">
+                                                    {{$pending_domain}}
+                                                </span>
+                                                @endif
+                                            </a>
+                                        </li>
+                                        <li class="sidebar-menu-item {{menuActive('admin.domain.approved')}}">
+                                            <a href="{{route('admin.domain.approved')}}" class="nav-link">
+                                                <i class="menu-icon las la-dot-circle"></i>
+                                                <span class="menu-title">@lang('Approved Domain')</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.domain.approved')}}">
-                                <a href="{{route('admin.domain.approved')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Approved Domain')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.gateway*',3)}}">
-                        <i class="menu-icon las la-credit-card"></i>
-                        <span class="menu-title">@lang('Payment Gateways')</span>
-
-                    </a>
-                    <div class="sidebar-submenu {{menuActive('admin.gateway*',2)}} ">
-                        <ul>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.gateway.automatic.index')}} ">
-                                <a href="{{route('admin.gateway.automatic.index')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Automatic Gateways')</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-menu-item {{menuActive('admin.gateway.manual.index')}} ">
-                                <a href="{{route('admin.gateway.manual.index')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Manual Gateways')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-
-                
-
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.withdraw*',3)}}">
-                        <i class="menu-icon la la-bank"></i>
-                        <span class="menu-title">@lang('Withdrawals') </span>
-                        @if(0 < $pending_withdraw_count)
-                            <span class="menu-badge pill bg--primary ml-auto">
-                                <i class="fa fa-exclamation"></i>
-                            </span>
-                        @endif
-                    </a>
-                    <div class="sidebar-submenu {{menuActive('admin.withdraw*',2)}} ">
-                        <ul>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.method.index')}}">
-                                <a href="{{route('admin.withdraw.method.index')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Withdraw Methods')</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.pending')}} ">
-                                <a href="{{route('admin.withdraw.pending')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Pending Log')</span>
-
-                                    @if($pending_withdraw_count)
-                                        <span class="menu-badge pill bg--primary ml-auto">{{$pending_withdraw_count}}</span>
-                                    @endif
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.approved')}} ">
-                                <a href="{{route('admin.withdraw.approved')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Approved Log')</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.rejected')}} ">
-                                <a href="{{route('admin.withdraw.rejected')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Rejected Log')</span>
-                                </a>
-                            </li>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.log')}} ">
-                                <a href="{{route('admin.withdraw.log')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('Withdrawals Log')</span>
-                                </a>
-                            </li>
-
-
-                        </ul>
-                    </div>
-                </li>
 
                 <li class="sidebar__menu-header"></li>
                 
