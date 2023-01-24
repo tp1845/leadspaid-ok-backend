@@ -331,7 +331,6 @@
                         </ul>
                     </div>
                 </li>
-                
                 <li class="sidebar__menu-header"></li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.publisher*',3)}}">
@@ -438,6 +437,93 @@
                                 </div>
                             </li>
 
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.gateway*',3)}}">
+                        <i class="menu-icon las la-credit-card"></i>
+                        <span class="menu-title">@lang('Payment Gateways')</span>
+
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.gateway*',2)}} ">
+                        <ul>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.gateway.automatic.index')}} ">
+                                <a href="{{route('admin.gateway.automatic.index')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Automatic Gateways')</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-menu-item {{menuActive('admin.gateway.manual.index')}} ">
+                                <a href="{{route('admin.gateway.manual.index')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Manual Gateways')</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>             
+                <li class="sidebar-menu-item sidebar-dropdown">
+                    <a href="javascript:void(0)" class="{{menuActive('admin.withdraw*',3)}}">
+                        <i class="menu-icon la la-bank"></i>
+                        <span class="menu-title">@lang('Withdrawals') </span>
+                        @if(0 < $pending_withdraw_count)
+                            <span class="menu-badge pill bg--primary ml-auto">
+                                <i class="fa fa-exclamation"></i>
+                            </span>
+                        @endif
+                    </a>
+                    <div class="sidebar-submenu {{menuActive('admin.withdraw*',2)}} ">
+                        <ul>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.method.index')}}">
+                                <a href="{{route('admin.withdraw.method.index')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Withdraw Methods')</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.pending')}} ">
+                                <a href="{{route('admin.withdraw.pending')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Pending Log')</span>
+
+                                    @if($pending_withdraw_count)
+                                        <span class="menu-badge pill bg--primary ml-auto">{{$pending_withdraw_count}}</span>
+                                    @endif
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.approved')}} ">
+                                <a href="{{route('admin.withdraw.approved')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Approved Log')</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.rejected')}} ">
+                                <a href="{{route('admin.withdraw.rejected')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Rejected Log')</span>
+                                </a>
+                            </li>
+
+                            <li class="sidebar-menu-item {{menuActive('admin.withdraw.log')}} ">
+                                <a href="{{route('admin.withdraw.log')}}" class="nav-link">
+                                    <i class="menu-icon las la-dot-circle"></i>
+                                    <span class="menu-title">@lang('Withdrawals Log')</span>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
+                        </ul>
+                    </div>
+                </li>
+				
+				
+				
+				
                 <li class="sidebar__menu-header"></li>
                 
                 
