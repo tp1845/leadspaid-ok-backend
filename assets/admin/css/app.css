@@ -3947,7 +3947,18 @@ table thead tr th:before {
     font-size: 16px;
     color: #5b6e88;
 }
-
+.fa-circle-xmark {
+    font-size: 16px;
+}
+.sidebar .sidebar__menu ul li.sidebar-dropdown a.side-menu--open ~ .sidebar-submenu__open ul li:hover a .menu-title {
+    color: #fff;
+}
+.sidebar .sidebar__menu ul li.sidebar-dropdown .side-menu--open ~ .sidebar-submenu__open ul li:hover a .menu-title, .sidebar .sidebar__menu ul li.sidebar-dropdown:hover a.side-menu--open .menu-title {
+    color: #fff !important;
+}
+.sidebar .sidebar__menu ul li.sidebar-dropdown:hover a.side-menu--open ~ .sidebar-submenu__open ul li a .menu-title {
+    color: #a9a9a9;
+}
 
 
 
