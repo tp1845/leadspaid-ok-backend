@@ -185,5 +185,9 @@ table thead tr th:before {
     bottom: 14px !important;
 }
 
+.table td {
+    width: 100%;
+    min-width: 300px;
+}
 </style>
 @endpush
