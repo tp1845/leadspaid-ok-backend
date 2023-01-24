@@ -193,5 +193,11 @@ table thead tr th:before {
 .icon-btn {
     display: inline-flex;
 }
+table.dataTable tbody tr td:nth-child(8) {
+    height: 150px;
+    white-space: normal !important;
+    overflow-y: scroll;
+    display: inline-flex;
+}
 </style>
 @endpush
