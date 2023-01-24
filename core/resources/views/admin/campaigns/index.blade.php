@@ -1,41 +1,64 @@
 @extends('admin.layouts.app')
 @section('panel')
-    <div class="row">
+    <div class="row" id="apporved_list">
         <div class="col-lg-12">
             <div class=" ">
-                <div class=" ">
+                <div class="custom-table-data">
+
+
+
+
+            <ul class="nav nav-tabs border-0" role="tablist">
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary active" href="#apporved" role="tab" data-toggle="tab">Apporved</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#pendingapproved" role="tab" data-toggle="tab">Pending Approval</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link btn-primary" href="#allcampigns" role="tab" data-toggle="tab">All Campaigns</a>
+                </li>
+                
+            </ul>
+
+
+            <!-- Tab panes 1 -->
+            <div class="tab-content mt-3">
+            <div role="tabpanel" class="tab-pane active" id="apporved">
+
                     <div class="table-responsive--md  table-responsive">
-                        <table id="campaign_list" class="table table-striped table-bordered datatable " style="width:100%">
+                        <table class="table table--light style--two" id="apporveddata">
                             <thead>
-                                <tr>
-                                    <th>Off/On</th>
-                                    <th>Advertiser</th>
-                                    <th>A.Id</th>
-                                    <th>C.Id</th>
-                                    <th>Campaign Name</th>
-                                    <th>Approve</th>
-                                    <th>Creation Date</th>
-                                    <th>Target Country</th>
-                                    <th>Daily Budget</th>
-                                    <th>Target CPL</th>
-                                    <th>Form Used</th>
-                                    <th>Start</th>
-                                    <th>End</th>
-                                    <th>Cost</th>
-                                    <th>Leads</th>
-                                    <th>CPL</th>
-                                    <th>Action</th>
-                                    <th>Spend</th>
-                                    <th>Targeting Placements</th>
-                                    <th>Keywords </th>
-                                    <th>Service </th>
-                                    <th>Website URL</th>
-                                    <th>Social Media</th>
-                                </tr>
+                            <tr>
+                                <th>Off/On</th>
+                                <th>Advertiser</th>
+                                <th>A.Id</th>
+                                <th>C.Id</th>
+                                <th>Campaign Name</th>
+                                <th>Approve</th>
+                                <th>Creation Date</th>
+                                <th>Target Country</th>
+                                <th>Daily Budget</th>
+                                <th>Target CPL</th>
+                                <th>Form Used</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Cost</th>
+                                <th>Leads</th>
+                                <th>CPL</th>
+                                <th>Action</th>
+                                <th>Spend</th>
+                                <th>Targeting Placements</th>
+                                <th>Keywords </th>
+                                <th>Service </th>
+                                <th>Website URL</th>
+                                <th>Social Media</th>
+                            </tr>
                             </thead>
                             <tbody>
-
-                                @forelse($campaigns as $campaign)
+                                
+                               @if(!empty($active))
+                                @foreach($active as $campaign)
                                     <tr>
                                         <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
                                         <td>{{ $campaign->advertiser->name}} </td>
@@ -86,17 +109,202 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                     </tr>
-                                @empty
-                                    <tr>
-                                        <td class="text-muted text-center" colspan="100%">{{ $empty_message }}</td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
+                                @endif
+
                             </tbody>
                         </table><!-- table end -->
                     </div>
                 </div>
+            <!-- Tab panes 2 -->
+              <div role="tabpanel" class="tab-pane" id="pendingapproved">
+
+                    <div class="table-responsive--md  table-responsive">
+                        <table class="table table--light style--two" id="pendingdata">
+                            <thead>
+                            <tr>
+                                <th>Off/On</th>
+                                <th>Advertiser</th>
+                                <th>A.Id</th>
+                                <th>C.Id</th>
+                                <th>Campaign Name</th>
+                                <th>Approve</th>
+                                <th>Creation Date</th>
+                                <th>Target Country</th>
+                                <th>Daily Budget</th>
+                                <th>Target CPL</th>
+                                <th>Form Used</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Cost</th>
+                                <th>Leads</th>
+                                <th>CPL</th>
+                                <th>Action</th>
+                                <th>Spend</th>
+                                <th>Targeting Placements</th>
+                                <th>Keywords </th>
+                                <th>Service </th>
+                                <th>Website URL</th>
+                                <th>Social Media</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                               
+                              @if(!empty($pending))
+                                @foreach($pending as $campaign)
+                                    <tr>
+                                        <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
+                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->id}} </td>
+                                        <td>{{ $campaign->id }} </td>
+                                        <td>{{ $campaign->name }} </td>
+                                        <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
+                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>{{ $campaign->target_country }}</td>
+                                        <td>${{  $campaign->daily_budget }}</td>
+                                        <td>${{  $campaign->target_cost }}</td>
+                                        <td>
+                                            @if (isset($campaign->campaign_forms))
+                                            <a href="#" class="btn_form_preview"  data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}" > {{$campaign->campaign_forms->form_name}}  </a> @endif
+                                        </td>
+                                        <td>{{ $campaign->start_date }}</td>
+                                        <td>{{ $campaign->end_date }}</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <form id="upload_form_{{$campaign->id}}" data-type="leads"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                                @csrf
+                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td class="spend_col">
+                                            <form id="upload_spends_form_{{$campaign->id}}" data-type="spends"  class="uploadform" action="{{ route('admin.campaigns.lgenspend.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                                @csrf
+                                                <a href="{{ route('admin.campaigns.lgenspend.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-light-red up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="text-danger up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <input data-form="upload_spends_form_{{$campaign->id}}" type="file" name="file" required    />
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td> @if($campaign->target_placements)
+                                            @foreach($campaign->target_placements as $target_placements)
+                                            {{$target_placements}} ,
+                                            @endforeach
+                                            @endif</td>
+                                        <td>{{ $campaign->keywords }}</td>
+                                        <td>{{ $campaign->service_sell_buy }}</td>
+                                        <td>{{ $campaign->website_url }}</td>
+                                        <td>{{ $campaign->social_media_page }}</td>
+                                    </tr>
+                                @endforeach
+                                @endif
+
+                            </tbody>
+                        </table><!-- table end -->
+                    </div>
+                </div>
+            <!-- Tab panes 3 -->
+              <div role="tabpanel" class="tab-pane" id="allcampigns">
+
+                    <div class="table-responsive--md  table-responsive">
+                        <table class="table table-striped table-bordered datatable " style="width:100%" id="datatable7">
+                            <thead>
+                                <tr>
+                                    <th>Off/On</th>
+                                    <th>Advertiser</th>
+                                    <th>A.Id</th>
+                                    <th>C.Id</th>
+                                    <th>Campaign Name</th>
+                                    <th>Approve</th>
+                                    <th>Creation Date</th>
+                                    <th>Target Country</th>
+                                    <th>Daily Budget</th>
+                                    <th>Target CPL</th>
+                                    <th>Form Used</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Cost</th>
+                                    <th>Leads</th>
+                                    <th>CPL</th>
+                                    <th>Action</th>
+                                    <th>Spend</th>
+                                    <th>Targeting Placements</th>
+                                    <th>Keywords </th>
+                                    <th>Service </th>
+                                    <th>Website URL</th>
+                                    <th>Social Media</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if(!empty($campaigns))
+                                @foreach($campaigns as $campaign)
+                                    <tr>
+                                        <td> @if($campaign->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
+                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->id}} </td>
+                                        <td>{{ $campaign->id }} </td>
+                                        <td>{{ $campaign->name }} </td>
+                                        <td> <input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}"></td>
+                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>{{ $campaign->target_country }}</td>
+                                        <td>${{  $campaign->daily_budget }}</td>
+                                        <td>${{  $campaign->target_cost }}</td>
+                                        <td>
+                                            @if (isset($campaign->campaign_forms))
+                                            <a href="#" class="btn_form_preview"  data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}" > {{$campaign->campaign_forms->form_name}}  </a> @endif
+                                        </td>
+                                        <td>{{ $campaign->start_date }}</td>
+                                        <td>{{ $campaign->end_date }}</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <form id="upload_form_{{$campaign->id}}" data-type="leads"  class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                                @csrf
+                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required    />
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td class="spend_col">
+                                            <form id="upload_spends_form_{{$campaign->id}}" data-type="spends"  class="uploadform" action="{{ route('admin.campaigns.lgenspend.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}"  method="POST"  enctype="multipart/form-data">
+                                                @csrf
+                                                <a href="{{ route('admin.campaigns.lgenspend.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-light-red up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="text-danger up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <input data-form="upload_spends_form_{{$campaign->id}}" type="file" name="file" required    />
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td> @if($campaign->target_placements)
+                                            @foreach($campaign->target_placements as $target_placements)
+                                            {{$target_placements}} ,
+                                            @endforeach
+                                            @endif</td>
+                                        <td>{{ $campaign->keywords }}</td>
+                                        <td>{{ $campaign->service_sell_buy }}</td>
+                                        <td>{{ $campaign->website_url }}</td>
+                                        <td>{{ $campaign->social_media_page }}</td>
+                                    </tr>
+                                @endforeach
+                                @endif
+                            </tbody>
+                        </table><!-- table end -->
+                    </div>
+                </div>
+            </div>
+                    <div class="table-responsive--md  table-responsive">
+                        
+                </div>
             </div><!-- card end -->
-            <div class="card-footer py-4"> </div>
         </div>
     </div>
  {{-- SETUP Form Preview MODAL --}}
@@ -143,7 +351,7 @@
     table.dataTable thead tr th {
     border-right: 1px solid #ffffff36;
     font-size: 17px;
-    padding: 12px 10px;
+/*    padding: 12px 10px;*/
     max-width: 200px;
     vertical-align: inherit;
     line-height: .8;
@@ -166,30 +374,6 @@
     }
 
 
-    table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:before {
-    bottom: 50% !important;
-    content: "▲" !important;
-    }
-    table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, ttable.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
-    position: absolute !important;
-    display: block !important;
-    opacity: .125 !important;
-    right: 10px !important;
-    line-height: 9px !important;
-    font-size: .8em !important;
-    }
-    table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:before, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:before, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:before, tatable.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:before, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:before, table.dataTable thead tr th.sorting_desc_disabled:after {
-    position: absolute !important;
-    display: block !important;
-    opacity: .125 !important;
-    right: 10px !important;
-    line-height: 9px !important;
-    font-size: .8em !important;
-    }
-    table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after, table.dataTable thead tr th.sorting:after, table.dataTable thead tr th.sorting_asc:after, table.dataTable thead tr th.sorting_desc:after, table.dataTable thead tr th.sorting_asc_disabled:after, table.dataTable thead tr th.sorting_desc_disabled:after {
-    top: 50% !important;
-    content: "▼" !important;
-    }
 
     .pagination .page-item .page-link, .pagination .page-item span,
 
@@ -201,7 +385,7 @@
     .btn-success {
     background-color: #11b6f3 !important;
     }
-    .table th { padding: 12px 10px; max-width: 200px; }
+    .table th {  max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
     .toggle.btn-sm {  min-width: 40px; min-height: 15px;  height: 15px; }
@@ -215,6 +399,25 @@
     .upload-btn-wrapper input[type=file] { font-size: 100px; position: absolute; width: 100%; height: 100%; left: 0; top: 0; opacity: 0; cursor: pointer; }
     .up-down-btn{ font-size: 28px; background: transparent; border: 0; padding: 0 }
     .text-light-red{ color: #ff7481!important}
+#apporved_list ul.nav.nav-tabs {
+    position: absolute;
+    top: 30px;
+    z-index: 1;
+    left: 10px;
+}
+#apporved_list .dataTables_filter span {
+    display: none;
+}
+.paging_simple_numbers .paginate_button.next:after, .paging_simple_numbers .paginate_button.previous:after {
+    display: none;
+}
+.paging_simple_numbers .paginate_button {
+    border: none;
+}
+.toggle.btn{
+    width: 27px !important;
+    height: 20px !important;
+}
 </style>
 @endpush
 @push('script')
@@ -228,6 +431,16 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
     <script>
+        $('#datatable7, #pendingdata, #apporveddata').DataTable({
+            
+            "sDom": 'Lfrtlip',
+            "language": {
+                "lengthMenu": "Show rows  _MENU_",
+                search: "",
+                searchPlaceholder: "Search"
+            }
+           
+        });
         'use strict';
         var leads_preview_modal = $('#leads_preview_modal');
         var form_preview_modal = $('#form_preview_modal');
@@ -238,31 +451,7 @@
             form_preview_modal.modal('show');
         });
 
-        $(document).ready(function() {
-            var MyDatatable = $('#campaign_list').DataTable({
-                columnDefs: [{
-                    targets: 0,
-                    searchable: false,
-                    orderable: false
-                },
-                {
-                    targets: 11,
-                    searchable: false,
-                    visible: true,
-                    orderable: false
-                },
-                {
-                    targets: [4, 15, 16],
-                    // className: "",
-                    // width: "10px"
-                    searchable: false,
-                    orderable: false
-                },
-                {
-                    targets: '_all',
-                    visible: true
-                }
-                ],"sDom": 'Lfrtlip',"language": {  "lengthMenu": "Show rows  _MENU_" } });
+        
 
                 $(document).on("change",".toggle-approve",function(e){
                 var approval = $(this).prop('checked') == true ? 1 : 0;
@@ -346,8 +535,7 @@
                 });
 
             });
-        });
-
+       
         function previewData(data){
           //  rows = $.parseJSON(data);
           var t = "<table class='table table-strip '>";
@@ -427,5 +615,6 @@
             position: 'topRight'
         });
     }
-    </script>
+
+</script>
 @endpush

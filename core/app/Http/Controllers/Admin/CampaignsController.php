@@ -19,7 +19,10 @@ class CampaignsController extends Controller
         $page_title = 'All Campaigns';
         $empty_message = 'No Campaigns';
         $campaigns = campaigns::with('advertiser')->with('campaign_forms')->orderBy('id', 'DESC')->get();
-        return view('admin.campaigns.index',compact('page_title','empty_message','campaigns'));
+        
+		$pending = campaigns::with('advertiser')->with('campaign_forms')->where('status',0)->orderBy('id', 'DESC')->get();
+         $active = campaigns::with('advertiser')->with('campaign_forms')->where('status',1)->orderBy('id', 'DESC')->get();
+		return view('admin.campaigns.index',compact('page_title','empty_message','campaigns','pending','active'));
     }
 
     public function export($cid, $aid, $fid)  {
