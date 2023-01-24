@@ -20,6 +20,11 @@ class AdvertiserController extends Controller
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest()->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
+		 $active=Advertiser::where('status',1)->get();
+        $pending=Advertiser::where('status',0)->get();
+        $email_unverify=Advertiser::where('ev',0)->get();
+        $banned=Advertiser::where('status',2)->get();
+		
         return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin','active','pending','email_unverify','banned'));
     }
     public function allActiveAdvertiser()
@@ -29,10 +34,7 @@ class AdvertiserController extends Controller
         $advertisers = Advertiser::latest()->whereStatus(1)->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
 		
-		  $active=Advertiser::where('status',1)->get();
-        $pending=Advertiser::where('status',0)->get();
-        $email_unverify=Advertiser::where('ev',0)->get();
-        $banned=Advertiser::where('status',2)->get();
+		 
 
 		
         return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
