@@ -196,7 +196,7 @@ table thead tr th:before {
 table.dataTable tbody tr td:nth-child(8) {
     height: 150px;
     white-space: normal !important;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: inline-flex;
 }
 </style>
