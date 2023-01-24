@@ -77,7 +77,7 @@ table thead tr th:before {
 .card-header {
     display: none;
 }
-#datatable5_previous, #datatable5_next, #leadsTable_previous, #leadsTable_next, #publisher_admin_previous, #publisher_admin_next {
+.paginate_button.previous, .paginate_button.next, .paginate_button.previous:hover, .paginate_button.next:hover {
     color: transparent;
 }
 .paginate_button {
@@ -145,9 +145,7 @@ table thead tr th:before {
     font-size: 16px;
     color: #5b6e88;
 }
-#datatable_next, #datatable_previous {
-    color: transparent;
-}
+
 #datatable_next:after {
 position: absolute;
     top: 0;
