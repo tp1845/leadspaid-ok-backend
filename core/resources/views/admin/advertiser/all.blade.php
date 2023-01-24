@@ -467,17 +467,8 @@
         });
     }
 	
-	$('#datatable5').DataTable({
-            
-            "sDom": 'Lfrtlip',
-            "language": {
-                "lengthMenu": "Show rows  _MENU_",
-                search: "",
-                searchPlaceholder: "Search"
-            }
-           
-        });
-		 $('#advertiser-data,#pendingdata,#data-email,#banneddata').DataTable({
+	
+  $('#advertiser-data,#pendingdata,#data-email,#banneddata,#activedata,#datatable5').DataTable({
             
             "sDom": 'Lfrtlip',
             "language": {
