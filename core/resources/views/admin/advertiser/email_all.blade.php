@@ -3,7 +3,7 @@
 @section('panel')
 
     <div class="row mb-none-30">
-        <div class="col-xl-12">
+        <div class="col-xl-6 col-md-8 offset-xl-3 offset-md-2">
             <div class="card">
                 <form action="{{ route('admin.advertiser.email.all') }}" method="POST">
                     @csrf
