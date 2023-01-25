@@ -521,10 +521,10 @@ table thead tr th:before {
 }
 
  table.dataTable tbody tr td:nth-child(8) {
-    height: 100px;
+    height: 132px;
     white-space: pre-wrap;
     overflow-y: auto;
-    display: inline-block;
+    display: table-cell;
     margin-top: -1px;
     width: 100%;
     min-width: 300px;
