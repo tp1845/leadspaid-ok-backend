@@ -126,9 +126,8 @@ class CampaignsdemoController extends Controller
                 $campaign = new campaigns();
                 $campaign->status = 1;
                 $campaign->approve =  0;
-                $campaign->delivery = 0;
             }
-
+            $campaign->delivery = 2; // save as draft
             $campaign->advertiser_id = $user;
             $campaign->name = $request->campaign_name;
             $campaign->leads_criteria = $request->leads_criteria;
@@ -138,9 +137,6 @@ class CampaignsdemoController extends Controller
             $campaign->website_url = $request->website_url;
             $campaign->social_media_page = $request->social_media_page;
             $campaign->form_id = $form_id;
-              if(isset($request->statusr)){
-                 $campaign->delivery = 2;
-            }
             if($request->campaign_id){
                 $campaign->update();
                 $notify[] = ['success', 'Campaign Updated successfully'];
