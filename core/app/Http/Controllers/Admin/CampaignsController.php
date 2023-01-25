@@ -16,14 +16,16 @@ class CampaignsController extends Controller
 {
     public function index()
     {
-        $page_title = 'All Campaigns';
-        $empty_message = 'No Campaigns';
-        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->orderBy('id', 'DESC')->get();
-        
-		$pending = campaigns::with('advertiser')->with('campaign_forms')->where('status',0)->orderBy('id', 'DESC')->get();
-         $active = campaigns::with('advertiser')->with('campaign_forms')->where('status',1)->orderBy('id', 'DESC')->get();
-		return view('admin.campaigns.index',compact('page_title','empty_message','campaigns','pending','active'));
-    }
+            $page_title = 'All Campaigns';
+            $empty_message = 'No Campaigns';
+            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->where('status','!=',2)->orderBy('id', 'DESC')->get();
+            $pending = campaigns::with('advertiser')->with('campaign_forms')->where('status','!=',2)->where('approve',0)->orderBy('id', 'DESC')->get();
+             $active = campaigns::with('advertiser')->with('campaign_forms')->where('approve',1)->where('status','!=',2)->orderBy('id', 'DESC')->get();
+              $reject = campaigns::with('advertiser')->with('campaign_forms')->where('approve',2)->where('status','!=',2)->orderBy('id', 'DESC')->get();
+              $trash = campaigns::with('advertiser')->with('campaign_forms')->where('status',2)->orderBy('id', 'DESC')->get();
+
+            return view('admin.campaigns.index',compact('page_title','empty_message','campaigns','pending','active','reject','trash'));
+			}
 
     public function export($cid, $aid, $fid)  {
         $campaign_id = $cid;
@@ -93,5 +95,25 @@ class CampaignsController extends Controller
             return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
         }
     }
+	
+	
+	public function campaign_delete($id){
+        campaigns::where('id',$id)->update(array('status'=>2));
+        $notify[] = ['success', 'Campaign delete successfully'];
+        return redirect()->back()->withNotify($notify);
+        }
+     
+     public function campaign_complete_delete($id){
+          campaigns::where('id',$id)->delete();
+        $notify[] = ['success', 'Campaign delete successfully'];
+        return redirect()->back()->withNotify($notify);
+     }
+
+    public function campaign_restore($id){
+         campaigns::where('id',$id)->update(array('status'=>1));
+        $notify[] = ['success', 'Campaign Restore Successfully'];
+        return redirect()->back()->withNotify($notify);
+    }
+
 
 }
