@@ -157,7 +157,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('advertiser/assign_publisher', 'AdvertiserController@assign_publisher')->name('advertiser.assign_publisher');
 
          Route::get('advertiser/delete/{id}','AdvertiserController@advertiser_delete')->name('advertiser.delete');
- 
+
         //Manage Campaigns
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
         Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
@@ -436,6 +436,8 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
         //Campaigns Forms
         Route::get('/forms', 'FormsController@index')->name('forms.index');
         Route::post('/forms/create', 'FormsController@store')->name('forms.store');
+
+        Route::post('/campaigns/save_draft', 'CampaignsdemoController@save_draft')->name('campaigns.save_draft');
 
         Route::get('campaigns/style/{style}', 'CampaignsdemoController@index')->name('campaigns.style');
         Route::post('/campaigns2/create', 'CampaignsdemoController@store')->name('campaigns.store.demo');

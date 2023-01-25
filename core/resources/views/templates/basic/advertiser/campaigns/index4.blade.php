@@ -280,7 +280,9 @@ $user = auth()->guard('advertiser')->user();
                                 }
                             }
                             @endphp
-                            <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif ">
+                            <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
+
+                            ">
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td class="edit_btns">{{ $campaign->name }} <br>
                                     @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif
@@ -363,6 +365,7 @@ $user = auth()->guard('advertiser')->user();
         <button type="button" class="close campaign_create_close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
         <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
             @csrf
+            <input type="hidden" value="0" name="draft_form_id" id="draft_form_id">
             <div class="modal-content h-100 ">
                 <div class="modal-header bg-primary m-0 PageFormStyle py-0">
                     <div class="w-100">
@@ -1554,9 +1557,7 @@ padding: 0; display: block; opacity: 0;">
                 function(value, element) {
                     var $result = $.map(campaigns, function(item, i) {
                         name = item.campaign_forms.form_name;
-
                         if (name.toLowerCase() == value.toLowerCase()) {
-
                             return 'exits';
                         }
                     })[0];
@@ -2611,8 +2612,6 @@ padding: 0; display: block; opacity: 0;">
 
                 }
 
-
-
                 if (field3.required == "on") {
                     $(".row_3").find("input[type=checkbox]").prop('checked', true);
                 } else {
@@ -2743,31 +2742,42 @@ padding: 0; display: block; opacity: 0;">
     });
 
 
-    var images_modal = document.getElementById('campaign_create_modal');
-    window.onclick = function(event) {
 
-        if (event.target.id == 'campaign_create_modal') {
-            var url = $("#campaign_form").attr('action');
-            var data = $("#campaign_form").serialize();
-            var campaign_name_Input = $("#campaign_name_Input").val();
-            var input_campaign_id = $("#input_campaign_id").val();
-            var statuss = $("#campaign_create_modal").attr("data-status");
 
-            if ((campaign_name_Input != '') && (statuss == "create")) {
+    $("body").on("blur", "#campaign_create_modal input, #campaign_create_modal select", function() {
+        console.log('Start Updating');
+        var Form_Status = $("#campaign_create_modal").attr("data-status");
+        var campaign_name_Input = $("#campaign_name_Input").val();
+        if(Form_Status == "create"){ $("#campaign_name_Input").attr("readonly", false);  }
+        if ((campaign_name_Input != '') && (Form_Status == "create")) {
+            var campaign_id = $("#input_campaign_id").val();
+            var form_id = '#form_'+campaign_id;
+            var form_data = $("#campaign_form").serialize();
+            console.log(form_data);
+            var PostURL = "{{route('advertiser.campaigns.save_draft')}}";
+            $.ajax({
+                url: PostURL,
+                data: form_data,
+                dataType: 'json',
+                type: 'POST',
+                success: function ( data ) {
+                    console.log(data);
+                    if(data.campaign_id){
 
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: data + '&statusr=1',
-                    success: function(data) {
-                        location.reload();
+                        $("#input_campaign_id").val(data.campaign_id);
+                        if($("input[name=form_id]").is(":checked")){
+                            console.log('Delete ');
+                            $("#draft_form_id").val(data.form_id);
+                        }else{
+                            $("#draft_form_id").val(data.form_id);
+                            $("input[name=form_id]:checked").prop("checked",false)
+                        }
                     }
-
-                });
-            }
-
+                    Toast('green', 'Campaign Saving!');
+                }
+            });
         }
-    }
+    });
 
     $(".custon_nav").find('.nav-link').click(function() {
         var tab_name = $(this).data('bs-target');
@@ -2775,10 +2785,8 @@ padding: 0; display: block; opacity: 0;">
         $(tab_name).show();
         $(".custon_nav").find('.nav-link').removeClass('active');
         $(this).addClass('active');
-
     });
 </script>
-
 @php
 
 if(isset($_GET['action'])){
