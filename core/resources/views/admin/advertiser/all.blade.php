@@ -520,7 +520,7 @@ table thead tr th:before {
     bottom: 14px !important;
 }
 
-table.dataTable tbody tr td:nth-child(8) {
+#apporved_list table.dataTable tbody tr td:nth-child(8) {
     height: 100px;
     white-space: pre-wrap;
     overflow-y: auto;
