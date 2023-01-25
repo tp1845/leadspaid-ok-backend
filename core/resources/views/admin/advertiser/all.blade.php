@@ -532,7 +532,7 @@ table.dataTable tbody tr td:nth-child(8) {
 .icon-btn {
     display: inline-flex;
 }
-table.dataTable tbody tr td:nth-child(8) {
+.apporved_list table.dataTable tbody tr td:nth-child(8) {
     height: 150px;
     white-space: normal !important;
     overflow-y: auto;
