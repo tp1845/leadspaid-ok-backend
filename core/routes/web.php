@@ -168,6 +168,11 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
         Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
 
+         Route::get('campaigns/delete/{id}','CampaignsController@campaign_delete')->name('campaigns.delete');
+         Route::get('campaigns/complete/delete/{id}','CampaignsController@campaign_complete_delete')->name('campaigns.complete.delete');
+         Route::get('campaigns/restore/{id}','CampaignsController@campaign_restore')->name('campaigns.restore');
+
+
         Route::get('/campaigns/lgenspend','LgenSpendController@index')->name('campaigns.lgenspend');
         Route::get('/campaigns/lgenspend/export/{cid}/{aid}/{fid}','LgenSpendController@export')->name('campaigns.lgenspend.export');
         Route::post('/campaigns/lgenspend/import/{cid}/{aid}/{fid}','LgenSpendController@import')->name('campaigns.lgenspend.import');

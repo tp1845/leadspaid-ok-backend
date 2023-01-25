@@ -9,7 +9,7 @@
                 <div class="card-body p-0">
 				
 				
-				<ul class="nav nav-tabs border-0" role="tablist">
+				<ul class="nav nav-tabs border-0" role="tablist"  id="myTab">
                   <li class="nav-item mx-1">
                     <a class="nav-link btn-primary active" href="#active" role="tab" data-toggle="tab">Active</a>
                 </li>
@@ -478,6 +478,17 @@
             }
            
         });
+		
+		$(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    console.log(activeTab);
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
 </script>
 @endpush
 @push('style')
@@ -509,20 +520,19 @@ table thead tr th:before {
     bottom: 14px !important;
 }
 
-.table td {
+ table.dataTable tbody tr td:nth-child(8) {
+    height: 132px;
+    white-space: pre-wrap;
+    overflow-y: auto;
+    display: table-cell;
+    margin-top: -1px;
     width: 100%;
-    white-space: break-spaces !important;
     min-width: 300px;
 }
 .icon-btn {
     display: inline-flex;
 }
-table.dataTable tbody tr td:nth-child(8) {
-    height: 150px;
-    white-space: normal !important;
-    overflow-y: auto;
-    display: inline-flex;
-}
+
 
 #apporved_list ul.nav.nav-tabs {
     position: absolute;

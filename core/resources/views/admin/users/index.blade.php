@@ -6,7 +6,7 @@
     <div class="col-lg-12">
         <div class="card b-radius--10 ">
             <div class="card-body pt-0">
-                <ul class="nav nav-tabs border-0" role="tablist">
+                <ul class="nav nav-tabs border-0" role="tablist"  id="myTab">
                   <li class="nav-item mx-1">
                     <a class="nav-link btn-primary active" href="#profile" role="tab" data-toggle="tab">Publisher Admin</a>
                 </li>
@@ -676,7 +676,16 @@ table thead tr th:before {
             });
         }
       })
-
+ $(document).ready(function(){
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+        localStorage.setItem('activeTab', $(e.target).attr('href'));
+    });
+    var activeTab = localStorage.getItem('activeTab');
+    console.log(activeTab);
+    if(activeTab){
+        $('#myTab a[href="' + activeTab + '"]').tab('show');
+    }
+});
 
 </script>
 
