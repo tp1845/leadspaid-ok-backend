@@ -2753,7 +2753,6 @@ padding: 0; display: block; opacity: 0;">
             var campaign_id = $("#input_campaign_id").val();
             var form_id = '#form_'+campaign_id;
             var form_data = $("#campaign_form").serialize();
-            console.log(form_data);
             var PostURL = "{{route('advertiser.campaigns.save_draft')}}";
             $.ajax({
                 url: PostURL,
@@ -2761,12 +2760,9 @@ padding: 0; display: block; opacity: 0;">
                 dataType: 'json',
                 type: 'POST',
                 success: function ( data ) {
-                    console.log(data);
                     if(data.campaign_id){
-
                         $("#input_campaign_id").val(data.campaign_id);
                         if($("input[name=form_id]").is(":checked")){
-                            console.log('Delete ');
                             $("#draft_form_id").val(data.form_id);
                         }else{
                             $("#draft_form_id").val(data.form_id);
