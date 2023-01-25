@@ -532,12 +532,7 @@ table thead tr th:before {
 .icon-btn {
     display: inline-flex;
 }
-#apporved_list table.dataTable tbody tr td:nth-child(8) {
-    height: 150px;
-    white-space: normal !important;
-    overflow-y: auto;
-    display: inline-flex;
-}
+
 
 #apporved_list ul.nav.nav-tabs {
     position: absolute;
