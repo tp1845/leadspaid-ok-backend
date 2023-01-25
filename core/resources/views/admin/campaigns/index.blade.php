@@ -126,7 +126,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                            <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=active" onclick="return confirm('Do you want to delete  the campaign?')" class="my_ttoltip" data-toggle="tooltip" title="Delete" data-original-title="Delete">
+                                            <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=active"  class="my_ttoltip" data-toggle="tooltip" title="Delete" data-original-title="Delete">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a>
@@ -232,7 +232,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=pending" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=pending"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a></td>
@@ -338,7 +338,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=reject" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=reject"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a></td>
@@ -446,7 +446,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=allcampigns" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=allcampigns" class="" data-toggle="tooltip" title="" data-original-title="Delete">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a>
@@ -555,7 +555,7 @@
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
                                             <a href="{{ route('admin.campaigns.restore',['id'=>$campaign->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-Store">
-                                      <img src="http://localhost/leadspaids/leadspaid/public/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
+                                      <img src="{{url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
                                         <a href="{{ route('admin.campaigns.complete.delete',['id'=>$campaign->id]) }}?tab=trash" onclick="return confirm('Do you want parmenent delete the campaign ?')" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
                                                 <i class="fa-regular fa-circle-xmark"></i>
@@ -967,7 +967,7 @@ p {
      that.removeClass( 'tgl-def');
 
     that.removeClass('tgl-off').addClass('tgl-on');
-    that.parent().find('span').text('Approve');
+    that.parent().find('span').text('Approved');
   } else if (value === 2) {
     that.removeClass('tgl-on',);
     that.removeClass('tgl-off').addClass('tgl-def');
