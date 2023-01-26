@@ -87,7 +87,7 @@
                                         <i class="las la-desktop text--shadow"></i>
                                     </a>
                                     
-                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                       
                                     </a>
@@ -160,7 +160,7 @@
                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                         <i class="las la-desktop text--shadow"></i>
                                     </a>
-                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')"  class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                       
                                     </a>
@@ -232,7 +232,7 @@
                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                         <i class="las la-desktop text--shadow"></i>
                                     </a>
-                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}"  onclick="return confirm('Do you want to ban the Advertiser?')"  class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                         <i class="fa-regular fa-circle-xmark"></i>
                                       
                                     </a>
@@ -307,7 +307,9 @@
                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                         <i class="las la-desktop text--shadow"></i>
                                     </a>
-
+                                    <a href="{{ route('admin.advertiser.complete.delete',['id'=>$advertiser->id])}}?tab=banned" onclick="return confirm('Do you want to delete the Advertiser?')" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <i class="fa-regular fa-circle-xmark"></i>                                      
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -546,6 +548,24 @@ table thead tr th:before {
 .toggle.btn{
     width: 27px !important;
     height: 20px !important;
+}
+#banned .trashIocn i {
+    color: #fff;
+    background: red;
+    border-radius: 100%;
+}
+[data-original-title="Ban"] {
+    vertical-align: middle;
+    font-size: 23px;
+}
+
+[data-original-title="Ban"],[data-original-title="Delete"] {
+    vertical-align: middle;
+    font-size: 23px;
+}
+
+[data-original-title="Ban"] i ,[data-original-title="Delete"] i {
+    font-size: 23px;
 }
 </style>
 @endpush
