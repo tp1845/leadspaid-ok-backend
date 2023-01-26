@@ -85,7 +85,7 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                        <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -159,7 +159,7 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -237,7 +237,7 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -314,7 +314,7 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -391,7 +391,7 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -683,16 +683,14 @@
         bottom: 14px !important;
     }
 
-    table.dataTable tbody tr td:nth-child(8) {
-        height: 132px;
-        white-space: pre-wrap;
-        overflow-y: auto;
-        display: table-cell;
-        margin-top: -1px;
-        width: 100%;
-        min-width: 300px;
+    table.dataTable tbody tr td:nth-child(7) {
+        max-width: 200px;
     }
-
+    table.dataTable tbody tr td:nth-child(8) {
+        max-width: 200px;
+        line-break: auto;
+        white-space: initial;
+    }
     .icon-btn {
         display: inline-flex;
     }
