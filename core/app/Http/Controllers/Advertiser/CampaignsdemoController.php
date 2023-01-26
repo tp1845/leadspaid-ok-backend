@@ -17,12 +17,10 @@ class CampaignsdemoController extends Controller
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
         $campaigns=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',1)->orderBy('id', 'DESC')->get();
-         $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->where('status','!=',0)->orderBy('id', 'DESC')->get();
-
+        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->where('delivery', 0)->where('status','!=',0)->orderBy('id', 'DESC')->get();
+        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('delivery', 2)->orderBy('id', 'DESC')->get();
         $campaignstrash = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->where('status',0)->orderBy('id', 'DESC')->get();
-
 		$campaignsval=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
-
         $last_campaign = campaigns::orderBy('id', 'desc')->first();
         if($last_campaign){
             $last_campaign = $last_campaign->id;
@@ -31,16 +29,11 @@ class CampaignsdemoController extends Controller
         }
 
         $next_campaign =  'LGen_Campaign_'.($last_campaign+1);
-
         $countries = Country::all();
         $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
-
-
-
-        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns','campaignspending', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message','campaignsval','campaignstrash'));
+        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns','campaignspending', 'campaigns_draft', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message','campaignsval','campaignstrash'));
     }
-
 
     public function store(Request $request)
     {
@@ -176,22 +169,22 @@ class CampaignsdemoController extends Controller
             $campaign_forms->company_name  = $request->company_name;
             $campaign_forms->company_logo  = $request->company_logo;
             if($request->form_name){
-                $campaign_forms->form_name    = $request->form_name;
+                $campaign_forms->form_name = $request->form_name;
             }else{
-                $campaign_forms->form_name     = $request->company_name?$request->campaign_name.'-'.$request->company_name:$request->campaign_name;
+                $campaign_forms->form_name = $request->company_name?$request->campaign_name.'-'.$request->company_name:$request->campaign_name;
             }
             if($request->form_title){
-                $campaign_forms->title    = array_unique($request->form_title);
+                $campaign_forms->title = array_unique($request->form_title);
             }
             if($request->form_desc){
-                $campaign_forms->form_desc    = array_unique($request->form_desc);
+                $campaign_forms->form_desc = array_unique($request->form_desc);
             }
 
             if(isset($request->form_title[1])){
-                $campaign_forms->form_title    = $request->form_title[1];
+                $campaign_forms->form_title = $request->form_title[1];
             }
             if(isset($request->form_title[1])){
-            $campaign_forms->offer_desc    = $request->form_desc[1];
+                $campaign_forms->offer_desc = $request->form_desc[1];
             }
 
             $campaign_forms->punchline    = $request->form_punchline;
