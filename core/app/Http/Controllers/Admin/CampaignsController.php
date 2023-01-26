@@ -99,13 +99,13 @@ class CampaignsController extends Controller
 	
 	public function campaign_delete($id){
         campaigns::where('id',$id)->update(array('status'=>2));
-        $notify[] = ['success', 'Campaign delete successfully'];
+        $notify[] = ['success', 'Campaign banned successfully'];
         return redirect()->back()->withNotify($notify);
         }
      
      public function campaign_complete_delete($id){
           campaigns::where('id',$id)->delete();
-        $notify[] = ['success', 'Campaign delete successfully'];
+        $notify[] = ['success', 'Campaign deleted successfully'];
         return redirect()->back()->withNotify($notify);
      }
 
