@@ -496,6 +496,34 @@
                 }
             });
         })
+        $('#activedata').on('page.dt', function() {
+            setTimeout(function() {
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
+                $("[data-toggle='toggle']").bootstrapToggle();
+            }, 100)
+
+        });  
+        $('#pendingdata').on('page.dt', function() {
+            setTimeout(function() {
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
+                $("[data-toggle='toggle']").bootstrapToggle();
+            }, 100)
+
+        });
+        $('#data-email').on('page.dt', function() {
+            setTimeout(function() {
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
+                $("[data-toggle='toggle']").bootstrapToggle();
+            }, 100)
+
+        });
+        $('#banneddata').on('page.dt', function() {
+            setTimeout(function() {
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
+                $("[data-toggle='toggle']").bootstrapToggle();
+            }, 100)
+
+        });
         $('#advertiser-data').on('page.dt', function() {
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
