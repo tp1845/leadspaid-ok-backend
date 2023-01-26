@@ -550,8 +550,7 @@ table thead tr th:before {
     height: 20px !important;
 }
 #banned .trashIocn i {
-    color: #fff;
-    background: red;
+    color: red;
     border-radius: 100%;
 }
 [data-original-title="Ban"] {

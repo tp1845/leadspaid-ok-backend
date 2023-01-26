@@ -693,8 +693,7 @@ p {
     text-align: center !important;
 }
 #trash .trashIocn i {
-    color: #fff;
-    background: red;
+    color: red;
     border-radius: 100%;
 }
 
