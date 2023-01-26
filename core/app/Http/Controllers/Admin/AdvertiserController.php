@@ -20,12 +20,12 @@ class AdvertiserController extends Controller
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest()->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
-		 $active=Advertiser::where('status',1)->get();
-        $pending=Advertiser::where('status',0)->get();
-        $email_unverify=Advertiser::where('ev',0)->get();
-        $banned=Advertiser::where('status',2)->get();
-		
-        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin','active','pending','email_unverify','banned'));
+        $active = Advertiser::where('status', 1)->get();
+        $pending = Advertiser::where('status', 0)->get();
+        $email_unverify = Advertiser::where('ev', 0)->get();
+        $banned = Advertiser::where('status', 2)->get();
+
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin', 'active', 'pending', 'email_unverify', 'banned'));
     }
     public function allActiveAdvertiser()
     {
@@ -33,21 +33,21 @@ class AdvertiserController extends Controller
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest()->whereStatus(1)->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
-		
-		 
 
-		
-        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
+
+
+
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin'));
     }
 
     public function advertiserDetails($id)
     {
         $page_title = 'Advertiser details';
         $advr = Advertiser::findOrFail($id);
-        $totalDeposit = Deposit::where('user_id',$advr->id)->where('status',1)->sum('amount');
-        $totalTransaction = Transaction::where('user_id',$advr->id)->count();
-        $totalAd = CreateAd::where('advertiser_id',$advr->id)->where('status',1)->count();
-        return view('admin.advertiser.details',compact('advr','page_title','totalDeposit','totalTransaction','totalAd'));
+        $totalDeposit = Deposit::where('user_id', $advr->id)->where('status', 1)->sum('amount');
+        $totalTransaction = Transaction::where('user_id', $advr->id)->count();
+        $totalAd = CreateAd::where('advertiser_id', $advr->id)->where('status', 1)->count();
+        return view('admin.advertiser.details', compact('advr', 'page_title', 'totalDeposit', 'totalTransaction', 'totalAd'));
     }
 
     public function loginHistory($id)
@@ -61,14 +61,14 @@ class AdvertiserController extends Controller
 
     public function advertiserAds($id)
     {
-        $ads = CreateAd::where('advertiser_id',$id)->get();
+        $ads = CreateAd::where('advertiser_id', $id)->get();
         $empty_message = "No ads";
         $advr = Advertiser::findOrFail($id);
         $page_title = "Ads of  $advr->name";
-        return view('admin.reports.ads',compact('ads','page_title','empty_message'));
+        return view('admin.reports.ads', compact('ads', 'page_title', 'empty_message'));
     }
 
-    public function advertiserUpdate(Request $request,$id)
+    public function advertiserUpdate(Request $request, $id)
     {
         $advr = Advertiser::findOrFail($id);
         $request->validate([
@@ -102,7 +102,7 @@ class AdvertiserController extends Controller
 
         $advr = Advertiser::findOrFail($id);
         $amount = getAmount($request->amount);
-        $general = GeneralSetting::first(['cur_text','cur_sym']);
+        $general = GeneralSetting::first(['cur_text', 'cur_sym']);
         $trx = getTrx();
 
         if ($request->act) {
@@ -128,7 +128,6 @@ class AdvertiserController extends Controller
                 'currency' => $general->cur_text,
                 'post_balance' => getAmount($advr->balance),
             ]);
-
         } else {
             if ($amount > $advr->balance) {
                 $notify[] = ['error', $advr->username . ' has insufficient balance.'];
@@ -187,41 +186,42 @@ class AdvertiserController extends Controller
         return redirect()->back()->withNotify($notify);
     }
 
-     public function update_status(Request $request){
-        $request->validate(['status' => 'required', 'id' => 'required' ]);
+    public function update_status(Request $request)
+    {
+        $request->validate(['status' => 'required', 'id' => 'required']);
         $id = $request->id;
         $Adv = Advertiser::findOrFail($id);
-        if($Adv){
+        if ($Adv) {
 
-          //  if( $Adv->email_activated == 0){
-           //     send_email_adv_activated($Adv, 'EVER_CODE',$Adv->name);
-          // }
+            //  if( $Adv->email_activated == 0){
+            //     send_email_adv_activated($Adv, 'EVER_CODE',$Adv->name);
+            // }
 
             $Adv->status = $request->status;
             //$Adv->email_activated = 1;
             $Adv->update();
-        if( $request->status == 1){
-             send_email_adv_activated($Adv, 'EVER_CODE',$Adv->name);
-            return response()->json(['success'=>true, 'message'=> 'Advertiser has been activated']);
-        }else{
-            return response()->json(['success'=>false, 'message'=> 'Advertiser has been deactivated']);
-        }
-        }else{
-            return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
+            if ($request->status == 1) {
+                send_email_adv_activated($Adv, 'EVER_CODE', $Adv->name);
+                return response()->json(['success' => true, 'message' => 'Advertiser has been activated']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Advertiser has been deactivated']);
+            }
+        } else {
+            return response()->json(['success' => false, 'message' => 'Somthing Worng please try again']);
         }
     }
 
-    public function assign_publisher(Request $request){
-        $request->validate([  'advertiser_id' => 'required' ]);
-        $advertiser = Advertiser::findOrFail( $request->advertiser_id);
-        if($advertiser){
-            $advertiser->assign_publisher = $request->assign_publisher?$request->assign_publisher:null;
+    public function assign_publisher(Request $request)
+    {
+        $request->validate(['advertiser_id' => 'required']);
+        $advertiser = Advertiser::findOrFail($request->advertiser_id);
+        if ($advertiser) {
+            $advertiser->assign_publisher = $request->assign_publisher ? $request->assign_publisher : null;
             $advertiser->update();
-            return response()->json(['success'=>true, 'message'=> 'Successfully  Updated']);
-        }else{
-            return response()->json(['success'=>false, 'message'=> 'Someting wrong try again!']);
+            return response()->json(['success' => true, 'message' => 'Successfully  Updated']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Someting wrong try again!']);
         }
-
     }
 
     public function advertiserActive($id)
@@ -238,7 +238,7 @@ class AdvertiserController extends Controller
         $page_title = 'All banned Advertisers';
         $empty_message = 'No data';
         $advertisers = Advertiser::latest()->whereStatus(2)->get();
-        return view('admin.advertiser.banned',compact('page_title','empty_message','advertisers'));
+        return view('admin.advertiser.banned', compact('page_title', 'empty_message', 'advertisers'));
     }
 
     public function showEmailAllForm()
@@ -277,16 +277,21 @@ class AdvertiserController extends Controller
         $page_title = 'User Search - ' . $search;
         $empty_message = 'No search result found';
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
-        return view('admin.advertiser.all',compact('page_title','empty_message','advertisers' , 'publishers_admin'));
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin'));
     }
 
+    public function advertiser_complete_delete($id)
+    {
+        Advertiser::where('id', $id)->delete();
+        $notify[] = ['success', 'Advertiser deleted successfully'];
+        return redirect()->back()->withNotify($notify);
+    }
 
-    public function advertiser_delete($id){
-        Advertiser::where('id',$id)->update(['status'=> 2]);
+    public function advertiser_delete($id)
+    {
+        Advertiser::where('id', $id)->update(['status' => 2]);
 
         $notify[] = ['success', 'Advertiser banned Successfully'];
         return back()->withNotify($notify);
     }
-
 }
-

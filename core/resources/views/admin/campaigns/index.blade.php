@@ -40,10 +40,12 @@
                             <thead>
                             <tr>
                                 <th>Off/On</th>
+								<th>Campaign Name</th>
+								 <th>C.Id</th>
                                 <th>Advertiser</th>
                                 <th>A.Id</th>
-                                <th>C.Id</th>
-                                <th>Campaign Name</th>
+                               
+                                
                                 <th>Approve</th>
                                 <th>Creation Date</th>
                                 <th>Target Country</th>
@@ -71,10 +73,13 @@
                                 @foreach($active as $campaign)
                                     <tr>
                                         <td> @if($campaign->status==1)  <span class="badge badge-pill badge-success">ON</span>  @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                         <td>{{ $campaign->name }} </td>
+										
+										 <td>{{ $campaign->id }} </td>
+										<td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
-                                        <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->name }} </td>
+                                       
+                                       
                                         <td> 
   
 
@@ -126,7 +131,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                            <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=active"  class="my_ttoltip" data-toggle="tooltip" title="Delete" data-original-title="Delete">
+                                            <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=active"  class="my_ttoltip" data-toggle="tooltip" title="Ban" data-original-title="Ban">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a>
@@ -147,10 +152,12 @@
                             <thead>
                             <tr>
                                 <th>Off/On</th>
+								 <th>Campaign Name</th>
+								 <th>C.Id</th>
                                 <th>Advertiser</th>
                                 <th>A.Id</th>
-                                <th>C.Id</th>
-                                <th>Campaign Name</th>
+                                
+                               
                                 <th>Approve</th>
                                 <th>Creation Date</th>
                                 <th>Target Country</th>
@@ -178,10 +185,12 @@
                                 @foreach($pending as $campaign)
                                     <tr>
                                         <td> @if($campaign->status==1)  <span class="badge badge-pill badge-success">ON</span>  @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
-                                        <td>{{ $campaign->advertiser->id}} </td>
-                                        <td>{{ $campaign->id }} </td>
                                         <td>{{ $campaign->name }} </td>
+										<td>{{ $campaign->id }} </td>
+										<td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->id}} </td>
+                                        
+                                        
                                         <td> 
 
                                             <div class="wrapper">
@@ -232,7 +241,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=pending"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=pending"  class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a></td>
@@ -253,10 +262,12 @@
                             <thead>
                             <tr>
                                 <th>Off/On</th>
+								<th>Campaign Name</th>
+								<th>C.Id</th>
                                 <th>Advertiser</th>
                                 <th>A.Id</th>
-                                <th>C.Id</th>
-                                <th>Campaign Name</th>
+                                
+                                
                                 <th>Approve</th>
                                 <th>Creation Date</th>
                                 <th>Target Country</th>
@@ -284,10 +295,12 @@
                                 @foreach($reject as $campaign)
                                     <tr>
                                         <td> @if($campaign->status==1)  <span class="badge badge-pill badge-success">ON</span>  @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span>  @endif</td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                         <td>{{ $campaign->name }} </td>
+										 <td>{{ $campaign->id }} </td>
+										<td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
-                                        <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->name }} </td>
+                                        
+                                       
                                         <td> 
 
                                             <div class="wrapper">
@@ -338,7 +351,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=reject"  class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=reject"  class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a></td>
@@ -359,10 +372,12 @@
                             <thead>
                                 <tr>
                                     <th>Off/On</th>
+									 <th>Campaign Name</th>
+									  <th>C.Id</th>
                                     <th>Advertiser</th>
                                     <th>A.Id</th>
-                                    <th>C.Id</th>
-                                    <th>Campaign Name</th>
+                                   
+                                   
                                     <th>Approve</th>
                                     <th>Creation Date</th>
                                     <th>Target Country</th>
@@ -389,10 +404,12 @@
                                 @foreach($campaigns as $campaign)
                                     <tr>
                                         <td> @if($campaign->status==1)  <span class="badge badge-pill badge-success">ON</span>  @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                         <td>{{ $campaign->name }} </td>
+										<td>{{ $campaign->id }} </td>
+										<td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
-                                        <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->name }} </td>
+                                        
+                                       
                                         <td> 
 
                                            <div class="wrapper">
@@ -446,7 +463,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=allcampigns" class="" data-toggle="tooltip" title="" data-original-title="Delete">
+                                        <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=allcampigns" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                 <i class="fa-regular fa-circle-xmark"></i>
                                               
                                             </a>
@@ -469,10 +486,12 @@
                             <thead>
                             <tr>
                                 <th>Off/On</th>
+								<th>Campaign Name</th>
+								<th>C.Id</th>
                                 <th>Advertiser</th>
                                 <th>A.Id</th>
-                                <th>C.Id</th>
-                                <th>Campaign Name</th>
+                                
+                                
                                 <th>Approve</th>
                                 <th>Creation Date</th>
                                 <th>Target Country</th>
@@ -500,10 +519,12 @@
                                 @foreach($trash as $campaign)
                                     <tr>
                                         <td> @if($campaign->status==2)  <span class="badge badge-pill badge-danger">Delete</span>@elseif($campaign->status==1)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                         <td>{{ $campaign->name }} </td>
+										<td>{{ $campaign->id }} </td>
+										<td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
-                                        <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->name }} </td>
+                                        
+                                       
                                         <td> 
 
                                             <div class="wrapper">
@@ -672,8 +693,7 @@ p {
     text-align: center !important;
 }
 #trash .trashIocn i {
-    color: #fff;
-    background: red;
+    color: red;
     border-radius: 100%;
 }
 
@@ -749,6 +769,14 @@ p {
 .toggle.btn{
     width: 27px !important;
     height: 20px !important;
+}
+[data-original-title="Ban"],[data-original-title="Delete"] {
+    vertical-align: middle;
+    font-size: 23px;
+}
+
+[data-original-title="Ban"] i ,[data-original-title="Delete"] i {
+    font-size: 23px;
 }
 </style>
 @endpush
