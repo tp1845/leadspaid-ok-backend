@@ -202,8 +202,9 @@ class AdvertiserController extends Controller
             $Adv->update();
             if ($request->status == 1) {
                 send_email_adv_activated($Adv, 'EVER_CODE', $Adv->name);
-                $notify[] = ['success', 'Advertiser has been activated'];
-                return redirect()->back()->withNotify($notify);
+                return response()->json(['success' => true, 'message' => 'Advertiser has been activated']);
+                // $notify[] = ['success', 'Advertiser has been activated'];
+                // return redirect()->back()->withNotify($notify);
             } else {
                 return response()->json(['success' => false, 'message' => 'Advertiser has been deactivated']);
             }

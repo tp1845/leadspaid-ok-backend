@@ -1107,7 +1107,39 @@
                 that.parent().find('span').text('Rejected');
             }
         }
-        $(".custom-toggle").click(function() {
+        $('#apporveddata').on('page.dt', function() {
+            setTimeout(function() {
+                add_custom_toggle_click();
+            }, 100)
+
+        });
+        $('#pendingdata').on('page.dt', function() {
+            setTimeout(function() {
+                add_custom_toggle_click();
+            }, 100)
+
+        });
+        $('#rejectdata').on('page.dt', function() {
+            setTimeout(function() {
+                add_custom_toggle_click();
+            }, 100)
+
+        });
+        $('#datatable7').on('page.dt', function() {
+            setTimeout(function() {
+                add_custom_toggle_click();
+            }, 100)
+
+        });
+        $('#trashdata').on('page.dt', function() {
+            setTimeout(function() {
+                add_custom_toggle_click();
+            }, 100)
+
+        });
+
+        function add_custom_toggle_click() {
+            $(".custom-toggle").click(function() {
             var value = $(this).val();
 
             value = parseInt(value, 10); // Convert to an integer
@@ -1152,6 +1184,8 @@
             });
 
         })
+        }
+      
         $('[data-toggle="tooltip"]').tooltip({
             trigger: 'hover'
         })
@@ -1165,6 +1199,7 @@
             if (activeTab) {
                 $('#myTab a[href="' + activeTab + '"]').tab('show');
             }
+            add_custom_toggle_click();
         });
     </script>
     @endpush

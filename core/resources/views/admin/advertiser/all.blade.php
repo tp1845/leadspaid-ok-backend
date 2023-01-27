@@ -295,7 +295,7 @@
                                         <td data-label="@lang('Name')" class="text--primary">
                                             <div class="align-items-center d-flex flex-column justify-content-center" style="gap: 5px;">
                                                 
-                                                <a href="{{ route('admin.advertiser.update_status',['id'=>$advertiser->id,'status'=>1])}}" class="_icon" data-toggle="tooltip" title="" data-original-title="Activate">
+                                                <a style="cursor: pointer;" class="_icon activate_btn" data-id="{{$advertiser->id}}" data-toggle="tooltip" title="" data-original-title="Activate">
                                                     <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                                 </a>
                                                 <div style="display: inline-table;">
@@ -456,7 +456,51 @@
         }
         return confirm('Do you want to delete the Advertiser?');
     }
-
+    $('.activate_btn').click(function() {
+            var id = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url:  "{{route('admin.advertiser.update_status')}}" ,
+                // url: "/admin/advertiser/update_status",
+                data: {
+                    'status': 1,
+                    'id': id
+                },
+                success: function(data) {
+                    if (data.success) {
+                        Toast('green', data.message);
+                    } else {
+                        Toast('red', data.message);
+                    }
+                }
+            });
+        })
+        
+    $('.toggle-status').change(function() {
+            var status = $(this).prop('checked') == true ? 1 : 0;
+            var id = $(this).data('id');
+            $.ajax({
+                type: "GET",
+                dataType: "json",
+                url:  "{{route('admin.advertiser.update_status')}}" ,
+                // url: "/admin/advertiser/update_status",
+                data: {
+                    'status': status,
+                    'id': id
+                },
+                success: function(data) {
+                    if (data.success) {
+                        Toast('green', data.message);
+                    } else {
+                        Toast('red', data.message);
+                    }
+                    setTimeout(function() {
+                        location.reload(true);
+                    }, 1000);
+                }
+            });
+        })
     var leads_preview_modal = $('#leads_preview_modal');
     $(document).ready(function() {
         $('.assign_publisher').change(function() {
