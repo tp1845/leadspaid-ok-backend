@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\DB;
 
 use App\campaign_forms;
 use App\Http\Controllers\Controller;
@@ -12,7 +13,10 @@ class FormsController extends Controller
 {
     public function index()
     {
-        $forms = campaign_forms::where('campaign_forms.status','!=',2)->get();
+        $forms = DB::table('campaign_forms')
+            ->leftJoin('advertisers', 'campaign_forms.advertiser_id', '=', 'advertisers.id')
+            ->select('campaign_forms.*', 'advertisers.name as aname')
+            ->get();
         $page_title = 'All Forms';
         $empty_message = "No Forms";
          return view('admin.forms.index', compact('forms', 'page_title', 'empty_message'));
