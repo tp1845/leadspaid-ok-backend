@@ -47,6 +47,7 @@
 
 
                                         <th>Approve</th>
+                                        <th>Rejection Remarks</th>
                                         <th>Creation Date</th>
                                         <th>Target Country</th>
                                         <th>Daily Budget</th>
@@ -81,14 +82,13 @@
 
 
                                         <td>
-
-
                                             <div class="wrapper wrapper_span">
                                                 <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $campaign->approve }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
                                                 <span>@if($campaign->approve==0) Pending @elseif($campaign->approve==1) Approve @elseif($campaign->approve==2) Rejected @endif </span>
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
                                         </td>
+                                        <td>{{ $campaign->rejection_remarks }}</td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{ $campaign->daily_budget }}</td>
