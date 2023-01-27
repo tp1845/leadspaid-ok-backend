@@ -137,6 +137,7 @@
 @endpush
 @push('style')
 <style>
+
     .table th {
         padding: 12px 10px;
         max-width: 200px;

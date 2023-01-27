@@ -457,7 +457,7 @@
                                      <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img  src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
-                                    <a  style="font-size: 21px;" href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>5])}}" onclick="return confirm('Are you sure?')" class="delte_item" data-type="delete" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-sharp fa-solid fa-circle-xmark" ></i></a>
+                                    <a  style="font-size: 21px;" href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>5])}}" onclick="return confirm('Do you want to permanently delete the User?')" class="delte_item" data-type="delete" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-sharp fa-solid fa-circle-xmark" ></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -488,7 +488,7 @@
                                      <a  href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="_icon" data-toggle="tooltip" title="" data-original-title="Re-enable">
                                       <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                     </a>
-                                    <a style="font-size: 21px;" href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>5])}}" onclick="return confirm('Are you sure?')"  class="delte_item" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-sharp fa-solid fa-circle-xmark"></i></a>
+                                    <a style="font-size: 21px;" href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>5])}}" onclick="return confirm('Do you want to permanently delete the User?')"  class="delte_item" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-sharp fa-solid fa-circle-xmark"></i></a>
                                     @endif
                                 </td>
                             </tr>
@@ -510,6 +510,10 @@
 
 
 <style type="text/css">
+    
+    .breadcrumb-plugins {
+        display: none;
+    }
 	.table th { padding: 12px 10px; max-width: 200px; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .table td:last-child{
@@ -538,7 +542,6 @@
     margin: 0 2px !important;
 }
 #ulser_list .card-body ul.nav.nav-tabs {
-    position: absolute;
     top: 35px;
     z-index: 1;
     left: 19px;
@@ -677,6 +680,8 @@ table thead tr th:before {
     //     }
     //   })
  $(document).ready(function(){
+    
+    $('#ulser_list .card-body ul.nav.nav-tabs').addClass("position-absolute")
     $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
         localStorage.setItem('activeTab', $(e.target).attr('href'));
     });

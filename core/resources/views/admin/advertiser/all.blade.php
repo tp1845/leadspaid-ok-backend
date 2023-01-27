@@ -85,7 +85,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -159,7 +161,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -237,7 +241,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -288,8 +294,10 @@
                                     <tr>
                                         <td data-label="@lang('Name')" class="text--primary">
                                             <div class="align-items-center d-flex flex-column justify-content-center" style="gap: 5px;">
-
-                                                <input type="checkbox" name="status" @if($advertiser->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                                
+                                                <a href="{{ route('admin.advertiser.update_status',['id'=>$advertiser->id,'status'=>1])}}" class="_icon" data-toggle="tooltip" title="" data-original-title="Activate">
+                                                    <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
+                                                </a>
                                                 <div style="display: inline-table;">
                                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                                         <i class="las la-desktop text--shadow"></i>
@@ -314,7 +322,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -391,7 +401,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                          <td data-label="@lang('Email')"><div style="white-space: initial;">{{ $advertiser->email }}</div></td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -475,34 +487,13 @@
             });
         })
 
-        $('.toggle-status').change(function() {
-            var status = $(this).prop('checked') == true ? 1 : 0;
-            var id = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                //url:  "{{route('admin.advertiser.update_status')}}" ,
-                url: "/admin/advertiser/update_status",
-                data: {
-                    'status': status,
-                    'id': id
-                },
-                success: function(data) {
-                    if (data.success) {
-                        Toast('green', data.message);
-                    } else {
-                        Toast('red', data.message);
-                    }
-                }
-            });
-        })
         $('#activedata').on('page.dt', function() {
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
             }, 100)
 
-        });  
+        });
         $('#pendingdata').on('page.dt', function() {
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
@@ -555,6 +546,7 @@
     });
 
     $(document).ready(function() {
+        $('#apporved_list ul.nav.nav-tabs').addClass("position-absolute")
         $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
             localStorage.setItem('activeTab', $(e.target).attr('href'));
         });
@@ -563,11 +555,17 @@
         if (activeTab) {
             $('#myTab a[href="' + activeTab + '"]').tab('show');
         }
+
+
     });
 </script>
 @endpush
 @push('style')
 <style>
+    .breadcrumb-plugins {
+        display: none;
+    }
+
     ul.check_box_list {
         height: 100px;
         overflow: auto;
@@ -586,6 +584,7 @@
         margin: 0;
         padding: 0;
     }
+
 
     .table td {
         text-align: left !important;
@@ -686,18 +685,20 @@
     table.dataTable tbody tr td:nth-child(7) {
         max-width: 200px;
     }
+
     table.dataTable tbody tr td:nth-child(8) {
         max-width: 200px;
         line-break: auto;
         white-space: initial;
     }
+
     .icon-btn {
         display: inline-flex;
     }
 
 
     #apporved_list ul.nav.nav-tabs {
-        position: absolute;
+        /* position: absolute; */
         top: 30px;
         z-index: 1;
         left: 0;
