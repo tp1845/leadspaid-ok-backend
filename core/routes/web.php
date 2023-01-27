@@ -180,6 +180,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/campaigns/lgenspend/importpreview/{cid}/{aid}/{fid}','LgenSpendController@importpreview')->name('campaigns.lgenspend.importpreview');
 
 
+        //Form
+        Route::get('/forms', 'FormsController@index')->name('forms.index');
+       
+
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
         Route::get('/publisher/active/all','PublisherController@allActivePublisher')->name('publisher.active.all');
