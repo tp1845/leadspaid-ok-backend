@@ -202,7 +202,8 @@ class AdvertiserController extends Controller
             $Adv->update();
             if ($request->status == 1) {
                 send_email_adv_activated($Adv, 'EVER_CODE', $Adv->name);
-                return redirect()->back();
+                $notify[] = ['success', 'Advertiser has been activated'];
+                return redirect()->back()->withNotify($notify);
             } else {
                 return response()->json(['success' => false, 'message' => 'Advertiser has been deactivated']);
             }
@@ -290,6 +291,8 @@ class AdvertiserController extends Controller
     public function advertiser_delete($id)
     {
         Advertiser::where('id', $id)->update(['status' => 2]);
-        return redirect()->back();
+
+        $notify[] = ['success', 'Advertiser banned Successfully'];
+        return back()->withNotify($notify);
     }
 }

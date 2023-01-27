@@ -63,7 +63,7 @@
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
 
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
@@ -141,7 +141,7 @@
                                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
@@ -218,7 +218,7 @@
                                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
@@ -380,7 +380,7 @@
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
 
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
