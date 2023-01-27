@@ -18,19 +18,19 @@
                             <th>Title</th>
                             <th>Description</th>
                             <th>USP </th>
-                            <th>youtube_1</th>
-                            <th>youtube_2</th>
-                            <th>youtube_3</th>
-                            <th>image_1</th>
-                            <th>image_2</th>
-                            <th>image_3</th>
+                            <th>Youtube_1</th>
+                            <th>Youtube_2</th>
+                            <th>Youtube_3</th>
+                            <th>Image_1</th>
+                            <th>Image_2</th>
+                            <th>Image_3</th>
                             <th>Field 1</th>
                             <th>Field 2</th>
                             <th>Field 3</th>
                             <th>Field 4</th>
                             <th>Field 5</th>
-                            <th>status</th>
-                            <th>created_at</th>
+                            <th>Status</th>
+                            <th>Created_at</th>
 
                         </tr>
                     </thead>

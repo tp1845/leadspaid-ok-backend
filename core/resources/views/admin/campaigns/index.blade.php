@@ -772,11 +772,11 @@ p {
 }
 [data-original-title="Ban"],[data-original-title="Delete"] {
     vertical-align: middle;
-    font-size: 23px;
+    font-size: 21px;
 }
 
 [data-original-title="Ban"] i ,[data-original-title="Delete"] i {
-    font-size: 23px;
+    font-size: 21px;
 }
 </style>
 @endpush
