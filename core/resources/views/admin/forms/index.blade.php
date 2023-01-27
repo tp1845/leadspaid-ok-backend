@@ -7,7 +7,6 @@
                 <table id="form_list" class="table table-striped table-bordered datatable " style="width:100%">
                     <thead>
                         <tr>
-
                             <th>ID</th>
                             <th>A.ID</th>
                             <th>A.Name</th>
@@ -49,39 +48,39 @@
                             </td>
                             <td>{{ $form->company_name }}</td>
                             <td style="min-width: 120px;">
-                            <?php if (!empty($form->company_logo)) { ?>
+                                <?php if (!empty($form->company_logo)) { ?>
                                     <img onerror="this.onerror=null; this.src='https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'" src='{{asset("assets/images/campaign_forms/". $form->company_logo)}}' style="width: 120px;object-fit: cover;height: 70px;" />
-                                <?php } ?></td>
+                                <?php } ?>
+                            </td>
                             <td>
-                                @php
-                                if(!empty($form->title) ){
-                                echo "<ul>";
-                                    foreach(json_decode($form->title) as $formt){
-                                    if(!empty($formt)){
-                                    echo "<li>".$formt.'</li>';
-                                    }
+                                <?php
+                                if (!empty($form->title)) {
+                                    echo "<ul>";
+                                    foreach (json_decode($form->title) as $formt) {
+                                        if (!empty($formt)) {
+                                            echo "<li>" . $formt . '</li>';
+                                        }
                                     }
                                     echo "</ul>";
                                 }
-
-                                @endphp
+                                ?>
                             </td>
                             <td>
-                                @php
-                                if(!empty($form->form_desc) ){
-                                foreach(json_decode($form->form_desc) as $form_desc){
-                                if(!empty($form_desc)){
-                                echo $form_desc.'<br>';
-                                }
-                                }
+                                <?php
+                                if (!empty($form->form_desc)) {
+                                    foreach (json_decode($form->form_desc) as $form_desc) {
+                                        if (!empty($form_desc)) {
+                                            echo $form_desc . '<br>';
+                                        }
+                                    }
                                 }
 
-                                @endphp
+                                ?>
                             </td>
                             <td>{{ $form->punchline }}</td>
-                            <td>{{$form->youtube_1 }}</td>
-                            <td>{{$form->youtube_2 }}</td>
-                            <td>{{$form->youtube_3 }}</td>
+                            <td><a href="{{$form->youtube_1}}">{{$form->youtube_1 }}</a></td>
+                            <td><a href="{{$form->youtube_2}}">{{$form->youtube_2 }}</a></td>
+                            <td><a href="{{$form->youtube_3}}">{{$form->youtube_3 }}</a></td>
                             <td style="min-width: 120px;">
                                 <?php if (!empty($form->image_1)) { ?>
                                     <img onerror="this.onerror=null; this.src='https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'" src='{{asset("assets/images/campaign_forms/". $form->image_1)}}' style="width: 120px;object-fit: cover;height: 70px;" />
@@ -97,12 +96,12 @@
                                     <img onerror="this.onerror=null; this.src='https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'" src='{{asset("assets/images/campaign_forms/". $form->image_3)}}' style="width: 120px;object-fit: cover;height: 70px;" />
                                 <?php } ?>
                             </td>
-                            <td>{{$form->field_1['question_text']?? '' }}</td>
-                            <td>{{$form->field_2['question_text']?? '' }}</td>
-                            <td>{{$form->field_3['question_text']?? '' }}</td>
-                            <td>{{$form->field_4['question_text']?? '' }}</td>
-                            <td>{{$form->field_5['question_text']?? '' }}</td>
-                            <td>{{$form->status}}</td>
+                            <td>{{json_decode($form->field_1)->question_text?? '' }}</td>
+                            <td>{{json_decode($form->field_2)->question_text?? '' }}</td>
+                            <td>{{json_decode($form->field_3)->question_text?? '' }}</td>
+                            <td>{{json_decode($form->field_4)->question_text?? '' }}</td>
+                            <td>{{json_decode($form->field_5)->question_text?? '' }}</td>
+                            <td>{{$form->status ==0?'Off' : "Active" }}</td>
                             <td>{{$form->created_at}}</td>
                         </tr>
                         @endforeach
