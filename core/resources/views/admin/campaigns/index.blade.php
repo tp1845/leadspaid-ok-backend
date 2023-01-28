@@ -44,8 +44,6 @@
                                         <th>C.Id</th>
                                         <th>Advertiser</th>
                                         <th>A.Id</th>
-
-
                                         <th>Approve</th>
                                         <th>Rejection Remarks</th>
                                         <th>Creation Date</th>

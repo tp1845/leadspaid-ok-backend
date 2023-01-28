@@ -40,13 +40,16 @@
                             <td>{{ $form->id }}</td>
                             <td>{{ $form->advertiser_id }}</td>
                             <td>{{ $form->aname }}</td>
-                            <td>{{ $form->form_name }}</td>
+                            <td>
+                                @if (isset($form->form_name))
+                                <a href="#" class="btn_form_preview" data-id="{{$form->id}}" data-name="{{ $form->form_name }}"> {{ $form->form_name }} </a> @endif
+                            </td>
                             <td>{{ get_form_leads_by_id($form->id)}}</td>
                             <td><a>XLSX</a> |
                                 <a>CSV</a>
                                 {{-- | <a href="#">Google Sheet</a> --}}
                             </td>
-                            <td>{{ $form->company_name }}</td>
+                            <td><spn>{{ $form->company_name }}</spn></td>
                             <td style="min-width: 120px;">
                                 <?php if (!empty($form->company_logo)) { ?>
                                     <img onerror="this.onerror=null; this.src='https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'" src='{{asset("assets/images/campaign_forms/". $form->company_logo)}}' style="width: 120px;object-fit: cover;height: 70px;" />
@@ -66,21 +69,25 @@
                                 ?>
                             </td>
                             <td>
-                                <?php
-                                if (!empty($form->form_desc)) {
-                                    foreach (json_decode($form->form_desc) as $form_desc) {
-                                        if (!empty($form_desc)) {
-                                            echo $form_desc . '<br>';
+                                <spn>
+                                    <?php
+                                    if (!empty($form->form_desc)) {
+                                        foreach (json_decode($form->form_desc) as $form_desc) {
+                                            if (!empty($form_desc)) {
+                                                echo $form_desc . '<br>';
+                                            }
                                         }
                                     }
-                                }
 
-                                ?>
+                                    ?>
+
+                                </spn>
+
                             </td>
                             <td>{{ $form->punchline }}</td>
-                            <td><a href="{{$form->youtube_1}}">{{$form->youtube_1 }}</a></td>
-                            <td><a href="{{$form->youtube_2}}">{{$form->youtube_2 }}</a></td>
-                            <td><a href="{{$form->youtube_3}}">{{$form->youtube_3 }}</a></td>
+                            <td><a target="_about" href="{{$form->youtube_1}}">{{$form->youtube_1 }}</a></td>
+                            <td><a target="_about" href="{{$form->youtube_2}}">{{$form->youtube_2 }}</a></td>
+                            <td><a target="_about" href="{{$form->youtube_3}}">{{$form->youtube_3 }}</a></td>
                             <td style="min-width: 120px;">
                                 <?php if (!empty($form->image_1)) { ?>
                                     <img onerror="this.onerror=null; this.src='https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'" src='{{asset("assets/images/campaign_forms/". $form->image_1)}}' style="width: 120px;object-fit: cover;height: 70px;" />
@@ -111,12 +118,36 @@
         </div>
     </div>
 </div>
+{{-- SETUP Form Preview MODAL --}}
+<div class="modal fade" id="form_preview_modal" tabindex="-1" aria-labelledby="FormPreviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="FormPreviewModalLabel">Form Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="form_preview_html"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 @endsection
 @push('script')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
 <script>
     'use strict';
+
+    var form_preview_modal = $('#form_preview_modal');
+    $('.btn_form_preview').on('click', function() {
+        var id = $(this).data('id');
+        var iframe_html = '<iframe id="leadpaidform_1" src="https://leadspaid.com/campaign_form/1/1/' + id + '" referrerpolicy="unsafe-url" sandbox="allow-top-navigation allow-scripts allow-forms  allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="600" style="border: 1px solid black;"></iframe>';
+        $('#form_preview_html').html(iframe_html);
+        form_preview_modal.modal('show');
+    });
     $(document).ready(function() {
         var MyDatatable = $('#form_list').DataTable({
             columnDefs: [{
@@ -137,7 +168,6 @@
 @endpush
 @push('style')
 <style>
-
     .table th {
         padding: 12px 10px;
         max-width: 200px;
@@ -272,6 +302,36 @@
             top: -45px;
             text-align: right;
         }
+    }
+
+    /* Max width */
+    #form_list>tbody>tr>td:nth-child(7) spn {
+        width: max-content;
+        display: block;
+        line-break: anywhere;
+        overflow-wrap: anywhere;
+        max-width: 178px;
+        white-space:initial;
+    }
+
+    #form_list>tbody>tr>td:nth-child(10) spn {
+        width: max-content;
+        display: block;
+        line-break: anywhere;
+        overflow-wrap: anywhere;
+        max-width: 278px;
+        white-space:initial;
+    }
+
+    #form_list>tbody>tr>td:nth-child(12) a,
+    #form_list>tbody>tr>td:nth-child(13) a,
+    #form_list>tbody>tr>td:nth-child(14) a {
+        width: max-content;
+        display: block;
+        line-break: anywhere;
+        overflow-wrap: anywhere;
+        max-width: 228px;
+        white-space: break-spaces;
     }
 </style>
 @endpush
