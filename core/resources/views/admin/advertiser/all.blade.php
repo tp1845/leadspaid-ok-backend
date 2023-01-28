@@ -473,6 +473,9 @@
                     } else {
                         Toast('red', data.message);
                     }
+                    setTimeout(function() {
+                        location.reload(true);
+                    }, 1000);
                 }
             });
         })
