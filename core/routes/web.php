@@ -168,6 +168,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
         Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
         Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
+        Route::get('/campaigns/approval/rejection/', 'CampaignsController@update_approval_rejection')->name('campaigns.approval.rejection');
 
          Route::get('campaigns/delete/{id}','CampaignsController@campaign_delete')->name('campaigns.delete');
          Route::get('campaigns/complete/delete/{id}','CampaignsController@campaign_complete_delete')->name('campaigns.complete.delete');

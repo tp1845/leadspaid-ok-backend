@@ -16,104 +16,125 @@ class CampaignsController extends Controller
 {
     public function index()
     {
-            $page_title = 'All Campaigns';
-            $empty_message = 'No Campaigns';
-            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->where('status','!=',2)->orderBy('id', 'DESC')->get();
-            $pending = campaigns::with('advertiser')->with('campaign_forms')->where('status','!=',2)->where('approve',0)->orderBy('id', 'DESC')->get();
-             $active = campaigns::with('advertiser')->with('campaign_forms')->where('approve',1)->where('status','!=',2)->orderBy('id', 'DESC')->get();
-              $reject = campaigns::with('advertiser')->with('campaign_forms')->where('approve',2)->where('status','!=',2)->orderBy('id', 'DESC')->get();
-              $trash = campaigns::with('advertiser')->with('campaign_forms')->where('status',2)->orderBy('id', 'DESC')->get();
+        $page_title = 'All Campaigns';
+        $empty_message = 'No Campaigns';
+        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->orderBy('id', 'DESC')->get();
+        $pending = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->where('approve', 0)->orderBy('id', 'DESC')->get();
+        $active = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', '!=', 2)->orderBy('id', 'DESC')->get();
+        $reject = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 2)->where('status', '!=', 2)->orderBy('id', 'DESC')->get();
+        $trash = campaigns::with('advertiser')->with('campaign_forms')->where('status', 2)->orderBy('id', 'DESC')->get();
 
-            return view('admin.campaigns.index',compact('page_title','empty_message','campaigns','pending','active','reject','trash'));
-			}
+        return view('admin.campaigns.index', compact('page_title', 'empty_message', 'campaigns', 'pending', 'active', 'reject', 'trash'));
+    }
 
-    public function export($cid, $aid, $fid)  {
+    public function export($cid, $aid, $fid)
+    {
         $campaign_id = $cid;
         $advertiser_id = $aid;
-        $campaign = campaigns::where('id', $campaign_id )->with('campaign_forms')->first();
-        if($campaign){
-        $campaign_name =  $campaign['name'] ;
-        $campaign_form = $campaign['campaign_forms'];
-        return Excel::download(new LeadsExport($campaign_id, $advertiser_id, $campaign_name, $campaign_form), 'leads.xlsx');
+        $campaign = campaigns::where('id', $campaign_id)->with('campaign_forms')->first();
+        if ($campaign) {
+            $campaign_name =  $campaign['name'];
+            $campaign_form = $campaign['campaign_forms'];
+            return Excel::download(new LeadsExport($campaign_id, $advertiser_id, $campaign_name, $campaign_form), 'leads.xlsx');
         }
     }
 
-    public function import(Request $request, $cid, $aid, $fid){
-        $request->validate(['file' => 'required|mimes:xlsx, xls' ]);
+    public function import(Request $request, $cid, $aid, $fid)
+    {
+        $request->validate(['file' => 'required|mimes:xlsx, xls']);
         $campaign_id = $cid;
         $advertiser_id = $aid;
         $form_id = $fid;
-        $LeadsImportReturn = new LeadsImport($campaign_id,$advertiser_id, $form_id, false );
-        $LeadsImportReturn->import( $request->file('file')->store('files'));
+        $LeadsImportReturn = new LeadsImport($campaign_id, $advertiser_id, $form_id, false);
+        $LeadsImportReturn->import($request->file('file')->store('files'));
         $LeadsValidationErrors = $LeadsImportReturn->getErrors();
         $LeadsData = $LeadsImportReturn->getLeadsData();
-        if($LeadsData){
-            return response()->json(['success'=>true, 'data'=> $LeadsData]);
-        }else{
-            return response()->json(['success'=>false, 'data'=> $LeadsValidationErrors]);
+        if ($LeadsData) {
+            return response()->json(['success' => true, 'data' => $LeadsData]);
+        } else {
+            return response()->json(['success' => false, 'data' => $LeadsValidationErrors]);
         }
     }
 
-    public function importPreview(Request $request, $cid, $aid, $fid){
-        $request->validate(['file' => 'required|mimes:xlsx, xls' ]);
+    public function importPreview(Request $request, $cid, $aid, $fid)
+    {
+        $request->validate(['file' => 'required|mimes:xlsx, xls']);
         $campaign_id = $cid;
         $advertiser_id = $aid;
         $form_id = $fid;
-        $LeadsImportReturn = new LeadsImport($campaign_id,$advertiser_id, $form_id, true );
-        $LeadsImportReturn->import( $request->file('file')->store('files'));
+        $LeadsImportReturn = new LeadsImport($campaign_id, $advertiser_id, $form_id, true);
+        $LeadsImportReturn->import($request->file('file')->store('files'));
         // getErrors on LeadsImportReturn class:
         $LeadsValidationErrors = $LeadsImportReturn->getErrors();
         $LeadsData = $LeadsImportReturn->getLeadsData();
-        if($LeadsData){
-            return response()->json(['success'=>true, 'data'=> $LeadsData]);
-        }else{
-            return response()->json(['success'=>false, 'data'=> $LeadsValidationErrors]);
+        if ($LeadsData) {
+            return response()->json(['success' => true, 'data' => $LeadsData]);
+        } else {
+            return response()->json(['success' => false, 'data' => $LeadsValidationErrors]);
         }
     }
-    public function update_approval(Request $request){
-        $request->validate(['approval' => 'required', 'campaign_id' => 'required' ]);
-        $campaign = campaigns::findOrFail( $request->campaign_id);
-        if($campaign){
+    public function update_approval(Request $request)
+    {
+        $request->validate(['approval' => 'required', 'campaign_id' => 'required']);
+        $campaign = campaigns::findOrFail($request->campaign_id);
+        if ($campaign) {
             $campaign->approve =  $request->approval;
             $campaign->delivery = $request->approval;
             $campaign->start_date = Carbon::now();
             $campaign->update();
-        if( $request->approval  == 1){
-            $user = Advertiser::select('name','email')->findOrFail($campaign->advertiser_id);
-            $data = array(
-                'campaign_name' => $campaign->name,
-                'advertiser_name' => $user->name,
-                'advertiser_email' => $user->email,
-                'campaign_url' =>  route('advertiser.campaigns.index')
-            );
-            send_email_campaign_approval($user,'EVER_CODE',$data);
-            return response()->json(['success'=>true, 'message'=> 'Campaign successfully approve']);
-        }else{
-            return response()->json(['success'=>false, 'message'=> 'Campaign successfully unapprove']);
-        }
-        }else{
-            return response()->json(['success'=>false, 'message'=> 'Somthing Worng please try again']);
+            if ($request->approval  == 1) {
+                $user = Advertiser::select('name', 'email')->findOrFail($campaign->advertiser_id);
+                $data = array(
+                    'campaign_name' => $campaign->name,
+                    'advertiser_name' => $user->name,
+                    'advertiser_email' => $user->email,
+                    'campaign_url' =>  route('advertiser.campaigns.index')
+                );
+                send_email_campaign_approval($user, 'EVER_CODE', $data);
+                return response()->json(['success' => true, 'message' => 'Campaign successfully approve']);
+            } else {
+                return response()->json(['success' => false, 'message' => 'Campaign successfully unapprove']);
+            }
+        } else {
+            return response()->json(['success' => false, 'message' => 'Somthing Worng please try again']);
         }
     }
-	
-	
-	public function campaign_delete($id){
-        campaigns::where('id',$id)->update(array('status'=>2));
+
+    public function update_approval_rejection(Request $request)
+    {
+        $request->validate(['approval' => 'required', 'campaign_id' => 'required', 'remarks' => 'required']);
+        $campaign = campaigns::findOrFail($request->campaign_id);
+        if ($campaign) {
+            $campaign->approve =  $request->approval;
+            $campaign->rejection_remarks =  $request->remarks;
+            $campaign->delivery = $request->approval;
+            $campaign->start_date = Carbon::now();
+            $campaign->update();
+            return response()->json(['success' => false, 'message' => 'Campaign successfully unapprove']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Somthing Worng please try again']);
+        }
+    }
+
+
+    public function campaign_delete($id)
+    {
+        campaigns::where('id', $id)->update(array('status' => 2));
         $notify[] = ['success', 'Campaign banned successfully'];
         return redirect()->back()->withNotify($notify);
-        }
-     
-     public function campaign_complete_delete($id){
-          campaigns::where('id',$id)->delete();
+    }
+
+    public function campaign_complete_delete($id)
+    {
+        campaigns::where('id', $id)->delete();
         $notify[] = ['success', 'Campaign deleted successfully'];
         return redirect()->back()->withNotify($notify);
-     }
+    }
 
-    public function campaign_restore($id){
-         campaigns::where('id',$id)->update(array('status'=>1));
+    public function campaign_restore($id)
+    {
+        campaigns::where('id', $id)->update(array('status' => 1));
         $notify[] = ['success', 'Campaign Restore Successfully'];
         return redirect()->back()->withNotify($notify);
     }
-
-
 }

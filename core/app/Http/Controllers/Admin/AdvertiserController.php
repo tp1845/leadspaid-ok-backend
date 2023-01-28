@@ -23,9 +23,10 @@ class AdvertiserController extends Controller
         $active = Advertiser::where('status', 1)->where('ev','!=' , 0)->get();
         $pending = Advertiser::where('status', 0)->where('ev','!=' , 0)->get();
         $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2)->get();
-        $banned = Advertiser::where('status', 2)->get();
+        $banned = Advertiser::where('status', 3)->get();
+        $rejected = Advertiser::where('status', 3)->get();
 
-        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin', 'active', 'pending', 'email_unverify', 'banned'));
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin', 'active', 'pending', 'email_unverify', 'banned','rejected'));
     }
     public function allActiveAdvertiser()
     {

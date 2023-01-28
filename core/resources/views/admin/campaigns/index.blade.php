@@ -45,7 +45,6 @@
                                         <th>Advertiser</th>
                                         <th>A.Id</th>
                                         <th>Approve</th>
-                                        <th>Rejection Remarks</th>
                                         <th>Creation Date</th>
                                         <th>Target Country</th>
                                         <th>Daily Budget</th>
@@ -86,8 +85,7 @@
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
                                         </td>
-                                        <td>{{ $campaign->rejection_remarks }}</td>
-                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                      <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{ $campaign->daily_budget }}</td>
                                         <td>${{ $campaign->target_cost }}</td>
@@ -157,7 +155,6 @@
                                         <th>Advertiser</th>
                                         <th>A.Id</th>
                                         <th>Approve</th>
-                                        <th>Rejection Remarks</th>
                                         <th>Creation Date</th>
                                         <th>Target Country</th>
                                         <th>Daily Budget</th>
@@ -198,7 +195,6 @@
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
                                         </td>
-                                        <td>{{ $campaign->rejection_remarks }}</td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{ $campaign->daily_budget }}</td>
@@ -269,9 +265,8 @@
                                         <th>C.Id</th>
                                         <th>Advertiser</th>
                                         <th>A.Id</th>
-
-
                                         <th>Approve</th>
+                                        <th>Rejection Remarks</th>
                                         <th>Creation Date</th>
                                         <th>Target Country</th>
                                         <th>Daily Budget</th>
@@ -312,7 +307,8 @@
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
                                         </td>
-                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>{{ $campaign->rejection_remarks }}</td>
+                                       <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{ $campaign->daily_budget }}</td>
                                         <td>${{ $campaign->target_cost }}</td>
@@ -652,8 +648,9 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <form>                         
+                        <form onsubmit="event.preventDefault(); submit_rejection(event);" >                         
                             <div class="form-group">
+                                <input class="form-control campaign_id" name="campaign_id" hidden  rows="4"></textarea>
                                 <textarea class="form-control" required name="remarks" rows="4"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -1156,12 +1153,42 @@
 
         });
 
+        function submit_rejection(e) {
+            const {remarks,campaign_id} = e.target;
+            $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "{{route('admin.campaigns.approval.rejection')}}",
+                    data: {
+                        'approval': 2,
+                        'remarks': remarks.value,
+                        'campaign_id': campaign_id.value
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            Toast('green', data.message);
+                        } else {
+                            Toast('red', data.message);
+                        }
+
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+                    }
+                });
+            console.log(campaign_id.value);
+        }
+
         function add_custom_toggle_click() {
             $(".custom-toggle").click(function() {
                 var value = $(this).val();
+                var approval = value;
+                var campaign_id = $(this).data('id');
                 value = parseInt(value, 10); // Convert to an integer
                 if (value === 2) {
+                    $('#rejection_remarks_modal textarea').val("");
                     $('#rejection_remarks_modal').modal('show');
+                    $('#rejection_remarks_modal .campaign_id').val(campaign_id);
                     return;
                 }
 
@@ -1181,8 +1208,6 @@
                     that.parent().find('span').text('Approve');
                 }
 
-                var approval = value;
-                var campaign_id = $(this).data('id');
                 $.ajax({
                     type: "GET",
                     dataType: "json",
