@@ -645,15 +645,20 @@
     </div>
     {{-- Rejection Remarks MODAL --}}
     <div class="modal fade" id="rejection_remarks_modal" tabindex="-1" aria-labelledby="RejectionRemarksModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog" style="width: 24rem;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="RejectionRemarksModalLabel">Rejection Remarks</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div>
-
+                        <form>                         
+                            <div class="form-group">
+                                <textarea class="form-control" required name="remarks" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1156,7 +1161,7 @@
                 var value = $(this).val();
                 value = parseInt(value, 10); // Convert to an integer
                 if (value === 2) {
-                    $('rejection_remarks_modal').show();
+                    $('#rejection_remarks_modal').modal('show');
                     return;
                 }
 
