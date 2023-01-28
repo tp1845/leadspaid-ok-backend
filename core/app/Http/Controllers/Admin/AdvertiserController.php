@@ -21,7 +21,7 @@ class AdvertiserController extends Controller
         $advertisers = Advertiser::latest()->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
         $active = Advertiser::where('status', 1)->where('ev','!=' , 0)->get();
-        $pending = Advertiser::where('status', 0)->where('ev','!=' , 0)->where('status','!=' , 2)->get();
+        $pending = Advertiser::where('status', 0)->where('ev','!=' , 0)->get();
         $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2)->get();
         $banned = Advertiser::where('status', 2)->get();
 

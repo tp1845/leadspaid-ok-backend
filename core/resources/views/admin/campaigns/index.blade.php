@@ -156,9 +156,8 @@
                                         <th>C.Id</th>
                                         <th>Advertiser</th>
                                         <th>A.Id</th>
-
-
                                         <th>Approve</th>
+                                        <th>Rejection Remarks</th>
                                         <th>Creation Date</th>
                                         <th>Target Country</th>
                                         <th>Daily Budget</th>
@@ -199,6 +198,7 @@
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
                                         </td>
+                                        <td>{{ $campaign->rejection_remarks }}</td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{ $campaign->daily_budget }}</td>
@@ -643,7 +643,22 @@
             </div>
         </div>
     </div>
+    {{-- Rejection Remarks MODAL --}}
+    <div class="modal fade" id="rejection_remarks_modal" tabindex="-1" aria-labelledby="RejectionRemarksModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="RejectionRemarksModalLabel">Rejection Remarks</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     @endsection
     @push('style')
     <style>
@@ -1138,52 +1153,56 @@
 
         function add_custom_toggle_click() {
             $(".custom-toggle").click(function() {
-            var value = $(this).val();
-
-            value = parseInt(value, 10); // Convert to an integer
-            var that = $(this);
-            if (value === 2) {
-                that.removeClass('tgl-def');
-
-                that.removeClass('tgl-on').addClass('tgl-off');
-                that.parent().find('span').text('Rejected');
-            } else if (value === 0) {
-                that.removeClass('tgl-on', );
-                that.removeClass('tgl-off').addClass('tgl-def');
-                that.parent().find('span').text('Pending');
-            } else if (value === 1) {
-                that.removeClass('tgl-def');
-                that.removeClass('tgl-off').addClass('tgl-on');
-                that.parent().find('span').text('Approve');
-            }
-
-            var approval = value;
-            var campaign_id = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "{{route('admin.campaigns.approval')}}",
-                //url: "/admin/campaigns/approval",
-                data: {
-                    'approval': approval,
-                    'campaign_id': campaign_id
-                },
-                success: function(data) {
-                    if (data.success) {
-                        Toast('green', data.message);
-                    } else {
-                        Toast('red', data.message);
-                    }
-
-                    setTimeout(function() {
-                        location.reload(true);
-                    }, 2000);
+                var value = $(this).val();
+                value = parseInt(value, 10); // Convert to an integer
+                if (value === 2) {
+                    $('rejection_remarks_modal').show();
+                    return;
                 }
-            });
 
-        })
+                var that = $(this);
+                if (value === 2) {
+                    that.removeClass('tgl-def');
+
+                    that.removeClass('tgl-on').addClass('tgl-off');
+                    that.parent().find('span').text('Rejected');
+                } else if (value === 0) {
+                    that.removeClass('tgl-on', );
+                    that.removeClass('tgl-off').addClass('tgl-def');
+                    that.parent().find('span').text('Pending');
+                } else if (value === 1) {
+                    that.removeClass('tgl-def');
+                    that.removeClass('tgl-off').addClass('tgl-on');
+                    that.parent().find('span').text('Approve');
+                }
+
+                var approval = value;
+                var campaign_id = $(this).data('id');
+                $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "{{route('admin.campaigns.approval')}}",
+                    //url: "/admin/campaigns/approval",
+                    data: {
+                        'approval': approval,
+                        'campaign_id': campaign_id
+                    },
+                    success: function(data) {
+                        if (data.success) {
+                            Toast('green', data.message);
+                        } else {
+                            Toast('red', data.message);
+                        }
+
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+                    }
+                });
+
+            })
         }
-      
+
         $('[data-toggle="tooltip"]').tooltip({
             trigger: 'hover'
         })
