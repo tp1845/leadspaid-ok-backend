@@ -24,7 +24,7 @@ class AdvertiserController extends Controller
         $pending = Advertiser::where('status', 0)->where('ev','!=' , 0)->get();
         $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2)->get();
         $banned = Advertiser::where('status', 3)->get();
-        $rejected = Advertiser::where('status', 3)->get();
+        $rejected = Advertiser::where('status', 2)->get();
 
         return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin', 'active', 'pending', 'email_unverify', 'banned','rejected'));
     }
@@ -214,6 +214,23 @@ class AdvertiserController extends Controller
         }
     }
 
+    public function update_approval_rejection(Request $request)
+    {
+        $request->validate(['approval' => 'required', 'advertiser_id' => 'required', 'remarks' => 'required']);
+        $advertiser = Advertiser::findOrFail($request->advertiser_id);
+        if ($advertiser) {
+            $advertiser->status = $request->approval;
+            $advertiser->rejection_remarks = $request->remarks;
+            $advertiser->update();
+            return response()->json(['success' => false, 'message' => 'Advertiser successfully rejected']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Somthing Worng please try again']);
+        }
+    }
+
+
+
+
     public function assign_publisher(Request $request)
     {
         $request->validate(['advertiser_id' => 'required']);
@@ -292,7 +309,7 @@ class AdvertiserController extends Controller
 
     public function advertiser_delete($id)
     {
-        Advertiser::where('id', $id)->update(['status' => 2]);
+        Advertiser::where('id', $id)->update(['status' => 3]);
 
         $notify[] = ['success', 'Advertiser banned Successfully'];
         return back()->withNotify($notify);

@@ -154,6 +154,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('advertiser/send-email', 'AdvertiserController@sendEmailAll')->name('advertiser.email.send');
         Route::get('advertiser/search', 'AdvertiserController@search')->name('advertiser.search');
         Route::get('advertiser/update_status/', 'AdvertiserController@update_status')->name('advertiser.update_status');
+        Route::get('advertiser/update_status/rejection/', 'AdvertiserController@update_approval_rejection')->name('advertiser.approval.rejection');
         Route::post('advertiser/assign_publisher', 'AdvertiserController@assign_publisher')->name('advertiser.assign_publisher');
 
          Route::get('advertiser/delete/{id}','AdvertiserController@advertiser_delete')->name('advertiser.delete');
