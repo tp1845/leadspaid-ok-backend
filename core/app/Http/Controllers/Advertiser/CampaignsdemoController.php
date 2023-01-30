@@ -27,7 +27,6 @@ class CampaignsdemoController extends Controller
         }else{
             $last_campaign = 0;
         }
-
         $next_campaign =  'LGen_Campaign_'.($last_campaign+1);
         $countries = Country::all();
         $page_title = 'All Campaigns';

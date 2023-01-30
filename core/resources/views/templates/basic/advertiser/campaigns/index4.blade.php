@@ -4572,6 +4572,7 @@ if($_GET['action']=="create_campiagin"){
             position: absolute;
             right: 0;
             top: 55px;
+            z-index: 999;
         }
 
         .dataTables_wrapper .dataTables_filter {
