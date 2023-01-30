@@ -51,7 +51,7 @@
                 </tr>
                 <tr class="odd">
                     <td>Pending Approval</td>
-                    <td class="" style="color: red; font-size: 1.5rem;">{{$advertiser['pending']}}</td>
+                    <td class="" style="color: red;">{{$advertiser['pending']}}</td>
                 </tr>
                 <tr class="odd">
                     <td>Email Unverified</td>
@@ -76,7 +76,7 @@
                 </tr>
                 <tr class="odd">
                     <td>Pending Approval</td>
-                    <td class="" style="color: red; font-size: 1.5rem;">{{$campaign['pending']}}</td>
+                    <td class="" style="color: red;">{{$campaign['pending']}}</td>
                 </tr>
                 <tr class="odd">
                     <td>Rejected</td>
@@ -113,7 +113,7 @@
                 </tr>
                 <tr class="odd">
                     <td>Pending Login</td>
-                    <td class="" style="color: red; font-size: 1.5rem;">{{$widget['total_pending_login']}}</td>
+                    <td class="" style="color: red;">{{$widget['total_pending_login']}}</td>
                 </tr>
                 <tr class="odd">
                     <td>All Active</td>
