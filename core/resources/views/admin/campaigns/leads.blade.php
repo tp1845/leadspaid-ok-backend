@@ -12,6 +12,8 @@
                             <thead>
                                 <tr>
                                     <th>Lead Id</th>
+                                    <th>A.ID</th>
+                                    <th>A.Name</th>
                                     <th>Price</th>
                                     <th>Field 1</th>
                                     <th>Field 2</th>
@@ -26,13 +28,17 @@
                                     <th>lgen_medium</th>
                                     <th>lgen_campaign</th>
                                     <th>Form Id</th>
+                                    <th>Form Name</th>
                                     <th>Date</th>
+                                    <th>Expiry</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @forelse($leads as $lead)
                             <tr>
                                 <td>{{ $lead->id }} </td>
+                                <td>{{ $lead->advertiser_id }} </td>
+                                <td>{{ $lead->aname }} </td>
                                 <td>{{ $lead->price?$lead->price:0  }}</td>
                                 <td>{{ $lead->field_1 }}</td>
                                 <td>{{ $lead->field_2 }}</td>
@@ -47,7 +53,9 @@
                                 <td>{{ $lead->lgen_medium }}</td>
                                 <td>{{ $lead->lgen_campaign }}</td>
                                 <td>{{ $lead->form_id }}</td>
+                                <td>{{ $lead->cfname }}</td>
                                 <td>{{ $lead->created_at  }}</td>
+                                <td>{{ $lead->expiry?'Expired':''  }}</td>
                             </tr>
                             @empty
                                 <tr>
@@ -105,7 +113,7 @@
     .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
     .toggle.ios .toggle-handle { border-radius: 20px; }
     .toggle input[data-size="small"] ~ .toggle-group label {   text-indent: -999px;   }
-    .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
+    .toggle.btn .toggle-handle{ left: -9px;  top: -3px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
     #selectimportfile{     display: inline-block;  width: auto; padding: 5px; }
     table thead tr th:after {

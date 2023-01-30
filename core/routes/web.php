@@ -154,6 +154,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('advertiser/send-email', 'AdvertiserController@sendEmailAll')->name('advertiser.email.send');
         Route::get('advertiser/search', 'AdvertiserController@search')->name('advertiser.search');
         Route::get('advertiser/update_status/', 'AdvertiserController@update_status')->name('advertiser.update_status');
+        Route::get('advertiser/update_status/rejection/', 'AdvertiserController@update_approval_rejection')->name('advertiser.approval.rejection');
         Route::post('advertiser/assign_publisher', 'AdvertiserController@assign_publisher')->name('advertiser.assign_publisher');
 
          Route::get('advertiser/delete/{id}','AdvertiserController@advertiser_delete')->name('advertiser.delete');
@@ -168,6 +169,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // Route::post('/campaigns/leads/import','CampaignsFormsController@import')->name('leads.import');
         Route::get('/campaigns/leads','CampaignsFormsController@AllLeads')->name('leads.all');
         Route::get('/campaigns/approval/', 'CampaignsController@update_approval')->name('campaigns.approval');
+        Route::get('/campaigns/approval/rejection/', 'CampaignsController@update_approval_rejection')->name('campaigns.approval.rejection');
 
          Route::get('campaigns/delete/{id}','CampaignsController@campaign_delete')->name('campaigns.delete');
          Route::get('campaigns/complete/delete/{id}','CampaignsController@campaign_complete_delete')->name('campaigns.complete.delete');
@@ -179,6 +181,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::post('/campaigns/lgenspend/import/{cid}/{aid}/{fid}','LgenSpendController@import')->name('campaigns.lgenspend.import');
         Route::post('/campaigns/lgenspend/importpreview/{cid}/{aid}/{fid}','LgenSpendController@importpreview')->name('campaigns.lgenspend.importpreview');
 
+
+        //Form
+        Route::get('/forms', 'FormsController@index')->name('forms.index');
+       
 
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');

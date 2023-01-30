@@ -272,7 +272,8 @@ class PublisherController extends Controller
 
       $page_title = 'Users List'  ;
         $empty_message = 'No search result found';
-        return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash','admin_trash','adminpending','user_pending','adminapprove','userapprove'));
+        return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash'
+        ,'admin_trash','adminpending','user_pending','adminapprove','userapprove'));
    }  
 
   public function save_user(Request $request){
@@ -375,20 +376,25 @@ class PublisherController extends Controller
     public function user_status($id,$status){
          if($status==5){
            Publisher::where('id',$id)->delete();
+           
+           $notify[] = ['success', 'User deleted successfully'];
+           return back()->withNotify($notify);
         }else{
            Publisher::where('id',$id)->update(['status'=>$status]);
         }
-        return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
+        return response()->json(['success'=>true, 'message'=> 'User moved to trash successfully']);
 
     }
     
     public function admin_status($id,$status){
       if($status==5){
           Admin::where('id',$id)->delete();
+          $notify[] = ['success', 'User deleted successfully'];
+          return back()->withNotify($notify);
         }else{
            Admin::where('id',$id)->update(['status'=>$status]);
         }
-       return response()->json(['success'=>true, 'message'=> 'User move to trash successfully']);
+       return response()->json(['success'=>true, 'message'=> 'User moved to trash successfully']);
     }
 
    public function checkmail(Request $request){
@@ -399,7 +405,7 @@ class PublisherController extends Controller
        }else{
          $p_count=Publisher::where('email',$request->email)->count();
        }
-     return response()->json(['success'=>true, 'message'=> 'User move to trash successfully','code'=>$p_count]);
+     return response()->json(['success'=>true, 'message'=> 'User moved to trash successfully','code'=>$p_count]);
     }
 
 }

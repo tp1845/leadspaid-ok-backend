@@ -10,6 +10,7 @@ use App\Exports\Form_LeadsExport;
 use App\Http\Controllers\Controller;
 use App\Imports\LeadsImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -19,8 +20,11 @@ class CampaignsFormsController extends Controller
     {
         $page_title    = 'All Leads';
         $empty_message = 'No Leads';
-        $leads         = campaign_forms_leads::all();
-
+        $leads = DB::table('campaign_forms_leads')
+        ->leftJoin('advertisers', 'campaign_forms_leads.advertiser_id', '=', 'advertisers.id')
+        ->leftJoin('campaign_forms', 'campaign_forms_leads.form_id', '=', 'campaign_forms.id')
+        ->select('campaign_forms_leads.*', 'advertisers.name as aname','campaign_forms.form_name as cfname',  )
+        ->get();
         return view('admin.campaigns.leads', compact('page_title', 'empty_message', 'leads'));
     }
 

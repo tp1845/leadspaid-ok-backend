@@ -213,7 +213,12 @@
                         </ul>
                     </div>
                 </li>
-
+                <li class="sidebar-menu-item  {{menuActive('admin.forms.index')}}">
+                    <a href="{{route('admin.forms.index')}}" class="nav-link" >
+                         <i class="menu-icon fa-solid fa-square-poll-horizontal"></i>
+                        <span class="menu-title text-white">@lang('Forms') </span>
+                    </a>
+                </li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.leads*',3)}}">
                         <i class="menu-icon lab la-autoprefixer"></i>

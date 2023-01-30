@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\AdType;
 use App\Deposit;
 use App\Gateway;
+use App\campaigns;
 use App\CreateAd;
 use App\PricePlan;
 use App\Publisher;
+use App\Admin;
 use App\UserLogin;
 use Carbon\Carbon;
 use App\Advertiser;
@@ -29,11 +31,33 @@ class AdminController extends Controller
         $page_title = 'Admin Dashboard';
         $empty_message = 'No Data';
 
+        // Advertiser
+        $advertiser['active']= Advertiser::where('status', 1)->where('ev','!=' , 0)->get()->count();
+        $advertiser['pending']= Advertiser::where('status', 0)->where('ev','!=' , 0)->get()->count();
+        $advertiser['unverified']=Advertiser::where('ev', 0)->where('status','!=' , 2)->get()->count();
+        $advertiser['all']=Advertiser::count();
+
+        //Campaigns
+        $campaign['approved']=  campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', '!=', 2)->orderBy('id', 'DESC')->get()->count();
+        $campaign['pending']=campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->where('approve', 0)->orderBy('id', 'DESC')->get()->count();
+        $campaign['rejected']=campaigns::with('advertiser')->with('campaign_forms')->where('approve', 2)->where('status', '!=', 2)->orderBy('id', 'DESC')->get()->count();
+        $campaign['all']=campaigns::count();
+
+        //Users
+        $widget['total_admin_publisher'] = Publisher::where('role',1)->where('status','=',1)->get()->count();
+        $widget['total_campaign_manager'] = Publisher::where('role',2)->where('status','=',1)->get()->count();
+        $widget['total_campaign_executive'] = Publisher::where('role',3)->where('status','=',1)->get()->count();
+        $widget['total_admin'] = Admin::where('status','=',1)->get()->count();
+        $widget['total_pending_login'] = Admin::where('status',3)->get()->count() + Publisher::where('status',3)->get()->count();
+        $widget['total_all_active'] = Admin::where('status',1)->get()->count() + Publisher::where('status',1)->get()->count();
+
+
         // User Info
         $widget['total_users'] = Advertiser::count();
         $widget['total_publisher'] = Publisher::count();
         $widget['total_ads'] = CreateAd::where('status', 1)->count();
         $widget['ad_type'] = AdType::where('status', 1)->count();
+
 
         // Monthly Deposit & Withdraw Report Graph
         $report['months'] = collect([]);
@@ -110,7 +134,7 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('page_title', 'widget', 'report', 'withdrawals',
             'chart','payment','paymentWithdraw','transactions','empty_message','approvedDomain',
-            'total_click','total_imp','pendingTicket','pendingDomain', 'depositsMonth', 'withdrawalMonth'));
+            'total_click','total_imp','pendingTicket','pendingDomain', 'depositsMonth', 'withdrawalMonth','advertiser','campaign'));
     }
 
 

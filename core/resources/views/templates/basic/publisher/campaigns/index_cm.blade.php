@@ -215,7 +215,7 @@
     .toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 20px; }
     .toggle.ios .toggle-handle { border-radius: 20px; }
     .toggle input[data-size="small"] ~ .toggle-group label {   text-indent: -999px;   }
-    .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
+    .toggle.btn .toggle-handle{ left: -9px;  top: -3px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
     .upload-btn-wrapper { position: relative; overflow: hidden; display: inline; }
     .btn { cursor: pointer; }

@@ -20,12 +20,13 @@ class AdvertiserController extends Controller
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest()->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
-        $active = Advertiser::where('status', 1)->get();
-        $pending = Advertiser::where('status', 0)->get();
-        $email_unverify = Advertiser::where('ev', 0)->get();
-        $banned = Advertiser::where('status', 2)->get();
+        $active = Advertiser::where('status', 1)->where('ev','!=' , 0)->get();
+        $pending = Advertiser::where('status', 0)->where('ev','!=' , 0)->get();
+        $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2)->get();
+        $banned = Advertiser::where('status', 3)->get();
+        $rejected = Advertiser::where('status', 2)->get();
 
-        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin', 'active', 'pending', 'email_unverify', 'banned'));
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin', 'active', 'pending', 'email_unverify', 'banned','rejected'));
     }
     public function allActiveAdvertiser()
     {
@@ -203,6 +204,8 @@ class AdvertiserController extends Controller
             if ($request->status == 1) {
                 send_email_adv_activated($Adv, 'EVER_CODE', $Adv->name);
                 return response()->json(['success' => true, 'message' => 'Advertiser has been activated']);
+                // $notify[] = ['success', 'Advertiser has been activated'];
+                // return redirect()->back()->withNotify($notify);
             } else {
                 return response()->json(['success' => false, 'message' => 'Advertiser has been deactivated']);
             }
@@ -210,6 +213,23 @@ class AdvertiserController extends Controller
             return response()->json(['success' => false, 'message' => 'Somthing Worng please try again']);
         }
     }
+
+    public function update_approval_rejection(Request $request)
+    {
+        $request->validate(['approval' => 'required', 'advertiser_id' => 'required', 'remarks' => 'required']);
+        $advertiser = Advertiser::findOrFail($request->advertiser_id);
+        if ($advertiser) {
+            $advertiser->status = $request->approval;
+            $advertiser->rejection_remarks = $request->remarks;
+            $advertiser->update();
+            return response()->json(['success' => false, 'message' => 'Advertiser successfully rejected']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Somthing Worng please try again']);
+        }
+    }
+
+
+
 
     public function assign_publisher(Request $request)
     {
@@ -289,7 +309,7 @@ class AdvertiserController extends Controller
 
     public function advertiser_delete($id)
     {
-        Advertiser::where('id', $id)->update(['status' => 2]);
+        Advertiser::where('id', $id)->update(['status' => 3]);
 
         $notify[] = ['success', 'Advertiser banned Successfully'];
         return back()->withNotify($notify);

@@ -59,11 +59,11 @@ class LeadsExport implements FromArray, WithHeadings
             '',
             '',
             '',
-            $this->campaign_form['field_1']['question_text'],
-            $this->campaign_form['field_2']['question_text'],
-            $this->campaign_form['field_3']['question_text'],
-            $this->campaign_form['field_4']['question_text'],
-            $this->campaign_form['field_5']['question_text']]
+            isset($this->campaign_form['field_1'])?$this->campaign_form['field_1']['question_text']:"",
+            isset($this->campaign_form['field_2'])?$this->campaign_form['field_2']['question_text']:"",
+            isset($this->campaign_form['field_3'])?$this->campaign_form['field_3']['question_text']:"",
+            isset($this->campaign_form['field_4'])?$this->campaign_form['field_4']['question_text']:"",
+            isset($this->campaign_form['field_5'])?$this->campaign_form['field_5']['question_text']:""]
         ];
     }
 

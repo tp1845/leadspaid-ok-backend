@@ -70,7 +70,7 @@
         /* text-indent: -999px;    */
         padding: 5px;
     }
-    .toggle.btn .toggle-handle{ left: -9px;  top: -2px; }
+    .toggle.btn .toggle-handle{ left: -9px;  top: -3px; }
     .toggle.btn.off .toggle-handle{ left: 9px; }
 	 table thead tr th:after {
     top: 14px !important;

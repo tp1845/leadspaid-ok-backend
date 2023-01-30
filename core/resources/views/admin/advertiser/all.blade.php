@@ -23,6 +23,9 @@
                         <a class="nav-link btn-primary" href="#banned" role="tab" data-toggle="tab">Banned</a>
                     </li>
                     <li class="nav-item mx-1">
+                        <a class="nav-link btn-primary" href="#rejected" role="tab" data-toggle="tab">Rejected</a>
+                    </li>
+                    <li class="nav-item mx-1">
                         <a class="nav-link btn-primary" href="#advertiserdata" role="tab" data-toggle="tab">All Advertiser</a>
                     </li>
 
@@ -63,7 +66,7 @@
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
 
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
@@ -85,7 +88,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -134,12 +139,22 @@
                                     <tr>
                                         <td data-label="@lang('Name')" class="text--primary">
                                             <div class="align-items-center d-flex flex-column justify-content-center" style="gap: 5px;">
-                                                <input type="checkbox" name="status" @if($advertiser->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                                <?php
+                                                if ($advertiser->status == 0)   $status = 1;
+                                                if ($advertiser->status == 1)   $status = 2;
+                                                if ($advertiser->status == 2)   $status = 0;
+
+
+                                                ?>
+                                                <div class="wrapper wrapper_span align-items-center d-flex flex-column ">
+                                                    <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($advertiser->status==0) tgl-off @elseif($advertiser->status==1) tgl-on @elseif($advertiser->status==2) tgl-def @endif custom-toggle" max="2" value="{{$status }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$advertiser->id}}">
+                                                    <span>@if($advertiser->status==0) Pending @elseif($advertiser->status==1) Approved @elseif($advertiser->status==2) Rejected @endif </span>
+                                                </div>
                                                 <div style="display: inline-table;">
                                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
@@ -159,7 +174,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -214,7 +231,7 @@
                                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
@@ -237,7 +254,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -289,7 +308,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">
                                             <div class="align-items-center d-flex flex-column justify-content-center" style="gap: 5px;">
 
-                                                <input type="checkbox" name="status" @if($advertiser->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                                <a style="cursor: pointer;" class="_icon activate_btn" data-id="{{$advertiser->id}}" data-toggle="tooltip" title="" data-original-title="Activate">
+                                                    <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
+                                                </a>
                                                 <div style="display: inline-table;">
                                                     <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
                                                         <i class="las la-desktop text--shadow"></i>
@@ -314,7 +335,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -334,6 +357,87 @@
                         </div>
                     </div>
                     <!-- Tab panes 5 -->
+                    <div role="tabpanel" class="tab-pane" id="rejected">
+
+                        <div class="table-responsive--md  table-responsive">
+                            <table class="table table--light style--two" id="rejecteddata">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th scope="col">@lang('Company Name')</th>
+                                        <th scope="col">@lang('Assign publisher Admin')</th>
+                                        <th scope="col">@lang('Name')</th>
+                                        <th scope="col">@lang('Country')</th>
+                                        <th scope="col">@lang('Phone')</th>
+                                        <th scope="col">@lang('Email')</th>
+                                        <th scope="col">@lang('Username')</th>
+                                        <th scope="col">@lang('Products/Services')</th>
+                                        <th scope="col">@lang('Website')</th>
+                                        <th scope="col">@lang('Social Media')</th>
+                                        <th scope="col">@lang('Ad Budget')</th>
+
+                                        <th scope="col">@lang('Date Applied')</th>
+                                        <th scope="col">@lang('Rejection Remarks')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if(!empty($rejected))
+                                    @foreach($rejected as $advertiser)
+                                    <tr>
+                                        <td data-label="@lang('Name')" class="text--primary">
+                                            <div class="align-items-center d-flex flex-column justify-content-center" style="gap: 5px;">
+
+                                                <a style="cursor: pointer;" class="_icon activate_btn" data-id="{{$advertiser->id}}" data-toggle="tooltip" title="" data-original-title="Activate">
+                                                    <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
+                                                </a>
+                                                <div style="display: inline-table;">
+                                                    <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
+                                                        <i class="las la-desktop text--shadow"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                        <i class="fa-regular fa-circle-xmark"></i>
+                                                    </a>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                        <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                        <td data-label="@lang('Assign publisher Admin')">
+                                            <ul class="check_box_list">
+                                                @forelse($publishers_admin as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
+                                        <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
+                                        <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
+                                        <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+                                        <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
+                                        <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                        <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                        <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+
+                                        <td><span class="text--small"><strong> {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
+                                        <td data-label="@lang('Rejection Remarks')">{{ $advertiser->rejection_remarks }}</td>
+                                        {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
+
+                                    </tr>
+                                    @endforeach
+                                    @endif
+
+                                </tbody>
+                            </table><!-- table end -->
+                        </div>
+                    </div>
+                    <!-- Tab panes 6 -->
                     <div role="tabpanel" class="tab-pane" id="advertiserdata">
 
                         <div class="table-responsive--md  table-responsive">
@@ -370,7 +474,7 @@
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
 
-                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" onclick="return confirm('Do you want to ban the Advertiser?')" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
                                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                                     </a>
@@ -391,7 +495,9 @@
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
-                                        <td data-label="@lang('Email')">{{ $advertiser->email }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
                                         <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
@@ -419,6 +525,29 @@
 
 
 </div>
+
+{{-- Rejection Remarks MODAL --}}
+<div class="modal fade" id="rejection_remarks_modal" tabindex="-1" aria-labelledby="RejectionRemarksModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 24rem;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="RejectionRemarksModalLabel">Rejection Remarks</h5>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form onsubmit="event.preventDefault(); submit_rejection(event);">
+                        <div class="form-group">
+                            <input class="form-control advertiser_id" name="advertiser_id" hidden rows="4"></textarea>
+                            <textarea class="form-control" required name="remarks" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('breadcrumb-plugins')
@@ -444,7 +573,54 @@
         }
         return confirm('Do you want to delete the Advertiser?');
     }
+    $('.activate_btn').click(function() {
+        var id = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "{{route('admin.advertiser.update_status')}}",
+            // url: "/admin/advertiser/update_status",
+            data: {
+                'status': 1,
+                'id': id
+            },
+            success: function(data) {
+                if (data.success) {
+                    Toast('green', data.message);
+                } else {
+                    Toast('red', data.message);
+                }
+                setTimeout(function() {
+                    location.reload(true);
+                }, 1000);
+            }
+        });
+    })
 
+    $('.toggle-status').change(function() {
+        var status = $(this).prop('checked') == true ? 1 : 0;
+        var id = $(this).data('id');
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "{{route('admin.advertiser.update_status')}}",
+            // url: "/admin/advertiser/update_status",
+            data: {
+                'status': status,
+                'id': id
+            },
+            success: function(data) {
+                if (data.success) {
+                    Toast('green', data.message);
+                } else {
+                    Toast('red', data.message);
+                }
+                setTimeout(function() {
+                    location.reload(true);
+                }, 1000);
+            }
+        });
+    })
     var leads_preview_modal = $('#leads_preview_modal');
     $(document).ready(function() {
         $('.assign_publisher').change(function() {
@@ -475,38 +651,19 @@
             });
         })
 
-        $('.toggle-status').change(function() {
-            var status = $(this).prop('checked') == true ? 1 : 0;
-            var id = $(this).data('id');
-            $.ajax({
-                type: "GET",
-                dataType: "json",
-                //url:  "{{route('admin.advertiser.update_status')}}" ,
-                url: "/admin/advertiser/update_status",
-                data: {
-                    'status': status,
-                    'id': id
-                },
-                success: function(data) {
-                    if (data.success) {
-                        Toast('green', data.message);
-                    } else {
-                        Toast('red', data.message);
-                    }
-                }
-            });
-        })
         $('#activedata').on('page.dt', function() {
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
             }, 100)
 
-        });  
+        });
         $('#pendingdata').on('page.dt', function() {
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
             }, 100)
 
         });
@@ -514,6 +671,8 @@
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
+                add_custom_toggle_click();
             }, 100)
 
         });
@@ -521,6 +680,15 @@
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
+            }, 100)
+
+        });
+        $('#rejecteddata').on('page.dt', function() {
+            setTimeout(function() {
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
+                $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
             }, 100)
 
         });
@@ -528,6 +696,7 @@
             setTimeout(function() {
                 $("[data-toggle='toggle']").bootstrapToggle('destroy')
                 $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
             }, 100)
 
         });
@@ -543,7 +712,7 @@
     }
 
 
-    $('#advertiser-data,#pendingdata,#data-email,#banneddata,#activedata,#datatable5').DataTable({
+    $('#advertiser-data,#pendingdata,#data-email,#banneddata,#rejecteddata,#activedata,#datatable5').DataTable({
 
         "sDom": 'Lfrtlip',
         "language": {
@@ -554,7 +723,101 @@
 
     });
 
+    function submit_rejection(e) {
+        const {
+            remarks,
+            advertiser_id
+        } = e.target;
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "{{route('admin.advertiser.approval.rejection')}}",
+            data: {
+                'approval': 2,
+                'remarks': remarks.value,
+                'advertiser_id': advertiser_id.value
+            },
+            success: function(data) {
+                if (data.success) {
+                    Toast('green', data.message);
+                } else {
+                    Toast('red', data.message);
+                }
+
+                setTimeout(function() {
+                    location.reload(true);
+                }, 2000);
+            }
+        });
+        console.log(advertiser_id.value);
+    }
+
+    function add_custom_toggle_click() {
+
+        $(".custom-toggle").click(function() {
+            var value = $(this).val();
+            var approval = value;
+            var id = Number($(this).data('id'));
+            value = parseInt(value, 10); // Convert to an integer
+            var status_id = 0;
+            if (value === 0) {
+                $('#rejection_remarks_modal textarea').val("");
+                $('#rejection_remarks_modal').modal('show');
+                $('#rejection_remarks_modal .advertiser_id').val(id);
+                return;
+            }
+
+            var that = $(this);
+            if (value === 2) {
+                that.removeClass('tgl-def');
+
+                that.removeClass('tgl-off').addClass('tgl-on');
+                that.parent().find('span').text('Approved');
+                status_id = 1;
+            } else if (value === 0) {
+                that.removeClass('tgl-on', );
+                that.removeClass('tgl-off').addClass('tgl-def');
+                that.parent().find('span').text('Rejected');
+                status_id = 2;
+            } else if (value === 1) {
+                that.removeClass('tgl-def');
+                that.removeClass('tgl-on').addClass('tgl-off');
+                that.parent().find('span').text('Pending');
+                status_id = 0;
+            }
+
+            updateStatus(id, status_id);
+        })
+
+    }
+
+    function updateStatus(id, status_id) {
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "{{route('admin.advertiser.update_status')}}",
+            // url: "/admin/advertiser/update_status",
+            data: {
+                'status': status_id,
+                'id': id
+            },
+            success: function(data) {
+                if (data.success) {
+                    Toast('green', data.message);
+                } else {
+                    Toast('red', data.message);
+                }
+                setTimeout(function() {
+                    location.reload(true);
+                }, 1000);
+            }
+        });
+
+    }
+    add_custom_toggle_click();
+
     $(document).ready(function() {
+        $('#apporved_list ul.nav.nav-tabs').addClass("position-absolute")
         $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
             localStorage.setItem('activeTab', $(e.target).attr('href'));
         });
@@ -563,11 +826,17 @@
         if (activeTab) {
             $('#myTab a[href="' + activeTab + '"]').tab('show');
         }
+
+
     });
 </script>
 @endpush
 @push('style')
 <style>
+    .breadcrumb-plugins {
+        display: none;
+    }
+
     ul.check_box_list {
         height: 100px;
         overflow: auto;
@@ -586,6 +855,7 @@
         margin: 0;
         padding: 0;
     }
+
 
     .table td {
         text-align: left !important;
@@ -640,6 +910,52 @@
         border-color: #11b6f3;
     }
 
+    #custom-toggle {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 23px !important;
+        width: 60px;
+        background-color: #333;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    #custom-toggle.tgl-def::-webkit-slider-thumb {
+        background-color: red;
+    }
+
+    #custom-toggle.tgl-on::-webkit-slider-thumb {
+        background-color: green;
+    }
+
+    #custom-toggle.tgl-off::-webkit-slider-thumb {
+        background-color: black;
+    }
+
+    #custom-toggle::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 23px !important;
+        width: 23px !important;
+        -webkit-border-radius: 25px;
+        border-radius: 25px;
+    }
+
+    #custom-toggle:focus {
+        outline: none;
+    }
+
+    .wrapper_span span {
+        font-size: 12px !important;
+    }
+
+    .rangeActive {
+        background-color: green;
+    }
+
     .toggle-group .btn {
         padding-top: 0 !important;
         padding-bottom: 0 !important;
@@ -668,7 +984,7 @@
 
     .toggle.btn .toggle-handle {
         left: -9px;
-        top: -2px;
+        top: -3px;
     }
 
     .toggle.btn.off .toggle-handle {
@@ -683,14 +999,14 @@
         bottom: 14px !important;
     }
 
+    table.dataTable tbody tr td:nth-child(7) {
+        max-width: 200px;
+    }
+
     table.dataTable tbody tr td:nth-child(8) {
-        height: 132px;
-        white-space: pre-wrap;
-        overflow-y: auto;
-        display: table-cell;
-        margin-top: -1px;
-        width: 100%;
-        min-width: 300px;
+        max-width: 200px;
+        line-break: auto;
+        white-space: initial;
     }
 
     .icon-btn {
@@ -699,7 +1015,7 @@
 
 
     #apporved_list ul.nav.nav-tabs {
-        position: absolute;
+        /* position: absolute; */
         top: 30px;
         z-index: 1;
         left: 0;
