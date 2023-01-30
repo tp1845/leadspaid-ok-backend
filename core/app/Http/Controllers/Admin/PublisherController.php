@@ -272,7 +272,8 @@ class PublisherController extends Controller
 
       $page_title = 'Users List'  ;
         $empty_message = 'No search result found';
-        return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash','admin_trash','adminpending','user_pending','adminapprove','userapprove'));
+        return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash'
+        ,'admin_trash','adminpending','user_pending','adminapprove','userapprove'));
    }  
 
   public function save_user(Request $request){

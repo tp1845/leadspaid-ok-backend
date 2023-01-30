@@ -396,7 +396,7 @@
                                                         <i class="las la-desktop text--shadow"></i>
                                                     </a>
                                                     <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
-                                                      <i class="fa-regular fa-circle-xmark"></i>
+                                                        <i class="fa-regular fa-circle-xmark"></i>
                                                     </a>
                                                 </div>
 
@@ -753,7 +753,7 @@
     }
 
     function add_custom_toggle_click() {
-    
+
         $(".custom-toggle").click(function() {
             var value = $(this).val();
             var approval = value;
@@ -786,32 +786,32 @@
                 status_id = 0;
             }
 
-            updateStatus(id,status_id);
+            updateStatus(id, status_id);
         })
 
     }
-    
-    function updateStatus(id,status_id) {        
+
+    function updateStatus(id, status_id) {
         $.ajax({
-                type: "GET",
-                dataType: "json",
-                url: "{{route('admin.advertiser.update_status')}}",
-                // url: "/admin/advertiser/update_status",
-                data: {
-                    'status': status_id,
-                    'id': id
-                },
-                success: function(data) {
-                    if (data.success) {
-                        Toast('green', data.message);
-                    } else {
-                        Toast('red', data.message);
-                    }
-                    setTimeout(function() {
-                        location.reload(true);
-                    }, 1000);
+            type: "GET",
+            dataType: "json",
+            url: "{{route('admin.advertiser.update_status')}}",
+            // url: "/admin/advertiser/update_status",
+            data: {
+                'status': status_id,
+                'id': id
+            },
+            success: function(data) {
+                if (data.success) {
+                    Toast('green', data.message);
+                } else {
+                    Toast('red', data.message);
                 }
-            });
+                setTimeout(function() {
+                    location.reload(true);
+                }, 1000);
+            }
+        });
 
     }
     add_custom_toggle_click();
@@ -913,8 +913,8 @@
     #custom-toggle {
         -webkit-appearance: none;
         appearance: none;
-        height: 20px;
-        width: 40px;
+        height: 23px !important;
+        width: 60px;
         background-color: #333;
         -webkit-border-radius: 25px;
         border-radius: 25px;
@@ -938,8 +938,8 @@
     #custom-toggle::-webkit-slider-thumb {
         -webkit-appearance: none;
         appearance: none;
-        width: 16px;
-        height: 16px;
+        height: 23px !important;
+        width: 23px !important;
         -webkit-border-radius: 25px;
         border-radius: 25px;
     }
@@ -949,7 +949,7 @@
     }
 
     .wrapper_span span {
-        font-size: 8px !important;
+        font-size: 12px !important;
     }
 
     .rangeActive {
@@ -984,7 +984,7 @@
 
     .toggle.btn .toggle-handle {
         left: -9px;
-        top: -2px;
+        top: -3px;
     }
 
     .toggle.btn.off .toggle-handle {

@@ -31,6 +31,99 @@
             @endforeach
         </div>
     @endif
+
+    <div class="align-items-center breadcrumb-plugins justify-content-between mb-30">
+        <div class="col">
+            <h6 >BASIC STATS</h6>
+        </div>
+
+        <div style="display: flex;flex-direction: row;gap: 5rem;">
+            <table class="dataTable no-footer style--two table table--light table-light" id="data-email" aria-describedby="data-email_info" style="width: 14rem;">
+            <thead>
+                <tr>
+                    <th tabindex="0" aria-controls="data-email" rowspan="1" colspan="2" aria-sort="ascending" aria-label="Status: activate to sort column descending" style="width: 0px;">Advertiser</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <td>Active</td>
+                    <td>{{$advertiser['active']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Pending Approval</td>
+                    <td class="" style="color: red; font-size: 1.5rem;">{{$advertiser['pending']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Email Unverified</td>
+                    <td>{{$advertiser['unverified']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>All Advertiser</td>
+                    <td>{{$advertiser['all']}}</td>
+                </tr>
+            </tbody>
+            </table>
+        <table class="dataTable no-footer style--two table table--light table-light" id="data-email" aria-describedby="data-email_info" style="width: 14rem;">
+            <thead>
+                <tr>
+                    <th  tabindex="0" aria-controls="data-email" rowspan="1" colspan="2" aria-sort="ascending" aria-label="Status: activate to sort column descending" style="width: 0px;">Campaigns</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <td>Approved</td>
+                    <td>{{$campaign['approved']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Pending Approval</td>
+                    <td class="" style="color: red; font-size: 1.5rem;">{{$campaign['pending']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Rejected</td>
+                    <td>{{$campaign['rejected']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>All campaigns</td>
+                    <td>{{$campaign['all']}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="dataTable no-footer style--two table table--light table-light" id="data-email" aria-describedby="data-email_info" style="width: 14rem;">
+            <thead>
+                <tr>
+                    <th tabindex="0" aria-controls="data-email" rowspan="1" colspan="2" aria-sort="ascending" aria-label="Status: activate to sort column descending" style="width: 0px;">Users</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <td>Publisher Admin</td>
+                    <td>{{$widget['total_admin_publisher']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Campaign Manager</td>
+                    <td>{{$widget['total_campaign_manager']}}</td>
+                </tr>   
+                <tr class="odd">
+                    <td>Campaign executive</td>
+                    <td>{{$widget['total_campaign_executive']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Admin</td>
+                    <td>{{$widget['total_admin']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>Pending Login</td>
+                    <td class="" style="color: red; font-size: 1.5rem;">{{$widget['total_pending_login']}}</td>
+                </tr>
+                <tr class="odd">
+                    <td>All Active</td>
+                    <td>{{$widget['total_all_active']}}</td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+
     <div class="row mb-none-30">
         <div class="col-xl-3 col-lg-4 col-sm-6 mb-30">
             <div class="dashboard-w1 bg--primary b-radius--10 box-shadow">

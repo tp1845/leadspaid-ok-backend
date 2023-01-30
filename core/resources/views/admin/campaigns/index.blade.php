@@ -85,7 +85,7 @@
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
                                         </td>
-                                      <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{ $campaign->daily_budget }}</td>
                                         <td>${{ $campaign->target_cost }}</td>
@@ -308,7 +308,7 @@
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
                                         </td>
                                         <td>{{ $campaign->rejection_remarks }}</td>
-                                       <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
                                         <td>${{ $campaign->daily_budget }}</td>
                                         <td>${{ $campaign->target_cost }}</td>
@@ -648,9 +648,9 @@
                 </div>
                 <div class="modal-body">
                     <div>
-                        <form onsubmit="event.preventDefault(); submit_rejection(event);" >                         
+                        <form onsubmit="event.preventDefault(); submit_rejection(event);">
                             <div class="form-group">
-                                <input class="form-control campaign_id" name="campaign_id" hidden  rows="4"></textarea>
+                                <input class="form-control campaign_id" name="campaign_id" hidden rows="4"></textarea>
                                 <textarea class="form-control" required name="remarks" rows="4"></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
@@ -684,8 +684,8 @@
         #custom-toggle {
             -webkit-appearance: none;
             appearance: none;
-            height: 20px;
-            width: 40px;
+            height: 23px !important;
+            width: 60px;
             background-color: #333;
             -webkit-border-radius: 25px;
             border-radius: 25px;
@@ -709,10 +709,9 @@
         #custom-toggle::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            width: 16px;
-            height: 16px;
-            -webkit-border-radius: 25px;
-            border-radius: 25px;
+            height: 23px !important;
+            width: 23px !important;
+            border-radius: 15px;
         }
 
         #custom-toggle:focus {
@@ -720,7 +719,7 @@
         }
 
         .wrapper_span span {
-            font-size: 8px !important;
+            font-size: 12px !important;
         }
 
         .rangeActive {
@@ -820,7 +819,7 @@
 
         .toggle.btn .toggle-handle {
             left: -9px;
-            top: -2px;
+            top: -3px;
         }
 
         .toggle.btn.off .toggle-handle {
@@ -1154,28 +1153,31 @@
         });
 
         function submit_rejection(e) {
-            const {remarks,campaign_id} = e.target;
+            const {
+                remarks,
+                campaign_id
+            } = e.target;
             $.ajax({
-                    type: "GET",
-                    dataType: "json",
-                    url: "{{route('admin.campaigns.approval.rejection')}}",
-                    data: {
-                        'approval': 2,
-                        'remarks': remarks.value,
-                        'campaign_id': campaign_id.value
-                    },
-                    success: function(data) {
-                        if (data.success) {
-                            Toast('green', data.message);
-                        } else {
-                            Toast('red', data.message);
-                        }
-
-                        setTimeout(function() {
-                            location.reload(true);
-                        }, 2000);
+                type: "GET",
+                dataType: "json",
+                url: "{{route('admin.campaigns.approval.rejection')}}",
+                data: {
+                    'approval': 2,
+                    'remarks': remarks.value,
+                    'campaign_id': campaign_id.value
+                },
+                success: function(data) {
+                    if (data.success) {
+                        Toast('green', data.message);
+                    } else {
+                        Toast('red', data.message);
                     }
-                });
+
+                    setTimeout(function() {
+                        location.reload(true);
+                    }, 2000);
+                }
+            });
             console.log(campaign_id.value);
         }
 

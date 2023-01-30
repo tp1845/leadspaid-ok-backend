@@ -627,7 +627,7 @@
 
         .toggle.btn .toggle-handle {
             left: -9px;
-            top: -2px;
+            top: -3px;
         }
 
         .toggle.btn.off .toggle-handle {
