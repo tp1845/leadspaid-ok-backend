@@ -1010,7 +1010,12 @@ function get_campiagn_cost_by_id($id,$start_date=null,$end_date=null){
 function get_total_campaign($id){
     return campaigns::where('advertiser_id',$id)->count();
 }
-
+function get_total_active_campaign($id){
+    return campaigns::where('advertiser_id',$id)->where('approve', 1)->where('status', '!=', 2)->get()->count();
+}
+function get_active_campaign_budget($id){
+    return campaigns::where('advertiser_id',$id)->where('approve', 1)->where('status', '!=', 2)->select(['daily_budget'])->get()->sum('daily_budget');
+}
 function get_assigned_advertisers($publisher_id){
     $assign_advertiser = Advertiser::whereJsonContains('assign_publisher',  (string) $publisher_id  )->select(['id', 'name', 'company_name'])->withCount('campaigns')->get()->toarray();
     return $assign_advertiser;

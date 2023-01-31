@@ -11,22 +11,22 @@
 
                 <ul class="nav nav-tabs border-0" role="tablist" id="myTab">
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary active" href="#active" role="tab" data-toggle="tab">Active</a>
+                        <a class="nav-link btn-primary active" href="#active" role="tab" data-toggle="tab">Active ({{$active->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary" href="#pending" role="tab" data-toggle="tab">Pending Approval</a>
+                        <a class="nav-link btn-primary" href="#pending" role="tab" data-toggle="tab">Pending Approval ({{$pending->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary" href="#emaildata" role="tab" data-toggle="tab">Email Unverified</a>
+                        <a class="nav-link btn-primary" href="#emaildata" role="tab" data-toggle="tab">Email Unverified ({{$email_unverify->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary" href="#banned" role="tab" data-toggle="tab">Banned</a>
+                        <a class="nav-link btn-primary" href="#banned" role="tab" data-toggle="tab">Banned ({{$banned->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary" href="#rejected" role="tab" data-toggle="tab">Rejected</a>
+                        <a class="nav-link btn-primary" href="#rejected" role="tab" data-toggle="tab">Rejected ({{$rejected->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary" href="#advertiserdata" role="tab" data-toggle="tab">All Advertiser</a>
+                        <a class="nav-link btn-primary" href="#advertiserdata" role="tab" data-toggle="tab">All Advertiser ({{$advertisers->count()}})</a>
                     </li>
 
                 </ul>
@@ -40,6 +40,8 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">@lang('Company Name')</th>
+                                        <th scope="col">@lang('Active Campaigns')</th>
+                                        <th scope="col">@lang('Active Campaign Budget')</th>
                                         <th scope="col">@lang('Assign publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
@@ -76,6 +78,9 @@
 
                                         </td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                        <td data-label="@lang('Active Campaigns')"><?php echo get_total_active_campaign($advertiser->id) ?></td>
+                                        <td data-label="@lang('Active Campaigns')">$<?php echo get_active_campaign_budget($advertiser->id) ?></td>
+
                                         <td data-label="@lang('Assign publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
@@ -99,8 +104,7 @@
 
 
                                         <td><span class="text--small"><strong> {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
-                                        {{-- <td data-label="@lang('Status')"><span class="text--small badge font-weight-normal {{ $advertiser->status==1?'badge--success':'badge--warning' }} ">{{ $advertiser->status==1?'Active':'Banned' }}</span></td> --}}
-
+                                        
                                     </tr>
                                     @endforeach
                                     @endif
@@ -759,15 +763,19 @@
             var approval = value;
             var id = Number($(this).data('id'));
             value = parseInt(value, 10); // Convert to an integer
+            var that = $(this);
             var status_id = 0;
             if (value === 0) {
+                that.removeClass('tgl-on', );
+                that.removeClass('tgl-off').addClass('tgl-def');
+                that.parent().find('span').text('Rejected');
                 $('#rejection_remarks_modal textarea').val("");
                 $('#rejection_remarks_modal').modal('show');
                 $('#rejection_remarks_modal .advertiser_id').val(id);
+
                 return;
             }
 
-            var that = $(this);
             if (value === 2) {
                 that.removeClass('tgl-def');
 
@@ -915,7 +923,7 @@
         appearance: none;
         height: 23px !important;
         width: 60px;
-        background-color: #333;
+        background-color: #ddd;
         -webkit-border-radius: 25px;
         border-radius: 25px;
         padding: 0;
@@ -932,7 +940,7 @@
     }
 
     #custom-toggle.tgl-off::-webkit-slider-thumb {
-        background-color: black;
+        background-color: orange;
     }
 
     #custom-toggle::-webkit-slider-thumb {

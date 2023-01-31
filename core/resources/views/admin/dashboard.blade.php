@@ -34,7 +34,7 @@
 
     <div class="align-items-center breadcrumb-plugins justify-content-between mb-30">
         <div class="col">
-            <h6 >BASIC STATS</h6>
+            <h6 style="font-size: 14px;">BASIC STATS</h6>
         </div>
 
         <div style="display: flex;flex-direction: row;gap: 5rem;">
@@ -538,7 +538,17 @@
     </div>
 
 @endsection
+@push('style')
+<style>
+.table th{
+    font-size: 16px !important;
+}
+.table tr td{
+    font-size: 16px;
+}
+</style>
 
+#endpush
 @push('script')
 
     <script src="{{asset('assets/admin/js/vendor/apexcharts.min.js')}}"></script>
@@ -840,3 +850,4 @@
         });
 </script>
 @endpush
+

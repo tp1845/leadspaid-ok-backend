@@ -220,5 +220,12 @@ class CampaignsFormsController extends Controller
 
         return redirect()->back();
     }
+    
+   public function leads_complete_delete($id)
+   {
+        DB::table('campaign_forms_leads')->where('id', $id)->delete();
+       $notify[] = ['success', 'Lead deleted successfully'];
+       return redirect()->back()->withNotify($notify);
+   }
 }
 

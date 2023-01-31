@@ -191,27 +191,11 @@
                         </ul>
                     </div>
                 </li>
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.campaigns*',3)}}">
-                        <i class="menu-icon lab la-autoprefixer"></i>
-                        <span class="menu-title">@lang('Manage Campaigns')</span>
+                <li class="sidebar-menu-item  {{menuActive('admin.campaigns.all')}}">
+                    <a href="{{route('admin.campaigns.all')}}" class="nav-link" >
+                    <i class="menu-icon lab la-autoprefixer"></i>
+                        <span class="menu-title text-white">@lang('Manage Campaigns') </span>
                     </a>
-                    <div class="sidebar-submenu {{menuActive('admin.campaigns*',2)}} ">
-                        <ul>
-                            <li class="sidebar-menu-item {{menuActive('admin.campaigns.all')}}">
-                                <a href="{{route('admin.campaigns.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Campaigns')</span>
-                                </a>
-                            </li>
-                            {{-- <li class="sidebar-menu-item {{menuActive('admin.campaigns.lgenspend')}}">
-                                <a href="{{route('admin.campaigns.lgenspend')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('LGen Spend Upload')</span>
-                                </a>
-                            </li> --}}
-                        </ul>
-                    </div>
                 </li>
                 <li class="sidebar-menu-item  {{menuActive('admin.forms.index')}}">
                     <a href="{{route('admin.forms.index')}}" class="nav-link" >
@@ -219,22 +203,11 @@
                         <span class="menu-title text-white">@lang('Forms') </span>
                     </a>
                 </li>
-                <li class="sidebar-menu-item sidebar-dropdown">
-                    <a href="javascript:void(0)" class="{{menuActive('admin.leads*',3)}}">
-                        <i class="menu-icon lab la-autoprefixer"></i>
-                        <span class="menu-title">@lang('Manage Leads')</span>
+                <li class="sidebar-menu-item  {{menuActive('admin.leads.all')}}">
+                    <a href="{{route('admin.leads.all')}}" class="nav-link" >
+                    <i class="menu-icon lab la-autoprefixer"></i>
+                        <span class="menu-title text-white">@lang('Manage Leads') </span>
                     </a>
-                    <div class="sidebar-submenu {{menuActive('admin.leads*',2)}} ">
-                        <ul>
-
-                            <li class="sidebar-menu-item {{menuActive('admin.leads.all')}}">
-                                <a href="{{route('admin.leads.all')}}" class="nav-link">
-                                    <i class="menu-icon las la-dot-circle"></i>
-                                    <span class="menu-title">@lang('All Leads')</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                 <a href="javascript:void(0)" class="{{menuActive('admin.users',3)}} {{menuActive('admin.create-users',3)}}">

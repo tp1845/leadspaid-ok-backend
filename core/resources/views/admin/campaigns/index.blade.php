@@ -581,7 +581,7 @@
                                         <td>{{ $campaign->website_url }}</td>
                                         <td>{{ $campaign->social_media_page }}</td>
                                         <td>
-                                            <a href="{{ route('admin.campaigns.restore',['id'=>$campaign->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-Store">
+                                            <a href="{{ route('admin.campaigns.restore',['id'=>$campaign->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Restore">
                                                 <img src="{{url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                             </a>
                                             <a href="{{ route('admin.campaigns.complete.delete',['id'=>$campaign->id]) }}?tab=trash" onclick="return confirm('Do you want parmenent delete the campaign ?')" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
@@ -686,7 +686,7 @@
             appearance: none;
             height: 23px !important;
             width: 60px;
-            background-color: #333;
+            background-color: #ddd;
             -webkit-border-radius: 25px;
             border-radius: 25px;
             padding: 0;
@@ -1187,19 +1187,23 @@
                 var approval = value;
                 var campaign_id = $(this).data('id');
                 value = parseInt(value, 10); // Convert to an integer
-                if (value === 2) {
+                var that = $(this);
+                if (value === 2) {  
+                    that.removeClass('tgl-def');
+                    that.removeClass('tgl-on').addClass('tgl-off');
+                    that.parent().find('span').text('Rejected');
+
                     $('#rejection_remarks_modal textarea').val("");
                     $('#rejection_remarks_modal').modal('show');
                     $('#rejection_remarks_modal .campaign_id').val(campaign_id);
                     return;
                 }
 
-                var that = $(this);
                 if (value === 2) {
                     that.removeClass('tgl-def');
-
                     that.removeClass('tgl-on').addClass('tgl-off');
                     that.parent().find('span').text('Rejected');
+
                 } else if (value === 0) {
                     that.removeClass('tgl-on', );
                     that.removeClass('tgl-off').addClass('tgl-def');

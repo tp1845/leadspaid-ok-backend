@@ -130,7 +130,6 @@ class CampaignsController extends Controller
         $notify[] = ['success', 'Campaign deleted successfully'];
         return redirect()->back()->withNotify($notify);
     }
-
     public function campaign_restore($id)
     {
         campaigns::where('id', $id)->update(array('status' => 1));
