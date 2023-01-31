@@ -59,7 +59,7 @@
                                 <td>{{ $lead->expiry?'Expired':''  }}</td>
                                 <td>
                                    
-                                    <a href="{{ route('admin.leads.complete.delete',['id'=>$lead->id]) }}?tab=trash" onclick="return confirm('Do you want parmenent delete the lead ?')" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <a href="{{ route('admin.leads.complete.delete',['id'=>$lead->id]) }}?tab=trash" onclick="return confirm('Do you want parmenent delete the lead?')" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
                                         <i class="fa-regular fa-circle-xmark"></i>
 
                                     </a>
