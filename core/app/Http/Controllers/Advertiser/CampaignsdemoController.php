@@ -42,13 +42,13 @@ class CampaignsdemoController extends Controller
         $validator = Validator::make(
             $request->all(), [
                 'campaign_name' => 'required',
-
                 'company_logo' => 'mimes:jpeg,jpg,png,gif,svg,webp,tiff,eps|max:2048'
             ]
         );
         $validator->validate();
-        if($request->form_id){
-            $form_id =$request->form_id;
+        $form_id_existing = $request->form_id_existing;
+        if($request->form_id || $form_id_existing){
+            $form_id = $request->form_id;
         }else{
             $campaign_forms = new campaign_forms();
             $campaign_forms->advertiser_id = $user;
@@ -56,15 +56,13 @@ class CampaignsdemoController extends Controller
             $campaign_forms->company_name  = $request->company_name;
             $campaign_forms->company_logo  = $request->company_logo;
             $campaign_forms->form_name    = $request->form_name;
-
-            $campaign_forms->title    = array_unique($request->form_title);
+            $campaign_forms->title = array_unique($request->form_title);
             $campaign_forms->form_desc    = array_unique($request->form_desc);
-
             if(isset($request->form_title[1])){
-                $campaign_forms->form_title    = $request->form_title[1];
+                $campaign_forms->form_title = $request->form_title[1];
             }
             if(isset($request->form_title[1])){
-            $campaign_forms->offer_desc    = $request->form_desc[1];
+                $campaign_forms->offer_desc = $request->form_desc[1];
             }
             $campaign_forms->punchline    = $request->form_punchline;
             $campaign_forms->youtube_1     = $request->youtube_1;
@@ -96,31 +94,28 @@ class CampaignsdemoController extends Controller
             {
                 $campaign_forms->image_3 = uploadImage($request->image_3, $path);
             }
-
 			if(isset($request->statusr)){
                 $campaign_forms->status = 2;
             }
-
             if($campaign_forms->save())
             {
                 $form_id = $campaign_forms->id;
-            }
-            else{
+            } else{
                 $form_id = false;
                 $notify[] = ['success', 'Try After Sometime'];
             }
         }
+
         // ===================================
-        if($form_id){
+        if($form_id_existing || $form_id ){
             if($request->campaign_id){
                 $campaign = campaigns::findOrFail( $request->campaign_id);
             }else{
                 $campaign = new campaigns();
                 $campaign->status = 1;
                 $campaign->approve =  0;
-                $campaign->delivery = 0;
             }
-
+            $campaign->delivery = 0;
             $campaign->advertiser_id = $user;
             $campaign->name = $request->campaign_name;
             $campaign->leads_criteria = $request->leads_criteria;
@@ -129,10 +124,8 @@ class CampaignsdemoController extends Controller
             $campaign->target_country = $request->target_country;
             $campaign->website_url = $request->website_url;
             $campaign->social_media_page = $request->social_media_page;
+            $campaign->form_id_existing = $form_id_existing;
             $campaign->form_id = $form_id;
-              if(isset($request->statusr)){
-                 $campaign->delivery = 2;
-            }
             if($request->campaign_id){
                 $campaign->update();
                 $notify[] = ['success', 'Campaign Updated successfully'];
@@ -146,16 +139,14 @@ class CampaignsdemoController extends Controller
 
     public function save_draft(Request $request)
     {
-
         $user = Auth::guard('advertiser')->user()->id;
-        $request->validate([ ]);
-
+        $form_id_existing = $request->form_id_existing;
         if($request->form_id){
-            if( $request->draft_form_id &&  $request->draft_form_id  != 0 ){ campaign_forms::find($request->draft_form_id)->delete(); }
+            // if( $request->draft_form_id && $request->draft_form_id  != 0 ){ campaign_forms::find( $request->draft_form_id)->delete(); }
             $form_id = $request->form_id;
             $campaign_forms = campaign_forms::findOrFail( $form_id );
             $save_form = false;
-        }elseif( $request->draft_form_id  != 0){
+        }elseif( $request->draft_form_id != 0){
             $form_id = $request->draft_form_id;
             $campaign_forms = campaign_forms::findOrFail( $form_id );
             $save_form = true;
@@ -178,18 +169,16 @@ class CampaignsdemoController extends Controller
             if($request->form_desc){
                 $campaign_forms->form_desc = array_unique($request->form_desc);
             }
-
             if(isset($request->form_title[1])){
                 $campaign_forms->form_title = $request->form_title[1];
             }
             if(isset($request->form_title[1])){
                 $campaign_forms->offer_desc = $request->form_desc[1];
             }
-
-            $campaign_forms->punchline    = $request->form_punchline;
-            $campaign_forms->youtube_1     = $request->youtube_1;
-            $campaign_forms->youtube_2     = $request->youtube_2;
-            $campaign_forms->youtube_3     = $request->youtube_3;
+            $campaign_forms->punchline = $request->form_punchline;
+            $campaign_forms->youtube_1 = $request->youtube_1;
+            $campaign_forms->youtube_2 = $request->youtube_2;
+            $campaign_forms->youtube_3 = $request->youtube_3;
             $campaign_forms->image_1 = $request->image_1;
             $campaign_forms->image_2 = $request->image_2;
             $campaign_forms->image_3 = $request->image_3;
@@ -216,12 +205,9 @@ class CampaignsdemoController extends Controller
             {
                 $campaign_forms->image_3 = uploadImage($request->image_3, $path);
             }
-
 			if(isset($request->statusr)){
                 $campaign_forms->status = 2;
             }
-
-
             if($campaign_forms->save())
             {
                 $form_id = $campaign_forms->id;
@@ -229,7 +215,7 @@ class CampaignsdemoController extends Controller
         }
 
         // ===================================
-        if($form_id){
+        if($form_id_existing || $form_id ){
             if($request->campaign_id){
                 $campaign = campaigns::findOrFail( $request->campaign_id);
             }else{
@@ -246,20 +232,18 @@ class CampaignsdemoController extends Controller
             $campaign->target_country = $request->target_country;
             $campaign->website_url = $request->website_url;
             $campaign->social_media_page = $request->social_media_page;
+            $campaign->form_id_existing = $form_id_existing;
             $campaign->form_id = $form_id;
-
             if($request->campaign_id){
                 $campaign_id =  $request->campaign_id;
                 $campaign->update();
                 $notify[] = ['success', 'Campaign Updated successfully'];
             }else{
-
                 $campaign->save();
                 $campaign_id = $campaign->id;
                 $notify[] = ['success', 'Campaign created successfully'];
             }
         }
-
         return response()->json(['success'=>true, 'campaign_id'=>$campaign_id, 'form_id'=> $save_form?$form_id:'0']);
     }
 

@@ -37,19 +37,22 @@ class CampaignsController extends Controller
 
     public function edit(Request $request, $id)
     {
-
-        $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id', '=', 'campaign_forms.id')->first();
-
+        $campaign = campaigns::where('campaigns.id', $id)->first();
+        if($campaign->form_id_existing){
+            $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id_existing', '=', 'campaign_forms.id')->first();
+        }else{
+            $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id', '=', 'campaign_forms.id')->first();
+        }
        // $campaign->target_placements = unserialize($campaign->target_placements);
-        return response()->json($campaign );
+        return response()->json($campaign);
     }
 
   public function delete_camp(Request $request, $id){
        $campaign = campaigns::where('campaigns.id', $id)->update(array('approve'=>0,'status'=>0));
           $res=array('code'=>200);
            return response()->json($res);
-       
-    } 
+
+    }
 
 
     public function store(Request $request)

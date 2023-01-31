@@ -4,7 +4,6 @@ $user = auth()->guard('advertiser')->user();
 @endphp
 @section('panel')
 <div class="row">
-
     <div class="col-lg-12">
         <div id="campaigns_date_table">
             <div class="paymentt_tab">
@@ -16,7 +15,6 @@ $user = auth()->guard('advertiser')->user();
                 <!-- <button type="button" class="btn btn-danger rounded-0 ml-2 adsrock-download-pd">Download Invoice</button> -->
             </div>
             <div class="table-responsive--lg">
-
                 @php
                 $daily_bug=0;
                 $leadd=0;
@@ -24,7 +22,6 @@ $user = auth()->guard('advertiser')->user();
                 $cpll = 0;
                 $costt = 0;
                 @endphp
-
                 <ul class="nav custon_nav">
                     <li class="nav-item"><button data-bs-target="#live" type="button" role="tab" aria-controls="live" aria-selected="true" class="nav-link active">Live</button></li>
 
@@ -140,7 +137,6 @@ $user = auth()->guard('advertiser')->user();
                                 </td>
                             </tr>
                             @empty
-
                             @endforelse
                         </tbody>
                         <tfoot>
@@ -160,7 +156,6 @@ $user = auth()->guard('advertiser')->user();
                             </tr>
                         </tfoot>
                     </table>
-
                 </div>
                 {{-- Tab pending_approve  --}}
                 <div class="tab-pane  fade show active" id="pending_approve" role="tabpanel" aria-labelledby="pending_approve-tab" style="display:none;">
@@ -348,7 +343,6 @@ $user = auth()->guard('advertiser')->user();
                                     @if($campaign->delivery !=2 ) | @endif <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif
                                 </td>
                                 <td>
-                                    ssssssssssssss
                                     @if(($campaign->status==0) && ($campaign->approve==0))
                                         Deleted
                                     @else
@@ -546,9 +540,6 @@ $user = auth()->guard('advertiser')->user();
                             </div>
                             <div class="col-lg-3 text-right"><button id="submit" class="btn btn-light btn-xl">Create Campaign</button></div>
                         </div>
-
-
-
                         <div class="row py-2">
                             <div class="col-lg-3 input-col">
                                 <label class="form-label lp-dark mb-1 ar-16" for="TargetCountryInput"><b>Country</b> <span id="text_white" class="ar-14 lp-dark">(from which leads are required)</span></label>
@@ -582,13 +573,13 @@ $user = auth()->guard('advertiser')->user();
                         <div class=" col input-col ">
                             <div class=" d-flex SelectFormType ">
                                 <div class="form-check mr-4">
-                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType1" value="CreateNewForm" required>
+                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType1" value="CreateNewForm" required >
                                     <label class="form-check-label" for="SelectFormType1">
                                         Create New Form
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType2" value="UseExistingForm" required>
+                                    <input class="form-check-input SelectFormType" type="radio" name="SelectFormType" id="SelectFormType2" value="UseExistingForm" required >
                                     <label class="form-check-label" for="SelectFormType2">
                                         Use An Existing Form
                                     </label>
@@ -604,7 +595,7 @@ $user = auth()->guard('advertiser')->user();
                                     <div class="card-body p-3 input-col">
                                         @foreach ($forms as $form)
                                         <div class="form-check large-check">
-                                            <input class="form-check-input" type="radio" name="form_id" id="form_{{ $form->id }}" value="{{ $form->id }}" required onclick="updateformpreview_by_Id(event,this)">
+                                            <input class="form-check-input" type="radio" name="form_id_existing" id="form_{{ $form->id }}" value="{{ $form->id }}" required onclick="updateformpreview_by_Id(event,this)">
                                             <label class="form-check-label" for="form_{{ $form->id }}">
                                                 {{ $form->form_name }}
                                             </label>
@@ -1793,9 +1784,7 @@ padding: 0; display: block; opacity: 0;">
                 function(value, element) {
                     var $result = $.map(campaigns, function(item, i) {
                         name = item.campaign_forms.form_name;
-                        if (name.toLowerCase() == value.toLowerCase()) {
-                            return 'exits';
-                        }
+                        if (name.toLowerCase() == value.toLowerCase()) {  return 'exits';  }
                     })[0];
                     return $result == 'exits' ? false : true;
                 },
@@ -2557,7 +2546,7 @@ padding: 0; display: block; opacity: 0;">
         $(".leftForm").find("input").on('keypress', function(e) {
 
             $(this).val(capitalizeFirstLetter($(this).val()));
-
+s
         });
 
         $("#company_name_Input").on('keypress', function(e) {
@@ -2605,10 +2594,8 @@ padding: 0; display: block; opacity: 0;">
         var url = $(this).attr('href');
         $.get(url, function(data) {
             if (tyrpp == "edit") {
-
                 $('#input_campaign_id').val(campaign_id);
                 $("input[name='campaign_name']").val(data.name);
-
                 $("input[name='form_name']").val(data.form_name);
                 $("#submit").text('Save Camapign');
                 $("#campaign_form").find(".btn--primary").text('Save Camapign');
@@ -2641,9 +2628,19 @@ padding: 0; display: block; opacity: 0;">
             } else {
                 $('#SelectEndDateSelect').val("NoEndDate").change();
             }
-            $("input[name='SelectFormType'][value=CreateNewForm]").prop('checked', true);
 
-            $("#CreateNewForm").show();
+            if(data.form_id_existing){
+
+                $("input[name='SelectFormType'][value=UseExistingForm]").prop('checked', true);
+                $("input[name='form_id_existing'][value="+data.form_id_existing+"]").prop('checked', true);
+                $("input[name='SelectFormType']:not(:checked)").attr('disabled', true);
+                $("#UseExistingForm").show();
+
+            }else{
+                $("input[name='SelectFormType'][value=CreateNewForm]").prop('checked', true);
+                $("#CreateNewForm").show();
+            }
+
             $("input[name='daily_budget']").val(data.daily_budget);
             $("input[name='target_cost']").val(data.target_cost);
             $("#TargetCountryInput").val(data.target_country).change();
@@ -2977,8 +2974,7 @@ padding: 0; display: block; opacity: 0;">
         }
     });
 
-
-
+    $('input[type=radio][name=SelectFormType]').change(function() { if (this.value == 'CreateNewForm') {  $("input[name=form_id_existing]:checked").prop("checked",false); } });
 
     $("body").on("blur", "#campaign_create_modal input, #campaign_create_modal select", function() {
         console.log('Start Updating');
@@ -3001,7 +2997,7 @@ padding: 0; display: block; opacity: 0;">
                     if(data.campaign_id){
                         $("#input_campaign_id").val(data.campaign_id);
                         if($("input[name=form_id]").is(":checked")){
-                            console.log('Delete ');
+                            console.log('Delete');
                             $("#draft_form_id").val(data.form_id);
                         }else{
                             $("#draft_form_id").val(data.form_id);
