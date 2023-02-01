@@ -124,15 +124,17 @@ $user = auth()->guard('advertiser')->user();
                                 </td>
                                 <td for="leads_count">{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date)}} </td>
                                 <td>{{$costValue>0?"$" . $costValue:0}}</td>
-
-
                                 <td>{{ $cplValue }}</td>
                                 <td> ${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
                                 <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
                                 <td>{{ $campaign->target_country }} </td>
-                                <td> @if (isset($campaign->campaign_forms))
+                                <td>
+                                    @if (isset($campaign->campaign_forms))
                                     {{$campaign->campaign_forms->form_name}}
+                                    @endif
+                                    @if (isset($campaign->campaign_forms_exits))
+                                    {{$campaign->campaign_forms_exits->form_name}}
                                     @endif
                                 </td>
                             </tr>
@@ -235,15 +237,12 @@ $user = auth()->guard('advertiser')->user();
                                     @endif
                                     @endif
                                 </td>
-
                                 <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
                                     <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
                                     {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
                                 </td>
                                 <td for="leads_count">{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date)}} </td>
                                 <td>{{$costValue>0?"$" . $costValue:0}}</td>
-
-
                                 <td>{{ $cplValue}}</td>
                                 <td>${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
@@ -251,6 +250,9 @@ $user = auth()->guard('advertiser')->user();
                                 <td>{{ $campaign->target_country }} </td>
                                 <td> @if (isset($campaign->campaign_forms))
                                     {{$campaign->campaign_forms->form_name}}
+                                    @endif
+                                    @if (isset($campaign->campaign_forms_exits))
+                                    {{$campaign->campaign_forms_exits->form_name}}
                                     @endif
                                 </td>
                             </tr>
@@ -298,11 +300,8 @@ $user = auth()->guard('advertiser')->user();
                             </tr>
                         </thead>
                         <tbody>
-
                             @forelse($campaigns_draft as $campaign)
-
                             @php
-
                             $daily_bug= $daily_bug+$campaign->daily_budget;
                             $leadValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
                             if ($leadValue > 0){
@@ -363,8 +362,6 @@ $user = auth()->guard('advertiser')->user();
                                 </td>
                                 <td for="leads_count">{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date)}} </td>
                                 <td>{{$costValue>0?"$" . $costValue:0}}</td>
-
-
                                 <td>{{ $cplValue }}</td>
                                 <td> ${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
@@ -373,10 +370,12 @@ $user = auth()->guard('advertiser')->user();
                                 <td> @if (isset($campaign->campaign_forms))
                                     {{$campaign->campaign_forms->form_name}}
                                     @endif
+                                    @if (isset($campaign->campaign_forms_exits))
+                                    {{$campaign->campaign_forms_exits->form_name}}
+                                    @endif
                                 </td>
                             </tr>
                             @empty
-
                             @endforelse
                         </tbody>
                         <tfoot>
@@ -396,7 +395,6 @@ $user = auth()->guard('advertiser')->user();
                             </tr>
                         </tfoot>
                     </table>
-
                 </div>
 
                 {{-- Tab trash  --}}
@@ -410,7 +408,6 @@ $user = auth()->guard('advertiser')->user();
                                 <th>Download Leads</th>
                                 <th>Leads</th>
                                 <th>Cost</th>
-
                                 <th>CPL</th>
                                 <th>Daily Budget</th>
                                 <th>Start</th>
@@ -420,13 +417,10 @@ $user = auth()->guard('advertiser')->user();
                             </tr>
                         </thead>
                         <tbody>
-
                             @forelse($campaignstrash as $campaign)
-
                             @php
                             $daily_bug= $daily_bug+$campaign->daily_budget;
                             $leadValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
-
                             $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
                             $costt= $costt+ $costValue ;
                             if ($leadValue === 0 && $costValue > 0) {
@@ -437,7 +431,6 @@ $user = auth()->guard('advertiser')->user();
                                 if ($leadValue > 0 && $costValue > 0) {
                                     $cplValueWithoutFormatted =  number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date), 2, '.', '');
                                     $cplValue = "$" .  $cplValueWithoutFormatted;
-
                                     $cpll = $cpll + $cplValueWithoutFormatted;
                                 }else{
                                     $cplValue = 0;
@@ -445,19 +438,14 @@ $user = auth()->guard('advertiser')->user();
                             }
                             @endphp
                             <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
-
                             ">
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td class="edit_btns">{{ $campaign->name }} <br>
                                     @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif
-
                                     @if($campaign->delivery !=2 )
                                     <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a>
                                     @endif
-
-
                                     @if(($campaign->status==0) && ($campaign->approve==0)) @else
-
                                     @if($campaign->delivery !=2 ) | @endif <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif
                                 </td>
                                 <td>
@@ -479,8 +467,6 @@ $user = auth()->guard('advertiser')->user();
                                 </td>
                                 <td for="leads_count">{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date)}} </td>
                                 <td>{{$costValue>0?"$" . $costValue:0}}</td>
-
-
                                 <td>{{ $cplValue}}</td>
                                 <td> ${{ $campaign->daily_budget }}</td>
                                 <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
@@ -489,14 +475,13 @@ $user = auth()->guard('advertiser')->user();
                                 <td> @if (isset($campaign->campaign_forms))
                                     {{$campaign->campaign_forms->form_name}}
                                     @endif
+                                    @if (isset($campaign->campaign_forms_exits))
+                                    {{$campaign->campaign_forms_exits->form_name}}
+                                    @endif
                                 </td>
                             </tr>
                             @empty
-
                             @endforelse
-
-
-
                         </tbody>
                         <tfoot>
                             <tr>
@@ -515,10 +500,7 @@ $user = auth()->guard('advertiser')->user();
                             </tr>
                         </tfoot>
                     </table>
-
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -4570,7 +4552,6 @@ if($_GET['action']=="create_campiagin"){
             top: 55px;
             z-index: 999;
         }
-
         .dataTables_wrapper .dataTables_filter {
             width: calc(100% - 250px);
         }

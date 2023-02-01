@@ -16,11 +16,11 @@ class CampaignsdemoController extends Controller
     public function index(Request $request, $style = 4)
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
-        $campaigns=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',1)->orderBy('id', 'DESC')->get();
-        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->where('delivery', 0)->where('status','!=',0)->orderBy('id', 'DESC')->get();
-        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('delivery', 2)->orderBy('id', 'DESC')->get();
-        $campaignstrash = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->where('approve',0)->where('status',0)->orderBy('id', 'DESC')->get();
-		$campaignsval=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->orderBy('id', 'DESC')->get();
+        $campaigns=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('approve',1)->orderBy('id', 'DESC')->get();
+        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('approve',0)->where('delivery', 0)->where('status','!=',0)->orderBy('id', 'DESC')->get();
+        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('delivery', 2)->orderBy('id', 'DESC')->get();
+        $campaignstrash = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('approve',0)->where('status',0)->orderBy('id', 'DESC')->get();
+		$campaignsval=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->orderBy('id', 'DESC')->get();
         $last_campaign = campaigns::orderBy('id', 'desc')->first();
         if($last_campaign){
             $last_campaign = $last_campaign->id;

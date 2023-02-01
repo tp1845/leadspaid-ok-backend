@@ -17,6 +17,10 @@ class campaigns extends Model
     {
         return $this->belongsTo(campaign_forms::class, 'form_id');
     }
+    public function campaign_forms_exits()
+    {
+        return $this->belongsTo(campaign_forms::class, 'form_id_existing');
+    }
     public function campaign_publisher()
     {
         return $this->hasone(campaign_publisher::class, 'campaign_id')->where('publisher_id', Auth::guard('publisher')->user()->id);
