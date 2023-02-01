@@ -158,11 +158,8 @@ class CampaignsdemoController extends Controller
             $campaign_forms->advertiser_id = $user;
             $campaign_forms->company_name  = $request->company_name;
             $campaign_forms->company_logo  = $request->company_logo;
-            if($request->form_name){
-                $campaign_forms->form_name = $request->form_name;
-            }else{
-                $campaign_forms->form_name = $request->company_name?$request->campaign_name.'-'.$request->company_name:$request->campaign_name;
-            }
+            $campaign_forms->form_name = $request->form_name?$request->form_name:'';
+
             if($request->form_title){
                 $campaign_forms->title = array_unique($request->form_title);
             }
@@ -205,9 +202,7 @@ class CampaignsdemoController extends Controller
             {
                 $campaign_forms->image_3 = uploadImage($request->image_3, $path);
             }
-			if(isset($request->statusr)){
-                $campaign_forms->status = 2;
-            }
+                $campaign_forms->status = 0;
             if($campaign_forms->save())
             {
                 $form_id = $campaign_forms->id;
