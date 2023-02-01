@@ -760,7 +760,6 @@ $user = auth()->guard('advertiser')->user();
                                                         <div class="input-group input-col" id="video_image_3">
                                                             <div class="input-col " style="width: 88%;">
                                                                 <div class="video_3  upload-box grey image" data-id="3">
-
                                                                     <label class="add_video" data-id="3">
                                                                         <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                                                             <defs>
@@ -1266,6 +1265,7 @@ padding: 0; display: block; opacity: 0;">
             company_logo_preview.style.display = "block";
             $(".logo_comapny").val(1);
             updateformpreviewtext();
+            CampaignAutoSave();
         } else {
             $(".logo_comapny").val('');
         }
@@ -1327,6 +1327,7 @@ padding: 0; display: block; opacity: 0;">
         table.attr('data-row', row);
         $(this).closest('tr').remove();
         update_field();
+        CampaignAutoSave();
     })
 
     $('table').on('click', '.del-option', function(e) {
@@ -2422,6 +2423,7 @@ padding: 0; display: block; opacity: 0;">
                 $(".video_" + vidd).find('label').after(html);
                 $("#Youtube_" + vidd).find('input').val(y_url);
                 custom_edit_vide();
+                CampaignAutoSave();
                 $("#exampleModal").modal("hide");
                 setTimeout(function() {
                     $('body').addClass('modal-open');
@@ -2956,7 +2958,7 @@ s
 
     $('input[type=radio][name=SelectFormType]').change(function() { if (this.value == 'CreateNewForm') {  $("input[name=form_id_existing]:checked").prop("checked",false); } });
 
-    $("body").on("blur", "#campaign_create_modal input, #campaign_create_modal select", function() {
+    function CampaignAutoSave() {
         var Form_Status = $("#campaign_create_modal").attr("data-status");
         var campaign_name_Input = $("#campaign_name_Input").val();
         if(Form_Status == "create"){ $("#campaign_name_Input").attr("readonly", false);  }
@@ -2993,7 +2995,9 @@ s
                 }
             });
         }
-    });
+    }
+
+    $("body").on("blur", "#campaign_create_modal input, #campaign_create_modal select", function() { CampaignAutoSave(); });
 
     $(".custon_nav").find('.nav-link').click(function() {
         var tab_name = $(this).data('bs-target');
