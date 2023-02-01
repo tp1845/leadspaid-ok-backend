@@ -1743,8 +1743,6 @@ padding: 0; display: block; opacity: 0;">
         );
 
         var campaigns = @json($campaignsval);
-        console.log($('#input_campaign_id').val());
-
         if (($('#input_campaign_id').val() == "") || ($('#input_campaign_id').val() == 0)) {
 
             $.validator.addMethod(
@@ -1765,7 +1763,7 @@ padding: 0; display: block; opacity: 0;">
                 "unique_form_name",
                 function(value, element) {
                     var $result = $.map(campaigns, function(item, i) {
-                        name = item.campaign_forms.form_name;
+                        name = item.campaign_forms?item.campaign_forms.form_name:item.campaign_forms_exits.form_name;
                         if (name.toLowerCase() == value.toLowerCase()) {  return 'exits';  }
                     })[0];
                     return $result == 'exits' ? false : true;
@@ -1781,7 +1779,7 @@ padding: 0; display: block; opacity: 0;">
                     },
                     form_name: {
                         minlength: 3,
-                        unique_form_name: true
+                      //  unique_form_name: true
                     },
                     min_row_validation: {
                         check_row: true
@@ -2959,27 +2957,32 @@ s
     $('input[type=radio][name=SelectFormType]').change(function() { if (this.value == 'CreateNewForm') {  $("input[name=form_id_existing]:checked").prop("checked",false); } });
 
     $("body").on("blur", "#campaign_create_modal input, #campaign_create_modal select", function() {
-        console.log('Start Updating');
         var Form_Status = $("#campaign_create_modal").attr("data-status");
         var campaign_name_Input = $("#campaign_name_Input").val();
         if(Form_Status == "create"){ $("#campaign_name_Input").attr("readonly", false);  }
         if ((campaign_name_Input != '') && (Form_Status == "create")) {
             var campaign_id = $("#input_campaign_id").val();
             var form_id = '#form_'+campaign_id;
-            var form_data = $("#campaign_form").serialize();
-            console.log(form_data);
+            var form_data = new FormData($('form#campaign_form')[0]);
             var PostURL = "{{route('advertiser.campaigns.save_draft')}}";
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
             $.ajax({
                 url: PostURL,
                 data: form_data,
                 dataType: 'json',
                 type: 'POST',
+                contentType: false,
+                processData: false,
+                cache: false,
+                enctype: 'multipart/form-data',
                 success: function ( data ) {
-                    console.log(data);
                     if(data.campaign_id){
                         $("#input_campaign_id").val(data.campaign_id);
                         if($("input[name=form_id]").is(":checked")){
-                            console.log('Delete');
                             $("#draft_form_id").val(data.form_id);
                         }else{
                             $("#draft_form_id").val(data.form_id);
