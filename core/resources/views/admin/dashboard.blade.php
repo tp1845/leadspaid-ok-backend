@@ -548,7 +548,7 @@
 }
 </style>
 
-#endpush
+@endpush
 @push('script')
 
     <script src="{{asset('assets/admin/js/vendor/apexcharts.min.js')}}"></script>
