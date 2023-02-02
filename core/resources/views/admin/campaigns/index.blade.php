@@ -77,10 +77,14 @@
                                         <td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
-
+                                        <?php
+                                        if ($campaign->approve == 2)   $status = 0;
+                                        if ($campaign->approve == 0)   $status = 1;
+                                        if ($campaign->approve == 1)   $status = 2;
+                                        ?>
                                         <td>
                                             <div class="wrapper wrapper_span">
-                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $campaign->approve }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
+                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $status}}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
                                                 <span>@if($campaign->approve==0) Pending @elseif($campaign->approve==1) Approve @elseif($campaign->approve==2) Rejected @endif </span>
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
@@ -186,11 +190,15 @@
                                         <td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
-
+                                        <?php
+                                        if ($campaign->approve == 2)   $status = 0;
+                                        if ($campaign->approve == 0)   $status = 1;
+                                        if ($campaign->approve == 1)   $status = 2;
+                                        ?>
                                         <td>
 
                                             <div class="wrapper">
-                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $campaign->approve }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
+                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $status }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
                                                 <span>@if($campaign->approve==0) Pending @elseif($campaign->approve==1) Approve @elseif($campaign->approve==2) Rejected @endif </span>
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
@@ -299,10 +307,15 @@
                                         <td>{{ $campaign->advertiser->id}} </td>
 
 
+                                        <?php
+                                        if ($campaign->approve == 2)   $status = 0;
+                                        if ($campaign->approve == 0)   $status = 1;
+                                        if ($campaign->approve == 1)   $status = 2;
+                                        ?>
                                         <td>
 
                                             <div class="wrapper">
-                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $campaign->approve }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
+                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $status  }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
                                                 <span>@if($campaign->approve==0) Pending @elseif($campaign->approve==1) Approve @elseif($campaign->approve==2) Rejected @endif </span>
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
@@ -412,11 +425,16 @@
                                         <td>{{ $campaign->advertiser->id}} </td>
 
 
+                                        <?php
+                                        if ($campaign->approve == 2)   $status = 0;
+                                        if ($campaign->approve == 0)   $status = 1;
+                                        if ($campaign->approve == 1)   $status = 2;
+                                        ?>
                                         <td>
 
                                             <div class="wrapper">
 
-                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $campaign->approve }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
+                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $status  }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
                                                 <span>@if($campaign->approve==0) Pending @elseif($campaign->approve==1) Approve @elseif($campaign->approve==2) Rejected @endif </span>
 
                                             </div>
@@ -528,11 +546,16 @@
                                         <td>{{ $campaign->advertiser->name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
+                                        <?php
+                                        if ($campaign->approve == 2)   $status = 0;
+                                        if ($campaign->approve == 0)   $status = 1;
+                                        if ($campaign->approve == 1)   $status = 2;
+                                        ?>
 
                                         <td>
 
                                             <div class="wrapper">
-                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $campaign->approve }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
+                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $status}}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
                                                 <span>@if($campaign->approve==0) Pending @elseif($campaign->approve==1) Approve @elseif($campaign->approve==2) Rejected @endif </span>
                                             </div>
                                             <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
@@ -584,7 +607,7 @@
                                             <a href="{{ route('admin.campaigns.restore',['id'=>$campaign->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Restore">
                                                 <img src="{{url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
                                             </a>
-                                            <a href="{{ route('admin.campaigns.complete.delete',['id'=>$campaign->id]) }}?tab=trash" onclick="return confirm('Do you want parmenent delete the campaign ?')" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
+                                            <a href="{{ route('admin.campaigns.complete.delete',['id'=>$campaign->id]) }}?tab=trash" onclick="return  deleteconfirm(<?php echo get_total_leads_by_campaignid($campaign->id) ?>)" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
                                                 <i class="fa-regular fa-circle-xmark"></i>
 
                                             </a>
@@ -1151,6 +1174,15 @@
             }, 100)
 
         });
+        
+    function deleteconfirm(leadscount) {
+        if (leadscount > 0) {
+            alert('Unable to Delete campaign, since it has Leads');
+            return false;
+
+        }
+        return confirm('Do you want parmenent delete the campaign?');
+    }
 
         function submit_rejection(e) {
             const {
@@ -1184,11 +1216,11 @@
         function add_custom_toggle_click() {
             $(".custom-toggle").click(function() {
                 var value = $(this).val();
-                var approval = value;
                 var campaign_id = $(this).data('id');
                 value = parseInt(value, 10); // Convert to an integer
                 var that = $(this);
-                if (value === 2) {  
+                var status_id = 0;
+                if (value === 0) {
                     that.removeClass('tgl-def');
                     that.removeClass('tgl-on').addClass('tgl-off');
                     that.parent().find('span').text('Rejected');
@@ -1196,22 +1228,19 @@
                     $('#rejection_remarks_modal textarea').val("");
                     $('#rejection_remarks_modal').modal('show');
                     $('#rejection_remarks_modal .campaign_id').val(campaign_id);
+                    status_id= 2;
                     return;
                 }
-
-                if (value === 2) {
-                    that.removeClass('tgl-def');
-                    that.removeClass('tgl-on').addClass('tgl-off');
-                    that.parent().find('span').text('Rejected');
-
-                } else if (value === 0) {
+                if (value === 1) {
                     that.removeClass('tgl-on', );
                     that.removeClass('tgl-off').addClass('tgl-def');
                     that.parent().find('span').text('Pending');
-                } else if (value === 1) {
+                    status_id= 0;
+                } else if (value === 2) {
                     that.removeClass('tgl-def');
                     that.removeClass('tgl-off').addClass('tgl-on');
                     that.parent().find('span').text('Approve');
+                    status_id= 1;
                 }
 
                 $.ajax({
@@ -1220,7 +1249,7 @@
                     url: "{{route('admin.campaigns.approval')}}",
                     //url: "/admin/campaigns/approval",
                     data: {
-                        'approval': approval,
+                        'approval': status_id,
                         'campaign_id': campaign_id
                     },
                     success: function(data) {

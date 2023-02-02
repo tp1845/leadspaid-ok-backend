@@ -147,8 +147,6 @@
                                                 if ($advertiser->status == 0)   $status = 1;
                                                 if ($advertiser->status == 1)   $status = 2;
                                                 if ($advertiser->status == 2)   $status = 0;
-
-
                                                 ?>
                                                 <div class="wrapper wrapper_span align-items-center d-flex flex-column ">
                                                     <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($advertiser->status==0) tgl-off @elseif($advertiser->status==1) tgl-on @elseif($advertiser->status==2) tgl-def @endif custom-toggle" max="2" value="{{$status }}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$advertiser->id}}">
