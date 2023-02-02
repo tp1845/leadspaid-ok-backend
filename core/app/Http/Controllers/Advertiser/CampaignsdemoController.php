@@ -33,6 +33,11 @@ class CampaignsdemoController extends Controller
         $empty_message = "No Campaigns";
         return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns','campaignspending', 'campaigns_draft', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message','campaignsval','campaignstrash'));
     }
+    public function get_last_draft( )
+    {
+        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('delivery', 2)->orderBy('id', 'DESC')->first();
+        return response()->json(['success'=>true, 'row'=>$campaigns_draft]);
+    }
 
     public function store(Request $request)
     {

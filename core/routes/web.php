@@ -159,7 +159,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
          Route::get('advertiser/delete/{id}','AdvertiserController@advertiser_delete')->name('advertiser.delete');
          Route::get('advertiser/complete/delete/{id}','AdvertiserController@advertiser_complete_delete')->name('advertiser.complete.delete');
-       
+
         //Manage Campaigns
         Route::get('/campaigns/all','CampaignsController@index')->name('campaigns.all');
         Route::get('/campaigns/leads/export/{cid}/{aid}/{fid}','CampaignsController@export')->name('leads.export');
@@ -187,7 +187,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         //Form
         Route::get('/forms', 'FormsController@index')->name('forms.index');
-       
+
 
         //Manage publisher
         Route::get('/publisher/all','PublisherController@allPublisher')->name('publisher.all');
@@ -441,6 +441,7 @@ Route::namespace('Advertiser')->prefix('advertiser')->name('advertiser.')->group
 
         //Campaigns
         Route::get('/campaigns', 'CampaignsdemoController@index')->name('campaigns.index');
+        Route::get('/campaigns/draft', 'CampaignsdemoController@get_last_draft')->name('campaigns.get_last_draft');
         Route::get('/campaigns-old', 'CampaignsController@index')->name('campaigns.index_old');
         // Route::get('/campaigns2', 'CampaignsController@index2')->name('campaigns.index2');
         Route::get('/campaigns/edit/{id}', 'CampaignsController@edit')->name('campaigns.edit');

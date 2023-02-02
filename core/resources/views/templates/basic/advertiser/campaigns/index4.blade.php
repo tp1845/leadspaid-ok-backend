@@ -325,7 +325,7 @@ $user = auth()->guard('advertiser')->user();
                                 }
                             }
                             @endphp
-                            <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
+                            <tr id="{{$campaign->id}}" class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
                              @if($campaign->delivery == 2 ) draft @endif
                             ">
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
@@ -1655,6 +1655,24 @@ padding: 0; display: block; opacity: 0;">
                 searchPlaceholder: "Search"
             }
         });
+
+        campaign_create_modal.on('hidden.bs.modal', function(event) {
+            var rows = campaign_list_draft.rows(0).data() ;
+            var last_id = rows[0]['DT_RowId'];
+              $.ajax({
+                    type: "GET",
+                    dataType: "json",
+                    url: "{{route('advertiser.campaigns.get_last_draft')}}",
+                    success: function(data) {
+                        if (data.success) {
+                            console.log(data.row)
+                            if(data.row.id > last_id){
+                            campaign_list_draft.row.add(['',data.row.name,'Draft','XLSX | CSV','0','0','0','$'+data.row.daily_budget,data.row.start_date,data.row.end_date,data.row.target_country,data.row.campaign_forms.form_name]).draw();
+                            }
+                        }
+                    }
+                });
+        })
 
 
         $("#sortable").sortable({
