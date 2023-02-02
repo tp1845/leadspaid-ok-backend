@@ -133,10 +133,16 @@ class CampaignsController extends Controller
         if($request->planned){
             $campaign_publisher->planned =  $request->planned;
             $campaign_publisher->save();
-        }else{
+            return response()->json(['success'=>true, 'message'=> $request->planned]);
+        }
+        if($request->l_gen){
+            $campaign_publisher->l_gen =  $request->l_gen;
+            $campaign_publisher->save();
+            return response()->json(['success'=>true, 'message'=> $request->l_gen]);
+        }
+        if($campaign_publisher->url == null && $campaign_publisher->planned == null && $campaign_publisher->l_gen == null ){
             $campaign_publisher->delete();
         }
-        return response()->json(['success'=>true, 'message'=> $request->planned]);
     }
 
 }

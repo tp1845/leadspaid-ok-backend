@@ -36,6 +36,12 @@
                                     <th>publisher_url 4</th>
                                     <th>publisher_url 5</th>
                                     <th>publisher_url 6</th>
+                                    <th>LgenCampaign 1</th>
+                                    <th>LgenCampaign 2</th>
+                                    <th>LgenCampaign 3</th>
+                                    <th>LgenCampaign 4</th>
+                                    <th>LgenCampaign 5</th>
+                                    <th>LgenCampaign 6</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -97,13 +103,13 @@
                                             <textarea onclick="this.focus();this.select()" id="advertScript4" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/4/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="573" style="border: 1px solid black;"></iframe></textarea>
                                         </td>
                                         <form action="post" id="url_form_{{ $campaign->id}}">
-                                                <input type="hidden" name="campaign_id" value="{{$campaign->id}}" >
-                                                <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
-                                        {{-- Urls --}}
+                                            <input type="hidden" name="campaign_id" value="{{$campaign->id}}" >
+                                            <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
+                                            {{-- Urls --}}
                                         <td data-label="url">
-                                                <textarea disabled rows="2" placeholder="publisher_url 1" name="url[url_1]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</textarea>
-                                                <textarea disabled rows="2" placeholder="Created By 1" name="url[created_by_1]" data-cid='{{$campaign->id}}'   class="my-2 form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['created_by_1'] ?? '' }}</textarea>
-                                                <textarea disabled rows="2" placeholder="Remarks 1" name="url[remarks_1]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['remarks_1'] ?? '' }}</textarea>
+                                            <textarea disabled rows="2" placeholder="publisher_url 1" name="url[url_1]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</textarea>
+                                            <textarea disabled rows="2" placeholder="Created By 1" name="url[created_by_1]" data-cid='{{$campaign->id}}'   class="my-2 form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['created_by_1'] ?? '' }}</textarea>
+                                            <textarea disabled rows="2" placeholder="Remarks 1" name="url[remarks_1]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['remarks_1'] ?? '' }}</textarea>
                                          </td>
                                         <td data-label="url">
                                             <textarea disabled rows="2" placeholder="publisher_url 2" name="url[url_2]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['url_2'] ?? '' }}</textarea>
@@ -122,15 +128,174 @@
                                         </td>
                                         <td data-label="url">
                                             <textarea disabled rows="2" placeholder="publisher_url 5" name="url[url_5]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</textarea>
-                                                <textarea disabled rows="2" placeholder="Created By 5" name="url[created_by_5]" data-cid='{{$campaign->id}}'   class="my-2 form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['created_by_5'] ?? '' }}</textarea>
-                                                <textarea disabled rows="2" placeholder="Remarks 5" name="url[remarks_5]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['remarks_5'] ?? '' }}</textarea>
+                                            <textarea disabled rows="2" placeholder="Created By 5" name="url[created_by_5]" data-cid='{{$campaign->id}}'   class="my-2 form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['created_by_5'] ?? '' }}</textarea>
+                                            <textarea disabled rows="2" placeholder="Remarks 5" name="url[remarks_5]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['remarks_5'] ?? '' }}</textarea>
                                         </td>
                                         <td data-label="url">
                                             <textarea disabled rows="2" placeholder="publisher_url 6" name="url[url_6]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</textarea>
-                                                <textarea disabled rows="2" placeholder="Created By 6" name="url[created_by_6]" data-cid='{{$campaign->id}}'   class="my-2 form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['created_by_6'] ?? '' }}</textarea>
-                                                <textarea disabled rows="2" placeholder="Remarks 6" name="url[remarks_6]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['remarks_6'] ?? '' }}</textarea>
+                                            <textarea disabled rows="2" placeholder="Created By 6" name="url[created_by_6]" data-cid='{{$campaign->id}}'   class="my-2 form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['created_by_6'] ?? '' }}</textarea>
+                                            <textarea disabled rows="2" placeholder="Remarks 6" name="url[remarks_6]" data-cid='{{$campaign->id}}'   class="form-control publisher_url url_cid_{{$campaign->id}}" >{{ $campaign->campaign_publisher_common->url['remarks_6'] ?? '' }}</textarea>
                                         </td>
-                                        </form>
+                                    </form>
+                                    {{-- Lgen Campaign 1 --}}
+                                    <form action="post" id="LGen_form_{{ $campaign->id}}">
+                                        <input type="hidden" name="campaign_id" value="{{$campaign->id}}" >
+                                        <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
+                                        <td data-label="LgenCampaign">
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_1]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_1'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_1]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_1'] ?? '' }}">
+                                                <select class="form-control form-select mb-2"  name="l_gen[ad_network_1]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" >Select a AdNetwork...</option>
+                                                    <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_1'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
+                                                    <option value="AdNetwork 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_1'] == 'AdNetwork 2') selected="selected" @endif>AdNetwork 2</option>
+                                                    <option value="AdNetwork 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_1'] == 'AdNetwork 3') selected="selected" @endif>AdNetwork 3</option>
+                                                    <option value="AdNetwork 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_1'] == 'AdNetwork 4') selected="selected" @endif>AdNetwork 4</option>
+                                                    <option value="AdNetwork 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_1'] == 'AdNetwork 5') selected="selected" @endif>AdNetwork 5</option>
+                                                    <option value="AdNetwork 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_1'] == 'AdNetwork 6') selected="selected" @endif>AdNetwork 6</option>
+                                                </select>
+                                                <select class="form-control form-select"  name="l_gen[url_1]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" selected="selected">Select a URL...</option>
+                                                    <option value="url 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_1'] == 'url 1') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</option>
+                                                    <option value="url 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_1'] == 'url 2') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_2'] ?? '' }}</option>
+                                                    <option value="url 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_1'] == 'url 3') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_3'] ?? '' }}</option>
+                                                    <option value="url 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_1'] == 'url 4') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_4'] ?? '' }}</option>
+                                                    <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_1'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
+                                                    <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_1'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
+                                                </select>
+
+                                        </td>
+                                         {{-- Lgen Campaign 2 --}}
+                                         <td data-label="LgenCampaign">
+
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_2]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_2'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_2]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_2'] ?? '' }}">
+                                                <select class="form-control form-select mb-2"  name="l_gen[ad_network_2]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" >Select a AdNetwork...</option>
+                                                    <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_2'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
+                                                    <option value="AdNetwork 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_2'] == 'AdNetwork 2') selected="selected" @endif>AdNetwork 2</option>
+                                                    <option value="AdNetwork 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_2'] == 'AdNetwork 3') selected="selected" @endif>AdNetwork 3</option>
+                                                    <option value="AdNetwork 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_2'] == 'AdNetwork 4') selected="selected" @endif>AdNetwork 4</option>
+                                                    <option value="AdNetwork 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_2'] == 'AdNetwork 5') selected="selected" @endif>AdNetwork 5</option>
+                                                    <option value="AdNetwork 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_2'] == 'AdNetwork 6') selected="selected" @endif>AdNetwork 6</option>
+                                                </select>
+                                                <select class="form-control form-select"  name="l_gen[url_2]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" selected="selected">Select a URL...</option>
+                                                    <option value="url 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_2'] == 'url 1') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</option>
+                                                    <option value="url 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_2'] == 'url 2') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_2'] ?? '' }}</option>
+                                                    <option value="url 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_2'] == 'url 3') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_3'] ?? '' }}</option>
+                                                    <option value="url 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_2'] == 'url 4') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_4'] ?? '' }}</option>
+                                                    <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_2'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
+                                                    <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_2'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
+                                                </select>
+
+                                         </td>
+                                         {{-- Lgen Campaign 3 --}}
+                                         <td data-label="LgenCampaign">
+
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_3]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_3'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_3]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_3'] ?? '' }}">
+                                                <select class="form-control form-select mb-2"  name="l_gen[ad_network_3]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" >Select a AdNetwork...</option>
+                                                    <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_3'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
+                                                    <option value="AdNetwork 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_3'] == 'AdNetwork 2') selected="selected" @endif>AdNetwork 2</option>
+                                                    <option value="AdNetwork 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_3'] == 'AdNetwork 3') selected="selected" @endif>AdNetwork 3</option>
+                                                    <option value="AdNetwork 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_3'] == 'AdNetwork 4') selected="selected" @endif>AdNetwork 4</option>
+                                                    <option value="AdNetwork 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_3'] == 'AdNetwork 5') selected="selected" @endif>AdNetwork 5</option>
+                                                    <option value="AdNetwork 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_3'] == 'AdNetwork 6') selected="selected" @endif>AdNetwork 6</option>
+                                                </select>
+                                                <select class="form-control form-select"  name="l_gen[url_3]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" selected="selected">Select a URL...</option>
+                                                    <option value="url 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_3'] == 'url 1') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</option>
+                                                    <option value="url 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_3'] == 'url 2') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_2'] ?? '' }}</option>
+                                                    <option value="url 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_3'] == 'url 3') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_3'] ?? '' }}</option>
+                                                    <option value="url 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_3'] == 'url 4') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_4'] ?? '' }}</option>
+                                                    <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_3'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
+                                                    <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_3'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
+                                                </select>
+                                         </td>
+                                         {{-- Lgen Campaign 4 --}}
+                                         <td data-label="LgenCampaign">
+
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_4]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_4'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_4]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_4'] ?? '' }}">
+                                                <select class="form-control form-select mb-2"  name="l_gen[ad_network_4]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" >Select a AdNetwork...</option>
+                                                    <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_4'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
+                                                    <option value="AdNetwork 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_4'] == 'AdNetwork 2') selected="selected" @endif>AdNetwork 2</option>
+                                                    <option value="AdNetwork 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_4'] == 'AdNetwork 3') selected="selected" @endif>AdNetwork 3</option>
+                                                    <option value="AdNetwork 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_4'] == 'AdNetwork 4') selected="selected" @endif>AdNetwork 4</option>
+                                                    <option value="AdNetwork 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_4'] == 'AdNetwork 5') selected="selected" @endif>AdNetwork 5</option>
+                                                    <option value="AdNetwork 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_4'] == 'AdNetwork 6') selected="selected" @endif>AdNetwork 6</option>
+                                                </select>
+                                                <select class="form-control form-select"  name="l_gen[url_4]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" selected="selected">Select a URL...</option>
+                                                    <option value="url 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 1') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</option>
+                                                    <option value="url 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 2') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_2'] ?? '' }}</option>
+                                                    <option value="url 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 3') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_3'] ?? '' }}</option>
+                                                    <option value="url 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 4') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_4'] ?? '' }}</option>
+                                                    <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
+                                                    <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
+                                                </select>
+
+                                         </td>
+                                         {{-- Lgen Campaign 5 --}}
+                                         <td data-label="LgenCampaign">
+
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_5]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_5'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_5]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_5'] ?? '' }}">
+                                                <select class="form-control form-select mb-2"  name="l_gen[ad_network_5]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" >Select a AdNetwork...</option>
+                                                    <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_5'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
+                                                    <option value="AdNetwork 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_5'] == 'AdNetwork 2') selected="selected" @endif>AdNetwork 2</option>
+                                                    <option value="AdNetwork 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_5'] == 'AdNetwork 3') selected="selected" @endif>AdNetwork 3</option>
+                                                    <option value="AdNetwork 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_5'] == 'AdNetwork 4') selected="selected" @endif>AdNetwork 4</option>
+                                                    <option value="AdNetwork 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_5'] == 'AdNetwork 5') selected="selected" @endif>AdNetwork 5</option>
+                                                    <option value="AdNetwork 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_5'] == 'AdNetwork 6') selected="selected" @endif>AdNetwork 6</option>
+                                                </select>
+                                                <select class="form-control form-select"  name="l_gen[url_5]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" selected="selected">Select a URL...</option>
+                                                    <option value="url 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 1') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</option>
+                                                    <option value="url 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 2') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_2'] ?? '' }}</option>
+                                                    <option value="url 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 3') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_3'] ?? '' }}</option>
+                                                    <option value="url 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 4') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_4'] ?? '' }}</option>
+                                                    <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
+                                                    <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
+                                                </select>
+
+                                         </td>
+                                        {{-- Lgen Campaign 6 --}}
+                                        <td data-label="LgenCampaign">
+                                            <form action="post" id="LGen_form_{{ $campaign->id}}">
+                                                <input type="hidden" name="campaign_id" value="{{$campaign->id}}" >
+                                                <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
+
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_6]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_6'] ?? '' }}">
+
+                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_6]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_6'] ?? '' }}">
+
+                                                <select class="form-control form-select mb-2"  name="l_gen[ad_network_6]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" >Select a AdNetwork...</option>
+                                                    <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_6'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
+                                                    <option value="AdNetwork 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_6'] == 'AdNetwork 2') selected="selected" @endif>AdNetwork 2</option>
+                                                    <option value="AdNetwork 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_6'] == 'AdNetwork 3') selected="selected" @endif>AdNetwork 3</option>
+                                                    <option value="AdNetwork 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_6'] == 'AdNetwork 4') selected="selected" @endif>AdNetwork 4</option>
+                                                    <option value="AdNetwork 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_6'] == 'AdNetwork 5') selected="selected" @endif>AdNetwork 5</option>
+                                                    <option value="AdNetwork 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_6'] == 'AdNetwork 6') selected="selected" @endif>AdNetwork 6</option>
+                                                </select>
+
+                                                <select class="form-control form-select"  name="l_gen[url_6]" data-cid='{{$campaign->id}}' >
+                                                    <option value="" selected="selected">Select a URL...</option>
+                                                    <option value="url 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 1') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_1'] ?? '' }}</option>
+                                                    <option value="url 2" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 2') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_2'] ?? '' }}</option>
+                                                    <option value="url 3" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 3') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_3'] ?? '' }}</option>
+                                                    <option value="url 4" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 4') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_4'] ?? '' }}</option>
+                                                    <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
+                                                    <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
+                                                </select>
+
+                                         </td>
+ </form>
+
                                     </tr>
                                 @empty
                                     <tr>
@@ -268,6 +433,12 @@
                         width: "200px",
                         searchable: false,
                         orderable: false
+                    },{
+                        targets: [28, 29, 30, 31,32,33],
+                        className: "td-LGEN",
+                        width: "200px",
+                        searchable: false,
+                        orderable: false
                     },
                     {
                         targets: '_all',
@@ -275,27 +446,29 @@
                     }
                 ]
             });
-            // $("body").on("blur", "td textarea.publisher_url", function() {
-            //     var url = [];
-            //      var campaign_id =  $(this).attr('data-cid');
-            //     // var publisher_id =  {{Auth::guard('publisher')->user()->id}};
-            //     var form_id = '#url_form_'+campaign_id;
-            //     var form_array = $(form_id).serializeArray();
-            //     form_array.push({ name: '_token',  value: "{{ csrf_token() }}" });
-            //     var form_data = $.param(form_array);
 
-            //     console.log(form_data);
-            //     var PostURL = "{{route('publisher.campaigns.url_save')}}";
-            //     $.ajax({
-            //         url: PostURL,
-            //         data: form_data,
-            //         dataType: 'json',
-            //         type: 'POST',
-            //         success: function ( data ) {
-            //             Toast('green', 'URL Successfully Saved!');
-            //         }
-            //     });
-            // });
+            $("body").on("blur", "td.td-LGEN input, td.td-LGEN select", function() {
+                var url = [];
+                 var campaign_id =  $(this).attr('data-cid');
+                var publisher_id =  {{Auth::guard('publisher')->user()->id}};
+                var form_id = '#LGen_form_'+campaign_id;
+                console.log(form_id);
+                 var form_array = $(form_id).serializeArray();
+                 form_array.push({ name: '_token',  value: "{{ csrf_token() }}" });
+                 var form_data = $.param(form_array);
+
+                 console.log(form_data);
+                 var PostURL = "{{route('publisher.campaigns.url_save')}}";
+                $.ajax({
+                    url: PostURL,
+                    data: form_data,
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function ( data ) {
+                        Toast('green', 'URL Successfully Saved!');
+                    }
+                });
+            });
         });
 
         var leads_preview_modal = $('#leads_preview_modal');
