@@ -29,4 +29,8 @@ class campaigns extends Model
     {
         return $this->hasone(campaign_publisher_common::class, 'campaign_id');
     }
+    public function publisher_advertiser()
+    {
+        return $this->hasone(publisher_advertiser::class, 'advertiser_id', 'advertiser_id');
+    }
 }

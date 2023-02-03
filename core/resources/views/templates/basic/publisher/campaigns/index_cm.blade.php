@@ -26,10 +26,16 @@
                                     <th>CPL</th>
                                     <th>Action</th>
                                     <th>Spend</th>
-                                    <th>iframe 1 ( 300 X 600 )</th>
+                                    {{-- <th>iframe 1 ( 300 X 600 )</th>
                                     <th>iframe 2 ( 1140 X 530 )</th>
                                     <th>iframe 3 ( 1024 X 585 )</th>
-                                    <th>iframe 4 ( 1024 X 505 )</th>
+                                    <th>iframe 4 ( 1024 X 505 )</th> --}}
+                                    <th>AdNetwork 1</th>
+                                    <th>AdNetwork 2</th>
+                                    <th>AdNetwork 3</th>
+                                    <th>AdNetwork 4</th>
+                                    <th>AdNetwork 5</th>
+                                    <th>AdNetwork 6</th>
                                     <th>publisher_url 1</th>
                                     <th>publisher_url 2</th>
                                     <th>publisher_url 3</th>
@@ -87,7 +93,7 @@
                                                 </div>
                                             </form>
                                         </td>
-                                        <td data-label="Script">
+                                        {{-- <td data-label="Script">
                                             <textarea onclick="this.focus();this.select()" id="advertScript1" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/1/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="600" style="border: 1px solid black;"></iframe></textarea>
                                         </td>
 
@@ -101,7 +107,52 @@
 
                                         <td data-label="Script">
                                             <textarea onclick="this.focus();this.select()" id="advertScript4" class="form-control" rows="2" readonly=""><iframe src="{{url("/")}}/campaign_form/{{Auth::guard('publisher')->user()->id}}/4/{{$campaign->id}}" referrerpolicy="unsafe-url"  sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups-to-escape-sandbox" width="100%" height="573" style="border: 1px solid black;"></iframe></textarea>
-                                        </td>
+                                        </td> --}}
+
+                                         {{-- Urls --}}
+                                         <td data-label="url">
+                                            <input type="text" readonly name="ad_network[ad_1][network]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_1']['network'] }}" @endif >
+                                            <input type="text" readonly name="ad_network[ad_1][url]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network URL 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_1']['url'] }}" @endif >
+                                            <input type="text" readonly name="ad_network[ad_1][id]" data-aid='{{$campaign->advertiser_id}}' placeholder="ID 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_1']['id'] }}" @endif >
+                                            <input type="text" readonly name="ad_network[ad_1][password]" data-aid='{{$campaign->advertiser_id}}' placeholder="Password 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_1']['password'] }}" @endif >
+                                            <input type="text" readonly name="ad_network[ad_1][remarks]" data-aid='{{$campaign->advertiser_id}}' placeholder="Remearks 1" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_1']['remarks'] }}" @endif >
+                                    </td>
+                                    <td data-label="url">
+                                        <input type="text" readonly name="ad_network[ad_2][network]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_2']['network'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_2][url]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network URL 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_2']['url'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_2][id]" data-aid='{{$campaign->advertiser_id}}' placeholder="ID 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_2']['id'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_2][password]" data-aid='{{$campaign->advertiser_id}}' placeholder="Password 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_2']['password'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_2][remarks]" data-aid='{{$campaign->advertiser_id}}' placeholder="Remearks 2" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_2']['remarks'] }}" @endif >
+                                    </td>
+                                    <td data-label="url">
+                                        <input type="text" readonly name="ad_network[ad_3][network]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_3']['network'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_3][url]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network URL 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_3']['url'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_3][id]" data-aid='{{$campaign->advertiser_id}}' placeholder="ID 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_3']['id'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_3][password]" data-aid='{{$campaign->advertiser_id}}' placeholder="Password 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_3']['password'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_3][remarks]" data-aid='{{$campaign->advertiser_id}}' placeholder="Remearks 3" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_3']['remarks'] }}" @endif >
+                                    </td>
+                                    <td data-label="url">
+                                        <input type="text" readonly name="ad_network[ad_4][network]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_4']['network'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_4][url]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network URL 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_4']['url'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_4][id]" data-aid='{{$campaign->advertiser_id}}' placeholder="ID 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_4']['id'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_4][password]" data-aid='{{$campaign->advertiser_id}}' placeholder="Password 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_4']['password'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_4][remarks]" data-aid='{{$campaign->advertiser_id}}' placeholder="Remearks 4" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_4']['remarks'] }}" @endif >
+                                    </td>
+                                    <td data-label="url">
+                                        <input type="text" readonly name="ad_network[ad_5][network]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_5']['network'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_5][url]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network URL 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_5']['url'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_5][id]" data-aid='{{$campaign->advertiser_id}}' placeholder="ID 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_5']['id'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_5][password]" data-aid='{{$campaign->advertiser_id}}' placeholder="Password 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_5']['password'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_5][remarks]" data-aid='{{$campaign->advertiser_id}}' placeholder="Remearks 5" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_5']['remarks'] }}" @endif >
+                                    </td>
+                                    <td data-label="url">
+                                        <input type="text" readonly name="ad_network[ad_6][network]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_6']['network'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_6][url]" data-aid='{{$campaign->advertiser_id}}' placeholder="Ad Network URL 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_6']['url'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_6][id]" data-aid='{{$campaign->advertiser_id}}' placeholder="ID 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_6']['id'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_6][password]" data-aid='{{$campaign->advertiser_id}}' placeholder="Password 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_6']['password'] }}" @endif >
+                                        <input type="text" readonly name="ad_network[ad_6][remarks]" data-aid='{{$campaign->advertiser_id}}' placeholder="Remearks 6" class="form-control mb-2 AdNetwork ad_network_aid_{{$campaign->advertiser_id}}" @if($campaign->publisher_advertiser) value="{{ $campaign->publisher_advertiser->ad_network['ad_6']['remarks'] }}" @endif >
+                                    </td>
+
                                         <form action="post" id="url_form_{{ $campaign->id}}">
                                             <input type="hidden" name="campaign_id" value="{{$campaign->id}}" >
                                             <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
@@ -142,8 +193,8 @@
                                         <input type="hidden" name="campaign_id" value="{{$campaign->id}}" >
                                         <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
                                         <td data-label="LgenCampaign">
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_1]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_1'] ?? '' }}">
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_1]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_1'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_name_1]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_1'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_id_1]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_1'] ?? '' }}">
                                                 <select class="form-control form-select mb-2"  name="l_gen[ad_network_1]" data-cid='{{$campaign->id}}' >
                                                     <option value="" >Select a AdNetwork...</option>
                                                     <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_1'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
@@ -167,8 +218,8 @@
                                          {{-- Lgen Campaign 2 --}}
                                          <td data-label="LgenCampaign">
 
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_2]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_2'] ?? '' }}">
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_2]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_2'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_name_2]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_2'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_id_2]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_2'] ?? '' }}">
                                                 <select class="form-control form-select mb-2"  name="l_gen[ad_network_2]" data-cid='{{$campaign->id}}' >
                                                     <option value="" >Select a AdNetwork...</option>
                                                     <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_2'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
@@ -192,8 +243,8 @@
                                          {{-- Lgen Campaign 3 --}}
                                          <td data-label="LgenCampaign">
 
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_3]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_3'] ?? '' }}">
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_3]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_3'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_name_3]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_3'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_id_3]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_3'] ?? '' }}">
                                                 <select class="form-control form-select mb-2"  name="l_gen[ad_network_3]" data-cid='{{$campaign->id}}' >
                                                     <option value="" >Select a AdNetwork...</option>
                                                     <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_3'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
@@ -216,8 +267,8 @@
                                          {{-- Lgen Campaign 4 --}}
                                          <td data-label="LgenCampaign">
 
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_4]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_4'] ?? '' }}">
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_4]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_4'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_name_4]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_4'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_id_4]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_4'] ?? '' }}">
                                                 <select class="form-control form-select mb-2"  name="l_gen[ad_network_4]" data-cid='{{$campaign->id}}' >
                                                     <option value="" >Select a AdNetwork...</option>
                                                     <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_4'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
@@ -236,13 +287,11 @@
                                                     <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
                                                     <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_4'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
                                                 </select>
-
                                          </td>
                                          {{-- Lgen Campaign 5 --}}
                                          <td data-label="LgenCampaign">
-
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_5]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_5'] ?? '' }}">
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_5]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_5'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_name_5]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_5'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_id_5]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_5'] ?? '' }}">
                                                 <select class="form-control form-select mb-2"  name="l_gen[ad_network_5]" data-cid='{{$campaign->id}}' >
                                                     <option value="" >Select a AdNetwork...</option>
                                                     <option value="AdNetwork 1" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['ad_network_5'] == 'AdNetwork 1') selected="selected" @endif>AdNetwork 1</option>
@@ -261,7 +310,6 @@
                                                     <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
                                                     <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_5'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
                                                 </select>
-
                                          </td>
                                         {{-- Lgen Campaign 6 --}}
                                         <td data-label="LgenCampaign">
@@ -269,9 +317,9 @@
                                                 <input type="hidden" name="campaign_id" value="{{$campaign->id}}" >
                                                 <input type="hidden" name="publisher_id" value="{{Auth::guard('publisher')->user()->id}}" >
 
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_name_6]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_6'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_name_6]" data-cid='{{$campaign->id}}' placeholder="Campaign Name" value="{{ $campaign->campaign_publisher->l_gen['campaign_name_6'] ?? '' }}">
 
-                                                <input type="text" class="form-control mb-2" name="l_gen[campaign_id_6]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_6'] ?? '' }}">
+                                                <input type="text" class="form-control mb-2 bg-white" name="l_gen[campaign_id_6]" data-cid='{{$campaign->id}}' placeholder="Campaign ID" value="{{ $campaign->campaign_publisher->l_gen['campaign_id_6'] ?? '' }}">
 
                                                 <select class="form-control form-select mb-2"  name="l_gen[ad_network_6]" data-cid='{{$campaign->id}}' >
                                                     <option value="" >Select a AdNetwork...</option>
@@ -292,9 +340,8 @@
                                                     <option value="url 5" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 5') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_5'] ?? '' }}</option>
                                                     <option value="url 6" @if (isset($campaign->campaign_publisher->l_gen) && $campaign->campaign_publisher->l_gen['url_6'] == 'url 6') selected="selected" @endif>{{ $campaign->campaign_publisher_common->url['url_6'] ?? '' }}</option>
                                                 </select>
-
-                                         </td>
- </form>
+                                            </td>
+                                        </form>
 
                                     </tr>
                                 @empty
@@ -373,6 +420,8 @@
     .td-iframe{ min-width: 200px!important;}
     .table th { padding: 12px 10px; max-width: 200px; }
     .td-url{ min-width: 200px; max-width: 200px; }
+    .td-AdNetwork{ min-width: 200px; max-width: 200px; }
+    .td-LGEN{ min-width: 200px; max-width: 200px; }
     th.td-url{ text-align: center!important; }
     .table td { text-align: left!important; border: 1px solid #e5e5e5!important; padding: 10px 10px!important; }
     .toggle-group .btn {  padding-top: 0!important;  padding-bottom: 0!important;  top: -3px;  }
@@ -420,23 +469,31 @@
                         visible: true,
                         orderable: false
                     },
+                    // {
+                    //     targets: [ 18, 19, 20,21],
+                    //     className: "td-iframe",
+                    //     width: "100px",
+                    //     searchable: false,
+                    //     orderable: false
+                    // },
                     {
-                        targets: [ 18, 19, 20,21],
-                        className: "td-iframe",
-                        width: "100px",
+                       // targets: [ 22, 23, 24, 25, 26, 27],
+                        targets: [ 18, 19, 20, 21, 22, 23],
+                        className: "td-AdNetwork",
+                        width: "200px",
                         searchable: false,
                         orderable: false
-                    },
-                    {
-                        targets: [ 22, 23, 24, 25, 26, 27],
+                    }, {
+                       // targets: [ 22, 23, 24, 25, 26, 27],
+                        targets: [ 24, 25, 26, 27, 28, 29],
                         className: "td-url",
                         width: "200px",
                         searchable: false,
                         orderable: false
                     },{
-                        targets: [28, 29, 30, 31,32,33],
+                        targets: [30, 31, 32, 33,34,35],
                         className: "td-LGEN",
-                        width: "200px",
+                        width: "300px",
                         searchable: false,
                         orderable: false
                     },

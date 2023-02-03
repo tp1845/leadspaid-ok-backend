@@ -32,7 +32,7 @@ class CampaignsController extends Controller
         $assign_advertiser_ids = array();
         foreach($assign_advertiser as $advertiser ){ $assign_advertiser_ids[] = $advertiser['id']; }
         if($assign_advertiser_ids){
-            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->with('campaign_publisher_common')->whereIn('advertiser_id', $assign_advertiser_ids)->get();
+            $campaigns = campaigns::with('advertiser')->with('campaign_forms')->with('campaign_publisher')->with('campaign_publisher_common')->with('publisher_advertiser')->whereIn('advertiser_id', $assign_advertiser_ids)->get();
         }else{
             $campaigns= array();
         }
