@@ -144,7 +144,7 @@ class CampaignsFormsController extends Controller
                     'lead_id' => $form->id,
                     'created_time' => date('Y-d-m H:m:i', strtotime($form->created_at)),
                     'campaign_id' => $form->campaign_id,
-                    'campaign_name' => $form->campaigns['name']?$form->campaigns['name']:'',
+                    'campaign_name' => $form->campaigns?$form->campaigns['name']:'',
                     'form_id' => $form->form_id?$form->form_id:'',
                     'form_name' => $form->campaign_forms['form_name']?$form->campaign_forms['form_name']:'',
                     'your_name' => $form->field_1?$form->field_1:'',
