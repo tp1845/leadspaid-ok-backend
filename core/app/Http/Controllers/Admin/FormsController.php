@@ -14,10 +14,11 @@ class FormsController extends Controller
     public function index()
     {
         $forms = DB::table('campaign_forms')
+            ->where('campaign_forms.status','1')
             ->leftJoin('advertisers', 'campaign_forms.advertiser_id', '=', 'advertisers.id')
             ->select('campaign_forms.*', 'advertisers.name as aname')
             ->get();
-        $page_title = 'All Forms';
+        $page_title = 'All Active Forms';
         $empty_message = "No Forms";
          return view('admin.forms.index', compact('forms', 'page_title', 'empty_message'));
     }

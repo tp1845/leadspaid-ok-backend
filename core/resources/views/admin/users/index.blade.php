@@ -40,9 +40,9 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Assigned Advertisers</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
 
                                         <th scope="col">Phone</th>
@@ -61,7 +61,7 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
-                                        <td data-label="Username">{{ $pub->name }}</td>
+                              
                                         <td data-label="Assigned Advertiser">
                                             <?php $assigned =  get_assigned_advertisers($pub->id) ?>
                                             {{Count($assigned)}}
@@ -78,7 +78,8 @@
                                             }
                                             ?>
                                         </td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
+                                        <td data-label="Username">{{ $pub->name }}</td>
                                         <td data-label="Email">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
@@ -107,8 +108,8 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
 
                                         <th scope="col">Phone</th>
@@ -126,8 +127,10 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
+                                 
+                                     
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
                                         <td data-label="Email">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
@@ -157,8 +160,8 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
 
                                         <th scope="col">Phone</th>
@@ -176,9 +179,10 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
-                                        <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                                                 
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
+                                        <td data-label="Username">{{ $pub->name }}</td>   
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
@@ -206,8 +210,8 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
 
                                         <th scope="col">Phone</th>
@@ -227,9 +231,9 @@
                                         <td data-label="Name" class="text--primary">
                                             admin
                                         </td>
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
@@ -257,8 +261,8 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
 
                                         <th scope="col">Phone</th>
@@ -276,9 +280,10 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
+                      
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
@@ -304,9 +309,9 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             Admin</td>
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
@@ -335,8 +340,8 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
 
                                         <th scope="col">Phone</th>
@@ -354,9 +359,10 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
+                     
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
@@ -384,9 +390,9 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             Admin</td>
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
@@ -423,8 +429,8 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
-                                        <th scope="col">Name</th>
                                         <th scope="col">Email</th>
+                                        <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
                                         <th scope="col">Phone</th>
                                         <th scope="col">Country</th>
@@ -437,20 +443,21 @@
                                     @foreach($user_trash as $pub)
                                     <tr>
                                         <td data-label="Name" class="text--primary">
-                                            <span class="badge badge-danger">Banned</span>
+                                            <span class="badge badge-danger">Deleted</span>
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
+                          
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
                                         <td data-label="Actions " class="delete_icon">
                                             @if(auth()->guard('admin')->user()->id != $pub->id)
                                             <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>1])}}" class="" data-toggle="tooltip" title="" data-original-title="Re-enable">
-                                                <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
+                                                <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:22px;margin:0 auto;">
                                             </a>
                                             <a href="{{ route('admin.users/status',['id'=>$pub->id,'status'=>5])}}" onclick="return confirm('Do you want to permanently delete the User?')" class="delte_item" data-type="delete" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-regular fa-circle-xmark"></i></a>
                                             @endif
@@ -465,21 +472,21 @@
                                     @foreach($admin_trash as $pub)
                                     <tr>
                                         <td data-label="Name" class="text--primary">
-                                            <span class="badge badge-danger">Banned</span>
+                                            <span class="badge badge-danger">Deleted</span>
 
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             Admin</td>
+                                        <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
-                                        <td data-label="Email">{{ $pub->email }}</td>
-                                        <td data-label="Email">{{ $pub->company_name }}</td>
+                                        <td data-label="Company Name">{{ $pub->company_name }}</td>
                                         <td data-label="Phone">{{ $pub->phone }}</td>
                                         <td>{{ $pub->country }}</td>
 
                                         <td data-label="Actions " class="delete_icon">
                                             @if(auth()->guard('admin')->user()->id != $pub->id)
                                             <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>1])}}" class="_icon" data-toggle="tooltip" title="" data-original-title="Re-enable">
-                                                <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:20px;margin:0 auto;">
+                                                <img src="{{ url('/')}}/assets/images/icon/add-button.png" style="width:22px;margin:0 auto;">
                                             </a>
                                             <a href="{{ route('admin.admin/status',['id'=>$pub->id,'status'=>5])}}" onclick="return confirm('Do you want to permanently delete the User?')" class="delte_item" data-toggle="tooltip" title="" data-original-title="delete"><i class="fa-regular fa-circle-xmark"></i></a>
                                             @endif

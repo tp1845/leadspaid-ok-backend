@@ -102,6 +102,8 @@
     $('#leadsTable').DataTable({
 
         "sDom": 'Lfrtlip',
+        order: [[18, 'desc']],
+        "pageLength": 50,
         "language": {
             "lengthMenu": "Show rows  _MENU_",
             search: "",
@@ -174,5 +176,10 @@
     #leadsTable > tbody > tr > td:last-child{
         text-align: center !important;
     }
+    #leadsTable .trashIocn i {
+        color: red;
+        border-radius: 100%;
+    }
+
 </style>
 @endpush

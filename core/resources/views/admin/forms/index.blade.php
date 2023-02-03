@@ -172,7 +172,9 @@
         padding: 12px 10px;
         max-width: 200px;
     }
-
+    #form_list_filter > span {
+    font-weight: bolder;
+}
     .table td {
         vertical-align: top;
         text-align: left !important;
