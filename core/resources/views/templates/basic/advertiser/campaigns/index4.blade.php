@@ -89,9 +89,7 @@ $user = auth()->guard('advertiser')->user();
                                 }
                             }
                             @endphp
-                            <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
-                           @if($campaign->delivery ==2 ) draft @endif
-                            ">
+                            <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif   @if($campaign->delivery == 2 ) draft @endif  ">
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td class="edit_btns">{{ $campaign->name }} <br>
                                     @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif
@@ -285,6 +283,7 @@ $user = auth()->guard('advertiser')->user();
                     <table id="campaign_list_draft" class="draft table table-striped table-bordered datatable " style="width:100%">
                         <thead>
                             <tr>
+                                <th>id</th>
                                 <th>Off/On</th>
                                 <th>Campaign Name</th>
                                 <th>Delivery</th>
@@ -328,6 +327,7 @@ $user = auth()->guard('advertiser')->user();
                             <tr id="{{$campaign->id}}" class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif
                              @if($campaign->delivery == 2 ) draft @endif
                             ">
+                                <td>{{$campaign->id}}</td>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td class="edit_btns">{{ $campaign->name }} <br>
                                     @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif
@@ -345,8 +345,6 @@ $user = auth()->guard('advertiser')->user();
                                     @if(($campaign->status==0) && ($campaign->approve==0))
                                         Deleted
                                     @else
-
-                                    {{$campaign->delivery}}
                                         @if($campaign->delivery == 2 )
                                             <span class="yellow">Draft</span>
                                         @elseif($campaign->approve ==1 )
@@ -380,6 +378,7 @@ $user = auth()->guard('advertiser')->user();
                         </tbody>
                         <tfoot>
                             <tr>
+                                <th></th>
                                 <th></th>
                                 <th>Overall Total</th>
                                 <th></th>
@@ -512,6 +511,8 @@ $user = auth()->guard('advertiser')->user();
         <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="0" name="draft_form_id" id="draft_form_id">
+            <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
+            <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
             <div class="modal-content h-100 ">
                 <div class="modal-header bg-primary m-0 PageFormStyle py-0">
                     <div class="w-100">
@@ -549,8 +550,7 @@ $user = auth()->guard('advertiser')->user();
                 </div>
                 <div class="modal-body h-100" style="overflow-y: scroll">
                     <div id="error-message"></div>
-                    <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
-                    <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
+
                     <div class="row mb-3 PageFormStyle">
                         <div class=" col input-col ">
                             <div class=" d-flex SelectFormType ">
@@ -1433,7 +1433,6 @@ padding: 0; display: block; opacity: 0;">
                 html += '</div>';
                 html += '<div class="pl-5"><a class="btn-add-option btn"  data-row="' + row + '" data-option="5">+ Add Option</a></div>';
                 html += '</div>';
-
             }
             html += '</td>';
             html += '</tr>';
@@ -1442,16 +1441,10 @@ padding: 0; display: block; opacity: 0;">
             validate_custom_field();
             updateformpreviewtext();
             makeinoputcharateruppercase();
-
         } else {
             Toast('red', "Only 5 fields allowed");
         }
-
-
     }
-
-
-
 
     function add_form_field_2(row_num, type) {
         var table = $('#sortable');
@@ -1502,15 +1495,13 @@ padding: 0; display: block; opacity: 0;">
         } else {
             Toast('red', "Only 5 fields allowed");
         }
-
-
     }
-
-
 
     function reset_campaign_create_form() {
         $('#campaign_createModalLabel').html('Create Campaign');
         $('#campaign_create_modal form').trigger("reset");
+        $('#input_campaign_id').val(0);
+        $('#draft_form_id').val(0);
     }
 
     $(document).ready(function() {
@@ -1586,25 +1577,32 @@ padding: 0; display: block; opacity: 0;">
             }
         });
         var campaign_list_draft = $('#campaign_list_draft').DataTable({
+            order:[0,"desc"],
             columnDefs: [{
                     targets: 0,
+                    searchable: false,
+                    visible: false,
+                    orderable: true,
+
+                },{
+                    targets: 1,
                     searchable: true,
                     visible: true,
                     orderable: true
                 },
                 {
-                    targets: 2,
+                    targets: 3,
                     searchable: true,
                     orderable: true
                 },
                 {
-                    targets: 11,
+                    targets: 12,
                     searchable: false,
                     visible: true,
                     orderable: false
                 },
                 {
-                    targets: [7, 8, 9, 10],
+                    targets: [8, 9, 10, 11],
                     className: "td-small",
                     width: "10px"
                 },
@@ -1658,6 +1656,8 @@ padding: 0; display: block; opacity: 0;">
 
         campaign_create_modal.on('hidden.bs.modal', function(event) {
             var rows = campaign_list_draft.rows(0).data() ;
+            var max = 0;
+            $('#campaign_list_draft tr').each(function() { var value = parseInt($(this).attr('id')); max = (value > max) ? value : max; });
             var last_id = rows[0]['DT_RowId'];
               $.ajax({
                     type: "GET",
@@ -1666,14 +1666,29 @@ padding: 0; display: block; opacity: 0;">
                     success: function(data) {
                         if (data.success) {
                             console.log(data.row)
-                            if(data.row.id > last_id){
-                            campaign_list_draft.row.add(['',data.row.name,'Draft','XLSX | CSV','0','0','0','$'+data.row.daily_budget,data.row.start_date,data.row.end_date,data.row.target_country,data.row.campaign_forms.form_name]).draw();
+                            if(data.row.id > max){
+                                var url_edit = '{{  route("advertiser.campaigns.edit", ":id") }}';
+                                url_edit = url_edit.replace(':id', data.row.id);
+                                var url_del = '{{  route("advertiser.campaigns.delete-camp", ":id") }}';
+                                url_del = url_del.replace(':id', data.row.id);
+
+                                var toggle_button = '';
+
+                            var camp_name = data.row.name +' <br/> <a href="'+url_edit+'" data-id="'+ data.row.id +'" data-status="1" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | <a href="'+url_del+'" data-id="'+ data.row.id +'" class="btn-danger1 delete_campaign">Delete</a>';
+
+                            var url_XLSX = '{{ route("advertiser.campaignsformleads.export",":id") }}';
+                                url_XLSX = url_XLSX.replace(':id', data.row.id);
+                                var url_CSV = '{{ route("advertiser.campaignsformleads.exportcsv",":id") }}';
+                                url_CSV = url_CSV.replace(':id', data.row.id);
+                            var camp_export =  '<a href="'+url_XLSX+'">XLSX </a> | <a href="'+url_CSV+'">CSV </a>';
+
+                            campaign_list_draft.row.add([data.row.id ,toggle_button,camp_name,'Draft',camp_export,'0','0','0','$'+data.row.daily_budget,data.row.start_date,data.row.end_date,data.row.target_country,data.row.campaign_forms.form_name]).node().id = data.row.id;
+                            campaign_list_draft.draw();
                             }
                         }
                     }
                 });
-        })
-
+            })
 
         $("#sortable").sortable({
             handle: ".handle",
@@ -1715,17 +1730,11 @@ padding: 0; display: block; opacity: 0;">
 <!-- owl slider ---->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-
-
 <link rel="stylesheet" href="{{asset('/assets/templates/leadpaid/css/campaign_iframe_preview.css?v6')}}">
-
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <!-- owl slider ---->
 <script>
     function validate_form_data() {
-
         $.validator.setDefaults({
             errorElement: 'span',
             errorPlacement: function(error, element) {
@@ -1790,6 +1799,18 @@ padding: 0; display: block; opacity: 0;">
                 "Use a different Form name (Same Form Name already exist)"
             );
 
+            $.validator.addMethod(
+                "unique_form_inputs", function(value, element) {
+                    var nam = $(element).attr('name');
+                    $result =   0;
+                    $(".InputQuestion_text").each(function() {
+                        if (nam != $(this).attr('name')) { if ($.trim($(this).val()).toLowerCase() == $.trim(value).toLowerCase()) {  $result++;  } }
+                    });
+                    return $result > 0?false:true;
+                },
+                "Field is repeating - Please change it"
+            );
+
             $("#campaign_form").validate({
                 rules: {
                     campaign_name: {
@@ -1836,8 +1857,27 @@ padding: 0; display: block; opacity: 0;">
                     },
                     logo_comapny: {
                         required: true
-                    }
-
+                    },
+                    'field_1[question_text]': {
+                        required: true,
+                        unique_form_inputs:true
+                    },
+                    'field_2[question_text]': {
+                        required: true,
+                        unique_form_inputs:true
+                    },
+                    'field_3[question_text]': {
+                        required: true,
+                        unique_form_inputs:true
+                    },
+                    'field_4[question_text]': {
+                        required: true,
+                        unique_form_inputs:true
+                    },
+                    'field_5[question_text]': {
+                        required: true,
+                        unique_form_inputs:true
+                    },
                 },
                 messages: {
                     campaign_name: {
@@ -2011,15 +2051,9 @@ padding: 0; display: block; opacity: 0;">
                     logo_comapny: 'Company/Brand Name or Logo - Any 1 is mandatory',
                 }
             });
-
-
-
         }
 
-
-
         $("#company_name_Input").blur(function() {
-
             if ($(this).val() == "") {
                 $(".logo_comapny").val('');
             } else {
@@ -2150,7 +2184,6 @@ padding: 0; display: block; opacity: 0;">
             creative_status = 1;
         }
 
-
         if (image_1_img !== '#') {
 
             image_vide += '<div class="item"><div class="image-wapperr"><img src="' + image_1_img + '" alt="" width="100%" /></div></div>';
@@ -2206,10 +2239,7 @@ padding: 0; display: block; opacity: 0;">
     }
 
     function updateformpreviewtext(data = false) {
-
-
         if (data == false) {
-
             var title_1 = $('#FormTitleInput_1').val();
             var title_2 = $('#FormTitleInput_2').val();
             var title_3 = $('#FormTitleInput_3').val();
@@ -2295,8 +2325,6 @@ padding: 0; display: block; opacity: 0;">
                 }
             }
 
-
-
             t = '';
             if (question_type === 'MultipleChoice') {
                 t += '<select class="form-select" id="Input_field_' + $i + '"';
@@ -2328,36 +2356,27 @@ padding: 0; display: block; opacity: 0;">
                 $('#preview_filed_' + $i).html(t);
             }
         }
-
-
-
-
     }
     validate_custom_field();
 
     function validate_custom_field() {
-        $(".InputQuestion_text").blur(function() {
-            var nam = $(this).attr('name');
-            var vall = $(this).val();
-            var $_this = $(this);
-            $(".InputQuestion_text").each(function() {
+        // $(".InputQuestion_text").blur(function() {
+        //     var nam = $(this).attr('name');
+        //     var vall = $(this).val();
+        //     var $_this = $(this);
+        //     $(".InputQuestion_text").each(function() {
 
-                if (nam != $(this).attr('name')) {
-                    if ($.trim($(this).val()).toLowerCase() == $.trim(vall).toLowerCase()) {
-                        $_this.parent().find('.error').remove();
-                        $_this.parent().find('.bg-white').after('<span id="' + nam + '-error" class="error invalid-feedback" style="display:block">Field is repeating - Please change it</span>');
-                    } else {
-                        $_this.parent().find('.error').remove();
-                    }
-                }
-            })
-        });
-
+        //         if (nam != $(this).attr('name')) {
+        //             if ($.trim($(this).val()).toLowerCase() == $.trim(vall).toLowerCase()) {
+        //                 $_this.parent().find('.error').remove();
+        //                 $_this.parent().find('.bg-white').after('<span id="' + nam + '-error" class="error invalid-feedback" style="display:block">Field is repeating - Please change it</span>');
+        //             } else {
+        //                 $_this.parent().find('.error').remove();
+        //             }
+        //         }
+        //     })
+        // });
     }
-
-
-
-
 
     // updateformpreview();
     $('.PageFormStyle').on('input', function() {
@@ -2544,6 +2563,7 @@ padding: 0; display: block; opacity: 0;">
     function makeinoputcharateruppercase() {
 
         $(".leftForm").find("input").on('keypress', function(e) {
+
             $(this).val(capitalizeFirstLetter($(this).val()));
         });
 
@@ -2559,7 +2579,6 @@ padding: 0; display: block; opacity: 0;">
             $(this).val(capitalizeFirstLetter($(this).val()));
 
         });
-
     }
 
 
@@ -2960,7 +2979,7 @@ padding: 0; display: block; opacity: 0;">
         })
     });
 
-    $(".delete_campaign").click(function(e) {
+    $("body").on("click", ".delete_campaign", function(e) {
         e.preventDefault();
         var url = $(this).attr('href');
         if (confirm(' Do you really want to delete the campaign?')) {
@@ -2971,6 +2990,7 @@ padding: 0; display: block; opacity: 0;">
             });
         }
     });
+
 
     $('input[type=radio][name=SelectFormType]').change(function() { if (this.value == 'CreateNewForm') {  $("input[name=form_id_existing]:checked").prop("checked",false); } });
 
@@ -3707,8 +3727,6 @@ if($_GET['action']=="create_campiagin"){
         transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     }
 
-
-
     .form-row .form-select {
         background-color: #fff;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
@@ -3915,8 +3933,8 @@ if($_GET['action']=="create_campiagin"){
         /*    display: flex;*/
         width: 100%;
         /*  justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;*/
+        align-items: center;
+        flex-wrap: wrap;*/
     }
 
     .custom_after_text ul li img {
@@ -3988,8 +4006,8 @@ if($_GET['action']=="create_campiagin"){
     }
 
     /*#upload_image_2, #upload_image_1 {
-    margin-right: 10px;
-}*/
+        margin-right: 10px;
+    }*/
     .custom_image_upload .input-group .input-col .upload-box.grey.image label {
         height: 100%;
         min-height: 100px;
@@ -4580,5 +4598,4 @@ if($_GET['action']=="create_campiagin"){
         }
     }
 </style>
-
 @endpush
