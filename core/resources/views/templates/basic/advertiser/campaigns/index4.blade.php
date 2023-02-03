@@ -2544,9 +2544,7 @@ padding: 0; display: block; opacity: 0;">
     function makeinoputcharateruppercase() {
 
         $(".leftForm").find("input").on('keypress', function(e) {
-
             $(this).val(capitalizeFirstLetter($(this).val()));
-s
         });
 
         $("#company_name_Input").on('keypress', function(e) {

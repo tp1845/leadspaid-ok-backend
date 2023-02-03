@@ -144,14 +144,14 @@ class CampaignsFormsController extends Controller
                     'lead_id' => $form->id,
                     'created_time' => date('Y-d-m H:m:i', strtotime($form->created_at)),
                     'campaign_id' => $form->campaign_id,
-                    'campaign_name' => $form->campaigns['name'],
-                    'form_id' => $form->form_id,
-                    'form_name' => $form->campaign_forms['form_name'],
-                    'your_name' => $form->field_1,
-                    'your_email' => $form->field_2,
-                    'phone_number' => $form->field_3,
-                    'length of stay' => $form->field_4,
-                    'relationship' => $form->field_5,
+                    'campaign_name' => $form->campaigns['name']?$form->campaigns['name']:'',
+                    'form_id' => $form->form_id?$form->form_id:'',
+                    'form_name' => $form->campaign_forms['form_name']?$form->campaign_forms['form_name']:'',
+                    'your_name' => $form->field_1?$form->field_1:'',
+                    'your_email' => $form->field_2?$form->field_2:'',
+                    'phone_number' => $form->field_3?$form->field_3:'',
+                    'length of stay' => $form->field_4?$form->field_4:'',
+                    'relationship' => $form->field_5?$form->field_5:'',
                 ];
             }
 
@@ -220,7 +220,7 @@ class CampaignsFormsController extends Controller
 
         return redirect()->back();
     }
-    
+
    public function leads_complete_delete($id)
    {
         DB::table('campaign_forms_leads')->where('id', $id)->delete();
