@@ -187,6 +187,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         //Form
         Route::get('/forms', 'FormsController@index')->name('forms.index');
+        Route::get('/forms/delete/{id}','FormsController@form_complete_delete')->name('forms.complete.delete');
 
 
         //Manage publisher

@@ -1010,6 +1010,9 @@ function get_campiagn_cost_by_id($id,$start_date=null,$end_date=null){
 function get_total_campaign($id){
     return campaigns::where('advertiser_id',$id)->count();
 }
+function get_total_campaign_by_formid($id){
+    return campaigns::where('form_id',$id)->count();
+}
 function get_total_leads_by_campaignid($id){ 
     return campaign_forms_leads::where('campaign_id', $id)->get()->count();
 }

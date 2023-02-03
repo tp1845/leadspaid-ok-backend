@@ -130,4 +130,10 @@ class FormsController extends Controller
             }
         }
     }
+    public function form_complete_delete($id)
+    {
+        campaign_forms::where('id', $id)->delete();
+        $notify[] = ['success', 'Form deleted successfully'];
+        return redirect()->back()->withNotify($notify);
+    }
 }

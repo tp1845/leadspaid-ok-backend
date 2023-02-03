@@ -31,6 +31,7 @@
                             <th>Field 5</th>
                             <th>Status</th>
                             <th>Created_at</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -49,7 +50,9 @@
                                 <a>CSV</a>
                                 {{-- | <a href="#">Google Sheet</a> --}}
                             </td>
-                            <td><spn>{{ $form->company_name }}</spn></td>
+                            <td>
+                                <spn>{{ $form->company_name }}</spn>
+                            </td>
                             <td style="min-width: 120px;">
                                 <?php if (!empty($form->company_logo)) { ?>
                                     <img onerror="this.onerror=null; this.src='https://www.thermaxglobal.com/wp-content/uploads/2020/05/image-not-found-300x169.jpg'" src='{{asset("assets/images/campaign_forms/". $form->company_logo)}}' style="width: 120px;object-fit: cover;height: 70px;" />
@@ -110,6 +113,12 @@
                             <td>{{json_decode($form->field_5)->question_text?? '' }}</td>
                             <td>{{$form->status ==0?'Off' : "Active" }}</td>
                             <td>{{$form->created_at}}</td>
+                            <td>
+                                <a href="{{ route('admin.forms.complete.delete',['id'=>$form->id]) }}" onclick="return deleteconfirm(<?php echo get_total_campaign_by_formid($form->id) ?>,<?php echo get_form_leads_by_id($form->id) ?>)" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
+                                    <i class="fa-regular fa-circle-xmark"></i>
+
+                                </a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -141,6 +150,17 @@
 <script>
     'use strict';
 
+    function deleteconfirm(campaigncount, leadscount) {
+        if (campaigncount > 0) {
+            alert('Unable to delete form since it is used in existing Campaigns');
+            return false;
+        }
+        if (leadscount > 0) {
+            alert('Unable to Delete Form, since it has Leads');
+            return false;
+        }
+        return true;
+    }
     var form_preview_modal = $('#form_preview_modal');
     $('.btn_form_preview').on('click', function() {
         var id = $(this).data('id');
@@ -172,9 +192,11 @@
         padding: 12px 10px;
         max-width: 200px;
     }
-    #form_list_filter > span {
-    font-weight: bolder;
-}
+
+    #form_list_filter>span {
+        font-weight: bolder;
+    }
+
     .table td {
         vertical-align: top;
         text-align: left !important;
@@ -313,7 +335,7 @@
         line-break: anywhere;
         overflow-wrap: anywhere;
         max-width: 178px;
-        white-space:initial;
+        white-space: initial;
     }
 
     #form_list>tbody>tr>td:nth-child(10) spn {
@@ -322,7 +344,7 @@
         line-break: anywhere;
         overflow-wrap: anywhere;
         max-width: 278px;
-        white-space:initial;
+        white-space: initial;
     }
 
     #form_list>tbody>tr>td:nth-child(12) a,
@@ -334,6 +356,16 @@
         overflow-wrap: anywhere;
         max-width: 228px;
         white-space: break-spaces;
+    }
+
+    #form_list .trashIocn i {
+        color: red;
+        border-radius: 100%;
+    }
+
+    #form_list tbody tr td:last-child {
+        text-align: center !important;
+        vertical-align: middle;
     }
 </style>
 @endpush
