@@ -206,7 +206,6 @@ table.table--light thead th {
 @yield('content')
 
 
-
 <!-- bootstrap js -->
 <script src="{{asset('assets/admin/js/vendor/bootstrap.bundle.min.js')}}"></script>
 <!-- bootstrap-toggle js -->

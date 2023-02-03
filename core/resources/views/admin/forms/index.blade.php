@@ -3,6 +3,13 @@
 <div class="row">
     <div class="col-lg-12">
         <div class=" ">
+            <select id="company_search" class="form-select form-select-lg mb-3 position-absolute" aria-label=".form-select-lg" style="right: 13rem;top: -2.85rem;border-radius: 0;z-index: 1;">
+                <option value="">Select Company Name</option>
+                @forelse($companies as $company)
+                <option <?php echo isset($_GET['advertiser']) ? ($_GET['advertiser'] == $company->id ? "selected" : "") : "" ?> value="{{$company->id}}">{{$company->company_name}}</option>
+                @empty
+                @endforelse
+            </select>
             <div class="table-responsive--lg">
                 <table id="form_list" class="table table-striped table-bordered datatable " style="width:100%">
                     <thead>
@@ -182,6 +189,15 @@
                 search: "",
                 searchPlaceholder: "Search"
             }
+        });
+
+        $("#company_search").on("change", function() {
+            if ($("#company_search").val() === "") {
+                window.location.href = window.location.origin + window.location.pathname;
+                return;
+            }
+            window.location.href = window.location.origin + window.location.pathname + "?advertiser=" + $("#company_search").val();
+            return;
         });
     });
 </script>

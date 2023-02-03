@@ -108,6 +108,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
+                                        <th scope="col">Assigned Advertisers</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
@@ -128,6 +129,22 @@
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
                                  
+                                        <td data-label="Assigned Advertiser">
+                                            <?php $assigned =  get_assigned_advertisers($pub->id) ?>
+                                            {{Count($assigned)}}
+                                            <br/>
+                                            <?php
+                                            if (!empty($assigned )) {
+                                                echo "<ul>";
+                                                foreach ($assigned as $adv) {
+                                                    if (!empty($adv)) {
+                                                        echo "<li>" . $adv['name'] . '</li>';
+                                                    }
+                                                }
+                                                echo "</ul>";
+                                            }
+                                            ?>
+                                        </td>
                                      
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
@@ -160,6 +177,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
+                                        <th scope="col">Assigned Advertisers</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
@@ -179,7 +197,22 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
-                                                                 
+                                        <td data-label="Assigned Advertiser">
+                                            <?php $assigned =  get_assigned_advertisers($pub->id) ?>
+                                            {{Count($assigned)}}
+                                            <br/>
+                                            <?php
+                                            if (!empty($assigned )) {
+                                                echo "<ul>";
+                                                foreach ($assigned as $adv) {
+                                                    if (!empty($adv)) {
+                                                        echo "<li>" . $adv['name'] . '</li>';
+                                                    }
+                                                }
+                                                echo "</ul>";
+                                            }
+                                            ?>
+                                        </td>                     
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>   
                                         <td data-label="Company Name">{{ $pub->company_name }}</td>
@@ -340,6 +373,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Role</th>
+                                        <th scope="col">Assigned Advertisers</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
@@ -359,7 +393,22 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             @if($pub->role == 0) normal @elseif($pub->role == 1) publisher_admin @elseif($pub->role == 2) campaign_manager @elseif($pub->role == 3) campaign_executive @endif</td>
-                     
+                                        <td data-label="Assigned Advertiser">
+                                            <?php $assigned =  get_assigned_advertisers($pub->id) ?>
+                                            {{Count($assigned)}}
+                                            <br/>
+                                            <?php
+                                            if (!empty($assigned )) {
+                                                echo "<ul>";
+                                                foreach ($assigned as $adv) {
+                                                    if (!empty($adv)) {
+                                                        echo "<li>" . $adv['name'] . '</li>';
+                                                    }
+                                                }
+                                                echo "</ul>";
+                                            }
+                                            ?>
+                                        </td>
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
                                         <td data-label="Company Name">{{ $pub->company_name }}</td>
@@ -390,6 +439,9 @@
                                         </td>
                                         <td data-label="Name" class="text--primary">
                                             Admin</td>
+                                        <td data-label="Assigned Advertiser">
+                                          
+                                        </td>
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Username">{{ $pub->name }}</td>
                                         <td data-label="Company Name">{{ $pub->company_name }}</td>

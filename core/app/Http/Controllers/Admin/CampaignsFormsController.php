@@ -20,12 +20,25 @@ class CampaignsFormsController extends Controller
     {
         $page_title    = 'All Leads';
         $empty_message = 'No Leads';
+        $advertiserid = '';
+        $searchtype = '!=';
+        if (isset($_GET['advertiser'])){
+            $searchtype = '=';
+            $advertiserid = $_GET['advertiser'];
+        }
         $leads = DB::table('campaign_forms_leads')
         ->leftJoin('advertisers', 'campaign_forms_leads.advertiser_id', '=', 'advertisers.id')
         ->leftJoin('campaign_forms', 'campaign_forms_leads.form_id', '=', 'campaign_forms.id')
-        ->select('campaign_forms_leads.*', 'advertisers.name as aname','campaign_forms.form_name as cfname',  )
+        ->where('campaign_forms_leads.advertiser_id', $searchtype,$advertiserid)
+        ->select('campaign_forms_leads.*', 'advertisers.name as aname','campaign_forms.form_name as cfname',  )        
         ->get();
-        return view('admin.campaigns.leads', compact('page_title', 'empty_message', 'leads'));
+        $companies = DB::table('campaign_forms_leads')
+        ->leftJoin('advertisers', 'campaign_forms_leads.advertiser_id', '=', 'advertisers.id')
+        ->where('advertisers.company_name','!=','')
+        ->groupBy('company_name')
+        ->get();
+        
+        return view('admin.campaigns.leads', compact('page_title', 'empty_message', 'leads','companies'));
     }
 
 

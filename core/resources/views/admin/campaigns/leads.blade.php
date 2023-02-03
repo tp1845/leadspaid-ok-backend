@@ -7,6 +7,13 @@
     <div class="col-lg-12">
         <div class="card b-radius--10 ">
             <div class="card-body p-0">
+                <select id="company_search" class="form-select form-select-lg mb-3 position-absolute" aria-label=".form-select-lg" style="right: 13rem;top: 1.15rem;border-radius: 0;z-index: 1;">
+                    <option  value="">Select Company Name</option>
+                    @forelse($companies as $company)
+                    <option <?php echo isset($_GET['advertiser'])? ($_GET['advertiser'] ==$company->id? "selected":""):""?>   value="{{$company->id}}">{{$company->company_name}}</option>
+                    @empty
+                    @endforelse
+                </select>
                 <div class="table-responsive--md  table-responsive">
                     <table id="leadsTable" class="table table--light style--two">
                         <thead>
@@ -58,7 +65,6 @@
                                 <td>{{ $lead->created_at  }}</td>
                                 <td>{{ $lead->expiry?'Expired':''  }}</td>
                                 <td>
-                                   
                                     <a href="{{ route('admin.leads.complete.delete',['id'=>$lead->id]) }}?tab=trash" onclick="return confirm('Do you want parmenent delete the lead?')" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
                                         <i class="fa-regular fa-circle-xmark"></i>
 
@@ -95,14 +101,23 @@
 <script>
     'use strict';
     $(document).ready(function() {
-
+        $("#company_search").on("change", function() {
+            if ($("#company_search").val() === "") {
+                window.location.href = window.location.origin + window.location.pathname;
+                return;
+            }
+            window.location.href = window.location.origin + window.location.pathname + "?advertiser=" + $("#company_search").val();
+            return;
+        });
     });
 
 
     $('#leadsTable').DataTable({
 
         "sDom": 'Lfrtlip',
-        order: [[18, 'desc']],
+        order: [
+            [0, 'desc']
+        ],
         "pageLength": 50,
         "language": {
             "lengthMenu": "Show rows  _MENU_",
@@ -173,13 +188,16 @@
     table thead tr th:before {
         bottom: 14px !important;
     }
-    #leadsTable > tbody > tr > td:last-child{
+
+    #leadsTable>tbody>tr>td:last-child {
         text-align: center !important;
     }
+
     #leadsTable .trashIocn i {
         color: red;
         border-radius: 100%;
+        font-size: 18px;
     }
-
+    
 </style>
 @endpush
