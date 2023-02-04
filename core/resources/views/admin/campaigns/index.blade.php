@@ -10,10 +10,10 @@
 
                 <ul class="nav nav-tabs border-0" role="tablist" id="myTab">
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary active" href="#apporved" role="tab" data-toggle="tab">Apporved</a>
+                        <a class="nav-link btn-primary active" href="#apporved" role="tab" data-toggle="tab">Apporved ({{$active->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary" href="#pendingapproved" role="tab" data-toggle="tab">Pending Approval</a>
+                        <a class="nav-link btn-primary" href="#pendingapproved" role="tab" data-toggle="tab">Pending Approval ({{$pending->count()}})</a>
                     </li>
 
                     <li class="nav-item mx-1">

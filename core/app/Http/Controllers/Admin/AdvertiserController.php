@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Support\Facades\DB;
 use App\Deposit;
 use App\Advertiser;
 use App\CreateAd;
@@ -20,13 +21,15 @@ class AdvertiserController extends Controller
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest()->get();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
-        $active = Advertiser::where('status', 1)->where('ev','!=' , 0)->get();
+         $activeCampaign =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND advertisers.status = 1 AND advertisers.ev != 0 ')->select('advertisers.*')->get(); 
+         $active =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 0 ) >0 AND advertisers.status = 1 AND advertisers.ev != 0 ')->select('advertisers.*')->get(); 
+      
         $pending = Advertiser::where('status', 0)->where('ev','!=' , 0)->get();
         $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2)->get();
         $banned = Advertiser::where('status', 3)->get();
         $rejected = Advertiser::where('status', 2)->get();
 
-        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin', 'active', 'pending', 'email_unverify', 'banned','rejected'));
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin','activeCampaign', 'active', 'pending', 'email_unverify', 'banned','rejected'));
     }
     public function allActiveAdvertiser()
     {

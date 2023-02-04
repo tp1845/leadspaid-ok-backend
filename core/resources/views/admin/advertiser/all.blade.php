@@ -11,7 +11,10 @@
 
                 <ul class="nav nav-tabs border-0" role="tablist" id="myTab">
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary active" href="#active" role="tab" data-toggle="tab">Active ({{$active->count()}})</a>
+                        <a class="nav-link btn-primary active" href="#active-campaign" role="tab" data-toggle="tab">Active+Campaigns ({{$activeCampaign->count()}})</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link btn-primary " href="#active" role="tab" data-toggle="tab">Active ({{$active->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link btn-primary" href="#pending" role="tab" data-toggle="tab">Pending Approval ({{$pending->count()}})</a>
@@ -32,13 +35,14 @@
                 </ul>
 
                 <div class="tab-content mt-3">
-                    <div role="tabpanel" class="tab-pane active" id="active">
+                    <div role="tabpanel" class="tab-pane active" id="active-campaign">
 
                         <div class="table-responsive--md  table-responsive">
                             <table class="table table--light style--two" id="activedata">
                                 <thead>
                                     <tr>
                                         <th>Status</th>
+                                        <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Active Campaigns')</th>
                                         <th scope="col">@lang('Active Campaign Budget')</th>
@@ -47,7 +51,88 @@
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
                                         <th scope="col">@lang('Email')</th>
-                                        <th scope="col">@lang('Username')</th>
+                                        <th scope="col">@lang('Products/Services')</th>
+                                        <th scope="col">@lang('Website')</th>
+                                        <th scope="col">@lang('Social Media')</th>
+                                        <th scope="col">@lang('Ad Budget')</th>
+
+                                        <th scope="col">@lang('Date Applied')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(!empty($activeCampaign))
+                                    @foreach($activeCampaign as $advertiser)
+                                    <tr>
+                                        <td data-label="@lang('Name')" class="text--primary">
+                                            <div class="align-items-center d-flex flex-column justify-content-center" style="gap: 5px;">
+                                                <input type="checkbox" name="status" @if($advertiser->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                                <div style="display: inline-table;">
+                                                    <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
+                                                        <i class="las la-desktop text--shadow"></i>
+                                                    </a>
+
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                        <i class="fa-regular fa-circle-xmark"></i>
+
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+                                        <td>{{ $advertiser->id }}</td>
+                                        <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                        <td data-label="@lang('Active Campaigns')"><?php echo get_total_active_campaign($advertiser->id) ?></td>
+                                        <td data-label="@lang('Active Campaigns')">$<?php echo get_active_campaign_budget($advertiser->id) ?></td>
+
+                                        <td data-label="@lang('Assign Publisher Admin')">
+                                            <ul class="check_box_list">
+                                                @forelse($publishers_admin as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
+                                        <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
+                                        <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
+                                        <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                        <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                        <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+
+                                        <td><span class="text--small"><strong> {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
+
+                                    </tr>
+                                    @endforeach
+                                    @endif
+
+                                </tbody>
+                            </table><!-- table end -->
+                        </div>
+                    </div>
+                    <!-- Tab panes 2 -->
+                    <div role="tabpanel" class="tab-pane" id="active">
+
+                        <div class="table-responsive--md  table-responsive">
+                            <table class="table table--light style--two" id="activedata">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>A.ID</th>
+                                        <th scope="col">@lang('Company Name')</th>
+                                        <th scope="col">@lang('Active Campaigns')</th>
+                                        <th scope="col">@lang('Active Campaign Budget')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Name')</th>
+                                        <th scope="col">@lang('Country')</th>
+                                        <th scope="col">@lang('Phone')</th>
+                                        <th scope="col">@lang('Email')</th>
                                         <th scope="col">@lang('Products/Services')</th>
                                         <th scope="col">@lang('Website')</th>
                                         <th scope="col">@lang('Social Media')</th>
@@ -77,6 +162,7 @@
                                             </div>
 
                                         </td>
+                                        <td>{{ $advertiser->id }}</td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
                                         <td data-label="@lang('Active Campaigns')"><?php echo get_total_active_campaign($advertiser->id) ?></td>
                                         <td data-label="@lang('Active Campaigns')">$<?php echo get_active_campaign_budget($advertiser->id) ?></td>
@@ -84,7 +170,7 @@
                                         <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
-                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
                                                 @empty
 
                                                 @endforelse
@@ -92,11 +178,10 @@
                                         </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
-                                        <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
                                         <td data-label="@lang('Email')">
                                             <div style="white-space: initial;">{{ $advertiser->email }}</div>
                                         </td>
-                                        <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
                                         <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
@@ -104,7 +189,7 @@
 
 
                                         <td><span class="text--small"><strong> {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
-                                        
+
                                     </tr>
                                     @endforeach
                                     @endif
@@ -113,7 +198,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 2 -->
+                    <!-- Tab panes 3 -->
                     <div role="tabpanel" class="tab-pane" id="pending">
 
                         <div class="table-responsive--md  table-responsive">
@@ -121,13 +206,14 @@
                                 <thead>
                                     <tr>
                                         <th>Status</th>
+                                        <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
                                         <th scope="col">@lang('Email')</th>
-                                        <th scope="col">@lang('Username')</th>
+
                                         <th scope="col">@lang('Products/Services')</th>
                                         <th scope="col">@lang('Website')</th>
                                         <th scope="col">@lang('Social Media')</th>
@@ -163,6 +249,7 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        <td>{{ $advertiser->id }}</td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
                                         <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
@@ -175,11 +262,11 @@
                                         </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
-                                        <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
                                         <td data-label="@lang('Email')">
                                             <div style="white-space: initial;">{{ $advertiser->email }}</div>
                                         </td>
-                                        <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
                                         <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
@@ -197,7 +284,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 3 -->
+                    <!-- Tab panes 4 -->
                     <div role="tabpanel" class="tab-pane" id="emaildata">
 
                         <div class="table-responsive--md  table-responsive">
@@ -205,13 +292,14 @@
                                 <thead>
                                     <tr>
                                         <th>Status</th>
+                                        <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
                                         <th scope="col">@lang('Email')</th>
-                                        <th scope="col">@lang('Username')</th>
+
                                         <th scope="col">@lang('Products/Services')</th>
                                         <th scope="col">@lang('Website')</th>
                                         <th scope="col">@lang('Social Media')</th>
@@ -243,6 +331,7 @@
                                             </div>
 
                                         </td>
+                                        <td>{{ $advertiser->id }}</td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
                                         <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
@@ -255,11 +344,11 @@
                                         </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
-                                        <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
                                         <td data-label="@lang('Email')">
                                             <div style="white-space: initial;">{{ $advertiser->email }}</div>
                                         </td>
-                                        <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
                                         <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
@@ -279,7 +368,7 @@
                     </div>
 
 
-                    <!-- Tab panes 4 -->
+                    <!-- Tab panes 5 -->
                     <div role="tabpanel" class="tab-pane" id="banned">
 
                         <div class="table-responsive--md  table-responsive">
@@ -287,13 +376,14 @@
                                 <thead>
                                     <tr>
                                         <th>Status</th>
+                                        <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
                                         <th scope="col">@lang('Email')</th>
-                                        <th scope="col">@lang('Username')</th>
+
                                         <th scope="col">@lang('Products/Services')</th>
                                         <th scope="col">@lang('Website')</th>
                                         <th scope="col">@lang('Social Media')</th>
@@ -324,6 +414,7 @@
 
                                             </div>
                                         </td>
+                                        <td>{{ $advertiser->id }}</td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
                                         <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
@@ -336,11 +427,11 @@
                                         </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
-                                        <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
                                         <td data-label="@lang('Email')">
                                             <div style="white-space: initial;">{{ $advertiser->email }}</div>
                                         </td>
-                                        <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
                                         <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
@@ -358,7 +449,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 5 -->
+                    <!-- Tab panes 6 -->
                     <div role="tabpanel" class="tab-pane" id="rejected">
 
                         <div class="table-responsive--md  table-responsive">
@@ -366,13 +457,14 @@
                                 <thead>
                                     <tr>
                                         <th>Status</th>
+                                        <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
                                         <th scope="col">@lang('Email')</th>
-                                        <th scope="col">@lang('Username')</th>
+
                                         <th scope="col">@lang('Products/Services')</th>
                                         <th scope="col">@lang('Website')</th>
                                         <th scope="col">@lang('Social Media')</th>
@@ -404,6 +496,7 @@
 
                                             </div>
                                         </td>
+                                        <td>{{ $advertiser->id }}</td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
                                         <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
@@ -416,11 +509,11 @@
                                         </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
-                                        <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
                                         <td data-label="@lang('Email')">
                                             <div style="white-space: initial;">{{ $advertiser->email }}</div>
                                         </td>
-                                        <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
                                         <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
@@ -439,7 +532,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 6 -->
+                    <!-- Tab panes 7 -->
                     <div role="tabpanel" class="tab-pane" id="advertiserdata">
 
                         <div class="table-responsive--md  table-responsive">
@@ -447,13 +540,14 @@
                                 <thead>
                                     <tr>
                                         <th>Status</th>
+                                        <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
                                         <th scope="col">@lang('Email')</th>
-                                        <th scope="col">@lang('Username')</th>
+
                                         <th scope="col">@lang('Products/Services')</th>
                                         <th scope="col">@lang('Website')</th>
                                         <th scope="col">@lang('Social Media')</th>
@@ -484,6 +578,7 @@
 
                                             </div>
                                         </td>
+                                        <td>{{ $advertiser->id }}</td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
                                         <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
@@ -496,11 +591,11 @@
                                         </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
-                                        <td data-label="@lang('Phone')">{{ $advertiser->mobile }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
                                         <td data-label="@lang('Email')">
                                             <div style="white-space: initial;">{{ $advertiser->email }}</div>
                                         </td>
-                                        <td data-label="@lang('Username')">{{ $advertiser->username }}</td>
+
                                         <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
                                         <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
                                         <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
@@ -1055,6 +1150,12 @@
     [data-original-title="Ban"] i,
     [data-original-title="Delete"] i {
         font-size: 23px;
+    }
+
+    thead>tr>th:nth-child(2) {
+        max-width: 50px !important;
+        padding-left: 0 !important;
+        vertical-align: middle;
     }
 </style>
 @endpush
