@@ -37,12 +37,13 @@ class CampaignsController extends Controller
 
     public function edit(Request $request, $id)
     {
-        $campaign = campaigns::where('campaigns.id', $id)->first();
-        if($campaign->form_id_existing){
-            $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id_existing', '=', 'campaign_forms.id')->first();
-        }else{
-            $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id', '=', 'campaign_forms.id')->first();
-        }
+       // $campaign = campaigns::where('campaigns.id', $id)->first();
+        $campaign = campaigns::where('campaigns.id', $id)->with('campaign_forms')->with('campaign_forms_exits')->first();
+        // if($campaign->form_id_existing){
+        //     $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id_existing', '=', 'campaign_forms.id')->first();
+        // }else{
+        //     $campaign = campaigns::where('campaigns.id', $id)->join('campaign_forms', 'campaigns.form_id', '=', 'campaign_forms.id')->first();
+        // }
        // $campaign->target_placements = unserialize($campaign->target_placements);
         return response()->json($campaign);
     }

@@ -150,7 +150,7 @@ class CampaignsdemoController extends Controller
             // if( $request->draft_form_id && $request->draft_form_id  != 0 ){ campaign_forms::find( $request->draft_form_id)->delete(); }
             $form_id = $request->form_id;
             $campaign_forms = campaign_forms::findOrFail( $form_id );
-            $save_form = false;
+            $save_form = true;
         }elseif( $request->draft_form_id != 0){
             $form_id = $request->draft_form_id;
             $campaign_forms = campaign_forms::findOrFail( $form_id );

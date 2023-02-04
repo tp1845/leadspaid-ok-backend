@@ -330,7 +330,7 @@ $user = auth()->guard('advertiser')->user();
                                 <td>{{$campaign->id}}</td>
                                 <td><input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
                                 <td class="edit_btns">{{ $campaign->name }} <br>
-                                    @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif
+                                    @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" data-mode="draft" class="editcampaign create-campaign-btn2">Edit</a> | @endif
 
                                     @if($campaign->delivery !=2 )
                                     <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a>
@@ -511,6 +511,7 @@ $user = auth()->guard('advertiser')->user();
         <form method="POST" action="{{ route('advertiser.campaigns.store.demo') }}" id="campaign_form" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="0" name="draft_form_id" id="draft_form_id">
+            <input type="hidden" value="0" name="form_id" id="input_form_id">
             <input type="hidden" value="0" name="campaign_id" id="input_campaign_id">
             <input type="hidden" value="{{ Auth::guard('advertiser')->user()->id }}" name="advertiser_id">
             <div class="modal-content h-100 ">
@@ -1398,7 +1399,7 @@ padding: 0; display: block; opacity: 0;">
         updateformpreviewtext();
     }
 
-    function add_form_field(type) {
+    function add_form_field(type, row_data = false) {
         var table = $('#sortable');
         var row = table.attr('data-row');
         row = ++row;
@@ -1418,7 +1419,8 @@ padding: 0; display: block; opacity: 0;">
                 html += '<input type="text" readonly class="small_info InputQuestionType" name="field_' + row + '[question_type]" value="ShortAnswer" required>';
             }
             html += '<div class="input-group input-col">';
-            html += '<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_' + row + '[question_text]" required maxlength="39">';
+            if(row_data){ var question_text =   row_data.question_text ; }else{ var question_text = '';  }
+            html += '<input type="text" class="form-control InputQuestion_text" placeholder="Enter Your Question" name="field_' + row + '[question_text]" required maxlength="39" value="'+question_text+'">';
             html += '<div class="input-group-append bg-white">';
             html += '<div class="input-group-text"> <a href="#" class="text-danger del-row"><i class="fas fa-times-circle"></i></a></div>';
             html += '</div>';
@@ -1446,7 +1448,7 @@ padding: 0; display: block; opacity: 0;">
         }
     }
 
-    function add_form_field_2(row_num, type) {
+    function add_form_field_2(type, row_num) {
         var table = $('#sortable');
         var row = table.attr('data-row');
         row = row_num;
@@ -1501,8 +1503,19 @@ padding: 0; display: block; opacity: 0;">
         $('#campaign_createModalLabel').html('Create Campaign');
         $('#campaign_create_modal form').trigger("reset");
         $('#input_campaign_id').val(0);
+        $('#input_form_id').val(0);
         $('#draft_form_id').val(0);
+        var fields_body = $('#sortable');
+        fields_body.attr('data-row', 0);
+        fields_body.html('');
+        const row_data_1= {sort: 1, required: 'on', question_type: "ShortAnswer", question_text:'Your Name' };
+        add_form_field('single', row_data_1);
+        const row_data_2 = {sort: 2, required: 'on', question_type: "ShortAnswer", question_text:'Email id' };
+        add_form_field('single', row_data_2);
+        const row_data_3 = {sort: 3, required: 'on', question_type: "ShortAnswer", question_text:'Phone Number' };
+        add_form_field('single', row_data_3);
     }
+
 
     $(document).ready(function() {
         var campaign_list_live = $('#campaign_list_live').DataTable({
@@ -1665,7 +1678,6 @@ padding: 0; display: block; opacity: 0;">
                     url: "{{route('advertiser.campaigns.get_last_draft')}}",
                     success: function(data) {
                         if (data.success) {
-                            console.log(data.row)
                             if(data.row.id > max){
                                 var url_edit = '{{  route("advertiser.campaigns.edit", ":id") }}';
                                 url_edit = url_edit.replace(':id', data.row.id);
@@ -2585,87 +2597,11 @@ padding: 0; display: block; opacity: 0;">
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
-
-
-    $('body').on('click', '.duplicatecampaign, .editcampaign', function(e) {
-        e.preventDefault();
-        reset_campaign_create_form();
-        $('#campaign_createModalLabel').html('Edit Campaign');
-
-        //var validator = $( "#campaign_form" ).validate();
-        //validator.resetForm();
-        $("#campaign_form").find('.has-error').removeClass("has-error");
-        $("#campaign_form").find('.has-success').removeClass("has-success");
-        $('#campaign_form').find('.form-control-feedback').remove();
-        $('#campaign_form').find('input').removeClass('is-invalid');
-
-        $("#campaign_create_modal").attr("data-status", 'edit');
-
-        campaign_create_modal.modal('show');
-        var campaign_id = $(this).attr('data-id');
-        var tyrpp = $(this).data('type');
-        var sttaus = $(this).data('status');
-        // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
-        // url = url.replace(':campaign_id', campaign_id);
-        // url =  "/advertiser/campaigns/edit/"+ campaign_id;
-        var url = $(this).attr('href');
-        $.get(url, function(data) {
-            if (tyrpp == "edit") {
-                $('#input_campaign_id').val(campaign_id);
-                $("input[name='campaign_name']").val(data.name);
-                $("input[name='form_name']").val(data.form_name);
-                $("#submit").text('Save Camapign');
-                $("#campaign_form").find(".btn--primary").text('Save Camapign');
-                if (data.approve == 1) {
-                    $("#campaign_name_Input").prop('readonly', true);
-                    $("#form_name").prop('readonly', true);
-                    $(".leftForm").find('input').prop('readonly', true);
-                    $(".rightForm").find('input').prop('readonly', true);
-                } else {
-                    $("#campaign_name_Input").prop('readonly', false);
-                    $("#form_name").prop('readonly', false);
-                    $(".leftForm").find('input').prop('readonly', false);
-                    $(".rightForm").find('input').prop('readonly', false);
-                }
-            } else {
-                $("input[name='campaign_name']").val(data.name + ' (Copy)');
-                $("input[name='form_name']").val(data.form_name + ' (Copy)');
-                $("#campaign_name_Input").prop('readonly', false);
-                $("#form_name").prop('readonly', false);
-                $(".leftForm").find('input').prop('readonly', false);
-                $(".rightForm").find('input').prop('readonly', false);
-            }
-            validate_form_data();
-
-
-            $("input[name='start_date']").val(data.start_date);
-            $("input[name='end_date']").val(data.end_date);
-            if (data.end_date !== null) {
-                $('#SelectEndDateSelect').val("SetEndDate").change();
-            } else {
-                $('#SelectEndDateSelect').val("NoEndDate").change();
-            }
-
-            if(data.form_id_existing){
-
-                $("input[name='SelectFormType'][value=UseExistingForm]").prop('checked', true);
-                $("input[name='form_id_existing'][value="+data.form_id_existing+"]").prop('checked', true);
-                $("input[name='SelectFormType']:not(:checked)").attr('disabled', true);
-                $("#UseExistingForm").show();
-
-            }else{
-                $("input[name='SelectFormType'][value=CreateNewForm]").prop('checked', true);
-                $("#CreateNewForm").show();
-            }
-
-            $("input[name='daily_budget']").val(data.daily_budget);
-            $("input[name='target_cost']").val(data.target_cost);
-            $("#TargetCountryInput").val(data.target_country).change();
-
-            $("#TargetingTypeInput").val(data.target_type).change();
-            if (data.company_logo != null) {
+    function fill_form_data(data) {
+        $("input[name='form_name']").val(data.form_name);
+        $("input[name='company_name']").val(data.company_name);
+        if (data.company_logo != null) {
                 $("#company_logo_preview").show();
-
                 $("#company_logo_img").attr('src', "{{ url('/')}}/assets/images/campaign_forms/" + data.company_logo);
             }
             if ((data.company_logo == null) || (data.company_name == null)) {
@@ -2674,16 +2610,25 @@ padding: 0; display: block; opacity: 0;">
                 $(".logo_comapny").val(0);
             }
             $("#company_logo_img").show();
-            $("input[name='form_punchline']").val(data.punchline);
 
-            $.each(JSON.parse(data.title), function(idx, val) {
+            $.each(data.title, function(idx, val) {
                 if (val != null) {
                     $("#form_title_" + idx).show();
                     $("#form_title_" + idx).prev().find(".fa-plus-circle").hide();
-
                     $("#form_title_" + idx).find('input').val(val);
                 }
             });
+
+            $.each(data.form_desc, function(idx, val) {
+                if (val != null) {
+                    $("#FormDescription_" + idx).show();
+                    $("#FormDescription_" + idx).find('input').val(val);
+                    $("#FormDescription_" + idx).prev().find(".fa-plus-circle").hide();
+                }
+            });
+
+            $("input[name='form_punchline']").val(data.punchline);
+
             var vqty = '';
             if (data.youtube_1 != null) {
                 var html = '<div class="youtube_iframe"><ul><li><span class="edit_video" data-id="1"><i class="fas fa-edit text-success"></i></span></li><li><span class="remove_video" data-id="1"> <i class="fas fa-times-circle"></i></span></li></ul><iframe src="' + validateYouTubeUrl(data.youtube_1) + '" frameborder="0" allowfullscreen></iframe></div>';
@@ -2725,244 +2670,146 @@ padding: 0; display: block; opacity: 0;">
                 $("#image_3_img").attr('src', "{{ url('/')}}/assets/images/campaign_forms/" + data.image_3);
                 vqty = 1;
             }
-
             $(".create_qty").val(vqty);
-            $.each(JSON.parse(data.form_desc), function(idx, val) {
-                if (val != null) {
-                    $("#FormDescription_" + idx).show();
-                    $("#FormDescription_" + idx).find('input').val(val);
-                    $("#FormDescription_" + idx).prev().find(".fa-plus-circle").hide();
-                }
-
-            });
-
-
+            // Update Form Fileds
             var field_count = 0;
-
-            if (data.field_1 != null) {
-                field_count = field_count + 1;
-                var field1 = JSON.parse(data.field_1);
-                if (field1.question_type == "ShortAnswer") {
-                    add_form_field_2(1, 'single');
-                } else {
-                    add_form_field_2(1, 'multiple');
-                    if (field1.option_1 != null) {
-                        $(".row_1").find('.option:nth-child(1)').find('input').val(field1.option_1);
-                    }
-                    if (field1.option_2 != null) {
-                        $(".row_1").find('.option:nth-child(2)').find('input').val(field1.option_2);
-                    }
-                    if (field1.option_3 != null) {
-                        $(".row_1").find('.option:nth-child(3)').find('input').val(field1.option_3);
-                    }
-                    if (field1.option_4 != null) {
-                        $(".row_1").find('.option:nth-child(4)').find('input').val(field1.option_4);
-                    }
-                    if (field1.option_5 != null) {
-                        //$(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_1").find('.option:nth-child(5)').find('input').val(field1.option_5);
-                    }
-                    if (field1.option_6 != null) {
-                        // $(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_1").find('.option:nth-child(6)').find('input').val(field1.option_6);
-                    }
-
-                }
-
-
-
-                if (field1.required == "on") {
-                    $(".row_1").find("input[type=checkbox]").prop('checked', true);
-                } else {
-                    $(".row_1").find("input[type=checkbox]").prop('checked', false);
-                }
-                $(".row_1").find(".sort").val(field1.sort);
-                $(".row_1").find(".InputQuestionType").val(field1.question_type);
-                $(".row_1").find(".InputQuestion_text").val(field1.question_text);
-            }
-
-            if (data.field_2 != null) {
-
-                field_count = field_count + 1;
-                var field2 = JSON.parse(data.field_2);
-
-
-                if (field2.question_type == "ShortAnswer") {
-                    add_form_field_2(2, 'single');
-                } else {
-
-                    add_form_field_2(2, 'multiple');
-                    if (field2.option_1 != null) {
-                        $(".row_2").find('.option:nth-child(1)').find('input').val(field2.option_1);
-                    }
-                    if (field2.option_2 != null) {
-                        $(".row_2").find('.option:nth-child(2)').find('input').val(field2.option_2);
-                    }
-                    if (field2.option_3 != null) {
-                        $(".row_2").find('.option:nth-child(3)').find('input').val(field2.option_3);
-                    }
-                    if (field2.option_4 != null) {
-                        $(".row_2").find('.option:nth-child(4)').find('input').val(field2.option_4);
-                    }
-                    if (field2.option_5 != null) {
-                        //$(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_2").find('.option:nth-child(5)').find('input').val(field2.option_5);
-                    }
-                    if (field2.option_6 != null) {
-                        // $(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_2").find('.option:nth-child(6)').find('input').val(field2.option_6);
-                    }
-
-                }
-
-
-
-
-                if (field2.required == "on") {
-                    $(".row_2").find("input[type=checkbox]").prop('checked', true);
-                } else {
-                    $(".row_2").find("input[type=checkbox]").prop('checked', false);
-                }
-                $(".row_2").find(".sort").val(field2.sort);
-                $(".row_2").find(".InputQuestionType").val(field2.question_type);
-
-                $(".row_2").find(".InputQuestion_text").val(field2.question_text);
-            }
-
-            if (data.field_3 != null) {
-                field_count = field_count + 1;
-
-                var field3 = JSON.parse(data.field_3);
-
-
-                if (field3.question_type == "ShortAnswer") {
-                    add_form_field_2(3, 'single');
-                } else {
-                    add_form_field_2(3, 'multiple');
-                    if (field3.option_1 != null) {
-                        $(".row_3").find('.option:nth-child(1)').find('input').val(field3.option_1);
-                    }
-                    if (field3.option_2 != null) {
-                        $(".row_3").find('.option:nth-child(2)').find('input').val(field3.option_2);
-                    }
-                    if (field3.option_3 != null) {
-                        $(".row_3").find('.option:nth-child(3)').find('input').val(field3.option_3);
-                    }
-                    if (field3.option_4 != null) {
-                        $(".row_3").find('.option:nth-child(4)').find('input').val(field3.option_4);
-                    }
-                    if (field3.option_5 != null) {
-                        //$(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_3").find('.option:nth-child(5)').find('input').val(field3.option_5);
-                    }
-                    if (field3.option_6 != null) {
-                        // $(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_3").find('.option:nth-child(6)').find('input').val(field3.option_6);
-                    }
-
-                }
-
-                if (field3.required == "on") {
-                    $(".row_3").find("input[type=checkbox]").prop('checked', true);
-                } else {
-                    $(".row_3").find("input[type=checkbox]").prop('checked', false);
-                }
-                $(".row_3").find(".sort").val(field3.sort);
-                $(".row_3").find(".InputQuestionType").val(field3.question_type);
-                $(".row_3").find(".InputQuestion_text").val(field3.question_text);
-            }
-            $(".row_4").remove();
-            if (data.field_4 != null) {
-
-                field_count = field_count + 1;
-                var field4 = JSON.parse(data.field_4);
-
-                if (field4.question_type == "ShortAnswer") {
-                    add_form_field('single');
-                } else {
-                    add_form_field('multiple');
-                    if (field4.option_1 != null) {
-                        $(".row_4").find('.option:nth-child(1)').find('input').val(field4.option_1);
-                    }
-                    if (field4.option_2 != null) {
-                        $(".row_4").find('.option:nth-child(2)').find('input').val(field4.option_2);
-                    }
-                    if (field4.option_3 != null) {
-                        $(".row_4").find('.option:nth-child(3)').find('input').val(field4.option_3);
-                    }
-                    if (field4.option_4 != null) {
-                        $(".row_4").find('.option:nth-child(4)').find('input').val(field4.option_4);
-                    }
-                    if (field4.option_5 != null) {
-                        //$(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_4").find('.option:nth-child(5)').find('input').val(field4.option_5);
-                    }
-                    if (field4.option_6 != null) {
-                        // $(".row_4").find(".btn-add-option").triggr('click');
-                        $(".row_4").find('.option:nth-child(6)').find('input').val(field4.option_6);
-                    }
-
-                }
-
-                if (field4.required == "on") {
-                    $(".row_4").find("input[type=checkbox]").prop('checked', true);
-                } else {
-                    $(".row_4").find("input[type=checkbox]").prop('checked', false);
-                }
-                $(".row_4").find(".sort").val(field4.sort);
-
-                $(".row_4").find(".InputQuestionType").val(field4.question_type);
-                $(".row_4").find(".InputQuestion_text").val(field4.question_text);
-            }
-            $(".row_5").remove();
-            if (data.field_5 != null) {
-
-                field_count = field_count + 1;
-                var field5 = JSON.parse(data.field_5);
-
-                if (field5.question_type == "ShortAnswer") {
-                    add_form_field('single');
-                } else {
-                    add_form_field('multiple');
-                    if (field5.option_1 != null) {
-                        $(".row_5").find('.option:nth-child(1)').find('input').val(field5.option_1);
-                    }
-                    if (field5.option_2 != null) {
-                        $(".row_5").find('.option:nth-child(2)').find('input').val(field5.option_2);
-                    }
-                    if (field5.option_3 != null) {
-                        $(".row_5").find('.option:nth-child(3)').find('input').val(field5.option_3);
-                    }
-                    if (field5.option_4 != null) {
-                        $(".row_5").find('.option:nth-child(4)').find('input').val(field5.option_4);
-                    }
-                    if (field5.option_5 != null) {
-                        //$(".row_5").find(".btn-add-option").triggr('click');
-                        $(".row_5").find('.option:nth-child(5)').find('input').val(field5.option_5);
-                    }
-                    if (field5.option_6 != null) {
-                        //  $(".row_5").find(".btn-add-option").triggr('click');
-                        $(".row_5").find('.option:nth-child(6)').find('input').val(field5.option_6);
-                    }
-
-                }
-
-
-                if (field5.required == "on") {
-                    $(".row_5").find("input[type=checkbox]").prop('checked', true);
-                } else {
-                    $(".row_5").find("input[type=checkbox]").prop('checked', false);
-                }
-                $(".row_5").find(".sort").val(field5.sort);
-                $(".row_5").find(".InputQuestionType").val(field5.question_type);
-                $(".row_5").find(".InputQuestion_text").val(field5.question_text);
-            }
             $("#sortable").attr('data-row', field_count);
+            if (data.field_1 != null) { field_count++; set_iframe_form_fileds(data.field_1,1,'.row_1') }
+            if (data.field_2 != null) { field_count++; set_iframe_form_fileds(data.field_2,2,'.row_2') }
+            if (data.field_3 != null) { field_count++; set_iframe_form_fileds(data.field_3,3,'.row_3') }
+            $(".row_4").remove();  $(".row_5").remove();
+            if (data.field_4 != null) { field_count++; set_iframe_form_fileds(data.field_4,4,'.row_4') }
+            if (data.field_5 != null) { field_count++; set_iframe_form_fileds(data.field_5,5,'.row_5') }
+            $("#sortable").attr('data-row', field_count);
+            // ==================
+    }
+
+    function set_iframe_form_fileds(field, row_num, row_class){
+
+        if (field != null) {
+           // var field = JSON.parse(field);
+            if (field.question_type == "ShortAnswer") {
+                if(row_num == 4 || row_num == 5){ add_form_field('single'); }else{ add_form_field_2('single', row_num); }
+
+            } else {
+                if(row_num == 4 || row_num == 5){ add_form_field('multiple'); }else{ add_form_field_2('multiple', row_num); }
+                if (field.option_1 != null) {
+                    $(".row_" + row_num).find('.option:nth-child(1)').find('input').val(field.option_1);
+                }
+                if (field.option_2 != null) {
+                    $(".row_" + row_num).find('.option:nth-child(2)').find('input').val(field.option_2);
+                }
+                if (field.option_3 != null) {
+                    $(".row_" + row_num).find('.option:nth-child(3)').find('input').val(field.option_3);
+                }
+                if (field.option_4 != null) {
+                    $(".row_" + row_num).find('.option:nth-child(4)').find('input').val(field.option_4);
+                }
+                if (field.option_5 != null) {
+                    $(".row_" + row_num).find('.option:nth-child(5)').find('input').val(field.option_5);
+                }
+                if (field.option_6 != null) {
+                    $(".row_" + row_num).find('.option:nth-child(6)').find('input').val(field.option_6);
+                }
+            }
+            if (field.required == "on") {
+                $(".row_" + row_num).find("input[type=checkbox]").prop('checked', true);
+            } else {
+                $(".row_" + row_num).find("input[type=checkbox]").prop('checked', false);
+            }
+            $(".row_" + row_num).find(".sort").val(field.sort);
+            $(".row_" + row_num).find(".InputQuestionType").val(field.question_type);
+            $(".row_" + row_num).find(".InputQuestion_text").val(field.question_text);
+        }
+    }
+
+
+    $('body').on('click', '.duplicatecampaign, .editcampaign', function(e) {
+        e.preventDefault();
+        reset_campaign_create_form();
+        $('#campaign_createModalLabel').html('Edit Campaign');
+        //var validator = $( "#campaign_form" ).validate();
+        //validator.resetForm();
+        $("#campaign_form").find('.has-error').removeClass("has-error");
+        $("#campaign_form").find('.has-success').removeClass("has-success");
+        $('#campaign_form').find('.form-control-feedback').remove();
+        $('#campaign_form').find('input').removeClass('is-invalid');
+        if($(this).data('mode') == 'draft'){
+            $("#campaign_create_modal").attr("data-status", 'create');
+        }else{
+            $("#campaign_create_modal").attr("data-status", 'edit');
+        }
+        campaign_create_modal.modal('show');
+        var campaign_id = $(this).attr('data-id');
+        var tyrpp = $(this).data('type');
+        var sttaus = $(this).data('status');
+        // var url = '{{ route("advertiser.campaigns.edit", ":campaign_id") }}';
+        // url = url.replace(':campaign_id', campaign_id);
+        // url =  "/advertiser/campaigns/edit/"+ campaign_id;
+        var url = $(this).attr('href');
+        $.get(url, function(data) {
+            if (tyrpp == "edit") {
+                $('#input_campaign_id').val(campaign_id);
+                $('#input_form_id').val(data.form_id);
+                $("input[name='campaign_name']").val(data.name);
+
+                fill_form_data(data.campaign_forms);
+
+                $("#submit").text('Save Camapign');
+                $("#campaign_form").find(".btn--primary").text('Save Camapign');
+                if (data.approve == 1) {
+                    $("#campaign_name_Input").prop('readonly', true);
+                    $("#form_name").prop('readonly', true);
+                    $(".leftForm").find('input').prop('readonly', true);
+                    $(".rightForm").find('input').prop('readonly', true);
+                } else {
+                    $("#campaign_name_Input").prop('readonly', false);
+                    $("#form_name").prop('readonly', false);
+                    $(".leftForm").find('input').prop('readonly', false);
+                    $(".rightForm").find('input').prop('readonly', false);
+                }
+            } else {
+                $("input[name='campaign_name']").val(data.name + ' (Copy)');
+                $("input[name='form_name']").val(data.form_name + ' (Copy)');
+                $("#campaign_name_Input").prop('readonly', false);
+                $("#form_name").prop('readonly', false);
+                $(".leftForm").find('input').prop('readonly', false);
+                $(".rightForm").find('input').prop('readonly', false);
+            }
+            validate_form_data();
+
+
+            $("input[name='start_date']").val(data.start_date);
+            $("input[name='end_date']").val(data.end_date);
+            if (data.end_date !== null) {
+                $('#SelectEndDateSelect').val("SetEndDate").change();
+            } else {
+                $('#SelectEndDateSelect').val("NoEndDate").change();
+            }
+
+            if(data.form_id_existing){
+
+                $("input[name='SelectFormType'][value=UseExistingForm]").prop('checked', true);
+                $("input[name='form_id_existing'][value="+data.form_id_existing+"]").prop('checked', true);
+               // $("input[name='SelectFormType']:not(:checked)").attr('disabled', true);
+                $("#UseExistingForm").show();
+
+            }else{
+                $("input[name='SelectFormType'][value=CreateNewForm]").prop('checked', true);
+                $("#CreateNewForm").show();
+            }
+
+            $("input[name='daily_budget']").val(data.daily_budget);
+            $("input[name='target_cost']").val(data.target_cost);
+            $("#TargetCountryInput").val(data.target_country).change();
+
+            $("#TargetingTypeInput").val(data.target_type).change();
+
             custom_edit_vide();
 
-            $("input[name='service_sell_buy']").val(data.service_sell_buy);
-            $("input[name='company_name']").val(data.company_name);
-            $("input[name='social_media_page']").val(data.social_media_page);
+           // $("input[name='service_sell_buy']").val(data.service_sell_buy);
+
+            //$("input[name='social_media_page']").val(data.social_media_page);
             //$("input[name=form_id][value=" + data.form_id + "]").prop('checked', true);
             //$("input[name=form_id][value=" + data.form_id + "]").trigger('click');
             setTimeout(function() {
@@ -4275,7 +4122,7 @@ if($_GET['action']=="create_campiagin"){
         width: 30px;
         height: 30px;
         border-radius: 50%;
-        box-shadow: 0 0 7px #00000038;
+        box-shadow: 0 0 7px #00000038;hidden
     }
 
     #preview_media .owl-theme .owl-nav .owl-next {
@@ -4598,4 +4445,5 @@ if($_GET['action']=="create_campiagin"){
         }
     }
 </style>
+
 @endpush
