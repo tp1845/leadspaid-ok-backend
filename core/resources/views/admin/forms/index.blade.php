@@ -119,7 +119,7 @@
                             <td>{{json_decode($form->field_4)->question_text?? '' }}</td>
                             <td>{{json_decode($form->field_5)->question_text?? '' }}</td>
                             <td>{{$form->status ==0?'Off' : "Active" }}</td>
-                            <td>{{$form->Creation Date}}</td>
+                            <td>{{$form->created_at}}</td>
                             <td>
                                 <a href="{{ route('admin.forms.complete.delete',['id'=>$form->id]) }}" onclick="return deleteconfirm(<?php echo get_total_campaign_by_formid($form->id) ?>,<?php echo get_form_leads_by_id($form->id) ?>)" class="trashIocn" data-toggle="tooltip" title="" data-original-title="Delete">
                                     <i class="fa-regular fa-circle-xmark"></i>
