@@ -42,7 +42,7 @@
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Active Campaigns')</th>
                                         <th scope="col">@lang('Active Campaign Budget')</th>
-                                        <th scope="col">@lang('Assign publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -81,7 +81,7 @@
                                         <td data-label="@lang('Active Campaigns')"><?php echo get_total_active_campaign($advertiser->id) ?></td>
                                         <td data-label="@lang('Active Campaigns')">$<?php echo get_active_campaign_budget($advertiser->id) ?></td>
 
-                                        <td data-label="@lang('Assign publisher Admin')">
+                                        <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
                                                 <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
@@ -122,7 +122,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">@lang('Company Name')</th>
-                                        <th scope="col">@lang('Assign publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -164,7 +164,7 @@
                                             </div>
                                         </td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
-                                        <td data-label="@lang('Assign publisher Admin')">
+                                        <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
                                                 <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
@@ -206,7 +206,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">@lang('Company Name')</th>
-                                        <th scope="col">@lang('Assign publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -244,7 +244,7 @@
 
                                         </td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
-                                        <td data-label="@lang('Assign publisher Admin')">
+                                        <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
                                                 <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
@@ -288,7 +288,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">@lang('Company Name')</th>
-                                        <th scope="col">@lang('Assign publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -325,7 +325,7 @@
                                             </div>
                                         </td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
-                                        <td data-label="@lang('Assign publisher Admin')">
+                                        <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
                                                 <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
@@ -367,7 +367,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">@lang('Company Name')</th>
-                                        <th scope="col">@lang('Assign publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -405,7 +405,7 @@
                                             </div>
                                         </td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
-                                        <td data-label="@lang('Assign publisher Admin')">
+                                        <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
                                                 <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
@@ -448,7 +448,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">@lang('Company Name')</th>
-                                        <th scope="col">@lang('Assign publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -485,7 +485,7 @@
                                             </div>
                                         </td>
                                         <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
-                                        <td data-label="@lang('Assign publisher Admin')">
+                                        <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
                                                 <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>

@@ -30,7 +30,7 @@ class CampaignsFormsController extends Controller
         ->leftJoin('advertisers', 'campaign_forms_leads.advertiser_id', '=', 'advertisers.id')
         ->leftJoin('campaign_forms', 'campaign_forms_leads.form_id', '=', 'campaign_forms.id')
         ->where('campaign_forms_leads.advertiser_id', $searchtype,$advertiserid)
-        ->select('campaign_forms_leads.*', 'advertisers.name as aname','campaign_forms.form_name as cfname',  )        
+        ->select('campaign_forms_leads.*', 'advertisers.company_name as aname','campaign_forms.form_name as cfname',  )        
         ->get();
         $companies = DB::table('campaign_forms_leads')
         ->leftJoin('advertisers', 'campaign_forms_leads.advertiser_id', '=', 'advertisers.id')

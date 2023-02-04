@@ -10,7 +10,7 @@
                                 <tr>
                                     <th>Off/On</th>
                                     <th>Advertiser</th>
-                                    <th>A.Id</th>
+                                    <th>A.ID</th>
                                     <th>Assign to<br>Publisher Admin</th>
                                     <th>Assign to<br>Campaign Manager</th>
                                     <th>AdNetwork 1</th>
@@ -27,7 +27,7 @@
                                         <td> @if($advertiser->status)  <span class="badge badge-pill badge-success">ON</span>  @else <span class="badge badge-pill badge-danger">OFF</span>  @endif </td>
                                         <td>{{ $advertiser->company_name}} </td>
                                         <td>{{ $advertiser->id}} </td>
-                                        <td data-label="@lang('Assign publisher Admin')">
+                                        <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
                                                     @php  $username = substr($publisher->username, 0, strpos($publisher->username, "@"));  @endphp

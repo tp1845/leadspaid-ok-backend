@@ -10,7 +10,7 @@
                                 <tr>
                                     <th>Off/On</th>
                                     <th>Advertiser</th>
-                                    <th>C.Id</th>
+                                    <th>C.ID</th>
                                     <th>Campaign Name</th>
                                     <th>Delivery</th>
                                     <th>Creation date</th>

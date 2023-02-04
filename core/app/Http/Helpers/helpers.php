@@ -1050,11 +1050,11 @@ function get_campaign_name_by_id($id){
     }
 }
 
-function get_publisher_name_by_id($id){
+function get_publisher_email_by_id($id){
     $data=publisher::where('id', $id)->first();
 
     if(!empty($data)){
-        return $data->name;
+        return $data->email;
     }else{
         return  '';
     }

@@ -30,7 +30,7 @@
                                 <th>Campaign ID</th>
                                 <th>Campaign Name</th>
                                 <th>publisher Id</th>
-                                <th>publisher name</th>
+                                <th>Publisher Email</th>
                                 <th>lgen_source</th>
                                 <th>lgen_medium</th>
                                 <th>lgen_campaign</th>
@@ -56,7 +56,7 @@
                                 <td>{{ $lead->campaign_id }}</td>
                                 <td>{{ get_campaign_name_by_id($lead->campaign_id) }}</td>
                                 <td>{{ $lead->publisher_id }}</td>
-                                <td>{{ get_publisher_name_by_id($lead->campaign_id) }}</td>
+                                <td>{{ get_publisher_email_by_id($lead->publisher_id) }}</td>
                                 <td>{{ $lead->lgen_source }}</td>
                                 <td>{{ $lead->lgen_medium }}</td>
                                 <td>{{ $lead->lgen_campaign }}</td>

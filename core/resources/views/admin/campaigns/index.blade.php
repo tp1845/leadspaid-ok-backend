@@ -41,9 +41,9 @@
                                     <tr>
                                         <th>Off/On</th>
                                         <th>Campaign Name</th>
-                                        <th>C.Id</th>
+                                        <th>C.ID</th>
                                         <th>Advertiser</th>
-                                        <th>A.Id</th>
+                                        <th>A.ID</th>
                                         <th>Approve</th>
                                         <th>Creation Date</th>
                                         <th>Target Country</th>
@@ -91,8 +91,8 @@
                                         </td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
-                                        <td>${{ $campaign->daily_budget }}</td>
-                                        <td>${{ $campaign->target_cost }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->daily_budget) }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->target_cost) }}</td>
                                         <td>
                                             @if (isset($campaign->campaign_forms))
                                             <a href="#" class="btn_form_preview" data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}"> {{$campaign->campaign_forms->form_name}} </a> @endif
@@ -155,9 +155,9 @@
                                     <tr>
                                         <th>Off/On</th>
                                         <th>Campaign Name</th>
-                                        <th>C.Id</th>
+                                        <th>C.ID</th>
                                         <th>Advertiser</th>
-                                        <th>A.Id</th>
+                                        <th>A.ID</th>
                                         <th>Approve</th>
                                         <th>Creation Date</th>
                                         <th>Target Country</th>
@@ -205,8 +205,8 @@
                                         </td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
-                                        <td>${{ $campaign->daily_budget }}</td>
-                                        <td>${{ $campaign->target_cost }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->daily_budget) }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->target_cost) }}</td>
                                         <td>
                                             @if (isset($campaign->campaign_forms))
                                             <a href="#" class="btn_form_preview" data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}"> {{$campaign->campaign_forms->form_name}} </a> @endif
@@ -270,9 +270,9 @@
                                     <tr>
                                         <th>Off/On</th>
                                         <th>Campaign Name</th>
-                                        <th>C.Id</th>
+                                        <th>C.ID</th>
                                         <th>Advertiser</th>
-                                        <th>A.Id</th>
+                                        <th>A.ID</th>
                                         <th>Approve</th>
                                         <th>Rejection Remarks</th>
                                         <th>Creation Date</th>
@@ -323,8 +323,8 @@
                                         <td>{{ $campaign->rejection_remarks }}</td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
-                                        <td>${{ $campaign->daily_budget }}</td>
-                                        <td>${{ $campaign->target_cost }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->daily_budget) }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->target_cost) }}</td>
                                         <td>
                                             @if (isset($campaign->campaign_forms))
                                             <a href="#" class="btn_form_preview" data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}"> {{$campaign->campaign_forms->form_name}} </a> @endif
@@ -388,9 +388,9 @@
                                     <tr>
                                         <th>Off/On</th>
                                         <th>Campaign Name</th>
-                                        <th>C.Id</th>
+                                        <th>C.ID</th>
                                         <th>Advertiser</th>
-                                        <th>A.Id</th>
+                                        <th>A.ID</th>
 
 
                                         <th>Approve</th>
@@ -443,8 +443,8 @@
                                         </td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
-                                        <td>${{ $campaign->daily_budget }}</td>
-                                        <td>${{ $campaign->target_cost }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->daily_budget) }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->target_cost) }}</td>
                                         <td>
                                             @if (isset($campaign->campaign_forms))
                                             <a href="#" class="btn_form_preview" data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}"> {{$campaign->campaign_forms->form_name}} </a> @endif
@@ -509,9 +509,9 @@
                                     <tr>
                                         <th>Off/On</th>
                                         <th>Campaign Name</th>
-                                        <th>C.Id</th>
+                                        <th>C.ID</th>
                                         <th>Advertiser</th>
-                                        <th>A.Id</th>
+                                        <th>A.ID</th>
 
 
                                         <th>Approve</th>
@@ -562,8 +562,8 @@
                                         </td>
                                         <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
                                         <td>{{ $campaign->target_country }}</td>
-                                        <td>${{ $campaign->daily_budget }}</td>
-                                        <td>${{ $campaign->target_cost }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->daily_budget) }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->target_cost) }}</td>
                                         <td>
                                             @if (isset($campaign->campaign_forms))
                                             <a href="#" class="btn_form_preview" data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}"> {{$campaign->campaign_forms->form_name}} </a> @endif
