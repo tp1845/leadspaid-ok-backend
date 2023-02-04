@@ -636,7 +636,7 @@ function send_email_adv_admin($user, $type = null, $username)
     $sendto_email= 'arun.saba@leadspaid.com';
     $receiver_name = 'Admin';
     $subject= 'New Advertiser registered - Approve Now';
-    $message = '<p style="color: rgb(193,205,220);">A new Advertiser ('. $user->company_name .') has registered for an Advertiser account.<br/> <a href="https://www.leadspaid.com/admin">Approve it in admin panel</a>.</p>';
+    $message = '<p style="color: rgb(193,205,220);">A new Advertiser ('. $user->company_name .') has registered for an Advertiser account.<br/> <a style="color: rgb(193,205,220);" href="https://www.leadspaid.com/admin/advertiser/all">Approve it in admin panel</a>.</p>';
     send_general_email($sendto_email, $subject, $message, $receiver_name);
 }
 
@@ -1004,7 +1004,7 @@ function get_campiagn_cost_by_id($id,$start_date=null,$end_date=null){
         $end_date = date("Y-m-d",strtotime("+1 day"));
     }
     $cost_row= lgen_spend::where('campaign_id',$id)->whereBetween('lgen_date', array($start_date, $end_date))->select(['cost'])->get()->sum('cost');
- 
+
     return $cost_row;
 }
 function get_total_campaign($id){
@@ -1013,7 +1013,7 @@ function get_total_campaign($id){
 function get_total_campaign_by_formid($id){
     return campaigns::where('form_id',$id)->count();
 }
-function get_total_leads_by_campaignid($id){ 
+function get_total_leads_by_campaignid($id){
     return campaign_forms_leads::where('campaign_id', $id)->get()->count();
 }
 function get_total_active_campaign($id){
@@ -1040,9 +1040,9 @@ function get_publisher_username(){
 
 
 function get_campaign_name_by_id($id){
-    
+
     $data=campaigns::where('id',$id)->first();
-     
+
     if(!empty($data)){
         return $data->name;
     }else{

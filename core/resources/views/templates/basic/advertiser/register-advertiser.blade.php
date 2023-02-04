@@ -26,7 +26,7 @@
                 <div class="w-75 m-auto" id="errors_message"></div>
             </div>
         </div>
-        <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}">
+        <form id="form" class="form" name="form"  method="POST" action="{{route('advertiser.register_adv')}}" autocomplete="off">
             @csrf
             <div class="row">
                 <div class="col-md-11 mx-auto">
@@ -86,7 +86,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="form-group mb-3">
-                                                <input type="text" name="email" value="{{old('email')}}"  id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address">
+                                                <input type="text" name="email" value="{{old('email')}}"  id="email" class="form-control Rg_advts_name rounded-0" placeholder="Email Address"  autocomplete="new-username" >
                                             </div>
                                         </div>
                                     </div>
@@ -95,12 +95,12 @@
                                     <div class="row g-md-2">
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
-                                                <input type="password" name="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password">
+                                                <input type="password" name="password" id="password" class="form-control Rg_advts_name rounded-0" placeholder="Password"  autocomplete="new-password" >
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group mb-3">
-                                                <input type="password" name="password_confirmation" id="confirm_password" class="form-control Rg_advts_name rounded-0" placeholder="Confirm Password">
+                                                <input type="password" name="password_confirmation" id="confirm_password" class="form-control Rg_advts_name rounded-0" placeholder="Confirm Password"  autocomplete="off">
                                             </div>
                                         </div>
                                     </div>

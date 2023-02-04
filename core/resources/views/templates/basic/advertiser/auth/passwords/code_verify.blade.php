@@ -69,7 +69,7 @@
                                             </div>
                                             <div class="form-group text-center my-4">
 
-                                                <small class="text-center">   <b>Enter the reset password which has been sent to your email.</b> <br>If you haven't received an email, please check your Junk/Spam Folder as well, otherwise, <a href="{{ route('home.contact') }}" class="text-underline"><u>contact us</u></a> </small>
+                                                <small class="text-center">   <b>Enter the Reset Password Code which has been sent to your email.</b> <br>If you haven't received an email, please check your Junk/Spam Folder as well, otherwise, <a href="{{ route('home.contact') }}" class="text-underline"><u>contact us</u></a> </small>
 
                                             </div>
                                             <div class="form-group text-center">
