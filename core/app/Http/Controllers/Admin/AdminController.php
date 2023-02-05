@@ -36,7 +36,8 @@ class AdminController extends Controller
         $advertiser['pending']= Advertiser::where('status', 0)->where('ev','!=' , 0)->get()->count();
         $advertiser['unverified']=Advertiser::where('ev', 0)->where('status','!=' , 2)->get()->count();
         $advertiser['all']=Advertiser::count();
-
+        $activeCampaign =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND advertisers.status = 1 AND advertisers.ev != 0 ')->select('advertisers.*')->get();; 
+       
         //Campaigns
         $campaign['approved']=  campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', '!=', 2)->orderBy('id', 'DESC')->get()->count();
         $campaign['pending']=campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->where('approve', 0)->orderBy('id', 'DESC')->get()->count();
@@ -134,7 +135,7 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('page_title', 'widget', 'report', 'withdrawals',
             'chart','payment','paymentWithdraw','transactions','empty_message','approvedDomain',
-            'total_click','total_imp','pendingTicket','pendingDomain', 'depositsMonth', 'withdrawalMonth','advertiser','campaign'));
+            'total_click','total_imp','pendingTicket','pendingDomain', 'depositsMonth', 'withdrawalMonth','advertiser','activeCampaign','campaign'));
     }
 
 
