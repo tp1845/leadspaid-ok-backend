@@ -71,13 +71,15 @@ class ForgotPasswordController extends Controller
 
         $code = verificationCode(6);
 
-        AdvertiserPasswordReset::create([
-            'email' => $user->email,
-            'token' => $code,
-            'status' => 0,
-            'created_at' => date("Y-m-d h:i:s")
-        ]);
-
+        // AdvertiserPasswordReset::create([
+        //     'email' => $user->email,
+        //     'token' => $code,
+        //     'status' => 0,
+        //     'created_at' => date("Y-m-d h:i:s")
+        // ]);
+        AdvertiserPasswordReset::updateOrCreate(
+            ['email' => $user->email], ['token' => $code, 'status' => 0, 'created_at' => date("Y-m-d h:i:s")]
+        );
         $userAgent = getIpInfo();
         $os = osBrowser();
         send_email($user, 'PASS_RESET_CODE', [
