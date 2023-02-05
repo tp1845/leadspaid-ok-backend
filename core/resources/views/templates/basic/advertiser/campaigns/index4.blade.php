@@ -1521,9 +1521,9 @@ padding: 0; display: block; opacity: 0;">
         var campaign_list_live = $('#campaign_list_live').DataTable({
             columnDefs: [{
                     targets: 0,
-                    searchable: true,
+                    searchable: false,
                     visible: true,
-                    orderable: true
+                    orderable: false
                 },
                 {
                     targets: 2,
@@ -1531,15 +1531,15 @@ padding: 0; display: block; opacity: 0;">
                     orderable: true
                 },
                 {
-                    targets: 11,
-                    searchable: false,
-                    visible: true,
-                    orderable: false
-                },
-                {
                     targets: [7, 8, 9, 10],
                     className: "td-small",
                     width: "10px"
+                },
+                {
+                    targets: 11,
+                    searchable: true,
+                    visible: true,
+                    orderable: true
                 },
                 {
                     targets: '_all',
@@ -1557,9 +1557,9 @@ padding: 0; display: block; opacity: 0;">
         var campaign_list_pending = $('#campaign_list_pending').DataTable({
             columnDefs: [{
                     targets: 0,
-                    searchable: true,
+                    searchable: false,
                     visible: true,
-                    orderable: true
+                    orderable: false
                 },
                 {
                     targets: 2,
@@ -1567,15 +1567,15 @@ padding: 0; display: block; opacity: 0;">
                     orderable: true
                 },
                 {
-                    targets: 11,
-                    searchable: false,
-                    visible: true,
-                    orderable: false
-                },
-                {
                     targets: [7, 8, 9, 10],
                     className: "td-small",
                     width: "10px"
+                },
+                {
+                    targets: 11,
+                    searchable: true,
+                    visible: true,
+                    orderable: true
                 },
                 {
                     targets: '_all',
@@ -1599,9 +1599,9 @@ padding: 0; display: block; opacity: 0;">
 
                 },{
                     targets: 1,
-                    searchable: true,
+                    searchable: false,
                     visible: true,
-                    orderable: true
+                    orderable: false
                 },
                 {
                     targets: 3,
@@ -1609,15 +1609,15 @@ padding: 0; display: block; opacity: 0;">
                     orderable: true
                 },
                 {
-                    targets: 12,
-                    searchable: false,
-                    visible: true,
-                    orderable: false
-                },
-                {
                     targets: [8, 9, 10, 11],
                     className: "td-small",
                     width: "10px"
+                },
+                {
+                    targets: 12,
+                    searchable: true,
+                    visible: true,
+                    orderable: true
                 },
                 {
                     targets: '_all',
@@ -1634,9 +1634,9 @@ padding: 0; display: block; opacity: 0;">
         var campaign_list_trash = $('#campaign_list_trash').DataTable({
             columnDefs: [{
                     targets: 0,
-                    searchable: true,
+                    searchable: false,
                     visible: true,
-                    orderable: true
+                    orderable: false
                 },
                 {
                     targets: 2,
@@ -1644,15 +1644,15 @@ padding: 0; display: block; opacity: 0;">
                     orderable: true
                 },
                 {
-                    targets: 11,
-                    searchable: false,
-                    visible: true,
-                    orderable: false
-                },
-                {
                     targets: [7, 8, 9, 10],
                     className: "td-small",
                     width: "10px"
+                },
+                {
+                    targets: 11,
+                    searchable: true,
+                    visible: true,
+                    orderable: true
                 },
                 {
                     targets: '_all',
@@ -3032,6 +3032,9 @@ if($_GET['action']=="create_campiagin"){
         color: #1a273a;
         font-weight: normal;
     }
+
+    table.dataTable tbody tr td a { font-size: 13px; }
+
 
     .page-wrapper.default-version,
     table td,
