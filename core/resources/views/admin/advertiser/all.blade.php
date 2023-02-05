@@ -729,22 +729,21 @@
     var leads_preview_modal = $('#leads_preview_modal');
     $(document).ready(function() {
         $('.assign_publisher').change(function() {
-            console.log('assign_publisher');
             var advertiser_id = $(this).data('advertiser_id');
-            name = $(this).attr('name');
-            var data = new Array();
-            $("input[name='" + name + "']:checked").each(function(i) {
-                data.push($(this).val());
-            });
+            var publisher_id = $(this).val();
+            var type = $(this)[0].checked? 1:0;
+
+
             const formData = {
                 "_token": "{{ csrf_token() }}",
-                "assign_publisher": data,
+                "type": type,
+                "publisher_id": publisher_id,
                 "advertiser_id": advertiser_id
             };
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "{{route('admin.advertiser.assign_publisher')}}",
+                url: "{{route('admin.advertiser.assign_advertiser')}}",
                 data: formData,
                 success: function(data) {
                     if (data.success) {

@@ -156,6 +156,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         Route::get('advertiser/update_status/', 'AdvertiserController@update_status')->name('advertiser.update_status');
         Route::get('advertiser/update_status/rejection/', 'AdvertiserController@update_approval_rejection')->name('advertiser.approval.rejection');
         Route::post('advertiser/assign_publisher', 'AdvertiserController@assign_publisher')->name('advertiser.assign_publisher');
+        Route::post('advertiser/assign_advertiser', 'AdvertiserController@assign_advertiser')->name('advertiser.assign_advertiser');
 
          Route::get('advertiser/delete/{id}','AdvertiserController@advertiser_delete')->name('advertiser.delete');
          Route::get('advertiser/complete/delete/{id}','AdvertiserController@advertiser_complete_delete')->name('advertiser.complete.delete');

@@ -264,13 +264,38 @@ class AdvertiserController extends Controller
         $request->validate(['advertiser_id' => 'required']);
         $advertiser = Advertiser::findOrFail($request->advertiser_id);
         if ($advertiser) {
-            $advertiser->assign_publisher = $request->assign_publisher ? $request->assign_publisher : null;
+            $advertiser->assign_publisher = $request->assign_publisher ? array_unique($request->assign_publisher) : [];
             $advertiser->update();
-            return response()->json(['success' => true, 'message' => 'Successfully  Updated']);
+            return response()->json(['success' => true, 'message' => 'Successfully  Updated','output'=>array_unique($request->assign_publisher)]);
         } else {
             return response()->json(['success' => false, 'message' => 'Someting wrong try again!']);
         }
     }
+
+    public function assign_advertiser(Request $request)
+    {
+        $request->validate(['advertiser_id' => 'required']);
+        $request->validate(['publisher_id' => 'required']);
+        $request->validate(['type' => 'required']);
+        $advertiser = Advertiser::findOrFail($request->advertiser_id);
+        if ($advertiser) {
+            $newarray =    $advertiser->assign_publisher;
+            if (($key = array_search($request->publisher_id, $newarray)) !== false) {           
+                unset($newarray[$key]);
+                $newarray = array_values( $newarray);
+            }
+             
+            if($request->type == 1){
+                array_push($newarray,$request->publisher_id);
+            }
+            $advertiser->assign_publisher = $newarray ? (array)$newarray : [];
+            $advertiser->update();
+            return response()->json(['success' => true, 'message' => 'Successfully  Updated','output'=> array_unique($newarray)]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Someting wrong try again!']);
+        }
+    }
+
 
     public function advertiserActive($id)
     {
