@@ -1686,7 +1686,7 @@ padding: 0; display: block; opacity: 0;">
 
                                 var toggle_button = '';
 
-                            var camp_name = data.row.name +' <br/> <a href="'+url_edit+'" data-id="'+ data.row.id +'" data-status="1" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | <a href="'+url_del+'" data-id="'+ data.row.id +'" class="btn-danger1 delete_campaign">Delete</a>';
+                            var camp_name = data.row.name +' <br/> <a href="'+url_edit+'" data-id="'+ data.row.id +'" data-status="1" data-type="edit" data-mode="draft" class="editcampaign create-campaign-btn2">Edit</a> | <a href="'+url_del+'" data-id="'+ data.row.id +'" class="btn-danger1 delete_campaign">Delete</a>';
 
                             var url_XLSX = '{{ route("advertiser.campaignsformleads.export",":id") }}';
                                 url_XLSX = url_XLSX.replace(':id', data.row.id);
