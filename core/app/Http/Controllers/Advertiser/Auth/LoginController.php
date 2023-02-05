@@ -71,11 +71,17 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $user = Advertiser::whereUsername($request->username)->first();
+        $user = Advertiser::where('email', $request->username)->first();
         $this->validateLogin($request);
-        if(isset($user)&&$user->status == 2){
-             $notify[]=['error','Sorry! You have\'ve been banned by Admin'];
-             return back()->withNotify($notify);
+        if(isset($user) && $user->status == 3 ){
+            $notify[]=['error','Sorry! You have\'ve been banned by Admin'];
+            return back()->withNotify($notify);
+        } elseif(isset($user) && $user->status == 2 ){
+            $notify[]=['error','Sorry! You have\'ve been Rejected by Admin'];
+            return back()->withNotify($notify);
+        } elseif(isset($user) && $user->status == 0 ){
+            $notify[]=['error','Sorry! Your Approval is still pending'];
+            return back()->withNotify($notify);
         }
         $lv = getLatestVersion();
         $gnl = GeneralSetting::first();
