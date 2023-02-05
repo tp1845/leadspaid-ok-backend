@@ -19,17 +19,42 @@ class AdvertiserController extends Controller
     {
         $page_title = 'All advertiser';
         $empty_message = 'No advertiser';
-        $advertisers = Advertiser::latest()->get();
+        $advertisers = Advertiser::latest();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
-         $activeCampaign =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND advertisers.status = 1 AND advertisers.ev != 0 ')->select('advertisers.*')->get(); 
-         $active =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 0 ) >0 AND advertisers.status = 1 AND advertisers.ev != 0 ')->select('advertisers.*')->get(); 
-      
-        $pending = Advertiser::where('status', 0)->where('ev','!=' , 0)->get();
-        $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2)->get();
-        $banned = Advertiser::where('status', 3)->get();
-        $rejected = Advertiser::where('status', 2)->get();
+        $activeCampaign =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
+        $active =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 0 ) >0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
+        $pending = Advertiser::where('status', 0)->where('ev','!=' , 0);
+        $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2);
+        $banned = Advertiser::where('status', 3);
+        $rejected = Advertiser::where('status', 2);
 
-        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers', 'publishers_admin','activeCampaign', 'active', 'pending', 'email_unverify', 'banned','rejected'));
+
+        $companies = DB::table('advertisers')
+        ->where('advertisers.company_name','!=','')
+        ->groupBy('advertisers.company_name')
+        ->get();
+        
+
+        if (isset($_GET['advertiser'])){
+            $advertiserid = $_GET['advertiser'];
+
+            $advertisers->where('advertisers.id','=',$advertiserid);
+            $activeCampaign->where('advertisers.id','=',$advertiserid);
+            $active->where('advertisers.id','=',$advertiserid);
+            $pending->where('advertisers.id','=',$advertiserid);
+            $email_unverify->where('advertisers.id','=',$advertiserid);
+            $banned->where('advertisers.id','=',$advertiserid);
+            $rejected->where('advertisers.id','=',$advertiserid);
+        }  
+        $advertisers =$advertisers->get();
+        $activeCampaign =$activeCampaign->select('advertisers.*')->get();
+        $active =$active->select('advertisers.*')->get();
+        $pending =$pending->get();
+        $email_unverify =$email_unverify->get();
+        $banned =$banned->get();
+        $rejected =$rejected->get();
+
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers','companies', 'publishers_admin','activeCampaign', 'active', 'pending', 'email_unverify', 'banned','rejected'));
     }
     public function allActiveAdvertiser()
     {

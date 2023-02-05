@@ -4,9 +4,13 @@
     <div class="col-lg-12">
         <div class=" ">
             <div class="custom-table-data">
-
-
-
+            <select id="company_search" class="form-select form-select-lg mb-3 position-absolute" aria-label=".form-select-lg" style="right: 13rem;border-radius: 0;z-index: 1;">
+                <option value="">Select Company Name</option>
+                @forelse($companies as $company)
+                <option <?php echo isset($_GET['advertiser']) ? ($_GET['advertiser'] == $company->id ? "selected" : "") : "" ?> value="{{$company->id}}">{{$company->company_name}}</option>
+                @empty
+                @endforelse
+            </select>
 
                 <ul class="nav nav-tabs border-0" role="tablist" id="myTab">
                     <li class="nav-item mx-1">
@@ -74,7 +78,7 @@
                                         <td>{{ $campaign->name }} </td>
 
                                         <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->company_name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
                                         <?php
@@ -187,7 +191,7 @@
                                         <td> @if($campaign->status==1) <span class="badge badge-pill badge-success">ON</span> @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span> @endif </td>
                                         <td>{{ $campaign->name }} </td>
                                         <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->company_name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
                                         <?php
@@ -303,7 +307,7 @@
                                         <td> @if($campaign->status==1) <span class="badge badge-pill badge-success">ON</span> @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span> @endif</td>
                                         <td>{{ $campaign->name }} </td>
                                         <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->company_name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
 
@@ -421,7 +425,7 @@
                                         <td> @if($campaign->status==1) <span class="badge badge-pill badge-success">ON</span> @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span> @endif </td>
                                         <td>{{ $campaign->name }} </td>
                                         <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->company_name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
 
@@ -543,7 +547,7 @@
                                         <td> @if($campaign->status==2) <span class="badge badge-pill badge-danger">Delete</span>@elseif($campaign->status==1) <span class="badge badge-pill badge-success">ON</span> @else <span class="badge badge-pill badge-danger">OFF</span> @endif </td>
                                         <td>{{ $campaign->name }} </td>
                                         <td>{{ $campaign->id }} </td>
-                                        <td>{{ $campaign->advertiser->name}} </td>
+                                        <td>{{ $campaign->advertiser->company_name}} </td>
                                         <td>{{ $campaign->advertiser->id}} </td>
 
                                         <?php
@@ -1271,6 +1275,7 @@
         $('[data-toggle="tooltip"]').tooltip({
             trigger: 'hover'
         })
+            $('#company_search')[0].style.top = "2.15rem";
 
         $(document).ready(function() {
             $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
@@ -1281,6 +1286,14 @@
             if (activeTab) {
                 $('#myTab a[href="' + activeTab + '"]').tab('show');
             }
+            $("#company_search").on("change", function() {
+            if ($("#company_search").val() === "") {
+                window.location.href = window.location.origin + window.location.pathname;
+                return;
+            }
+            window.location.href = window.location.origin + window.location.pathname + "?advertiser=" + $("#company_search").val();
+            return;
+        });
             add_custom_toggle_click();
         });
     </script>

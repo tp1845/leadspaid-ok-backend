@@ -617,7 +617,15 @@
             </div>
 
         </div><!-- card end -->
-
+        <div class="card-footer py-4">
+        <select id="company_search" class="form-select form-select-lg mb-3" aria-label=".form-select-lg" style="right: 13rem;border-radius: 0;z-index: 1;">
+                <option value="">Select Company Name</option>
+                @forelse($companies as $company)
+                <option <?php echo isset($_GET['advertiser']) ? ($_GET['advertiser'] == $company->id ? "selected" : "") : "" ?> value="{{$company->id}}">{{$company->company_name}}</option>
+                @empty
+                @endforelse
+            </select>
+        </div>
     </div>
 
 
@@ -927,7 +935,14 @@
         if (activeTab) {
             $('#myTab a[href="' + activeTab + '"]').tab('show');
         }
-
+        $("#company_search").on("change", function() {
+            if ($("#company_search").val() === "") {
+                window.location.href = window.location.origin + window.location.pathname;
+                return;
+            }
+            window.location.href = window.location.origin + window.location.pathname + "?advertiser=" + $("#company_search").val();
+            return;
+        });
 
     });
 </script>
