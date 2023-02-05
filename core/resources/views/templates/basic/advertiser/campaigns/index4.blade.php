@@ -703,8 +703,6 @@ $user = auth()->guard('advertiser')->user();
                                                     <h4 class="gray_title"> Add Up to 6 Creatives <small class="title-small">(One of the creatives will be shown randomly and optimized)</small> </h4>
                                                     <label class="col-form-label ar-16"><b>Youtube Videos </b><span class="ar-14"> </span> </label>
 
-
-
                                                     <div class="custom_image_video">
                                                         <div class="input-group input-col" id="video_image_1">
                                                             <div class="input-col " style="width: 88%;">
@@ -1803,7 +1801,14 @@ padding: 0; display: block; opacity: 0;">
                 "unique_form_name",
                 function(value, element) {
                     var $result = $.map(campaigns, function(item, i) {
-                        name = item.campaign_forms?item.campaign_forms.form_name:item.campaign_forms_exits.form_name;
+                        if(item.campaign_forms_exits){
+                            name =  item.campaign_forms_exits.form_name;
+                        }else if(item.campaign_forms){
+                            name = item.campaign_forms.form_name;
+                        }else{
+                            name ='';
+                        }
+
                         if (name.toLowerCase() == value.toLowerCase()) {  return 'exits';  }
                     })[0];
                     return $result == 'exits' ? false : true;
@@ -1831,7 +1836,7 @@ padding: 0; display: block; opacity: 0;">
                     },
                     form_name: {
                         minlength: 3,
-                      //  unique_form_name: true
+                        unique_form_name: true
                     },
                     min_row_validation: {
                         check_row: true
@@ -1869,6 +1874,10 @@ padding: 0; display: block; opacity: 0;">
                     },
                     logo_comapny: {
                         required: true
+                    },
+                    company_logo: {
+                        extension: "png|jpg|jpeg|gif",
+                        maxsize: 2e+6
                     },
                     'field_1[question_text]': {
                         required: true,
@@ -1950,6 +1959,11 @@ padding: 0; display: block; opacity: 0;">
                     image_3: "File must be JPG, GIF or PNG, less than 2MB",
                     create_qty: "Add at least 1 creative",
                     logo_comapny: 'Company/Brand Name or Logo - Any 1 is mandatory',
+                    company_logo: {
+                        required: 'Company/Brand Name or Logo - Any 1 is mandatory',
+                        extension: "File must be JPG, GIF or PNG, less than 2MB",
+                        maxsize:"File must be JPG, GIF or PNG, less than 2MB"
+                    },
                 }
             });
 
@@ -1996,6 +2010,10 @@ padding: 0; display: block; opacity: 0;">
                     },
                     create_qty: {
                         required: true
+                    },
+                    company_logo: {
+                        extension: "png|jpg|jpeg|gif",
+                        maxsize: 2e+6
                     },
                     logo_comapny: {
                         required: true
@@ -2061,6 +2079,11 @@ padding: 0; display: block; opacity: 0;">
                     image_3: "File must be JPG, GIF or PNG, less than 2MB",
                     create_qty: "Add at least 1 creative",
                     logo_comapny: 'Company/Brand Name or Logo - Any 1 is mandatory',
+                    company_logo: {
+                        required: 'Company/Brand Name or Logo - Any 1 is mandatory',
+                        extension: "File must be JPG, GIF or PNG, less than 2MB",
+                        maxsize:"File must be JPG, GIF or PNG, less than 2MB"
+                    },
                 }
             });
         }
@@ -2141,11 +2164,10 @@ padding: 0; display: block; opacity: 0;">
             if (data.image_2 !== null) {
                 var image_2_img = image_src + data.image_2;
             }
-
             if (data.image_3 !== null) {
                 var image_3_img = image_src + data.image_3;
             }
-            var title_1 = data.title[1];;
+            var title_1 = data.title[1];
             var title_2 = data.title[2];
             var title_3 = data.title[3];
             var sub_title_1 = data.form_desc[1];
@@ -2175,40 +2197,33 @@ padding: 0; display: block; opacity: 0;">
         var image_vide = '<div class="owl-carousel owl-theme ">';
         var creative_status = '';
         if (youtube_1) {
-
             const iframeMarkup = '<iframe src="' + youtube_1 + '" frameborder="0" width="100%" allowfullscreen></iframe>';
-
             image_vide += '<div class="item">' + iframeMarkup + '</div>';
             creative_status = 1;
         }
 
         if (youtube_2) {
-
             const iframeMarkup = '<iframe src="' + youtube_2 + '" frameborder="0" width="100%" allowfullscreen></iframe>';
             image_vide += '<div class="item">' + iframeMarkup + '</div>';
             creative_status = 1;
         }
 
         if (youtube_3) {
-
             const iframeMarkup = '<iframe src="' + youtube_3 + '" frameborder="0" width="100%" allowfullscreen></iframe>';
             image_vide += '<div class="item">' + iframeMarkup + '</div>';
             creative_status = 1;
         }
 
         if (image_1_img !== '#') {
-
             image_vide += '<div class="item"><div class="image-wapperr"><img src="' + image_1_img + '" alt="" width="100%" /></div></div>';
             creative_status = 1;
         }
         if (image_2_img !== '#') {
-
             image_vide += '<div class="item"><div class="image-wapperr"><img src="' + image_2_img + '" alt="" width="100%" /></div></div>';
             creative_status = 1;
         }
 
         if (image_3_img !== '#') {
-
             image_vide += '<div class="item"><div class="image-wapperr"><img src="' + image_3_img + '" alt="" width="100%" /></div></div>';
             creative_status = 1;
         }
