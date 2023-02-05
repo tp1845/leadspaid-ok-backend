@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\DB;
 
 use App\Advertiser;
 use App\campaigns;
@@ -18,13 +19,35 @@ class CampaignsController extends Controller
     {
         $page_title = 'All Campaigns';
         $empty_message = 'No Campaigns';
-        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->orderBy('id', 'DESC')->get();
-        $pending = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->where('approve', 0)->orderBy('id', 'DESC')->get();
-        $active = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', '!=', 2)->orderBy('id', 'DESC')->get();
-        $reject = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 2)->where('status', '!=', 2)->orderBy('id', 'DESC')->get();
-        $trash = campaigns::with('advertiser')->with('campaign_forms')->where('status', 2)->orderBy('id', 'DESC')->get();
+        
+        $campaigns = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2);
+        $pending = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->where('approve', 0);
+        $active = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', '!=', 2);
+        $reject = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 2)->where('status', '!=', 2);
+        $trash = campaigns::with('advertiser')->with('campaign_forms')->where('status', 2);
 
-        return view('admin.campaigns.index', compact('page_title', 'empty_message', 'campaigns', 'pending', 'active', 'reject', 'trash'));
+
+        if (isset($_GET['advertiser'])){
+            $advertiserid = $_GET['advertiser'];
+           $active->where('campaigns.advertiser_id','=',$advertiserid);
+           $campaigns->where('campaigns.advertiser_id','=',$advertiserid);
+           $pending->where('campaigns.advertiser_id','=',$advertiserid);
+           $reject->where('campaigns.advertiser_id','=',$advertiserid);
+           $trash->where('campaigns.advertiser_id','=',$advertiserid);
+        }
+        $active = $active->orderBy('id', 'DESC')->get();
+        $campaigns = $campaigns->orderBy('id', 'DESC')->get();
+        $pending = $pending->orderBy('id', 'DESC')->get();
+        $reject = $reject->orderBy('id', 'DESC')->get();
+        $trash = $trash->orderBy('id', 'DESC')->get();
+        $companies = DB::table('campaigns')
+        ->leftJoin('advertisers', 'campaigns.advertiser_id', '=', 'advertisers.id')
+        ->where('advertisers.company_name','!=','')
+        ->groupBy('advertisers.company_name')
+        ->get();
+        
+
+        return view('admin.campaigns.index', compact('page_title', 'empty_message', 'campaigns','companies', 'pending', 'active', 'reject', 'trash'));
     }
 
     public function export($cid, $aid, $fid)
