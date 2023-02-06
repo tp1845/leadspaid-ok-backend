@@ -118,9 +118,6 @@ $user = auth()->guard('advertiser')->user();
                                     </div>
                                     @include($activeTemplate.'partials.custom-captcha')
                                 </div>
-
-
-
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
@@ -233,7 +230,7 @@ $user = auth()->guard('advertiser')->user();
 
     jQuery.validator.addMethod("isdphone", function(value, element) {
         var isd = $('.country_code').val();
-        phone = value.replace(/-/ig, "");
+        var phone = value.replace(/-/ig, "");
         console.log('- removed : ' + phone);
         if(isd === '+1'){
             // USA
