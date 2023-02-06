@@ -23,7 +23,9 @@ $user = auth()->guard('advertiser')->user();
                 $costt = 0;
                 @endphp
                 <ul class="nav custon_nav">
-                    <li class="nav-item"><button data-bs-target="#live" type="button" role="tab" aria-controls="live" aria-selected="true" class="nav-link active">Live</button></li>
+                    <li class="nav-item"><button data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true" class="nav-link active">All</button></li>
+
+                    <li class="nav-item"><button data-bs-target="#live" type="button" role="tab" aria-controls="live" aria-selected="true" class="nav-link">Live</button></li>
 
                     <li class="nav-item"><button data-tab="pending_approve" class="nav-link " data-bs-toggle="tab" data-bs-target="#pending_approve" type="button" role="tab" aria-controls="pending_approve" aria-selected="false"><i class="fa-solid fa-thumbs-up"></i> Pending Approval</a></li>
 
@@ -41,8 +43,124 @@ $user = auth()->guard('advertiser')->user();
                     $end_date = null;
                 }
                 ?>
+                 {{-- Tab All  --}}
+                 <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                    <table id="campaign_list_all" class="all table table-striped table-bordered datatable " style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Off/On</th>
+                                <th>Campaign Name</th>
+                                <th>Delivery</th>
+                                <th>Download Leads</th>
+                                <th>Leads</th>
+                                <th>Cost</th>
+                                <th>CPL</th>
+                                <th>Daily Budget</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                <th>Target Country </th>
+                                <th>Form Used</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @forelse($campaigns_all as $campaign)
+
+                            @php
+
+                            $daily_bug= $daily_bug+$campaign->daily_budget;
+                            $leadValue = get_campiagn_leads_by_id($campaign->id,$start_date,$end_date);
+                            if ($leadValue > 0){
+                            array_push($output,$campaign->id);
+                            $leadd=$leadd+ $leadValue;
+                            }
+                            $costValue = get_campiagn_cost_by_id($campaign->id,$start_date,$end_date)>0?number_format(get_campiagn_cost_by_id($campaign->id,$start_date,$end_date), 2, '.', '' ):0;
+                            $costt= $costt+ $costValue ;
+                            if ($leadValue === 0 && $costValue > 0) {
+                                $cplValue = "";
+                            } elseif ($leadValue > 0 && $costValue === 0) {
+                                $cplValue = "";
+                            } else {
+                                if ($leadValue > 0 && $costValue > 0) {
+                                    $cplValueWithoutFormatted =  number_format(get_campiagn_cost_by_id($campaign->id, $start_date, $end_date) / get_campiagn_leads_by_id($campaign->id, $start_date, $end_date), 2, '.', '');
+                                    $cplValue = "$" .  $cplValueWithoutFormatted;
+
+                                    $cpll = $cpll + $cplValueWithoutFormatted;
+                                }else{
+                                    $cplValue = 0;
+                                }
+                            }
+                            @endphp
+                            <tr class="@if(($campaign->status==0) && ($campaign->approve==0)) delete_row @endif   @if($campaign->delivery == 2 ) draft @endif  ">
+                                <td><input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}"></td>
+                                <td class="edit_btns">{{ $campaign->name }} <br>
+                                    @if(($campaign->status==0) && ($campaign->approve==0)) @else <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-status="@if($campaign->status)1 @else 0 @endif" data-type="edit" class="editcampaign create-campaign-btn2">Edit</a> | @endif
+
+                                    @if($campaign->delivery !=2 )
+                                    <a href="{{ route("advertiser.campaigns.edit",  $campaign->id ) }}" data-id="{{ $campaign->id }}" data-type="duplicate" class="duplicatecampaign create-campaign-btn2">Duplicate</a>
+                                    @endif
+
+
+                                    @if(($campaign->status==0) && ($campaign->approve==0)) @else
+
+                                    @if($campaign->delivery !=2 ) | @endif <a href="{{ route("advertiser.campaigns.delete-camp",  $campaign->id ) }}" data-id="{{ $campaign->id }}" class="btn-danger1 delete_campaign">Delete</a> @endif
+                                </td>
+                                <td>
+                                    @if(($campaign->status==0) && ($campaign->approve==0)) Deleted
+                                    @else
+                                    @if($campaign->delivery ==2 )
+                                    <span class="yellow">Draft</span>
+                                    @elseif($campaign->approve ==1 )
+
+                                    <span class="green">Active </span>
+                                    @else
+                                    <span class="orange">Pending<br />Approval</span>
+                                    @endif
+                                    @endif
+                                </td>
+                                <td><a href="{{ route('advertiser.campaignsformleads.export',$campaign->id) }}">XLSX </a> |
+                                    <a href="{{ route('advertiser.campaignsformleads.exportcsv',$campaign->id) }}">CSV </a>
+                                    {{-- |  <a href="{{ route('advertiser.campaignsleads.googlesheet',$campaign->id) }}">Google Sheet</a> --}}
+                                </td>
+                                <td for="leads_count">{{ get_campiagn_leads_by_id($campaign->id,$start_date,$end_date)}} </td>
+                                <td>{{$costValue>0?"$" . $costValue:0}}</td>
+                                <td>{{ $cplValue }}</td>
+                                <td> ${{ $campaign->daily_budget }}</td>
+                                <td>@if($campaign->start_date !== '0000-00-00') {{ $campaign->start_date }} @endif</td>
+                                <td>@if($campaign->approve && $campaign->status ) Ongoing @endif</td>
+                                <td>{{ $campaign->target_country }} </td>
+                                <td>
+                                    @if (isset($campaign->campaign_forms))
+                                    {{$campaign->campaign_forms->form_name}}
+                                    @endif
+                                    @if (isset($campaign->campaign_forms_exits))
+                                    {{$campaign->campaign_forms_exits->form_name}}
+                                    @endif
+                                </td>
+                            </tr>
+                            @empty
+                            @endforelse
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Overall Total</th>
+                                <th></th>
+                                <th></th>
+                                <th>{{$leadd}}</th>
+                                <th>${{number_format($costt,2)}}</th>
+                                <th>${{number_format($cpll,2)}}</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 {{-- Tab Live  --}}
-                <div class="tab-pane fade show active" id="live" role="tabpanel" aria-labelledby="live-tab">
+                <div class="tab-pane fade show active" id="live" role="tabpanel" aria-labelledby="live-tab" style="display:none;">
                     <table id="campaign_list_live" class="live table table-striped table-bordered datatable " style="width:100%">
                         <thead>
                             <tr>
@@ -1519,7 +1637,7 @@ padding: 0; display: block; opacity: 0;">
                     targets: 0,
                     searchable: false,
                     visible: true,
-                    orderable: false
+                    orderable: true
                 },
                 {
                     targets: 2,
@@ -1555,7 +1673,7 @@ padding: 0; display: block; opacity: 0;">
                     targets: 0,
                     searchable: false,
                     visible: true,
-                    orderable: false
+                    orderable: true
                 },
                 {
                     targets: 2,
@@ -1597,7 +1715,7 @@ padding: 0; display: block; opacity: 0;">
                     targets: 1,
                     searchable: false,
                     visible: true,
-                    orderable: false
+                    orderable: true
                 },
                 {
                     targets: 3,
@@ -1632,7 +1750,7 @@ padding: 0; display: block; opacity: 0;">
                     targets: 0,
                     searchable: false,
                     visible: true,
-                    orderable: false
+                    orderable: true
                 },
                 {
                     targets: 2,
@@ -4391,7 +4509,7 @@ if($_GET['action']=="create_campiagin"){
     }
 
     .draft td {
-        background: #FDEFB2;
+        background: #fffbeb;
     }
 
     #campaigns_date_table img {

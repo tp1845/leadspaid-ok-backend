@@ -12,7 +12,7 @@ class FormsController extends Controller
 {
     public function index()
     {
-        $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->where('campaign_forms.status','!=',2)->get();
+        $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->where('status',1)->get();
         $page_title = 'All Forms';
         $empty_message = "No Forms";
          return view(activeTemplate() . 'advertiser.forms.index', compact('forms', 'page_title', 'empty_message'));

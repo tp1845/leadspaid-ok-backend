@@ -239,6 +239,11 @@
                     content: "";
                     z-index: 1;
                 }
+                @if( Request::get('fot') == 1 )
+                    #MainFooter:before{ background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer_bg_1.png"); opacity: .6; }
+                @elseif( Request::get('fot') == 2 )
+                    #MainFooter:before{ background-image: url("{{url('/')}}/assets/templates/leadpaid/images/footer_bg_2.png");  opacity: .2; }
+                @endif
                 #MainFooter .container, .footer_copywrite { position: relative; z-index: 10;}
             </style>
         </body>
