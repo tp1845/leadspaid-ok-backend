@@ -279,7 +279,7 @@ $user = auth()->guard('advertiser')->user();
         },messages: {
             name:{  required : 'Full Name is required.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
             company_name:{  required : 'Company Name is required.', minlength:'minmum 3 characters.' },
-            mobile:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},,
+            mobile:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
             postal_code: {maxlength: 'maximum 200 characters.'},
             city: {required : 'Please fill valid City.',minlength:'minmum 3 characters.', maxlength: 'maximum 50 characters.'},
             billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'},
