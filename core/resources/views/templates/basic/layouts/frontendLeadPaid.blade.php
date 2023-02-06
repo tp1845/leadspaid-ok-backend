@@ -31,8 +31,10 @@
     @stack('style')
     <style>
         #MainNav a.nav-link { color: #fff; text-transform: uppercase; font-weight: 400; }
-        #navbarSupportedContent li.btn_link {  border: 2px solid #fff; margin: 0px 10px; }
-        #navbarSupportedContent li.btn_link a.nav-link:before { display: none!important;  }
+        #navbarSupportedContent li.btn_link, #MainNav .navbar.fixed  li.btn_link   {  border: 2px solid #fff; margin: 0px 10px; }
+        #navbarSupportedContent li.btn_link a.nav-link:before, #MainNav .navbar.fixed  li.btn_link a.nav-link:before  { display: none!important;  }
+        #MainNav .navbar.fixed  li.btn_link  { border: 2px solid #000; margin: 0px 10px; }
+
         #MainNav .active a.nav-link{  }
         #MainNav a.nav-link { position: relative; }
         #MainNav a.nav-link:before { content: ""; position: absolute; left: 0px; bottom: 0px; width: 0; height: 2px;  transition: width 320ms ease-in; background-color: rgba(242, 245, 248, 1.0);  margin: 0 25px; }
@@ -214,7 +216,7 @@
                 }
 
                 #MainNav .navbar.fixed  a.nav-link { color: #000;  }
-                #MainNav .navbar.fixed li:nth-child(4) { border: 2px solid #000; }
+
                 #MainNav .navbar.fixed .navbar-toggler .navbar-toggler-icon { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0,0,0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E")!important;'' }
 
                 #MainFooter {
