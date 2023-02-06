@@ -123,6 +123,10 @@
         </table>
         </div>
         <br/>
+        <div class="col">
+            <h6 style="font-size: 14px; font-weight:700;">ACTIVE+CAMPAIGN STATS</h6>
+        </div>
+
 
         <table class="dataTable no-footer style--two table table--light table-light" id="activecampaginadvertiser" style="width: 45rem;">
         <thead>
