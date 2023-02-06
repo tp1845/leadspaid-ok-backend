@@ -179,26 +179,23 @@ $user = auth()->guard('advertiser')->user();
         $(this).parent(".file-upload-wrapper").attr("data-text", $(this).val().replace(/.*(\/|\\)/, ''));
     });
 
-
-
-
-jQuery.fn.capitalize = function() {
-    $(this[0]).keyup(function(event) {
-        var box = event.target;
-        var txt = $(this).val();
-        var stringStart = box.selectionStart;
-        var stringEnd = box.selectionEnd;
-        $(this).val(txt.replace(/^(.)|(\s|\-)(.)/g, function($word) {
-            return $word.toUpperCase();
-        }));
-        box.setSelectionRange(stringStart , stringEnd);
-    });
-   return this;
-}
-$('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
-$('#ad_budget').keyup(function(){  this.value = this.value.replace(/[^0-9]/g,'');});
-$("#company_name").capitalize();
-$("#full_name").capitalize();
+    jQuery.fn.capitalize = function() {
+        $(this[0]).keyup(function(event) {
+            var box = event.target;
+            var txt = $(this).val();
+            var stringStart = box.selectionStart;
+            var stringEnd = box.selectionEnd;
+            $(this).val(txt.replace(/^(.)|(\s|\-)(.)/g, function($word) {
+                return $word.toUpperCase();
+            }));
+            box.setSelectionRange(stringStart , stringEnd);
+        });
+    return this;
+    }
+    $('#your_phone').keyup(function(){  this.value = this.value.replace(/[^0-9-\.]/g,'');});
+    $('#ad_budget').keyup(function(){  this.value = this.value.replace(/[^0-9]/g,'');});
+    $("#company_name").capitalize();
+    $("#full_name").capitalize();
 
     $.validator.setDefaults({
         errorElement: 'span',
@@ -234,16 +231,47 @@ $("#full_name").capitalize();
     return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter a valid email address");
 
+    jQuery.validator.addMethod("isdphone", function(value, element) {
+        var isd = $('.country_code').val();
+        phone = value.replace(/-/ig, "");
+        console.log('- removed : ' + phone);
+        if(isd === '+1'){
+            // USA
+            var phone_isd = phone.substring(0, 3);
+            if(phone_isd === '001'){  phone = phone.substring(3); }
+            return this.optional(element) || /^[0-9]{10,10}$/i.test(phone);
+        }
+        else if(isd === '+44'){
+            // Uk
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0044'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if( isd === '+61' ){
+            //AUS
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0061'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if(isd === '+65'){
+            //Singapore
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0065'){  phone = phone.substring(4); }
+            return this.optional(element) || /^(3|6|8|9)\d{7}$/i.test(phone);
+        }else{
+            var phone_isd = phone.substring(0, 2);
+            if(phone_isd === '00'){  phone = phone.substring(2); }
+            return this.optional(element) || /^[0-9]{4,16}$/i.test(phone);
+        }
+    }, "Please enter valid phone");
 
 
-
-
- $("#advertiser_form").validate({
+    $("#advertiser_form").validate({
         rules: {
             name: { required: true,minlength: 3, lettersonly: true },
             company_name: { required: true, minlength: 3},
             country: { required: true},
-            mobile: { required: true, minlength: 6, phoneonly: true },
+            mobile: { required: true,  phoneonly: true, isdphone:true },
             postal_code: { required: false, maxlength: 200  },
            city: { required: true, minlength: 3, maxlength: 50 },
            billed_to: { required: true, minlength: 10, maxlength: 100 },
@@ -251,35 +279,29 @@ $("#full_name").capitalize();
         },messages: {
             name:{  required : 'Full Name is required.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
             company_name:{  required : 'Company Name is required.', minlength:'minmum 3 characters.' },
-            mobile:{  required : 'Phone is required.', minlength:'minmum 6 characters.', phoneonly:'Please enter valid phone.'},
+            mobile:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},,
             postal_code: {maxlength: 'maximum 200 characters.'},
             city: {required : 'Please fill valid City.',minlength:'minmum 3 characters.', maxlength: 'maximum 50 characters.'},
             billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'},
              image: "File must be JPG, GIF or PNG, less than 2MB",
-
-
         }
     });
-
-
-$(document).ready(()=>{
-      $('#form_company_logo').change(function(){
-        const file = this.files[0];
-        ;
-        if (file){
-          let reader = new FileReader();
-          reader.onload = function(event){
-            $(".image_preview").show();
-            $('#imgPreview').attr('src', event.target.result);
-          }
-          reader.readAsDataURL(file);
-        }
-      });
+    $(document).ready(()=>{
+        $('#form_company_logo').change(function(){
+            const file = this.files[0];
+            ;
+            if (file){
+            let reader = new FileReader();
+            reader.onload = function(event){
+                $(".image_preview").show();
+                $('#imgPreview').attr('src', event.target.result);
+            }
+            reader.readAsDataURL(file);
+            }
+        });
     });
 </script>
-
 @endpush
-
 
 @push('style')
 <style type="text/css">
