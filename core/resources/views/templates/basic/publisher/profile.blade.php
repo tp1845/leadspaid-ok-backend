@@ -14,16 +14,21 @@
                                     <div class="form_subtitle"> Basic Information </div>
                                     <div class="card-body px-0">
                                         <div class="form-group ">
-                                            <label>@lang('Company Name')</label>
                                             <input type="text" class="form-control" name="company_name" value="{{ $publisher->company_name }}" placeholder="Company Name">
                                         </div>
                                         <div class="form-group">
-                                            <label>@lang('Full Name') <sup class="text-danger">*</sup></label>
+
                                             <input type="text" name="name" placeholder="Full Name" class="form-control" value="{{$publisher->name}}" required>
                                         </div>
+
                                         <div class="form-group country-code">
-                                            <label>@lang('Phone') <sup class="text-danger">*</sup></label>
-                                            <input type="text" name="phone" value="{{$publisher->phone}}" class="form-control" required placeholder="@lang('Your Phone Number')">
+                                            <label class="d-none">@lang('Mobile') <sup class="text-danger">*</sup></label>
+                                            <div class="Rg_advts_number">
+                                                <select name="country_code" class="country_code  form-select rounded-0">
+                                                    @include('partials.country_code', ['country_code' => $publisher->country_code])
+                                                </select>
+                                                <input type="text" name="phone" value="{{$publisher->phone}}" class="form-control rounded-0" placeholder="@lang('Your Phone Number')">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -32,7 +37,7 @@
                                     <div class="form_subtitle"> Address Information </div>
                                     <div class="card-body px-0">
                                         <div class="form-group">
-                                            <label>@lang('Billing Email Address') <sup class="text-danger">*</sup></label>
+
                                             <input type="email" name="email" placeholder="Billing Email address" class="form-control" value="{{$publisher->email}}" required>
                                         </div>
                                         <div class="form-group">
@@ -193,12 +198,46 @@
     return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
     }, "Please enter a valid email address");
 
+    jQuery.validator.addMethod("isdphone", function(value, element) {
+        var isd = $('.country_code').val();
+        var phone = value.replace(/-/ig, "");
+        console.log('- removed : ' + phone);
+        if(isd === '+1'){
+            // USA
+            var phone_isd = phone.substring(0, 3);
+            if(phone_isd === '001'){  phone = phone.substring(3); }
+            return this.optional(element) || /^[0-9]{10,10}$/i.test(phone);
+        }
+        else if(isd === '+44'){
+            // Uk
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0044'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if( isd === '+61' ){
+            //AUS
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0061'){  phone = phone.substring(4); }
+            return this.optional(element) || /^[0-9]{9,11}$/i.test(phone);
+        }
+        else if(isd === '+65'){
+            //Singapore
+            var phone_isd = phone.substring(0, 4);
+            if(phone_isd === '0065'){  phone = phone.substring(4); }
+            return this.optional(element) || /^(3|6|8|9)\d{7}$/i.test(phone);
+        }else{
+            var phone_isd = phone.substring(0, 2);
+            if(phone_isd === '00'){  phone = phone.substring(2); }
+            return this.optional(element) || /^[0-9]{4,16}$/i.test(phone);
+        }
+    }, "Please enter valid phone");
+
     $("#publisher_form").validate({
         rules: {
             name: { required: true,minlength: 3, lettersonly: true },
             company_name: { required: true, minlength: 3},
             country: { required: true},
-            phone: { required: true, minlength: 6, phoneonly: true },
+            phone: { required: true,  phoneonly: true, isdphone:true },
             postal_code: { required: false, maxlength: 200  },
            city: { required: true, minlength: 3, maxlength: 50 },
            billed_to: { required: true, minlength: 10, maxlength: 100 },
@@ -206,7 +245,7 @@
         },messages: {
             name:{  required : 'Full Name is required.', minlength:'minmum 3 characters.', lettersonly:'Full Name Invalid.' },
             company_name:{  required : 'Company Name is required.', minlength:'minmum 3 characters.' },
-            mobile:{  required : 'Phone is required.', minlength:'minmum 6 characters.', phoneonly:'Please enter valid phone.'},
+            phone:{  required : 'Phone is required.', minlength:'Please enter valid phone.', phoneonly:'Please enter valid phone.'},
             postal_code: {maxlength: 'maximum 200 characters.'},
             city: {required : 'Please fill valid City.',minlength:'minmum 3 characters.', maxlength: 'maximum 50 characters.'},
             billed_to: {required:'Please fill valid address',minlength: 'minmum 10 characters.' ,maxlength: 'maximum 100 characters.'},
@@ -227,6 +266,10 @@
         height: unset;
         border-radius: 0!important;
     }
+    .form-control:disabled, .form-control[readonly]{
+    background-color: #ccc !important;
+}
+
     .form_subtitle{
         font-size: 16px;
         color: #212529!important;
@@ -244,18 +287,29 @@
     font-size: 18px !important;
     padding: 0.375rem 0.75rem;
 }
-
-#publisher_form .form-group select {
+.Rg_advts_number {
+    display: flex;
+    flex-wrap: wrap;
+}
+.Rg_advts_number input {
+    flex: 0 0 75%;
+    width: 75%;
+}
+.Rg_advts_number select {
+    flex: 0 0 25%;
+    width: 25%;
+    border: 1px solid #ced4da;
+}
+#publisher_form .form-group select, #publisher_form .form-group select.country_code   {
     display: block;
     font-size: 19px !important;
     padding: 16px 24px;
     line-height: normal;
     height: unset;
     text-transform: capitalize;
-    background: #fff url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e) no-repeat right 0.75rem center/30px 10px !important;
+    appearance: none;
+    background: #fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/30px 10px !important;
 }
-
-
 .my-upload-btns input {
     width: 0.1px;
     height: 0.1px;

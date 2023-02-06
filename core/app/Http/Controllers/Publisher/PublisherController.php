@@ -68,7 +68,7 @@ class PublisherController extends Controller
     public function profile()
     {
         $page_title = 'Profile';
-        $publisher  = Auth::guard('publisher')->user();        
+        $publisher  = Auth::guard('publisher')->user();
         $info         = json_decode(json_encode(getIpInfo()), true);
         $country_code = @implode(',', $info['code']);
         $countries    = Country::all();
@@ -110,6 +110,8 @@ class PublisherController extends Controller
         $user->name    = $request->name;
         $user->country = $request->country;
         $user->city    = $request->city;
+        $user->phone    = $request->phone;
+        $user->country_code    = $request->country_code;
         $user->update();
         $notify[] = [
             'success',
