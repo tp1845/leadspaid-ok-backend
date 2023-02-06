@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use Illuminate\Support\Facades\DB;
 
 use App\EarningLogs;
 use App\Publisher;
@@ -255,6 +256,8 @@ class PublisherController extends Controller
    
   
   public function manage_user(){
+    $advertisers =DB::table('advertisers')->get();
+        
      $publisher_admin = Publisher::where('role',1)->where('status','=',1)->get();
      $campaign_manager=Publisher::where('role',2)->where('status','=',1)->get();
      $Campaign_executive=Publisher::where('role',3)->where('status','=',1)->get();
@@ -273,7 +276,7 @@ class PublisherController extends Controller
       $page_title = 'Users List'  ;
         $empty_message = 'No search result found';
         return view('admin.users.index', compact('page_title', 'empty_message','publisher_admin','campaign_manager','Campaign_executive','admin','user_trash'
-        ,'admin_trash','adminpending','user_pending','adminapprove','userapprove'));
+        ,'admin_trash','adminpending','user_pending','adminapprove','userapprove','advertisers'));
    }  
 
   public function save_user(Request $request){

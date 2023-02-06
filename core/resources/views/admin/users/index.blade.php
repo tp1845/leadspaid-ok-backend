@@ -40,7 +40,7 @@
                                     <tr>
                                         <th>Status</th>
                                         <th scope="col">Email</th>
-                                        <th scope="col">Assigned Advertisers</th>
+                                        <th scope="col">Assign Advertisers</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Company Name</th>
 
@@ -61,19 +61,16 @@
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Assigned Advertiser">
                                             <?php $assigned =  get_assigned_advertisers($pub->id) ?>
-                                            {{Count($assigned)}}
+                                            <span name="count" >{{Count($assigned)}}</span> 
                                             <br/>
-                                            <?php
-                                            if (!empty($assigned )) {
-                                                echo "<ul>";
-                                                foreach ($assigned as $adv) {
-                                                    if (!empty($adv)) {
-                                                        echo "<li>" . $adv['name'] . '</li>';
-                                                    }
-                                                }
-                                                echo "</ul>";
-                                            }
-                                            ?>
+                                            <ul class="check_box_list">
+                                                @forelse($advertisers as $adv)
+                                                <li><label>
+                                                    <input @if(!empty($adv) && is_array(json_decode($adv->assign_publisher)) && in_array($pub->id, json_decode($adv->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $adv->id }}[]" class="assign_advertiser" value="{{ $pub->id }}" data-advertiser_id = "{{$adv->id}}">{{ $adv->company_name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
                                         </td>
                                         <td data-label="Username">{{ $pub->name }}</td>
                                         <td data-label="Email">{{ $pub->company_name }}</td>
@@ -124,19 +121,16 @@
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Assigned Advertiser">
                                             <?php $assigned =  get_assigned_advertisers($pub->id) ?>
-                                            {{Count($assigned)}}
+                                              <span name="count" >{{Count($assigned)}}</span> 
                                             <br/>
-                                            <?php
-                                            if (!empty($assigned )) {
-                                                echo "<ul>";
-                                                foreach ($assigned as $adv) {
-                                                    if (!empty($adv)) {
-                                                        echo "<li>" . $adv['name'] . '</li>';
-                                                    }
-                                                }
-                                                echo "</ul>";
-                                            }
-                                            ?>
+                                            <ul class="check_box_list">
+                                                @forelse($advertisers as $adv)
+                                                <li><label>
+                                                    <input @if(!empty($adv) && is_array(json_decode($adv->assign_publisher)) && in_array($pub->id, json_decode($adv->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $adv->id }}[]" class="assign_advertiser" value="{{ $pub->id }}" data-advertiser_id = "{{$adv->id}}">{{ $adv->company_name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
                                         </td>
                                      
                                         <td data-label="Username">{{ $pub->name }}</td>
@@ -189,19 +183,16 @@
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Assigned Advertiser">
                                             <?php $assigned =  get_assigned_advertisers($pub->id) ?>
-                                            {{Count($assigned)}}
+                                              <span name="count" >{{Count($assigned)}}</span> 
                                             <br/>
-                                            <?php
-                                            if (!empty($assigned )) {
-                                                echo "<ul>";
-                                                foreach ($assigned as $adv) {
-                                                    if (!empty($adv)) {
-                                                        echo "<li>" . $adv['name'] . '</li>';
-                                                    }
-                                                }
-                                                echo "</ul>";
-                                            }
-                                            ?>
+                                            <ul class="check_box_list">
+                                                @forelse($advertisers as $adv)
+                                                <li><label>
+                                                    <input @if(!empty($adv) && is_array(json_decode($adv->assign_publisher)) && in_array($pub->id, json_decode($adv->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $adv->id }}[]" class="assign_advertiser" value="{{ $pub->id }}" data-advertiser_id = "{{$adv->id}}">{{ $adv->company_name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
                                         </td>                     
                                         <td data-label="Username">{{ $pub->name }}</td>   
                                         <td data-label="Company Name">{{ $pub->company_name }}</td>
@@ -382,19 +373,16 @@
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Assigned Advertiser">
                                             <?php $assigned =  get_assigned_advertisers($pub->id) ?>
-                                            {{Count($assigned)}}
+                                              <span name="count" >{{Count($assigned)}}</span> 
                                             <br/>
-                                            <?php
-                                            if (!empty($assigned )) {
-                                                echo "<ul>";
-                                                foreach ($assigned as $adv) {
-                                                    if (!empty($adv)) {
-                                                        echo "<li>" . $adv['name'] . '</li>';
-                                                    }
-                                                }
-                                                echo "</ul>";
-                                            }
-                                            ?>
+                                            <ul class="check_box_list">
+                                                @forelse($advertisers as $adv)
+                                                <li><label>
+                                                    <input @if(!empty($adv) && is_array(json_decode($adv->assign_publisher)) && in_array($pub->id, json_decode($adv->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $adv->id }}[]" class="assign_advertiser" value="{{ $pub->id }}" data-advertiser_id = "{{$adv->id}}">{{ $adv->company_name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
                                         </td>
                                         <td data-label="Username">{{ $pub->name }}</td>
                                         <td data-label="Company Name">{{ $pub->company_name }}</td>
@@ -490,19 +478,16 @@
                                         <td data-label="Email">{{ str_replace('@leadspaid.com',"",$pub->email) }}</td>
                                         <td data-label="Assigned Advertiser">
                                             <?php $assigned =  get_assigned_advertisers($pub->id) ?>
-                                            {{Count($assigned)}}
+                                              <span name="count" >{{Count($assigned)}}</span> 
                                             <br/>
-                                            <?php
-                                            if (!empty($assigned )) {
-                                                echo "<ul>";
-                                                foreach ($assigned as $adv) {
-                                                    if (!empty($adv)) {
-                                                        echo "<li>" . $adv['name'] . '</li>';
-                                                    }
-                                                }
-                                                echo "</ul>";
-                                            }
-                                            ?>
+                                            <ul class="check_box_list">
+                                                @forelse($advertisers as $adv)
+                                                <li><label>
+                                                    <input @if(!empty($adv) && is_array(json_decode($adv->assign_publisher)) && in_array($pub->id, json_decode($adv->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $adv->id }}[]" class="assign_advertiser" value="{{ $pub->id }}" data-advertiser_id = "{{$adv->id}}">{{ $adv->company_name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
                                         </td>
                                         <td data-label="Username">{{ $pub->name }}</td>
                                         <td data-label="Company Name">{{ $pub->company_name }}</td>
@@ -780,6 +765,44 @@
    table ul {
     padding-left: 20px;
     }
+    ul.check_box_list {
+        height: 100px;
+        overflow: auto;
+        width: 100%;
+        border: 1px solid #000;
+    }
+
+    ul.check_box_list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    ul.check_box_list li {
+        margin: 0;
+        padding: 0;
+    }
+    ul.check_box_list label {
+        text-align: left;
+        padding: 3px 5px;
+        display: inline-block;
+        width: 100%;
+        color: WindowText;
+        background-color: Window;
+        margin: 0;
+        width: 100%;
+    }
+
+    ul.check_box_list label input {
+        margin-right: 3px;
+    }
+
+    ul.check_box_list label:hover {
+        background-color: Highlight;
+        color: HighlightText;
+    }
+
 
 </style>
 <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -882,7 +905,49 @@
     //         });
     //     }
     //   })
+
+    function Toast(color = 'green', message) {
+        iziToast.show({
+            // icon: 'fa fa-solid fa-check',
+            color: color, // blue, red, green, yellow
+            message: message,
+            position: 'topRight'
+        });
+    }
+
     $(document).ready(function() {
+
+        $('.assign_advertiser').change(function() {
+            var box =  $(this)[0];
+            var advertiser_id = $(this).data('advertiser_id');
+            var publisher_id = $(this).val();
+            var type = $(this)[0].checked? 1:0;
+
+            const formData = {
+                "_token": "{{ csrf_token() }}",
+                "type": type,
+                "publisher_id": publisher_id,
+                "advertiser_id": advertiser_id
+            };
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: "{{route('admin.advertiser.assign_advertiser')}}",
+                data: formData,
+                success: function(data) {
+                    if (data.success) {
+                        Toast('green', data.message);
+                        if (type === 1){
+                            box.offsetParent.querySelector('[name="count"]').innerHTML = Number(box.offsetParent.querySelector('[name="count"]').innerHTML) + 1;
+                        }else{
+                            box.offsetParent.querySelector('[name="count"]').innerHTML = Number(box.offsetParent.querySelector('[name="count"]').innerHTML) - 1;
+                        }
+                    } else {
+                        Toast('red', data.message);
+                    }
+                }
+            });
+        })
 
         $('#ulser_list .card-body ul.nav.nav-tabs').addClass("position-absolute")
         $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {

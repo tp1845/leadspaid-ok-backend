@@ -169,7 +169,7 @@
                 <li class="sidebar-menu-item sidebar-dropdown">
                     <a href="javascript:void(0)" class="{{menuActive('admin.advertiser*',3)}}">
                         <i class="menu-icon lab la-autoprefixer"></i>
-                        <span class="menu-title">@lang('Manage Advertiser')</span>
+                        <span class="menu-title">@lang('Advertisers')</span>
                     </a>
                     <div class="sidebar-submenu {{menuActive('admin.advertiser*',2)}} ">
                         <ul>
@@ -194,7 +194,7 @@
                 <li class="sidebar-menu-item  {{menuActive('admin.campaigns.all')}}">
                     <a href="{{route('admin.campaigns.all')}}" class="nav-link" >
                     <i class="menu-icon lab la-autoprefixer"></i>
-                        <span class="menu-title text-white">@lang('Manage Campaigns') </span>
+                        <span class="menu-title text-white">@lang('Campaigns') </span>
                     </a>
                 </li>
                 <li class="sidebar-menu-item  {{menuActive('admin.forms.index')}}">
@@ -206,13 +206,13 @@
                 <li class="sidebar-menu-item  {{menuActive('admin.leads.all')}}">
                     <a href="{{route('admin.leads.all')}}" class="nav-link" >
                     <i class="menu-icon lab la-autoprefixer"></i>
-                        <span class="menu-title text-white">@lang('Manage Leads') </span>
+                        <span class="menu-title text-white">@lang('Leads') </span>
                     </a>
                 </li>
                 <li class="sidebar-menu-item sidebar-dropdown">
                 <a href="javascript:void(0)" class="{{menuActive('admin.users',3)}} {{menuActive('admin.create-users',3)}}">
                         <i class="menu-icon la la-envelope-o"></i>
-                        <span class="menu-title">@lang('Manage Users')</span>
+                        <span class="menu-title">@lang('Users')</span>
                     </a>
                 <div class="sidebar-submenu {{menuActive('admin.users',2)}} {{menuActive('admin.create-users',2)}} ">
                   <ul>

@@ -21,6 +21,8 @@ class AdvertiserController extends Controller
         $empty_message = 'No advertiser';
         $advertisers = Advertiser::latest();
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
+        $campaign_manager = Publisher::where('role',2)->select('id', 'name')->get();
+        $Campaign_executive = Publisher::where('role',3)->select('id', 'name')->get();
         $activeCampaign =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
         $active =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 0 ) >0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
         $pending = Advertiser::where('status', 0)->where('ev','!=' , 0);
@@ -54,7 +56,7 @@ class AdvertiserController extends Controller
         $banned =$banned->get();
         $rejected =$rejected->get();
 
-        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers','companies', 'publishers_admin','activeCampaign', 'active', 'pending', 'email_unverify', 'banned','rejected'));
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers','companies','campaign_manager','Campaign_executive', 'publishers_admin','activeCampaign', 'active', 'pending', 'email_unverify', 'banned','rejected'));
     }
     public function allActiveAdvertiser()
     {
@@ -264,13 +266,43 @@ class AdvertiserController extends Controller
         $request->validate(['advertiser_id' => 'required']);
         $advertiser = Advertiser::findOrFail($request->advertiser_id);
         if ($advertiser) {
-            $advertiser->assign_publisher = $request->assign_publisher ? $request->assign_publisher : null;
+            $advertiser->assign_publisher = $request->assign_publisher ? array_unique($request->assign_publisher) : [];
             $advertiser->update();
-            return response()->json(['success' => true, 'message' => 'Successfully  Updated']);
+            return response()->json(['success' => true, 'message' => 'Successfully  Updated','output'=>array_unique($request->assign_publisher)]);
         } else {
             return response()->json(['success' => false, 'message' => 'Someting wrong try again!']);
         }
     }
+
+    public function assign_advertiser(Request $request)
+    {
+        $request->validate(['advertiser_id' => 'required']);
+        $request->validate(['publisher_id' => 'required']);
+        $request->validate(['type' => 'required']);
+        $advertiser = Advertiser::findOrFail($request->advertiser_id);
+        if ($advertiser) {
+            $newarray =    $advertiser->assign_publisher;
+            if ($newarray){
+                if (($key = array_search($request->publisher_id, $newarray)) !== false) {           
+                    unset($newarray[$key]);
+                    $newarray = array_values( $newarray);
+                }
+            }else{
+                $newarray=[];
+            }
+            
+             
+            if($request->type == 1){
+                array_push($newarray,$request->publisher_id);
+            }
+            $advertiser->assign_publisher = $newarray ? (array)$newarray : [];
+            $advertiser->update();
+            return response()->json(['success' => true, 'message' => 'Successfully  Updated','output'=> array_unique($newarray)]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Someting wrong try again!']);
+        }
+    }
+
 
     public function advertiserActive($id)
     {

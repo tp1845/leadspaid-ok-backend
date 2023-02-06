@@ -47,6 +47,8 @@
                                         <th scope="col">@lang('Active Campaigns')</th>
                                         <th scope="col">@lang('Active Campaign Budget')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -94,6 +96,25 @@
                                                 @endforelse
                                             </ul>
                                         </td>
+                                        
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
@@ -129,6 +150,8 @@
                                         <th scope="col">@lang('Active Campaigns')</th>
                                         <th scope="col">@lang('Active Campaign Budget')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -176,6 +199,25 @@
                                                 @endforelse
                                             </ul>
                                         </td>
+                                          
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
@@ -209,6 +251,8 @@
                                         <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -260,6 +304,24 @@
                                                 @endforelse
                                             </ul>
                                         </td>
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher  != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
@@ -295,6 +357,8 @@
                                         <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -342,6 +406,24 @@
                                                 @endforelse
                                             </ul>
                                         </td>
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
@@ -379,6 +461,8 @@
                                         <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -425,6 +509,24 @@
                                                 @endforelse
                                             </ul>
                                         </td>
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
@@ -460,6 +562,8 @@
                                         <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -507,6 +611,24 @@
                                                 @endforelse
                                             </ul>
                                         </td>
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
                                         <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
                                         <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
                                         <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
@@ -543,6 +665,8 @@
                                         <th>A.ID</th>
                                         <th scope="col">@lang('Company Name')</th>
                                         <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
                                         <th scope="col">@lang('Name')</th>
                                         <th scope="col">@lang('Country')</th>
                                         <th scope="col">@lang('Phone')</th>
@@ -583,6 +707,24 @@
                                         <td data-label="@lang('Assign Publisher Admin')">
                                             <ul class="check_box_list">
                                                 @forelse($publishers_admin as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
                                                 <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
                                                 @empty
 
@@ -729,22 +871,21 @@
     var leads_preview_modal = $('#leads_preview_modal');
     $(document).ready(function() {
         $('.assign_publisher').change(function() {
-            console.log('assign_publisher');
             var advertiser_id = $(this).data('advertiser_id');
-            name = $(this).attr('name');
-            var data = new Array();
-            $("input[name='" + name + "']:checked").each(function(i) {
-                data.push($(this).val());
-            });
+            var publisher_id = $(this).val();
+            var type = $(this)[0].checked? 1:0;
+
+
             const formData = {
                 "_token": "{{ csrf_token() }}",
-                "assign_publisher": data,
+                "type": type,
+                "publisher_id": publisher_id,
                 "advertiser_id": advertiser_id
             };
             $.ajax({
                 type: "POST",
                 dataType: "json",
-                url: "{{route('admin.advertiser.assign_publisher')}}",
+                url: "{{route('admin.advertiser.assign_advertiser')}}",
                 data: formData,
                 success: function(data) {
                     if (data.success) {
