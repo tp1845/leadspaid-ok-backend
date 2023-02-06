@@ -1300,10 +1300,8 @@ padding: 0; display: block; opacity: 0;">
     $('.del-preview').on('click', function() {
         $(this).next('img').attr('src', '#');
         $(this).parent().hide();
-        var
-            upload_box = $(this).parent().prev('.upload-box');
-        $
-            ('.inputfile', upload_box).val("");
+        var upload_box = $(this).parent().prev('.upload-box');
+            $('.inputfile', upload_box).val("");
         if ($("#company_name_Input").val() == "") {
             $(".logo_comapny").val('');
         }
