@@ -131,7 +131,7 @@
         <table class="dataTable no-footer style--two table table--light table-light" id="activecampaginadvertiser" style="width: 45rem;">
         <thead>
             <tr>
-                <th scope="col">@lang('Company Name')</th>
+                <th scope="col">@lang('Advertiser')</th>
                 <th scope="col">@lang('Active Campaigns')</th>
                 <th scope="col">@lang('Active Campaign Budget')</th>
             </tr>
@@ -141,7 +141,7 @@
             @foreach($activeCampaign as $advertiser)
             <tr>
                 
-                <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                <td data-label="@lang('Advertiser')">{{ $advertiser->company_name }}</td>
                 <td data-label="@lang('Active Campaigns')"><?php echo get_total_active_campaign($advertiser->id) ?></td>
                 <td data-label="@lang('Active Campaigns')">$<?php echo get_active_campaign_budget($advertiser->id) ?></td>
             </tr>
