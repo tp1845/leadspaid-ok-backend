@@ -31,8 +31,8 @@ $user = auth()->guard('advertiser')->user();
                                             <label class="d-none">@lang('Mobile') <sup class="text-danger">*</sup></label>
                                             <div class="Rg_advts_number">
                                                 <select name="country_code" class="country_code  form-select rounded-0">
-                                            @include('partials.country_code')
-                                            </select>
+                                                    @include('partials.country_code', ['country_code' => auth()->guard('advertiser')->user()->country_code])
+                                                </select>
                                                 <input type="text" name="mobile" value="{{auth()->guard('advertiser')->user()->mobile}}" class="form-control rounded-0" placeholder="@lang('Your Phone Number')">
                                             </div>
                                         </div>
