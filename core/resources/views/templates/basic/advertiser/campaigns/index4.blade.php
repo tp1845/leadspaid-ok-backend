@@ -50,7 +50,7 @@ $user = auth()->guard('advertiser')->user();
                             <tr>
                                 <th>Off/On</th>
                                 <th>Campaign Name</th>
-                                <th>Delivery</th>
+                                <th>Status</th>
                                 <th>Download Leads</th>
                                 <th>Leads</th>
                                 <th>Cost</th>
@@ -166,7 +166,7 @@ $user = auth()->guard('advertiser')->user();
                             <tr>
                                 <th>Off/On</th>
                                 <th>Campaign Name</th>
-                                <th>Delivery</th>
+                                <th>Status</th>
                                 <th>Download Leads</th>
                                 <th>Leads</th>
                                 <th>Cost</th>
@@ -282,7 +282,7 @@ $user = auth()->guard('advertiser')->user();
                             <tr>
                                 <th>Off/On</th>
                                 <th>Campaign Name</th>
-                                <th>Delivery</th>
+                                <th>Status</th>
                                 <th>Download Leads</th>
                                 <th>Leads</th>
                                 <th>Cost</th>
@@ -404,7 +404,7 @@ $user = auth()->guard('advertiser')->user();
                                 <th>id</th>
                                 <th>Off/On</th>
                                 <th>Campaign Name</th>
-                                <th>Delivery</th>
+                                <th>Status</th>
                                 <th>Download Leads</th>
                                 <th>Leads</th>
                                 <th>Cost</th>
@@ -521,7 +521,7 @@ $user = auth()->guard('advertiser')->user();
                             <tr>
                                 <th>Off/On</th>
                                 <th>Campaign Name</th>
-                                <th>Delivery</th>
+                                <th>Status</th>
                                 <th>Download Leads</th>
                                 <th>Leads</th>
                                 <th>Cost</th>
