@@ -1,6 +1,6 @@
 {{-- //  campaigns Status
 // Draft = 0,  Active = 1, Pending Approval = 2, Rejected = 3, Deleted = 4; --}}
-<tr class="@if(($campaign->status==4)) delete_row @endif   @if($campaign->status == 0 ) draft @endif  ">
+<tr  id="{{$campaign->id}}" class="@if(($campaign->status==4)) delete_row @endif   @if($campaign->status == 0 ) draft @endif  ">
     <td>{{$campaign->id}}</td>
     <td>
         @if($campaign->status!=3 && $campaign->status!=4)
