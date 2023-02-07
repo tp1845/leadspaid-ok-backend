@@ -1450,6 +1450,7 @@ $user = auth()->guard('advertiser')->user();
 
     $(document).ready(function() {
         var options = {
+            order: [[0, 'desc']],
             columnDefs: [
                 {
                     targets: 0,

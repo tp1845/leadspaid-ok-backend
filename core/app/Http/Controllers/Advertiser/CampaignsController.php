@@ -49,10 +49,9 @@ class CampaignsController extends Controller
     }
 
   public function delete_camp(Request $request, $id){
-       $campaign = campaigns::where('campaigns.id', $id)->update(array('approve'=>0,'status'=>0));
-          $res=array('code'=>200);
-           return response()->json($res);
-
+        campaigns::where('campaigns.id', $id)->update(array( 'status'=>4));
+        $res=array('code'=>200);
+        return response()->json($res);
     }
 
 
@@ -67,14 +66,14 @@ class CampaignsController extends Controller
         ]);
         if($request->campaign_id){
             $campaign = campaigns::findOrFail( $request->campaign_id);
+            $campaign->delivery = $request->delivery;
         }else{
             $campaign = new campaigns();
             $campaign->status = 0;
             $campaign->approve =  0;
-            $campaign->delivery = 0;
+            $campaign->delivery = 1;
         }
 
-        //$campaign->advertiser_id = $request->advertiser_id;
         $campaign->advertiser_id = $user;
         $campaign->name = $request->name;
         $campaign->start_date =  Carbon::parse($request->start_date);
@@ -95,8 +94,6 @@ class CampaignsController extends Controller
         $campaign->form_id = $request->form_id;
         $campaign->website_url = $request->website_url;
         $campaign->social_media_page = $request->social_media_page;
-        $campaign->delivery = $request->delivery;
-
 
         if($request->campaign_id){
             $campaign->update();

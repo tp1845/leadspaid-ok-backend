@@ -46,7 +46,7 @@ class CampaignsdemoController extends Controller
     }
     public function get_last_draft( )
     {
-        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('delivery', 2)->orderBy('id', 'DESC')->first();
+        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('status', 0)->orderBy('id', 'DESC')->first();
         return response()->json(['success'=>true, 'row'=>$campaigns_draft]);
     }
 
@@ -128,10 +128,11 @@ class CampaignsdemoController extends Controller
                 $campaign = campaigns::findOrFail( $request->campaign_id);
             }else{
                 $campaign = new campaigns();
-                $campaign->status = 1;
+                $campaign->status = 0;
                 $campaign->approve =  0;
+                $campaign->delivery = 1;
             }
-            $campaign->delivery = 0;
+
             $campaign->advertiser_id = $user;
             $campaign->name = $request->campaign_name;
             $campaign->leads_criteria = $request->leads_criteria;
@@ -218,7 +219,7 @@ class CampaignsdemoController extends Controller
             {
                 $campaign_forms->image_3 = uploadImage($request->image_3, $path);
             }
-                $campaign_forms->status = 0;
+            $campaign_forms->status = 0;
             if($campaign_forms->save())
             {
                 $form_id = $campaign_forms->id;
@@ -231,10 +232,10 @@ class CampaignsdemoController extends Controller
                 $campaign = campaigns::findOrFail( $request->campaign_id);
             }else{
                 $campaign = new campaigns();
-                $campaign->status = 1;
+                $campaign->status = 0;  // save as draft
                 $campaign->approve =  0;
+                $campaign->delivery = 1;
             }
-            $campaign->delivery = 2; // save as draft
             $campaign->advertiser_id = $user;
             $campaign->name = $request->campaign_name;
             $campaign->leads_criteria = $request->leads_criteria;
