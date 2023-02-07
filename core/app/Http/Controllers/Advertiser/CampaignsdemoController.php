@@ -17,18 +17,21 @@ class CampaignsdemoController extends Controller
     {
         $forms = campaign_forms::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->get();
 
-        $campaigns_all=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->whereNotIn('approve',  [  2, 3, 4])->whereNotIn('status', [0])->orderBy('id', 'DESC')->get();
+        //  campaigns Status
+        // Draft = 0,  Active = 1, Pending Approval = 2, Rejected = 3, Deleted = 4;
+        $campaigns_all = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('status','!=', 4)->orderBy('id', 'DESC')->get();
 
+        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('status', 0)->orderBy('id', 'DESC')->get();
 
-        $campaigns=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('approve',1)->orderBy('id', 'DESC')->get();
+        $campaigns_pending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('status', 2)->orderBy('id', 'DESC')->get();
 
-        $campaignspending = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('approve',0)->where('delivery', 0)->where('status','!=',0)->orderBy('id', 'DESC')->get();
+        $campaigns_live = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('status', 1)->orderBy('id', 'DESC')->get();
 
-        $campaigns_draft = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->whereNotIn('approve',  [2, 3, 4])->whereNotIn('status', [0])->where('delivery', 2)->orderBy('id', 'DESC')->get();
+        $campaigns_rejected = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('status', 3)->orderBy('id', 'DESC')->get();
 
-        $campaignstrash = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('approve',0)->where('status',0)->orderBy('id', 'DESC')->get();
+        $campaigns_trash = campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->where('status', 4)->orderBy('id', 'DESC')->get();
 
-        $campaignsval=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->orderBy('id', 'DESC')->get();
+		$campaigns_validation=campaigns::with('advertiser')->whereAdvertiserId(Auth()->guard('advertiser')->id())->with('campaign_forms:id,form_name')->with('campaign_forms_exits:id,form_name')->orderBy('id', 'DESC')->get();
         $last_campaign = campaigns::orderBy('id', 'desc')->first();
         if($last_campaign){
             $last_campaign = $last_campaign->id;
@@ -39,7 +42,7 @@ class CampaignsdemoController extends Controller
         $countries = Country::all();
         $page_title = 'All Campaigns';
         $empty_message = "No Campaigns";
-        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns_all', 'campaigns','campaignspending', 'campaigns_draft', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message','campaignsval','campaignstrash'));
+        return view(activeTemplate() . 'advertiser.campaigns.index'.$style, compact('campaigns_all', 'campaigns_live','campaigns_pending', 'campaigns_draft', 'next_campaign', 'forms', 'countries', 'page_title', 'empty_message','campaigns_validation','campaigns_trash', 'campaigns_rejected'));
     }
     public function get_last_draft( )
     {
