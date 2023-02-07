@@ -6,15 +6,27 @@
 
     <div class="col-lg-12">
         <div class="card b-radius--10 ">
+            <select id="company_search" class="form-select form-select-lg mb-3 position-absolute" aria-label=".form-select-lg" style="right: 13rem;border-radius: 0;z-index: 1;">
+                <option value="">Select Company Name</option>
+                @forelse($companies as $company)
+                <option <?php echo isset($_GET['advertiser']) ? ($_GET['advertiser'] == $company->id ? "selected" : "") : "" ?> value="{{$company->id}}">{{$company->company_name}}</option>
+                @empty
+                @endforelse
+            </select>
+
+
             <div class="card-body p-0">
 
 
                 <ul class="nav nav-tabs border-0" role="tablist" id="myTab">
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary active" href="#active-campaign" role="tab" data-toggle="tab">Active+Campaigns ({{$activeCampaign->count()}})</a>
+                        <a class="nav-link btn-primary active" href="#active-campaign-delivery" role="tab" data-toggle="tab">Active+C+D ({{$activeCampaignDelivery->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary " href="#active" role="tab" data-toggle="tab">Active ({{$active->count()}})</a>
+                        <a class="nav-link btn-primary " href="#active-campaign" role="tab" data-toggle="tab">Active+C-D ({{$activeCampaign->count()}})</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link btn-primary" href="#active" role="tab" data-toggle="tab">Active+0C ({{$active->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link btn-primary" href="#pending" role="tab" data-toggle="tab">Pending Approval ({{$pending->count()}})</a>
@@ -35,10 +47,113 @@
                 </ul>
 
                 <div class="tab-content mt-3">
-                    <div role="tabpanel" class="tab-pane active" id="active-campaign">
+                    <div role="tabpanel" class="tab-pane active" id="active-campaign-delivery">
 
                         <div class="table-responsive--md  table-responsive">
                             <table class="table table--light style--two" id="activedata">
+                                <thead>
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>A.ID</th>
+                                        <th scope="col">@lang('Company Name')</th>
+                                        <th scope="col">@lang('Active Campaigns')</th>
+                                        <th scope="col">@lang('Active Campaign Budget')</th>
+                                        <th scope="col">@lang('Assign Publisher Admin')</th>
+                                        <th scope="col">@lang('Assign Campaign Manager')</th>
+                                        <th scope="col">@lang('Assign Campaign Exective')</th>
+                                        <th scope="col">@lang('Name')</th>
+                                        <th scope="col">@lang('Country')</th>
+                                        <th scope="col">@lang('Phone')</th>
+                                        <th scope="col">@lang('Email')</th>
+                                        <th scope="col">@lang('Products/Services')</th>
+                                        <th scope="col">@lang('Website')</th>
+                                        <th scope="col">@lang('Social Media')</th>
+                                        <th scope="col">@lang('Ad Budget')</th>
+
+                                        <th scope="col">@lang('Date Applied')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if(!empty($activeCampaignDelivery))
+                                    @foreach($activeCampaignDelivery as $advertiser)
+                                    <tr>
+                                        <td data-label="@lang('Name')" class="text--primary">
+                                            <div class="align-items-center d-flex flex-column justify-content-center" style="gap: 5px;">
+                                                <input type="checkbox" name="status" @if($advertiser->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$advertiser->id}}">
+                                                <div style="display: inline-table;">
+                                                    <a href="{{ route('admin.advertiser.details',['id'=>$advertiser->id]) }}" class="icon-btn" data-toggle="tooltip" title="" data-original-title="Details">
+                                                        <i class="las la-desktop text--shadow"></i>
+                                                    </a>
+
+                                                    <a href="{{ route('admin.advertiser.delete',['id'=>$advertiser->id])}}" class="" data-toggle="tooltip" title="" data-original-title="Ban">
+                                                        <i class="fa-regular fa-circle-xmark"></i>
+
+                                                    </a>
+                                                </div>
+
+                                            </div>
+
+                                        </td>
+                                        <td>{{ $advertiser->id }}</td>
+                                        <td data-label="@lang('Company Name')">{{ $advertiser->company_name }}</td>
+                                        <td data-label="@lang('Active Campaigns')"><?php echo get_total_active_campaign($advertiser->id) ?></td>
+                                        <td data-label="@lang('Active Campaigns')">$<?php echo get_active_campaign_budget($advertiser->id) ?></td>
+
+                                        <td data-label="@lang('Assign Publisher Admin')">
+                                            <ul class="check_box_list">
+                                                @forelse($publishers_admin as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+
+                                        <td data-label="@lang('Assign Campaign Manager')">
+                                            <ul class="check_box_list">
+                                                @forelse($campaign_manager as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Assign Campaign Exective')">
+                                            <ul class="check_box_list">
+                                                @forelse($Campaign_executive as $publisher)
+                                                <li><label><input @if(json_decode($advertiser->assign_publisher) != null && in_array($publisher->id, json_decode($advertiser->assign_publisher))) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                @empty
+
+                                                @endforelse
+                                            </ul>
+                                        </td>
+                                        <td data-label="@lang('Name')" class="text--primary">{{ $advertiser->name }}</td>
+                                        <td data-label="@lang('Country')">{{ $advertiser->country }}</td>
+                                        <td data-label="@lang('Phone')">{{$advertiser->country_code}}-{{ str_replace(ltrim($advertiser->country_code, '+'),"", $advertiser->mobile) }}</td>
+                                        <td data-label="@lang('Email')">
+                                            <div style="white-space: initial;">{{ $advertiser->email }}</div>
+                                        </td>
+                                        <td data-label="@lang('Products/Services')" style="max-width: 200px;min-width: 200px;line-break: auto;white-space: initial;">{{ $advertiser->product_services }}</td>
+                                        <td data-label="@lang('Website')">{{ $advertiser->Website }}</td>
+                                        <td data-label="@lang('Social Media')">{{ $advertiser->Social }}</td>
+                                        <td data-label="@lang('Ad Budget')">${{ $advertiser->ad_budget }}</td>
+
+
+                                        <td><span class="text--small"><strong> {{ Carbon\Carbon::parse($advertiser->created_at)->format('d-m-Y ') }} </strong></span></td>
+
+                                    </tr>
+                                    @endforeach
+                                    @endif
+
+                                </tbody>
+                            </table><!-- table end -->
+                        </div>
+                    </div>
+                    <!-- Tab panes 2 -->
+                    <div role="tabpanel" class="tab-pane" id="active-campaign">
+
+                        <div class="table-responsive--md  table-responsive">
+                            <table class="table table--light style--two" id="active-campaign-data">
                                 <thead>
                                     <tr>
                                         <th>Status</th>
@@ -96,7 +211,7 @@
                                                 @endforelse
                                             </ul>
                                         </td>
-                                        
+
                                         <td data-label="@lang('Assign Campaign Manager')">
                                             <ul class="check_box_list">
                                                 @forelse($campaign_manager as $publisher)
@@ -137,7 +252,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 2 -->
+                    <!-- Tab panes 3 -->
                     <div role="tabpanel" class="tab-pane" id="active">
 
                         <div class="table-responsive--md  table-responsive">
@@ -199,7 +314,7 @@
                                                 @endforelse
                                             </ul>
                                         </td>
-                                          
+
                                         <td data-label="@lang('Assign Campaign Manager')">
                                             <ul class="check_box_list">
                                                 @forelse($campaign_manager as $publisher)
@@ -240,7 +355,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 3 -->
+                    <!-- Tab panes 4 -->
                     <div role="tabpanel" class="tab-pane" id="pending">
 
                         <div class="table-responsive--md  table-responsive">
@@ -307,7 +422,7 @@
                                         <td data-label="@lang('Assign Campaign Manager')">
                                             <ul class="check_box_list">
                                                 @forelse($campaign_manager as $publisher)
-                                                <li><label><input @if($advertiser->assign_publisher  != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
+                                                <li><label><input @if($advertiser->assign_publisher != null && in_array($publisher->id, $advertiser->assign_publisher)) checked @endif type="checkbox" name="assign_publisher_{{ $advertiser->id }}[]" class="assign_publisher" value="{{ $publisher->id }}" data-advertiser_id = "{{$advertiser->id}}">{{ $publisher->name  }}</label></li>
                                                 @empty
 
                                                 @endforelse
@@ -346,7 +461,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 4 -->
+                    <!-- Tab panes 5 -->
                     <div role="tabpanel" class="tab-pane" id="emaildata">
 
                         <div class="table-responsive--md  table-responsive">
@@ -450,7 +565,7 @@
                     </div>
 
 
-                    <!-- Tab panes 5 -->
+                    <!-- Tab panes 6 -->
                     <div role="tabpanel" class="tab-pane" id="banned">
 
                         <div class="table-responsive--md  table-responsive">
@@ -551,7 +666,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 6 -->
+                    <!-- Tab panes 7 -->
                     <div role="tabpanel" class="tab-pane" id="rejected">
 
                         <div class="table-responsive--md  table-responsive">
@@ -654,7 +769,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 7 -->
+                    <!-- Tab panes 8 -->
                     <div role="tabpanel" class="tab-pane" id="advertiserdata">
 
                         <div class="table-responsive--md  table-responsive">
@@ -759,15 +874,7 @@
             </div>
 
         </div><!-- card end -->
-        <div class="card-footer py-4">
-        <select id="company_search" class="form-select form-select-lg mb-3" aria-label=".form-select-lg" style="right: 13rem;border-radius: 0;z-index: 1;">
-                <option value="">Select Company Name</option>
-                @forelse($companies as $company)
-                <option <?php echo isset($_GET['advertiser']) ? ($_GET['advertiser'] == $company->id ? "selected" : "") : "" ?> value="{{$company->id}}">{{$company->company_name}}</option>
-                @empty
-                @endforelse
-            </select>
-        </div>
+
     </div>
 
 
@@ -873,7 +980,7 @@
         $('.assign_publisher').change(function() {
             var advertiser_id = $(this).data('advertiser_id');
             var publisher_id = $(this).val();
-            var type = $(this)[0].checked? 1:0;
+            var type = $(this)[0].checked ? 1 : 0;
 
 
             const formData = {
@@ -896,6 +1003,22 @@
                 }
             });
         })
+        $('#active-campaign-data').on('page.dt', function() {
+            setTimeout(function() {
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
+                $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
+            }, 100)
+
+        });
+        $('#activedata').on('page.dt', function() {
+            setTimeout(function() {
+                $("[data-toggle='toggle']").bootstrapToggle('destroy')
+                $("[data-toggle='toggle']").bootstrapToggle();
+                add_custom_toggle_click();
+            }, 100)
+
+        });
 
         $('#activedata').on('page.dt', function() {
             setTimeout(function() {
@@ -958,7 +1081,7 @@
     }
 
 
-    $('#advertiser-data,#pendingdata,#data-email,#banneddata,#rejecteddata,#activedata,#datatable5').DataTable({
+    $('#active-campaign-data,#advertiser-data,#pendingdata,#data-email,#banneddata,#rejecteddata,#activedata,#datatable5').DataTable({
 
         "sDom": 'Lfrtlip',
         "language": {
@@ -1065,7 +1188,7 @@
 
     }
     add_custom_toggle_click();
-
+    $('#company_search')[0].style.top = "2.15rem";
     $(document).ready(function() {
         $('#apporved_list ul.nav.nav-tabs').addClass("position-absolute")
         $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {

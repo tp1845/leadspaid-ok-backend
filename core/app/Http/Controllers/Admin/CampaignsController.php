@@ -21,21 +21,24 @@ class CampaignsController extends Controller
         $empty_message = 'No Campaigns';
         
         $campaigns = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2);
-        $pending = campaigns::with('advertiser')->with('campaign_forms')->where('status', '!=', 2)->where('approve', 0);
-        $active = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', '!=', 2);
-        $reject = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 2)->where('status', '!=', 2);
-        $trash = campaigns::with('advertiser')->with('campaign_forms')->where('status', 2);
+        $pending = campaigns::with('advertiser')->with('campaign_forms')->where('status', 2)->where('approve', 0);
+        $activeDelivery = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', 1)->where('delivery',1);
+        $active = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 1)->where('status', 1)->where('delivery',0);
+        $reject = campaigns::with('advertiser')->with('campaign_forms')->where('approve', 2)->where('status', 3);
+        $trash = campaigns::with('advertiser')->with('campaign_forms')->where('status', 4)->orWhere('status',5);
 
 
         if (isset($_GET['advertiser'])){
             $advertiserid = $_GET['advertiser'];
            $active->where('campaigns.advertiser_id','=',$advertiserid);
+           $activeDelivery->where('campaigns.advertiser_id','=',$advertiserid);
            $campaigns->where('campaigns.advertiser_id','=',$advertiserid);
            $pending->where('campaigns.advertiser_id','=',$advertiserid);
            $reject->where('campaigns.advertiser_id','=',$advertiserid);
            $trash->where('campaigns.advertiser_id','=',$advertiserid);
         }
         $active = $active->orderBy('id', 'DESC')->get();
+        $activeDelivery = $activeDelivery->orderBy('id', 'DESC')->get();
         $campaigns = $campaigns->orderBy('id', 'DESC')->get();
         $pending = $pending->orderBy('id', 'DESC')->get();
         $reject = $reject->orderBy('id', 'DESC')->get();
@@ -47,7 +50,7 @@ class CampaignsController extends Controller
         ->get();
         
 
-        return view('admin.campaigns.index', compact('page_title', 'empty_message', 'campaigns','companies', 'pending', 'active', 'reject', 'trash'));
+        return view('admin.campaigns.index', compact('page_title', 'empty_message', 'campaigns','companies', 'pending', 'active', 'activeDelivery','reject', 'trash'));
     }
 
     public function export($cid, $aid, $fid)

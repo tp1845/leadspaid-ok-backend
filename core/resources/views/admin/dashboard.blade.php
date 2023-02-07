@@ -124,7 +124,7 @@
         </div>
         <br/>
         <div class="col">
-            <h6 style="font-size: 14px; font-weight:700;">ACTIVE+CAMPAIGN STATS</h6>
+            <h6 style="font-size: 14px; font-weight:700;">ACTIVE+C+D STATS</h6>
         </div>
 
 
@@ -137,8 +137,8 @@
             </tr>
         </thead>
         <tbody>
-            @if(!empty($activeCampaign))
-            @foreach($activeCampaign as $advertiser)
+            @if(!empty($activeCampaignDelivery))
+            @foreach($activeCampaignDelivery as $advertiser)
             <tr>
                 
                 <td data-label="@lang('Advertiser')">{{ $advertiser->company_name }}</td>

@@ -256,7 +256,7 @@ class PublisherController extends Controller
    
   
   public function manage_user(){
-    $advertisers =DB::table('advertisers')->get();
+    $advertisers =DB::table('advertisers')->orderBy('company_name')->get();
         
      $publisher_admin = Publisher::where('role',1)->where('status','=',1)->get();
      $campaign_manager=Publisher::where('role',2)->where('status','=',1)->get();

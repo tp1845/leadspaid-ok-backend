@@ -23,8 +23,9 @@ class AdvertiserController extends Controller
         $publishers_admin = Publisher::where('role', 1)->select('id', 'name')->get();
         $campaign_manager = Publisher::where('role',2)->select('id', 'name')->get();
         $Campaign_executive = Publisher::where('role',3)->select('id', 'name')->get();
-        $activeCampaign =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
-        $active =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 0 ) >0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
+        $activeCampaignDelivery =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND (SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.delivery = 1 ) > 0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
+        $activeCampaign =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) > 0 AND (SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.delivery = 1 ) = 0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
+        $active =DB:: table('advertisers')->whereRaw('(SELECT COUNT(campaigns.id) FROM campaigns WHERE advertisers.id = campaigns.advertiser_id and campaigns.status = 1 ) = 0 AND advertisers.status = 1 AND advertisers.ev != 0 '); 
         $pending = Advertiser::where('status', 0)->where('ev','!=' , 0);
         $email_unverify = Advertiser::where('ev', 0)->where('status','!=' , 2);
         $banned = Advertiser::where('status', 3);
@@ -41,6 +42,7 @@ class AdvertiserController extends Controller
             $advertiserid = $_GET['advertiser'];
 
             $advertisers->where('advertisers.id','=',$advertiserid);
+            $activeCampaignDelivery->where('advertisers.id','=',$advertiserid);
             $activeCampaign->where('advertisers.id','=',$advertiserid);
             $active->where('advertisers.id','=',$advertiserid);
             $pending->where('advertisers.id','=',$advertiserid);
@@ -49,6 +51,7 @@ class AdvertiserController extends Controller
             $rejected->where('advertisers.id','=',$advertiserid);
         }  
         $advertisers =$advertisers->get();
+        $activeCampaignDelivery =$activeCampaignDelivery->select('advertisers.*')->get();
         $activeCampaign =$activeCampaign->select('advertisers.*')->get();
         $active =$active->select('advertisers.*')->get();
         $pending =$pending->get();
@@ -56,7 +59,7 @@ class AdvertiserController extends Controller
         $banned =$banned->get();
         $rejected =$rejected->get();
 
-        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers','companies','campaign_manager','Campaign_executive', 'publishers_admin','activeCampaign', 'active', 'pending', 'email_unverify', 'banned','rejected'));
+        return view('admin.advertiser.all', compact('page_title', 'empty_message', 'advertisers','companies','campaign_manager','Campaign_executive', 'publishers_admin','activeCampaignDelivery','activeCampaign', 'active', 'pending', 'email_unverify', 'banned','rejected'));
     }
     public function allActiveAdvertiser()
     {

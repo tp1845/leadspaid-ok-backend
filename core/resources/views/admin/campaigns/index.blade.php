@@ -13,8 +13,11 @@
             </select>
 
                 <ul class="nav nav-tabs border-0" role="tablist" id="myTab">
+                <li class="nav-item mx-1">
+                        <a class="nav-link btn-primary active" href="#apporved-delivery" role="tab" data-toggle="tab">Apporved+D ({{$activeDelivery->count()}})</a>
+                    </li>
                     <li class="nav-item mx-1">
-                        <a class="nav-link btn-primary active" href="#apporved" role="tab" data-toggle="tab">Apporved ({{$active->count()}})</a>
+                        <a class="nav-link btn-primary " href="#apporved" role="tab" data-toggle="tab">Apporved ({{$active->count()}})</a>
                     </li>
                     <li class="nav-item mx-1">
                         <a class="nav-link btn-primary" href="#pendingapproved" role="tab" data-toggle="tab">Pending Approval ({{$pending->count()}})</a>
@@ -37,7 +40,121 @@
 
                 <!-- Tab panes 1 -->
                 <div class="tab-content mt-3">
-                    <div role="tabpanel" class="tab-pane active" id="apporved">
+                    <div role="tabpanel" class="tab-pane active" id="apporved-delivery">
+
+                        <div class="table-responsive--md  table-responsive">
+                            <table class="table table--light style--two" id="apporved-delivery-data">
+                                <thead>
+                                    <tr>
+                                        <th>Off/On</th>
+                                        <th>Campaign Name</th>
+                                        <th>C.ID</th>
+                                        <th>Advertiser</th>
+                                        <th>A.ID</th>
+                                        <th>Approve</th>
+                                        <th>Creation Date</th>
+                                        <th>Target Country</th>
+                                        <th>Daily Budget</th>
+                                        <th>Target CPL</th>
+                                        <th>Form Used</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th>Cost</th>
+                                        <th>Leads</th>
+                                        <th>CPL</th>
+                                        <th>Upload Leads</th>
+                                        <th>Spend</th>
+                                        <th>Targeting Placements</th>
+                                        <th>Keywords </th>
+                                        <th>Service </th>
+                                        <th>Website URL</th>
+                                        <th>Social Media</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if(!empty($activeDelivery))
+                                    @foreach($activeDelivery as $campaign)
+                                    <tr>
+                                        <td> @if($campaign->status==1) <span class="badge badge-pill badge-success">ON</span> @elseif(empty($campaign->status)) <span class="badge badge-pill badge-danger">OFF</span> @endif </td>
+                                        <td>{{ $campaign->name }} </td>
+
+                                        <td>{{ $campaign->id }} </td>
+                                        <td>{{ $campaign->advertiser->company_name}} </td>
+                                        <td>{{ $campaign->advertiser->id}} </td>
+
+                                        <?php
+                                        if ($campaign->approve == 2)   $status = 0;
+                                        if ($campaign->approve == 0)   $status = 1;
+                                        if ($campaign->approve == 1)   $status = 2;
+                                        ?>
+                                        <td>
+                                            <div class="wrapper wrapper_span">
+                                                <input type="range" name="points" min="0" step="1" id="custom-toggle" class="@if($campaign->approve==0) tgl-def @elseif($campaign->approve==1) tgl-on @elseif($campaign->approve==2) tgl-off @endif custom-toggle" max="2" value="{{ $status}}" data-size="small" data-onstyle="success" data-style="ios" data-id="{{$campaign->id}}">
+                                                <span>@if($campaign->approve==0) Pending @elseif($campaign->approve==1) Approve @elseif($campaign->approve==2) Rejected @endif </span>
+                                            </div>
+                                            <!--input type="checkbox" name="approve" @if($campaign->approve) checked @endif  data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-approve" data-id="{{$campaign->id}}" -->
+                                        </td>
+                                        <td>{{$campaign->created_at->format('Y-m-d H:i ')}}</td>
+                                        <td>{{ $campaign->target_country }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->daily_budget) }}</td>
+                                        <td>${{ str_replace('.00','',$campaign->target_cost) }}</td>
+                                        <td>
+                                            @if (isset($campaign->campaign_forms))
+                                            <a href="#" class="btn_form_preview" data-id="{{$campaign->id}}" data-name="{{$campaign->campaign_forms->form_name}}"> {{$campaign->campaign_forms->form_name}} </a> @endif
+                                        </td>
+                                        <td>{{ $campaign->start_date }}</td>
+                                        <td>{{ $campaign->end_date }}</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>
+                                            <form id="upload_form_{{$campaign->id}}" data-type="leads" class="uploadform" action="{{ route('admin.leads.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <a href="{{ route('admin.leads.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-primary up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="text-success up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <input data-form="upload_form_{{$campaign->id}}" type="file" name="file" required />
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td class="spend_col">
+                                            <form id="upload_spends_form_{{$campaign->id}}" data-type="spends" class="uploadform" action="{{ route('admin.campaigns.lgenspend.import',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                <a href="{{ route('admin.campaigns.lgenspend.export',['cid'=> $campaign->id,'aid'=> $campaign->advertiser_id, 'fid'=>$campaign->form_id]  ) }}" class="text-light-red up-down-btn"><i class="fa fas fa-arrow-alt-circle-down"></i></a>
+                                                <div class="upload-btn-wrapper">
+                                                    <button class="text-danger up-down-btn"><i class="fa fas fa-arrow-alt-circle-up"></i></button>
+                                                    <input data-form="upload_spends_form_{{$campaign->id}}" type="file" name="file" required />
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td> @if($campaign->target_placements)
+                                            @foreach($campaign->target_placements as $target_placements)
+                                            {{$target_placements}} ,
+                                            @endforeach
+                                            @endif
+                                        </td>
+                                        <td>{{ $campaign->keywords }}</td>
+                                        <td>{{ $campaign->service_sell_buy }}</td>
+                                        <td>{{ $campaign->website_url }}</td>
+                                        <td>{{ $campaign->social_media_page }}</td>
+                                        <td>
+                                            <a href="{{ route('admin.campaigns.delete',['id'=>$campaign->id])}}?tab=active" class="my_ttoltip" data-toggle="tooltip" title="Ban" data-original-title="Ban">
+                                                <i class="fa-regular fa-circle-xmark"></i>
+
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+
+                                </tbody>
+                            </table><!-- table end -->
+                        </div>
+                    </div>
+                    <!-- Tab panes 2 -->
+                    <div role="tabpanel" class="tab-pane" id="apporved">
 
                         <div class="table-responsive--md  table-responsive">
                             <table class="table table--light style--two" id="apporveddata">
@@ -150,7 +267,7 @@
                             </table><!-- table end -->
                         </div>
                     </div>
-                    <!-- Tab panes 2 -->
+                    <!-- Tab panes 3 -->
                     <div role="tabpanel" class="tab-pane" id="pendingapproved">
 
                         <div class="table-responsive--md  table-responsive">
@@ -265,7 +382,7 @@
                         </div>
                     </div>
 
-                    <!-- Tab panes 3 -->
+                    <!-- Tab panes 4 -->
                     <div role="tabpanel" class="tab-pane" id="reject">
 
                         <div class="table-responsive--md  table-responsive">
@@ -383,7 +500,7 @@
                         </div>
                     </div>
 
-                    <!-- Tab panes 4 -->
+                    <!-- Tab panes 5 -->
                     <div role="tabpanel" class="tab-pane" id="allcampigns">
 
                         <div class="table-responsive--md  table-responsive">
@@ -504,7 +621,7 @@
                     </div>
 
 
-                    <!-- Tab panes 5 -->
+                    <!-- Tab panes 6 -->
                     <div role="tabpanel" class="tab-pane" id="trash" class="trash-color">
 
                         <div class="table-responsive--md  table-responsive">
@@ -938,7 +1055,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         $('#apporved_list ul.nav.nav-tabs').addClass("position-absolute")
-        $('#datatable7, #pendingdata, #apporveddata,#rejectdata,#trashdata').DataTable({
+        $('#apporved-delivery-data, #datatable7, #pendingdata, #apporveddata,#rejectdata,#trashdata').DataTable({
 
             "sDom": 'Lfrtlip',
             "language": {
@@ -1148,31 +1265,7 @@
                 that.parent().find('span').text('Rejected');
             }
         }
-        $('#apporveddata').on('page.dt', function() {
-            setTimeout(function() {
-                add_custom_toggle_click();
-            }, 100)
-
-        });
-        $('#pendingdata').on('page.dt', function() {
-            setTimeout(function() {
-                add_custom_toggle_click();
-            }, 100)
-
-        });
-        $('#rejectdata').on('page.dt', function() {
-            setTimeout(function() {
-                add_custom_toggle_click();
-            }, 100)
-
-        });
-        $('#datatable7').on('page.dt', function() {
-            setTimeout(function() {
-                add_custom_toggle_click();
-            }, 100)
-
-        });
-        $('#trashdata').on('page.dt', function() {
+        $('#apporved-delivery-data, #apporveddata,#pendingdata,#rejectdata,#datatable7,#trashdata').on('page.dt', function() {
             setTimeout(function() {
                 add_custom_toggle_click();
             }, 100)
