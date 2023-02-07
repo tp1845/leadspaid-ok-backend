@@ -1127,16 +1127,16 @@ $user = auth()->guard('advertiser')->user();
         }
 
     });
-    $('.toggle-status').change(function() {
-        var status = $(this).prop('checked') == true ? 1 : 0;
-        $(".editcampaign").attr('data-status', status);
+    $('.toggle-delivery').change(function() {
+        var delivery = $(this).prop('checked') == true ? 1 : 0;
+        $(".editcampaign").attr('data-delivery', delivery);
         var campaign_id = $(this).data('id');
         $.ajax({
             type: "GET",
             dataType: "json",
             url: "{{route('advertiser.campaigns.status')}}",
             data: {
-                'status': status,
+                'delivery': delivery,
                 'campaign_id': campaign_id
             },
             success: function(data) {

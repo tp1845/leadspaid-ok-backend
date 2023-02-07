@@ -4,7 +4,7 @@
     <td>{{$campaign->id}}</td>
     <td>
         @if($campaign->status!=3 && $campaign->status!=4)
-            <input type="checkbox" name="status" @if($campaign->status) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-status" data-id="{{$campaign->id}}">
+            <input type="checkbox" name="delivery" @if($campaign->delivery) checked @endif data-toggle="toggle" data-size="small" data-onstyle="success" data-style="ios" class="toggle-delivery" data-id="{{$campaign->id}}">
         @endif
     </td>
     <td class="edit_btns">{{ $campaign->name }} <br>

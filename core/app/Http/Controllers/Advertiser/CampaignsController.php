@@ -113,9 +113,9 @@ class CampaignsController extends Controller
     {
         $user = Auth::guard('advertiser')->user()->id;
         $campaign = campaigns::findOrFail( $request->campaign_id);
-        $campaign->status = $request->status;
+        $campaign->delivery = $request->delivery;
         $campaign->update();
-        if( $request->status  == 1){
+        if( $request->delivery  == 1){
             return response()->json(['success'=>true]);
         }else{
             return response()->json(['success'=>false]);
